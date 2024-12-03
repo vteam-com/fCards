@@ -3,6 +3,7 @@ digraph "" {
   node [shape=rect style="filled,rounded" fontname=Arial fontsize=15 fillcolor=Lavender penwidth=1.3];
   edge [penwidth=1.3];
   "/test/models/game_model_test.dart" [label="game_model_test"];
+  "/test/models/deck_model_test.dart" [label="deck_model_test"];
   "/test/models/player_model_test.dart" [label="player_model_test"];
   "/test/models/card_model_test.dart" [label="card_model_test"];
   "/lib/models/game_model.dart" [label="game_model"];
@@ -35,6 +36,7 @@ digraph "" {
       subgraph "cluster~/test/models" {
         label="models";
         "/test/models/game_model_test.dart";
+        "/test/models/deck_model_test.dart";
         "/test/models/player_model_test.dart";
         "/test/models/card_model_test.dart";
       }
@@ -82,6 +84,7 @@ digraph "" {
     }
   }
   "/test/models/game_model_test.dart" -> "/lib/models/game_model.dart";
+  "/test/models/deck_model_test.dart" -> "/lib/models/game_model.dart";
   "/test/models/player_model_test.dart" -> "/lib/models/player_model.dart";
   "/test/models/card_model_test.dart" -> "/lib/models/card_model.dart";
   "/lib/models/game_model.dart" -> "/lib/models/backend_model.dart";
