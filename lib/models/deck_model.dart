@@ -21,6 +21,8 @@ class DeckModel {
 
   void shuffle({required final int numberOfDecks}) {
     this.numberOfDecks = numberOfDecks;
+    cardsDeckPile = [];
+    cardsDeckDiscarded = [];
 
     // Generate the specified number of decks
     for (int deckCount = 0; deckCount < numberOfDecks; deckCount++) {
