@@ -8,6 +8,10 @@ import 'package:flutter/material.dart';
 export 'package:cards/models/deck_model.dart';
 export 'package:cards/models/player_model.dart';
 
+String gameModeFrenchCards = '9 Cards';
+String gameModeSkyJo = 'SkyJo';
+List<String> gameModes = [gameModeFrenchCards, gameModeSkyJo];
+
 abstract class GameModel with ChangeNotifier {
   /// Creates a new game model.
   ///
@@ -64,6 +68,9 @@ abstract class GameModel with ChangeNotifier {
   GameStates get gameState => _gameState;
 
   void addPlayer(String name);
+
+  // must be override by models
+  String get mode => 'abstract';
 
   /// Sets the game state and updates the database if backend is ready.
   set gameState(GameStates value) {
@@ -462,14 +469,18 @@ abstract class GameModel with ChangeNotifier {
   }
 
   static String getLinkToGameFromInput(
+    final String mode,
     final String room,
     final List<String> names,
   ) {
-    return '?room=$room&players=${names.join(",")}';
+    return '?mode=$mode&room=$room&players=${names.join(",")}';
   }
 
-  String get linkUri =>
-      getLinkToGameFromInput(this.gameRoomId, this.getPlayersNames());
+  String get linkUri => getLinkToGameFromInput(
+        this.mode,
+        this.gameRoomId,
+        this.getPlayersNames(),
+      );
 
   String getLinkToGame() {
     if (kIsWeb) {

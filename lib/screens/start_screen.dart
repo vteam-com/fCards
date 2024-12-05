@@ -1,7 +1,9 @@
 import 'dart:async';
 // ignore: avoid_web_libraries_in_flutter
-// import 'dart:html' as html;
+import 'dart:html' as html;
 import 'package:cards/models/backend_model.dart';
+import 'package:cards/models/game_model.dart';
+import 'package:cards/models/golf_game_model.dart';
 import 'package:cards/models/skyjo_game_model.dart';
 import 'package:cards/screens/game_screen.dart';
 import 'package:cards/screens/screen.dart';
@@ -30,6 +32,9 @@ class StartScreen extends StatefulWidget {
 class StartScreenState extends State<StartScreen> {
   /// Subscription to the Firebase Realtime Database.
   StreamSubscription? _streamSubscription;
+
+  String _selectedGameMode = gameModeFrenchCards;
+  bool get isGameModelFrenchCards => _selectedGameMode == gameModeFrenchCards;
 
   /// Controller for the room name text field.
   final TextEditingController _controllerRoom = TextEditingController(
@@ -83,13 +88,20 @@ class StartScreenState extends State<StartScreen> {
 
     // Example URL: https://your-app-url?room=MYROOM&players=PLAYER1,PLAYER2
     final uri = Uri.parse(Uri.base.toString());
-    final roomFromUrl = uri.queryParameters['room'];
-    final playersFromUrl = uri.queryParameters['players'];
 
+    // Mode
+    final gameModeUrl = uri.queryParameters['mode'] ?? '';
+    _selectedGameMode =
+        gameModes.contains(gameModeUrl) ? gameModeUrl : gameModes.first;
+
+    // Room
+    final roomFromUrl = uri.queryParameters['room'];
     if (roomFromUrl != null) {
       _controllerRoom.text = roomFromUrl.toUpperCase();
     }
 
+    // Players
+    final playersFromUrl = uri.queryParameters['players'];
     if (playersFromUrl != null) {
       final playerNames = playersFromUrl
           .toUpperCase()
@@ -163,6 +175,7 @@ class StartScreenState extends State<StartScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
+                  gameMode(),
                   IntrinsicHeight(child: gameInstructions()),
                   const SizedBox(height: 20),
                   Row(
@@ -257,7 +270,54 @@ class StartScreenState extends State<StartScreen> {
     );
   }
 
+  Widget gameMode() {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: SegmentedButton<String>(
+        segments: const [
+          ButtonSegment<String>(
+            value: '9 Cards',
+            label: Text('9 Cards'),
+          ),
+          ButtonSegment<String>(
+            value: 'SkyJo',
+            label: Text('SkyJo'),
+          ),
+        ],
+        selected: {_selectedGameMode},
+        onSelectionChanged: (Set<String> value) {
+          setState(() {
+            _selectedGameMode = value.first;
+          });
+        },
+      ),
+    );
+  }
+
   Widget gameInstructions() {
+    String instructions = '';
+    if (isGameModelFrenchCards) {
+      instructions = '- Aim for the lowest score.'
+          '\n- Choose a card from either the Deck or Discard pile.'
+          '\n- Swap the chosen card with a card in your 3x3 grid, or discard it and flip over one of your face-down cards.'
+          '\n- Three cards of the same rank in a row or column score zero.'
+          '\n- The first player to reveal all nine cards challenges others, claiming the lowest score.'
+          '\n- If someone else has an equal or lower score, the challenger doubles their points!'
+          '\n- Players are eliminated after busting 100 points.'
+          '\n'
+          '\n'
+          'Learn more [Wikipedia](https://en.wikipedia.org/wiki/Golf_(card_game))';
+    } else {
+      instructions = '- Aim for the lowest score.'
+          '\n- Choose a card from either the Deck or Discard pile.'
+          '\n- Swap the chosen card with a card in your 4x3 grid, or discard it and flip over one of your face-down cards.'
+          '\n- When 3 cards of the same rank are lined up in a column they are moved to the discard pile.'
+          '\n- The first player to reveal all their cards challenges others, claiming the lowest score.'
+          '\n'
+          '\n'
+          'Learn more [SkyJo](https://www.geekyhobbies.com/how-to-play-skyjo-card-game-rules-and-instructions/)';
+    }
+
     return ExpansionTile(
       initiallyExpanded: _isExpandedRules,
       onExpansionChanged: (bool expanded) {
@@ -275,16 +335,7 @@ class StartScreenState extends State<StartScreen> {
           child: Markdown(
             selectable: true,
             styleSheet: MarkdownStyleSheet(textScaler: TextScaler.linear(1.2)),
-            data: '- Aim for the lowest score.'
-                '\n- Choose a card from either the Deck or Discard pile.'
-                '\n- Swap the chosen card with a card in your 3x3 grid, or discard it and flip over one of your face-down cards.'
-                '\n- Three cards of the same rank in a row or column score zero.'
-                '\n- The first player to reveal all nine cards challenges others, claiming the lowest score.'
-                '\n- If someone else has an equal or lower score, the challenger doubles their points!'
-                '\n- Players are eliminated after busting 100 points.'
-                '\n'
-                '\n'
-                'Learn more [Wikipedia](https://en.wikipedia.org/wiki/Golf_(card_game))',
+            data: instructions,
             onTapLink: (text, href, title) async {
               if (href != null) {
                 await launchUrlString(href);
@@ -386,12 +437,23 @@ class StartScreenState extends State<StartScreen> {
 
   /// Starts the game and navigates to the game screen.
   void startGame(BuildContext context) {
-    final newGame = SkyjoGameModel(
-      loginUserName: _controllerName.text.toUpperCase(),
-      names: _playerNames.toList(),
-      gameRoomId: roomId,
-      isNewGame: true,
-    );
+    late final GameModel newGame;
+
+    if (isGameModelFrenchCards) {
+      newGame = GolfGameModel(
+        loginUserName: _controllerName.text.toUpperCase(),
+        names: _playerNames.toList(),
+        gameRoomId: roomId,
+        isNewGame: true,
+      );
+    } else {
+      newGame = SkyjoGameModel(
+        loginUserName: _controllerName.text.toUpperCase(),
+        names: _playerNames.toList(),
+        gameRoomId: roomId,
+        isNewGame: true,
+      );
+    }
     // Update URL to include room ID
     updateUrlWithoutReload();
     Navigator.pushReplacement(
@@ -404,8 +466,12 @@ class StartScreenState extends State<StartScreen> {
 
   String getUrlToGame() {
     if (kIsWeb) {
-      // return html.window.location.origin +
-      //     GameModel.getLinkToGameFromInput(roomId, _playerNames.toList());
+      return html.window.location.origin +
+          GameModel.getLinkToGameFromInput(
+            _selectedGameMode,
+            roomId,
+            _playerNames.toList(),
+          );
     }
     return '';
   }
@@ -413,11 +479,11 @@ class StartScreenState extends State<StartScreen> {
   void updateUrlWithoutReload() {
     if (kIsWeb) {
       // Push the new state to the browser's history
-      // html.window.history.pushState(
-      //   null,
-      //   'vteam cards $roomId',
-      //   getUrlToGame(),
-      // );
+      html.window.history.pushState(
+        null,
+        'vteam cards $roomId',
+        getUrlToGame(),
+      );
     }
   }
 

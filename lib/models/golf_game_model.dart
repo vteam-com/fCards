@@ -20,6 +20,9 @@ class GolfGameModel extends GameModel {
         );
 
   @override
+  String get mode => '9 Cards';
+
+  @override
   DeckModel loadDeck(Map<String, dynamic> json) {
     return GolfFrenchSuitDeckModel.fromJson(json);
   }

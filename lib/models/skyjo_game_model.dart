@@ -44,6 +44,9 @@ class SkyjoGameModel extends GameModel {
   }
 
   @override
+  String get mode => 'SkyJo';
+
+  @override
   DeckModel loadDeck(Map<String, dynamic> json) {
     return SkyjoDeckModel.fromJson(json);
   }
