@@ -1,4 +1,4 @@
-import 'package:cards/models/game_model.dart';
+import 'package:cards/models/french_suit_deck_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -8,11 +8,11 @@ void main() {
       test(
         'shuffle should clear the previous state',
         () {
-          DeckModel deck = DeckModel(2);
+          FrenchSuitDeckModel deck = FrenchSuitDeckModel(numberOfDecks: 2);
 
-          deck.shuffle(numberOfDecks: 2);
+          deck.shuffle();
           deck.cardsDeckDiscarded.add(deck.cardsDeckPile.removeLast());
-          deck.shuffle(numberOfDecks: 2);
+          deck.shuffle();
           expect(deck.cardsDeckDiscarded.length, 0);
           expect(deck.cardsDeckPile.length, 108);
         },

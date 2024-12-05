@@ -39,7 +39,7 @@ class PlayerModel {
   int id = -1;
   final String name;
   bool isActivePlayer = false;
-  int get sumOfRevealedCards => _getSumOfCardsInHand();
+  int get sumOfRevealedCards => getSumOfCardsInHand();
   List<CardModel> hand = [];
 
   void reset() {
@@ -59,51 +59,15 @@ class PlayerModel {
     hand[5].isRevealed = true;
   }
 
-  int _getSumOfCardsInHand() {
+  int getSumOfCardsInHand() {
     int score = 0;
-    List<bool> markedForZeroScore = List.filled(hand.length, false);
-
-    List<List<int>> checkingIndices = [
-      [0, 1, 2],
-      [3, 4, 5],
-      [6, 7, 8],
-      [0, 3, 6],
-      [1, 4, 7],
-      [2, 5, 8],
-      // [0, 4, 8], // Diagonal from top-left to bottom-right
-      // [2, 4, 6], // Diagonal from top-right to bottom-left
-    ];
-
-    for (final List<int> indices in checkingIndices) {
-      markIfSameRank(hand, markedForZeroScore, indices);
-    }
-
     for (final CardModel card in hand) {
-      if (card.isRevealed && card.partOfSet == false) {
+      if (card.isRevealed) {
         score += card.value;
       }
     }
 
     return score;
-  }
-
-  void markIfSameRank(
-    List<CardModel> hand,
-    List<bool> markedForZeroScore,
-    List<int> indices,
-  ) {
-    if (indices.length == 3 &&
-        areAllTheSameRankAndNotAlreadyUsed(
-          hand[indices[0]],
-          hand[indices[1]],
-          hand[indices[2]],
-        )) {
-      for (final int index in indices) {
-        if (hand[index].rank != '§') {
-          hand[index].partOfSet = true;
-        }
-      }
-    }
   }
 
   bool areAllTheSameRankAndNotAlreadyUsed(

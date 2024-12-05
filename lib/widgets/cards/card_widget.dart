@@ -1,5 +1,7 @@
 import 'package:cards/models/card_model.dart';
+import 'package:cards/models/skyjo_card_model.dart';
 import 'package:cards/widgets/cards/card_face_widget.dart';
+import 'package:cards/widgets/cards/skyjo_card_face_widget.dart';
 import 'package:cards/widgets/wiggle_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -54,7 +56,9 @@ class CardWidget extends StatelessWidget {
             borderRadius: BorderRadius.circular(CardDimensions.borderRadius),
             border: Border.all(color: Colors.black, width: 1),
           ),
-          child: CardFaceWidget(card: card),
+          child: card is SkyjoCardModel
+              ? SkyjoCardFaceWidget(card: card)
+              : CardFaceWidget(card: card),
         ),
       ),
     );

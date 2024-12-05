@@ -1,12 +1,15 @@
 # Card games
 
-A Flutter base Multiplayer Card Game.
+A Flutter Base Multiplayer Card Game.
 
 ## Features
 
-- 9 Card Golf Game 3 x 3
-- 2 to 4 players
-- 1 or 2 deck of card
+- 9 Card Golf Game
+  - 2 to 4 players
+  - 1 or 2 deck of card
+- 12 Card Skyjo Game
+  - 2 to 8 players
+  - Custom card deck
 - Drag and drop cards
 
 ## Getting Started
@@ -51,7 +54,7 @@ A Flutter base Multiplayer Card Game.
 ## Firebase
 
 - Enable experiments
-```firebase experiments:enable webframeworks``
+```firebase experiments:enable webframeworks```
 
 - Edit and update the file ```firebase_options.dart``` with your firebase project details.
 - or Run this command to generate new private API for your deployment ```flutterfire configure```

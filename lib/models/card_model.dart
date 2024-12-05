@@ -11,12 +11,15 @@ class CardModel {
       isRevealed: json['isRevealed'] ?? false,
     );
   }
+
   CardModel({
     required this.suit,
     required this.rank,
     this.partOfSet = false,
     this.isRevealed = false,
   });
+
+  // The suit and the rank of the card
   final String suit;
   final String rank;
 
@@ -29,6 +32,8 @@ class CardModel {
   /// Indicates whether the card is part of a set of same Rank for a granting a total of zero points
   bool partOfSet;
 
+  int get value => 0;
+
   @override
   String toString() {
     return '$rank$suit${isRevealed ? '|' : '_'}${isSelectable ? 'S' : ' '}';
@@ -40,52 +45,5 @@ class CardModel {
       'rank': rank,
       'isRevealed': isRevealed ? true : null,
     };
-  }
-
-  static const List<String> suits = ['♥️', '♦️', '♣️', '♠️'];
-  static const List<String> ranks = [
-    'A', // Ace
-    '2',
-    '3',
-    '4',
-    '5',
-    '6',
-    '7',
-    '8',
-    '9',
-    'X', // 10
-    'J', // Jack
-    'Q', // Queen
-    'K', // King
-    // '§', // Joker are special we ony generate 2 per deck, so do not include them here
-  ];
-
-  /// Returns the numerical value of a card rank.
-  ///
-  /// Handles special cases for 'A', 'X', 'K', 'Q', 'J', '§'
-  /// Ranks '2' through '10' return their face value.
-  /// Returns 0 if the rank is invalid.
-  int get value {
-    if (rank == '§') {
-      return -2;
-    }
-    if (rank == 'A') {
-      return 1;
-    }
-    if (rank == 'X') {
-      return 10;
-    }
-    if (rank == 'J') {
-      return 11;
-    }
-    if (rank == 'Q') {
-      return 12;
-    }
-    if (rank == 'K') {
-      return 0;
-    }
-
-    // face value for cards from 2 to 10
-    return int.tryParse(rank) ?? 0;
   }
 }

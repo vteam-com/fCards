@@ -1,4 +1,5 @@
 import 'package:cards/models/game_model.dart';
+import 'package:cards/models/golf_game_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
@@ -13,7 +14,7 @@ void main() {
 
     setUp(() {
       mockContext = MockBuildContext();
-      gameModel = GameModel(
+      gameModel = GolfGameModel(
         loginUserName: 'Player 1',
         names: ['Player 1', 'Player 2'],
         gameRoomId: 'testRoom',
@@ -44,7 +45,7 @@ void main() {
   });
 
   test('initializeGame sets up correct initial state', () {
-    final gameModel = GameModel(
+    final gameModel = GolfGameModel(
       loginUserName: 'Player 1',
       names: ['Player 1', 'Player 2', 'Player 3'],
       gameRoomId: 'testRoom',
@@ -66,7 +67,7 @@ void main() {
   });
 
   test('moveToNextPlayer correctly handles final turn', () {
-    final gameModel = GameModel(
+    final gameModel = GolfGameModel(
       loginUserName: 'Player 1',
       names: ['Player 1', 'Player 2'],
       gameRoomId: 'testRoom',
@@ -87,7 +88,7 @@ void main() {
 
   test('getGameStateAsString returns correct message for different scenarios',
       () {
-    final gameModel = GameModel(
+    final gameModel = GolfGameModel(
       loginUserName: 'Player 1',
       names: ['Player 1', 'Player 2'],
       gameRoomId: 'testRoom',
@@ -107,7 +108,7 @@ void main() {
   });
 
   test('areAllCardsFromHandsRevealed returns correct state', () {
-    final gameModel = GameModel(
+    final gameModel = GolfGameModel(
       loginUserName: 'Player 1',
       names: ['Player 1', 'Player 2'],
       gameRoomId: 'testRoom',
@@ -126,7 +127,7 @@ void main() {
   });
 
   test('fromJson correctly updates game state', () {
-    final gameModel = GameModel(
+    final gameModel = GolfGameModel(
       loginUserName: 'Player 1',
       names: ['Player 1', 'Player 2'],
       gameRoomId: 'testRoom',
