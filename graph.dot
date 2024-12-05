@@ -2,27 +2,17 @@ digraph "" {
   graph [style=rounded fontname="Arial Black" fontsize=13 penwidth=2.6];
   node [shape=rect style="filled,rounded" fontname=Arial fontsize=15 fillcolor=Lavender penwidth=1.3];
   edge [penwidth=1.3];
-  "/test/models/golf_player_model_test.dart" [label="golf_player_model_test"];
-  "/test/models/golf_french_suit_card_model_test.dart" [label="golf_french_suit_card_model_test"];
-  "/test/models/french_suit_card_model_test.dart" [label="french_suit_card_model_test"];
-  "/test/models/golf_game_model_test.dart" [label="golf_game_model_test"];
-  "/lib/models/skyjo_deck_model.dart" [label="skyjo_deck_model"];
+  "/test/models/game_model_test.dart" [label="game_model_test"];
+  "/test/models/deck_model_test.dart" [label="deck_model_test"];
+  "/test/models/player_model_test.dart" [label="player_model_test"];
+  "/test/models/card_model_test.dart" [label="card_model_test"];
   "/lib/models/game_model.dart" [label="game_model"];
-  "/lib/models/golf_french_suit_deck_model.dart" [label="golf_french_suit_deck_model"];
   "/lib/models/game_over_dialog.dart" [label="game_over_dialog"];
-  "/lib/models/skyjo_card_model.dart" [label="skyjo_card_model"];
   "/lib/models/firebase_options.dart" [label="firebase_options"];
-  "/lib/models/golf_french_suit_card_model.dart" [label="golf_french_suit_card_model"];
   "/lib/models/player_model.dart" [label="player_model"];
-  "/lib/models/french_suit_deck_model.dart" [label="french_suit_deck_model"];
   "/lib/models/misc.dart" [label="misc"];
   "/lib/models/card_model.dart" [label="card_model"];
   "/lib/models/backend_model.dart" [label="backend_model"];
-  "/lib/models/golf_game_model.dart" [label="golf_game_model"];
-  "/lib/models/french_suit_card_model.dart" [label="french_suit_card_model"];
-  "/lib/models/golf_player_model.dart" [label="golf_player_model"];
-  "/lib/models/skyjo_game_model.dart" [label="skyjo_game_model"];
-  "/lib/models/skyjo_player_model.dart" [label="skyjo_player_model"];
   "/lib/models/deck_model.dart" [label="deck_model"];
   "/lib/screens/game_screen.dart" [label="game_screen"];
   "/lib/screens/start_screen.dart" [label="start_screen"];
@@ -30,7 +20,6 @@ digraph "" {
   "/lib/main.dart" [label="main"];
   "/lib/widgets/table_surface_painter.dart" [label="table_surface_painter"];
   "/lib/widgets/cards/card_pile_widget.dart" [label="card_pile_widget"];
-  "/lib/widgets/cards/skyjo_card_face_widget.dart" [label="skyjo_card_face_widget"];
   "/lib/widgets/cards/card_widget.dart" [label="card_widget"];
   "/lib/widgets/cards/card_face_widget.dart" [label="card_face_widget"];
   "/lib/widgets/wiggle_widget.dart" [label="wiggle_widget"];
@@ -46,10 +35,10 @@ digraph "" {
       label="test";
       subgraph "cluster~/test/models" {
         label="models";
-        "/test/models/golf_player_model_test.dart";
-        "/test/models/golf_french_suit_card_model_test.dart";
-        "/test/models/french_suit_card_model_test.dart";
-        "/test/models/golf_game_model_test.dart";
+        "/test/models/game_model_test.dart";
+        "/test/models/deck_model_test.dart";
+        "/test/models/player_model_test.dart";
+        "/test/models/card_model_test.dart";
       }
     }
     subgraph "cluster~/lib" {
@@ -57,23 +46,13 @@ digraph "" {
       "/lib/main.dart";
       subgraph "cluster~/lib/models" {
         label="models";
-        "/lib/models/skyjo_deck_model.dart";
         "/lib/models/game_model.dart";
-        "/lib/models/golf_french_suit_deck_model.dart";
         "/lib/models/game_over_dialog.dart";
-        "/lib/models/skyjo_card_model.dart";
         "/lib/models/firebase_options.dart";
-        "/lib/models/golf_french_suit_card_model.dart";
         "/lib/models/player_model.dart";
-        "/lib/models/french_suit_deck_model.dart";
         "/lib/models/misc.dart";
         "/lib/models/card_model.dart";
         "/lib/models/backend_model.dart";
-        "/lib/models/golf_game_model.dart";
-        "/lib/models/french_suit_card_model.dart";
-        "/lib/models/golf_player_model.dart";
-        "/lib/models/skyjo_game_model.dart";
-        "/lib/models/skyjo_player_model.dart";
         "/lib/models/deck_model.dart";
       }
       subgraph "cluster~/lib/screens" {
@@ -92,7 +71,6 @@ digraph "" {
         subgraph "cluster~/lib/widgets/cards" {
           label="cards";
           "/lib/widgets/cards/card_pile_widget.dart";
-          "/lib/widgets/cards/skyjo_card_face_widget.dart";
           "/lib/widgets/cards/card_widget.dart";
           "/lib/widgets/cards/card_face_widget.dart";
         }
@@ -105,47 +83,20 @@ digraph "" {
       }
     }
   }
-  "/test/models/golf_player_model_test.dart" -> "/lib/models/golf_french_suit_card_model.dart";
-  "/test/models/golf_player_model_test.dart" -> "/lib/models/golf_player_model.dart";
-  "/test/models/golf_player_model_test.dart" -> "/lib/models/player_model.dart";
-  "/test/models/golf_french_suit_card_model_test.dart" -> "/lib/models/golf_french_suit_card_model.dart";
-  "/test/models/french_suit_card_model_test.dart" -> "/lib/models/french_suit_card_model.dart";
-  "/test/models/golf_game_model_test.dart" -> "/lib/models/game_model.dart";
-  "/test/models/golf_game_model_test.dart" -> "/lib/models/golf_game_model.dart";
-  "/lib/models/skyjo_deck_model.dart" -> "/lib/models/deck_model.dart";
-  "/lib/models/skyjo_deck_model.dart" -> "/lib/models/skyjo_card_model.dart";
-  "/lib/models/skyjo_deck_model.dart" -> "/lib/models/card_model.dart" [style=dashed];
+  "/test/models/game_model_test.dart" -> "/lib/models/game_model.dart";
+  "/test/models/deck_model_test.dart" -> "/lib/models/game_model.dart";
+  "/test/models/player_model_test.dart" -> "/lib/models/player_model.dart";
+  "/test/models/card_model_test.dart" -> "/lib/models/card_model.dart";
   "/lib/models/game_model.dart" -> "/lib/models/backend_model.dart";
   "/lib/models/game_model.dart" -> "/lib/models/deck_model.dart";
   "/lib/models/game_model.dart" -> "/lib/models/player_model.dart";
   "/lib/models/game_model.dart" -> "/lib/models/deck_model.dart" [style=dashed];
   "/lib/models/game_model.dart" -> "/lib/models/player_model.dart" [style=dashed];
-  "/lib/models/golf_french_suit_deck_model.dart" -> "/lib/models/french_suit_card_model.dart";
-  "/lib/models/golf_french_suit_deck_model.dart" -> "/lib/models/game_model.dart";
-  "/lib/models/golf_french_suit_deck_model.dart" -> "/lib/models/golf_french_suit_card_model.dart";
-  "/lib/models/golf_french_suit_deck_model.dart" -> "/lib/models/card_model.dart" [style=dashed];
   "/lib/models/game_over_dialog.dart" -> "/lib/models/player_model.dart";
-  "/lib/models/skyjo_card_model.dart" -> "/lib/models/card_model.dart";
-  "/lib/models/golf_french_suit_card_model.dart" -> "/lib/models/card_model.dart";
   "/lib/models/player_model.dart" -> "/lib/models/card_model.dart";
   "/lib/models/player_model.dart" -> "/lib/models/card_model.dart" [style=dashed];
-  "/lib/models/french_suit_deck_model.dart" -> "/lib/models/french_suit_card_model.dart";
-  "/lib/models/french_suit_deck_model.dart" -> "/lib/models/game_model.dart";
-  "/lib/models/french_suit_deck_model.dart" -> "/lib/models/card_model.dart" [style=dashed];
   "/lib/models/backend_model.dart" -> "/lib/models/firebase_options.dart";
   "/lib/models/backend_model.dart" -> "/lib/models/misc.dart";
-  "/lib/models/golf_game_model.dart" -> "/lib/models/game_model.dart";
-  "/lib/models/golf_game_model.dart" -> "/lib/models/golf_french_suit_deck_model.dart";
-  "/lib/models/golf_game_model.dart" -> "/lib/models/golf_player_model.dart";
-  "/lib/models/french_suit_card_model.dart" -> "/lib/models/card_model.dart";
-  "/lib/models/golf_player_model.dart" -> "/lib/models/game_model.dart";
-  "/lib/models/golf_player_model.dart" -> "/lib/models/card_model.dart" [style=dashed];
-  "/lib/models/skyjo_game_model.dart" -> "/lib/models/game_model.dart";
-  "/lib/models/skyjo_game_model.dart" -> "/lib/models/skyjo_deck_model.dart";
-  "/lib/models/skyjo_game_model.dart" -> "/lib/models/skyjo_player_model.dart";
-  "/lib/models/skyjo_player_model.dart" -> "/lib/models/game_model.dart";
-  "/lib/models/skyjo_player_model.dart" -> "/lib/models/skyjo_card_model.dart";
-  "/lib/models/skyjo_player_model.dart" -> "/lib/models/card_model.dart" [style=dashed];
   "/lib/models/deck_model.dart" -> "/lib/models/card_model.dart";
   "/lib/models/deck_model.dart" -> "/lib/models/card_model.dart" [style=dashed];
   "/lib/screens/game_screen.dart" -> "/lib/models/backend_model.dart";
@@ -155,7 +106,7 @@ digraph "" {
   "/lib/screens/game_screen.dart" -> "/lib/screens/screen.dart";
   "/lib/screens/game_screen.dart" -> "/lib/widgets/player/player_zone_widget.dart";
   "/lib/screens/start_screen.dart" -> "/lib/models/backend_model.dart";
-  "/lib/screens/start_screen.dart" -> "/lib/models/skyjo_game_model.dart";
+  "/lib/screens/start_screen.dart" -> "/lib/models/game_model.dart";
   "/lib/screens/start_screen.dart" -> "/lib/screens/game_screen.dart";
   "/lib/screens/start_screen.dart" -> "/lib/screens/screen.dart";
   "/lib/screens/start_screen.dart" -> "/lib/widgets/players_in_room_widget.dart";
@@ -164,12 +115,8 @@ digraph "" {
   "/lib/widgets/cards/card_pile_widget.dart" -> "/lib/models/card_model.dart";
   "/lib/widgets/cards/card_pile_widget.dart" -> "/lib/widgets/cards/card_face_widget.dart";
   "/lib/widgets/cards/card_pile_widget.dart" -> "/lib/widgets/cards/card_widget.dart";
-  "/lib/widgets/cards/skyjo_card_face_widget.dart" -> "/lib/models/card_model.dart";
-  "/lib/widgets/cards/skyjo_card_face_widget.dart" -> "/lib/widgets/cards/card_face_widget.dart";
   "/lib/widgets/cards/card_widget.dart" -> "/lib/models/card_model.dart";
-  "/lib/widgets/cards/card_widget.dart" -> "/lib/models/skyjo_card_model.dart";
   "/lib/widgets/cards/card_widget.dart" -> "/lib/widgets/cards/card_face_widget.dart";
-  "/lib/widgets/cards/card_widget.dart" -> "/lib/widgets/cards/skyjo_card_face_widget.dart";
   "/lib/widgets/cards/card_widget.dart" -> "/lib/widgets/wiggle_widget.dart";
   "/lib/widgets/cards/card_face_widget.dart" -> "/lib/models/card_model.dart";
   "/lib/widgets/text_edit_with_submit.dart" -> "/lib/models/misc.dart";
