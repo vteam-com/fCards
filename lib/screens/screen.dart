@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
 
-const version = '1.2.2';
+const version = '1.5.0';
 
 class ResponsiveBreakpoints {
   static const double phone = 600;

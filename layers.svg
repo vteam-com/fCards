@@ -374,7 +374,7 @@ url_launcher</title>
   </g>
   <g id='Labels_cards'>
     <text class="nodeName" x="150" y="75" font-size="120%">cards</text>
-    <text class="nodeName" x="150" y="95" font-size="80%">1.2.2</text>
+    <text class="nodeName" x="150" y="95" font-size="80%">1.5.0</text>
   </g>
   <g id='Labels_animate_do'>
     <text class="nodeName" x="450" y="375" font-size="120%">animate_do</text>
