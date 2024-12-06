@@ -1,6 +1,6 @@
-import 'package:cards/models/game_model.dart';
-import 'package:cards/models/golf_french_suit_deck_model.dart';
-import 'package:cards/models/golf_player_model.dart';
+import 'package:cards/models/base/game_model.dart';
+import 'package:cards/models/golf/golf_french_suit_deck_model.dart';
+import 'package:cards/models/golf/golf_player_model.dart';
 
 class GolfGameModel extends GameModel {
   /// Creates a new Game game model.

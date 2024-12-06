@@ -1,12 +1,12 @@
 // ignore: avoid_web_libraries_in_flutter
 import 'package:cards/models/backend_model.dart';
-import 'package:cards/models/deck_model.dart';
-import 'package:cards/models/player_model.dart';
+import 'package:cards/models/base/deck_model.dart';
+import 'package:cards/models/base/player_model.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-export 'package:cards/models/deck_model.dart';
-export 'package:cards/models/player_model.dart';
+export 'package:cards/models/base/deck_model.dart';
+export 'package:cards/models/base/player_model.dart';
 
 String gameModeFrenchCards = '9 Cards';
 String gameModeSkyJo = 'SkyJo';

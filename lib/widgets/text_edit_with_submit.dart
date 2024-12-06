@@ -1,4 +1,4 @@
-import 'package:cards/models/misc.dart';
+import 'package:cards/misc.dart';
 import 'package:flutter/material.dart';
 
 class TextFieldWithButton extends StatelessWidget {

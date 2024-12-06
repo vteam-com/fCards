@@ -1,6 +1,6 @@
-import 'package:cards/models/game_model.dart';
-import 'package:cards/models/skyjo_card_model.dart';
-export 'package:cards/models/card_model.dart';
+import 'package:cards/models/base/game_model.dart';
+import 'package:cards/models/skyjo/skyjo_card_model.dart';
+export 'package:cards/models/base/card_model.dart';
 
 class SkyjoPlayerModel extends PlayerModel {
   /// Creates a `PlayerModel` from a JSON map.

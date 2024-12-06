@@ -1,5 +1,5 @@
-import 'package:cards/models/card_model.dart';
-export 'package:cards/models/card_model.dart';
+import 'package:cards/models/base/card_model.dart';
+export 'package:cards/models/base/card_model.dart';
 
 class PlayerModel {
   /// Creates a `PlayerModel` from a JSON map.

@@ -1,4 +1,4 @@
-import 'package:cards/models/card_model.dart';
+import 'package:cards/models/base/card_model.dart';
 import 'package:flutter/material.dart';
 
 /// A widget that displays a playing card's face or back.

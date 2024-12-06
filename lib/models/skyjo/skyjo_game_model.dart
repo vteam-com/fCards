@@ -1,6 +1,6 @@
-import 'package:cards/models/game_model.dart';
-import 'package:cards/models/skyjo_deck_model.dart';
-import 'package:cards/models/skyjo_player_model.dart';
+import 'package:cards/models/base/game_model.dart';
+import 'package:cards/models/skyjo/skyjo_deck_model.dart';
+import 'package:cards/models/skyjo/skyjo_player_model.dart';
 
 class SkyjoGameModel extends GameModel {
   /// Creates a new Skyjo game model.

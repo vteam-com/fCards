@@ -1,4 +1,4 @@
-import 'package:cards/models/french_suit_deck_model.dart';
+import 'package:cards/models/golf/french_suit_deck_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

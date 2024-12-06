@@ -2,9 +2,9 @@ import 'dart:async';
 // ignore: avoid_web_libraries_in_flutter
 import 'dart:html' as html;
 import 'package:cards/models/backend_model.dart';
-import 'package:cards/models/game_model.dart';
-import 'package:cards/models/golf_game_model.dart';
-import 'package:cards/models/skyjo_game_model.dart';
+import 'package:cards/models/base/game_model.dart';
+import 'package:cards/models/golf/golf_game_model.dart';
+import 'package:cards/models/skyjo/skyjo_game_model.dart';
 import 'package:cards/screens/game_screen.dart';
 import 'package:cards/screens/screen.dart';
 import 'package:cards/widgets/players_in_room_widget.dart';

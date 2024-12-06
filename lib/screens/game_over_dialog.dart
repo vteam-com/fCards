@@ -1,4 +1,4 @@
-import 'package:cards/models/player_model.dart';
+import 'package:cards/models/base/player_model.dart';
 import 'package:flutter/material.dart';
 
 void showGameOverDialog(
