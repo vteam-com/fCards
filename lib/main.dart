@@ -1,5 +1,4 @@
 import 'package:cards/screens/start_screen.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 void main() async {
@@ -91,8 +90,4 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
     );
   }
-}
-
-Future<void> signInAnonymously() async {
-  await FirebaseAuth.instance.signInAnonymously();
 }
