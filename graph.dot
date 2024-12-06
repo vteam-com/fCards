@@ -20,7 +20,6 @@ digraph "" {
   "/lib/models/card_model.dart" [label="card_model"];
   "/lib/models/backend_model.dart" [label="backend_model"];
   "/lib/models/golf_game_model.dart" [label="golf_game_model"];
-  "/lib/models/french_suit_card_model.dart" [label="french_suit_card_model"];
   "/lib/models/golf_player_model.dart" [label="golf_player_model"];
   "/lib/models/skyjo_game_model.dart" [label="skyjo_game_model"];
   "/lib/models/skyjo_player_model.dart" [label="skyjo_player_model"];
@@ -72,7 +71,6 @@ digraph "" {
         "/lib/models/card_model.dart";
         "/lib/models/backend_model.dart";
         "/lib/models/golf_game_model.dart";
-        "/lib/models/french_suit_card_model.dart";
         "/lib/models/golf_player_model.dart";
         "/lib/models/skyjo_game_model.dart";
         "/lib/models/skyjo_player_model.dart";
@@ -112,7 +110,7 @@ digraph "" {
   "/test/models/golf_player_model_test.dart" -> "/lib/models/golf_player_model.dart";
   "/test/models/golf_player_model_test.dart" -> "/lib/models/player_model.dart";
   "/test/models/golf_french_suit_card_model_test.dart" -> "/lib/models/golf_french_suit_card_model.dart";
-  "/test/models/french_suit_card_model_test.dart" -> "/lib/models/french_suit_card_model.dart";
+  "/test/models/french_suit_card_model_test.dart" -> "/lib/models/golf_french_suit_card_model.dart";
   "/test/models/golf_game_model_test.dart" -> "/lib/models/game_model.dart";
   "/test/models/golf_game_model_test.dart" -> "/lib/models/golf_game_model.dart";
   "/lib/models/skyjo_deck_model.dart" -> "/lib/models/deck_model.dart";
@@ -123,7 +121,6 @@ digraph "" {
   "/lib/models/game_model.dart" -> "/lib/models/player_model.dart";
   "/lib/models/game_model.dart" -> "/lib/models/deck_model.dart" [style=dashed];
   "/lib/models/game_model.dart" -> "/lib/models/player_model.dart" [style=dashed];
-  "/lib/models/golf_french_suit_deck_model.dart" -> "/lib/models/french_suit_card_model.dart";
   "/lib/models/golf_french_suit_deck_model.dart" -> "/lib/models/game_model.dart";
   "/lib/models/golf_french_suit_deck_model.dart" -> "/lib/models/golf_french_suit_card_model.dart";
   "/lib/models/golf_french_suit_deck_model.dart" -> "/lib/models/card_model.dart" [style=dashed];
@@ -132,15 +129,14 @@ digraph "" {
   "/lib/models/golf_french_suit_card_model.dart" -> "/lib/models/card_model.dart";
   "/lib/models/player_model.dart" -> "/lib/models/card_model.dart";
   "/lib/models/player_model.dart" -> "/lib/models/card_model.dart" [style=dashed];
-  "/lib/models/french_suit_deck_model.dart" -> "/lib/models/french_suit_card_model.dart";
   "/lib/models/french_suit_deck_model.dart" -> "/lib/models/game_model.dart";
+  "/lib/models/french_suit_deck_model.dart" -> "/lib/models/golf_french_suit_card_model.dart";
   "/lib/models/french_suit_deck_model.dart" -> "/lib/models/card_model.dart" [style=dashed];
   "/lib/models/backend_model.dart" -> "/lib/models/firebase_options.dart";
   "/lib/models/backend_model.dart" -> "/lib/models/misc.dart";
   "/lib/models/golf_game_model.dart" -> "/lib/models/game_model.dart";
   "/lib/models/golf_game_model.dart" -> "/lib/models/golf_french_suit_deck_model.dart";
   "/lib/models/golf_game_model.dart" -> "/lib/models/golf_player_model.dart";
-  "/lib/models/french_suit_card_model.dart" -> "/lib/models/card_model.dart";
   "/lib/models/golf_player_model.dart" -> "/lib/models/game_model.dart";
   "/lib/models/golf_player_model.dart" -> "/lib/models/golf_french_suit_card_model.dart";
   "/lib/models/golf_player_model.dart" -> "/lib/models/card_model.dart" [style=dashed];

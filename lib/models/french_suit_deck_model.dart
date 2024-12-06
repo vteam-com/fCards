@@ -1,5 +1,5 @@
-import 'package:cards/models/french_suit_card_model.dart';
 import 'package:cards/models/game_model.dart';
+import 'package:cards/models/golf_french_suit_card_model.dart';
 export 'package:cards/models/card_model.dart';
 
 class FrenchSuitDeckModel extends DeckModel {
@@ -7,24 +7,24 @@ class FrenchSuitDeckModel extends DeckModel {
 
   factory FrenchSuitDeckModel.fromJson(Map<String, dynamic> json) {
     return FrenchSuitDeckModel(numberOfDecks: json['numberOfDecks'] ?? 1)
-      ..cardsDeckPile = List<FrenchSuitCardModel>.from(
+      ..cardsDeckPile = List<GolfFrenchSuitCardModel>.from(
         json['cardsDeckPile']
-                ?.map((card) => FrenchSuitCardModel.fromJson(card)) ??
+                ?.map((card) => GolfFrenchSuitCardModel.fromJson(card)) ??
             [],
       )
-      ..cardsDeckDiscarded = List<FrenchSuitCardModel>.from(
+      ..cardsDeckDiscarded = List<GolfFrenchSuitCardModel>.from(
         json['cardsDeckDiscarded']
-                ?.map((card) => FrenchSuitCardModel.fromJson(card)) ??
+                ?.map((card) => GolfFrenchSuitCardModel.fromJson(card)) ??
             [],
       );
   }
 
   @override
   void addCardsToDeck() {
-    for (String suit in FrenchSuitCardModel.suits) {
-      for (String rank in FrenchSuitCardModel.ranks) {
+    for (String suit in GolfFrenchSuitCardModel.suits) {
+      for (String rank in GolfFrenchSuitCardModel.ranks) {
         cardsDeckPile.add(
-          FrenchSuitCardModel(
+          GolfFrenchSuitCardModel(
             suit: suit,
             rank: rank,
           ),

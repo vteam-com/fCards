@@ -1,4 +1,3 @@
-import 'package:cards/models/french_suit_card_model.dart';
 import 'package:cards/models/game_model.dart';
 import 'package:cards/models/golf_french_suit_card_model.dart';
 export 'package:cards/models/card_model.dart';
@@ -22,10 +21,10 @@ class GolfFrenchSuitDeckModel extends DeckModel {
 
   @override
   void addCardsToDeck() {
-    for (String suit in FrenchSuitCardModel.suits) {
-      for (String rank in FrenchSuitCardModel.ranks) {
+    for (String suit in GolfFrenchSuitCardModel.suits) {
+      for (String rank in GolfFrenchSuitCardModel.ranks) {
         cardsDeckPile.add(
-          FrenchSuitCardModel(
+          GolfFrenchSuitCardModel(
             suit: suit,
             rank: rank,
           ),

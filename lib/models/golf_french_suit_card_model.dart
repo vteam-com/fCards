@@ -49,4 +49,36 @@ class GolfFrenchSuitCardModel extends CardModel {
     // face value for cards from 2 to 10
     return int.tryParse(rank) ?? 0;
   }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      'suit': suit,
+      'rank': rank,
+      'isRevealed': isRevealed ? true : null,
+    };
+  }
+
+  static const List<String> suits = ['♥️', '♦️', '♣️', '♠️'];
+  static const List<String> ranks = [
+    'A', // Ace
+    '2',
+    '3',
+    '4',
+    '5',
+    '6',
+    '7',
+    '8',
+    '9',
+    'X', // 10
+    'J', // Jack
+    'Q', // Queen
+    'K', // King
+    // '§', // Joker are special we ony generate 2 per deck, so do not include them here
+  ];
+
+  @override
+  String toString() {
+    return '$rank$suit${isRevealed ? '|' : '_'}${isSelectable ? 'S' : ' '}';
+  }
 }
