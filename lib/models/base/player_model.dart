@@ -1,35 +1,9 @@
 import 'package:cards/models/base/card_model.dart';
+import 'package:cards/models/base/player_status.dart';
 export 'package:cards/models/base/card_model.dart';
+export 'package:cards/models/base/player_status.dart';
 
 class PlayerModel {
-  /// Creates a `PlayerModel` from a JSON map.
-  ///
-  /// This factory constructor takes a JSON map representing a player and
-  /// constructs a `PlayerModel` instance.  It parses the player's name, hand,
-  /// and card visibility from the JSON data.
-  ///
-  /// Args:
-  ///   json (Map<String, dynamic>): The JSON map representing the player.
-  ///       This map should contain the keys 'name', 'hand', and
-  ///       'cardVisibility'.  The 'hand' value should be a list of JSON maps
-  ///       representing cards, and the 'cardVisibility' value should be a list
-  ///       of booleans.
-  ///
-  /// Returns:
-  ///   PlayerModel: A new `PlayerModel` instance initialized with the data from
-  ///       the JSON map.
-  factory PlayerModel.fromJson(Map<String, dynamic> json) {
-    // Create a list of CardModel objects from the 'hand' JSON data.
-    final hand = (json['hand'] as List<dynamic>)
-        .map((cardJson) => CardModel.fromJson(cardJson as Map<String, dynamic>))
-        .toList();
-
-    // Create a new PlayerModel instance with the parsed data.
-    return PlayerModel(
-      name: json['name'] as String,
-    )..hand = hand;
-  }
-
   ///
   /// Creates a `PlayerModel` with the given name.
   ///
@@ -38,6 +12,7 @@ class PlayerModel {
   /// Properties
   int id = -1;
   final String name;
+  PlayerStatus status = playersStatuses.first;
   bool isActivePlayer = false;
   int get sumOfRevealedCards => getSumOfCardsInHand();
   List<CardModel> hand = [];
@@ -87,6 +62,7 @@ class PlayerModel {
     return {
       'name': name,
       'hand': hand.map((CardModel card) => card.toJson()).toList(),
+      'status': status.toJson(),
     };
   }
 

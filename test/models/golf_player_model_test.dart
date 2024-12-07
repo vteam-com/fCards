@@ -101,7 +101,7 @@ void main() {
         ],
       };
 
-      final playerFromJson = PlayerModel.fromJson(json);
+      final GolfPlayerModel playerFromJson = GolfPlayerModel.fromJson(json);
 
       expect(playerFromJson.name, 'Test Player');
       expect(playerFromJson.hand.length, 2);

@@ -89,6 +89,10 @@ class PlayerZoneWidget extends StatelessWidget {
         //
         PlayerHeaderWidget(
           name: player.name,
+          status: player.status,
+          onStatusChanged: (PlayerStatus newStatus) {
+            gameModel.updatePlayerStatus(player, newStatus);
+          },
           sumOfRevealedCards: player.sumOfRevealedCards,
         ),
 

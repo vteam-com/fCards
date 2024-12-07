@@ -1,12 +1,18 @@
+import 'package:cards/models/base/player_status.dart';
+import 'package:cards/widgets/player/status_picker.dart';
 import 'package:flutter/material.dart';
 
 class PlayerHeaderWidget extends StatelessWidget {
   const PlayerHeaderWidget({
     super.key,
     required this.name,
+    required this.status,
     required this.sumOfRevealedCards,
+    required this.onStatusChanged,
   });
   final String name;
+  final PlayerStatus status;
+  final Function(PlayerStatus) onStatusChanged;
   final int sumOfRevealedCards;
 
   @override
@@ -22,6 +28,10 @@ class PlayerHeaderWidget extends StatelessWidget {
             fontSize: 30,
             fontWeight: FontWeight.bold,
           ),
+        ),
+        StatusPicker(
+          status: status,
+          onStatusChanged: onStatusChanged,
         ),
         Text(
           sumOfRevealedCards.toString(),

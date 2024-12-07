@@ -20,8 +20,15 @@ class GolfPlayerModel extends PlayerModel {
   ///   PlayerModel: A new `PlayerModel` instance initialized with the data from
   ///       the JSON map.
   factory GolfPlayerModel.fromJson(Map<String, dynamic> json) {
-    // Create a list of CardModel objects from the 'hand' JSON data.
-    final hand = (json['hand'] as List<dynamic>)
+    // Create a new PlayerModel instance with the parsed data.
+    final GolfPlayerModel instance =
+        GolfPlayerModel(name: json['name'] as String);
+
+    // Status
+    instance.status = PlayerStatus.fromJson(json['status']);
+
+    // Hand
+    instance.hand = (json['hand'] as List<dynamic>)
         .map(
           (cardJson) => GolfFrenchSuitCardModel.fromJson(
             cardJson as Map<String, dynamic>,
@@ -29,10 +36,7 @@ class GolfPlayerModel extends PlayerModel {
         )
         .toList();
 
-    // Create a new PlayerModel instance with the parsed data.
-    return GolfPlayerModel(
-      name: json['name'] as String,
-    )..hand = hand;
+    return instance;
   }
 
   ///

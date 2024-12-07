@@ -20,18 +20,22 @@ class SkyjoPlayerModel extends PlayerModel {
   ///   PlayerModel: A new `PlayerModel` instance initialized with the data from
   ///       the JSON map.
   factory SkyjoPlayerModel.fromJson(Map<String, dynamic> json) {
+    // Create a new PlayerModel instance with the parsed data.
+    final SkyjoPlayerModel instance =
+        SkyjoPlayerModel(name: json['name'] as String);
+
+    // Status
+    instance.status = PlayerStatus.fromJson(json['status']);
+
     // Create a list of CardModel objects from the 'hand' JSON data.
-    final hand = (json['hand'] as List<dynamic>)
+    instance.hand = (json['hand'] as List<dynamic>)
         .map(
           (cardJson) =>
               SkyjoCardModel.fromJson(cardJson as Map<String, dynamic>),
         )
         .toList();
 
-    // Create a new PlayerModel instance with the parsed data.
-    return SkyjoPlayerModel(
-      name: json['name'] as String,
-    )..hand = hand;
+    return instance;
   }
 
   ///

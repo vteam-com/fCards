@@ -80,13 +80,17 @@ abstract class GameModel with ChangeNotifier {
       if (isRunningOffLine) {
         notifyListeners();
       } else {
-        if (backendReady) {
-          if (isRunningOffLine == false) {
-            final refPlayers =
-                FirebaseDatabase.instance.ref().child('rooms/$gameRoomId');
-            refPlayers.set(this.toJson());
-          }
-        }
+        pushGameModelToBackend();
+      }
+    }
+  }
+
+  void pushGameModelToBackend() {
+    if (backendReady) {
+      if (isRunningOffLine == false) {
+        final refPlayers =
+            FirebaseDatabase.instance.ref().child('rooms/$gameRoomId');
+        refPlayers.set(this.toJson());
       }
     }
   }
@@ -448,6 +452,19 @@ abstract class GameModel with ChangeNotifier {
     }
     setActivePlayer((playerIdPlaying + 1) % players.length);
     gameState = GameStates.pickCardFromEitherPiles;
+  }
+
+  void updatePlayerStatus(
+    final PlayerModel player,
+    final PlayerStatus newStatus,
+  ) {
+    // Update the player's status
+    player.status = newStatus;
+    if (isRunningOffLine) {
+      notifyListeners();
+    } else {
+      pushGameModelToBackend();
+    }
   }
 
   /// Returns a string representing the current game state, including the current player's name
