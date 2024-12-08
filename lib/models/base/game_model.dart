@@ -437,11 +437,10 @@ abstract class GameModel with ChangeNotifier {
     return true;
   }
 
-  void processEndOfTurn() {}
+  void evaluateHand() {}
 
   /// Advances the game to the next player's turn.
   void moveToNextPlayer(BuildContext context) {
-    processEndOfTurn();
     if (isFinalTurn) {
       revealAllRemainingCardsFor(playerIdPlaying);
     } else {
@@ -450,6 +449,7 @@ abstract class GameModel with ChangeNotifier {
         playerIdAttacking = playerIdPlaying;
       }
     }
+    evaluateHand();
     setActivePlayer((playerIdPlaying + 1) % players.length);
     gameState = GameStates.pickCardFromEitherPiles;
   }

@@ -16,8 +16,8 @@ class SkyjoGameModel extends GameModel {
   }) : super(cardsToDeal: 12, deck: SkyjoDeckModel(numberOfDecks: 1));
 
   @override
-  void processEndOfTurn() {
-    super.processEndOfTurn();
+  void evaluateHand() {
+    super.evaluateHand();
 
     var player = players[playerIdPlaying];
 
