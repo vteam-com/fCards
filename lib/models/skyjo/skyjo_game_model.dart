@@ -5,11 +5,11 @@ import 'package:cards/models/skyjo/skyjo_player_model.dart';
 class SkyjoGameModel extends GameModel {
   /// Creates a new Skyjo game model.
   ///
-  /// [gameRoomId] is the ID of the room this game is in.
+  /// [roomName] is the ID of the room this game is in.
   /// [names] is the list of player names.
   /// [isNewGame] indicates whether this is a new game or joining an existing one.
   SkyjoGameModel({
-    required super.gameRoomId,
+    required super.roomName,
     required super.loginUserName,
     required super.names,
     super.isNewGame,

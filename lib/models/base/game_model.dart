@@ -15,13 +15,13 @@ List<String> gameModes = [gameModeFrenchCards, gameModeSkyJo];
 abstract class GameModel with ChangeNotifier {
   /// Creates a new game model.
   ///
-  /// [gameRoomId] is the ID of the room this game is in.
+  /// [roomName] is the ID of the room this game is in.
   /// [names] is the list of player names.
   /// [cardsToDeal] is the number of cards to deal to each player
   /// [deck] a cardDeck to use for the game
   /// [isNewGame] indicates whether this is a new game or joining an existing one.
   GameModel({
-    required this.gameRoomId,
+    required this.roomName,
     required this.loginUserName,
     required final List<String> names,
     required this.cardsToDeal,
@@ -41,7 +41,7 @@ abstract class GameModel with ChangeNotifier {
   final int cardsToDeal;
 
   /// The ID of the game room.
-  final String gameRoomId;
+  final String roomName;
 
   /// The name of the person running the app.
   final String loginUserName;
@@ -89,7 +89,7 @@ abstract class GameModel with ChangeNotifier {
     if (backendReady) {
       if (isRunningOffLine == false) {
         final refPlayers =
-            FirebaseDatabase.instance.ref().child('rooms/$gameRoomId');
+            FirebaseDatabase.instance.ref().child('rooms/$roomName');
         refPlayers.set(this.toJson());
       }
     }
@@ -495,7 +495,7 @@ abstract class GameModel with ChangeNotifier {
 
   String get linkUri => getLinkToGameFromInput(
         this.mode,
-        this.gameRoomId,
+        this.roomName,
         this.getPlayersNames(),
       );
 

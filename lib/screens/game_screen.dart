@@ -104,7 +104,7 @@ class GameScreenState extends State<GameScreen> {
 
   /// Gets the Firebase database reference path for this game room
   String _getFirebaseRef() {
-    return 'rooms/${widget.gameModel.gameRoomId}';
+    return 'rooms/${widget.gameModel.roomName}';
   }
 
   /// Refreshes the game state by fetching the latest data from Firebase.

@@ -17,7 +17,7 @@ void main() {
       gameModel = GolfGameModel(
         loginUserName: 'Player 1',
         names: ['Player 1', 'Player 2'],
-        gameRoomId: 'testRoom',
+        roomName: 'testRoom',
         isNewGame: true,
       );
     });
@@ -48,7 +48,7 @@ void main() {
     final gameModel = GolfGameModel(
       loginUserName: 'Player 1',
       names: ['Player 1', 'Player 2', 'Player 3'],
-      gameRoomId: 'testRoom',
+      roomName: 'testRoom',
       isNewGame: false,
     );
 
@@ -70,7 +70,7 @@ void main() {
     final gameModel = GolfGameModel(
       loginUserName: 'Player 1',
       names: ['Player 1', 'Player 2'],
-      gameRoomId: 'testRoom',
+      roomName: 'testRoom',
       isNewGame: true,
     );
 
@@ -91,7 +91,7 @@ void main() {
     final gameModel = GolfGameModel(
       loginUserName: 'Player 1',
       names: ['Player 1', 'Player 2'],
-      gameRoomId: 'testRoom',
+      roomName: 'testRoom',
       isNewGame: true,
     );
 
@@ -111,7 +111,7 @@ void main() {
     final gameModel = GolfGameModel(
       loginUserName: 'Player 1',
       names: ['Player 1', 'Player 2'],
-      gameRoomId: 'testRoom',
+      roomName: 'testRoom',
       isNewGame: true,
     );
 
@@ -130,7 +130,7 @@ void main() {
     final gameModel = GolfGameModel(
       loginUserName: 'Player 1',
       names: ['Player 1', 'Player 2'],
-      gameRoomId: 'testRoom',
+      roomName: 'testRoom',
       isNewGame: true,
     );
 

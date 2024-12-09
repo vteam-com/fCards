@@ -443,14 +443,14 @@ class StartScreenState extends State<StartScreen> {
       newGame = GolfGameModel(
         loginUserName: _controllerName.text.toUpperCase(),
         names: _playerNames.toList(),
-        gameRoomId: roomId,
+        roomName: roomId,
         isNewGame: true,
       );
     } else {
       newGame = SkyjoGameModel(
         loginUserName: _controllerName.text.toUpperCase(),
         names: _playerNames.toList(),
-        gameRoomId: roomId,
+        roomName: roomId,
         isNewGame: true,
       );
     }
