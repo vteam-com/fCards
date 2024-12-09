@@ -29,10 +29,9 @@ class PlayerZoneWidget extends StatelessWidget {
     final double width = min(400, MediaQuery.of(context).size.width);
     return Stack(
       children: [
-        if (player.isActivePlayer)
-          FadeIn(
-            child: _containerBorder(width, heightZone),
-          ),
+        FadeIn(
+          child: _containerBorder(width, heightZone),
+        ),
         Container(
           width: width,
           height: heightZone,
@@ -53,12 +52,23 @@ class PlayerZoneWidget extends StatelessWidget {
   }
 
   Widget _containerBorder(double width, double height) {
+    Color color = Colors.transparent;
+    if (gameModel.gameState == GameStates.gameOver) {
+      color = player.isWinner ? Colors.green : Colors.red;
+    } else {
+      if (player.areAllCardsRevealed()) {
+        color = Colors.blue;
+      } else if (player.isActivePlayer) {
+        color = Colors.yellow;
+      }
+    }
+
     return Container(
       width: width,
       height: height,
       decoration: BoxDecoration(
         border: Border.all(
-          color: Colors.yellow,
+          color: color,
           width: 8,
         ),
         borderRadius: BorderRadius.circular(20.0),

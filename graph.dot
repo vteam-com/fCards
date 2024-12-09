@@ -6,6 +6,7 @@ digraph "" {
   "/test/models/golf_player_model_test.dart" [label="golf_player_model_test"];
   "/test/models/golf_french_suit_card_model_test.dart" [label="golf_french_suit_card_model_test"];
   "/test/models/french_suit_card_model_test.dart" [label="french_suit_card_model_test"];
+  "/test/models/skyjo/skyjo_game_model_test.dart" [label="skyjo_game_model_test"];
   "/test/models/golf_game_model_test.dart" [label="golf_game_model_test"];
   "/lib/models/golf/golf_french_suit_deck_model.dart" [label="golf_french_suit_deck_model"];
   "/lib/models/golf/golf_french_suit_card_model.dart" [label="golf_french_suit_card_model"];
@@ -53,6 +54,10 @@ digraph "" {
         "/test/models/golf_french_suit_card_model_test.dart";
         "/test/models/french_suit_card_model_test.dart";
         "/test/models/golf_game_model_test.dart";
+        subgraph "cluster~/test/models/skyjo" {
+          label="skyjo";
+          "/test/models/skyjo/skyjo_game_model_test.dart";
+        }
       }
     }
     subgraph "cluster~/lib" {
@@ -124,6 +129,9 @@ digraph "" {
   "/test/models/golf_player_model_test.dart" -> "/lib/models/golf/golf_player_model.dart";
   "/test/models/golf_french_suit_card_model_test.dart" -> "/lib/models/golf/golf_french_suit_card_model.dart";
   "/test/models/french_suit_card_model_test.dart" -> "/lib/models/golf/golf_french_suit_card_model.dart";
+  "/test/models/skyjo/skyjo_game_model_test.dart" -> "/lib/models/skyjo/skyjo_card_model.dart";
+  "/test/models/skyjo/skyjo_game_model_test.dart" -> "/lib/models/skyjo/skyjo_game_model.dart";
+  "/test/models/skyjo/skyjo_game_model_test.dart" -> "/test/models/golf_game_model_test.dart";
   "/test/models/golf_game_model_test.dart" -> "/lib/models/base/game_model.dart";
   "/test/models/golf_game_model_test.dart" -> "/lib/models/golf/golf_game_model.dart";
   "/lib/models/golf/golf_french_suit_deck_model.dart" -> "/lib/models/base/game_model.dart";

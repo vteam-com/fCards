@@ -11,6 +11,9 @@ void showGameOverDialog(
     (a, b) => a.sumOfRevealedCards.compareTo(b.sumOfRevealedCards),
   );
 
+  players.forEach((player) => player.isWinner = false);
+  players.first.isWinner = true;
+
   showDialog(
     context: context,
     builder: (BuildContext context) {
@@ -25,11 +28,14 @@ void showGameOverDialog(
                   children: [
                     Text(
                       player.name,
-                      style: const TextStyle(fontSize: 16),
+                      style: const TextStyle(fontSize: 20),
                     ),
                     Text(
                       '${player.sumOfRevealedCards}',
-                      style: const TextStyle(fontSize: 16),
+                      style: const TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ],
                 ),

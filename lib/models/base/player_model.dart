@@ -14,6 +14,7 @@ class PlayerModel {
   final String name;
   PlayerStatus status = playersStatuses.first;
   bool isActivePlayer = false;
+  bool isWinner = false;
   int get sumOfRevealedCards => getSumOfCardsInHand();
   List<CardModel> hand = [];
 
