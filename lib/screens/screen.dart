@@ -88,7 +88,10 @@ class Screen extends StatelessWidget {
               padding: EdgeInsets.only(right: 8.0), // Adjust as needed
               child: Padding(
                 padding: const EdgeInsets.only(left: 8.0),
-                child: Text(rightText),
+                child: Text(
+                  rightText,
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
               ),
             ),
 

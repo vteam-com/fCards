@@ -171,7 +171,6 @@ digraph "" {
   "/lib/models/base/deck_model.dart" -> "/lib/models/base/card_model.dart";
   "/lib/models/base/deck_model.dart" -> "/lib/models/base/card_model.dart" [style=dashed];
   "/lib/screens/game_over_dialog.dart" -> "/lib/models/base/player_model.dart";
-  "/lib/screens/game_screen.dart" -> "/lib/misc.dart";
   "/lib/screens/game_screen.dart" -> "/lib/models/backend_model.dart";
   "/lib/screens/game_screen.dart" -> "/lib/models/base/game_model.dart";
   "/lib/screens/game_screen.dart" -> "/lib/screens/game_over_dialog.dart";

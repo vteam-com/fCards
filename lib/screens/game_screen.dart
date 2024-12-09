@@ -1,7 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-
-import 'package:cards/misc.dart';
 import 'package:cards/models/backend_model.dart';
 import 'package:cards/models/base/game_model.dart';
 import 'package:cards/screens/game_over_dialog.dart';
@@ -44,7 +42,6 @@ class GameScreenState extends State<GameScreen> {
   /// Flag indicating whether the layout is for a phone-sized screen.
   bool phoneLayout = false;
   bool isReady = isRunningOffLine;
-  int updateCount = 0;
 
   @override
   void initState() {
@@ -89,11 +86,12 @@ class GameScreenState extends State<GameScreen> {
   @override
   Widget build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;
-    debugLog('GAME SCREEN - BUILD($updateCount) ${widget.gameModel}');
+
     return Screen(
       isWaiting: !isReady,
-      title: '${widget.gameModel.getGameStateAsString()} (${++updateCount})',
-      rightText: widget.gameModel.loginUserName,
+      title: widget.gameModel.getGameStateAsString(),
+      rightText:
+          '${widget.gameModel.roomName} [ ${widget.gameModel.loginUserName} ]',
       onRefresh: _onRefresh,
       getLinkToShare: () {
         return widget.gameModel.getLinkToGame();

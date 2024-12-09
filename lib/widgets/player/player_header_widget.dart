@@ -10,6 +10,7 @@ class PlayerHeaderWidget extends StatelessWidget {
     required this.sumOfRevealedCards,
     required this.onStatusChanged,
   });
+
   final String name;
   final PlayerStatus status;
   final Function(PlayerStatus) onStatusChanged;
