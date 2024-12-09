@@ -1,10 +1,13 @@
 // ignore: avoid_web_libraries_in_flutter
+// Imports
 import 'package:cards/models/backend_model.dart';
 import 'package:cards/models/base/deck_model.dart';
 import 'package:cards/models/base/player_model.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
+// Exports
 export 'package:cards/models/base/deck_model.dart';
 export 'package:cards/models/base/player_model.dart';
 
@@ -37,20 +40,26 @@ abstract class GameModel with ChangeNotifier {
     }
   }
 
-  /// The number of cards to deal to each player
-  final int cardsToDeal;
+  /// The name of the person running the app.
+  final String loginUserName;
 
   /// The ID of the game room.
   final String roomName;
 
-  /// The name of the person running the app.
-  final String loginUserName;
+  /// When did the date start
+  DateTime startedOn = DateTime.fromMillisecondsSinceEpoch(0);
 
-  /// List of players in the game.
-  final List<PlayerModel> players = [];
+  /// When did the date end
+  DateTime endedOn = DateTime.fromMillisecondsSinceEpoch(0);
 
   /// The deck of cards used in the game.
   DeckModel deck;
+
+  /// The number of cards to deal to each player
+  final int cardsToDeal;
+
+  /// List of players in the game.
+  final List<PlayerModel> players = [];
 
   /// The index of the player currently playing.
   int playerIdPlaying = 0;
@@ -207,6 +216,7 @@ abstract class GameModel with ChangeNotifier {
 
   /// Initializes the game state, including dealing cards and setting the initial game state.
   void initializeGame() {
+    startedOn = DateTime.now();
     playerIdPlaying = 0;
     playerIdAttacking = -1;
 

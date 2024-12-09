@@ -172,6 +172,8 @@ class GameScreenState extends State<GameScreen> {
     setState(() {
       _createGlobalKeyForPlayers();
       if (widget.gameModel.gameState == GameStates.gameOver) {
+        widget.gameModel.endedOn = DateTime.now();
+
         showGameOverDialog(
           context,
           widget.gameModel.players,
