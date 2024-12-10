@@ -1,5 +1,6 @@
 import 'package:cards/models/backend_model.dart';
 import 'package:cards/models/base/game_model.dart';
+import 'package:cards/widgets/dialog.dart';
 import 'package:flutter/material.dart';
 
 void showGameOverDialog(
@@ -59,37 +60,29 @@ void showGameOverDialog(
   }
 
   if (context.mounted) {
-    showDialog(
+    myDialog(
       context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text(
-            'Game Over',
-            style: TextStyle(fontSize: 30),
-            textAlign: TextAlign.center,
-          ),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children:
-                gameModel.players.map((player) => playerStats(player)).toList(),
-          ),
-          actions: <Widget>[
-            ElevatedButton(
-              child: const Text('Play Again'),
-              onPressed: () {
-                Navigator.of(context).pop();
-                gameModel.initializeGame();
-              },
-            ),
-            ElevatedButton(
-              child: const Text('Exit'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
+      title: 'Game Over',
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        children:
+            gameModel.players.map((player) => playerStats(player)).toList(),
+      ),
+      buttons: <Widget>[
+        ElevatedButton(
+          child: const Text('Play Again'),
+          onPressed: () {
+            Navigator.of(context).pop();
+            gameModel.initializeGame();
+          },
+        ),
+        ElevatedButton(
+          child: const Text('Exit'),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
+      ],
     );
   }
 }

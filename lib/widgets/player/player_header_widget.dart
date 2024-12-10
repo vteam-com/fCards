@@ -1,4 +1,5 @@
 import 'package:cards/models/base/game_model.dart';
+import 'package:cards/widgets/dialog.dart';
 import 'package:cards/widgets/player/status_picker.dart';
 import 'package:flutter/material.dart';
 
@@ -18,6 +19,9 @@ class PlayerHeaderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final List<DateTime> listOfWinsForThisPlayer =
+        gameModel.getWinsForPlayerName(player.name);
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -27,11 +31,10 @@ class PlayerHeaderWidget extends StatelessWidget {
           child: FittedBox(
             fit: BoxFit.scaleDown,
             child: Tooltip(
-              message:
-                  gameModel.getWinsForPlayerName(player.name).length.toString(),
+              message: listOfWinsForThisPlayer.length.toString(),
               child: TextButton(
                 onPressed: () {
-                  //
+                  showHistory(context, listOfWinsForThisPlayer);
                 },
                 child: Text(
                   player.name,
@@ -65,6 +68,24 @@ class PlayerHeaderWidget extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+
+  void showHistory(
+    final BuildContext context,
+    final List<DateTime> listOfWinsForThisPlayer,
+  ) {
+    myDialog(
+      context: context,
+      title: 'History',
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: listOfWinsForThisPlayer
+            .map(
+              (date) => Text(date.toString()),
+            )
+            .toList(),
+      ),
     );
   }
 }
