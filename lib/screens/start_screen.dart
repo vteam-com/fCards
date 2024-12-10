@@ -370,13 +370,11 @@ class StartScreenState extends State<StartScreen> {
       ),
       child: Row(
         children: [
-          Text(
+          TextSize(
             label,
-            style: const TextStyle(
-              color: Color.fromARGB(255, 19, 67, 22),
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-            ),
+            20,
+            color: Color.fromARGB(255, 19, 67, 22),
+            bold: true,
           ),
           const SizedBox(width: 20),
           Expanded(

@@ -1,6 +1,10 @@
 import 'package:cards/screens/start_screen.dart';
 import 'package:flutter/material.dart';
 
+/// The entry point of the application.
+///
+/// This function initializes the Flutter binding and then runs the `MyApp` widget,
+/// which is the root of the application's widget tree.
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 

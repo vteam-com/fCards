@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
+/// Whether the [WiggleWidget] should wiggle or not.
 class WiggleWidget extends StatefulWidget {
   const WiggleWidget({super.key, required this.child, this.wiggle = true});
   final Widget child;

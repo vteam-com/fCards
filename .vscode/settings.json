@@ -8,5 +8,7 @@
         "skyjo",
         "vteam",
         "webframeworks"
-    ]
+    ],
+    "continue.enableQuickActions": true,
+    "cody.autocomplete.advanced.provider": "experimental-ollama"
 }

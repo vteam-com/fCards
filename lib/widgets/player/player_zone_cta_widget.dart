@@ -3,6 +3,10 @@ import 'package:cards/widgets/cards/card_pile_widget.dart';
 import 'package:flutter/material.dart';
 
 class PlayerZoneCtaWidget extends StatelessWidget {
+  /// Constructs a [PlayerZoneCtaWidget] with the given [player] and [gameModel].
+  ///
+  /// The [player] parameter represents the player associated with this widget.
+  /// The [gameModel] parameter represents the game model associated with this widget.
   const PlayerZoneCtaWidget({
     super.key,
     required this.player,

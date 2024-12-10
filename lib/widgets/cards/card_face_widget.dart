@@ -1,3 +1,4 @@
+import 'package:cards/misc.dart';
 import 'package:cards/models/base/card_model.dart';
 import 'package:flutter/material.dart';
 
@@ -46,16 +47,12 @@ class CardFaceWidget extends StatelessWidget {
         return Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
+            TextSize(
               'Joker',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 30,
-                fontWeight: FontWeight.bold,
-                fontStyle: FontStyle.normal,
-                decoration: TextDecoration.none,
-                color: color,
-              ),
+              align: TextAlign.center,
+              30,
+              bold: true,
+              color: color,
             ),
           ],
         );
@@ -65,23 +62,17 @@ class CardFaceWidget extends StatelessWidget {
         return Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
+            TextSize(
               card.rank,
-              style: TextStyle(
-                fontSize: 40,
-                fontWeight: FontWeight.bold,
-                decoration: TextDecoration.none,
-                color: color,
-              ),
+              40,
+              bold: true,
+              color: color,
             ),
-            Text(
+            TextSize(
               card.suit,
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                decoration: TextDecoration.none,
-                color: color,
-              ),
+              20,
+              bold: true,
+              color: color,
             ),
           ],
         );
@@ -89,14 +80,11 @@ class CardFaceWidget extends StatelessWidget {
         return Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Text(
+            TextSize(
               card.rank,
-              style: TextStyle(
-                fontSize: 40,
-                fontWeight: FontWeight.bold,
-                decoration: TextDecoration.none,
-                color: color,
-              ),
+              40,
+              bold: true,
+              color: color,
             ),
           ],
         );
@@ -107,15 +95,12 @@ class CardFaceWidget extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        Text(
+        TextSize(
           card.value.toString(),
-          textAlign: TextAlign.right,
-          style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-            decoration: TextDecoration.none,
-            color: getSuitColor(card.suit),
-          ),
+          20,
+          align: TextAlign.right,
+          bold: true,
+          color: getSuitColor(card.suit),
         ),
       ],
     );

@@ -9,6 +9,13 @@ import 'package:cards/widgets/player/player_zone_cta_widget.dart';
 import 'package:flutter/material.dart';
 
 class PlayerZoneWidget extends StatelessWidget {
+  /// Constructs a [PlayerZoneWidget] with the provided parameters.
+  ///
+  /// The [gameModel] parameter is required and represents the current game model.
+  /// The [player] parameter is required and represents the player for this zone.
+  /// The [heightZone] parameter is required and represents the height of the player zone.
+  /// The [heightOfCTA] parameter is required and represents the height of the CTA (Call-to-Action) widget.
+  /// The [heightOfCardGrid] parameter is required and represents the height of the card grid.
   const PlayerZoneWidget({
     super.key,
     required this.gameModel,

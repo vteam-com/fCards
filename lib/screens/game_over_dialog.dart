@@ -1,8 +1,11 @@
+import 'package:cards/misc.dart';
 import 'package:cards/models/backend_model.dart';
 import 'package:cards/models/base/game_model.dart';
 import 'package:cards/widgets/dialog.dart';
 import 'package:flutter/material.dart';
 
+/// Displays a game over dialog with the final game results and options to play again or exit.
+/// The function sorts the players from lowest to highest score, marks the player with the lowest score as the winner, records the win, and updates the game history. It then creates a dialog with the player stats and buttons to play again or exit the game.
 void showGameOverDialog(
   final BuildContext context,
   final GameModel gameModel,
@@ -44,12 +47,10 @@ void showGameOverDialog(
                   gameModel.getWinsForPlayerName(player.name).length.toString(),
                   style: const TextStyle(fontSize: 12),
                 ),
-                Text(
-                  '${player.sumOfRevealedCards}',
-                  style: const TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                  ),
+                TextSize(
+                  player.sumOfRevealedCards.toString(),
+                  22,
+                  bold: true,
                 ),
               ],
             ),

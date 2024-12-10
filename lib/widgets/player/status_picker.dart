@@ -1,3 +1,4 @@
+import 'package:cards/misc.dart';
 import 'package:cards/models/base/player_status.dart';
 import 'package:flutter/material.dart';
 
@@ -45,24 +46,18 @@ class _StatusPickerState extends State<StatusPicker> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
+              TextSize(
                 status.emoji,
-                style: TextStyle(
-                  color: Colors.yellow,
-                  fontSize: 20,
-                  fontWeight: FontWeight.w500,
-                ),
+                20,
+                color: Colors.yellow,
+                bold: true,
               ),
-              SizedBox(
-                width: 8,
-              ),
-              Text(
+              SizedBox(width: 8),
+              TextSize(
                 status.phrase,
-                style: TextStyle(
-                  color: Colors.yellow,
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                ),
+                16,
+                color: Colors.yellow,
+                bold: true,
               ),
             ],
           ),

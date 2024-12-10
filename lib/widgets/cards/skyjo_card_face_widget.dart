@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:cards/misc.dart';
 import 'package:cards/models/base/card_model.dart';
 import 'package:cards/widgets/cards/card_face_widget.dart';
 import 'package:flutter/material.dart';
@@ -81,15 +82,12 @@ class SkyjoCardFaceWidget extends CardFaceWidget {
         //     ),
         //   ),
         // ),
-        Text(
+        TextSize(
           card.rank,
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-            decoration: TextDecoration.none,
-          ),
+          20,
+          align: TextAlign.center,
+          color: Colors.black,
+          bold: true,
         ),
       ],
     );

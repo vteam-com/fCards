@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 
 class PlayersInRoomWidget extends StatelessWidget {
+  /// Constructs a [PlayersInRoomWidget] with the given parameters.
+  ///
+  /// The [activePlayerName] parameter represents the name of the currently active player.
+  /// The [playerNames] parameter is a list of player names.
+  /// The [onPlayerSelected] parameter is a callback function that is called when a player is selected.
+  /// The [onRemovePlayer] parameter is a callback function that is called when a player is removed.
   const PlayersInRoomWidget({
     super.key,
     required this.activePlayerName,

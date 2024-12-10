@@ -1,3 +1,4 @@
+import 'package:cards/misc.dart';
 import 'package:cards/models/base/game_model.dart';
 import 'package:cards/widgets/date_importance.dart';
 import 'package:cards/widgets/dialog.dart';
@@ -37,13 +38,11 @@ class PlayerHeaderWidget extends StatelessWidget {
                 onPressed: () {
                   showHistory(context, listOfWinsForThisPlayer);
                 },
-                child: Text(
+                child: TextSize(
                   player.name,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  30,
+                  color: Colors.white,
+                  bold: true,
                 ),
               ),
             ),
@@ -58,14 +57,12 @@ class PlayerHeaderWidget extends StatelessWidget {
         ),
         SizedBox(
           width: 50,
-          child: Text(
+          child: TextSize(
             sumOfRevealedCards.toString(),
-            textAlign: TextAlign.end,
-            style: TextStyle(
-              color: Colors.white.withAlpha(150),
-              fontSize: 30.0,
-              fontWeight: FontWeight.bold,
-            ),
+            30,
+            align: TextAlign.end,
+            color: Colors.white.withAlpha(150),
+            bold: true,
           ),
         ),
       ],
@@ -78,7 +75,8 @@ class PlayerHeaderWidget extends StatelessWidget {
   ) {
     myDialog(
       context: context,
-      title: 'History',
+      title:
+          '${player.name} won ${listOfWinsForThisPlayer.length} times in the ${gameModel.roomName} room',
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: listOfWinsForThisPlayer

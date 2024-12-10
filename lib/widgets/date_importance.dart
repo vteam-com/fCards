@@ -1,3 +1,4 @@
+import 'package:cards/misc.dart';
 import 'package:flutter/material.dart';
 
 class DateTimeWidget extends StatelessWidget {
@@ -9,25 +10,24 @@ class DateTimeWidget extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        _buildText(dateTime.year.toString(), fontSize: 12),
+        _buildText(dateTime.year, 14),
         const Text(' . '),
-        _buildText(dateTime.month.toString().padLeft(2, '0'), fontSize: 14),
+        _buildText(dateTime.month, 16),
         const Text(' . '),
-        _buildText(dateTime.day.toString().padLeft(2, '0'), fontSize: 16),
-        SizedBox(
-          width: 20,
-        ),
-        _buildText(dateTime.hour.toString().padLeft(2, '0'), fontSize: 18),
+        _buildText(dateTime.day, 18),
+        SizedBox(width: 20),
+        _buildText(dateTime.hour, 18),
         const Text(':'),
-        _buildText(dateTime.minute.toString().padLeft(2, '0'), fontSize: 18),
+        _buildText(dateTime.minute, 18),
       ],
     );
   }
 
-  Widget _buildText(String text, {required double fontSize}) {
-    return Text(
-      text,
-      style: TextStyle(fontSize: fontSize, fontWeight: FontWeight.bold),
+  Widget _buildText(final num value, double fontSize) {
+    return TextSize(
+      value.toString().padLeft(2, '0'),
+      fontSize,
+      bold: true,
     );
   }
 }
