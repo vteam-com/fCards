@@ -31,7 +31,6 @@ digraph "" {
   "/lib/screens/screen.dart" [label="screen"];
   "/lib/main.dart" [label="main"];
   "/lib/misc.dart" [label="misc"];
-  "/lib/widgets/table_surface_painter.dart" [label="table_surface_painter"];
   "/lib/widgets/date_importance.dart" [label="date_importance"];
   "/lib/widgets/cards/card_pile_widget.dart" [label="card_pile_widget"];
   "/lib/widgets/cards/skyjo_card_face_widget.dart" [label="skyjo_card_face_widget"];
@@ -105,7 +104,6 @@ digraph "" {
       }
       subgraph "cluster~/lib/widgets" {
         label="widgets";
-        "/lib/widgets/table_surface_painter.dart";
         "/lib/widgets/date_importance.dart";
         "/lib/widgets/dialog.dart";
         "/lib/widgets/wiggle_widget.dart";
