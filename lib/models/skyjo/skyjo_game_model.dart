@@ -10,6 +10,7 @@ class SkyjoGameModel extends GameModel {
   /// [isNewGame] indicates whether this is a new game or joining an existing one.
   SkyjoGameModel({
     required super.roomName,
+    required super.roomHistory,
     required super.loginUserName,
     required super.names,
     super.isNewGame,

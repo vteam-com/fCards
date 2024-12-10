@@ -10,6 +10,7 @@ class GolfGameModel extends GameModel {
   /// [isNewGame] indicates whether this is a new game or joining an existing one.
   GolfGameModel({
     required super.roomName,
+    required super.roomHistory,
     required super.loginUserName,
     required super.names,
     super.isNewGame,

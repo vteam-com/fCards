@@ -2,6 +2,7 @@
 // Imports
 import 'package:cards/models/backend_model.dart';
 import 'package:cards/models/base/deck_model.dart';
+import 'package:cards/models/base/game_history.dart';
 import 'package:cards/models/base/player_model.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/foundation.dart';
@@ -25,6 +26,7 @@ abstract class GameModel with ChangeNotifier {
   /// [isNewGame] indicates whether this is a new game or joining an existing one.
   GameModel({
     required this.roomName,
+    required this.roomHistory,
     required this.loginUserName,
     required final List<String> names,
     required this.cardsToDeal,
@@ -40,11 +42,20 @@ abstract class GameModel with ChangeNotifier {
     }
   }
 
+  /// Game Unique Id based on DateTime
+  DateTime gameStartDate = DateTime.now();
+
+  /// al the games played in this room
+  final List<GameHistory> roomHistory;
+
+  /// The number of cards to deal to each player
+  final int cardsToDeal;
+
+  /// The Name of the game room.
+  final String roomName;
+
   /// The name of the person running the app.
   final String loginUserName;
-
-  /// The ID of the game room.
-  final String roomName;
 
   /// When did the date start
   DateTime startedOn = DateTime.fromMillisecondsSinceEpoch(0);
@@ -54,9 +65,6 @@ abstract class GameModel with ChangeNotifier {
 
   /// The deck of cards used in the game.
   DeckModel deck;
-
-  /// The number of cards to deal to each player
-  final int cardsToDeal;
 
   /// List of players in the game.
   final List<PlayerModel> players = [];
@@ -163,7 +171,7 @@ abstract class GameModel with ChangeNotifier {
   void _loadPlayers(List<dynamic> playersJson) {
     players.clear();
     int index = 0;
-    for (final playerJson in playersJson) {
+    for (final dynamic playerJson in playersJson) {
       final PlayerModel player = loadPlayer(playerJson);
       player.id = index++;
       players.add(player);
@@ -219,6 +227,7 @@ abstract class GameModel with ChangeNotifier {
     startedOn = DateTime.now();
     playerIdPlaying = 0;
     playerIdAttacking = -1;
+    gameStartDate = DateTime.now();
 
     deck.shuffle();
 
@@ -234,6 +243,16 @@ abstract class GameModel with ChangeNotifier {
       deck.cardsDeckDiscarded.add(deck.cardsDeckPile.removeLast());
     }
     gameState = GameStates.pickCardFromEitherPiles;
+  }
+
+  List<DateTime> getWinsForPlayerName(final String nameOfPlayer) {
+    List<DateTime> list = [];
+    roomHistory.forEach((game) {
+      if (game.playersNames.first == nameOfPlayer) {
+        list.add(game.date);
+      }
+    });
+    return list;
   }
 
   /// Deals the proper cards to the given player from the deck.

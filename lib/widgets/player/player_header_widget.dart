@@ -1,15 +1,17 @@
-import 'package:cards/models/base/player_model.dart';
+import 'package:cards/models/base/game_model.dart';
 import 'package:cards/widgets/player/status_picker.dart';
 import 'package:flutter/material.dart';
 
 class PlayerHeaderWidget extends StatelessWidget {
   const PlayerHeaderWidget({
     super.key,
+    required this.gameModel,
     required this.player,
     required this.onStatusChanged,
     required this.sumOfRevealedCards,
   });
 
+  final GameModel gameModel;
   final PlayerModel player;
   final Function(PlayerStatus) onStatusChanged;
   final int sumOfRevealedCards;
@@ -17,40 +19,49 @@ class PlayerHeaderWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
-        Text(
-          player.name,
-          style: const TextStyle(
-            color: Colors.white,
-            fontSize: 30,
-            fontWeight: FontWeight.bold,
+        SizedBox(
+          width: 80,
+          child: FittedBox(
+            fit: BoxFit.scaleDown,
+            child: Tooltip(
+              message:
+                  gameModel.getWinsForPlayerName(player.name).length.toString(),
+              child: TextButton(
+                onPressed: () {
+                  //
+                },
+                child: Text(
+                  player.name,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
           ),
         ),
-        StatusPicker(
-          status: player.status,
-          onStatusChanged: onStatusChanged,
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 4.0),
+          child: StatusPicker(
+            status: player.status,
+            onStatusChanged: onStatusChanged,
+          ),
         ),
-        // TextButton(
-        //   onPressed: () {
-        //     // ToDo
-        //   },
-        //   child: Text(
-        //     player.wins.length.toString(),
-        //     style: TextStyle(
-        //       color: Colors.white.withAlpha(150),
-        //       fontSize: 20.0,
-        //       fontWeight: FontWeight.bold,
-        //     ),
-        //   ),
-        // ),
-        Text(
-          sumOfRevealedCards.toString(),
-          style: TextStyle(
-            color: Colors.white.withAlpha(150),
-            fontSize: 30.0,
-            fontWeight: FontWeight.bold,
+        SizedBox(
+          width: 50,
+          child: Text(
+            sumOfRevealedCards.toString(),
+            textAlign: TextAlign.end,
+            style: TextStyle(
+              color: Colors.white.withAlpha(150),
+              fontSize: 30.0,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
       ],

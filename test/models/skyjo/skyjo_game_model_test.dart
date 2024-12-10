@@ -20,6 +20,7 @@ void main() {
           mockContext = MockBuildContext();
           gameModel = SkyjoGameModel(
             roomName: 'testRoom',
+            roomHistory: [],
             loginUserName: 'Player 1',
             names: ['Player 1', 'Player 2'],
             isNewGame: true,

@@ -15,9 +15,10 @@ void main() {
     setUp(() {
       mockContext = MockBuildContext();
       gameModel = GolfGameModel(
+        roomName: 'testRoom',
+        roomHistory: [],
         loginUserName: 'Player 1',
         names: ['Player 1', 'Player 2'],
-        roomName: 'testRoom',
         isNewGame: true,
       );
     });
@@ -46,9 +47,10 @@ void main() {
 
   test('initializeGame sets up correct initial state', () {
     final gameModel = GolfGameModel(
+      roomName: 'testRoom',
+      roomHistory: [],
       loginUserName: 'Player 1',
       names: ['Player 1', 'Player 2', 'Player 3'],
-      roomName: 'testRoom',
       isNewGame: false,
     );
 
@@ -68,9 +70,10 @@ void main() {
 
   test('moveToNextPlayer correctly handles final turn', () {
     final gameModel = GolfGameModel(
+      roomName: 'testRoom',
+      roomHistory: [],
       loginUserName: 'Player 1',
       names: ['Player 1', 'Player 2'],
-      roomName: 'testRoom',
       isNewGame: true,
     );
 
@@ -89,9 +92,10 @@ void main() {
   test('getGameStateAsString returns correct message for different scenarios',
       () {
     final gameModel = GolfGameModel(
+      roomName: 'testRoom',
+      roomHistory: [],
       loginUserName: 'Player 1',
       names: ['Player 1', 'Player 2'],
-      roomName: 'testRoom',
       isNewGame: true,
     );
 
@@ -109,9 +113,10 @@ void main() {
 
   test('areAllCardsFromHandsRevealed returns correct state', () {
     final gameModel = GolfGameModel(
+      roomName: 'testRoom',
+      roomHistory: [],
       loginUserName: 'Player 1',
       names: ['Player 1', 'Player 2'],
-      roomName: 'testRoom',
       isNewGame: true,
     );
 
@@ -128,9 +133,10 @@ void main() {
 
   test('fromJson correctly updates game state', () {
     final gameModel = GolfGameModel(
+      roomName: 'testRoom',
+      roomHistory: [],
       loginUserName: 'Player 1',
       names: ['Player 1', 'Player 2'],
-      roomName: 'testRoom',
       isNewGame: true,
     );
 

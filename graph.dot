@@ -21,6 +21,7 @@ digraph "" {
   "/lib/models/backend_model.dart" [label="backend_model"];
   "/lib/models/base/player_status.dart" [label="player_status"];
   "/lib/models/base/game_model.dart" [label="game_model"];
+  "/lib/models/base/game_history.dart" [label="game_history"];
   "/lib/models/base/player_model.dart" [label="player_model"];
   "/lib/models/base/card_model.dart" [label="card_model"];
   "/lib/models/base/deck_model.dart" [label="deck_model"];
@@ -87,6 +88,7 @@ digraph "" {
           label="base";
           "/lib/models/base/player_status.dart";
           "/lib/models/base/game_model.dart";
+          "/lib/models/base/game_history.dart";
           "/lib/models/base/player_model.dart";
           "/lib/models/base/card_model.dart";
           "/lib/models/base/deck_model.dart";
@@ -158,9 +160,11 @@ digraph "" {
   "/lib/models/skyjo/skyjo_player_model.dart" -> "/lib/models/skyjo/skyjo_card_model.dart";
   "/lib/models/skyjo/skyjo_player_model.dart" -> "/lib/models/base/card_model.dart" [style=dashed];
   "/lib/models/backend_model.dart" -> "/lib/misc.dart";
+  "/lib/models/backend_model.dart" -> "/lib/models/base/game_history.dart";
   "/lib/models/backend_model.dart" -> "/lib/models/firebase_options.dart";
   "/lib/models/base/game_model.dart" -> "/lib/models/backend_model.dart";
   "/lib/models/base/game_model.dart" -> "/lib/models/base/deck_model.dart";
+  "/lib/models/base/game_model.dart" -> "/lib/models/base/game_history.dart";
   "/lib/models/base/game_model.dart" -> "/lib/models/base/player_model.dart";
   "/lib/models/base/game_model.dart" -> "/lib/models/base/deck_model.dart" [style=dashed];
   "/lib/models/base/game_model.dart" -> "/lib/models/base/player_model.dart" [style=dashed];
@@ -170,13 +174,16 @@ digraph "" {
   "/lib/models/base/player_model.dart" -> "/lib/models/base/player_status.dart" [style=dashed];
   "/lib/models/base/deck_model.dart" -> "/lib/models/base/card_model.dart";
   "/lib/models/base/deck_model.dart" -> "/lib/models/base/card_model.dart" [style=dashed];
-  "/lib/screens/game_over_dialog.dart" -> "/lib/models/base/player_model.dart";
+  "/lib/screens/game_over_dialog.dart" -> "/lib/models/backend_model.dart";
+  "/lib/screens/game_over_dialog.dart" -> "/lib/models/base/game_model.dart";
   "/lib/screens/game_screen.dart" -> "/lib/models/backend_model.dart";
   "/lib/screens/game_screen.dart" -> "/lib/models/base/game_model.dart";
   "/lib/screens/game_screen.dart" -> "/lib/screens/game_over_dialog.dart";
   "/lib/screens/game_screen.dart" -> "/lib/screens/screen.dart";
   "/lib/screens/game_screen.dart" -> "/lib/widgets/player/player_zone_widget.dart";
+  "/lib/screens/start_screen.dart" -> "/lib/misc.dart";
   "/lib/screens/start_screen.dart" -> "/lib/models/backend_model.dart";
+  "/lib/screens/start_screen.dart" -> "/lib/models/base/game_history.dart";
   "/lib/screens/start_screen.dart" -> "/lib/models/base/game_model.dart";
   "/lib/screens/start_screen.dart" -> "/lib/models/golf/golf_game_model.dart";
   "/lib/screens/start_screen.dart" -> "/lib/models/skyjo/skyjo_game_model.dart";
@@ -200,7 +207,7 @@ digraph "" {
   "/lib/widgets/player/player_zone_cta_widget.dart" -> "/lib/models/base/game_model.dart";
   "/lib/widgets/player/player_zone_cta_widget.dart" -> "/lib/widgets/cards/card_pile_widget.dart";
   "/lib/widgets/player/status_picker.dart" -> "/lib/models/base/player_status.dart";
-  "/lib/widgets/player/player_header_widget.dart" -> "/lib/models/base/player_model.dart";
+  "/lib/widgets/player/player_header_widget.dart" -> "/lib/models/base/game_model.dart";
   "/lib/widgets/player/player_header_widget.dart" -> "/lib/widgets/player/status_picker.dart";
   "/lib/widgets/player/player_zone_widget.dart" -> "/lib/misc.dart";
   "/lib/widgets/player/player_zone_widget.dart" -> "/lib/models/base/game_model.dart";

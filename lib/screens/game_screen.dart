@@ -71,8 +71,6 @@ class GameScreenState extends State<GameScreen> {
     super.dispose();
   }
 
-  @override
-
   /// Builds the widget for the game screen.
   ///
   /// Determines the screen width using [MediaQuery] and selects an appropriate
@@ -174,8 +172,7 @@ class GameScreenState extends State<GameScreen> {
 
         showGameOverDialog(
           context,
-          widget.gameModel.players,
-          widget.gameModel.initializeGame,
+          widget.gameModel,
         );
       }
       isReady = true;

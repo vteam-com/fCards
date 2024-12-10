@@ -1,6 +1,7 @@
 import 'dart:async';
-
+import 'dart:core';
 import 'package:cards/misc.dart';
+import 'package:cards/models/base/game_history.dart';
 import 'package:cards/models/firebase_options.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -44,10 +45,8 @@ Future<List<String>> getPlayersInRoom(final String roomId) async {
     return ['BOB,SUE,JOHN,MARY'];
   }
 
-  final DataSnapshot dataSnapshot = await FirebaseDatabase.instance
-      .ref()
-      .child('rooms/$roomId/invitees')
-      .get();
+  final DataSnapshot dataSnapshot =
+      await FirebaseDatabase.instance.ref('rooms/$roomId/invitees').get();
 
   final List? players = dataSnapshot.value as List?;
 
@@ -65,10 +64,66 @@ void setPlayersInRoom(final String room, final Set<String> playersNames) {
 
   useFirebase().then((_) {
     FirebaseDatabase.instance
-        .ref()
-        .child('rooms/$room/invitees')
+        .ref('rooms/$room/invitees')
         .set(playersNames.toList());
   });
+}
+
+Future<List<GameHistory>> getGameHistory(final String roomName) async {
+  List<GameHistory> list = [];
+
+  try {
+    final DataSnapshot dataSnapshot =
+        await FirebaseDatabase.instance.ref('history/$roomName/').get();
+
+    if (dataSnapshot.exists && dataSnapshot.value is Map) {
+      final Map data = dataSnapshot.value as Map;
+
+      data.forEach((key, value) {
+        final gameHistory = GameHistory();
+        gameHistory.date = DateTime.fromMillisecondsSinceEpoch(int.parse(key));
+        gameHistory.playersNames = [value];
+
+        list.add(gameHistory);
+      });
+    }
+  } catch (error) {
+    debugLog('getGameHistory: ${error.toString()}');
+  }
+
+  return list;
+}
+
+Future<void> recordPlayerWin(
+  final String roomName,
+  final DateTime gameStartDate,
+  final String playerName,
+) async {
+  if (isRunningOffLine) {
+    return;
+  }
+
+  try {
+    final String dateTimeAsKey =
+        gameStartDate.millisecondsSinceEpoch.toString();
+
+    final DatabaseEvent dataFound = await FirebaseDatabase.instance
+        .ref(
+          'history/$roomName/$dateTimeAsKey',
+        )
+        .once();
+
+    // only record it once
+    if (!dataFound.snapshot.exists) {
+      await FirebaseDatabase.instance
+          .ref(
+            'history/$roomName/$dateTimeAsKey',
+          )
+          .set(playerName);
+    }
+  } catch (error) {
+    debugLog('Error recording player win: ${error.toString()}');
+  }
 }
 
 StreamSubscription onBackendInviteesUpdated(

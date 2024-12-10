@@ -14,7 +14,10 @@ class PlayerModel {
   final String name;
   PlayerStatus status = playersStatuses.first;
   bool isActivePlayer = false;
+
+  // Keep track of winnings
   bool isWinner = false;
+
   int get sumOfRevealedCards => getSumOfCardsInHand();
   List<CardModel> hand = [];
 

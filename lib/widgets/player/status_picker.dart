@@ -43,6 +43,7 @@ class _StatusPickerState extends State<StatusPicker> {
             widget.onStatusChanged(status);
           },
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
                 status.emoji,

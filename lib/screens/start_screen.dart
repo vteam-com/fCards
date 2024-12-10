@@ -1,7 +1,9 @@
 import 'dart:async';
 // ignore: avoid_web_libraries_in_flutter
 import 'dart:html' as html;
+import 'package:cards/misc.dart';
 import 'package:cards/models/backend_model.dart';
+import 'package:cards/models/base/game_history.dart';
 import 'package:cards/models/base/game_model.dart';
 import 'package:cards/models/golf/golf_game_model.dart';
 import 'package:cards/models/skyjo/skyjo_game_model.dart';
@@ -41,7 +43,7 @@ class StartScreenState extends State<StartScreen> {
     text: 'KIWI', // Default room name
   );
 
-  String get roomId => _controllerRoom.text.trim().toUpperCase();
+  String get roomName => _controllerRoom.text.trim().toUpperCase();
 
   /// Placeholder for room name error text.  Currently unused.
   final String _errorTextRoom = '';
@@ -117,12 +119,12 @@ class StartScreenState extends State<StartScreen> {
       Future.delayed(Duration.zero, () async {
         await useFirebase(); // Ensure Firebase is initialized
 
-        setPlayersInRoom(roomId, _playerNames); // Update backend with players
+        setPlayersInRoom(roomName, _playerNames); // Update backend with players
       });
     }
 
     prepareBackEndForRoom(
-      roomId,
+      roomName,
     ); // Initialize backend connection after processing URL arguments.
   }
 
@@ -138,7 +140,7 @@ class StartScreenState extends State<StartScreen> {
 
     // First pull
     useFirebase().then((_) async {
-      final invitees = await getPlayersInRoom(roomId);
+      final List<String> invitees = await getPlayersInRoom(roomId);
 
       setState(() {
         _playerNames = Set.from(invitees);
@@ -186,7 +188,7 @@ class StartScreenState extends State<StartScreen> {
                         () {
                           _controllerRoom.text =
                               _controllerRoom.text.toUpperCase();
-                          prepareBackEndForRoom(roomId);
+                          prepareBackEndForRoom(roomName);
                         },
                         _errorTextRoom,
                         IconButton(
@@ -207,11 +209,11 @@ class StartScreenState extends State<StartScreen> {
                   ),
                   if (_isExpandedRooms)
                     RoomsWidget(
-                      roomId: roomId,
+                      roomId: roomName,
                       rooms: _listOfRooms,
                       onSelected: (String room) {
                         _controllerRoom.text = room;
-                        prepareBackEndForRoom(roomId);
+                        prepareBackEndForRoom(roomName);
                       },
                       onRemoveRoom:
                           _playerName == 'JP' ? (String room) {} : null,
@@ -416,12 +418,13 @@ class StartScreenState extends State<StartScreen> {
   /// name input field is updated to reflect only the first entered name.
   void joinGame(final String nameOrNamesToAdd) {
     if (nameOrNamesToAdd.trim().isNotEmpty) {
-      final names = nameOrNamesToAdd.toUpperCase().split(',');
-      for (final name in names) {
+      final List<String> names = nameOrNamesToAdd.toUpperCase().split(',');
+
+      for (final String name in names) {
         _playerNames.add(name.trim());
       }
 
-      setPlayersInRoom(roomId, _playerNames);
+      setPlayersInRoom(roomName, _playerNames);
       _controllerName.text = names.first;
     }
   }
@@ -432,36 +435,44 @@ class StartScreenState extends State<StartScreen> {
     _playerNames.remove(nameToRemove);
 
     // push to back end
-    setPlayersInRoom(roomId, _playerNames);
+    setPlayersInRoom(roomName, _playerNames);
   }
 
   /// Starts the game and navigates to the game screen.
-  void startGame(BuildContext context) {
+  void startGame(BuildContext context) async {
     late final GameModel newGame;
+
+    final List<GameHistory> history = await getGameHistory(roomName);
+    debugLog(history.join('|'));
 
     if (isGameModelFrenchCards) {
       newGame = GolfGameModel(
+        roomName: roomName,
+        roomHistory: history,
         loginUserName: _controllerName.text.toUpperCase(),
         names: _playerNames.toList(),
-        roomName: roomId,
         isNewGame: true,
       );
     } else {
       newGame = SkyjoGameModel(
+        roomName: roomName,
+        roomHistory: history,
         loginUserName: _controllerName.text.toUpperCase(),
         names: _playerNames.toList(),
-        roomName: roomId,
         isNewGame: true,
       );
     }
+
     // Update URL to include room ID
     updateUrlWithoutReload();
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(
-        builder: (context) => GameScreen(gameModel: newGame),
-      ),
-    );
+    if (context.mounted) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => GameScreen(gameModel: newGame),
+        ),
+      );
+    }
   }
 
   String getUrlToGame() {
@@ -469,7 +480,7 @@ class StartScreenState extends State<StartScreen> {
       return html.window.location.origin +
           GameModel.getLinkToGameFromInput(
             _selectedGameMode,
-            roomId,
+            roomName,
             _playerNames.toList(),
           );
     }
@@ -481,7 +492,7 @@ class StartScreenState extends State<StartScreen> {
       // Push the new state to the browser's history
       html.window.history.pushState(
         null,
-        'vteam cards $roomId',
+        'vteam cards $roomName',
         getUrlToGame(),
       );
     }

@@ -91,24 +91,20 @@ class PlayerZoneWidget extends StatelessWidget {
   Widget _buildContent(final BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
-      mainAxisAlignment: MainAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         //
         // Header
         //
         PlayerHeaderWidget(
+          gameModel: gameModel,
           player: player,
           onStatusChanged: (PlayerStatus newStatus) {
             gameModel.updatePlayerStatus(player, newStatus);
           },
           sumOfRevealedCards: player.sumOfRevealedCards,
         ),
-
-        //
-        // line
-        //
-        Divider(color: Colors.white.withAlpha(100)),
 
         //
         // CTA
@@ -120,11 +116,6 @@ class PlayerZoneWidget extends StatelessWidget {
             gameModel: gameModel,
           ),
         ),
-
-        //
-        // line
-        //
-        Divider(color: Colors.white.withAlpha(100)),
 
         //
         // Cards in Hand
