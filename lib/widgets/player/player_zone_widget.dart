@@ -98,8 +98,7 @@ class PlayerZoneWidget extends StatelessWidget {
         // Header
         //
         PlayerHeaderWidget(
-          name: player.name,
-          status: player.status,
+          player: player,
           onStatusChanged: (PlayerStatus newStatus) {
             gameModel.updatePlayerStatus(player, newStatus);
           },

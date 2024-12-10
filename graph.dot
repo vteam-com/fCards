@@ -200,7 +200,7 @@ digraph "" {
   "/lib/widgets/player/player_zone_cta_widget.dart" -> "/lib/models/base/game_model.dart";
   "/lib/widgets/player/player_zone_cta_widget.dart" -> "/lib/widgets/cards/card_pile_widget.dart";
   "/lib/widgets/player/status_picker.dart" -> "/lib/models/base/player_status.dart";
-  "/lib/widgets/player/player_header_widget.dart" -> "/lib/models/base/player_status.dart";
+  "/lib/widgets/player/player_header_widget.dart" -> "/lib/models/base/player_model.dart";
   "/lib/widgets/player/player_header_widget.dart" -> "/lib/widgets/player/status_picker.dart";
   "/lib/widgets/player/player_zone_widget.dart" -> "/lib/misc.dart";
   "/lib/widgets/player/player_zone_widget.dart" -> "/lib/models/base/game_model.dart";
