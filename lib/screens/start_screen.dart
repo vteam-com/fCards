@@ -214,6 +214,10 @@ class StartScreenState extends State<StartScreen> {
                       onSelected: (String room) {
                         _controllerRoom.text = room;
                         prepareBackEndForRoom(roomName);
+                        setState(() {
+                          // we can no close the drop down
+                          _isExpandedRooms = false;
+                        });
                       },
                       onRemoveRoom:
                           _playerName == 'JP' ? (String room) {} : null,
