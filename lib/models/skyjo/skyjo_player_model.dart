@@ -1,8 +1,12 @@
 import 'package:cards/models/base/game_model.dart';
-import 'package:cards/models/skyjo/skyjo_card_model.dart';
 export 'package:cards/models/base/card_model.dart';
 
 class SkyjoPlayerModel extends PlayerModel {
+  ///
+  /// Creates a `SkyjoPlayerModel` with the given name.
+  ///
+  SkyjoPlayerModel({required super.name});
+
   /// Creates a `PlayerModel` from a JSON map.
   ///
   /// This factory constructor takes a JSON map representing a player and
@@ -28,18 +32,19 @@ class SkyjoPlayerModel extends PlayerModel {
     instance.status = PlayerStatus.fromJson(json['status']);
 
     // Create a list of CardModel objects from the 'hand' JSON data.
-    instance.hand = (json['hand'] as List<dynamic>)
-        .map(
-          (cardJson) =>
-              SkyjoCardModel.fromJson(cardJson as Map<String, dynamic>),
-        )
-        .toList();
+    instance.hand = HandModel(
+      4,
+      3,
+      (json['hand'] as List<dynamic>)
+          .map(
+            (cardJson) => CardModel.fromJson(cardJson as Map<String, dynamic>),
+          )
+          .toList(),
+    );
 
     return instance;
   }
 
-  ///
-  /// Creates a `SkyjoPlayerModel` with the given name.
-  ///
-  SkyjoPlayerModel({required super.name});
+  @override
+  int get sumOfRevealedCards => hand.getSumOfCardsInHandSkyJo();
 }

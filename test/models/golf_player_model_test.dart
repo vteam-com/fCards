@@ -12,12 +12,13 @@ void main() {
     });
 
     test('reset clears hand', () {
-      player.hand = [
+      player.hand = HandModel(2, 1, [
         GolfFrenchSuitCardModel(suit: '♥️', rank: 'A'),
         GolfFrenchSuitCardModel(suit: '♦️', rank: '2'),
-      ];
+      ]);
+
       player.reset();
-      expect(player.hand, isEmpty);
+      expect(player.hand.isEmpty, true);
     });
 
     test('addCardToHand adds card correctly', () {
@@ -38,6 +39,7 @@ void main() {
     });
 
     test('sumOfRevealedCards identifies vertical sets', () {
+      player.hand = HandModel(3, 3, []);
       player.addCardToHand(
         GolfFrenchSuitCardModel(suit: '♥️', rank: 'Q', isRevealed: true),
       );

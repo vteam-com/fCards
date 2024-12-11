@@ -64,7 +64,7 @@ void main() {
 
     for (final PlayerModel player in gameModel.players) {
       expect(player.hand.length, 9);
-      expect(player.hand.where((card) => card.isRevealed).length, 2);
+      expect(player.hand.revealedCards.length, 2);
     }
   });
 
@@ -78,9 +78,7 @@ void main() {
     );
 
     // Reveal all cards for current player
-    for (var card in gameModel.players[0].hand) {
-      card.isRevealed = true;
-    }
+    gameModel.players.first.hand.revealAllCards();
 
     gameModel.moveToNextPlayer(MockBuildContext());
 
@@ -123,9 +121,7 @@ void main() {
     expect(gameModel.areAllCardsFromHandsRevealed(), false);
 
     for (var player in gameModel.players) {
-      for (var card in player.hand) {
-        card.isRevealed = true;
-      }
+      player.hand.revealAllCards();
     }
 
     expect(gameModel.areAllCardsFromHandsRevealed(), true);

@@ -1,6 +1,8 @@
-import 'package:cards/models/base/card_model.dart';
+import 'package:cards/models/base/hand_model.dart';
 import 'package:cards/models/base/player_status.dart';
+
 export 'package:cards/models/base/card_model.dart';
+export 'package:cards/models/base/hand_model.dart';
 export 'package:cards/models/base/player_status.dart';
 
 class PlayerModel {
@@ -18,15 +20,15 @@ class PlayerModel {
   // Keep track of winnings
   bool isWinner = false;
 
-  int get sumOfRevealedCards => getSumOfCardsInHand();
-  List<CardModel> hand = [];
+  int get sumOfRevealedCards => hand.getSumOfCardsForGolf();
+  HandModel hand = HandModel(3, 3, []);
 
   void reset() {
-    hand = [];
+    hand = HandModel(3, 3, []);
   }
 
   bool areAllCardsRevealed() {
-    return hand.every((card) => card.isRevealed);
+    return hand.areAllCardsRevealed();
   }
 
   void addCardToHand(CardModel card) {
@@ -36,17 +38,6 @@ class PlayerModel {
   void revealInitialCards() {
     hand[3].isRevealed = true;
     hand[5].isRevealed = true;
-  }
-
-  int getSumOfCardsInHand() {
-    int score = 0;
-    for (final CardModel card in hand) {
-      if (card.isRevealed) {
-        score += card.value;
-      }
-    }
-
-    return score;
   }
 
   bool areAllTheSameRankAndNotAlreadyUsed(
@@ -65,14 +56,14 @@ class PlayerModel {
   Map<String, dynamic> toJson() {
     return {
       'name': name,
-      'hand': hand.map((CardModel card) => card.toJson()).toList(),
+      'hand': hand.toJson(),
       'status': status.toJson(),
     };
   }
 
   @override
   String toString() {
-    return 'Player[$id] ${name.padRight(10)} ${isActivePlayer ? "* " : '  '} ${hand.join(" ")} ${sumOfRevealedCards.toString().padLeft(3)}';
+    return 'Player[$id] ${name.padRight(10)} ${isActivePlayer ? "* " : '  '} $hand ${sumOfRevealedCards.toString().padLeft(3)}';
   }
 
   @override
@@ -90,6 +81,5 @@ class PlayerModel {
   }
 
   @override
-  int get hashCode =>
-      Object.hash(id, name, isActivePlayer, Object.hashAll(hand));
+  int get hashCode => Object.hash(id, name, isActivePlayer, hand.hashCode);
 }

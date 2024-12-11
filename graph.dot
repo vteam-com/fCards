@@ -15,13 +15,13 @@ digraph "" {
   "/lib/models/golf/golf_player_model.dart" [label="golf_player_model"];
   "/lib/models/firebase_options.dart" [label="firebase_options"];
   "/lib/models/skyjo/skyjo_deck_model.dart" [label="skyjo_deck_model"];
-  "/lib/models/skyjo/skyjo_card_model.dart" [label="skyjo_card_model"];
   "/lib/models/skyjo/skyjo_game_model.dart" [label="skyjo_game_model"];
   "/lib/models/skyjo/skyjo_player_model.dart" [label="skyjo_player_model"];
   "/lib/models/backend_model.dart" [label="backend_model"];
   "/lib/models/base/player_status.dart" [label="player_status"];
   "/lib/models/base/game_model.dart" [label="game_model"];
   "/lib/models/base/game_history.dart" [label="game_history"];
+  "/lib/models/base/hand_model.dart" [label="hand_model"];
   "/lib/models/base/player_model.dart" [label="player_model"];
   "/lib/models/base/card_model.dart" [label="card_model"];
   "/lib/models/base/deck_model.dart" [label="deck_model"];
@@ -81,7 +81,6 @@ digraph "" {
         subgraph "cluster~/lib/models/skyjo" {
           label="skyjo";
           "/lib/models/skyjo/skyjo_deck_model.dart";
-          "/lib/models/skyjo/skyjo_card_model.dart";
           "/lib/models/skyjo/skyjo_game_model.dart";
           "/lib/models/skyjo/skyjo_player_model.dart";
         }
@@ -90,6 +89,7 @@ digraph "" {
           "/lib/models/base/player_status.dart";
           "/lib/models/base/game_model.dart";
           "/lib/models/base/game_history.dart";
+          "/lib/models/base/hand_model.dart";
           "/lib/models/base/player_model.dart";
           "/lib/models/base/card_model.dart";
           "/lib/models/base/deck_model.dart";
@@ -133,7 +133,7 @@ digraph "" {
   "/test/models/golf_player_model_test.dart" -> "/lib/models/golf/golf_player_model.dart";
   "/test/models/golf_french_suit_card_model_test.dart" -> "/lib/models/golf/golf_french_suit_card_model.dart";
   "/test/models/french_suit_card_model_test.dart" -> "/lib/models/golf/golf_french_suit_card_model.dart";
-  "/test/models/skyjo/skyjo_game_model_test.dart" -> "/lib/models/skyjo/skyjo_card_model.dart";
+  "/test/models/skyjo/skyjo_game_model_test.dart" -> "/lib/models/base/hand_model.dart";
   "/test/models/skyjo/skyjo_game_model_test.dart" -> "/lib/models/skyjo/skyjo_game_model.dart";
   "/test/models/skyjo/skyjo_game_model_test.dart" -> "/test/models/golf_game_model_test.dart";
   "/test/models/golf_game_model_test.dart" -> "/lib/models/base/game_model.dart";
@@ -152,14 +152,11 @@ digraph "" {
   "/lib/models/golf/golf_player_model.dart" -> "/lib/models/golf/golf_french_suit_card_model.dart";
   "/lib/models/golf/golf_player_model.dart" -> "/lib/models/base/card_model.dart" [style=dashed];
   "/lib/models/skyjo/skyjo_deck_model.dart" -> "/lib/models/base/deck_model.dart";
-  "/lib/models/skyjo/skyjo_deck_model.dart" -> "/lib/models/skyjo/skyjo_card_model.dart";
   "/lib/models/skyjo/skyjo_deck_model.dart" -> "/lib/models/base/card_model.dart" [style=dashed];
-  "/lib/models/skyjo/skyjo_card_model.dart" -> "/lib/models/base/card_model.dart";
   "/lib/models/skyjo/skyjo_game_model.dart" -> "/lib/models/base/game_model.dart";
   "/lib/models/skyjo/skyjo_game_model.dart" -> "/lib/models/skyjo/skyjo_deck_model.dart";
   "/lib/models/skyjo/skyjo_game_model.dart" -> "/lib/models/skyjo/skyjo_player_model.dart";
   "/lib/models/skyjo/skyjo_player_model.dart" -> "/lib/models/base/game_model.dart";
-  "/lib/models/skyjo/skyjo_player_model.dart" -> "/lib/models/skyjo/skyjo_card_model.dart";
   "/lib/models/skyjo/skyjo_player_model.dart" -> "/lib/models/base/card_model.dart" [style=dashed];
   "/lib/models/backend_model.dart" -> "/lib/misc.dart";
   "/lib/models/backend_model.dart" -> "/lib/models/base/game_history.dart";
@@ -170,9 +167,12 @@ digraph "" {
   "/lib/models/base/game_model.dart" -> "/lib/models/base/player_model.dart";
   "/lib/models/base/game_model.dart" -> "/lib/models/base/deck_model.dart" [style=dashed];
   "/lib/models/base/game_model.dart" -> "/lib/models/base/player_model.dart" [style=dashed];
-  "/lib/models/base/player_model.dart" -> "/lib/models/base/card_model.dart";
+  "/lib/models/base/hand_model.dart" -> "/lib/models/base/card_model.dart";
+  "/lib/models/base/hand_model.dart" -> "/lib/models/base/card_model.dart" [style=dashed];
+  "/lib/models/base/player_model.dart" -> "/lib/models/base/hand_model.dart";
   "/lib/models/base/player_model.dart" -> "/lib/models/base/player_status.dart";
   "/lib/models/base/player_model.dart" -> "/lib/models/base/card_model.dart" [style=dashed];
+  "/lib/models/base/player_model.dart" -> "/lib/models/base/hand_model.dart" [style=dashed];
   "/lib/models/base/player_model.dart" -> "/lib/models/base/player_status.dart" [style=dashed];
   "/lib/models/base/deck_model.dart" -> "/lib/models/base/card_model.dart";
   "/lib/models/base/deck_model.dart" -> "/lib/models/base/card_model.dart" [style=dashed];
@@ -204,7 +204,6 @@ digraph "" {
   "/lib/widgets/cards/skyjo_card_face_widget.dart" -> "/lib/models/base/card_model.dart";
   "/lib/widgets/cards/skyjo_card_face_widget.dart" -> "/lib/widgets/cards/card_face_widget.dart";
   "/lib/widgets/cards/card_widget.dart" -> "/lib/models/base/card_model.dart";
-  "/lib/widgets/cards/card_widget.dart" -> "/lib/models/skyjo/skyjo_card_model.dart";
   "/lib/widgets/cards/card_widget.dart" -> "/lib/widgets/cards/card_face_widget.dart";
   "/lib/widgets/cards/card_widget.dart" -> "/lib/widgets/cards/skyjo_card_face_widget.dart";
   "/lib/widgets/cards/card_widget.dart" -> "/lib/widgets/wiggle_widget.dart";

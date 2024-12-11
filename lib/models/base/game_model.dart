@@ -342,24 +342,22 @@ abstract class GameModel with ChangeNotifier {
     final PlayerModel player,
     final int gridIndex,
   ) {
-    if (!validGridIndex(player.hand, gridIndex)) {
-      return;
+    if (player.hand.validIndex(gridIndex)) {
+      // do the swap
+      CardModel cardToSwapFromPlayer = player.hand[gridIndex];
+      // replace players card in their 3x3 with the selected card
+      if (gameState == GameStates.swapDiscardedCardWithAnyCardsInHand) {
+        player.hand[gridIndex] = deck.cardsDeckDiscarded.removeLast();
+      } else {
+        player.hand[gridIndex] = deck.cardsDeckPile.removeLast();
+      }
+
+      // ensure this card is revealed
+      player.hand[gridIndex].isRevealed = true;
+
+      // add players old card to to discard pile
+      deck.cardsDeckDiscarded.add(cardToSwapFromPlayer);
     }
-
-    // do the swap
-    CardModel cardToSwapFromPlayer = player.hand[gridIndex];
-    // replace players card in their 3x3 with the selected card
-    if (gameState == GameStates.swapDiscardedCardWithAnyCardsInHand) {
-      player.hand[gridIndex] = deck.cardsDeckDiscarded.removeLast();
-    } else {
-      player.hand[gridIndex] = deck.cardsDeckPile.removeLast();
-    }
-
-    // ensure this card is revealed
-    player.hand[gridIndex].isRevealed = true;
-
-    // add players old card to to discard pile
-    deck.cardsDeckDiscarded.add(cardToSwapFromPlayer);
   }
 
   /// Checks if the given grid index is valid for the given hand.
@@ -372,9 +370,7 @@ abstract class GameModel with ChangeNotifier {
   /// [playerIndex] is the index of the player whose cards should be revealed.
   void revealAllRemainingCardsFor(int playerIndex) {
     final PlayerModel player = players[playerIndex];
-    for (final CardModel card in player.hand) {
-      card.isRevealed = true;
-    }
+    player.hand.revealAllCards();
   }
 
   /// Handles revealing a card, either for flipping or swapping.

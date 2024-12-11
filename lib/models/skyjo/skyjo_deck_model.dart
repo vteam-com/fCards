@@ -1,5 +1,4 @@
 import 'package:cards/models/base/deck_model.dart';
-import 'package:cards/models/skyjo/skyjo_card_model.dart';
 export 'package:cards/models/base/card_model.dart';
 
 class SkyjoDeckModel extends DeckModel {
@@ -7,13 +6,11 @@ class SkyjoDeckModel extends DeckModel {
 
   factory SkyjoDeckModel.fromJson(Map<String, dynamic> json) {
     return SkyjoDeckModel(numberOfDecks: json['numberOfDecks'] ?? 1)
-      ..cardsDeckPile = List<SkyjoCardModel>.from(
-        json['cardsDeckPile']?.map((card) => SkyjoCardModel.fromJson(card)) ??
-            [],
+      ..cardsDeckPile = List<CardModel>.from(
+        json['cardsDeckPile']?.map((card) => CardModel.fromJson(card)) ?? [],
       )
-      ..cardsDeckDiscarded = List<SkyjoCardModel>.from(
-        json['cardsDeckDiscarded']
-                ?.map((card) => SkyjoCardModel.fromJson(card)) ??
+      ..cardsDeckDiscarded = List<CardModel>.from(
+        json['cardsDeckDiscarded']?.map((card) => CardModel.fromJson(card)) ??
             [],
       );
   }
@@ -27,7 +24,7 @@ class SkyjoDeckModel extends DeckModel {
               ? 5
               : 10;
       for (int j = 0; j < count; j++) {
-        cardsDeckPile.add(SkyjoCardModel(suit: '*', rank: i.toString()));
+        cardsDeckPile.add(CardModel(suit: '*', rank: i.toString()));
       }
     }
   }

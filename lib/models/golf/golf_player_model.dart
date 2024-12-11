@@ -28,13 +28,17 @@ class GolfPlayerModel extends PlayerModel {
     instance.status = PlayerStatus.fromJson(json['status']);
 
     // Hand
-    instance.hand = (json['hand'] as List<dynamic>)
-        .map(
-          (cardJson) => GolfFrenchSuitCardModel.fromJson(
-            cardJson as Map<String, dynamic>,
-          ),
-        )
-        .toList();
+    instance.hand = HandModel(
+      3,
+      3,
+      (json['hand'] as List<dynamic>)
+          .map(
+            (cardJson) => GolfFrenchSuitCardModel.fromJson(
+              cardJson as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+    );
 
     return instance;
   }
@@ -43,53 +47,4 @@ class GolfPlayerModel extends PlayerModel {
   /// Creates a `PlayerModel` with the given name.
   ///
   GolfPlayerModel({required super.name});
-
-  /// Properties
-  @override
-  int getSumOfCardsInHand() {
-    int score = 0;
-    List<bool> markedForZeroScore = List.filled(hand.length, false);
-
-    List<List<int>> checkingIndices = [
-      [0, 1, 2],
-      [3, 4, 5],
-      [6, 7, 8],
-      [0, 3, 6],
-      [1, 4, 7],
-      [2, 5, 8],
-      // [0, 4, 8], // Diagonal from top-left to bottom-right
-      // [2, 4, 6], // Diagonal from top-right to bottom-left
-    ];
-
-    for (final List<int> indices in checkingIndices) {
-      markIfSameRank(hand, markedForZeroScore, indices);
-    }
-
-    for (final CardModel card in hand) {
-      if (card.isRevealed && card.partOfSet == false) {
-        score += card.value;
-      }
-    }
-
-    return score;
-  }
-
-  void markIfSameRank(
-    List<CardModel> hand,
-    List<bool> markedForZeroScore,
-    List<int> indices,
-  ) {
-    if (indices.length == 3 &&
-        areAllTheSameRankAndNotAlreadyUsed(
-          hand[indices[0]],
-          hand[indices[1]],
-          hand[indices[2]],
-        )) {
-      for (final int index in indices) {
-        if (hand[index].rank != '§') {
-          hand[index].partOfSet = true;
-        }
-      }
-    }
-  }
 }

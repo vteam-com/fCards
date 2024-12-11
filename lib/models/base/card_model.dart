@@ -32,7 +32,7 @@ class CardModel {
   /// Indicates whether the card is part of a set of same Rank for a granting a total of zero points
   bool partOfSet;
 
-  int get value => 0;
+  int get value => int.tryParse(rank) ?? 0;
 
   @override
   String toString() {
