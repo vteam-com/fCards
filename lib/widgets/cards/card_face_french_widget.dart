@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 
 /// A widget that displays a playing card's face or back.
 ///
-/// The [CardFaceWidget] is responsible for rendering a playing card based on the provided [CardModel].
+/// The [CardFaceFrenchWidget] is responsible for rendering a playing card based on the provided [CardModel].
 ///
 /// The widget uses different methods to display the front and back of the card depending on its properties.
-class CardFaceWidget extends StatelessWidget {
-  /// Creates a [CardFaceWidget] with a [CardModel] card.
-  const CardFaceWidget({
+class CardFaceFrenchWidget extends StatelessWidget {
+  /// Creates a [CardFaceFrenchWidget] with a [CardModel] card.
+  const CardFaceFrenchWidget({
     super.key,
     required this.card,
   });
@@ -302,11 +302,4 @@ class CardFaceWidget extends StatelessWidget {
         return Colors.green;
     }
   }
-}
-
-class CardDimensions {
-  static const double width = 100.0;
-  static const double height = 150.0;
-  static const double margin = 4.0;
-  static const double borderRadius = 4.0;
 }

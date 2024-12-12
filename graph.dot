@@ -25,9 +25,9 @@ digraph "" {
   "/lib/main.dart" [label="main"];
   "/lib/widgets/date_importance.dart" [label="date_importance"];
   "/lib/widgets/cards/card_pile_widget.dart" [label="card_pile_widget"];
-  "/lib/widgets/cards/skyjo_card_face_widget.dart" [label="skyjo_card_face_widget"];
+  "/lib/widgets/cards/card_face_skyjo_widget.dart" [label="card_face_skyjo_widget"];
   "/lib/widgets/cards/card_widget.dart" [label="card_widget"];
-  "/lib/widgets/cards/card_face_widget.dart" [label="card_face_widget"];
+  "/lib/widgets/cards/card_face_french_widget.dart" [label="card_face_french_widget"];
   "/lib/widgets/dialog.dart" [label="dialog"];
   "/lib/widgets/wiggle_widget.dart" [label="wiggle_widget"];
   "/lib/widgets/players_in_room_widget.dart" [label="players_in_room_widget"];
@@ -85,9 +85,9 @@ digraph "" {
         subgraph "cluster~/lib/widgets/cards" {
           label="cards";
           "/lib/widgets/cards/card_pile_widget.dart";
-          "/lib/widgets/cards/skyjo_card_face_widget.dart";
+          "/lib/widgets/cards/card_face_skyjo_widget.dart";
           "/lib/widgets/cards/card_widget.dart";
-          "/lib/widgets/cards/card_face_widget.dart";
+          "/lib/widgets/cards/card_face_french_widget.dart";
         }
         subgraph "cluster~/lib/widgets/player" {
           label="player";
@@ -143,15 +143,14 @@ digraph "" {
   "/lib/screens/start_screen.dart" -> "/lib/widgets/rooms_widget.dart";
   "/lib/main.dart" -> "/lib/screens/start_screen.dart";
   "/lib/widgets/cards/card_pile_widget.dart" -> "/lib/models/card_model.dart";
-  "/lib/widgets/cards/card_pile_widget.dart" -> "/lib/widgets/cards/card_face_widget.dart";
   "/lib/widgets/cards/card_pile_widget.dart" -> "/lib/widgets/cards/card_widget.dart";
-  "/lib/widgets/cards/skyjo_card_face_widget.dart" -> "/lib/models/card_model.dart";
-  "/lib/widgets/cards/skyjo_card_face_widget.dart" -> "/lib/widgets/cards/card_face_widget.dart";
+  "/lib/widgets/cards/card_face_skyjo_widget.dart" -> "/lib/models/card_model.dart";
+  "/lib/widgets/cards/card_face_skyjo_widget.dart" -> "/lib/widgets/cards/card_face_french_widget.dart";
   "/lib/widgets/cards/card_widget.dart" -> "/lib/models/card_model.dart";
-  "/lib/widgets/cards/card_widget.dart" -> "/lib/widgets/cards/card_face_widget.dart";
-  "/lib/widgets/cards/card_widget.dart" -> "/lib/widgets/cards/skyjo_card_face_widget.dart";
+  "/lib/widgets/cards/card_widget.dart" -> "/lib/widgets/cards/card_face_french_widget.dart";
+  "/lib/widgets/cards/card_widget.dart" -> "/lib/widgets/cards/card_face_skyjo_widget.dart";
   "/lib/widgets/cards/card_widget.dart" -> "/lib/widgets/wiggle_widget.dart";
-  "/lib/widgets/cards/card_face_widget.dart" -> "/lib/models/card_model.dart";
+  "/lib/widgets/cards/card_face_french_widget.dart" -> "/lib/models/card_model.dart";
   "/lib/widgets/player/player_zone_cta_widget.dart" -> "/lib/models/game_model.dart";
   "/lib/widgets/player/player_zone_cta_widget.dart" -> "/lib/widgets/cards/card_pile_widget.dart";
   "/lib/widgets/player/status_picker.dart" -> "/lib/models/player_status.dart";
