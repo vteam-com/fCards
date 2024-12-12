@@ -1,10 +1,10 @@
 import 'package:cards/misc.dart';
-import 'package:cards/models/base/hand_model.dart';
-import 'package:cards/models/base/player_status.dart';
+import 'package:cards/models/hand_model.dart';
+import 'package:cards/models/player_status.dart';
 
-export 'package:cards/models/base/card_model.dart';
-export 'package:cards/models/base/hand_model.dart';
-export 'package:cards/models/base/player_status.dart';
+export 'package:cards/models/card_model.dart';
+export 'package:cards/models/hand_model.dart';
+export 'package:cards/models/player_status.dart';
 
 class PlayerModel {
   ///

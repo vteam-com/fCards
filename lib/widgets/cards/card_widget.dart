@@ -1,4 +1,4 @@
-import 'package:cards/models/base/card_model.dart';
+import 'package:cards/models/card_model.dart';
 import 'package:cards/widgets/cards/card_face_widget.dart';
 import 'package:cards/widgets/cards/skyjo_card_face_widget.dart';
 import 'package:cards/widgets/wiggle_widget.dart';

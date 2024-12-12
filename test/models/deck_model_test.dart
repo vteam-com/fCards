@@ -1,4 +1,4 @@
-import 'package:cards/models/base/deck_model.dart';
+import 'package:cards/models/deck_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

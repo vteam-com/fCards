@@ -1,27 +1,11 @@
-import 'package:cards/models/base/card_model.dart';
+import 'package:cards/models/card_model.dart';
 
 /// Represents a playing card with a suit and rank.
 ///
 /// The [CardModel] class represents a single playing card, with properties for the suit, rank, and whether the card is revealed. It provides methods for converting the card to and from JSON, as well as getting the numerical value of the card.
 ///
 /// The [suits] and [ranks] static lists define the valid suits and ranks for a standard deck of playing cards.
-class GolfFrenchSuitCardModel extends CardModel {
-  factory GolfFrenchSuitCardModel.fromJson(Map<String, dynamic> json) {
-    return GolfFrenchSuitCardModel(
-      suit: json['suit'],
-      rank: json['rank'],
-      value: json['value'] ?? int.tryParse(json['rank']),
-      isRevealed: json['isRevealed'] ?? false,
-    );
-  }
-  GolfFrenchSuitCardModel({
-    required super.suit,
-    required super.rank,
-    required super.value,
-    super.partOfSet = false,
-    super.isRevealed = false,
-  });
-
+class CardModelFrench {
   /// Returns the numerical value of a card rank.
   ///
   /// Handles special cases for 'A', 'X', 'K', 'Q', 'J', '§'

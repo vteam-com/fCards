@@ -1,20 +1,16 @@
 // ignore: avoid_web_libraries_in_flutter
 // Imports
 import 'package:cards/models/backend_model.dart';
-import 'package:cards/models/base/deck_model.dart';
-import 'package:cards/models/base/game_history.dart';
-import 'package:cards/models/base/player_model.dart';
+import 'package:cards/models/deck_model.dart';
+import 'package:cards/models/game_history.dart';
+import 'package:cards/models/player_model.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 // Exports
-export 'package:cards/models/base/deck_model.dart';
-export 'package:cards/models/base/player_model.dart';
-
-String gameModeFrenchCards = '9 Cards';
-String gameModeSkyJo = 'SkyJo';
-List<String> gameModes = [gameModeFrenchCards, gameModeSkyJo];
+export 'package:cards/models/deck_model.dart';
+export 'package:cards/models/player_model.dart';
 
 class GameModel with ChangeNotifier {
   /// Creates a new game model.
@@ -88,7 +84,7 @@ class GameModel with ChangeNotifier {
   GameStates get gameState => _gameState;
 
   void addPlayer(String name) {
-    if (gameMode == gameModeSkyJo) {
+    if (gameMode == deckStyleSkyJo) {
       players.add(
         PlayerModel(
           name: name,
@@ -178,7 +174,7 @@ class GameModel with ChangeNotifier {
   }
 
   PlayerModel loadPlayer(Map<String, dynamic> json) {
-    if (gameMode == gameModeSkyJo) {
+    if (gameMode == deckStyleSkyJo) {
       return PlayerModel.fromJson(
         json: json,
         columns: 3,
@@ -517,7 +513,7 @@ class GameModel with ChangeNotifier {
   }
 
   void evaluateHand() {
-    if (gameMode == gameModeSkyJo) {
+    if (gameMode == deckStyleSkyJo) {
       evaluateHandSkyJo();
     } else {
       // TODO

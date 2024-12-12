@@ -1,5 +1,4 @@
-import 'package:cards/models/base/golf_french_suit_card_model.dart';
-import 'package:cards/models/base/player_model.dart';
+import 'package:cards/models/player_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -17,8 +16,8 @@ void main() {
 
     test('reset clears hand', () {
       player.hand = HandModel(2, 1, [
-        GolfFrenchSuitCardModel(suit: '♥️', rank: 'A', value: 1),
-        GolfFrenchSuitCardModel(suit: '♦️', rank: '2', value: 2),
+        CardModel(suit: '♥️', rank: 'A', value: 1),
+        CardModel(suit: '♦️', rank: '2', value: 2),
       ]);
 
       player.clear();
@@ -26,7 +25,7 @@ void main() {
     });
 
     test('addCardToHand adds card correctly', () {
-      final card = GolfFrenchSuitCardModel(suit: '♥️', rank: 'A', value: 1);
+      final card = CardModel(suit: '♥️', rank: 'A', value: 1);
       player.addCardToHand(card);
       expect(player.hand.length, 1);
       expect(player.hand.first, card);
@@ -35,7 +34,7 @@ void main() {
     test('revealInitialCards reveals correct cards', () {
       for (int i = 0; i < 9; i++) {
         player.addCardToHand(
-          GolfFrenchSuitCardModel(suit: '♥️', rank: 'A', value: 1),
+          CardModel(suit: '♥️', rank: 'A', value: 1),
         );
       }
       player.revealInitialCards();
@@ -47,7 +46,7 @@ void main() {
     test('sumOfRevealedCards identifies vertical sets', () {
       player.hand = HandModel(3, 3, []);
       player.addCardToHand(
-        GolfFrenchSuitCardModel(
+        CardModel(
           suit: '♥️',
           rank: 'Q',
           value: 12,
@@ -55,13 +54,13 @@ void main() {
         ),
       );
       player.addCardToHand(
-        GolfFrenchSuitCardModel(suit: '♦️', rank: '2', value: 2),
+        CardModel(suit: '♦️', rank: '2', value: 2),
       );
       player.addCardToHand(
-        GolfFrenchSuitCardModel(suit: '♣️', rank: '3', value: 3),
+        CardModel(suit: '♣️', rank: '3', value: 3),
       );
       player.addCardToHand(
-        GolfFrenchSuitCardModel(
+        CardModel(
           suit: '♠️',
           rank: 'Q',
           value: 12,
@@ -69,13 +68,13 @@ void main() {
         ),
       );
       player.addCardToHand(
-        GolfFrenchSuitCardModel(suit: '♥️', rank: '5', value: 5),
+        CardModel(suit: '♥️', rank: '5', value: 5),
       );
       player.addCardToHand(
-        GolfFrenchSuitCardModel(suit: '♦️', rank: '6', value: 6),
+        CardModel(suit: '♦️', rank: '6', value: 6),
       );
       player.addCardToHand(
-        GolfFrenchSuitCardModel(
+        CardModel(
           suit: '♣️',
           rank: 'Q',
           value: 12,
@@ -83,10 +82,10 @@ void main() {
         ),
       );
       player.addCardToHand(
-        GolfFrenchSuitCardModel(suit: '♠️', rank: '8', value: 8),
+        CardModel(suit: '♠️', rank: '8', value: 8),
       );
       player.addCardToHand(
-        GolfFrenchSuitCardModel(suit: '♥️', rank: '9', value: 9),
+        CardModel(suit: '♥️', rank: '9', value: 9),
       );
       expect(player.sumOfRevealedCards, 0);
     });
@@ -94,7 +93,7 @@ void main() {
     test('sumOfRevealedCards identifies vertical sets of Jokers', () {
       // 3 lined up Jokers shall not be Zero, we expect -6
       player.addCardToHand(
-        GolfFrenchSuitCardModel(
+        CardModel(
           suit: '♥️',
           rank: '§',
           value: -2,
@@ -102,13 +101,13 @@ void main() {
         ),
       );
       player.addCardToHand(
-        GolfFrenchSuitCardModel(suit: '♦️', rank: '2', value: 2),
+        CardModel(suit: '♦️', rank: '2', value: 2),
       );
       player.addCardToHand(
-        GolfFrenchSuitCardModel(suit: '♣️', rank: '3', value: 3),
+        CardModel(suit: '♣️', rank: '3', value: 3),
       );
       player.addCardToHand(
-        GolfFrenchSuitCardModel(
+        CardModel(
           suit: '♠️',
           rank: '§',
           value: -2,
@@ -116,13 +115,13 @@ void main() {
         ),
       );
       player.addCardToHand(
-        GolfFrenchSuitCardModel(suit: '♥️', rank: '5', value: 5),
+        CardModel(suit: '♥️', rank: '5', value: 5),
       );
       player.addCardToHand(
-        GolfFrenchSuitCardModel(suit: '♦️', rank: '6', value: 6),
+        CardModel(suit: '♦️', rank: '6', value: 6),
       );
       player.addCardToHand(
-        GolfFrenchSuitCardModel(
+        CardModel(
           suit: '♣️',
           rank: '§',
           value: -2,
@@ -130,17 +129,17 @@ void main() {
         ),
       );
       player.addCardToHand(
-        GolfFrenchSuitCardModel(suit: '♠️', rank: '8', value: 8),
+        CardModel(suit: '♠️', rank: '8', value: 8),
       );
       player.addCardToHand(
-        GolfFrenchSuitCardModel(suit: '♥️', rank: '9', value: 9),
+        CardModel(suit: '♥️', rank: '9', value: 9),
       );
       expect(player.sumOfRevealedCards, -6);
     });
 
     test('toJson creates correct json representation', () {
       player.addCardToHand(
-        GolfFrenchSuitCardModel(
+        CardModel(
           suit: '♥️',
           rank: 'A',
           value: 1,
@@ -148,7 +147,7 @@ void main() {
         ),
       );
       player.addCardToHand(
-        GolfFrenchSuitCardModel(suit: '♦️', rank: '2', value: 2),
+        CardModel(suit: '♦️', rank: '2', value: 2),
       );
 
       final json = player.toJson();

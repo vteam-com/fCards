@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:cards/models/base/game_model.dart';
+import 'package:cards/models/game_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'golf_game_model_test.dart';
@@ -18,13 +18,13 @@ void main() {
           random = Random();
           mockContext = MockBuildContext();
           gameModel = GameModel(
-            gameMode: gameModeSkyJo,
+            gameMode: deckStyleSkyJo,
             roomName: 'testRoom',
             roomHistory: [],
             loginUserName: 'Player 1',
             names: ['Player 1', 'Player 2'],
             cardsToDeal: 12,
-            deck: DeckModel(numberOfDecks: 1, gameMode: gameModeSkyJo),
+            deck: DeckModel(numberOfDecks: 1, gameMode: deckStyleSkyJo),
             isNewGame: true,
           );
         },

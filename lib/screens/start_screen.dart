@@ -3,8 +3,8 @@ import 'dart:async';
 import 'dart:html' as html;
 import 'package:cards/misc.dart';
 import 'package:cards/models/backend_model.dart';
-import 'package:cards/models/base/game_history.dart';
-import 'package:cards/models/base/game_model.dart';
+import 'package:cards/models/game_history.dart';
+import 'package:cards/models/game_model.dart';
 import 'package:cards/screens/game_screen.dart';
 import 'package:cards/screens/screen.dart';
 import 'package:cards/widgets/players_in_room_widget.dart';
@@ -33,8 +33,8 @@ class StartScreenState extends State<StartScreen> {
   /// Subscription to the Firebase Realtime Database.
   StreamSubscription? _streamSubscription;
 
-  String _selectedGameMode = gameModeFrenchCards;
-  bool get isGameModelFrenchCards => _selectedGameMode == gameModeFrenchCards;
+  String _selectedGameMode = deckStyleFrench;
+  bool get isGameModelFrenchCards => _selectedGameMode == deckStyleFrench;
 
   /// Controller for the room name text field.
   final TextEditingController _controllerRoom = TextEditingController(
@@ -92,7 +92,7 @@ class StartScreenState extends State<StartScreen> {
     // Mode
     final gameModeUrl = uri.queryParameters['mode'] ?? '';
     _selectedGameMode =
-        gameModes.contains(gameModeUrl) ? gameModeUrl : gameModes.first;
+        deckStyles.contains(gameModeUrl) ? gameModeUrl : deckStyles.first;
 
     // Room
     final roomFromUrl = uri.queryParameters['room'];
@@ -449,7 +449,7 @@ class StartScreenState extends State<StartScreen> {
       roomHistory: history,
       loginUserName: _controllerName.text.toUpperCase(),
       names: _playerNames.toList(),
-      cardsToDeal: _selectedGameMode == gameModeSkyJo ? 12 : 9,
+      cardsToDeal: _selectedGameMode == deckStyleSkyJo ? 12 : 9,
       deck: isGameModelFrenchCards
           ? DeckModel(
               numberOfDecks: ((_playerNames.length + 1) ~/ 2),

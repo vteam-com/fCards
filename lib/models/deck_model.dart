@@ -1,6 +1,10 @@
-import 'package:cards/models/base/game_model.dart';
-import 'package:cards/models/base/golf_french_suit_card_model.dart';
-export 'package:cards/models/base/card_model.dart';
+import 'package:cards/models/card_model.dart';
+import 'package:cards/models/card_model_french.dart';
+export 'package:cards/models/card_model.dart';
+
+String deckStyleFrench = '9 Cards';
+String deckStyleSkyJo = 'SkyJo';
+List<String> deckStyles = [deckStyleFrench, deckStyleSkyJo];
 
 class DeckModel {
   factory DeckModel.fromJson(Map<String, dynamic> json, String gameMode) {
@@ -44,7 +48,7 @@ class DeckModel {
   }
 
   void addCardsToDeck() {
-    if (gameMode == gameModeSkyJo) {
+    if (gameMode == deckStyleSkyJo) {
       for (int i = -2; i <= 12; i++) {
         int count = i == 0
             ? 15
@@ -67,13 +71,13 @@ class DeckModel {
   }
 
   void addCardsToDeckGolf() {
-    for (String suit in GolfFrenchSuitCardModel.suits) {
-      for (String rank in GolfFrenchSuitCardModel.ranks) {
+    for (String suit in CardModelFrench.suits) {
+      for (String rank in CardModelFrench.ranks) {
         cardsDeckPile.add(
-          GolfFrenchSuitCardModel(
+          CardModel(
             suit: suit,
             rank: rank,
-            value: GolfFrenchSuitCardModel.getValue(rank),
+            value: CardModelFrench.getValue(rank),
           ),
         );
       }

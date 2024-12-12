@@ -1,4 +1,4 @@
-import 'package:cards/models/base/game_model.dart';
+import 'package:cards/models/game_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
@@ -14,7 +14,7 @@ void main() {
     setUp(() {
       mockContext = MockBuildContext();
       gameModel = GameModel(
-        gameMode: gameModeSkyJo,
+        gameMode: deckStyleSkyJo,
         roomName: 'testRoom',
         roomHistory: [],
         loginUserName: 'Player 1',
@@ -49,7 +49,7 @@ void main() {
 
   test('initializeGame sets up correct initial state', () {
     final gameModel = GameModel(
-      gameMode: gameModeFrenchCards,
+      gameMode: deckStyleFrench,
       roomName: 'testRoom',
       roomHistory: [],
       loginUserName: 'Player 1',
@@ -75,7 +75,7 @@ void main() {
 
   test('moveToNextPlayer correctly handles final turn', () {
     final gameModel = GameModel(
-      gameMode: gameModeFrenchCards,
+      gameMode: deckStyleFrench,
       roomName: 'testRoom',
       roomHistory: [],
       loginUserName: 'Player 1',
@@ -98,7 +98,7 @@ void main() {
   test('getGameStateAsString returns correct message for different scenarios',
       () {
     final gameModel = GameModel(
-      gameMode: gameModeFrenchCards,
+      gameMode: deckStyleFrench,
       roomName: 'testRoom',
       roomHistory: [],
       loginUserName: 'Player 1',
@@ -122,7 +122,7 @@ void main() {
 
   test('areAllCardsFromHandsRevealed returns correct state', () {
     final gameModel = GameModel(
-      gameMode: gameModeFrenchCards,
+      gameMode: deckStyleFrench,
       roomName: 'testRoom',
       roomHistory: [],
       loginUserName: 'Player 1',
@@ -143,7 +143,7 @@ void main() {
 
   test('fromJson correctly updates game state', () {
     final gameModel = GameModel(
-      gameMode: gameModeFrenchCards,
+      gameMode: deckStyleFrench,
       roomName: 'testRoom',
       roomHistory: [],
       loginUserName: 'Player 1',
