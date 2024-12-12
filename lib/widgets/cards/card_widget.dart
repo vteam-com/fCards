@@ -55,7 +55,7 @@ class CardWidget extends StatelessWidget {
             borderRadius: BorderRadius.circular(CardDimensions.borderRadius),
             border: Border.all(color: Colors.black, width: 1),
           ),
-          child: card.suit == '*' && card.rank != '§'
+          child: card.suit == ''
               ? SkyjoCardFaceWidget(card: card)
               : CardFaceWidget(card: card),
         ),

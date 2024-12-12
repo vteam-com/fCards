@@ -11,7 +11,6 @@ class HandModel {
   bool get isNotEmpty => _list.isNotEmpty;
 
   @override
-  @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
       return true;
@@ -22,6 +21,11 @@ class HandModel {
         _listEquals(other._list, _list);
   }
 
+  /// Compares two lists of [CardModel] instances for equality.
+  ///
+  /// This private helper function checks if the two input lists have the same
+  /// length and if all the corresponding elements in the lists are equal.
+  /// It is used to implement the equality operator for the [HandModel] class.
   bool _listEquals(List<CardModel> a, List<CardModel> b) {
     if (a.length != b.length) {
       return false;
@@ -36,6 +40,11 @@ class HandModel {
 
   @override
   int get hashCode => Object.hash(columns, rows, Object.hashAll(_list));
+
+  /// Assigns a [CardModel] to the [HandModel] at the specified [index].
+  ///
+  /// This operator allows you to set the card at the given index in the hand.
+  /// It is used to update the contents of the hand.
   void operator []=(int index, CardModel card) {
     _list[index] = card;
   }
@@ -52,6 +61,11 @@ class HandModel {
   // operator to get card at index
   CardModel operator [](int index) => _list[index];
 
+  /// Returns the index of the specified [CardModel] in the hand.
+  ///
+  /// This method searches the list of cards in the hand and returns the index
+  /// of the first occurrence of the specified [CardModel]. If the card is not
+  /// found in the hand, -1 is returned.
   int indexOf(final CardModel card) {
     return _list.indexOf(card);
   }
@@ -85,7 +99,7 @@ class HandModel {
 
   @override
   String toString() {
-    return '$columns X $rows $_list';
+    return '$columns X $rows [ ${_list.join('| ')} ]';
   }
 
   List<CardModel> get revealedCards {

@@ -164,6 +164,7 @@ class PlayerZoneWidget extends StatelessWidget {
         ),
       );
     }
+
     return Row(
       children: [...row],
     );
@@ -178,6 +179,7 @@ class PlayerZoneWidget extends StatelessWidget {
     if (gridIndex >= player.hand.length) {
       return Container();
     }
+
     final CardModel card = player.hand[gridIndex];
 
     card.isRevealed = player.hand[gridIndex].isRevealed;

@@ -16,7 +16,7 @@ String gameModeFrenchCards = '9 Cards';
 String gameModeSkyJo = 'SkyJo';
 List<String> gameModes = [gameModeFrenchCards, gameModeSkyJo];
 
-abstract class GameModel with ChangeNotifier {
+class GameModel with ChangeNotifier {
   /// Creates a new game model.
   ///
   /// [roomName] is the ID of the room this game is in.
@@ -25,6 +25,7 @@ abstract class GameModel with ChangeNotifier {
   /// [deck] a cardDeck to use for the game
   /// [isNewGame] indicates whether this is a new game or joining an existing one.
   GameModel({
+    required this.gameMode,
     required this.roomName,
     required this.roomHistory,
     required this.loginUserName,
@@ -34,13 +35,15 @@ abstract class GameModel with ChangeNotifier {
     bool isNewGame = false,
   }) {
     // Initialize players from the list of names
-    for (final String name in names) {
-      players.add(PlayerModel(name: name));
-    }
+    names.forEach((name) => addPlayer(name));
+
     if (isNewGame) {
       initializeGame();
     }
   }
+
+  // Type of game
+  final String gameMode;
 
   /// Game Unique Id based on DateTime
   DateTime gameStartDate = DateTime.now();
@@ -84,10 +87,30 @@ abstract class GameModel with ChangeNotifier {
   /// The current state of the game.
   GameStates get gameState => _gameState;
 
-  void addPlayer(String name);
+  void addPlayer(String name) {
+    if (gameMode == gameModeSkyJo) {
+      players.add(
+        PlayerModel(
+          name: name,
+          columns: 4,
+          rows: 3,
+          skyJoLogic: true,
+        ),
+      );
+    } else {
+      players.add(
+        PlayerModel(
+          name: name,
+          columns: 3,
+          rows: 3,
+          skyJoLogic: false,
+        ),
+      );
+    }
+  }
 
   // must be override by models
-  String get mode => 'abstract';
+  String get mode => 'Custom';
 
   /// Sets the game state and updates the database if backend is ready.
   set gameState(GameStates value) {
@@ -147,8 +170,30 @@ abstract class GameModel with ChangeNotifier {
     );
   }
 
-  DeckModel loadDeck(Map<String, dynamic> json);
-  PlayerModel loadPlayer(Map<String, dynamic> json);
+  DeckModel loadDeck(Map<String, dynamic> json) {
+    return DeckModel.fromJson(
+      json,
+      gameMode,
+    );
+  }
+
+  PlayerModel loadPlayer(Map<String, dynamic> json) {
+    if (gameMode == gameModeSkyJo) {
+      return PlayerModel.fromJson(
+        json: json,
+        columns: 3,
+        rows: 3,
+        skyJoLogic: true,
+      );
+    } else {
+      return PlayerModel.fromJson(
+        json: json,
+        columns: 3,
+        rows: 3,
+        skyJoLogic: false,
+      );
+    }
+  }
 
   /// Updates the game model from a JSON object.
   ///
@@ -233,7 +278,7 @@ abstract class GameModel with ChangeNotifier {
 
     // Deal 9 cards to each player and reveal the initial 3.
     for (final PlayerModel player in players) {
-      player.reset();
+      player.clear();
       dealCards(player);
       player.revealInitialCards();
     }
@@ -345,6 +390,7 @@ abstract class GameModel with ChangeNotifier {
     if (player.hand.validIndex(gridIndex)) {
       // do the swap
       CardModel cardToSwapFromPlayer = player.hand[gridIndex];
+
       // replace players card in their 3x3 with the selected card
       if (gameState == GameStates.swapDiscardedCardWithAnyCardsInHand) {
         player.hand[gridIndex] = deck.cardsDeckDiscarded.removeLast();
@@ -388,8 +434,17 @@ abstract class GameModel with ChangeNotifier {
       return;
     }
 
-    if (handleFlipOneCardState(player, cardIndex) ||
-        handleFlipAndSwapState(player, cardIndex)) {
+    bool wasSwapped = false;
+
+    if (handleFlipOneCardState(player, cardIndex)) {
+      wasSwapped = true;
+    }
+
+    if (handleFlipAndSwapState(player, cardIndex)) {
+      wasSwapped = true;
+    }
+
+    if (wasSwapped) {
       moveToNextPlayer(context);
 
       if (this.isFinalTurn) {
@@ -397,10 +452,9 @@ abstract class GameModel with ChangeNotifier {
           gameState = GameStates.gameOver;
         }
       }
-      return;
+    } else {
+      notifyCardUnavailable(context, 'Not allowed!');
     }
-
-    notifyCardUnavailable(context, 'Not allowed at the moment!');
   }
 
   /// Handles the logic for flipping a card during the [GameStates.revealOneHiddenCard] game state.
@@ -462,7 +516,39 @@ abstract class GameModel with ChangeNotifier {
     return true;
   }
 
-  void evaluateHand() {}
+  void evaluateHand() {
+    if (gameMode == gameModeSkyJo) {
+      evaluateHandSkyJo();
+    } else {
+      // TODO
+      //evaluateHandGolf();
+    }
+  }
+
+  void evaluateHandSkyJo() {
+    var player = players[playerIdPlaying];
+
+    for (int i = 0; i < player.hand.length - 2; i += 3) {
+      if (player.hand[i].isRevealed &&
+          player.hand[i + 1].isRevealed &&
+          player.hand[i + 2].isRevealed &&
+          player.areAllTheSameRank(
+            player.hand[i].rank,
+            player.hand[i + 1].rank,
+            player.hand[i + 2].rank,
+          )) {
+        deck.cardsDeckDiscarded.add(player.hand[i]);
+        player.hand.removeAt(i);
+        deck.cardsDeckDiscarded.add(player.hand[i]);
+        player.hand.removeAt(i);
+        deck.cardsDeckDiscarded.add(player.hand[i]);
+        player.hand.removeAt(i);
+        // We have removed the cards from the hand, reduce the index before the
+        // next iteration
+        i -= 3;
+      }
+    }
+  }
 
   /// Advances the game to the next player's turn.
   void moveToNextPlayer(BuildContext context) {

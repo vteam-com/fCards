@@ -5,9 +5,13 @@
 /// The [suits] and [ranks] static lists define the valid suits and ranks for a standard deck of playing cards.
 class CardModel {
   factory CardModel.fromJson(Map<String, dynamic> json) {
+    final String suit = json['suit'];
+    final String rank = json['rank'];
+
     return CardModel(
-      suit: json['suit'],
-      rank: json['rank'],
+      suit: suit,
+      rank: rank,
+      value: json['value'] ?? int.tryParse(rank),
       isRevealed: json['isRevealed'] ?? false,
     );
   }
@@ -15,6 +19,7 @@ class CardModel {
   CardModel({
     required this.suit,
     required this.rank,
+    required this.value,
     this.partOfSet = false,
     this.isRevealed = false,
   });
@@ -22,6 +27,7 @@ class CardModel {
   // The suit and the rank of the card
   final String suit;
   final String rank;
+  final int value;
 
   /// Indicates whether the card is currently revealed or hidden.
   bool isRevealed = false;
@@ -32,17 +38,16 @@ class CardModel {
   /// Indicates whether the card is part of a set of same Rank for a granting a total of zero points
   bool partOfSet;
 
-  int get value => int.tryParse(rank) ?? 0;
-
   @override
   String toString() {
-    return '$rank$suit${isRevealed ? '|' : '_'}${isSelectable ? 'S' : ' '}';
+    return '$rank$suit${value.toString().padLeft(2)}${isRevealed ? '^' : 'v'}${isSelectable ? 'S' : ' '}';
   }
 
   Map<String, dynamic> toJson() {
     return {
       'suit': suit,
       'rank': rank,
+      'value': value,
       'isRevealed': isRevealed ? true : null,
     };
   }

@@ -5,8 +5,6 @@ import 'package:cards/misc.dart';
 import 'package:cards/models/backend_model.dart';
 import 'package:cards/models/base/game_history.dart';
 import 'package:cards/models/base/game_model.dart';
-import 'package:cards/models/golf/golf_game_model.dart';
-import 'package:cards/models/skyjo/skyjo_game_model.dart';
 import 'package:cards/screens/game_screen.dart';
 import 'package:cards/screens/screen.dart';
 import 'package:cards/widgets/players_in_room_widget.dart';
@@ -442,31 +440,29 @@ class StartScreenState extends State<StartScreen> {
 
   /// Starts the game and navigates to the game screen.
   void startGame(BuildContext context) async {
-    late final GameModel newGame;
-
     final List<GameHistory> history = await getGameHistory(roomName);
     debugLog(history.join('|'));
 
-    if (isGameModelFrenchCards) {
-      newGame = GolfGameModel(
-        roomName: roomName,
-        roomHistory: history,
-        loginUserName: _controllerName.text.toUpperCase(),
-        names: _playerNames.toList(),
-        isNewGame: true,
-      );
-    } else {
-      newGame = SkyjoGameModel(
-        roomName: roomName,
-        roomHistory: history,
-        loginUserName: _controllerName.text.toUpperCase(),
-        names: _playerNames.toList(),
-        isNewGame: true,
-      );
-    }
+    final GameModel newGame = GameModel(
+      gameMode: _selectedGameMode,
+      roomName: roomName,
+      roomHistory: history,
+      loginUserName: _controllerName.text.toUpperCase(),
+      names: _playerNames.toList(),
+      cardsToDeal: 9,
+      deck: isGameModelFrenchCards
+          ? DeckModel(
+              numberOfDecks: ((_playerNames.length + 1) ~/ 2),
+              gameMode: _selectedGameMode,
+            )
+          : DeckModel(numberOfDecks: 1, gameMode: _selectedGameMode),
+      isNewGame: true,
+    );
 
     // Update URL to include room ID
     updateUrlWithoutReload();
+
+    // bring in the main game screen
     if (context.mounted) {
       Navigator.pushReplacement(
         context,

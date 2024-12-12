@@ -1,3 +1,4 @@
+import 'package:cards/misc.dart';
 import 'package:cards/models/base/hand_model.dart';
 import 'package:cards/models/base/player_status.dart';
 
@@ -9,22 +10,93 @@ class PlayerModel {
   ///
   /// Creates a `PlayerModel` with the given name.
   ///
-  PlayerModel({required this.name});
+  PlayerModel({
+    required this.name,
+    required this.columns,
+    required this.rows,
+    required this.skyJoLogic,
+  }) {
+    clear();
+  }
+
+  /// Creates a `PlayerModel` from a JSON map.
+  ///
+  /// This factory constructor takes a JSON map representing a player and
+  /// constructs a `PlayerModel` instance.  It parses the player's name, hand,
+  /// and card visibility from the JSON data.
+  ///
+  /// Args:
+  ///   json (Map<String, dynamic>): The JSON map representing the player.
+  ///       This map should contain the keys 'name', 'hand', and
+  ///       'cardVisibility'.  The 'hand' value should be a list of JSON maps
+  ///       representing cards, and the 'cardVisibility' value should be a list
+  ///       of booleans.
+  ///
+  /// Returns:
+  ///   PlayerModel: A new `PlayerModel` instance initialized with the data from
+  ///       the JSON map.
+  factory PlayerModel.fromJson({
+    required final Map<String, dynamic> json,
+    required final int columns,
+    required final int rows,
+    required final bool skyJoLogic,
+  }) {
+    // Create a new PlayerModel instance with the parsed data.
+    final PlayerModel instance = PlayerModel(
+      name: json['name'] as String,
+      columns: columns,
+      rows: rows,
+      skyJoLogic: skyJoLogic,
+    );
+
+    // Status
+    instance.status = PlayerStatus.fromJson(json['status']);
+
+    // Hand
+    try {
+      instance.hand = HandModel(
+        columns,
+        rows,
+        (json['hand'] as List<dynamic>)
+            .map(
+              (cardJson) => CardModel.fromJson(
+                cardJson as Map<String, dynamic>,
+              ),
+            )
+            .toList(),
+      );
+    } catch (error) {
+      debugLog(error.toString());
+    }
+
+    return instance;
+  }
 
   /// Properties
   int id = -1;
   final String name;
+  final int columns;
+  final int rows;
+  final bool skyJoLogic;
   PlayerStatus status = playersStatuses.first;
   bool isActivePlayer = false;
 
   // Keep track of winnings
   bool isWinner = false;
 
-  int get sumOfRevealedCards => hand.getSumOfCardsForGolf();
-  HandModel hand = HandModel(3, 3, []);
+  int get sumOfRevealedCards {
+    if (skyJoLogic) {
+      return hand.getSumOfCardsInHandSkyJo();
+    } else {
+      return hand.getSumOfCardsForGolf();
+    }
+  }
 
-  void reset() {
-    hand = HandModel(3, 3, []);
+  // the list of cards in hand for this player
+  HandModel hand = HandModel(0, 0, []);
+
+  void clear() {
+    hand = HandModel(columns, rows, []);
   }
 
   bool areAllCardsRevealed() {

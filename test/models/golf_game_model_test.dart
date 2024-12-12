@@ -1,5 +1,4 @@
 import 'package:cards/models/base/game_model.dart';
-import 'package:cards/models/golf/golf_game_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
@@ -14,11 +13,14 @@ void main() {
 
     setUp(() {
       mockContext = MockBuildContext();
-      gameModel = GolfGameModel(
+      gameModel = GameModel(
+        gameMode: gameModeSkyJo,
         roomName: 'testRoom',
         roomHistory: [],
         loginUserName: 'Player 1',
         names: ['Player 1', 'Player 2'],
+        cardsToDeal: 9,
+        deck: DeckModel(numberOfDecks: 1),
         isNewGame: true,
       );
     });
@@ -46,12 +48,15 @@ void main() {
   });
 
   test('initializeGame sets up correct initial state', () {
-    final gameModel = GolfGameModel(
+    final gameModel = GameModel(
+      gameMode: gameModeFrenchCards,
       roomName: 'testRoom',
       roomHistory: [],
       loginUserName: 'Player 1',
       names: ['Player 1', 'Player 2', 'Player 3'],
-      isNewGame: false,
+      cardsToDeal: 9,
+      deck: DeckModel(numberOfDecks: 1),
+      isNewGame: true,
     );
 
     gameModel.initializeGame();
@@ -69,11 +74,14 @@ void main() {
   });
 
   test('moveToNextPlayer correctly handles final turn', () {
-    final gameModel = GolfGameModel(
+    final gameModel = GameModel(
+      gameMode: gameModeFrenchCards,
       roomName: 'testRoom',
       roomHistory: [],
       loginUserName: 'Player 1',
       names: ['Player 1', 'Player 2'],
+      cardsToDeal: 9,
+      deck: DeckModel(numberOfDecks: 1),
       isNewGame: true,
     );
 
@@ -89,11 +97,14 @@ void main() {
 
   test('getGameStateAsString returns correct message for different scenarios',
       () {
-    final gameModel = GolfGameModel(
+    final gameModel = GameModel(
+      gameMode: gameModeFrenchCards,
       roomName: 'testRoom',
       roomHistory: [],
       loginUserName: 'Player 1',
       names: ['Player 1', 'Player 2'],
+      cardsToDeal: 9,
+      deck: DeckModel(numberOfDecks: 1),
       isNewGame: true,
     );
 
@@ -110,11 +121,14 @@ void main() {
   });
 
   test('areAllCardsFromHandsRevealed returns correct state', () {
-    final gameModel = GolfGameModel(
+    final gameModel = GameModel(
+      gameMode: gameModeFrenchCards,
       roomName: 'testRoom',
       roomHistory: [],
       loginUserName: 'Player 1',
       names: ['Player 1', 'Player 2'],
+      cardsToDeal: 9,
+      deck: DeckModel(numberOfDecks: 1),
       isNewGame: true,
     );
 
@@ -128,11 +142,14 @@ void main() {
   });
 
   test('fromJson correctly updates game state', () {
-    final gameModel = GolfGameModel(
+    final gameModel = GameModel(
+      gameMode: gameModeFrenchCards,
       roomName: 'testRoom',
       roomHistory: [],
       loginUserName: 'Player 1',
       names: ['Player 1', 'Player 2'],
+      cardsToDeal: 9,
+      deck: DeckModel(numberOfDecks: 1),
       isNewGame: true,
     );
 

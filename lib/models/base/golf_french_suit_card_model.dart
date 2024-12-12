@@ -10,12 +10,14 @@ class GolfFrenchSuitCardModel extends CardModel {
     return GolfFrenchSuitCardModel(
       suit: json['suit'],
       rank: json['rank'],
+      value: json['value'] ?? int.tryParse(json['rank']),
       isRevealed: json['isRevealed'] ?? false,
     );
   }
   GolfFrenchSuitCardModel({
     required super.suit,
     required super.rank,
+    required super.value,
     super.partOfSet = false,
     super.isRevealed = false,
   });
@@ -25,8 +27,7 @@ class GolfFrenchSuitCardModel extends CardModel {
   /// Handles special cases for 'A', 'X', 'K', 'Q', 'J', '§'
   /// Ranks '2' through '10' return their face value.
   /// Returns 0 if the rank is invalid.
-  @override
-  int get value {
+  static int getValue(rank) {
     if (rank == '§') {
       return -2;
     }
@@ -50,15 +51,6 @@ class GolfFrenchSuitCardModel extends CardModel {
     return int.tryParse(rank) ?? 0;
   }
 
-  @override
-  Map<String, dynamic> toJson() {
-    return {
-      'suit': suit,
-      'rank': rank,
-      'isRevealed': isRevealed ? true : null,
-    };
-  }
-
   static const List<String> suits = ['♥️', '♦️', '♣️', '♠️'];
   static const List<String> ranks = [
     'A', // Ace
@@ -76,9 +68,4 @@ class GolfFrenchSuitCardModel extends CardModel {
     'K', // King
     // '§', // Joker are special we ony generate 2 per deck, so do not include them here
   ];
-
-  @override
-  String toString() {
-    return '$rank$suit${isRevealed ? '|' : '_'}${isSelectable ? 'S' : ' '}';
-  }
 }

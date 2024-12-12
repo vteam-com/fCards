@@ -1,6 +1,5 @@
+import 'package:cards/models/base/golf_french_suit_card_model.dart';
 import 'package:cards/models/base/player_model.dart';
-import 'package:cards/models/golf/golf_french_suit_card_model.dart';
-import 'package:cards/models/golf/golf_player_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -8,21 +7,26 @@ void main() {
     late PlayerModel player;
 
     setUp(() {
-      player = GolfPlayerModel(name: 'Test Player');
+      player = PlayerModel(
+        name: 'Test Player',
+        columns: 3,
+        rows: 3,
+        skyJoLogic: false,
+      );
     });
 
     test('reset clears hand', () {
       player.hand = HandModel(2, 1, [
-        GolfFrenchSuitCardModel(suit: '♥️', rank: 'A'),
-        GolfFrenchSuitCardModel(suit: '♦️', rank: '2'),
+        GolfFrenchSuitCardModel(suit: '♥️', rank: 'A', value: 1),
+        GolfFrenchSuitCardModel(suit: '♦️', rank: '2', value: 2),
       ]);
 
-      player.reset();
+      player.clear();
       expect(player.hand.isEmpty, true);
     });
 
     test('addCardToHand adds card correctly', () {
-      final card = GolfFrenchSuitCardModel(suit: '♥️', rank: 'A');
+      final card = GolfFrenchSuitCardModel(suit: '♥️', rank: 'A', value: 1);
       player.addCardToHand(card);
       expect(player.hand.length, 1);
       expect(player.hand.first, card);
@@ -30,7 +34,9 @@ void main() {
 
     test('revealInitialCards reveals correct cards', () {
       for (int i = 0; i < 9; i++) {
-        player.addCardToHand(GolfFrenchSuitCardModel(suit: '♥️', rank: 'A'));
+        player.addCardToHand(
+          GolfFrenchSuitCardModel(suit: '♥️', rank: 'A', value: 1),
+        );
       }
       player.revealInitialCards();
       expect(player.hand[3].isRevealed, true);
@@ -41,48 +47,109 @@ void main() {
     test('sumOfRevealedCards identifies vertical sets', () {
       player.hand = HandModel(3, 3, []);
       player.addCardToHand(
-        GolfFrenchSuitCardModel(suit: '♥️', rank: 'Q', isRevealed: true),
+        GolfFrenchSuitCardModel(
+          suit: '♥️',
+          rank: 'Q',
+          value: 12,
+          isRevealed: true,
+        ),
       );
-      player.addCardToHand(GolfFrenchSuitCardModel(suit: '♦️', rank: '2'));
-      player.addCardToHand(GolfFrenchSuitCardModel(suit: '♣️', rank: '3'));
       player.addCardToHand(
-        GolfFrenchSuitCardModel(suit: '♠️', rank: 'Q', isRevealed: true),
+        GolfFrenchSuitCardModel(suit: '♦️', rank: '2', value: 2),
       );
-      player.addCardToHand(GolfFrenchSuitCardModel(suit: '♥️', rank: '5'));
-      player.addCardToHand(GolfFrenchSuitCardModel(suit: '♦️', rank: '6'));
       player.addCardToHand(
-        GolfFrenchSuitCardModel(suit: '♣️', rank: 'Q', isRevealed: true),
+        GolfFrenchSuitCardModel(suit: '♣️', rank: '3', value: 3),
       );
-      player.addCardToHand(GolfFrenchSuitCardModel(suit: '♠️', rank: '8'));
-      player.addCardToHand(GolfFrenchSuitCardModel(suit: '♥️', rank: '9'));
+      player.addCardToHand(
+        GolfFrenchSuitCardModel(
+          suit: '♠️',
+          rank: 'Q',
+          value: 12,
+          isRevealed: true,
+        ),
+      );
+      player.addCardToHand(
+        GolfFrenchSuitCardModel(suit: '♥️', rank: '5', value: 5),
+      );
+      player.addCardToHand(
+        GolfFrenchSuitCardModel(suit: '♦️', rank: '6', value: 6),
+      );
+      player.addCardToHand(
+        GolfFrenchSuitCardModel(
+          suit: '♣️',
+          rank: 'Q',
+          value: 12,
+          isRevealed: true,
+        ),
+      );
+      player.addCardToHand(
+        GolfFrenchSuitCardModel(suit: '♠️', rank: '8', value: 8),
+      );
+      player.addCardToHand(
+        GolfFrenchSuitCardModel(suit: '♥️', rank: '9', value: 9),
+      );
       expect(player.sumOfRevealedCards, 0);
     });
 
     test('sumOfRevealedCards identifies vertical sets of Jokers', () {
       // 3 lined up Jokers shall not be Zero, we expect -6
       player.addCardToHand(
-        GolfFrenchSuitCardModel(suit: '♥️', rank: '§', isRevealed: true),
+        GolfFrenchSuitCardModel(
+          suit: '♥️',
+          rank: '§',
+          value: -2,
+          isRevealed: true,
+        ),
       );
-      player.addCardToHand(GolfFrenchSuitCardModel(suit: '♦️', rank: '2'));
-      player.addCardToHand(GolfFrenchSuitCardModel(suit: '♣️', rank: '3'));
       player.addCardToHand(
-        GolfFrenchSuitCardModel(suit: '♠️', rank: '§', isRevealed: true),
+        GolfFrenchSuitCardModel(suit: '♦️', rank: '2', value: 2),
       );
-      player.addCardToHand(GolfFrenchSuitCardModel(suit: '♥️', rank: '5'));
-      player.addCardToHand(GolfFrenchSuitCardModel(suit: '♦️', rank: '6'));
       player.addCardToHand(
-        GolfFrenchSuitCardModel(suit: '♣️', rank: '§', isRevealed: true),
+        GolfFrenchSuitCardModel(suit: '♣️', rank: '3', value: 3),
       );
-      player.addCardToHand(GolfFrenchSuitCardModel(suit: '♠️', rank: '8'));
-      player.addCardToHand(GolfFrenchSuitCardModel(suit: '♥️', rank: '9'));
+      player.addCardToHand(
+        GolfFrenchSuitCardModel(
+          suit: '♠️',
+          rank: '§',
+          value: -2,
+          isRevealed: true,
+        ),
+      );
+      player.addCardToHand(
+        GolfFrenchSuitCardModel(suit: '♥️', rank: '5', value: 5),
+      );
+      player.addCardToHand(
+        GolfFrenchSuitCardModel(suit: '♦️', rank: '6', value: 6),
+      );
+      player.addCardToHand(
+        GolfFrenchSuitCardModel(
+          suit: '♣️',
+          rank: '§',
+          value: -2,
+          isRevealed: true,
+        ),
+      );
+      player.addCardToHand(
+        GolfFrenchSuitCardModel(suit: '♠️', rank: '8', value: 8),
+      );
+      player.addCardToHand(
+        GolfFrenchSuitCardModel(suit: '♥️', rank: '9', value: 9),
+      );
       expect(player.sumOfRevealedCards, -6);
     });
 
     test('toJson creates correct json representation', () {
       player.addCardToHand(
-        GolfFrenchSuitCardModel(suit: '♥️', rank: 'A', isRevealed: true),
+        GolfFrenchSuitCardModel(
+          suit: '♥️',
+          rank: 'A',
+          value: 1,
+          isRevealed: true,
+        ),
       );
-      player.addCardToHand(GolfFrenchSuitCardModel(suit: '♦️', rank: '2'));
+      player.addCardToHand(
+        GolfFrenchSuitCardModel(suit: '♦️', rank: '2', value: 2),
+      );
 
       final json = player.toJson();
 
@@ -103,7 +170,12 @@ void main() {
         ],
       };
 
-      final GolfPlayerModel playerFromJson = GolfPlayerModel.fromJson(json);
+      final PlayerModel playerFromJson = PlayerModel.fromJson(
+        json: json,
+        columns: 3,
+        rows: 3,
+        skyJoLogic: false,
+      );
 
       expect(playerFromJson.name, 'Test Player');
       expect(playerFromJson.hand.length, 2);
