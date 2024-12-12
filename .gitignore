@@ -52,4 +52,4 @@ ios/Runner/GoogleService-Info.plist
 android/app/google-services.json
 lib/models/firebase_options.dart
 lib/models/firebase_options_private.dart
-coverage/html/**
+coverage/html
