@@ -165,8 +165,8 @@ void main() {
       final json = {
         'name': 'Test Player',
         'hand': [
-          {'suit': '♥️', 'rank': 'A', 'isRevealed': true},
-          {'suit': '♦️', 'rank': '2'},
+          {'suit': '♥️', 'rank': 'A', 'value': 1, 'isRevealed': true},
+          {'suit': '♦️', 'rank': '2', 'value': 2},
         ],
       };
 

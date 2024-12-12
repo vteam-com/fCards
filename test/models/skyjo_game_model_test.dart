@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:cards/models/base/game_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../golf_game_model_test.dart';
+import 'golf_game_model_test.dart';
 
 void main() {
   group(

@@ -7,6 +7,7 @@ void main() {
       final json = {
         'suit': '♥️',
         'rank': 'A',
+        'value': 1,
         'isRevealed': true,
       };
 
@@ -97,7 +98,7 @@ void main() {
 
     test('toString returns correct string representation', () {
       final card = GolfFrenchSuitCardModel(suit: '♠️', rank: 'A', value: 1);
-      expect(card.toString(), 'A♠️1_ ');
+      expect(card.toString(), 'A♠️ 1v ');
     });
 
     test('suits list contains all required suits', () {
