@@ -449,7 +449,7 @@ class StartScreenState extends State<StartScreen> {
       roomHistory: history,
       loginUserName: _controllerName.text.toUpperCase(),
       names: _playerNames.toList(),
-      cardsToDeal: 9,
+      cardsToDeal: _selectedGameMode == gameModeSkyJo ? 12 : 9,
       deck: isGameModelFrenchCards
           ? DeckModel(
               numberOfDecks: ((_playerNames.length + 1) ~/ 2),
