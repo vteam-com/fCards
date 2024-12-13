@@ -1,5 +1,5 @@
 import 'package:cards/misc.dart';
-import 'package:cards/models/base/player_status.dart';
+import 'package:cards/models/player_status.dart';
 import 'package:flutter/material.dart';
 
 class StatusPicker extends StatefulWidget {

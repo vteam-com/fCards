@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:animate_do/animate_do.dart';
 import 'package:cards/misc.dart';
-import 'package:cards/models/base/game_model.dart';
+import 'package:cards/models/game_model.dart';
 import 'package:cards/widgets/cards/card_widget.dart';
 import 'package:cards/widgets/player/player_header_widget.dart';
 import 'package:cards/widgets/player/player_zone_cta_widget.dart';
@@ -148,22 +148,27 @@ class PlayerZoneWidget extends StatelessWidget {
     PlayerModel player,
   ) {
     List row = List.empty(growable: true);
+    int columns = player.hand.length == 4 ? 2 : 3;
 
-    // For now we always do columns of 3
-    for (int i = 0; i < player.hand.length - 2; i += 3) {
+    for (int i = 0; i < player.hand.length; i += columns) {
+      List<Widget> columnChildren = [];
+      for (int j = 0; j < columns && (i + j) < player.hand.length; j++) {
+        columnChildren.add(
+          _buildPlayerCardButton(
+            context,
+            gameModel,
+            player,
+            i + j,
+          ),
+        );
+      }
       row.add(
         Column(
-          children: [i, i + 1, i + 2].map((cardIndex) {
-            return _buildPlayerCardButton(
-              context,
-              gameModel,
-              player,
-              cardIndex,
-            );
-          }).toList(),
+          children: columnChildren,
         ),
       );
     }
+
     return Row(
       children: [...row],
     );
@@ -178,6 +183,7 @@ class PlayerZoneWidget extends StatelessWidget {
     if (gridIndex >= player.hand.length) {
       return Container();
     }
+
     final CardModel card = player.hand[gridIndex];
 
     card.isRevealed = player.hand[gridIndex].isRevealed;

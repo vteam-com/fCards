@@ -1,9 +1,15 @@
-import 'package:cards/models/base/card_model.dart';
-import 'package:cards/models/skyjo/skyjo_card_model.dart';
-import 'package:cards/widgets/cards/card_face_widget.dart';
-import 'package:cards/widgets/cards/skyjo_card_face_widget.dart';
+import 'package:cards/models/card_model.dart';
+import 'package:cards/widgets/cards/card_face_french_widget.dart';
+import 'package:cards/widgets/cards/card_face_skyjo_widget.dart';
 import 'package:cards/widgets/wiggle_widget.dart';
 import 'package:flutter/material.dart';
+
+class CardDimensions {
+  static const double width = 100.0;
+  static const double height = 150.0;
+  static const double margin = 4.0;
+  static const double borderRadius = 4.0;
+}
 
 /// A widget that displays a playing card or a placeholder.
 ///
@@ -56,9 +62,9 @@ class CardWidget extends StatelessWidget {
             borderRadius: BorderRadius.circular(CardDimensions.borderRadius),
             border: Border.all(color: Colors.black, width: 1),
           ),
-          child: card is SkyjoCardModel
-              ? SkyjoCardFaceWidget(card: card)
-              : CardFaceWidget(card: card),
+          child: card.suit == ''
+              ? CardFaceSkyjoWidget(card: card)
+              : CardFaceFrenchWidget(card: card),
         ),
       ),
     );

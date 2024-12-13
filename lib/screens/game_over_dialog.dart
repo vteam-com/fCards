@@ -1,6 +1,6 @@
 import 'package:cards/misc.dart';
 import 'package:cards/models/backend_model.dart';
-import 'package:cards/models/base/game_model.dart';
+import 'package:cards/models/game_model.dart';
 import 'package:cards/widgets/dialog.dart';
 import 'package:flutter/material.dart';
 

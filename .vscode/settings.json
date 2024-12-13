@@ -2,7 +2,9 @@
     "cmake.ignoreCMakeListsMissing": true,
     "cSpell.words": [
         "flutterfire",
+        "genhtml",
         "Gilles",
+        "mocktail",
         "prefs",
         "Roboto",
         "skyjo",

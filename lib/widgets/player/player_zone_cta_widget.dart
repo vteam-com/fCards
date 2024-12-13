@@ -1,4 +1,4 @@
-import 'package:cards/models/base/game_model.dart';
+import 'package:cards/models/game_model.dart';
 import 'package:cards/widgets/cards/card_pile_widget.dart';
 import 'package:flutter/material.dart';
 

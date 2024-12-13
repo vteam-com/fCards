@@ -1,4 +1,5 @@
-import 'package:cards/models/golf/french_suit_deck_model.dart';
+import 'package:cards/models/deck_model.dart';
+import 'package:cards/models/game_style.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -8,7 +9,10 @@ void main() {
       test(
         'shuffle should clear the previous state',
         () {
-          FrenchSuitDeckModel deck = FrenchSuitDeckModel(numberOfDecks: 2);
+          DeckModel deck = DeckModel(
+            numberOfDecks: 2,
+            gameStyle: GameStyles.frenchCards9,
+          );
 
           deck.shuffle();
           deck.cardsDeckDiscarded.add(deck.cardsDeckPile.removeLast());

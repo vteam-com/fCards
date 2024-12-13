@@ -1,5 +1,5 @@
 import 'package:cards/misc.dart';
-import 'package:cards/models/base/game_model.dart';
+import 'package:cards/models/game_model.dart';
 import 'package:cards/widgets/date_importance.dart';
 import 'package:cards/widgets/dialog.dart';
 import 'package:cards/widgets/player/status_picker.dart';

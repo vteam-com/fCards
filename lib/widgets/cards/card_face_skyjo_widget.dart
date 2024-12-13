@@ -1,18 +1,18 @@
 import 'dart:math';
 
 import 'package:cards/misc.dart';
-import 'package:cards/models/base/card_model.dart';
-import 'package:cards/widgets/cards/card_face_widget.dart';
+import 'package:cards/models/card_model.dart';
+import 'package:cards/widgets/cards/card_face_french_widget.dart';
 import 'package:flutter/material.dart';
 
 /// A widget that displays a playing card's face or back.
 ///
-/// The [SkyjoCardFaceWidget] is responsible for rendering a playing card based on the provided [CardModel].
+/// The [CardFaceSkyjoWidget] is responsible for rendering a playing card based on the provided [CardModel].
 ///
 /// The widget uses different methods to display the front and back of the card depending on its properties.
-class SkyjoCardFaceWidget extends CardFaceWidget {
-  /// Creates a [SkyjoCardFaceWidget] with a [CardModel] card.
-  const SkyjoCardFaceWidget({
+class CardFaceSkyjoWidget extends CardFaceFrenchWidget {
+  /// Creates a [CardFaceSkyjoWidget] with a [CardModel] card.
+  const CardFaceSkyjoWidget({
     super.key,
     required super.card,
   });
@@ -69,19 +69,6 @@ class SkyjoCardFaceWidget extends CardFaceWidget {
   Widget buildSmallText() {
     return Stack(
       children: [
-        // Transform.translate(
-        //   offset: Offset(-5, 0),
-        //   child: Transform.rotate(
-        //     angle: pi / 6,
-        //     child: Transform.scale(
-        //       scaleX: 1.5,
-        //       child: CircleAvatar(
-        //         radius: 10,
-        //         backgroundColor: Colors.white,
-        //       ),
-        //     ),
-        //   ),
-        // ),
         TextSize(
           card.rank,
           20,
