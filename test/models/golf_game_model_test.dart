@@ -14,13 +14,13 @@ void main() {
     setUp(() {
       mockContext = MockBuildContext();
       gameModel = GameModel(
-        gameMode: deckStyleSkyJo,
+        gameStyle: GameStyles.skyJo,
         roomName: 'testRoom',
         roomHistory: [],
         loginUserName: 'Player 1',
         names: ['Player 1', 'Player 2'],
         cardsToDeal: 9,
-        deck: DeckModel(numberOfDecks: 1),
+        deck: DeckModel(numberOfDecks: 1, gameStyle: GameStyles.frenchCards9),
         isNewGame: true,
       );
     });
@@ -49,13 +49,13 @@ void main() {
 
   test('initializeGame sets up correct initial state', () {
     final gameModel = GameModel(
-      gameMode: deckStyleFrench,
+      gameStyle: GameStyles.frenchCards9,
       roomName: 'testRoom',
       roomHistory: [],
       loginUserName: 'Player 1',
       names: ['Player 1', 'Player 2', 'Player 3'],
       cardsToDeal: 9,
-      deck: DeckModel(numberOfDecks: 1),
+      deck: DeckModel(numberOfDecks: 1, gameStyle: GameStyles.frenchCards9),
       isNewGame: true,
     );
 
@@ -75,13 +75,13 @@ void main() {
 
   test('moveToNextPlayer correctly handles final turn', () {
     final gameModel = GameModel(
-      gameMode: deckStyleFrench,
+      gameStyle: GameStyles.frenchCards9,
       roomName: 'testRoom',
       roomHistory: [],
       loginUserName: 'Player 1',
       names: ['Player 1', 'Player 2'],
       cardsToDeal: 9,
-      deck: DeckModel(numberOfDecks: 1),
+      deck: DeckModel(numberOfDecks: 1, gameStyle: GameStyles.frenchCards9),
       isNewGame: true,
     );
 
@@ -98,13 +98,13 @@ void main() {
   test('getGameStateAsString returns correct message for different scenarios',
       () {
     final gameModel = GameModel(
-      gameMode: deckStyleFrench,
+      gameStyle: GameStyles.frenchCards9,
       roomName: 'testRoom',
       roomHistory: [],
       loginUserName: 'Player 1',
       names: ['Player 1', 'Player 2'],
       cardsToDeal: 9,
-      deck: DeckModel(numberOfDecks: 1),
+      deck: DeckModel(numberOfDecks: 1, gameStyle: GameStyles.frenchCards9),
       isNewGame: true,
     );
 
@@ -122,13 +122,13 @@ void main() {
 
   test('areAllCardsFromHandsRevealed returns correct state', () {
     final gameModel = GameModel(
-      gameMode: deckStyleFrench,
+      gameStyle: GameStyles.frenchCards9,
       roomName: 'testRoom',
       roomHistory: [],
       loginUserName: 'Player 1',
       names: ['Player 1', 'Player 2'],
       cardsToDeal: 9,
-      deck: DeckModel(numberOfDecks: 1),
+      deck: DeckModel(numberOfDecks: 1, gameStyle: GameStyles.frenchCards9),
       isNewGame: true,
     );
 
@@ -143,13 +143,16 @@ void main() {
 
   test('fromJson correctly updates game state', () {
     final gameModel = GameModel(
-      gameMode: deckStyleFrench,
+      gameStyle: GameStyles.frenchCards9,
       roomName: 'testRoom',
       roomHistory: [],
       loginUserName: 'Player 1',
       names: ['Player 1', 'Player 2'],
       cardsToDeal: 9,
-      deck: DeckModel(numberOfDecks: 1),
+      deck: DeckModel(
+        numberOfDecks: 1,
+        gameStyle: GameStyles.frenchCards9,
+      ),
       isNewGame: true,
     );
 

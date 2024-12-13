@@ -8,7 +8,10 @@ void main() {
       test(
         'shuffle should clear the previous state',
         () {
-          DeckModel deck = DeckModel(numberOfDecks: 2);
+          DeckModel deck = DeckModel(
+            numberOfDecks: 2,
+            gameStyle: GameStyles.frenchCards9,
+          );
 
           deck.shuffle();
           deck.cardsDeckDiscarded.add(deck.cardsDeckPile.removeLast());

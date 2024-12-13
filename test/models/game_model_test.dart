@@ -3,44 +3,83 @@ import 'package:cards/models/game_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  late GameModel gameModel;
   final testPlayers = [
     'Player1',
     'Player2',
   ];
 
-  setUp(() {
-    gameModel = GameModel(
-      gameMode: 'skyjo',
+  GameModel getNewSkyJoInstance() {
+    return GameModel(
+      gameStyle: GameStyles.skyJo,
       roomName: 'testRoom',
       roomHistory: [],
-      loginUserName: 'Player1',
+      loginUserName: testPlayers.first,
       names: testPlayers,
-      cardsToDeal: 9,
-      deck: DeckModel(numberOfDecks: 1, gameMode: 'skyjo'),
+      cardsToDeal: 12,
+      deck: DeckModel(
+        numberOfDecks: 1,
+        gameStyle: GameStyles.skyJo,
+      ),
       isNewGame: true,
     );
-  });
+  }
+
+  GameModel getNewInstanceFrench9Cards() {
+    return GameModel(
+      gameStyle: GameStyles.frenchCards9,
+      roomName: 'testRoom',
+      roomHistory: [],
+      loginUserName: testPlayers.first,
+      names: testPlayers,
+      cardsToDeal: 9,
+      deck: DeckModel(
+        numberOfDecks: 1,
+        gameStyle: GameStyles.frenchCards9,
+      ),
+      isNewGame: true,
+    );
+  }
 
   group('GameModel Initialization', () {
     test('should initialize with correct number of players', () {
+      final gameModel = getNewSkyJoInstance();
       expect(gameModel.players.length, equals(2));
       expect(gameModel.getPlayersNames(), equals(testPlayers));
     });
 
     test('should start with correct game state', () {
+      final gameModel = getNewSkyJoInstance();
       expect(gameModel.gameState, equals(GameStates.pickCardFromEitherPiles));
     });
 
     test('should deal correct number of cards to players', () {
+      final gameModel = getNewSkyJoInstance();
       for (var player in gameModel.players) {
-        expect(player.hand.length, equals(9));
+        expect(player.hand.length, equals(12));
       }
+    });
+
+    test('gameModel == gameModel, hash, toString', () {
+      final gameModel1 = getNewSkyJoInstance();
+      final gameModel2 = getNewInstanceFrench9Cards();
+
+      expect(gameModel1 == gameModel1, true);
+      expect(gameModel2 == gameModel2, true);
+      expect(gameModel1 == gameModel2, false);
+
+      expect(gameModel1.hashCode == gameModel1.hashCode, true);
+      expect(gameModel2.hashCode == gameModel2.hashCode, true);
+      expect(gameModel1.hashCode == gameModel2.hashCode, false);
+
+      expect(gameModel1.toString() == gameModel1.toString(), true);
+      expect(gameModel2.toString() == gameModel2.toString(), true);
+      expect(gameModel1.toString() == gameModel2.toString(), false);
     });
   });
 
   group('Game State Management', () {
     test('should properly track active player', () {
+      final gameModel = getNewSkyJoInstance();
       expect(gameModel.playerIdPlaying, equals(0));
       gameModel.setActivePlayer(1);
       expect(gameModel.playerIdPlaying, equals(1));
@@ -55,14 +94,25 @@ void main() {
     });
 
     test('should correctly identify final turn state', () {
+      final gameModel = getNewSkyJoInstance();
       expect(gameModel.isFinalTurn, isFalse);
       gameModel.playerIdAttacking = 1;
       expect(gameModel.isFinalTurn, isTrue);
+    });
+
+    test('Player status', () {
+      final gameModel = getNewSkyJoInstance();
+      gameModel.updatePlayerStatus(
+        gameModel.players.first,
+        PlayerStatus(emoji: '', phrase: 'test'),
+      );
+      expect(gameModel.players.first.status.phrase, 'test');
     });
   });
 
   group('Card Operations', () {
     test('should handle card revelation', () {
+      final gameModel = getNewSkyJoInstance();
       final player = gameModel.players[0];
       final hiddenCard = player.hand.revealedCards.first;
       final cardIndex = player.hand.indexOf(hiddenCard);
@@ -76,6 +126,7 @@ void main() {
 
   group('JSON Serialization', () {
     test('should correctly serialize to JSON', () {
+      final gameModel = getNewSkyJoInstance();
       final json = gameModel.toJson();
 
       expect(json['players'], isNotNull);
@@ -86,13 +137,16 @@ void main() {
 
     test('should correctly deserialize from JSON', () {
       final newGameModel = GameModel(
-        gameMode: 'skyjo',
+        gameStyle: GameStyles.skyJo,
         roomName: 'testRoom',
         roomHistory: [],
         loginUserName: 'Player1',
         names: testPlayers,
         cardsToDeal: 9,
-        deck: DeckModel(numberOfDecks: 1, gameMode: 'skyjo'),
+        deck: DeckModel(
+          numberOfDecks: 1,
+          gameStyle: GameStyles.skyJo,
+        ),
       );
 
       newGameModel.fromJson({
@@ -386,6 +440,7 @@ void main() {
         'state': 'GameStates.pickCardFromEitherPiles',
       });
 
+      final gameModel = getNewSkyJoInstance();
       expect(newGameModel.players.length, equals(gameModel.players.length));
       expect(newGameModel.gameState, equals(gameModel.gameState));
     });
@@ -393,19 +448,25 @@ void main() {
 
   group('Game Link Generation', () {
     test('should generate correct game link', () {
+      final gameModel = getNewSkyJoInstance();
       final expectedLink = '?mode=Custom&room=testRoom&players=Player1,Player2';
       expect(gameModel.linkUri, equals(expectedLink));
+
+      // because this is running in a none-browser mode the expected url will be empty
+      expect(gameModel.getLinkToGame(), equals(''));
     });
   });
 
   group('Player Management', () {
     test('should get correct player name', () {
+      final gameModel = getNewSkyJoInstance();
       expect(gameModel.getPlayerName(0), equals('Player1'));
       expect(gameModel.getPlayerName(1), equals('Player2'));
       expect(gameModel.getPlayerName(-1), equals('No one'));
     });
 
     test('should track revealed cards correctly', () {
+      final gameModel = getNewSkyJoInstance();
       final PlayerModel player = gameModel.players.first;
       player.hand.revealAllCards();
 

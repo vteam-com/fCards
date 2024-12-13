@@ -18,13 +18,13 @@ void main() {
           random = Random();
           mockContext = MockBuildContext();
           gameModel = GameModel(
-            gameMode: deckStyleSkyJo,
+            gameStyle: GameStyles.skyJo,
             roomName: 'testRoom',
             roomHistory: [],
             loginUserName: 'Player 1',
             names: ['Player 1', 'Player 2'],
             cardsToDeal: 12,
-            deck: DeckModel(numberOfDecks: 1, gameMode: deckStyleSkyJo),
+            deck: DeckModel(numberOfDecks: 1, gameStyle: GameStyles.skyJo),
             isNewGame: true,
           );
         },

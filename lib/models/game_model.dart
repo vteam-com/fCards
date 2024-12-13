@@ -21,7 +21,7 @@ class GameModel with ChangeNotifier {
   /// [deck] a cardDeck to use for the game
   /// [isNewGame] indicates whether this is a new game or joining an existing one.
   GameModel({
-    required this.gameMode,
+    required this.gameStyle,
     required this.roomName,
     required this.roomHistory,
     required this.loginUserName,
@@ -39,7 +39,7 @@ class GameModel with ChangeNotifier {
   }
 
   // Type of game
-  final String gameMode;
+  final GameStyles gameStyle;
 
   /// Game Unique Id based on DateTime
   DateTime gameStartDate = DateTime.now();
@@ -84,7 +84,7 @@ class GameModel with ChangeNotifier {
   GameStates get gameState => _gameState;
 
   void addPlayer(String name) {
-    if (gameMode == deckStyleSkyJo) {
+    if (gameStyle == GameStyles.skyJo) {
       players.add(
         PlayerModel(
           name: name,
@@ -169,12 +169,12 @@ class GameModel with ChangeNotifier {
   DeckModel loadDeck(Map<String, dynamic> json) {
     return DeckModel.fromJson(
       json,
-      gameMode,
+      gameStyle,
     );
   }
 
   PlayerModel loadPlayer(Map<String, dynamic> json) {
-    if (gameMode == deckStyleSkyJo) {
+    if (gameStyle == GameStyles.skyJo) {
       return PlayerModel.fromJson(
         json: json,
         columns: 3,
@@ -513,7 +513,7 @@ class GameModel with ChangeNotifier {
   }
 
   void evaluateHand() {
-    if (gameMode == deckStyleSkyJo) {
+    if (gameStyle == GameStyles.skyJo) {
       evaluateHandSkyJo();
     } else {
       // TODO

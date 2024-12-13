@@ -33,8 +33,9 @@ class StartScreenState extends State<StartScreen> {
   /// Subscription to the Firebase Realtime Database.
   StreamSubscription? _streamSubscription;
 
-  String _selectedGameMode = deckStyleFrench;
-  bool get isGameModelFrenchCards => _selectedGameMode == deckStyleFrench;
+  GameStyles _selectedGameMode = GameStyles.frenchCards9;
+  bool get isGameModelFrenchCards =>
+      _selectedGameMode == GameStyles.frenchCards9;
 
   /// Controller for the room name text field.
   final TextEditingController _controllerRoom = TextEditingController(
@@ -91,8 +92,7 @@ class StartScreenState extends State<StartScreen> {
 
     // Mode
     final gameModeUrl = uri.queryParameters['mode'] ?? '';
-    _selectedGameMode =
-        deckStyles.contains(gameModeUrl) ? gameModeUrl : deckStyles.first;
+    _selectedGameMode = intToGameStyles(int.tryParse(gameModeUrl) ?? -1);
 
     // Room
     final roomFromUrl = uri.queryParameters['room'];
@@ -277,19 +277,19 @@ class StartScreenState extends State<StartScreen> {
   Widget gameMode() {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: SegmentedButton<String>(
-        segments: const [
-          ButtonSegment<String>(
-            value: '9 Cards',
+      child: SegmentedButton<GameStyles>(
+        segments: [
+          ButtonSegment<GameStyles>(
+            value: GameStyles.frenchCards9,
             label: Text('9 Cards'),
           ),
-          ButtonSegment<String>(
-            value: 'SkyJo',
+          ButtonSegment<GameStyles>(
+            value: GameStyles.skyJo,
             label: Text('SkyJo'),
           ),
         ],
         selected: {_selectedGameMode},
-        onSelectionChanged: (Set<String> value) {
+        onSelectionChanged: (Set<GameStyles> value) {
           setState(() {
             _selectedGameMode = value.first;
           });
@@ -444,18 +444,18 @@ class StartScreenState extends State<StartScreen> {
     debugLog(history.join('|'));
 
     final GameModel newGame = GameModel(
-      gameMode: _selectedGameMode,
+      gameStyle: _selectedGameMode,
       roomName: roomName,
       roomHistory: history,
       loginUserName: _controllerName.text.toUpperCase(),
       names: _playerNames.toList(),
-      cardsToDeal: _selectedGameMode == deckStyleSkyJo ? 12 : 9,
+      cardsToDeal: _selectedGameMode == GameStyles.skyJo ? 12 : 9,
       deck: isGameModelFrenchCards
           ? DeckModel(
               numberOfDecks: ((_playerNames.length + 1) ~/ 2),
-              gameMode: _selectedGameMode,
+              gameStyle: _selectedGameMode,
             )
-          : DeckModel(numberOfDecks: 1, gameMode: _selectedGameMode),
+          : DeckModel(numberOfDecks: 1, gameStyle: _selectedGameMode),
       isNewGame: true,
     );
 
@@ -477,7 +477,7 @@ class StartScreenState extends State<StartScreen> {
     if (kIsWeb) {
       return html.window.location.origin +
           GameModel.getLinkToGameFromInput(
-            _selectedGameMode,
+            _selectedGameMode.index.toString(),
             roomName,
             _playerNames.toList(),
           );
