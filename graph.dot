@@ -5,6 +5,7 @@ digraph "" {
   "/test/models/game_model_test.dart" [label="game_model_test"];
   "/test/models/deck_model_test.dart" [label="deck_model_test"];
   "/test/models/golf_player_model_test.dart" [label="golf_player_model_test"];
+  "/test/models/backend_json_data.dart" [label="backend_json_data"];
   "/test/models/golf_french_suit_card_model_test.dart" [label="golf_french_suit_card_model_test"];
   "/test/models/french_suit_card_model_test.dart" [label="french_suit_card_model_test"];
   "/test/models/skyjo_game_model_test.dart" [label="skyjo_game_model_test"];
@@ -51,6 +52,7 @@ digraph "" {
         "/test/models/game_model_test.dart";
         "/test/models/deck_model_test.dart";
         "/test/models/golf_player_model_test.dart";
+        "/test/models/backend_json_data.dart";
         "/test/models/golf_french_suit_card_model_test.dart";
         "/test/models/french_suit_card_model_test.dart";
         "/test/models/skyjo_game_model_test.dart";
@@ -126,7 +128,9 @@ digraph "" {
   "/test/models/skyjo_game_model_test.dart" -> "/test/models/golf_game_model_test.dart";
   "/test/models/golf_game_model_test.dart" -> "/lib/models/game_model.dart";
   "/test/models/game_history_test.dart" -> "/lib/models/game_history.dart";
+  "/test/models/backend_model_test.dart" -> "/lib/models/backend_model.dart";
   "/test/models/backend_model_test.dart" -> "/lib/models/firebase_options.dart";
+  "/test/models/backend_model_test.dart" -> "/test/models/backend_json_data.dart";
   "/test/widgets/cards/card_pile_widget_test.dart" -> "/lib/models/card_model.dart";
   "/test/widgets/cards/card_pile_widget_test.dart" -> "/lib/widgets/cards/card_pile_widget.dart";
   "/test/widgets/cards/card_widget_test.dart" -> "/lib/models/card_model.dart";

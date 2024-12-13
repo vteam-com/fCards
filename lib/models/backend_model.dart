@@ -8,8 +8,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 
-bool get isRunningOffLine => false;
-bool backendReady = isRunningOffLine;
+bool isRunningOffLine = false;
+bool _backendReady = isRunningOffLine;
+bool get backendReady => _backendReady;
+set backendReady(bool value) => _backendReady = value;
 
 Future<void> useFirebase() async {
   if (isRunningOffLine) {
@@ -43,7 +45,7 @@ Future<void> useFirebase() async {
 
 Future<List<String>> getPlayersInRoom(final String roomId) async {
   if (isRunningOffLine) {
-    return ['BOB,SUE,JOHN,MARY'];
+    return ['BOB', 'SUE', 'JOHN', 'MARY'];
   }
 
   final DataSnapshot dataSnapshot =
@@ -72,24 +74,26 @@ void setPlayersInRoom(final String room, final Set<String> playersNames) {
 
 Future<List<GameHistory>> getGameHistory(final String roomName) async {
   List<GameHistory> list = [];
+  if (!isRunningOffLine) {
+    try {
+      final DataSnapshot dataSnapshot =
+          await FirebaseDatabase.instance.ref('history/$roomName/').get();
 
-  try {
-    final DataSnapshot dataSnapshot =
-        await FirebaseDatabase.instance.ref('history/$roomName/').get();
+      if (dataSnapshot.exists && dataSnapshot.value is Map) {
+        final Map data = dataSnapshot.value as Map;
 
-    if (dataSnapshot.exists && dataSnapshot.value is Map) {
-      final Map data = dataSnapshot.value as Map;
+        data.forEach((key, value) {
+          final gameHistory = GameHistory();
+          gameHistory.date =
+              DateTime.fromMillisecondsSinceEpoch(int.parse(key));
+          gameHistory.playersNames = [value];
 
-      data.forEach((key, value) {
-        final gameHistory = GameHistory();
-        gameHistory.date = DateTime.fromMillisecondsSinceEpoch(int.parse(key));
-        gameHistory.playersNames = [value];
-
-        list.add(gameHistory);
-      });
+          list.add(gameHistory);
+        });
+      }
+    } catch (error) {
+      debugLog('getGameHistory: ${error.toString()}');
     }
-  } catch (error) {
-    debugLog('getGameHistory: ${error.toString()}');
   }
 
   return list;
@@ -166,6 +170,10 @@ List<String> getInviteesFromDataSnapshot(
 }
 
 Future<List<String>> getAllRooms() async {
+  if (isRunningOffLine) {
+    return ['TEST_ROOM'];
+  }
+
   final DataSnapshot dataSnapshot =
       await FirebaseDatabase.instance.ref('rooms').get();
   final List<String> rooms = [];
