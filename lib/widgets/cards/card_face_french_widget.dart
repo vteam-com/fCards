@@ -44,17 +44,15 @@ class CardFaceFrenchWidget extends StatelessWidget {
     final color = getSuitColor(card.suit);
     switch (card.rank) {
       case '§':
-        return Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            TextSize(
-              'Joker',
-              align: TextAlign.center,
-              30,
-              bold: true,
-              color: color,
-            ),
-          ],
+        return FittedBox(
+          fit: BoxFit.scaleDown,
+          child: TextSize(
+            'Joker',
+            align: TextAlign.center,
+            30,
+            bold: true,
+            color: color,
+          ),
         );
       case 'K':
       case 'Q':

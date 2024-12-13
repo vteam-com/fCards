@@ -1,3 +1,4 @@
+import 'package:cards/models/game_history.dart';
 import 'package:cards/models/game_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -43,6 +44,14 @@ void main() {
       expect(gameModel.playerIdPlaying, equals(0));
       gameModel.setActivePlayer(1);
       expect(gameModel.playerIdPlaying, equals(1));
+
+      final win1 = GameHistory.fromJson({
+        'date': DateTime.now(),
+        'playersNames': ['Player1'],
+      });
+      gameModel.roomHistory.add(win1);
+      final List<DateTime> wins = gameModel.getWinsForPlayerName('Player1');
+      expect(wins.length, 1);
     });
 
     test('should correctly identify final turn state', () {
@@ -340,6 +349,7 @@ void main() {
                 'isRevealed': true,
                 'rank': '§',
                 'suit': '*',
+                'value': -2,
               },
               {
                 'isRevealed': true,

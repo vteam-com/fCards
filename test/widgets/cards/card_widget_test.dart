@@ -86,7 +86,7 @@ void main() {
     testWidgets('renders different ranks correctly',
         (WidgetTester tester) async {
       final List<String> ranks = [
-        // '§', // TODO
+        '§', // TODO
         'A',
         '2',
         '3',
@@ -103,20 +103,23 @@ void main() {
       ];
 
       for (final String rank in ranks) {
-        // print('---- $rank ----');
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: FittedBox(
-                fit: BoxFit.scaleDown,
-                child: CardWidget(
-                  card: CardModel(
-                    suit: '♣️',
-                    rank: rank,
-                    value: CardModelFrench.getValue(rank),
-                    isRevealed: true,
+              body: SizedBox(
+                width: 800,
+                height: 800,
+                child: FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: CardWidget(
+                    card: CardModel(
+                      suit: '♣️',
+                      rank: rank,
+                      value: CardModelFrench.getValue(rank),
+                      isRevealed: true,
+                    ),
+                    onDropped: null,
                   ),
-                  onDropped: null,
                 ),
               ),
             ),
@@ -124,6 +127,7 @@ void main() {
         );
 
         await tester.pump();
+
         if (rank == '§') {
           expect(find.text('Joker'), findsAtLeast(1));
         } else {
@@ -184,7 +188,7 @@ void main() {
                     rank: 'A',
                     value: 1,
                     isRevealed: true,
-                  ),
+                  )..isSelectable = true,
                   onDropped: (s, t) => dropped = true,
                 ),
                 CardWidget(
@@ -193,7 +197,7 @@ void main() {
                     rank: '2',
                     value: 2,
                     isRevealed: true,
-                  ),
+                  )..isSelectable = true,
                   onDropped: (s, t) => dropped = true,
                 ),
               ],

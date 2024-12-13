@@ -10,6 +10,8 @@ digraph "" {
   "/test/models/skyjo_game_model_test.dart" [label="skyjo_game_model_test"];
   "/test/models/golf_game_model_test.dart" [label="golf_game_model_test"];
   "/test/models/game_history_test.dart" [label="game_history_test"];
+  "/test/models/backend_model_test.dart" [label="backend_model_test"];
+  "/test/widgets/cards/card_pile_widget_test.dart" [label="card_pile_widget_test"];
   "/test/widgets/cards/card_widget_test.dart" [label="card_widget_test"];
   "/lib/models/player_status.dart" [label="player_status"];
   "/lib/models/game_model.dart" [label="game_model"];
@@ -54,11 +56,13 @@ digraph "" {
         "/test/models/skyjo_game_model_test.dart";
         "/test/models/golf_game_model_test.dart";
         "/test/models/game_history_test.dart";
+        "/test/models/backend_model_test.dart";
       }
       subgraph "cluster~/test/widgets" {
         label="widgets";
         subgraph "cluster~/test/widgets/cards" {
           label="cards";
+          "/test/widgets/cards/card_pile_widget_test.dart";
           "/test/widgets/cards/card_widget_test.dart";
         }
       }
@@ -111,6 +115,7 @@ digraph "" {
       }
     }
   }
+  "/test/models/game_model_test.dart" -> "/lib/models/game_history.dart";
   "/test/models/game_model_test.dart" -> "/lib/models/game_model.dart";
   "/test/models/deck_model_test.dart" -> "/lib/models/deck_model.dart";
   "/test/models/golf_player_model_test.dart" -> "/lib/models/player_model.dart";
@@ -121,6 +126,9 @@ digraph "" {
   "/test/models/skyjo_game_model_test.dart" -> "/test/models/golf_game_model_test.dart";
   "/test/models/golf_game_model_test.dart" -> "/lib/models/game_model.dart";
   "/test/models/game_history_test.dart" -> "/lib/models/game_history.dart";
+  "/test/models/backend_model_test.dart" -> "/lib/models/firebase_options.dart";
+  "/test/widgets/cards/card_pile_widget_test.dart" -> "/lib/models/card_model.dart";
+  "/test/widgets/cards/card_pile_widget_test.dart" -> "/lib/widgets/cards/card_pile_widget.dart";
   "/test/widgets/cards/card_widget_test.dart" -> "/lib/models/card_model.dart";
   "/test/widgets/cards/card_widget_test.dart" -> "/lib/models/card_model_french.dart";
   "/test/widgets/cards/card_widget_test.dart" -> "/lib/widgets/cards/card_widget.dart";
