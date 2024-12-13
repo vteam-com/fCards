@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:cards/models/card_model.dart';
 export 'package:cards/models/card_model.dart';
 
@@ -121,16 +123,27 @@ class HandModel {
     int score = 0;
     List<bool> markedForZeroScore = List.filled(_list.length, false);
 
-    List<List<int>> checkingIndices = [
-      [0, 1, 2],
-      [3, 4, 5],
-      [6, 7, 8],
-      [0, 3, 6],
-      [1, 4, 7],
-      [2, 5, 8],
-      // [0, 4, 8], // Diagonal from top-left to bottom-right
-      // [2, 4, 6], // Diagonal from top-right to bottom-left
-    ];
+    List<List<int>> checkingIndices;
+
+    if (_list.length == 4) {
+      // 2x2
+      checkingIndices = [
+        [0, 1],
+        [2, 3],
+        [0, 2],
+        [1, 3],
+      ];
+    } else {
+      // 3x3
+      checkingIndices = [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+      ];
+    }
 
     for (final List<int> indices in checkingIndices) {
       markIfSameRankForGolf(markedForZeroScore, indices);
@@ -149,7 +162,17 @@ class HandModel {
     List<bool> markedForZeroScore,
     List<int> indices,
   ) {
-    if (indices.length == 3 &&
+    if (indices.length == 2) {
+      if (_list[indices[0]].rank == _list[indices[1]].rank &&
+          !_list[indices[0]].partOfSet &&
+          !_list[indices[1]].partOfSet) {
+        for (final int index in indices) {
+          if (_list[index].rank != '§') {
+            _list[index].partOfSet = true;
+          }
+        }
+      }
+    } else if (indices.length == 3 &&
         areAllTheSameRankAndNotAlreadyUsed(
           _list[indices[0]],
           _list[indices[1]],
@@ -160,6 +183,15 @@ class HandModel {
           _list[index].partOfSet = true;
         }
       }
+    }
+  }
+
+  void revealCards(int numberOfCardsToReveal) {
+    final Random random = Random();
+    final List<int> indices = List.generate(_list.length, (i) => i)
+      ..shuffle(random);
+    for (int i = 0; i < numberOfCardsToReveal; i++) {
+      _list[indices[i]].isRevealed = true;
     }
   }
 

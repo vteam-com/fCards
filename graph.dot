@@ -8,6 +8,8 @@ digraph "" {
   "/test/models/backend_json_data.dart" [label="backend_json_data"];
   "/test/models/golf_french_suit_card_model_test.dart" [label="golf_french_suit_card_model_test"];
   "/test/models/french_suit_card_model_test.dart" [label="french_suit_card_model_test"];
+  "/test/models/game_style_test.dart" [label="game_style_test"];
+  "/test/models/player_status_test.dart" [label="player_status_test"];
   "/test/models/skyjo_game_model_test.dart" [label="skyjo_game_model_test"];
   "/test/models/golf_game_model_test.dart" [label="golf_game_model_test"];
   "/test/models/game_history_test.dart" [label="game_history_test"];
@@ -21,6 +23,7 @@ digraph "" {
   "/lib/models/firebase_options.dart" [label="firebase_options"];
   "/lib/models/hand_model.dart" [label="hand_model"];
   "/lib/models/player_model.dart" [label="player_model"];
+  "/lib/models/game_style.dart" [label="game_style"];
   "/lib/models/card_model.dart" [label="card_model"];
   "/lib/models/backend_model.dart" [label="backend_model"];
   "/lib/models/deck_model.dart" [label="deck_model"];
@@ -55,6 +58,8 @@ digraph "" {
         "/test/models/backend_json_data.dart";
         "/test/models/golf_french_suit_card_model_test.dart";
         "/test/models/french_suit_card_model_test.dart";
+        "/test/models/game_style_test.dart";
+        "/test/models/player_status_test.dart";
         "/test/models/skyjo_game_model_test.dart";
         "/test/models/golf_game_model_test.dart";
         "/test/models/game_history_test.dart";
@@ -81,6 +86,7 @@ digraph "" {
         "/lib/models/firebase_options.dart";
         "/lib/models/hand_model.dart";
         "/lib/models/player_model.dart";
+        "/lib/models/game_style.dart";
         "/lib/models/card_model.dart";
         "/lib/models/backend_model.dart";
         "/lib/models/deck_model.dart";
@@ -120,10 +126,13 @@ digraph "" {
   "/test/models/game_model_test.dart" -> "/lib/models/game_history.dart";
   "/test/models/game_model_test.dart" -> "/lib/models/game_model.dart";
   "/test/models/deck_model_test.dart" -> "/lib/models/deck_model.dart";
+  "/test/models/deck_model_test.dart" -> "/lib/models/game_style.dart";
   "/test/models/golf_player_model_test.dart" -> "/lib/models/player_model.dart";
   "/test/models/golf_french_suit_card_model_test.dart" -> "/lib/models/card_model.dart";
   "/test/models/french_suit_card_model_test.dart" -> "/lib/models/card_model.dart";
   "/test/models/french_suit_card_model_test.dart" -> "/lib/models/card_model_french.dart";
+  "/test/models/game_style_test.dart" -> "/lib/models/game_style.dart";
+  "/test/models/player_status_test.dart" -> "/lib/models/player_status.dart";
   "/test/models/skyjo_game_model_test.dart" -> "/lib/models/game_model.dart";
   "/test/models/skyjo_game_model_test.dart" -> "/test/models/golf_game_model_test.dart";
   "/test/models/golf_game_model_test.dart" -> "/lib/models/game_model.dart";
@@ -139,8 +148,10 @@ digraph "" {
   "/lib/models/game_model.dart" -> "/lib/models/backend_model.dart";
   "/lib/models/game_model.dart" -> "/lib/models/deck_model.dart";
   "/lib/models/game_model.dart" -> "/lib/models/game_history.dart";
+  "/lib/models/game_model.dart" -> "/lib/models/game_style.dart";
   "/lib/models/game_model.dart" -> "/lib/models/player_model.dart";
   "/lib/models/game_model.dart" -> "/lib/models/deck_model.dart" [style=dashed];
+  "/lib/models/game_model.dart" -> "/lib/models/game_style.dart" [style=dashed];
   "/lib/models/game_model.dart" -> "/lib/models/player_model.dart" [style=dashed];
   "/lib/models/card_model_french.dart" -> "/lib/models/card_model.dart";
   "/lib/models/hand_model.dart" -> "/lib/models/card_model.dart";
@@ -154,6 +165,7 @@ digraph "" {
   "/lib/models/backend_model.dart" -> "/lib/models/game_history.dart";
   "/lib/models/deck_model.dart" -> "/lib/models/card_model.dart";
   "/lib/models/deck_model.dart" -> "/lib/models/card_model_french.dart";
+  "/lib/models/deck_model.dart" -> "/lib/models/game_style.dart";
   "/lib/models/deck_model.dart" -> "/lib/models/card_model.dart" [style=dashed];
   "/lib/screens/game_over_dialog.dart" -> "/lib/models/backend_model.dart";
   "/lib/screens/game_over_dialog.dart" -> "/lib/models/game_model.dart";

@@ -19,8 +19,6 @@ class PlayerStatus {
   final String emoji;
   final String phrase;
 
-  bool get isEmpty => emoji.isEmpty && phrase.isEmpty;
-
   Map toJson() => {'emoji': emoji, 'phrase': phrase};
 }
 

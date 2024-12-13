@@ -37,10 +37,8 @@ void main() {
           CardModel(suit: '♥️', rank: 'A', value: 1),
         );
       }
-      player.revealInitialCards();
-      expect(player.hand[3].isRevealed, true);
-      expect(player.hand[5].isRevealed, true);
-      expect(player.hand[0].isRevealed, false);
+      player.revealRandomCardsInHand(2);
+      expect(player.hand.revealedCards.length, 2);
     });
 
     test('sumOfRevealedCards identifies vertical sets', () {

@@ -102,6 +102,8 @@ void main() {
           expect(gameModel.players[0].hand.length, 12);
           // This should trigger the last turn and open all the cards.
           gameModel.moveToNextPlayer(mockContext);
+
+          // back to player
           gameModel.moveToNextPlayer(mockContext);
 
           expect(gameModel.players[0].hand.length, 9);

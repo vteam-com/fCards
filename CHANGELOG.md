@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.7,0
+
+- MiniPut version 2x2
+  
 ## 1.6.0
 
 - Game history

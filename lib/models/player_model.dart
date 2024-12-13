@@ -50,7 +50,10 @@ class PlayerModel {
     );
 
     // Status
-    instance.status = PlayerStatus.fromJson(json['status']);
+    final status = json['status'];
+    if (status is Map<String, dynamic>) {
+      instance.status = PlayerStatus.fromJson(status);
+    }
 
     // Hand
     try {
@@ -107,18 +110,8 @@ class PlayerModel {
     hand.add(card);
   }
 
-  void revealInitialCards() {
-    hand[3].isRevealed = true;
-    hand[5].isRevealed = true;
-  }
-
-  bool areAllTheSameRankAndNotAlreadyUsed(
-    CardModel card1,
-    CardModel card2,
-    CardModel card3,
-  ) {
-    return !(card1.partOfSet || card2.partOfSet || card3.partOfSet) &&
-        areAllTheSameRank(card1.rank, card2.rank, card3.rank);
+  void revealRandomCardsInHand(int numberOfCardsToReveal) {
+    hand.revealCards(numberOfCardsToReveal);
   }
 
   bool areAllTheSameRank(String rank1, String rank2, String rank3) {

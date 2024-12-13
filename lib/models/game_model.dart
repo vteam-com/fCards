@@ -3,6 +3,7 @@
 import 'package:cards/models/backend_model.dart';
 import 'package:cards/models/deck_model.dart';
 import 'package:cards/models/game_history.dart';
+import 'package:cards/models/game_style.dart';
 import 'package:cards/models/player_model.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/foundation.dart';
@@ -10,6 +11,7 @@ import 'package:flutter/material.dart';
 
 // Exports
 export 'package:cards/models/deck_model.dart';
+export 'package:cards/models/game_style.dart';
 export 'package:cards/models/player_model.dart';
 
 class GameModel with ChangeNotifier {
@@ -174,20 +176,35 @@ class GameModel with ChangeNotifier {
   }
 
   PlayerModel loadPlayer(Map<String, dynamic> json) {
-    if (gameStyle == GameStyles.skyJo) {
-      return PlayerModel.fromJson(
-        json: json,
-        columns: 3,
-        rows: 3,
-        skyJoLogic: true,
-      );
-    } else {
-      return PlayerModel.fromJson(
-        json: json,
-        columns: 3,
-        rows: 3,
-        skyJoLogic: false,
-      );
+    switch (gameStyle) {
+      case GameStyles.skyJo:
+        return PlayerModel.fromJson(
+          json: json,
+          columns: 4,
+          rows: 3,
+          skyJoLogic: true,
+        );
+      case GameStyles.frenchCards9:
+        return PlayerModel.fromJson(
+          json: json,
+          columns: 3,
+          rows: 3,
+          skyJoLogic: false,
+        );
+      case GameStyles.miniPut:
+        return PlayerModel.fromJson(
+          json: json,
+          columns: 2,
+          rows: 2,
+          skyJoLogic: false,
+        );
+      case GameStyles.custom:
+        return PlayerModel.fromJson(
+          json: json,
+          columns: 0,
+          rows: 0,
+          skyJoLogic: false,
+        );
     }
   }
 
@@ -200,7 +217,7 @@ class GameModel with ChangeNotifier {
   /// - 'playerIdAttacking': attacked player index
   /// - 'state': game state string
   void fromJson(Map<String, dynamic> json) {
-    _loadPlayers(json['players']);
+    _loadPlayers(json['players'] ?? []);
     _loadGameState(json);
   }
 
@@ -272,12 +289,14 @@ class GameModel with ChangeNotifier {
 
     deck.shuffle();
 
+    int cardsToReveal = numberOfCardsToRevealOnStartup(gameStyle);
+
     // Deal 9 cards to each player and reveal the initial 3.
-    for (final PlayerModel player in players) {
+    players.forEach((player) {
       player.clear();
       dealCards(player);
-      player.revealInitialCards();
-    }
+      player.revealRandomCardsInHand(cardsToReveal);
+    });
 
     // Add a card to the discard pile if the deck is not empty.
     if (deck.cardsDeckPile.isNotEmpty) {

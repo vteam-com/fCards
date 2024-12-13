@@ -33,9 +33,7 @@ class StartScreenState extends State<StartScreen> {
   /// Subscription to the Firebase Realtime Database.
   StreamSubscription? _streamSubscription;
 
-  GameStyles _selectedGameMode = GameStyles.frenchCards9;
-  bool get isGameModelFrenchCards =>
-      _selectedGameMode == GameStyles.frenchCards9;
+  GameStyles _selectedGameStyle = GameStyles.frenchCards9;
 
   /// Controller for the room name text field.
   final TextEditingController _controllerRoom = TextEditingController(
@@ -92,7 +90,9 @@ class StartScreenState extends State<StartScreen> {
 
     // Mode
     final gameModeUrl = uri.queryParameters['mode'] ?? '';
-    _selectedGameMode = intToGameStyles(int.tryParse(gameModeUrl) ?? -1);
+    _selectedGameStyle = intToGameStyles(
+      int.tryParse(gameModeUrl) ?? GameStyles.frenchCards9.index,
+    );
 
     // Room
     final roomFromUrl = uri.queryParameters['room'];
@@ -176,7 +176,7 @@ class StartScreenState extends State<StartScreen> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   gameMode(),
-                  IntrinsicHeight(child: gameInstructions()),
+                  IntrinsicHeight(child: gameInstructionsWidget()),
                   const SizedBox(height: 20),
                   Row(
                     children: [
@@ -287,41 +287,22 @@ class StartScreenState extends State<StartScreen> {
             value: GameStyles.skyJo,
             label: Text('SkyJo'),
           ),
+          ButtonSegment<GameStyles>(
+            value: GameStyles.miniPut,
+            label: Text('MiniPut'),
+          ),
         ],
-        selected: {_selectedGameMode},
+        selected: {_selectedGameStyle},
         onSelectionChanged: (Set<GameStyles> value) {
           setState(() {
-            _selectedGameMode = value.first;
+            _selectedGameStyle = value.first;
           });
         },
       ),
     );
   }
 
-  Widget gameInstructions() {
-    String instructions = '';
-    if (isGameModelFrenchCards) {
-      instructions = '- Aim for the lowest score.'
-          '\n- Choose a card from either the Deck or Discard pile.'
-          '\n- Swap the chosen card with a card in your 3x3 grid, or discard it and flip over one of your face-down cards.'
-          '\n- Three cards of the same rank in a row or column score zero.'
-          '\n- The first player to reveal all nine cards challenges others, claiming the lowest score.'
-          '\n- If someone else has an equal or lower score, the challenger doubles their points!'
-          '\n- Players are eliminated after busting 100 points.'
-          '\n'
-          '\n'
-          'Learn more [Wikipedia](https://en.wikipedia.org/wiki/Golf_(card_game))';
-    } else {
-      instructions = '- Aim for the lowest score.'
-          '\n- Choose a card from either the Deck or Discard pile.'
-          '\n- Swap the chosen card with a card in your 4x3 grid, or discard it and flip over one of your face-down cards.'
-          '\n- When 3 cards of the same rank are lined up in a column they are moved to the discard pile.'
-          '\n- The first player to reveal all their cards challenges others, claiming the lowest score.'
-          '\n'
-          '\n'
-          'Learn more [SkyJo](https://www.geekyhobbies.com/how-to-play-skyjo-card-game-rules-and-instructions/)';
-    }
-
+  Widget gameInstructionsWidget() {
     return ExpansionTile(
       initiallyExpanded: _isExpandedRules,
       onExpansionChanged: (bool expanded) {
@@ -339,7 +320,7 @@ class StartScreenState extends State<StartScreen> {
           child: Markdown(
             selectable: true,
             styleSheet: MarkdownStyleSheet(textScaler: TextScaler.linear(1.2)),
-            data: instructions,
+            data: gameInstructions(_selectedGameStyle),
             onTapLink: (text, href, title) async {
               if (href != null) {
                 await launchUrlString(href);
@@ -444,18 +425,19 @@ class StartScreenState extends State<StartScreen> {
     debugLog(history.join('|'));
 
     final GameModel newGame = GameModel(
-      gameStyle: _selectedGameMode,
+      gameStyle: _selectedGameStyle,
       roomName: roomName,
       roomHistory: history,
       loginUserName: _controllerName.text.toUpperCase(),
       names: _playerNames.toList(),
-      cardsToDeal: _selectedGameMode == GameStyles.skyJo ? 12 : 9,
-      deck: isGameModelFrenchCards
-          ? DeckModel(
-              numberOfDecks: ((_playerNames.length + 1) ~/ 2),
-              gameStyle: _selectedGameMode,
-            )
-          : DeckModel(numberOfDecks: 1, gameStyle: _selectedGameMode),
+      cardsToDeal: numberOfCards(_selectedGameStyle),
+      deck: DeckModel(
+        numberOfDecks: numberOfDecks(
+          _selectedGameStyle,
+          _playerNames.length,
+        ),
+        gameStyle: _selectedGameStyle,
+      ),
       isNewGame: true,
     );
 
@@ -477,7 +459,7 @@ class StartScreenState extends State<StartScreen> {
     if (kIsWeb) {
       return html.window.location.origin +
           GameModel.getLinkToGameFromInput(
-            _selectedGameMode.index.toString(),
+            _selectedGameStyle.index.toString(),
             roomName,
             _playerNames.toList(),
           );

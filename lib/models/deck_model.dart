@@ -1,26 +1,7 @@
-import 'package:cards/misc.dart';
 import 'package:cards/models/card_model.dart';
 import 'package:cards/models/card_model_french.dart';
+import 'package:cards/models/game_style.dart';
 export 'package:cards/models/card_model.dart';
-
-enum GameStyles {
-  frenchCards9,
-  skyJo,
-  custom,
-}
-
-GameStyles intToGameStyles(final int gameStyleIndex) {
-  // Validate that the index is within the valid range of GameStyles values.
-  if (gameStyleIndex >= 0 && gameStyleIndex < GameStyles.values.length) {
-    return GameStyles.values[gameStyleIndex];
-  } else {
-    // Handle the error case where the index is out of range.
-    // You can throw an exception, return a default value, or log an error.
-    // Here, we return a default value and log an error message.
-    debugLog('Invalid gameStyleIndex: $gameStyleIndex');
-    return GameStyles.frenchCards9; // Or whatever your default GameStyle is
-  }
-}
 
 class DeckModel {
   factory DeckModel.fromJson(

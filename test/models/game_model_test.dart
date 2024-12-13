@@ -40,6 +40,22 @@ void main() {
     );
   }
 
+  GameModel getNewInstanceFrenchMiniPut() {
+    return GameModel(
+      gameStyle: GameStyles.miniPut,
+      roomName: 'testRoom',
+      roomHistory: [],
+      loginUserName: testPlayers.first,
+      names: testPlayers,
+      cardsToDeal: 4,
+      deck: DeckModel(
+        numberOfDecks: 1,
+        gameStyle: GameStyles.miniPut,
+      ),
+      isNewGame: true,
+    );
+  }
+
   group('GameModel Initialization', () {
     test('should initialize with correct number of players', () {
       final gameModel = getNewSkyJoInstance();
@@ -63,6 +79,9 @@ void main() {
       final gameModel1 = getNewSkyJoInstance();
       final gameModel2 = getNewInstanceFrench9Cards();
 
+      final gameModel3 = getNewInstanceFrenchMiniPut();
+      gameModel3.players.first.hand.getSumOfCardsForGolf();
+
       expect(gameModel1 == gameModel1, true);
       expect(gameModel2 == gameModel2, true);
       expect(gameModel1 == gameModel2, false);
@@ -70,11 +89,21 @@ void main() {
       expect(gameModel1.hashCode == gameModel1.hashCode, true);
       expect(gameModel2.hashCode == gameModel2.hashCode, true);
       expect(gameModel1.hashCode == gameModel2.hashCode, false);
+      expect(gameModel2.hashCode == gameModel3.hashCode, false);
 
       expect(gameModel1.toString() == gameModel1.toString(), true);
       expect(gameModel2.toString() == gameModel2.toString(), true);
       expect(gameModel1.toString() == gameModel2.toString(), false);
     });
+  });
+
+  test('MiniPut', () {
+    final gameModel3 = getNewInstanceFrenchMiniPut();
+    gameModel3.players.first.hand.revealAllCards();
+    // TODO
+    // note that there is a chance that all reveal cards adds up to zero
+    final count = gameModel3.players.first.hand.getSumOfCardsForGolf();
+    expect(count > 0, true);
   });
 
   group('Game State Management', () {

@@ -11,7 +11,9 @@ import 'package:firebase_database/firebase_database.dart';
 bool isRunningOffLine = false;
 bool _backendReady = isRunningOffLine;
 bool get backendReady => _backendReady;
-set backendReady(bool value) => _backendReady = value;
+set backendReady(bool value) {
+  _backendReady = value;
+}
 
 Future<void> useFirebase() async {
   if (isRunningOffLine) {
