@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.7,1
+
+- Display the cards set in the [Game Rules]
+  
 ## 1.7,0
 
 - MiniPut version 2x2

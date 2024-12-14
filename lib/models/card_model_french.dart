@@ -35,7 +35,12 @@ class CardModelFrench {
     return int.tryParse(rank) ?? 0;
   }
 
-  static const List<String> suits = ['♥️', '♦️', '♣️', '♠️'];
+  static const List<String> suits = [
+    '♠️',
+    '♥️',
+    '♣️',
+    '♦️',
+  ];
   static const List<String> ranks = [
     'A', // Ace
     '2',

@@ -103,7 +103,12 @@ void main() {
     });
 
     test('suits list contains all required suits', () {
-      expect(CardModelFrench.suits, ['♥️', '♦️', '♣️', '♠️']);
+      expect(CardModelFrench.suits, [
+        '♠️',
+        '♥️',
+        '♣️',
+        '♦️',
+      ]);
     });
 
     test('ranks list contains all required ranks', () {

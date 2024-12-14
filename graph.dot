@@ -132,6 +132,7 @@ digraph "" {
   "/test/models/french_suit_card_model_test.dart" -> "/lib/models/card_model.dart";
   "/test/models/french_suit_card_model_test.dart" -> "/lib/models/card_model_french.dart";
   "/test/models/game_style_test.dart" -> "/lib/models/game_style.dart";
+  "/test/models/game_style_test.dart" -> "/lib/widgets/cards/card_widget.dart";
   "/test/models/player_status_test.dart" -> "/lib/models/player_status.dart";
   "/test/models/skyjo_game_model_test.dart" -> "/lib/models/game_model.dart";
   "/test/models/skyjo_game_model_test.dart" -> "/test/models/golf_game_model_test.dart";
@@ -161,6 +162,9 @@ digraph "" {
   "/lib/models/player_model.dart" -> "/lib/models/card_model.dart" [style=dashed];
   "/lib/models/player_model.dart" -> "/lib/models/hand_model.dart" [style=dashed];
   "/lib/models/player_model.dart" -> "/lib/models/player_status.dart" [style=dashed];
+  "/lib/models/game_style.dart" -> "/lib/models/card_model_french.dart";
+  "/lib/models/game_style.dart" -> "/lib/models/game_model.dart";
+  "/lib/models/game_style.dart" -> "/lib/widgets/cards/card_widget.dart";
   "/lib/models/backend_model.dart" -> "/lib/models/firebase_options.dart";
   "/lib/models/backend_model.dart" -> "/lib/models/game_history.dart";
   "/lib/models/deck_model.dart" -> "/lib/models/card_model.dart";

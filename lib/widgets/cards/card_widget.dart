@@ -24,7 +24,7 @@ class CardWidget extends StatelessWidget {
   const CardWidget({
     super.key,
     required this.card,
-    required this.onDropped,
+    this.onDropped,
   });
 
   /// The playing card to be displayed.

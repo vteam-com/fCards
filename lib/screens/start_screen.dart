@@ -11,8 +11,6 @@ import 'package:cards/widgets/players_in_room_widget.dart';
 import 'package:cards/widgets/rooms_widget.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_markdown/flutter_markdown.dart';
-import 'package:url_launcher/url_launcher_string.dart';
 
 /// The initial screen presented to the user, allowing them to join or start a game.
 ///
@@ -317,15 +315,9 @@ class StartScreenState extends State<StartScreen> {
       children: <Widget>[
         SizedBox(
           height: 500,
-          child: Markdown(
-            selectable: true,
-            styleSheet: MarkdownStyleSheet(textScaler: TextScaler.linear(1.2)),
-            data: gameInstructions(_selectedGameStyle),
-            onTapLink: (text, href, title) async {
-              if (href != null) {
-                await launchUrlString(href);
-              }
-            },
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: GameStyle(style: _selectedGameStyle),
           ),
         ),
       ],

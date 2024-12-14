@@ -1,4 +1,7 @@
 import 'package:cards/models/game_style.dart';
+import 'package:cards/widgets/cards/card_widget.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -90,5 +93,60 @@ void main() {
         GameStyles.frenchCards9,
       );
     });
+  });
+
+  testWidgets('GameStyle French Cards 9 widget test',
+      (WidgetTester tester) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        home: GameStyle(style: GameStyles.frenchCards9),
+      ),
+    );
+
+    // Verify Markdown widget is present
+    expect(find.byType(Markdown), findsOneWidget);
+
+    // Verify cards are displayed
+    expect(find.byType(CardWidget), findsWidgets);
+  });
+  testWidgets('GameStyle SkyJo widget test', (WidgetTester tester) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        home: GameStyle(style: GameStyles.skyJo),
+      ),
+    );
+
+    // Verify Markdown widget is present
+    expect(find.byType(Markdown), findsOneWidget);
+
+    // Verify cards are displayed
+    expect(find.byType(CardWidget), findsWidgets);
+  });
+  testWidgets('GameStyle French MiniPut 4 widget test',
+      (WidgetTester tester) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        home: GameStyle(style: GameStyles.miniPut),
+      ),
+    );
+
+    // Verify Markdown widget is present
+    expect(find.byType(Markdown), findsOneWidget);
+
+    // Verify cards are displayed
+    expect(find.byType(CardWidget), findsWidgets);
+  });
+  testWidgets('GameStyle Custom widget test', (WidgetTester tester) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        home: GameStyle(style: GameStyles.custom),
+      ),
+    );
+
+    // Verify Markdown widget is present
+    expect(find.byType(Markdown), findsOneWidget);
+
+    // Verify cards are displayed
+    expect(find.byType(CardWidget), findsWidgets);
   });
 }
