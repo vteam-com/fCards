@@ -7,40 +7,65 @@ import 'package:mockito/mockito.dart';
 class MockBuildContext extends Mock implements BuildContext {}
 
 void main() {
+  late MockBuildContext mockContext; // Instance of the mock
+
+  late GameModel gameModelSkyJo;
+  late GameModel gameModelFrench9Cards;
+  late GameModel gameModelMiniPut;
+  List<String> playersNames = ['Player 1', 'Player 2'];
+  setUp(() {
+    mockContext = MockBuildContext();
+    gameModelSkyJo = GameModel(
+      gameStyle: GameStyles.skyJo,
+      roomName: 'testRoom',
+      roomHistory: [],
+      loginUserName: playersNames.first,
+      names: playersNames,
+      cardsToDeal: 9,
+      deck: DeckModel(numberOfDecks: 1, gameStyle: GameStyles.skyJo),
+      isNewGame: true,
+    );
+
+    gameModelFrench9Cards = GameModel(
+      gameStyle: GameStyles.frenchCards9,
+      roomName: 'TEST_ROOM_FRENCH_9_CARDS',
+      roomHistory: [],
+      loginUserName: playersNames.first,
+      names: playersNames,
+      cardsToDeal: 9,
+      deck: DeckModel(numberOfDecks: 1, gameStyle: GameStyles.frenchCards9),
+      isNewGame: true,
+    );
+
+    gameModelMiniPut = GameModel(
+      gameStyle: GameStyles.miniPut,
+      roomName: 'TEST_ROOM_FRENCH_MINI_PUT',
+      roomHistory: [],
+      loginUserName: playersNames.first,
+      names: playersNames,
+      cardsToDeal: 4,
+      deck: DeckModel(numberOfDecks: 1, gameStyle: GameStyles.miniPut),
+      isNewGame: true,
+    );
+  });
+
   group('GameModel', () {
-    late GameModel gameModel;
-    late MockBuildContext mockContext; // Instance of the mock
-
-    setUp(() {
-      mockContext = MockBuildContext();
-      gameModel = GameModel(
-        gameStyle: GameStyles.skyJo,
-        roomName: 'testRoom',
-        roomHistory: [],
-        loginUserName: 'Player 1',
-        names: ['Player 1', 'Player 2'],
-        cardsToDeal: 9,
-        deck: DeckModel(numberOfDecks: 1, gameStyle: GameStyles.frenchCards9),
-        isNewGame: true,
-      );
-    });
-
     test('drawCard from discard pile updates game state', () {
       // On start up 18 cards were distributed to the players, and the first card of the deck is flipped in the discarded pile.
       expect(
-        gameModel.deck.cardsDeckDiscarded.length,
+        gameModelSkyJo.deck.cardsDeckDiscarded.length,
         1,
         reason: 'Discard pile should have 1 card in it',
       );
 
       // Set the state enable select a card from either pile
-      gameModel.gameState = GameStates.pickCardFromEitherPiles;
+      gameModelSkyJo.gameState = GameStates.pickCardFromEitherPiles;
 
       // Action user picked the top card of the discarded pile
-      gameModel.selectTopCardOfDeck(mockContext, fromDiscardPile: true);
+      gameModelSkyJo.selectTopCardOfDeck(mockContext, fromDiscardPile: true);
 
       expect(
-        gameModel.gameState,
+        gameModelSkyJo.gameState,
         GameStates.swapDiscardedCardWithAnyCardsInHand,
         reason: 'State should have changed to flipAndSwap',
       );
@@ -71,6 +96,10 @@ void main() {
       expect(player.hand.length, 9);
       expect(player.hand.revealedCards.length, 2);
     }
+
+    // remaining cards in the deck piles
+    expect(gameModelFrench9Cards.deck.cardsDeckPile.length, 35);
+    expect(gameModelMiniPut.deck.cardsDeckPile.length, 45);
   });
 
   test('moveToNextPlayer correctly handles final turn', () {
@@ -142,20 +171,6 @@ void main() {
   });
 
   test('fromJson correctly updates game state', () {
-    final gameModel = GameModel(
-      gameStyle: GameStyles.frenchCards9,
-      roomName: 'testRoom',
-      roomHistory: [],
-      loginUserName: 'Player 1',
-      names: ['Player 1', 'Player 2'],
-      cardsToDeal: 9,
-      deck: DeckModel(
-        numberOfDecks: 1,
-        gameStyle: GameStyles.frenchCards9,
-      ),
-      isNewGame: true,
-    );
-
     final jsonData = {
       'players': [
         {'name': 'Player 1', 'hand': []},
@@ -167,11 +182,76 @@ void main() {
       'state': 'GameStates.gameOver',
     };
 
-    gameModel.fromJson(jsonData);
+    // French 9 Cards
+    {
+      final gameModel = GameModel(
+        gameStyle: GameStyles.frenchCards9,
+        roomName: 'testRoom',
+        roomHistory: [],
+        loginUserName: playersNames.first,
+        names: playersNames,
+        cardsToDeal: 9,
+        deck: DeckModel(
+          numberOfDecks: 1,
+          gameStyle: GameStyles.frenchCards9,
+        ),
+        isNewGame: true,
+      );
 
-    expect(gameModel.playerIdPlaying, 1);
-    expect(gameModel.playerIdAttacking, 0);
-    expect(gameModel.gameState, GameStates.gameOver);
-    expect(gameModel.players.length, 2);
+      gameModel.fromJson(jsonData);
+
+      expect(gameModel.playerIdPlaying, 1);
+      expect(gameModel.playerIdAttacking, 0);
+      expect(gameModel.gameState, GameStates.gameOver);
+      expect(gameModel.players.length, 2);
+    }
+
+    // French MiniPut 4 Cards
+    {
+      final gameModel = GameModel(
+        gameStyle: GameStyles.miniPut,
+        roomName: 'testRoom',
+        roomHistory: [],
+        loginUserName: playersNames.first,
+        names: playersNames,
+        cardsToDeal: 4,
+        deck: DeckModel(
+          numberOfDecks: 1,
+          gameStyle: GameStyles.miniPut,
+        ),
+        isNewGame: true,
+      );
+
+      gameModel.fromJson(jsonData);
+
+      expect(gameModel.playerIdPlaying, 1);
+      expect(gameModel.playerIdAttacking, 0);
+      expect(gameModel.gameState, GameStates.gameOver);
+      expect(gameModel.players.length, 2);
+    }
+
+    // Custom
+    {
+      final gameModel = GameModel(
+        gameStyle: GameStyles.custom,
+        roomName: 'testRoom',
+        roomHistory: [],
+        loginUserName: playersNames.first,
+        names: playersNames,
+        cardsToDeal: 9,
+        deck: DeckModel(
+          numberOfDecks: 1,
+          gameStyle: GameStyles.custom,
+        ),
+        isNewGame: true,
+      );
+
+      gameModel.fromJson(jsonData);
+
+      expect(gameModel.playerIdPlaying, 1);
+      expect(gameModel.playerIdAttacking, 0);
+      expect(gameModel.gameState, GameStates.gameOver);
+      expect(gameModel.players.length, 2);
+    }
   });
 }

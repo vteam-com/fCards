@@ -291,7 +291,7 @@ class GameModel with ChangeNotifier {
 
     int cardsToReveal = numberOfCardsToRevealOnStartup(gameStyle);
 
-    // Deal 9 cards to each player and reveal the initial 3.
+    // Deal cards to each players and reveal the initial cards (cardsToReveal = 1 or 2).
     players.forEach((player) {
       player.clear();
       dealCards(player);
