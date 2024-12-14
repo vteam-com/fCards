@@ -26,7 +26,7 @@ class PlayerModel {
   /// and card visibility from the JSON data.
   ///
   /// Args:
-  ///   json (Map<String, dynamic>): The JSON map representing the player.
+  ///   json (```Map<String, dynamic>```): The JSON map representing the player.
   ///       This map should contain the keys 'name', 'hand', and
   ///       'cardVisibility'.  The 'hand' value should be a list of JSON maps
   ///       representing cards, and the 'cardVisibility' value should be a list
