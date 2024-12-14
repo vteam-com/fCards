@@ -20,7 +20,8 @@ class MyApp extends StatelessWidget {
       title: 'Cards',
       theme: ThemeData(
         brightness: Brightness.dark,
-        scaffoldBackgroundColor: Colors.green[900],
+        scaffoldBackgroundColor: Colors.green[800],
+        cardColor: Colors.green[800],
         fontFamilyFallback: const ['Roboto'],
         textTheme: const TextTheme(
           bodyMedium: TextStyle(color: Colors.white),
@@ -79,7 +80,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
         appBarTheme: AppBarTheme(
-          backgroundColor: Colors.green[900],
+          backgroundColor: const Color.fromARGB(255, 32, 41, 33),
           titleTextStyle: const TextStyle(
             color: Colors.white,
             fontSize: 20.0,
