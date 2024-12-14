@@ -2,6 +2,8 @@ import 'package:cards/models/game_history.dart';
 import 'package:cards/models/game_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+import 'golf_game_model_test.dart';
+
 void main() {
   final testPlayers = [
     'Player1',
@@ -115,10 +117,11 @@ void main() {
 
       final win1 = GameHistory.fromJson({
         'date': DateTime.now(),
-        'playersNames': ['Player1'],
+        'playersNames': [testPlayers.first],
       });
       gameModel.roomHistory.add(win1);
-      final List<DateTime> wins = gameModel.getWinsForPlayerName('Player1');
+      final List<DateTime> wins =
+          gameModel.getWinsForPlayerName(testPlayers.first);
       expect(wins.length, 1);
     });
 
@@ -169,7 +172,7 @@ void main() {
         gameStyle: GameStyles.skyJo,
         roomName: 'testRoom',
         roomHistory: [],
-        loginUserName: 'Player1',
+        loginUserName: testPlayers.first,
         names: testPlayers,
         cardsToDeal: 9,
         deck: DeckModel(
@@ -472,6 +475,39 @@ void main() {
       final gameModel = getNewSkyJoInstance();
       expect(newGameModel.players.length, equals(gameModel.players.length));
       expect(newGameModel.gameState, equals(gameModel.gameState));
+      expect(newGameModel.players.first.sumOfRevealedCards, 42);
+
+      final context = MockBuildContext();
+
+      // Move top card of the deck pile to the first card of the first player
+      newGameModel.onDropCardOnCard(
+        context,
+        newGameModel.deck.cardsDeckPile.last,
+        newGameModel.players.first.hand.first,
+      );
+
+      // flip first card
+      // gameModel.moveToNextPlayer(context);
+      newGameModel.players.first.isActivePlayer = true;
+      newGameModel.deck.cardsDeckPile.last.isRevealed = true;
+      newGameModel.gameState = GameStates.revealOneHiddenCard;
+      newGameModel.players.first.hand.first.isRevealed = false;
+
+      newGameModel.swapCardWithTopPile(newGameModel.players.first, 0);
+      newGameModel.swapDragCardOnPlayersTargetCard(
+        context,
+        newGameModel.players.first.hand.first,
+      );
+
+      // execute the "reveal card" code
+      newGameModel.players.first.hand.first.isRevealed = false;
+      newGameModel.revealCard(
+        context,
+        newGameModel.players.first,
+        0,
+      );
+      final output = newGameModel.toString();
+      expect(output.isEmpty, isFalse);
     });
   });
 

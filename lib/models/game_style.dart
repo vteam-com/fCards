@@ -93,6 +93,15 @@ class GameStyle extends StatelessWidget {
 
   List<CardModel> getAllSkyJoCards() {
     List<CardModel> cards = [];
+    cards.add(
+      CardModel(
+        suit: '',
+        rank: '1',
+        value: 1,
+        isRevealed: false,
+      ),
+    );
+
     for (int rank = -2; rank <= 12; rank++) {
       cards.add(
         CardModel(

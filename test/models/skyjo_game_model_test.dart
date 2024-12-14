@@ -6,17 +6,17 @@ import 'package:flutter_test/flutter_test.dart';
 import 'golf_game_model_test.dart';
 
 void main() {
+  MockBuildContext mockContext = MockBuildContext();
+
   group(
     'SkyjoGameModel',
     () {
       late GameModel gameModel;
-      late MockBuildContext mockContext; // Instance of the mock
       late Random random;
-
       setUp(
         () {
           random = Random();
-          mockContext = MockBuildContext();
+
           gameModel = GameModel(
             gameStyle: GameStyles.skyJo,
             roomName: 'testRoom',

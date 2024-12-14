@@ -360,7 +360,10 @@ class GameModel with ChangeNotifier {
           gameState = GameStates.revealOneHiddenCard;
           return;
         } else {
-          swapDragCardOnPlayersTargetCard(cardTarget, context);
+          swapDragCardOnPlayersTargetCard(
+            context,
+            cardTarget,
+          );
         }
       case GameStates.swapDiscardedCardWithAnyCardsInHand:
         if (cardTarget == deck.cardsDeckDiscarded.last) {
@@ -368,7 +371,7 @@ class GameModel with ChangeNotifier {
           // do nothing
           return;
         } else {
-          swapDragCardOnPlayersTargetCard(cardTarget, context);
+          swapDragCardOnPlayersTargetCard(context, cardTarget);
         }
       default:
         // Do nothing or handle other states if necessary
@@ -377,8 +380,8 @@ class GameModel with ChangeNotifier {
   }
 
   void swapDragCardOnPlayersTargetCard(
-    CardModel cardTarget,
     BuildContext context,
+    CardModel cardTarget,
   ) {
     // Find the index of the target card in the player's hand
     final int targetIndex = players[playerIdPlaying].hand.indexOf(cardTarget);
@@ -397,33 +400,28 @@ class GameModel with ChangeNotifier {
   /// Swaps the selected card with a card in the player's hand.
   ///
   /// [playerIndex] is the index of the player whose hand is being modified.
-  /// [gridIndex] is the index of the card in the player's hand to swap.
+  /// [cardIndex] is the index of the card in the player's hand to swap.
   void swapCardWithTopPile(
     final PlayerModel player,
-    final int gridIndex,
+    final int cardIndex,
   ) {
-    if (player.hand.validIndex(gridIndex)) {
+    if (player.hand.validIndex(cardIndex)) {
       // do the swap
-      CardModel cardToSwapFromPlayer = player.hand[gridIndex];
+      CardModel cardToSwapFromPlayer = player.hand[cardIndex];
 
       // replace players card in their 3x3 with the selected card
       if (gameState == GameStates.swapDiscardedCardWithAnyCardsInHand) {
-        player.hand[gridIndex] = deck.cardsDeckDiscarded.removeLast();
+        player.hand[cardIndex] = deck.cardsDeckDiscarded.removeLast();
       } else {
-        player.hand[gridIndex] = deck.cardsDeckPile.removeLast();
+        player.hand[cardIndex] = deck.cardsDeckPile.removeLast();
       }
 
       // ensure this card is revealed
-      player.hand[gridIndex].isRevealed = true;
+      player.hand[cardIndex].isRevealed = true;
 
       // add players old card to to discard pile
       deck.cardsDeckDiscarded.add(cardToSwapFromPlayer);
     }
-  }
-
-  /// Checks if the given grid index is valid for the given hand.
-  bool validGridIndex(List<CardModel> hand, int index) {
-    return index >= 0 && index < hand.length;
   }
 
   /// Reveals all remaining cards for the specified player.
@@ -502,11 +500,6 @@ class GameModel with ChangeNotifier {
       return true;
     }
     return false;
-  }
-
-  /// Checks if the current player can perform an action.
-  bool canCurrentPlayerAct(int playerIndex) {
-    return playerIdPlaying == playerIndex;
   }
 
   /// Displays a snackbar message indicating that a card is unavailable.
