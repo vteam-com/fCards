@@ -11,6 +11,7 @@ import 'package:cards/widgets/players_in_room_widget.dart';
 import 'package:cards/widgets/rooms_widget.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 /// The initial screen presented to the user, allowing them to join or start a game.
 ///
@@ -58,11 +59,21 @@ class StartScreenState extends State<StartScreen> {
   bool _waitingOnFirstBackendData = !isRunningOffLine;
   bool _isExpandedRules = false;
   bool _isExpandedRooms = false;
+  String appVersion = '?.?.?';
 
   @override
   void initState() {
     super.initState();
     _processUrlArguments();
+    _getAppVersion();
+  }
+
+  Future<void> _getAppVersion() async {
+    PackageInfo.fromPlatform().then((PackageInfo packageInfo) {
+      setState(() {
+        appVersion = packageInfo.version;
+      });
+    });
   }
 
   @override
@@ -160,6 +171,7 @@ class StartScreenState extends State<StartScreen> {
     return Screen(
       isWaiting: _waitingOnFirstBackendData,
       title: 'Card Games',
+      version: appVersion,
       getLinkToShare: () {
         return getUrlToGame();
       },
@@ -417,6 +429,7 @@ class StartScreenState extends State<StartScreen> {
     debugLog(history.join('|'));
 
     final GameModel newGame = GameModel(
+      version: appVersion,
       gameStyle: _selectedGameStyle,
       roomName: roomName,
       roomHistory: history,

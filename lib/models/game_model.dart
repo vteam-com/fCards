@@ -31,6 +31,7 @@ class GameModel with ChangeNotifier {
     required this.cardsToDeal,
     required this.deck,
     bool isNewGame = false,
+    this.version = '',
   }) {
     // Initialize players from the list of names
     names.forEach((name) => addPlayer(name));
@@ -39,6 +40,9 @@ class GameModel with ChangeNotifier {
       initializeGame();
     }
   }
+
+  // Model version
+  final String version;
 
   // Type of game
   final GameStyles gameStyle;

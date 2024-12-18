@@ -2,8 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
 
-const version = '1.7.1';
-
 class ResponsiveBreakpoints {
   static const double phone = 600;
   static const double tablet = 900;
@@ -24,6 +22,7 @@ class Screen extends StatelessWidget {
   const Screen({
     super.key,
     required this.title,
+    required this.version,
     required this.child,
     this.onRefresh,
     this.getLinkToShare,
@@ -31,6 +30,7 @@ class Screen extends StatelessWidget {
     required this.isWaiting,
   });
   final String title;
+  final String version;
   final String rightText;
   final Widget child;
   final Function? onRefresh;

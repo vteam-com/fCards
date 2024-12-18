@@ -1,5 +1,5 @@
 <?xml version="1.0" standalone="no"?>
-<svg width="1800" height="450" xmlns="http://www.w3.org/2000/svg" font-family="Arial, Helvetica, sans-serif">
+<svg width="2100" height="450" xmlns="http://www.w3.org/2000/svg" font-family="Arial, Helvetica, sans-serif">
   <style>
     .layerRectangle {
       stroke: black;
@@ -96,19 +96,22 @@
     <rect x="304" y="339" width="292" height="72" rx="8" ry="8" class="nodeFile"/>
   </g>
   <g id='Node_firebase_auth'>
-    <rect x="904" y="189" width="292" height="72" rx="8" ry="8" class="nodeFile"/>
+    <rect x="1204" y="189" width="292" height="72" rx="8" ry="8" class="nodeFile"/>
   </g>
   <g id='Node_firebase_core'>
     <rect x="4" y="339" width="292" height="72" rx="8" ry="8" class="nodeFile"/>
   </g>
   <g id='Node_firebase_database'>
-    <rect x="1204" y="189" width="292" height="72" rx="8" ry="8" class="nodeFile"/>
+    <rect x="1504" y="189" width="292" height="72" rx="8" ry="8" class="nodeFile"/>
   </g>
   <g id='Node_flutter_markdown'>
-    <rect x="1504" y="189" width="292" height="72" rx="8" ry="8" class="nodeFile"/>
+    <rect x="1804" y="189" width="292" height="72" rx="8" ry="8" class="nodeFile"/>
   </g>
   <g id='Node_mockito'>
     <rect x="304" y="189" width="292" height="72" rx="8" ry="8" class="nodeFile"/>
+  </g>
+  <g id='Node_package_info_plus'>
+    <rect x="604" y="189" width="292" height="72" rx="8" ry="8" class="nodeFile"/>
   </g>
   <g id='Node_share_plus'>
     <rect x="4" y="189" width="292" height="72" rx="8" ry="8" class="nodeFile"/>
@@ -117,7 +120,7 @@
     <rect x="604" y="339" width="292" height="72" rx="8" ry="8" class="nodeFile"/>
   </g>
   <g id='Node_url_launcher'>
-    <rect x="604" y="189" width="292" height="72" rx="8" ry="8" class="nodeFile"/>
+    <rect x="904" y="189" width="292" height="72" rx="8" ry="8" class="nodeFile"/>
   </g>
   <g id='Edges'>
     <path class="line" d="M280 95 C 290 225,310 225, 320 355" fill="none" stroke="#377E22">
@@ -125,7 +128,7 @@
 ⬇
 animate_do</title>
     </path>
-    <path class="line" d="M280 95 C 290 150,910 150, 920 205" fill="none" stroke="#377E22">
+    <path class="line" d="M280 95 C 290 150,1210 150, 1220 205" fill="none" stroke="#377E22">
       <title>cards
 ⬇
 firebase_auth</title>
@@ -135,12 +138,12 @@ firebase_auth</title>
 ⬇
 firebase_core</title>
     </path>
-    <path class="line" d="M280 95 C 290 150,1210 150, 1220 205" fill="none" stroke="#377E22">
+    <path class="line" d="M280 95 C 290 150,1510 150, 1520 205" fill="none" stroke="#377E22">
       <title>cards
 ⬇
 firebase_database</title>
     </path>
-    <path class="line" d="M280 95 C 290 150,1510 150, 1520 205" fill="none" stroke="#377E22">
+    <path class="line" d="M280 95 C 290 150,1810 150, 1820 205" fill="none" stroke="#377E22">
       <title>cards
 ⬇
 flutter_markdown</title>
@@ -149,6 +152,11 @@ flutter_markdown</title>
       <title>cards
 ⬇
 mockito</title>
+    </path>
+    <path class="line" d="M280 95 C 290 150,610 150, 620 205" fill="none" stroke="#377E22">
+      <title>cards
+⬇
+package_info_plus</title>
     </path>
     <path class="line" d="M280 95 C 290 150,10 150, 20 205" fill="none" stroke="#377E22">
       <title>cards
@@ -160,17 +168,17 @@ share_plus</title>
 ⬇
 universal_platform</title>
     </path>
-    <path class="line" d="M280 95 C 290 150,610 150, 620 205" fill="none" stroke="#377E22">
+    <path class="line" d="M280 95 C 290 150,910 150, 920 205" fill="none" stroke="#377E22">
       <title>cards
 ⬇
 url_launcher</title>
     </path>
-    <path class="line" d="M1180 245 C 1190 300,10 300, 20 355" fill="none" stroke="#377E22">
+    <path class="line" d="M1480 245 C 1490 300,10 300, 20 355" fill="none" stroke="#377E22">
       <title>firebase_auth
 ⬇
 firebase_core</title>
     </path>
-    <path class="line" d="M1480 245 C 1490 300,10 300, 20 355" fill="none" stroke="#377E22">
+    <path class="line" d="M1780 245 C 1790 300,10 300, 20 355" fill="none" stroke="#377E22">
       <title>firebase_database
 ⬇
 firebase_core</title>
@@ -179,7 +187,7 @@ firebase_core</title>
   <g id='Counters_cards'>
     <g>
       <circle cx="280" cy="95" r="10" fill="green"/>
-      <text x="280" y="95" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">15</text>
+      <text x="280" y="95" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">16</text>
       <title>cards
 ⬇
 1 /dev/firebase_core_platform_interface
@@ -194,9 +202,10 @@ firebase_core</title>
 10 /direct/firebase_database
 11 /direct/flutter_markdown
 12 /direct/mockito
-13 /direct/share_plus
-14 /direct/universal_platform
-15 /direct/url_launcher</title>
+13 /direct/package_info_plus
+14 /direct/share_plus
+15 /direct/universal_platform
+16 /direct/url_launcher</title>
     </g>
   </g>
   <g id='Counters_animate_do'>
@@ -210,8 +219,8 @@ animate_do</title>
   </g>
   <g id='Counters_firebase_auth'>
     <g>
-      <circle cx="1180" cy="245" r="10" fill="green"/>
-      <text x="1180" y="245" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">5</text>
+      <circle cx="1480" cy="245" r="10" fill="green"/>
+      <text x="1480" y="245" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">5</text>
       <title>firebase_auth
 ⬇
 1 /dev/firebase_core_platform_interface
@@ -221,8 +230,8 @@ animate_do</title>
 5 /transitive/meta</title>
     </g>
     <g>
-      <circle cx="920" cy="205" r="10" fill="blue"/>
-      <text x="920" y="205" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">1</text>
+      <circle cx="1220" cy="205" r="10" fill="blue"/>
+      <text x="1220" y="205" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">1</text>
       <title>1 /root/cards
 ⬇
 firebase_auth</title>
@@ -255,8 +264,8 @@ firebase_core</title>
   </g>
   <g id='Counters_firebase_database'>
     <g>
-      <circle cx="1480" cy="245" r="10" fill="green"/>
-      <text x="1480" y="245" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">4</text>
+      <circle cx="1780" cy="245" r="10" fill="green"/>
+      <text x="1780" y="245" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">4</text>
       <title>firebase_database
 ⬇
 1 /dev/firebase_core_platform_interface
@@ -265,8 +274,8 @@ firebase_core</title>
 4 /transitive/firebase_database_web</title>
     </g>
     <g>
-      <circle cx="1220" cy="205" r="10" fill="blue"/>
-      <text x="1220" y="205" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">1</text>
+      <circle cx="1520" cy="205" r="10" fill="blue"/>
+      <text x="1520" y="205" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">1</text>
       <title>1 /root/cards
 ⬇
 firebase_database</title>
@@ -274,8 +283,8 @@ firebase_database</title>
   </g>
   <g id='Counters_flutter_markdown'>
     <g>
-      <circle cx="1780" cy="245" r="10" fill="green"/>
-      <text x="1780" y="245" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">3</text>
+      <circle cx="2080" cy="245" r="10" fill="green"/>
+      <text x="2080" y="245" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">3</text>
       <title>flutter_markdown
 ⬇
 1 /transitive/markdown
@@ -283,8 +292,8 @@ firebase_database</title>
 3 /transitive/path</title>
     </g>
     <g>
-      <circle cx="1520" cy="205" r="10" fill="blue"/>
-      <text x="1520" y="205" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">1</text>
+      <circle cx="1820" cy="205" r="10" fill="blue"/>
+      <text x="1820" y="205" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">1</text>
       <title>1 /root/cards
 ⬇
 flutter_markdown</title>
@@ -313,6 +322,30 @@ flutter_markdown</title>
       <title>1 /root/cards
 ⬇
 mockito</title>
+    </g>
+  </g>
+  <g id='Counters_package_info_plus'>
+    <g>
+      <circle cx="880" cy="245" r="10" fill="green"/>
+      <text x="880" y="245" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">9</text>
+      <title>package_info_plus
+⬇
+1 /transitive/clock
+2 /transitive/ffi
+3 /transitive/flutter_web_plugins
+4 /transitive/http
+5 /transitive/meta
+6 /transitive/package_info_plus_platform_interface
+7 /transitive/path
+8 /transitive/web
+9 /transitive/win32</title>
+    </g>
+    <g>
+      <circle cx="620" cy="205" r="10" fill="blue"/>
+      <text x="620" y="205" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">1</text>
+      <title>1 /root/cards
+⬇
+package_info_plus</title>
     </g>
   </g>
   <g id='Counters_share_plus'>
@@ -354,8 +387,8 @@ universal_platform</title>
   </g>
   <g id='Counters_url_launcher'>
     <g>
-      <circle cx="880" cy="245" r="10" fill="green"/>
-      <text x="880" y="245" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">7</text>
+      <circle cx="1180" cy="245" r="10" fill="green"/>
+      <text x="1180" y="245" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">7</text>
       <title>url_launcher
 ⬇
 1 /transitive/url_launcher_android
@@ -367,8 +400,8 @@ universal_platform</title>
 7 /transitive/url_launcher_windows</title>
     </g>
     <g>
-      <circle cx="620" cy="205" r="10" fill="blue"/>
-      <text x="620" y="205" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">1</text>
+      <circle cx="920" cy="205" r="10" fill="blue"/>
+      <text x="920" y="205" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">1</text>
       <title>1 /root/cards
 ⬇
 url_launcher</title>
@@ -376,31 +409,35 @@ url_launcher</title>
   </g>
   <g id='Labels_cards'>
     <text class="nodeName" x="150" y="75" font-size="120%">cards</text>
-    <text class="nodeName" x="150" y="95" font-size="80%">1.7.1</text>
+    <text class="nodeName" x="150" y="95" font-size="80%">1.7.2</text>
   </g>
   <g id='Labels_animate_do'>
     <text class="nodeName" x="450" y="375" font-size="120%">animate_do</text>
     <text class="nodeName" x="450" y="395" font-size="80%">3.3.4</text>
   </g>
   <g id='Labels_firebase_auth'>
-    <text class="nodeName" x="1050" y="225" font-size="120%">firebase_auth</text>
-    <text class="nodeName" x="1050" y="245" font-size="80%">5.3.4</text>
+    <text class="nodeName" x="1350" y="225" font-size="120%">firebase_auth</text>
+    <text class="nodeName" x="1350" y="245" font-size="80%">5.3.4</text>
   </g>
   <g id='Labels_firebase_core'>
     <text class="nodeName" x="150" y="375" font-size="120%">firebase_core</text>
     <text class="nodeName" x="150" y="395" font-size="80%">3.8.1</text>
   </g>
   <g id='Labels_firebase_database'>
-    <text class="nodeName" x="1350" y="225" font-size="120%">firebase_database</text>
-    <text class="nodeName" x="1350" y="245" font-size="80%">11.2.0</text>
+    <text class="nodeName" x="1650" y="225" font-size="120%">firebase_database</text>
+    <text class="nodeName" x="1650" y="245" font-size="80%">11.2.0</text>
   </g>
   <g id='Labels_flutter_markdown'>
-    <text class="nodeName" x="1650" y="225" font-size="120%">flutter_markdown</text>
-    <text class="nodeName" x="1650" y="245" font-size="80%">0.7.4+3</text>
+    <text class="nodeName" x="1950" y="225" font-size="120%">flutter_markdown</text>
+    <text class="nodeName" x="1950" y="245" font-size="80%">0.7.4+3</text>
   </g>
   <g id='Labels_mockito'>
     <text class="nodeName" x="450" y="225" font-size="120%">mockito</text>
     <text class="nodeName" x="450" y="245" font-size="80%">5.4.4</text>
+  </g>
+  <g id='Labels_package_info_plus'>
+    <text class="nodeName" x="750" y="225" font-size="120%">package_info_plus</text>
+    <text class="nodeName" x="750" y="245" font-size="80%">8.1.2</text>
   </g>
   <g id='Labels_share_plus'>
     <text class="nodeName" x="150" y="225" font-size="120%">share_plus</text>
@@ -411,7 +448,7 @@ url_launcher</title>
     <text class="nodeName" x="750" y="395" font-size="80%">1.1.0</text>
   </g>
   <g id='Labels_url_launcher'>
-    <text class="nodeName" x="750" y="225" font-size="120%">url_launcher</text>
-    <text class="nodeName" x="750" y="245" font-size="80%">6.3.1</text>
+    <text class="nodeName" x="1050" y="225" font-size="120%">url_launcher</text>
+    <text class="nodeName" x="1050" y="245" font-size="80%">6.3.1</text>
   </g>
 </svg>

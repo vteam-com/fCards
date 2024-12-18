@@ -125,6 +125,7 @@ digraph "" {
   }
   "/test/models/game_model_test.dart" -> "/lib/models/game_history.dart";
   "/test/models/game_model_test.dart" -> "/lib/models/game_model.dart";
+  "/test/models/game_model_test.dart" -> "/test/models/golf_game_model_test.dart";
   "/test/models/deck_model_test.dart" -> "/lib/models/deck_model.dart";
   "/test/models/deck_model_test.dart" -> "/lib/models/game_style.dart";
   "/test/models/golf_player_model_test.dart" -> "/lib/models/player_model.dart";

@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.7,2
+
+- Display app version using package_info_plus
+  
 ## 1.7,1
 
 - Display the cards set in the [Game Rules]
