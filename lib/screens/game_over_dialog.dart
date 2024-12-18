@@ -27,6 +27,29 @@ void showGameOverDialog(
   gameModel.roomHistory.clear();
   gameModel.roomHistory.addAll(await getGameHistory(gameModel.roomName));
 
+  Widget columnHeaders() {
+    return SizedBox(
+      width: 500,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Expanded(
+            child: Text('Players'),
+          ),
+          Expanded(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('Games Won'),
+                Text('This Game'),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   Widget playerStats(player) {
     return SizedBox(
       width: 500,
@@ -66,8 +89,11 @@ void showGameOverDialog(
       title: 'Game Over',
       content: Column(
         mainAxisSize: MainAxisSize.min,
-        children:
-            gameModel.players.map((player) => playerStats(player)).toList(),
+        children: [
+          columnHeaders(),
+          Divider(),
+          ...gameModel.players.map((player) => playerStats(player)),
+        ],
       ),
       buttons: <Widget>[
         ElevatedButton(

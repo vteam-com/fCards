@@ -2,6 +2,7 @@
 
 ## 1.7,2
 
+- Column headers in GameOver dialog
 - Display app version using package_info_plus
   
 ## 1.7,1
