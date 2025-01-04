@@ -104,7 +104,7 @@ void main() {
     gameModel3.players.first.hand.revealAllCards();
     // TODO
     // note that there is a chance that all reveal cards adds up to zero
-    final count = gameModel3.players.first.hand.getSumOfCardsForGolf();
+    final int count = gameModel3.players.first.hand.getSumOfCardsForGolf();
     expect(count > 0, true);
   });
 

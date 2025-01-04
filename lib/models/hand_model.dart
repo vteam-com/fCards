@@ -161,7 +161,6 @@ class HandModel {
   /// Returns the total score based on the values of cards not part of sets.
   int getSumOfCardsForGolf() {
     int score = 0;
-    List<bool> markedForZeroScore = List.filled(_list.length, false);
 
     List<List<int>> checkingIndices;
 
@@ -186,7 +185,7 @@ class HandModel {
     }
 
     for (final List<int> indices in checkingIndices) {
-      markIfSameRankForGolf(markedForZeroScore, indices);
+      markIfSameRankForGolf(indices);
     }
 
     for (final CardModel card in _list) {
@@ -200,28 +199,33 @@ class HandModel {
 
   /// Marks cards of the same rank as part of a set for Golf scoring.
   ///
-  /// Takes a list of indices and checks if the cards at those positions
-  /// have the same rank. If they do, marks them as part of a set.
+  /// Takes a list of boolean flags [markedForZeroScore] to track which cards have been marked,
+  /// and a list of [indices] specifying which card positions to check.
+  ///
+  /// For 2 or 3 indices:
+  /// - Checks if cards at specified positions have matching ranks
+  /// - If they match, aren't already part of a set, and are revealed, marks them as part of a set
+  /// - Cards with rank '§' are excluded from being marked as part of a set
   void markIfSameRankForGolf(
-    List<bool> markedForZeroScore,
     List<int> indices,
   ) {
-    if (indices.length == 2) {
-      if (_list[indices[0]].rank == _list[indices[1]].rank &&
-          !_list[indices[0]].partOfSet &&
-          !_list[indices[1]].partOfSet) {
-        for (final int index in indices) {
-          if (_list[index].rank != '§') {
-            _list[index].partOfSet = true;
-          }
-        }
-      }
-    } else if (indices.length == 3 &&
-        areAllTheSameRankAndNotAlreadyUsed(
-          _list[indices[0]],
-          _list[indices[1]],
-          _list[indices[2]],
-        )) {
+    // Validate all cards are revealed and not already part of a set
+    final bool allCardsValid = indices.every(
+      (index) => _list[index].isRevealed && !_list[index].partOfSet,
+    );
+
+    if (!allCardsValid) {
+      return;
+    }
+
+    // Check if all cards have matching ranks
+    final bool haveSameRank = indices.length == 2
+        ? _list[indices[0]].rank == _list[indices[1]].rank
+        : _list[indices[0]].rank == _list[indices[1]].rank &&
+            _list[indices[1]].rank == _list[indices[2]].rank;
+
+    if (haveSameRank) {
+      // Mark matching cards as part of set if not special rank
       for (final int index in indices) {
         if (_list[index].rank != '§') {
           _list[index].partOfSet = true;
@@ -240,25 +244,6 @@ class HandModel {
     for (int i = 0; i < numberOfCardsToReveal; i++) {
       _list[indices[i]].isRevealed = true;
     }
-  }
-
-  /// Checks if three cards have the same rank and are not already part of a set.
-  ///
-  /// Returns true if all cards have matching ranks and none are part of a set.
-  bool areAllTheSameRankAndNotAlreadyUsed(
-    CardModel card1,
-    CardModel card2,
-    CardModel card3,
-  ) {
-    return !(card1.partOfSet || card2.partOfSet || card3.partOfSet) &&
-        areAllTheSameRank(card1.rank, card2.rank, card3.rank);
-  }
-
-  /// Checks if three ranks are all the same.
-  ///
-  /// Returns true if all three rank strings are equal.
-  bool areAllTheSameRank(String rank1, String rank2, String rank3) {
-    return rank1 == rank2 && rank2 == rank3;
   }
 
   /// Converts the hand to a JSON-serializable format.
