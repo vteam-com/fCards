@@ -29,8 +29,46 @@ class GameScreen extends StatefulWidget {
   GameScreenState createState() => GameScreenState();
 }
 
+/// Widget for the main game screen.
+///
+/// Displays the game board and player information based on the [GameModel]
+/// provided. Adapts the layout dynamically to accommodate different screen
+/// sizes, using a wrapping layout for larger screens and a vertical column for
+/// smaller screens. Manages scrolling to keep the active player visible.
+///
+/// Key features:
+/// - Responsive layout that adapts between desktop/tablet and phone views
+/// - Real-time synchronization with Firebase database
+/// - Automatic scrolling to keep active player in view
+/// - Game state management and updates
+/// - Game over dialog display
+///
+/// The widget maintains several important state variables:
+/// - [_streamSubscription]: Subscription for Firebase database updates
+/// - [_scrollController]: Controls scrolling behavior of player list
+/// - [_playerKeys]: Global keys for each player widget used in scrolling
+/// - [phoneLayout]: Flag indicating if using phone-sized screen layout
+/// - [isReady]: Flag indicating if initial data is loaded
+///
+/// The layout adapts based on screen width:
+/// - Desktop/tablet: Horizontal wrapping layout
+/// - Phone: Vertical scrolling column
+///
+/// Firebase integration:
+/// - Listens for real-time updates to game state
+/// - Handles data synchronization and model updates
+/// - Supports offline mode for testing
+///
+/// Required parameters:
+/// - [gameModel]: The [GameModel] containing game state and player data
+///
+/// Usage:
+/// ```dart
+/// GameScreen(
+///   gameModel: myGameModel,
+/// )
+/// ```  /// Stream subscription for listening to changes in the Firebase database.
 class GameScreenState extends State<GameScreen> {
-  /// Stream subscription for listening to changes in the Firebase database.
   late StreamSubscription _streamSubscription;
 
   /// Scroll controller for managing the scrolling behavior of the player list.
@@ -41,8 +79,11 @@ class GameScreenState extends State<GameScreen> {
 
   /// Flag indicating whether the layout is for a phone-sized screen.
   bool phoneLayout = false;
-  bool isReady = isRunningOffLine;
 
+  /// Flag indicating whether the initial game data has been loaded and processed.
+  /// Set to [isRunningOffLine] initially since offline mode doesn't need to wait for data loading.
+  /// Used to control display of loading indicator and enable/disable game interactions.
+  bool isReady = isRunningOffLine;
   @override
   void initState() {
     super.initState();
@@ -128,6 +169,14 @@ class GameScreenState extends State<GameScreen> {
     }
   }
 
+  /// Returns a simulated data snapshot for offline testing mode.
+  ///
+  /// This method creates a JSON representation of the current game model state
+  /// that mimics what would normally be received from Firebase. Used only when
+  /// [isRunningOffLine] is true to enable testing without a database connection.
+  ///
+  /// Returns:
+  ///   A ```Map<String, dynamic>``` containing the game model data in JSON format
   Map<String, dynamic> fakeData() {
     return widget.gameModel.toJson();
   }

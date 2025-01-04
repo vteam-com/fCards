@@ -8,6 +8,7 @@ import 'package:cards/widgets/player/player_header_widget.dart';
 import 'package:cards/widgets/player/player_zone_cta_widget.dart';
 import 'package:flutter/material.dart';
 
+///
 class PlayerZoneWidget extends StatelessWidget {
   /// Constructs a [PlayerZoneWidget] with the provided parameters.
   ///
@@ -24,10 +25,20 @@ class PlayerZoneWidget extends StatelessWidget {
     required this.heightOfCTA,
     required this.heightOfCardGrid,
   });
+
+  /// The game model containing the current game state and logic
   final GameModel gameModel;
+
+  /// The player model representing this zone's player
   final PlayerModel player;
+
+  /// The total height of the player zone widget
   final double heightZone;
+
+  /// The height allocated for the call-to-action section
   final double heightOfCTA;
+
+  /// The height allocated for displaying the player's card grid
   final double heightOfCardGrid;
 
   @override
@@ -84,6 +95,7 @@ class PlayerZoneWidget extends StatelessWidget {
     );
   }
 
+  ///
   LinearGradient activeBorder() {
     return LinearGradient(
       begin: Alignment.topLeft,

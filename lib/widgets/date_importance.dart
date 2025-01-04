@@ -1,8 +1,17 @@
 import 'package:cards/misc.dart';
 import 'package:flutter/material.dart';
 
+/// A widget that displays a formatted date and time
+///
+/// Takes a [DateTime] object and displays it in the format:
+/// YYYY . MM . DD   HH:MM
+///
+/// Example:  final DateTime dateTime;
 class DateTimeWidget extends StatelessWidget {
+  ///
   const DateTimeWidget({super.key, required this.dateTime});
+
+  ///
   final DateTime dateTime;
 
   @override

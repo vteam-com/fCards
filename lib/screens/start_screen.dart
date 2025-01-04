@@ -28,8 +28,38 @@ class StartScreen extends StatefulWidget {
   StartScreenState createState() => StartScreenState();
 }
 
+/// The initial screen presented to the user, allowing them to join or start a game.
+///
+/// Users can enter their name and a room name. If the room exists, they can
+/// join it; otherwise, a new room is created. The screen displays a list of
+/// players currently in the room.  Once at least two players have joined, the
+/// game can be started.  The screen also provides a brief explanation of the
+/// game's rules.
+///
+/// Key features:
+/// - Room name input with auto-uppercase
+/// - Player name input with auto-uppercase
+/// - List of current players in room
+/// - Game style selection
+/// - Expandable game rules section
+/// - URL parameter support for room/players
+/// - Real-time Firebase sync of room state
+/// - Share link generation
+/// - Version display
+///
+/// The screen handles:
+/// - Processing URL parameters on init
+/// - Managing Firebase subscriptions
+/// - Updating room/player state
+/// - Input validation
+/// - Navigation to game screen
+///
+/// Implementation notes:
+/// - Uses Firebase Realtime Database for backend
+/// - Supports offline mode for testing
+/// - Maintains room/player state sync
+/// - Handles cleanup on dispose  /// Subscription to the Firebase Realtime Database.
 class StartScreenState extends State<StartScreen> {
-  /// Subscription to the Firebase Realtime Database.
   StreamSubscription? _streamSubscription;
 
   GameStyles _selectedGameStyle = GameStyles.frenchCards9;
@@ -39,6 +69,7 @@ class StartScreenState extends State<StartScreen> {
     text: 'KIWI', // Default room name
   );
 
+  /// Name of the room
   String get roomName => _controllerRoom.text.trim().toUpperCase();
 
   /// Placeholder for room name error text.  Currently unused.
@@ -59,6 +90,8 @@ class StartScreenState extends State<StartScreen> {
   bool _waitingOnFirstBackendData = !isRunningOffLine;
   bool _isExpandedRules = false;
   bool _isExpandedRooms = false;
+
+  /// current version of the app
   String appVersion = '?.?.?';
 
   @override
@@ -135,6 +168,48 @@ class StartScreenState extends State<StartScreen> {
     ); // Initialize backend connection after processing URL arguments.
   }
 
+  /// This file implements the StartScreen state management for a multiplayer card game.
+  /// It handles the initial setup screen where players can:
+  /// - Create or join a game room
+  /// - Enter their player name
+  /// - Select game style/mode
+  /// - View game rules
+  /// - See other players in the room
+  ///
+  /// The screen uses Firebase Realtime Database to:
+  /// - Sync room and player state across clients
+  /// - Maintain list of active rooms
+  /// - Handle real-time updates when players join/leave
+  ///
+  /// Key features:
+  /// - Room name input with auto-uppercase
+  /// - Player name input with auto-uppercase
+  /// - List of current players in room
+  /// - Game style selection
+  /// - Expandable game rules section
+  /// - URL parameter support for room/players
+  /// - Real-time Firebase sync
+  /// - Share link generation
+  /// - Version display
+  ///
+  /// The state maintains:
+  /// - Firebase subscription for real-time updates
+  /// - Text controllers for room/player input
+  /// - Sets of player names and rooms
+  /// - UI expansion states
+  /// - App version info
+  ///
+  /// URL parameters supported:
+  /// - room: Room name to join
+  /// - players: Comma-separated list of player names
+  /// - mode: Game style index
+  ///
+  /// Implementation notes:
+  /// - Uses Firebase Realtime Database
+  /// - Supports offline mode for testing
+  /// - Auto-capitalizes inputs
+  /// - Maintains room/player state sync
+  /// - Handles cleanup on dispose    if (isRunningOffLine) {
   void prepareBackEndForRoom(final String roomId) {
     if (isRunningOffLine) {
       _waitingOnFirstBackendData = false;
@@ -173,7 +248,7 @@ class StartScreenState extends State<StartScreen> {
       title: 'Card Games',
       version: appVersion,
       getLinkToShare: () {
-        return getUrlToGame();
+        return _getUrlToGame();
       },
       child: SingleChildScrollView(
         child: Center(
@@ -185,8 +260,8 @@ class StartScreenState extends State<StartScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  gameMode(),
-                  IntrinsicHeight(child: gameInstructionsWidget()),
+                  _gameMode(),
+                  IntrinsicHeight(child: _gameInstructionsWidget()),
                   const SizedBox(height: 20),
                   Row(
                     children: [
@@ -284,7 +359,7 @@ class StartScreenState extends State<StartScreen> {
     );
   }
 
-  Widget gameMode() {
+  Widget _gameMode() {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: SegmentedButton<GameStyles>(
@@ -312,7 +387,7 @@ class StartScreenState extends State<StartScreen> {
     );
   }
 
-  Widget gameInstructionsWidget() {
+  Widget _gameInstructionsWidget() {
     return ExpansionTile(
       initiallyExpanded: _isExpandedRules,
       onExpansionChanged: (bool expanded) {
@@ -447,7 +522,7 @@ class StartScreenState extends State<StartScreen> {
     );
 
     // Update URL to include room ID
-    updateUrlWithoutReload();
+    _updateUrlWithoutReload();
 
     // bring in the main game screen
     if (context.mounted) {
@@ -460,7 +535,7 @@ class StartScreenState extends State<StartScreen> {
     }
   }
 
-  String getUrlToGame() {
+  String _getUrlToGame() {
     if (kIsWeb) {
       return html.window.location.origin +
           GameModel.getLinkToGameFromInput(
@@ -472,13 +547,13 @@ class StartScreenState extends State<StartScreen> {
     return '';
   }
 
-  void updateUrlWithoutReload() {
+  void _updateUrlWithoutReload() {
     if (kIsWeb) {
       // Push the new state to the browser's history
       html.window.history.pushState(
         null,
         'vteam cards $roomName',
-        getUrlToGame(),
+        _getUrlToGame(),
       );
     }
   }

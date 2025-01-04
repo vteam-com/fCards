@@ -16,9 +16,12 @@ digraph "" {
   "/test/models/backend_model_test.dart" [label="backend_model_test"];
   "/test/widgets/cards/card_pile_widget_test.dart" [label="card_pile_widget_test"];
   "/test/widgets/cards/card_widget_test.dart" [label="card_widget_test"];
+  "/lib/tests/player_model.dart" [label="player_model"];
+  "/lib/tests/player_model_test.dart" [label="player_model_test"];
   "/lib/models/player_status.dart" [label="player_status"];
   "/lib/models/game_model.dart" [label="game_model"];
   "/lib/models/card_model_french.dart" [label="card_model_french"];
+  "/lib/models/firebase_options_private.dart" [label="firebase_options_private"];
   "/lib/models/game_history.dart" [label="game_history"];
   "/lib/models/firebase_options.dart" [label="firebase_options"];
   "/lib/models/hand_model.dart" [label="hand_model"];
@@ -77,11 +80,17 @@ digraph "" {
     subgraph "cluster~/lib" {
       label="lib";
       "/lib/main.dart";
+      subgraph "cluster~/lib/tests" {
+        label="tests";
+        "/lib/tests/player_model.dart";
+        "/lib/tests/player_model_test.dart";
+      }
       subgraph "cluster~/lib/models" {
         label="models";
         "/lib/models/player_status.dart";
         "/lib/models/game_model.dart";
         "/lib/models/card_model_french.dart";
+        "/lib/models/firebase_options_private.dart";
         "/lib/models/game_history.dart";
         "/lib/models/firebase_options.dart";
         "/lib/models/hand_model.dart";
@@ -155,7 +164,6 @@ digraph "" {
   "/lib/models/game_model.dart" -> "/lib/models/deck_model.dart" [style=dashed];
   "/lib/models/game_model.dart" -> "/lib/models/game_style.dart" [style=dashed];
   "/lib/models/game_model.dart" -> "/lib/models/player_model.dart" [style=dashed];
-  "/lib/models/card_model_french.dart" -> "/lib/models/card_model.dart";
   "/lib/models/hand_model.dart" -> "/lib/models/card_model.dart";
   "/lib/models/hand_model.dart" -> "/lib/models/card_model.dart" [style=dashed];
   "/lib/models/player_model.dart" -> "/lib/models/hand_model.dart";

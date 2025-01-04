@@ -47,15 +47,15 @@ class CardFaceSkyjoWidget extends CardFaceFrenchWidget {
                 Positioned(
                   top: 10,
                   left: 10,
-                  child: buildSmallText(),
+                  child: _buildSmallText(),
                 ),
-                Center(child: buildMainText()),
+                Center(child: _buildMainText()),
                 Positioned(
                   bottom: 10,
                   right: 10,
                   child: Transform.rotate(
                     angle: pi, // 180 degrees in radians
-                    child: buildSmallText(),
+                    child: _buildSmallText(),
                   ),
                 ),
               ],
@@ -66,7 +66,7 @@ class CardFaceSkyjoWidget extends CardFaceFrenchWidget {
     );
   }
 
-  Widget buildSmallText() {
+  Widget _buildSmallText() {
     return Stack(
       children: [
         TextSize(
@@ -80,7 +80,7 @@ class CardFaceSkyjoWidget extends CardFaceFrenchWidget {
     );
   }
 
-  Widget buildMainText() {
+  Widget _buildMainText() {
     return Stack(
       children: [
         Text(

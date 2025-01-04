@@ -2,6 +2,7 @@ import 'package:cards/models/game_model.dart';
 import 'package:cards/widgets/cards/card_pile_widget.dart';
 import 'package:flutter/material.dart';
 
+///
 class PlayerZoneCtaWidget extends StatelessWidget {
   /// Constructs a [PlayerZoneCtaWidget] with the given [player] and [gameModel].
   ///
@@ -13,7 +14,10 @@ class PlayerZoneCtaWidget extends StatelessWidget {
     required this.gameModel,
   });
 
+  ///
   final PlayerModel player;
+
+  ///
   final GameModel gameModel;
 
   @override
@@ -21,6 +25,7 @@ class PlayerZoneCtaWidget extends StatelessWidget {
     return Center(child: buildContent(context));
   }
 
+  ///
   Widget buildContent(BuildContext context) {
     if (player.isActivePlayer) {
       switch (gameModel.gameState) {
@@ -149,6 +154,7 @@ class PlayerZoneCtaWidget extends StatelessWidget {
     );
   }
 
+  ///
   Widget ctaFlipOneOfYourHiddenCards() {
     return buildMiniInstructions(
       true,
@@ -209,6 +215,7 @@ class PlayerZoneCtaWidget extends StatelessWidget {
     );
   }
 
+  ///
   Widget buildWaitingForTurnContent() {
     return buildMiniInstructions(
       player.isActivePlayer,
@@ -218,6 +225,7 @@ class PlayerZoneCtaWidget extends StatelessWidget {
   }
 }
 
+///
 Widget buildMiniInstructions(
   bool isActivePlayer,
   String text,

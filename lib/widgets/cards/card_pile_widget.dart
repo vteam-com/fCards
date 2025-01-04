@@ -2,7 +2,9 @@ import 'package:cards/models/card_model.dart';
 import 'package:cards/widgets/cards/card_widget.dart';
 import 'package:flutter/material.dart';
 
+///
 class CardPileWidget extends StatelessWidget {
+  ///
   const CardPileWidget({
     super.key,
     required this.cards,
@@ -16,14 +18,31 @@ class CardPileWidget extends StatelessWidget {
     required this.scale,
   });
 
+  ///
   final List<CardModel> cards;
+
+  ///
   final VoidCallback? onDraw;
+
+  ///
   final bool cardsAreHidden;
+
+  ///
   final bool revealTopDeckCard;
+
+  ///
   final bool isDragSource;
+
+  ///
   final bool isDropTarget;
+
+  ///
   final bool wiggleTopCard;
+
+  ///
   final double scale;
+
+  ///
   final Function(CardModel source, CardModel target)? onDragDropped;
 
   @override

@@ -22,6 +22,7 @@ class CardFaceFrenchWidget extends StatelessWidget {
     return card.isRevealed ? buildFaceUp() : buildFaceDown();
   }
 
+  /// Render the front of the card
   Widget buildFaceUp() {
     return Padding(
       padding: const EdgeInsets.all(4.0),
@@ -40,6 +41,7 @@ class CardFaceFrenchWidget extends StatelessWidget {
     );
   }
 
+  ///
   Widget buildRank() {
     final color = getSuitColor(card.suit);
     switch (card.rank) {
@@ -89,6 +91,7 @@ class CardFaceFrenchWidget extends StatelessWidget {
     }
   }
 
+  ///
   Widget buildValue() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
@@ -104,6 +107,7 @@ class CardFaceFrenchWidget extends StatelessWidget {
     );
   }
 
+  /// Render the back of the card
   Widget buildFaceDown() {
     return const DecoratedBox(
       decoration: BoxDecoration(
@@ -115,6 +119,7 @@ class CardFaceFrenchWidget extends StatelessWidget {
     );
   }
 
+  ///
   Widget buildSuitSymbol({final double size = 18}) {
     return Text(
       card.suit,
@@ -126,6 +131,7 @@ class CardFaceFrenchWidget extends StatelessWidget {
     );
   }
 
+  ///
   List<Widget> buildSuitSymbols() {
     List<Widget> symbols = [];
     int numSymbols = card.value;
@@ -270,6 +276,7 @@ class CardFaceFrenchWidget extends StatelessWidget {
     return symbols;
   }
 
+  ///
   Widget figureCards(final String text) {
     return Center(
       child: Padding(

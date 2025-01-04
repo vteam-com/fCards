@@ -5,7 +5,9 @@ import 'package:cards/widgets/dialog.dart';
 import 'package:cards/widgets/player/status_picker.dart';
 import 'package:flutter/material.dart';
 
+///
 class PlayerHeaderWidget extends StatelessWidget {
+  ///
   const PlayerHeaderWidget({
     super.key,
     required this.gameModel,
@@ -14,9 +16,16 @@ class PlayerHeaderWidget extends StatelessWidget {
     required this.sumOfRevealedCards,
   });
 
+  ///
   final GameModel gameModel;
+
+  ///
   final PlayerModel player;
+
+  ///
   final Function(PlayerStatus) onStatusChanged;
+
+  ///
   final int sumOfRevealedCards;
 
   @override
@@ -69,6 +78,7 @@ class PlayerHeaderWidget extends StatelessWidget {
     );
   }
 
+  ///
   void showHistory(
     final BuildContext context,
     final List<DateTime> listOfWinsForThisPlayer,

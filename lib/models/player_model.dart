@@ -6,6 +6,16 @@ export 'package:cards/models/card_model.dart';
 export 'package:cards/models/hand_model.dart';
 export 'package:cards/models/player_status.dart';
 
+/// Represents a player in the card game.
+///
+/// This class encapsulates all the properties and behaviors associated with a player,
+/// including their name, hand of cards, game status, and various game-related flags.
+///
+/// Parameters:
+/// - [name]: The name of the player.
+/// - [columns]: The number of columns in the player's hand grid.
+/// - [rows]: The number of rows in the player's hand grid.
+/// - [skyJoLogic]: A flag indicating whether SkyJo game logic should be used.
 class PlayerModel {
   ///
   /// Creates a `PlayerModel` with the given name.
@@ -76,17 +86,50 @@ class PlayerModel {
   }
 
   /// Properties
+  /// The unique identifier for the player.
+  ///
+  /// This ID is used to distinguish between different players in the game.
+  /// It's initialized to -1 and should be set to a unique positive integer
+  /// when the player joins a game.
   int id = -1;
+
+  /// The name of the player.
   final String name;
+
+  /// The number of columns in the player's hand grid.
   final int columns;
+
+  /// The number of rows in the player's hand grid.
   final int rows;
+
+  /// A flag indicating whether SkyJo game logic should be used.
+  ///
+  /// If true, SkyJo scoring rules are applied. If false, standard rules are used.
   final bool skyJoLogic;
+
+  /// The current status of the player in the game.
+  ///
+  /// Initialized with the first status from the list of player statuses.
   PlayerStatus status = playersStatuses.first;
+
+  /// Indicates whether this player is currently the active player in the game.
+  ///
+  /// True if this player is active, false otherwise.
   bool isActivePlayer = false;
 
-  // Keep track of winnings
+  /// Indicates whether this player has won the game.
+  ///
+  /// Set to true when the player wins, false otherwise.
   bool isWinner = false;
 
+  /// Calculates and returns the sum of revealed cards in the player's hand.
+  ///
+  /// The calculation method depends on the game logic:
+  /// - If [skyJoLogic] is true, it uses SkyJo scoring rules.
+  /// - If [skyJoLogic] is false, it uses Golf scoring rules.
+  ///
+  /// Returns:
+  ///   An integer representing the sum of revealed cards.
   int get sumOfRevealedCards {
     if (skyJoLogic) {
       return hand.getSumOfCardsInHandSkyJo();
@@ -95,29 +138,72 @@ class PlayerModel {
     }
   }
 
-  // the list of cards in hand for this player
+  /// The list of cards in the player's hand.
+  ///
+  /// Initialized as an empty hand with 0 columns and rows.
   HandModel hand = HandModel(0, 0, []);
 
+  /// Clears the player's hand and initializes a new empty hand.
+  ///
+  /// This method resets the player's hand to an empty state using the
+  /// player's defined number of columns and rows.
   void clear() {
     hand = HandModel(columns, rows, []);
   }
 
+  /// Checks if all cards in the player's hand are revealed.
+  ///
+  /// Returns:
+  ///   A boolean value. True if all cards are revealed, false otherwise.
   bool areAllCardsRevealed() {
     return hand.areAllCardsRevealed();
   }
 
+  /// Adds a card to the player's hand.
+  ///
+  /// Parameters:
+  ///   [card]: The CardModel object to be added to the hand.
   void addCardToHand(CardModel card) {
     hand.add(card);
   }
+
+  /// Reveals a specified number of random cards in the player's hand.
+  ///
+  /// Parameters:
+  ///   [numberOfCardsToReveal]: The number of cards to reveal randomly.
 
   void revealRandomCardsInHand(int numberOfCardsToReveal) {
     hand.revealCards(numberOfCardsToReveal);
   }
 
+  /// Checks if three given ranks are all the same.
+  ///
+  /// This function compares three string representations of card ranks to determine
+  /// if they are all identical.
+  ///
+  /// Parameters:
+  /// - [rank1]: A string representing the first card rank.
+  /// - [rank2]: A string representing the second card rank.
+  /// - [rank3]: A string representing the third card rank.
+  ///
+  /// Returns:
+  /// A boolean value. Returns true if all three ranks are identical, false otherwise.
   bool areAllTheSameRank(String rank1, String rank2, String rank3) {
     return rank1 == rank2 && rank2 == rank3;
   }
 
+  /// Converts the PlayerModel instance to a JSON-serializable map.
+  ///
+  /// This method creates a map representation of the player's data, which can be
+  /// easily converted to JSON for storage or transmission.
+  ///
+  /// Returns:
+  ///   A [Map<String, dynamic>] containing the following key-value pairs:
+  ///   - 'name': The player's name as a String.
+  ///   - 'hand': A JSON representation of the player's hand, obtained by calling
+  ///             [toJson] on the [hand] property.
+  ///   - 'status': A JSON representation of the player's status, obtained by calling
+  ///               [toJson] on the [status] property.
   Map<String, dynamic> toJson() {
     return {
       'name': name,

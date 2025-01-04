@@ -1,3 +1,10 @@
+/// File: game_style.dart
+///
+/// This file defines the models and widgets for different game styles in a card game application.
+/// It includes GameStyle enum, GameStyle widget, functions to get card lists,
+/// instructions, and other utility functions related to game settings.
+library;
+
 import 'package:cards/misc.dart';
 import 'package:cards/models/card_model_french.dart';
 import 'package:cards/models/game_model.dart';
@@ -6,15 +13,31 @@ import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
+/// Enum to represent different game styles.
 enum GameStyles {
+  /// Classic French cards with a 9x9 grid and special rules.
   frenchCards9,
+
+  /// SkyJo card game style with specific rules.
   skyJo,
+
+  /// Mini Putt card game style with a smaller grid.
   miniPut,
+
+  /// Custom game style that allows for any configuration.
   custom,
 }
 
+/// A StatelessWidget representing the game style UI.
+///
+/// Displays game instructions and available cards for the selected game style.
 class GameStyle extends StatelessWidget {
+  /// Creates a GameStyle widget.
+  ///
+  /// The [style] parameter determines which game variant to display.
   const GameStyle({super.key, required this.style});
+
+  /// The selected game style to display.
   final GameStyles style;
 
   @override
@@ -38,6 +61,10 @@ class GameStyle extends StatelessWidget {
     );
   }
 
+  /// Displays all cards based on the selected game style.
+  ///
+  /// Returns a [Widget] containing a wrapped layout of all available cards
+  /// for the current game style.
   Widget showAllCards() {
     List<CardModel> cards = [];
     switch (style) {
@@ -46,9 +73,9 @@ class GameStyle extends StatelessWidget {
       case GameStyles.skyJo:
         cards = getAllSkyJoCards();
       case GameStyles.miniPut:
-        cards = getAllFrenchCards();
+        cards = getAllFrenchCards(); // Similar to French Cards for simplicity
       case GameStyles.custom:
-        cards = getAllFrenchCards();
+        cards = getAllFrenchCards(); // Similar to French Cards for simplicity
     }
     return Wrap(
       spacing: 8.0,
@@ -65,6 +92,10 @@ class GameStyle extends StatelessWidget {
     );
   }
 
+  /// Retrieves all French Cards based on the game rules.
+  ///
+  /// Returns a [List<CardModel>] containing all French cards including
+  /// special cards and standard ranked cards.
   List<CardModel> getAllFrenchCards() {
     List<CardModel> cards = [];
     cards.add(
@@ -91,6 +122,10 @@ class GameStyle extends StatelessWidget {
     return cards;
   }
 
+  /// Retrieves all SkyJo Cards based on the game rules.
+  ///
+  /// Returns a [List<CardModel>] containing all SkyJo cards with values
+  /// ranging from -2 to 12.
   List<CardModel> getAllSkyJoCards() {
     List<CardModel> cards = [];
     cards.add(
@@ -116,21 +151,25 @@ class GameStyle extends StatelessWidget {
   }
 }
 
+/// Converts an integer index to a GameStyles enum.
+///
+/// Returns the corresponding [GameStyles] enum value for the given [gameStyleIndex].
+/// Falls back to [GameStyles.frenchCards9] if the index is invalid.
 GameStyles intToGameStyles(final int gameStyleIndex) {
-  // Validate that the index is within the valid range of GameStyles values.
   if (gameStyleIndex >= 0 && gameStyleIndex < GameStyles.values.length) {
     return GameStyles.values[gameStyleIndex];
   } else {
-    // Handle the error case where the index is out of range.
-    // You can throw an exception, return a default value, or log an error.
-    // Here, we return a default value and log an error message.
     debugLog(
       'Invalid gameStyleIndex: $gameStyleIndex fall back to ${GameStyles.frenchCards9}',
     );
-    return GameStyles.frenchCards9; // Or whatever your default GameStyle is
+    return GameStyles.frenchCards9;
   }
 }
 
+/// Returns the number of cards for a given game style.
+///
+/// Takes a [GameStyles] parameter and returns the number of cards
+/// required for that game variant.
 int numberOfCards(GameStyles style) {
   switch (style) {
     case GameStyles.frenchCards9:
@@ -144,6 +183,10 @@ int numberOfCards(GameStyles style) {
   }
 }
 
+/// Returns the number of cards to reveal at startup for a given game style.
+///
+/// Takes a [GameStyles] parameter and returns the number of cards that
+/// should be revealed when the game starts.
 int numberOfCardsToRevealOnStartup(GameStyles style) {
   switch (style) {
     case GameStyles.frenchCards9:
@@ -157,6 +200,10 @@ int numberOfCardsToRevealOnStartup(GameStyles style) {
   }
 }
 
+/// Returns the number of decks required for a given game style and number of players.
+///
+/// Takes a [GameStyles] parameter and [numberOfPlayers] to calculate
+/// how many card decks are needed for the game.
 int numberOfDecks(GameStyles style, int numberOfPlayers) {
   switch (style) {
     case GameStyles.frenchCards9:
@@ -170,6 +217,10 @@ int numberOfDecks(GameStyles style, int numberOfPlayers) {
   }
 }
 
+/// Returns the instructions for a given game style.
+///
+/// Takes a [GameStyles] parameter and returns a formatted string containing
+/// the rules and instructions for that game variant.
 String gameInstructions(GameStyles style) {
   switch (style) {
     case GameStyles.frenchCards9:

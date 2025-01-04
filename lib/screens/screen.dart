@@ -2,23 +2,45 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
 
+/// Defines breakpoint constants for responsive design
 class ResponsiveBreakpoints {
+  /// Maximum width for phone layout
   static const double phone = 600;
+
+  /// Maximum width for tablet layout
   static const double tablet = 900;
+
+  /// Minimum width for desktop layout
   static const double desktop = 1200;
 }
 
+/// Extension on BuildContext to easily check device type based on screen width
 extension DeviceType on BuildContext {
+  /// Returns true if screen width is less than phone breakpoint
   bool get isPhone =>
       MediaQuery.of(this).size.width < ResponsiveBreakpoints.phone;
+
+  /// Returns true if screen width is between phone and tablet breakpoints
   bool get isTablet =>
       MediaQuery.of(this).size.width >= ResponsiveBreakpoints.phone &&
       MediaQuery.of(this).size.width < ResponsiveBreakpoints.tablet;
+
+  /// Returns true if screen width is greater than desktop breakpoint
   bool get isDesktop =>
       MediaQuery.of(this).size.width >= ResponsiveBreakpoints.desktop;
 }
 
+/// A scaffold widget that provides a common screen layout with app bar and background
 class Screen extends StatelessWidget {
+  /// Creates a Screen widget
+  ///
+  /// [title] - Text shown in app bar
+  /// [version] - Version number shown in app bar
+  /// [child] - Main content widget
+  /// [onRefresh] - Optional callback for refresh button
+  /// [getLinkToShare] - Optional callback to get shareable link
+  /// [rightText] - Optional text shown on right side of app bar
+  /// [isWaiting] - Shows loading indicator when true
   const Screen({
     super.key,
     required this.title,
@@ -29,12 +51,26 @@ class Screen extends StatelessWidget {
     this.rightText = '',
     required this.isWaiting,
   });
+
+  /// Title text shown in the app bar
   final String title;
+
+  /// Version number shown in app bar that links to licenses page
   final String version;
+
+  /// Optional text shown on right side of app bar (e.g. user name)
   final String rightText;
+
+  /// Main content widget displayed in the body
   final Widget child;
+
+  /// Optional callback function triggered when refresh button is pressed
   final Function? onRefresh;
+
+  /// Optional callback that returns a string URL/link for sharing
   final String Function()? getLinkToShare;
+
+  /// When true, displays a loading indicator instead of the main content
   final bool isWaiting;
 
   @override
@@ -132,6 +168,7 @@ class Screen extends StatelessWidget {
   }
 
   Widget _displayWaiting() {
+    /// Builds a loading indicator widget
     return SizedBox(
       width: 400,
       height: 400,

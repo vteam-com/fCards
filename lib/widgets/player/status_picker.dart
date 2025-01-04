@@ -2,13 +2,19 @@ import 'package:cards/misc.dart';
 import 'package:cards/models/player_status.dart';
 import 'package:flutter/material.dart';
 
+///
 class StatusPicker extends StatefulWidget {
+  ///
   const StatusPicker({
     super.key,
     required this.status,
     required this.onStatusChanged,
   });
+
+  /// The current status of the player
   final PlayerStatus status;
+
+  /// Callback function that is called when the player's status changes
   final Function(PlayerStatus) onStatusChanged;
 
   @override

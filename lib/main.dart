@@ -11,7 +11,13 @@ void main() async {
   runApp(const MyApp());
 }
 
+/// The root widget of the application.
+///
+/// Sets up the application's theme and navigates to the [StartScreen].
 class MyApp extends StatelessWidget {
+  /// Constructs a new instance of the `MyApp` widget.
+  ///
+  /// The `super.key` parameter is passed to the parent class constructor.
   const MyApp({super.key});
 
   @override

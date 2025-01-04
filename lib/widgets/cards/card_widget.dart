@@ -4,10 +4,18 @@ import 'package:cards/widgets/cards/card_face_skyjo_widget.dart';
 import 'package:cards/widgets/wiggle_widget.dart';
 import 'package:flutter/material.dart';
 
+///
 class CardDimensions {
+  ///
   static const double width = 100.0;
+
+  ///
   static const double height = 150.0;
+
+  ///
   static const double margin = 4.0;
+
+  ///
   static const double borderRadius = 4.0;
 }
 
@@ -29,6 +37,8 @@ class CardWidget extends StatelessWidget {
 
   /// The playing card to be displayed.
   final CardModel card;
+
+  ///
   final Function(CardModel source, CardModel target)? onDropped;
 
   @override
@@ -48,6 +58,7 @@ class CardWidget extends StatelessWidget {
     );
   }
 
+  ///
   Widget buildCard() {
     return WiggleWidget(
       wiggle: card.isSelectable,
@@ -71,6 +82,7 @@ class CardWidget extends StatelessWidget {
   }
 }
 
+///
 Widget dragSource(final CardModel card) {
   return Draggable<CardModel>(
     data: card,

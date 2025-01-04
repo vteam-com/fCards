@@ -1,16 +1,17 @@
-import 'package:cards/models/card_model.dart';
-
-/// Represents a playing card with a suit and rank.
+/// Represents a playing card with a suit and rank, specifically for a French-suited deck.
 ///
-/// The [CardModel] class represents a single playing card, with properties for the suit, rank, and whether the card is revealed. It provides methods for converting the card to and from JSON, as well as getting the numerical value of the card.
-///
-/// The [suits] and [ranks] static lists define the valid suits and ranks for a standard deck of playing cards.
+/// The [CardModelFrench] class provides static methods and constants for working with
+/// a standard French-suited deck of playing cards. It includes methods for getting the
+/// numerical value of a card rank and defines the valid suits and ranks.
 class CardModelFrench {
   /// Returns the numerical value of a card rank.
   ///
   /// Handles special cases for 'A', 'X', 'K', 'Q', 'J', '§'
   /// Ranks '2' through '10' return their face value.
   /// Returns 0 if the rank is invalid.
+  ///
+  /// @param rank The rank of the card as a String.
+  /// @return The numerical value of the card rank as an int.
   static int getValue(rank) {
     if (rank == '§') {
       return -2;
@@ -35,12 +36,18 @@ class CardModelFrench {
     return int.tryParse(rank) ?? 0;
   }
 
+  /// A list of valid suits for a French-suited deck of cards.
   static const List<String> suits = [
     '♠️',
     '♥️',
     '♣️',
     '♦️',
   ];
+
+  /// A list of valid ranks for a French-suited deck of cards.
+  ///
+  /// Includes 'A' (Ace), '2' through '9', 'X' (10), 'J' (Jack), 'Q' (Queen), and 'K' (King).
+  /// Note that Jokers ('§') are not included here as they are handled separately.
   static const List<String> ranks = [
     'A', // Ace
     '2',

@@ -3,13 +3,25 @@ import 'dart:math';
 import 'package:cards/models/card_model.dart';
 export 'package:cards/models/card_model.dart';
 
+/// A model class representing a hand of cards in a card game.
+///
+/// This class manages a collection of [CardModel] instances arranged in a grid
+/// with specified columns and rows. It provides various operations for
+/// manipulating and querying the cards in the hand.
 class HandModel {
+  /// Creates a new [HandModel] with the specified dimensions and initial cards.
+  ///
+  /// The [columns] and [rows] parameters define the grid layout of the hand.
+  /// The [cards] parameter provides the initial list of cards to populate the hand.
   HandModel(this.columns, this.rows, final List<CardModel> cards) {
     _list.clear();
     _list.addAll(cards);
   }
 
+  /// Whether the hand contains no cards.
   bool get isEmpty => _list.isEmpty;
+
+  /// Whether the hand contains at least one card.
   bool get isNotEmpty => _list.isNotEmpty;
 
   @override
@@ -51,16 +63,16 @@ class HandModel {
     _list[index] = card;
   }
 
-  // number of columns
+  /// The number of columns in the hand's grid layout.
   int columns = 0;
 
-  // rows
+  /// The number of rows in the hand's grid layout.
   int rows = 0;
 
-  // list of card in the hand
+  /// The internal list storing the cards in the hand.
   final List<CardModel> _list = [];
 
-  // operator to get card at index
+  /// Returns the card at the specified index in the hand.
   CardModel operator [](int index) => _list[index];
 
   /// Returns the index of the specified [CardModel] in the hand.
@@ -72,29 +84,48 @@ class HandModel {
     return _list.indexOf(card);
   }
 
+  /// Returns the first card in the hand.
   CardModel get first => _list.first;
+
+  /// Returns the last card in the hand.
   CardModel get last => _list.last;
 
+  /// Checks if the given index is valid for this hand.
+  ///
+  /// Returns true if the index is within the bounds of the hand's card list.
   bool validIndex(int index) {
     return index >= 0 && index < _list.length;
   }
 
+  /// Returns the number of cards in the hand.
   int get length => _list.length;
 
+  /// Adds a card to the hand.
+  ///
+  /// The [card] parameter specifies the [CardModel] to be added.
   void add(final CardModel card) {
     _list.add(card);
   }
 
+  /// Checks if all cards in the hand are revealed.
+  ///
+  /// Returns true if every card in the hand has its [isRevealed] property set to true.
   bool areAllCardsRevealed() {
     return _list.every((card) => card.isRevealed);
   }
 
+  /// Reveals all cards in the hand.
+  ///
+  /// Sets the [isRevealed] property of each card to true.
   void revealAllCards() {
     for (final CardModel card in _list) {
       card.isRevealed = true;
     }
   }
 
+  /// Removes and returns the card at the specified index.
+  ///
+  /// Returns the removed [CardModel].
   CardModel removeAt(int index) {
     return _list.removeAt(index);
   }
@@ -104,10 +135,15 @@ class HandModel {
     return '$columns X $rows [ ${_list.join('| ')} ]';
   }
 
+  /// Returns a list of all revealed cards in the hand.
   List<CardModel> get revealedCards {
     return _list.where((card) => card.isRevealed).toList();
   }
 
+  /// Calculates the sum of card values for the SkyJo game variant.
+  ///
+  /// Only considers revealed cards when calculating the sum.
+  /// Returns the total score based on the values of revealed cards.
   int getSumOfCardsInHandSkyJo() {
     int score = 0;
     for (final CardModel card in _list) {
@@ -119,6 +155,10 @@ class HandModel {
     return score;
   }
 
+  /// Calculates the sum of card values for the Golf game variant.
+  ///
+  /// Takes into account special scoring rules for matched sets of cards.
+  /// Returns the total score based on the values of cards not part of sets.
   int getSumOfCardsForGolf() {
     int score = 0;
     List<bool> markedForZeroScore = List.filled(_list.length, false);
@@ -158,6 +198,10 @@ class HandModel {
     return score;
   }
 
+  /// Marks cards of the same rank as part of a set for Golf scoring.
+  ///
+  /// Takes a list of indices and checks if the cards at those positions
+  /// have the same rank. If they do, marks them as part of a set.
   void markIfSameRankForGolf(
     List<bool> markedForZeroScore,
     List<int> indices,
@@ -186,6 +230,9 @@ class HandModel {
     }
   }
 
+  /// Reveals a specified number of random cards in the hand.
+  ///
+  /// [numberOfCardsToReveal] specifies how many cards should be revealed.
   void revealCards(int numberOfCardsToReveal) {
     final Random random = Random();
     final List<int> indices = List.generate(_list.length, (i) => i)
@@ -195,6 +242,9 @@ class HandModel {
     }
   }
 
+  /// Checks if three cards have the same rank and are not already part of a set.
+  ///
+  /// Returns true if all cards have matching ranks and none are part of a set.
   bool areAllTheSameRankAndNotAlreadyUsed(
     CardModel card1,
     CardModel card2,
@@ -204,10 +254,16 @@ class HandModel {
         areAllTheSameRank(card1.rank, card2.rank, card3.rank);
   }
 
+  /// Checks if three ranks are all the same.
+  ///
+  /// Returns true if all three rank strings are equal.
   bool areAllTheSameRank(String rank1, String rank2, String rank3) {
     return rank1 == rank2 && rank2 == rank3;
   }
 
+  /// Converts the hand to a JSON-serializable format.
+  ///
+  /// Returns a list of JSON representations of the cards in the hand.
   List<dynamic> toJson() {
     return _list.map((CardModel card) => card.toJson()).toList();
   }

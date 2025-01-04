@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
+/// A widget that displays a list of rooms, allowing the user to select a room and optionally remove a room.
 class RoomsWidget extends StatelessWidget {
+  /// Constructs a [RoomsWidget] with the given parameters.
+  ///
+  /// The [roomId], [rooms], [onSelected], and [onRemoveRoom] parameters are required.
   const RoomsWidget({
     super.key,
     required this.roomId,
@@ -9,9 +13,19 @@ class RoomsWidget extends StatelessWidget {
     required this.onRemoveRoom,
   });
 
+  /// The ID of the currently selected room.
   final String roomId;
+
+  /// The list of room names to display.
   final List<String> rooms;
+
+  /// Callback function called when a room is selected.
+  /// Takes the selected room's name as a parameter.
   final Function(String) onSelected;
+
+  /// Optional callback function called when a room is removed.
+  /// Takes the room name to remove as a parameter.
+  /// If null, room removal functionality will be disabled.
   final Function(String)? onRemoveRoom;
 
   @override

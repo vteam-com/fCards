@@ -4,14 +4,20 @@ import 'package:flutter/material.dart';
 
 /// Whether the [WiggleWidget] should wiggle or not.
 class WiggleWidget extends StatefulWidget {
+  ///
   const WiggleWidget({super.key, required this.child, this.wiggle = true});
+
+  ///
   final Widget child;
+
+  ///
   final bool wiggle;
 
   @override
   WiggleWidgetState createState() => WiggleWidgetState();
 }
 
+///
 class WiggleWidgetState extends State<WiggleWidget>
     with SingleTickerProviderStateMixin {
   AnimationController? _controller;

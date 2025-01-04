@@ -14,6 +14,9 @@ export 'package:cards/models/deck_model.dart';
 export 'package:cards/models/game_style.dart';
 export 'package:cards/models/player_model.dart';
 
+/// Represents a game model that manages the state and logic of a game.
+/// This class extends `ChangeNotifier` to allow for state changes to be
+/// observed by other parts of the application.
 class GameModel with ChangeNotifier {
   /// Creates a new game model.
   ///
@@ -41,10 +44,10 @@ class GameModel with ChangeNotifier {
     }
   }
 
-  // Model version
+  /// Model version
   final String version;
 
-  // Type of game
+  /// Type of game
   final GameStyles gameStyle;
 
   /// Game Unique Id based on DateTime
@@ -89,6 +92,13 @@ class GameModel with ChangeNotifier {
   /// The current state of the game.
   GameStates get gameState => _gameState;
 
+  /// Adds a new player to the game.
+  ///
+  /// The player is added to the [players] list. The player's properties are set based on the [gameStyle]:
+  /// - If [gameStyle] is [GameStyles.skyJo], the player has 4 columns and 3 rows, and [skyJoLogic] is set to `true`.
+  /// - Otherwise, the player has 3 columns and 3 rows, and [skyJoLogic] is set to `false`.
+  ///
+  /// @param name The name of the new player.
   void addPlayer(String name) {
     if (gameStyle == GameStyles.skyJo) {
       players.add(
@@ -111,7 +121,7 @@ class GameModel with ChangeNotifier {
     }
   }
 
-  // must be override by models
+  /// must be override by models
   String get mode => 'Custom';
 
   /// Sets the game state and updates the database if backend is ready.
@@ -127,6 +137,9 @@ class GameModel with ChangeNotifier {
     }
   }
 
+  /// Pushes the current game model to the backend.
+  ///
+  /// This method checks if the backend is ready and the app is not running offline. If both conditions are met, it updates the game state in the Firebase Realtime Database under the 'rooms/$roomName' path.
   void pushGameModelToBackend() {
     if (backendReady) {
       if (isRunningOffLine == false) {
@@ -172,6 +185,14 @@ class GameModel with ChangeNotifier {
     );
   }
 
+  /// Loads a deck from JSON data.
+  ///
+  /// This function is responsible for parsing and deserializing the deck data from the given JSON object.
+  ///
+  /// - Parameters:
+  ///   - json: The JSON data to load the deck from.
+  ///
+  /// - Returns: A new instance of `DeckModel` representing the loaded deck, or null if the loading fails.
   DeckModel loadDeck(Map<String, dynamic> json) {
     return DeckModel.fromJson(
       json,
@@ -179,6 +200,12 @@ class GameModel with ChangeNotifier {
     );
   }
 
+  /// Loads a player model from a JSON object, with the player configuration based on the current game style.
+  ///
+  /// The [json] parameter should contain the player data to be loaded.
+  /// The [gameStyle] property of the current [GameModel] is used to determine the appropriate player configuration.
+  /// For each supported game style, this method creates a [PlayerModel] instance with the corresponding columns, rows, and sky-jo logic settings.
+  /// If the [gameStyle] is [GameStyles.custom], the player is created with 0 columns and 0 rows, and sky-jo logic disabled.
   PlayerModel loadPlayer(Map<String, dynamic> json) {
     switch (gameStyle) {
       case GameStyles.skyJo:
@@ -240,6 +267,11 @@ class GameModel with ChangeNotifier {
     }
   }
 
+  /// Sets the active player to the player at the given index.
+  ///
+  /// [index] The index of the player to set as active.
+  /// Updates the playerIdPlaying field and sets isActivePlayer flag
+  /// to true for the selected player and false for all other players.
   void setActivePlayer(final int index) {
     playerIdPlaying = index;
     for (int index = 0; index < players.length; index++) {
@@ -280,6 +312,7 @@ class GameModel with ChangeNotifier {
     return players[index].name;
   }
 
+  /// Returns a list of the names of all players in the game.
   List<String> getPlayersNames() {
     return players.map((player) => player.name).toList();
   }
@@ -309,6 +342,10 @@ class GameModel with ChangeNotifier {
     gameState = GameStates.pickCardFromEitherPiles;
   }
 
+  /// Returns a list of the dates when the given player won a game.
+  ///
+  /// [nameOfPlayer] The name of the player to get the win dates for.
+  /// Returns a list of [DateTime] objects representing the dates when the player won.
   List<DateTime> getWinsForPlayerName(final String nameOfPlayer) {
     List<DateTime> list = [];
     roomHistory.forEach((game) {
@@ -350,6 +387,13 @@ class GameModel with ChangeNotifier {
     }
   }
 
+  /// Handles the drop of a card on another card in the game.
+  ///
+  /// This method is responsible for managing the game state and performing the appropriate actions when a card is dropped on another card. It handles different game states, such as swapping the top deck card with a card in the player's hand or discard pile, and revealing a hidden card.
+  ///
+  /// [context] The BuildContext used for displaying snackbar messages.
+  /// [cardSource] The source card that was dropped.
+  /// [cardTarget] The target card that the source card was dropped on.
   void onDropCardOnCard(
     final BuildContext context,
     final CardModel cardSource,
@@ -383,6 +427,12 @@ class GameModel with ChangeNotifier {
     }
   }
 
+  /// Swaps the drag card with the target card in the player's hand.
+  ///
+  /// This method is responsible for finding the index of the target card in the player's hand, and then calling the `swapCardWithTopPile` method to perform the swap. After the swap, it moves to the next player and notifies any listeners of the state change.
+  ///
+  /// [context] The BuildContext used for accessing the game state and moving to the next player.
+  /// [cardTarget] The target card that the drag card was dropped on.
   void swapDragCardOnPlayersTargetCard(
     BuildContext context,
     CardModel cardTarget,
@@ -528,6 +578,9 @@ class GameModel with ChangeNotifier {
     return true;
   }
 
+  /// Evaluates the player's hand based on the current game style.
+  /// If the game style is 'skyJo', it calls [evaluateHandSkyJo()].
+  /// Otherwise, it calls the 'evaluateHandGolf()' method (which is currently commented out).
   void evaluateHand() {
     if (gameStyle == GameStyles.skyJo) {
       evaluateHandSkyJo();
@@ -537,6 +590,11 @@ class GameModel with ChangeNotifier {
     }
   }
 
+  /// Evaluates the player's hand in the 'skyJo' game style.
+  /// This method checks the player's hand for sets of three cards with the same rank,
+  /// and removes those sets from the hand, adding them to the discarded pile.
+  /// The method reduces the index after removing cards to ensure the loop iterates
+  /// correctly over the remaining cards in the hand.
   void evaluateHandSkyJo() {
     var player = players[playerIdPlaying];
 
@@ -577,6 +635,10 @@ class GameModel with ChangeNotifier {
     gameState = GameStates.pickCardFromEitherPiles;
   }
 
+  /// Updates the status of the given [player] to the new [newStatus].
+  ///
+  /// If the game is running offline, this method will notify any listeners of the change.
+  /// Otherwise, it will push the updated game model to the backend.
   void updatePlayerStatus(
     final PlayerModel player,
     final PlayerStatus newStatus,
@@ -608,6 +670,15 @@ class GameModel with ChangeNotifier {
     return inputText;
   }
 
+  /// Generates a link URI for the game based on the provided input parameters.
+  ///
+  /// The link URI includes the game mode, room name, and a comma-separated list of player names.
+  /// This method is used to construct the URL for the game, which can be shared with other players.
+  ///
+  /// @param mode The game mode, e.g. "classic", "timed", etc.
+  /// @param room The name of the game room.
+  /// @param names A list of player names.
+  /// @return The generated link URI.
   static String getLinkToGameFromInput(
     final String mode,
     final String room,
@@ -616,12 +687,30 @@ class GameModel with ChangeNotifier {
     return '?mode=$mode&room=$room&players=${names.join(",")}';
   }
 
+  /// Generates a link URI for the game based on the provided input parameters.
+  ///
+  /// The link URI includes the game mode, room name, and a comma-separated list of player names.
+  /// This method is used to construct the URL for the game, which can be shared with other players.
+  ///
+  /// @param mode The game mode, e.g. "classic", "timed", etc.
+  /// @param room The name of the game room.
+  /// @param names A list of player names.
+  /// @return The generated link URI.
   String get linkUri => getLinkToGameFromInput(
         this.mode,
         this.roomName,
         this.getPlayersNames(),
       );
 
+  /// Generates a link URI for the game based on the provided input parameters.
+  ///
+  /// The link URI includes the game mode, room name, and a comma-separated list of player names.
+  /// This method is used to construct the URL for the game, which can be shared with other players.
+  ///
+  /// @param mode The game mode, e.g. "classic", "timed", etc.
+  /// @param room The name of the game room.
+  /// @param names A list of player names.
+  /// @return The generated link URI.
   String getLinkToGame() {
     if (kIsWeb) {
       return Uri.base.origin + linkUri;
@@ -630,17 +719,44 @@ class GameModel with ChangeNotifier {
   }
 }
 
+/// Shows a snack bar notification with the provided message for a short duration.
+///
+/// This method is used to display a temporary notification to the user, typically
+/// to indicate a game-related event or action.
+///
+/// @param context The [BuildContext] used to access the [ScaffoldMessenger].
+/// @param message The message to be displayed in the snack bar.
 void showTurnNotification(BuildContext context, String message) {
   ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(content: Text(message), duration: const Duration(seconds: 2)),
   );
 }
 
+/// Represents the different states of the game.
+///
+/// The game can be in one of the following states:
+/// - `notStarted`: The game has not started yet.
+/// - `pickCardFromEitherPiles`: The player can pick a card from either the deck or the discard pile.
+/// - `swapTopDeckCardWithAnyCardsInHandOrDiscard`: The player can swap the top card of the deck with any card in their hand or the discard pile.
+/// - `revealOneHiddenCard`: The player can reveal one of their hidden cards.
+/// - `swapDiscardedCardWithAnyCardsInHand`: The player can swap the top card of the discard pile with any card in their hand.
+/// - `gameOver`: The game has ended.
 enum GameStates {
+  /// The game has not started yet.
   notStarted,
+
+  /// The player can pick a card from either the deck or the discard pile.
   pickCardFromEitherPiles,
+
+  /// The player can swap the top card of the deck with any card in their hand or the discard pile.
   swapTopDeckCardWithAnyCardsInHandOrDiscard,
+
+  /// The player can reveal one of their hidden cards.
   revealOneHiddenCard,
+
+  /// The player can swap the top card of the discard pile with any card in their hand.
   swapDiscardedCardWithAnyCardsInHand,
+
+  /// The game has ended.
   gameOver,
 }
