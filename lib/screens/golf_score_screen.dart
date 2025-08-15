@@ -94,9 +94,7 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
                                 color: Colors.deepOrangeAccent.withAlpha(200),
                               ),
                               onPressed: () {
-                                setState(() {
-                                  _scoreModel.removeRoundAt(i);
-                                });
+                                confirmDeleteRound(i);
                               },
                             ),
                           ],
@@ -172,5 +170,32 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
         ),
       ),
     );
+  }
+
+  /// Shows a confirmation dialog before deleting a round.
+  Future<void> confirmDeleteRound(int i) async {
+    final bool? confirmed = await showDialog<bool>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: const Text('Delete Round'),
+        content: Text('Are you sure you want to delete this round $i?'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(ctx).pop(false),
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () => Navigator.of(ctx).pop(true),
+            child: const Text('Confirm'),
+          ),
+        ],
+      ),
+    );
+
+    if (confirmed == true) {
+      setState(() {
+        _scoreModel.removeRoundAt(i);
+      });
+    }
   }
 }
