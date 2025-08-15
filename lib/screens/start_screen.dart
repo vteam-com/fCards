@@ -13,55 +13,49 @@ import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:web/web.dart' as web;
 
-/// The initial screen presented to the user, allowing them to join or start a game.
+/// The initial screen for the card game application.
 ///
-/// Users can enter their name and a room name. If the room exists, they can
-/// join it; otherwise, a new room is created. The screen displays a list of
-/// players currently in the room.  Once at least two players have joined, the
-/// game can be started.  The screen also provides a brief explanation of the
-/// game's rules.
+/// This screen serves as the entry point for users, allowing them to either join an
+/// existing game room or create a new one. It features input fields for the
+/// user's name and a room name. If the specified room already exists, the user
+/// can join it; otherwise, a new room is created.
+///
+/// The screen displays a real-time list of players in the selected room and
+/// enables the game to start once at least two players have joined. It also
+/// includes an expandable section that provides a brief overview of the game's
+/// rules.
+///
+/// Key functionalities of this screen include:
+/// - **Room and Player Management**: Handles creating, joining, and displaying rooms
+///   and players.
+/// - **Game Style Selection**: Allows users to choose from different game styles.
+/// - **URL Parameter Processing**: Supports joining rooms and setting player names
+///   directly via URL parameters for a seamless experience.
+/// - **Real-time Updates**: Utilizes Firebase Realtime Database to keep the room
+///   state synchronized across all clients.
+/// - **Link Sharing**: Generates a shareable link to invite others to the current
+///   game room.
+/// - **Offline Mode**: Provides an offline mode for testing and development.
 class StartScreen extends StatefulWidget {
-  /// Creates the Start Screen widget.
+  /// Creates a [StartScreen] widget.
   const StartScreen({super.key});
 
   @override
   StartScreenState createState() => StartScreenState();
 }
 
-/// The initial screen presented to the user, allowing them to join or start a game.
+/// The state for the [StartScreen].
 ///
-/// Users can enter their name and a room name. If the room exists, they can
-/// join it; otherwise, a new room is created. The screen displays a list of
-/// players currently in the room.  Once at least two players have joined, the
-/// game can be started.  The screen also provides a brief explanation of the
-/// game's rules.
-///
-/// Key features:
-/// - Room name input with auto-uppercase
-/// - Player name input with auto-uppercase
-/// - List of current players in room
-/// - Game style selection
-/// - Expandable game rules section
-/// - URL parameter support for room/players
-/// - Real-time Firebase sync of room state
-/// - Share link generation
-/// - Version display
-///
-/// The screen handles:
-/// - Processing URL parameters on init
-/// - Managing Firebase subscriptions
-/// - Updating room/player state
-/// - Input validation
-/// - Navigation to game screen
-///
-/// Implementation notes:
-/// - Uses Firebase Realtime Database for backend
-/// - Supports offline mode for testing
-/// - Maintains room/player state sync
-/// - Handles cleanup on dispose  /// Subscription to the Firebase Realtime Database.
+/// This class manages the state of the start screen, including handling user
+/// input, interacting with the backend service (Firebase), and updating the UI
+/// in response to state changes.
 class StartScreenState extends State<StartScreen> {
+  /// A subscription to the Firebase Realtime Database stream.
+  ///
+  /// This is used to receive real-time updates for the current room.
   StreamSubscription? _streamSubscription;
 
+  /// The currently selected game style.
   GameStyles _selectedGameStyle = GameStyles.frenchCards9;
 
   /// Controller for the room name text field.
@@ -69,29 +63,37 @@ class StartScreenState extends State<StartScreen> {
     text: 'KIWI', // Default room name
   );
 
-  /// Name of the room
+  /// The name of the room, derived from the [_controllerRoom].
   String get roomName => _controllerRoom.text.trim().toUpperCase();
 
-  /// Placeholder for room name error text.  Currently unused.
+  /// Error text for the room name input field. Currently unused.
   final String _errorTextRoom = '';
 
   /// Controller for the player name text field.
   final TextEditingController _controllerName = TextEditingController();
 
-  /// Placeholder for player name error text. Currently unused.
+  /// Error text for the player name input field. Currently unused.
   final String _errorTextName = '';
 
-  /// List of player names currently in the room.
+  /// A set of player names currently in the room.
   Set<String> _playerNames = {};
+
+  /// A list of all available rooms.
   List<String> _listOfRooms = [];
 
-  /// Returns the trimmed player name entered by the user.
+  /// The trimmed player name entered by the user.
   String get _playerName => _controllerName.text.trim();
+
+  /// A flag indicating whether the app is waiting for the first data from the backend.
   bool _waitingOnFirstBackendData = !isRunningOffLine;
+
+  /// A flag indicating whether the game rules are expanded.
   bool _isExpandedRules = false;
+
+  /// A flag indicating whether the list of rooms is expanded.
   bool _isExpandedRooms = false;
 
-  /// current version of the app
+  /// The current version of the app.
   String appVersion = '?.?.?';
 
   @override
@@ -101,6 +103,7 @@ class StartScreenState extends State<StartScreen> {
     _getAppVersion();
   }
 
+  /// Fetches the application version from the platform package info.
   Future<void> _getAppVersion() async {
     PackageInfo.fromPlatform().then((PackageInfo packageInfo) {
       setState(() {
@@ -111,38 +114,44 @@ class StartScreenState extends State<StartScreen> {
 
   @override
   void dispose() {
-    // Cancel the Firebase subscription to prevent leaks.
+    // Cancel the Firebase subscription to prevent memory leaks.
     _streamSubscription?.cancel();
     _controllerRoom.dispose();
     _controllerName.dispose();
     super.dispose();
   }
 
+  /// Processes URL arguments to set the initial state of the screen.
+  ///
+  /// This method parses the URL for 'room', 'players', and 'mode' query
+  /// parameters and configures the screen accordingly. This allows users to
+  /// join a game directly via a shared link.
   void _processUrlArguments() {
     if (isRunningOffLine) {
-      // '?room=BANANA&players=BOB,SUE,JOHN'
+      // For offline testing, use predefined values.
+      // Example: '?room=BANANA&players=BOB,SUE,JOHN'
       _playerNames = {'BOB', 'SUE', 'JOHN'};
       _controllerRoom.text = 'BANANA';
       _controllerName.text = 'BOB';
       return;
     }
 
-    // Example URL: https://your-app-url?room=MYROOM&players=PLAYER1,PLAYER2
+    // Parse the current URL.
     final uri = Uri.parse(Uri.base.toString());
 
-    // Mode
+    // Set the game mode from the 'mode' query parameter.
     final gameModeUrl = uri.queryParameters['mode'] ?? '';
     _selectedGameStyle = intToGameStyles(
       int.tryParse(gameModeUrl) ?? GameStyles.frenchCards9.index,
     );
 
-    // Room
+    // Set the room name from the 'room' query parameter.
     final roomFromUrl = uri.queryParameters['room'];
     if (roomFromUrl != null) {
       _controllerRoom.text = roomFromUrl.toUpperCase();
     }
 
-    // Players
+    // Set the player names from the 'players' query parameter.
     final playersFromUrl = uri.queryParameters['players'];
     if (playersFromUrl != null) {
       final playerNames = playersFromUrl
@@ -151,65 +160,31 @@ class StartScreenState extends State<StartScreen> {
           .map((name) => name.trim())
           .toList();
       _controllerName.text =
-          playerNames.first; // Set the first player as the default name
-      _playerNames = playerNames
-          .toSet(); // or joinGame(playersFromUrl) after initial data load
+          playerNames.first; // Set the first player as the default name.
+      _playerNames =
+          playerNames.toSet(); // Set the list of players in the room.
 
-      //Delay setting players in room until after initial data load completes
+      // Delay setting players in the room until after the initial data load completes.
       Future.delayed(Duration.zero, () async {
-        await useFirebase(); // Ensure Firebase is initialized
-
-        setPlayersInRoom(roomName, _playerNames); // Update backend with players
+        await useFirebase(); // Ensure Firebase is initialized.
+        setPlayersInRoom(
+          roomName,
+          _playerNames,
+        ); // Update the backend with the players.
       });
     }
 
+    // Initialize the backend connection for the room.
     prepareBackEndForRoom(
       roomName,
-    ); // Initialize backend connection after processing URL arguments.
+    );
   }
 
-  /// This file implements the StartScreen state management for a multiplayer card game.
-  /// It handles the initial setup screen where players can:
-  /// - Create or join a game room
-  /// - Enter their player name
-  /// - Select game style/mode
-  /// - View game rules
-  /// - See other players in the room
+  /// Prepares the backend for the specified room.
   ///
-  /// The screen uses Firebase Realtime Database to:
-  /// - Sync room and player state across clients
-  /// - Maintain list of active rooms
-  /// - Handle real-time updates when players join/leave
-  ///
-  /// Key features:
-  /// - Room name input with auto-uppercase
-  /// - Player name input with auto-uppercase
-  /// - List of current players in room
-  /// - Game style selection
-  /// - Expandable game rules section
-  /// - URL parameter support for room/players
-  /// - Real-time Firebase sync
-  /// - Share link generation
-  /// - Version display
-  ///
-  /// The state maintains:
-  /// - Firebase subscription for real-time updates
-  /// - Text controllers for room/player input
-  /// - Sets of player names and rooms
-  /// - UI expansion states
-  /// - App version info
-  ///
-  /// URL parameters supported:
-  /// - room: Room name to join
-  /// - players: Comma-separated list of player names
-  /// - mode: Game style index
-  ///
-  /// Implementation notes:
-  /// - Uses Firebase Realtime Database
-  /// - Supports offline mode for testing
-  /// - Auto-capitalizes inputs
-  /// - Maintains room/player state sync
-  /// - Handles cleanup on dispose    if (isRunningOffLine) {
+  /// This method sets up the connection to the backend service (Firebase) for
+  /// the given [roomId]. It fetches the initial list of players in the room
+  /// and sets up a stream to listen for real-time updates.
   void prepareBackEndForRoom(final String roomId) {
     if (isRunningOffLine) {
       _waitingOnFirstBackendData = false;
@@ -218,16 +193,18 @@ class StartScreenState extends State<StartScreen> {
 
     _waitingOnFirstBackendData = true;
 
+    // Cancel any existing subscription.
     _streamSubscription?.cancel();
 
-    // First pull
+    // Fetch the initial data from Firebase.
     useFirebase().then((_) async {
       final List<String> invitees = await getPlayersInRoom(roomId);
 
       setState(() {
         _playerNames = Set.from(invitees);
         _waitingOnFirstBackendData = false;
-        // Listen for updates
+
+        // Listen for updates to the list of invitees.
         _streamSubscription =
             onBackendInviteesUpdated(roomId, (invitees) async {
           final List<String> listOfRooms = await getAllRooms();
@@ -298,7 +275,7 @@ class StartScreenState extends State<StartScreen> {
                         _controllerRoom.text = room;
                         prepareBackEndForRoom(roomName);
                         setState(() {
-                          // we can no close the drop down
+                          // we can now close the drop down
                           _isExpandedRooms = false;
                         });
                       },
@@ -372,6 +349,7 @@ class StartScreenState extends State<StartScreen> {
     );
   }
 
+  /// A widget for selecting the game mode.
   Widget _gameMode() {
     return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -400,6 +378,7 @@ class StartScreenState extends State<StartScreen> {
     );
   }
 
+  /// A widget that displays the game instructions in an expandable tile.
   Widget _gameInstructionsWidget() {
     return ExpansionTile(
       initiallyExpanded: _isExpandedRules,
@@ -424,7 +403,10 @@ class StartScreenState extends State<StartScreen> {
     );
   }
 
-  /// Widget for creating labeled text input fields.
+  /// A reusable widget for creating a labeled text input field.
+  ///
+  /// This widget includes a label, a text field, and a trailing widget (e.g., an
+  /// icon button). It is used for both the room name and player name input fields.
   Widget editBox(
     final String label,
     final TextEditingController controller,
@@ -482,13 +464,11 @@ class StartScreenState extends State<StartScreen> {
     );
   }
 
-  /// Adds the a player or players to a room.
+  /// Adds one or more players to the current room.
   ///
-  /// Takes a comma-separated string of names, converts them to uppercase,
-  /// trims whitespace, and adds them to the list of players.  If the list
-  /// already contains the player's name, it does nothing.  Updates the backend
-  /// with the new player list. After successfully adding the player, the player
-  /// name input field is updated to reflect only the first entered name.
+  /// This method takes a comma-separated string of names, processes them, and
+  /// adds them to the list of players for the current room. It then updates the
+  /// backend with the new list of players.
   void joinGame(final String nameOrNamesToAdd) {
     if (nameOrNamesToAdd.trim().isNotEmpty) {
       final List<String> names = nameOrNamesToAdd.toUpperCase().split(',');
@@ -502,16 +482,23 @@ class StartScreenState extends State<StartScreen> {
     }
   }
 
-  /// Removes a player from the game.
+  /// Removes a player from the current room.
+  ///
+  /// This method removes the specified player from the list of players and
+  /// updates the backend to reflect the change.
   void removePlayer(final String nameToRemove) {
-    // remove the name of player from the list of players
+    // Remove the player's name from the list of players.
     _playerNames.remove(nameToRemove);
 
-    // push to back end
+    // Push the updated list of players to the backend.
     setPlayersInRoom(roomName, _playerNames);
   }
 
   /// Starts the game and navigates to the game screen.
+  ///
+  /// This method is called when the user clicks the "Start Game" button. It
+  /// creates a new [GameModel] with the current game settings and navigates
+  /// to the [GameScreen].
   void startGame(BuildContext context) async {
     final List<GameHistory> history = await getGameHistory(roomName);
     debugLog(history.join('|'));
@@ -534,10 +521,10 @@ class StartScreenState extends State<StartScreen> {
       isNewGame: true,
     );
 
-    // Update URL to include room ID
+    // Update the URL to include the room ID without reloading the page.
     _updateUrlWithoutReload();
 
-    // bring in the main game screen
+    // Navigate to the main game screen.
     if (context.mounted) {
       Navigator.pushReplacement(
         context,
@@ -548,6 +535,10 @@ class StartScreenState extends State<StartScreen> {
     }
   }
 
+  /// Generates a shareable URL for the current game.
+  ///
+  /// This method constructs a URL that includes the current game mode, room name,
+  /// and player list, allowing others to join the game directly.
   String _getUrlToGame() {
     if (kIsWeb) {
       return web.window.location.origin +
@@ -560,9 +551,14 @@ class StartScreenState extends State<StartScreen> {
     return '';
   }
 
+  /// Updates the browser's URL without reloading the page.
+  ///
+  /// This method uses the browser's History API to update the URL, which is
+  /// useful for reflecting the current game state in the URL without a full
+  /// page refresh.
   void _updateUrlWithoutReload() {
     if (kIsWeb) {
-      // Push the new state to the browser's history
+      // Push the new state to the browser's history.
       web.window.history.pushState(
         null,
         'vteam cards $roomName',
@@ -571,7 +567,10 @@ class StartScreenState extends State<StartScreen> {
     }
   }
 
-  /// Widget for the "Join Game" or "Start Game" button.
+  /// A button that either joins the current player to the game or starts the game.
+  ///
+  /// The button's label and action change based on whether the current player
+  /// has already joined the game and whether there are enough players to start.
   Widget actionButton() {
     if (_playerName.isEmpty) {
       return const Text('Please enter your name above ⬆');
