@@ -37,13 +37,13 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
   @override
   Widget build(BuildContext context) {
     final List<int> ranks = _scoreModel.getPlayerRanks();
-
+    const double columnWidth = 80;
     return Screen(
       title: '9 Cards Golf Scorekeeper',
       version: '1.0.0', // Placeholder version
       isWaiting: false,
       child: Padding(
-        padding: const EdgeInsets.all(1.0),
+        padding: const EdgeInsets.only(top: 8, bottom: 8, left: 4, right: 4),
         child: Column(
           children: [
             // Player Name Edit Boxes
@@ -52,20 +52,23 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
               scrollDirection: Axis.horizontal,
               child: DataTable(
                 columnSpacing: 1,
+                horizontalMargin: 0,
                 columns: [
                   for (int i = 0; i < _scoreModel.playerNames.length; i++)
                     DataColumn(
                       label: SizedBox(
-                        width: 100, // Adjust width as needed
+                        width: columnWidth, // Adjust width as needed
                         child: TextField(
                           controller: TextEditingController(
                               text: _scoreModel.playerNames[i]),
                           textAlign: TextAlign.center,
-                          decoration: const InputDecoration(
+                          decoration: InputDecoration(
                             border: OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(5))),
-                            fillColor: Colors.black,
+                            fillColor: _getScoreColor(
+                                    ranks[i], _scoreModel.playerNames.length)
+                                .withAlpha(100),
                             contentPadding: EdgeInsets.all(8.0),
                           ),
                           onChanged: (newName) {
@@ -85,7 +88,7 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
                       for (int j = 0; j < _scoreModel.playerNames.length; j++)
                         DataCell(
                           SizedBox(
-                            width: 100,
+                            width: columnWidth,
                             child: TextFormField(
                               keyboardType: TextInputType.number,
                               initialValue: _scoreModel.scores[i][j].toString(),
@@ -126,7 +129,6 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
                             : IconButton(
                                 icon: Icon(
                                   Icons.close,
-                                  color: Colors.deepOrangeAccent.withAlpha(200),
                                 ),
                                 onPressed: () {
                                   confirmDeleteRound(i);
@@ -142,7 +144,7 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
                         DataCell(
                           Container(
                             color: Colors.black38,
-                            width: 100,
+                            width: columnWidth,
                             child: Text(
                               _scoreModel.getPlayerTotalScore(j).toString(),
                               style: TextStyle(
