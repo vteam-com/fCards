@@ -138,7 +138,7 @@ class Screen extends StatelessWidget {
             IconButton(
               icon: const Icon(Icons.ios_share),
               onPressed: () {
-                Share.share(getLinkToShare!());
+                SharePlus.instance.share(ShareParams(text: getLinkToShare!()));
               },
             ),
         ],

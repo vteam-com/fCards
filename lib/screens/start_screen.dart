@@ -1,6 +1,4 @@
 import 'dart:async';
-// ignore: avoid_web_libraries_in_flutter
-import 'dart:html' as html;
 import 'package:cards/misc.dart';
 import 'package:cards/models/backend_model.dart';
 import 'package:cards/models/game_history.dart';
@@ -12,6 +10,7 @@ import 'package:cards/widgets/rooms_widget.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:web/web.dart' as web;
 
 /// The initial screen presented to the user, allowing them to join or start a game.
 ///
@@ -537,7 +536,7 @@ class StartScreenState extends State<StartScreen> {
 
   String _getUrlToGame() {
     if (kIsWeb) {
-      return html.window.location.origin +
+      return web.window.location.origin +
           GameModel.getLinkToGameFromInput(
             _selectedGameStyle.index.toString(),
             roomName,
@@ -550,7 +549,7 @@ class StartScreenState extends State<StartScreen> {
   void _updateUrlWithoutReload() {
     if (kIsWeb) {
       // Push the new state to the browser's history
-      html.window.history.pushState(
+      web.window.history.pushState(
         null,
         'vteam cards $roomName',
         _getUrlToGame(),

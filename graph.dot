@@ -19,7 +19,6 @@ digraph "" {
   "/lib/models/player_status.dart" [label="player_status"];
   "/lib/models/game_model.dart" [label="game_model"];
   "/lib/models/card_model_french.dart" [label="card_model_french"];
-  "/lib/models/firebase_options_private.dart" [label="firebase_options_private"];
   "/lib/models/game_history.dart" [label="game_history"];
   "/lib/models/firebase_options.dart" [label="firebase_options"];
   "/lib/models/hand_model.dart" [label="hand_model"];
@@ -83,7 +82,6 @@ digraph "" {
         "/lib/models/player_status.dart";
         "/lib/models/game_model.dart";
         "/lib/models/card_model_french.dart";
-        "/lib/models/firebase_options_private.dart";
         "/lib/models/game_history.dart";
         "/lib/models/firebase_options.dart";
         "/lib/models/hand_model.dart";

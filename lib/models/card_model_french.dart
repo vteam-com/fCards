@@ -12,7 +12,7 @@ class CardModelFrench {
   ///
   /// @param rank The rank of the card as a String.
   /// @return The numerical value of the card rank as an int.
-  static int getValue(rank) {
+  static int getValue(String rank) {
     if (rank == '§') {
       return -2;
     }
