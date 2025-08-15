@@ -1,3 +1,4 @@
+import 'package:cards/screens/golf_score_screen.dart';
 import 'package:cards/screens/start_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -97,7 +98,11 @@ class MyApp extends StatelessWidget {
         iconTheme: const IconThemeData(color: Colors.white),
         primaryIconTheme: const IconThemeData(color: Colors.white),
       ),
-      home: const StartScreen(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const StartScreen(),
+        '/score': (context) => const GolfScoreScreen(),
+      },
       debugShowCheckedModeBanner: false,
     );
   }

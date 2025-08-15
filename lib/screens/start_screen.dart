@@ -4,6 +4,7 @@ import 'package:cards/models/backend_model.dart';
 import 'package:cards/models/game_history.dart';
 import 'package:cards/models/game_model.dart';
 import 'package:cards/screens/game_screen.dart';
+
 import 'package:cards/screens/screen.dart';
 import 'package:cards/widgets/players_in_room_widget.dart';
 import 'package:cards/widgets/rooms_widget.dart';
@@ -348,6 +349,19 @@ class StartScreenState extends State<StartScreen> {
                   ),
                   const SizedBox(height: 20),
                   actionButton(),
+                  const SizedBox(height: 20),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/score');
+                    },
+                    child: const Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Text(
+                        'Keep Scores',
+                        style: TextStyle(fontSize: 20),
+                      ),
+                    ),
+                  ),
                   const SizedBox(height: 20),
                 ],
               ),
