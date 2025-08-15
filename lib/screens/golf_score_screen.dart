@@ -28,12 +28,6 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
     setState(() {});
   }
 
-  void _addRound() {
-    setState(() {
-      _scoreModel.addRound();
-    });
-  }
-
   void _clearAll() {
     setState(() {
       _scoreModel.clear();
@@ -42,25 +36,23 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final List<int> ranks = _scoreModel.getPlayerRanks();
+
     return Screen(
       title: '9 Cards Golf Scorekeeper',
       version: '1.0.0', // Placeholder version
       isWaiting: false,
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(1.0),
         child: Column(
-          spacing: 20,
           children: [
             // Player Name Edit Boxes
             // Score Table
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: DataTable(
+                columnSpacing: 1,
                 columns: [
-                  DataColumn(
-                    label: ElevatedButton(
-                        onPressed: _addPlayer, child: const Text('Add player')),
-                  ),
                   for (int i = 0; i < _scoreModel.playerNames.length; i++)
                     DataColumn(
                       label: SizedBox(
@@ -76,30 +68,20 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
                             fillColor: Colors.black,
                             contentPadding: EdgeInsets.all(8.0),
                           ),
-                          onChanged: (newName) {},
+                          onChanged: (newName) {
+                            _scoreModel.playerNames[i] = newName;
+                          },
                         ),
                       ),
                     ),
+                  DataColumn(
+                    label: IconButton(
+                        onPressed: _addPlayer, icon: Icon(Icons.add)),
+                  ),
                 ],
                 rows: [
                   for (int i = 0; i < _scoreModel.scores.length; i++)
                     DataRow(cells: [
-                      DataCell(
-                        Row(
-                          children: [
-                            Text('${i + 1}'),
-                            IconButton(
-                              icon: Icon(
-                                Icons.delete,
-                                color: Colors.deepOrangeAccent.withAlpha(200),
-                              ),
-                              onPressed: () {
-                                confirmDeleteRound(i);
-                              },
-                            ),
-                          ],
-                        ),
-                      ),
                       for (int j = 0; j < _scoreModel.playerNames.length; j++)
                         DataCell(
                           SizedBox(
@@ -122,6 +104,9 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
                                       j,
                                       parsedValue,
                                     );
+                                    if (!_scoreModel.isLastRoundEmpty()) {
+                                      _scoreModel.addRound();
+                                    }
                                   });
                                 }
                               },
@@ -135,28 +120,43 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
                             ),
                           ),
                         ),
-                    ]),
-                  // Total Row
-                  DataRow(cells: [
-                    DataCell(
-                      ElevatedButton(
-                        onPressed: _addRound,
-                        child: const Text('Add Round'),
-                      ),
-                    ),
-                    for (int j = 0; j < _scoreModel.playerNames.length; j++)
                       DataCell(
-                        SizedBox(
-                          width: 100,
-                          child: Text(
-                            _scoreModel.getPlayerTotalScore(j).toString(),
-                            style: const TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 24),
-                            textAlign: TextAlign.end,
+                        (i == 0)
+                            ? Text('')
+                            : IconButton(
+                                icon: Icon(
+                                  Icons.close,
+                                  color: Colors.deepOrangeAccent.withAlpha(200),
+                                ),
+                                onPressed: () {
+                                  confirmDeleteRound(i);
+                                },
+                              ),
+                      ),
+                    ]),
+
+                  // Total Row
+                  DataRow(
+                    cells: [
+                      for (int j = 0; j < _scoreModel.playerNames.length; j++)
+                        DataCell(
+                          Container(
+                            color: Colors.black38,
+                            width: 100,
+                            child: Text(
+                              _scoreModel.getPlayerTotalScore(j).toString(),
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 24,
+                                  color: _getScoreColor(ranks[j],
+                                      _scoreModel.playerNames.length)),
+                              textAlign: TextAlign.center,
+                            ),
                           ),
                         ),
-                      ),
-                  ]),
+                      const DataCell(SizedBox.shrink()),
+                    ],
+                  ),
                 ],
               ),
             ),
@@ -196,6 +196,16 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
       setState(() {
         _scoreModel.removeRoundAt(i);
       });
+    }
+  }
+
+  Color _getScoreColor(int rank, int numberOfPlayers) {
+    if (rank == 1) {
+      return Colors.green;
+    } else if (rank == numberOfPlayers) {
+      return Colors.pink;
+    } else {
+      return Colors.orange;
     }
   }
 }

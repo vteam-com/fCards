@@ -6,7 +6,11 @@ class GolfScoreModel {
   GolfScoreModel({
     required this.playerNames,
     List<List<int>>? scores,
-  }) : scores = scores ?? [];
+  }) : scores = scores ?? [] {
+    if (this.scores.isEmpty) {
+      addRound();
+    }
+  }
 
   /// The names of the players in the game.
   List<String> playerNames;
@@ -72,5 +76,45 @@ class GolfScoreModel {
         }
       }
     }
+  }
+
+  /// Checks if the last round is empty (all scores are 0).
+  bool isLastRoundEmpty() {
+    if (scores.isEmpty) {
+      return true;
+    }
+    final lastRound = scores.last;
+    return lastRound.every((score) => score == 0);
+  }
+
+  /// Adds a new player to the game.
+  ///
+  /// [playerName] The name of the player to add.
+  void addPlayer(String playerName) {
+    playerNames.add(playerName);
+    for (var roundScores in scores) {
+      roundScores.add(0);
+    }
+  }
+
+  /// Gets the rank of each player based on their total score.
+  ///
+  /// Returns a list of integers representing the rank of each player.
+  /// The player with the lowest score gets rank 1.
+  /// Players with the same score get the same rank.
+  List<int> getPlayerRanks() {
+    final List<int> totalScores = List.generate(
+      playerNames.length,
+      (index) => getPlayerTotalScore(index),
+    );
+
+    final List<int> sortedScores = List.from(totalScores)..sort();
+    final List<int> ranks = List.filled(playerNames.length, 0);
+
+    for (int i = 0; i < playerNames.length; i++) {
+      ranks[i] = sortedScores.indexOf(totalScores[i]) + 1;
+    }
+
+    return ranks;
   }
 }
