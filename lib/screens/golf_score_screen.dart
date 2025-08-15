@@ -52,44 +52,34 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
           spacing: 20,
           children: [
             // Player Name Edit Boxes
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                spacing: 8,
-                children: [
-                  // Empty space for the "Round" column
-                  const SizedBox(width: 100), // Adjust width as needed
-                  for (int i = 0; i < _scoreModel.playerNames.length; i++)
-                    SizedBox(
-                      width: 100, // Adjust width as needed
-                      child: TextField(
-                        controller: TextEditingController(
-                            text: _scoreModel.playerNames[i]),
-                        textAlign: TextAlign.center,
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
-                          contentPadding: EdgeInsets.all(8.0),
-                        ),
-                        onChanged: (newName) {},
-                      ),
-                    ),
-                  IconButton(
-                      onPressed: _addPlayer, icon: const Icon(Icons.add)),
-                ],
-              ),
-            ),
-            const SizedBox(
-                height: 16.0), // Space between player names and table
             // Score Table
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: DataTable(
                 columns: [
-                  const DataColumn(label: Text('Round')),
+                  DataColumn(
+                    label: ElevatedButton(
+                        onPressed: _addPlayer, child: const Text('Add player')),
+                  ),
                   for (int i = 0; i < _scoreModel.playerNames.length; i++)
-                    const DataColumn(
-                        label:
-                            Text('')), // Empty label for player score columns
+                    DataColumn(
+                      label: SizedBox(
+                        width: 100, // Adjust width as needed
+                        child: TextField(
+                          controller: TextEditingController(
+                              text: _scoreModel.playerNames[i]),
+                          textAlign: TextAlign.center,
+                          decoration: const InputDecoration(
+                            border: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(5))),
+                            fillColor: Colors.black,
+                            contentPadding: EdgeInsets.all(8.0),
+                          ),
+                          onChanged: (newName) {},
+                        ),
+                      ),
+                    ),
                 ],
                 rows: [
                   for (int i = 0; i < _scoreModel.scores.length; i++)
@@ -99,7 +89,10 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
                           children: [
                             Text('${i + 1}'),
                             IconButton(
-                              icon: const Icon(Icons.delete),
+                              icon: Icon(
+                                Icons.delete,
+                                color: Colors.deepOrangeAccent.withAlpha(200),
+                              ),
                               onPressed: () {
                                 setState(() {
                                   _scoreModel.removeRoundAt(i);
@@ -111,51 +104,63 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
                       ),
                       for (int j = 0; j < _scoreModel.playerNames.length; j++)
                         DataCell(
-                          TextFormField(
-                            keyboardType: TextInputType.number,
-                            initialValue: _scoreModel.scores[i][j].toString(),
-                            onChanged: (value) {
-                              final int? parsedValue = int.tryParse(value);
-                              if (parsedValue != null) {
-                                setState(() {
-                                  _scoreModel.updateScore(
-                                    i,
-                                    j,
-                                    parsedValue,
-                                  );
-                                });
-                              }
-                            },
-                            validator: (value) {
-                              if (value == null ||
-                                  int.tryParse(value) == null) {
-                                return ''; // Invalid
-                              }
-                              return null; // Valid
-                            },
+                          SizedBox(
+                            width: 100,
+                            child: TextFormField(
+                              keyboardType: TextInputType.number,
+                              initialValue: _scoreModel.scores[i][j].toString(),
+                              decoration: const InputDecoration(
+                                border: OutlineInputBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(5))),
+                                fillColor: Colors.black,
+                              ),
+                              onChanged: (value) {
+                                final int? parsedValue = int.tryParse(value);
+                                if (parsedValue != null) {
+                                  setState(() {
+                                    _scoreModel.updateScore(
+                                      i,
+                                      j,
+                                      parsedValue,
+                                    );
+                                  });
+                                }
+                              },
+                              validator: (value) {
+                                if (value == null ||
+                                    int.tryParse(value) == null) {
+                                  return ''; // Invalid
+                                }
+                                return null; // Valid
+                              },
+                            ),
                           ),
                         ),
                     ]),
                   // Total Row
                   DataRow(cells: [
-                    const DataCell(Text('Total',
-                        style: TextStyle(fontWeight: FontWeight.bold))),
+                    DataCell(
+                      ElevatedButton(
+                        onPressed: _addRound,
+                        child: const Text('Add Round'),
+                      ),
+                    ),
                     for (int j = 0; j < _scoreModel.playerNames.length; j++)
                       DataCell(
-                        Text(
-                          _scoreModel.getPlayerTotalScore(j).toString(),
-                          style: const TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 24),
-                          textAlign: TextAlign.end,
+                        SizedBox(
+                          width: 100,
+                          child: Text(
+                            _scoreModel.getPlayerTotalScore(j).toString(),
+                            style: const TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 24),
+                            textAlign: TextAlign.end,
+                          ),
                         ),
                       ),
                   ]),
                 ],
               ),
-            ),
-            ElevatedButton(
-              onPressed: _addRound,
-              child: const Text('Add Round'),
             ),
             Spacer(),
             // Add Round Button
