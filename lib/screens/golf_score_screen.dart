@@ -15,167 +15,201 @@ class GolfScoreScreen extends StatefulWidget {
 }
 
 class _GolfScoreScreenState extends State<GolfScoreScreen> {
-  final GolfScoreModel _scoreModel =
-      GolfScoreModel(playerNames: ['Player1', 'Player2', 'Player3', 'Player4']);
+  late Future<GolfScoreModel> _scoreModelFuture;
+  final String _version = '1.0.+2';
+
+  @override
+  void initState() {
+    super.initState();
+    _scoreModelFuture = GolfScoreModel.load();
+  }
 
   @override
   void dispose() {
     super.dispose();
   }
 
-  void _addPlayer() {
+  void _addPlayer(GolfScoreModel model) {
     setState(() {
-      _scoreModel.addPlayer('Player ${_scoreModel.playerNames.length + 1}');
+      model.addPlayer('Player ${model.playerNames.length + 1}');
     });
   }
 
-  void _clearScores() {
+  void _clearScores(GolfScoreModel model) {
     setState(() {
-      _scoreModel.clearScores();
+      model.clearScores();
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    final List<int> ranks = _scoreModel.getPlayerRanks();
-    const double columnWidth = 90;
-    return Screen(
-      title: '9 Cards Golf Scorekeeper',
-      version: '1.0.1',
-      isWaiting: false,
-      onRefresh: confirmNewGame,
-      child: Padding(
-        padding: const EdgeInsets.only(top: 8, bottom: 8, left: 4, right: 4),
-        child: Column(
-          children: [
-            // Player Name Edit Boxes
-            // Score Table
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: DataTable(
-                columnSpacing: 1,
-                horizontalMargin: 0,
-                columns: [
-                  for (int i = 0; i < _scoreModel.playerNames.length; i++)
-                    DataColumn(
-                      label: SizedBox(
-                        width: columnWidth, // Adjust width as needed
-                        child: EditablePlayerName(
-                          key: Key('$i${_scoreModel.playerNames[i]}'),
-                          playerName: _scoreModel.playerNames[i],
-                          color: _getScoreColor(
-                                  ranks[i], _scoreModel.playerNames.length)
-                              .withAlpha(100),
-                          onNameChanged: (newName) {
-                            setState(() {
-                              _scoreModel.playerNames[i] = newName;
-                            });
-                          },
-                          onPlayerRemoved: () {
-                            setState(() {
-                              _scoreModel.removePlayerAt(i);
-                            });
-                          },
-                        ),
-                      ),
-                    ),
-                  DataColumn(
-                    label: IconButton(
-                        onPressed: _addPlayer, icon: Icon(Icons.add)),
-                  ),
-                ],
-                rows: [
-                  for (int i = 0; i < _scoreModel.scores.length; i++)
-                    DataRow(cells: [
-                      for (int j = 0; j < _scoreModel.playerNames.length; j++)
-                        DataCell(
-                          SizedBox(
-                            width: columnWidth,
-                            child: TextFormField(
-                              key: Key(
-                                  '$i,$j ${_scoreModel.scores[i][j].toString()}'),
-                              keyboardType:
-                                  const TextInputType.numberWithOptions(
-                                signed: true,
-                                decimal: false,
-                              ),
-                              initialValue: _scoreModel.scores[i][j].toString(),
-                              decoration: const InputDecoration(
-                                border: OutlineInputBorder(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(5))),
-                                fillColor: Colors.black,
-                              ),
-                              onChanged: (value) {
-                                final int? parsedValue = int.tryParse(value);
-                                if (parsedValue != null) {
-                                  setState(() {
-                                    _scoreModel.updateScore(
-                                      i,
-                                      j,
-                                      parsedValue,
-                                    );
-                                    if (!_scoreModel.isLastRoundEmpty()) {
-                                      _scoreModel.addRound();
-                                    }
-                                  });
-                                }
-                              },
-                              validator: (value) {
-                                if (value == null ||
-                                    int.tryParse(value) == null) {
-                                  return ''; // Invalid
-                                }
-                                return null; // Valid
-                              },
-                            ),
-                          ),
-                        ),
-                      DataCell(
-                        (i == 0)
-                            ? Text('')
-                            : IconButton(
-                                icon: Icon(Icons.close),
-                                onPressed: () {
-                                  confirmDeleteRound(i);
-                                },
-                              ),
-                      ),
-                    ]),
+    return FutureBuilder<GolfScoreModel>(
+      future: _scoreModelFuture,
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting ||
+            snapshot.hasError) {
+          return Screen(
+            title: '9 Cards Golf Scorekeeper',
+            version: _version,
+            isWaiting: true,
+            child: Center(
+                child: snapshot.connectionState == ConnectionState.waiting
+                    ? CircularProgressIndicator()
+                    : Text('Error loading scores: ${snapshot.error}')),
+          );
+        }
 
-                  // Total Row
-                  DataRow(
-                    cells: [
-                      for (int j = 0; j < _scoreModel.playerNames.length; j++)
-                        DataCell(
-                          Container(
-                            color: Colors.black38,
-                            width: columnWidth,
-                            child: Text(
-                              _scoreModel.getPlayerTotalScore(j).toString(),
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 24,
-                                  color: _getScoreColor(ranks[j],
-                                      _scoreModel.playerNames.length)),
-                              textAlign: TextAlign.center,
+        final GolfScoreModel scoreModel = snapshot.data!;
+        final List<int> ranks = scoreModel.getPlayerRanks();
+        const double columnWidth = 90;
+
+        return Screen(
+          title: '9 Cards Golf Scorekeeper',
+          version: _version,
+          isWaiting: false,
+          onRefresh: () => confirmNewGame(scoreModel),
+          child: Padding(
+            padding:
+                const EdgeInsets.only(top: 8, bottom: 8, left: 4, right: 4),
+            child: Column(
+              children: [
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: DataTable(
+                    columnSpacing: 8,
+                    horizontalMargin: 0,
+                    columns: [
+                      // Player Names
+                      for (int i = 0; i < scoreModel.playerNames.length; i++)
+                        DataColumn(
+                          label: SizedBox(
+                            width: columnWidth, // Adjust width as needed
+                            child: EditablePlayerName(
+                              key: Key('$i${scoreModel.playerNames[i]}'),
+                              playerName: scoreModel.playerNames[i],
+                              color: _getScoreColor(
+                                      ranks[i], scoreModel.playerNames.length)
+                                  .withAlpha(100),
+                              onNameChanged: (newName) {
+                                setState(() {
+                                  scoreModel.playerNames[i] = newName;
+                                });
+                              },
+                              onPlayerRemoved: () {
+                                setState(() {
+                                  scoreModel.removePlayerAt(i);
+                                });
+                              },
                             ),
                           ),
                         ),
-                      const DataCell(SizedBox.shrink()),
+                      DataColumn(
+                        label: IconButton(
+                            onPressed: () => _addPlayer(scoreModel),
+                            icon: const Icon(Icons.add)),
+                      ),
+                    ],
+                    // Player Names and Scores
+                    rows: [
+                      for (int i = 0; i < scoreModel.scores.length; i++)
+                        DataRow(cells: [
+                          for (int j = 0;
+                              j < scoreModel.playerNames.length;
+                              j++)
+                            DataCell(
+                              SizedBox(
+                                width: columnWidth,
+                                child: TextFormField(
+                                  key: Key(
+                                      '$i,$j ${scoreModel.scores[i][j].toString()}'),
+                                  // keyboardType:
+                                  //     const TextInputType.numberWithOptions(
+                                  //   signed: true,
+                                  //   decimal: false,
+                                  // ),
+                                  initialValue:
+                                      scoreModel.scores[i][j].toString(),
+                                  decoration: const InputDecoration(
+                                    border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(5))),
+                                    fillColor: Colors.black,
+                                  ),
+                                  onChanged: (value) {
+                                    final int? parsedValue =
+                                        int.tryParse(value);
+                                    if (parsedValue != null) {
+                                      setState(() {
+                                        scoreModel.updateScore(
+                                          i,
+                                          j,
+                                          parsedValue,
+                                        );
+                                        if (!scoreModel.isLastRoundEmpty()) {
+                                          scoreModel.addRound();
+                                        }
+                                      });
+                                    }
+                                  },
+                                  validator: (value) {
+                                    if (value == null ||
+                                        int.tryParse(value) == null) {
+                                      return ''; // Invalid
+                                    }
+                                    return null; // Valid
+                                  },
+                                ),
+                              ),
+                            ),
+                          DataCell(
+                            (i == 0)
+                                ? const Text('')
+                                : IconButton(
+                                    icon: const Icon(Icons.close),
+                                    onPressed: () {
+                                      confirmDeleteRound(i, scoreModel);
+                                    },
+                                  ),
+                          ),
+                        ]),
+
+                      // Total Row
+                      DataRow(
+                        cells: [
+                          for (int j = 0;
+                              j < scoreModel.playerNames.length;
+                              j++)
+                            DataCell(
+                              Container(
+                                color: Colors.black38,
+                                width: columnWidth,
+                                child: Text(
+                                  scoreModel.getPlayerTotalScore(j).toString(),
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 24,
+                                      color: _getScoreColor(ranks[j],
+                                          scoreModel.playerNames.length)),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                            ),
+                          const DataCell(SizedBox.shrink()),
+                        ],
+                      ),
                     ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 
   /// Shows a confirmation dialog before deleting a round.
-  Future<void> confirmDeleteRound(int i) async {
+  Future<void> confirmDeleteRound(int i, GolfScoreModel model) async {
     final bool? confirmed = await showDialog<bool>(
       context: context,
       builder: (ctx) => AlertDialog(
@@ -196,18 +230,18 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
 
     if (confirmed == true) {
       setState(() {
-        _scoreModel.removeRoundAt(i);
+        model.removeRoundAt(i);
       });
     }
   }
 
   /// Shows a confirmation dialog before deleting a round.
-  Future<void> confirmNewGame() async {
+  Future<void> confirmNewGame(GolfScoreModel model) async {
     final bool? confirmed = await showDialog<bool>(
       context: context,
       builder: (ctx) => AlertDialog(
         title: const Text('New Game'),
-        content: Text(
+        content: const Text(
             'Are you sure you want to start a new game? All scores will be lost?'),
         actions: [
           TextButton(
@@ -224,7 +258,7 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
 
     if (confirmed == true) {
       setState(() {
-        _clearScores();
+        _clearScores(model);
       });
     }
   }

@@ -95,6 +95,7 @@ class _EditablePlayerNameState extends State<EditablePlayerName> {
   Widget build(BuildContext context) {
     return TextField(
       controller: _controller,
+      keyboardType: TextInputType.text,
       focusNode: _focusNode,
       decoration: InputDecoration(
         fillColor: widget.color,

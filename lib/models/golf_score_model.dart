@@ -1,3 +1,7 @@
+import 'dart:convert';
+
+import 'package:shared_preferences/shared_preferences.dart';
+
 // ignore: sort_constructors_first
 /// Represents the score data for a 9 Cards Golf game.
 class GolfScoreModel {
@@ -22,6 +26,7 @@ class GolfScoreModel {
   /// Adds a new round to the game with initial scores (e.g., all zeros).
   void addRound() {
     scores.add(List.filled(playerNames.length, 0, growable: true));
+    _save();
   }
 
   /// Gets the total score for a specific player.
@@ -46,6 +51,7 @@ class GolfScoreModel {
   void updateScore(int roundIndex, int playerIndex, int score) {
     if (roundIndex < scores.length && playerIndex < scores[roundIndex].length) {
       scores[roundIndex][playerIndex] = score;
+      _save();
     }
   }
 
@@ -53,12 +59,14 @@ class GolfScoreModel {
   void clearScores() {
     scores.clear();
     addRound();
+    _save();
   }
 
   /// Clears all scores and player names from the model.
   void clearPlayers() {
     clearScores();
     playerNames.clear();
+    _save();
   }
 
   /// Removes a round at the specified index.
@@ -67,6 +75,7 @@ class GolfScoreModel {
   void removeRoundAt(int roundIndex) {
     if (roundIndex >= 0 && roundIndex < scores.length) {
       scores.removeAt(roundIndex);
+      _save();
     }
   }
 
@@ -81,6 +90,7 @@ class GolfScoreModel {
           roundScores.removeAt(playerIndex);
         }
       }
+      _save();
     }
   }
 
@@ -113,6 +123,7 @@ class GolfScoreModel {
         ..add(0);
       scores[i] = newRound;
     }
+    _save();
   }
 
   /// Gets the rank of each player based on their total score.
@@ -148,5 +159,31 @@ class GolfScoreModel {
       }
     }
     return ranks;
+  }
+
+  ///
+  Future<void> _save() async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setString('playerNames', jsonEncode(playerNames));
+    prefs.setString('scores', jsonEncode(scores));
+  }
+
+  ///
+  static Future<GolfScoreModel> load() async {
+    final prefs = await SharedPreferences.getInstance();
+    final playerNamesJson = prefs.getString('playerNames');
+    final scoresJson = prefs.getString('scores');
+
+    if (playerNamesJson != null && scoresJson != null) {
+      final playerNames = (jsonDecode(playerNamesJson) as List).cast<String>();
+      final scores = (jsonDecode(scoresJson) as List)
+          .map((list) => (list as List).cast<int>())
+          .toList();
+      return GolfScoreModel(playerNames: playerNames, scores: scores);
+    } else {
+      return GolfScoreModel(
+        playerNames: ['Player1', 'Player2', 'Player3', 'Player4'],
+      );
+    }
   }
 }
