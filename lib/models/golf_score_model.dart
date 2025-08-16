@@ -48,7 +48,11 @@ class GolfScoreModel {
   /// [roundIndex] The index of the round.
   /// [playerIndex] The index of the player.
   /// [score] The new score for the player in that round.
-  void updateScore(int roundIndex, int playerIndex, int score) {
+  void updateScore(
+    final int roundIndex,
+    final int playerIndex,
+    final int score,
+  ) {
     if (roundIndex < scores.length && playerIndex < scores[roundIndex].length) {
       scores[roundIndex][playerIndex] = score;
       _save();

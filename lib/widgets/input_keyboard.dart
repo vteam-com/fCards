@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 
 ///
+const String keyChangeSign = '_\n+';
+
+///
+const String keyBackspace = '<';
+
+///
 class InputKeyboard extends StatelessWidget {
   ///
   const InputKeyboard({super.key, required this.onKeyPressed});
@@ -32,7 +38,7 @@ class InputKeyboard extends StatelessWidget {
               _buildButton('3'),
               _buildButton('4'),
               _buildButton('5'),
-              _buildButton('−'),
+              _buildButton(keyChangeSign),
             ],
           ),
           Row(
@@ -43,7 +49,7 @@ class InputKeyboard extends StatelessWidget {
               _buildButton('8'),
               _buildButton('9'),
               _buildButton('0'),
-              _buildButton('⇐'),
+              _buildButton(keyBackspace),
             ],
           ),
         ],
@@ -70,7 +76,11 @@ class InputKeyboard extends StatelessWidget {
                 ),
               ),
             ),
-            child: Text(text, style: TextStyle(fontSize: 20)),
+            child: Text(
+              text,
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 20),
+            ),
           ),
         ),
       ),
