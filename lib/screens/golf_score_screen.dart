@@ -15,7 +15,7 @@ class GolfScoreScreen extends StatefulWidget {
 
 class _GolfScoreScreenState extends State<GolfScoreScreen> {
   final GolfScoreModel _scoreModel =
-      GolfScoreModel(playerNames: ['Rabit', 'Monkey', 'Lion', 'Zebra']);
+      GolfScoreModel(playerNames: ['Player1', 'Player2', 'Player3', 'Player4']);
 
   @override
   void dispose() {
@@ -23,14 +23,14 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
   }
 
   void _addPlayer() {
-    // Add player to the score model
-    _scoreModel.playerNames.add('Player${_scoreModel.playerNames.length + 1}');
-    setState(() {});
+    setState(() {
+      _scoreModel.addPlayer('Player ${_scoreModel.playerNames.length + 1}');
+    });
   }
 
-  void _clearAll() {
+  void _clearScores() {
     setState(() {
-      _scoreModel.clear();
+      _scoreModel.clearScores();
     });
   }
 
@@ -40,7 +40,7 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
     const double columnWidth = 80;
     return Screen(
       title: '9 Cards Golf Scorekeeper',
-      version: '1.0.0', // Placeholder version
+      version: '1.0.0',
       isWaiting: false,
       child: Padding(
         padding: const EdgeInsets.only(top: 8, bottom: 8, left: 4, right: 4),
@@ -127,9 +127,7 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
                         (i == 0)
                             ? Text('')
                             : IconButton(
-                                icon: Icon(
-                                  Icons.close,
-                                ),
+                                icon: Icon(Icons.close),
                                 onPressed: () {
                                   confirmDeleteRound(i);
                                 },
@@ -165,8 +163,8 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
             Spacer(),
             // Add Round Button
             ElevatedButton(
-              onPressed: _clearAll,
-              child: const Text('Clear All'),
+              onPressed: _clearScores,
+              child: const Text('New Game'),
             ),
           ],
         ),

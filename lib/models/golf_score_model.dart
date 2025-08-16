@@ -21,7 +21,7 @@ class GolfScoreModel {
 
   /// Adds a new round to the game with initial scores (e.g., all zeros).
   void addRound() {
-    scores.add(List<int>.filled(playerNames.length, 0));
+    scores.add(List.filled(playerNames.length, 0, growable: true));
   }
 
   /// Gets the total score for a specific player.
@@ -50,9 +50,15 @@ class GolfScoreModel {
   }
 
   /// Clears all scores and player names from the model.
-  void clear() {
-    playerNames.clear();
+  void clearScores() {
     scores.clear();
+    addRound();
+  }
+
+  /// Clears all scores and player names from the model.
+  void clearPlayers() {
+    clearScores();
+    playerNames.clear();
   }
 
   /// Removes a round at the specified index.
@@ -92,8 +98,10 @@ class GolfScoreModel {
   /// [playerName] The name of the player to add.
   void addPlayer(String playerName) {
     playerNames.add(playerName);
-    for (var roundScores in scores) {
-      roundScores.add(0);
+    for (int i = 0; i < scores.length; i++) {
+      final List<int> newRound = List<int>.from(scores[i], growable: true)
+        ..add(0);
+      scores[i] = newRound;
     }
   }
 
@@ -103,18 +111,32 @@ class GolfScoreModel {
   /// The player with the lowest score gets rank 1.
   /// Players with the same score get the same rank.
   List<int> getPlayerRanks() {
+    if (playerNames.isEmpty) {
+      return [];
+    }
     final List<int> totalScores = List.generate(
       playerNames.length,
       (index) => getPlayerTotalScore(index),
     );
 
-    final List<int> sortedScores = List.from(totalScores)..sort();
+    final List<MapEntry<int, int>> indexedScores = totalScores
+        .asMap()
+        .entries
+        .map((entry) => MapEntry(entry.key, entry.value))
+        .toList();
+
+    indexedScores.sort((a, b) => a.value.compareTo(b.value));
+
     final List<int> ranks = List.filled(playerNames.length, 0);
-
-    for (int i = 0; i < playerNames.length; i++) {
-      ranks[i] = sortedScores.indexOf(totalScores[i]) + 1;
+    for (int i = 0; i < indexedScores.length; i++) {
+      final int rank = i + 1;
+      final int originalIndex = indexedScores[i].key;
+      if (i > 0 && indexedScores[i].value == indexedScores[i - 1].value) {
+        ranks[originalIndex] = ranks[indexedScores[i - 1].key];
+      } else {
+        ranks[originalIndex] = rank;
+      }
     }
-
     return ranks;
   }
 }
