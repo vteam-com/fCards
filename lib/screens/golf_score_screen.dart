@@ -177,101 +177,124 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
                   children: [
                     SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
-                      child: DataTable(
-                        columnSpacing: columnGap,
-                        horizontalMargin: 0,
-
-                        columns: [
-                          // Player Names
-                          for (int i = 0;
-                              i < scoreModel.playerNames.length;
-                              i++)
-                            DataColumn(
-                              label: SizedBox(
-                                width: columnWidth, // Adjust width as needed
-                                child: EditablePlayerName(
-                                  key: Key('\$i\${scoreModel.playerNames[i]}'),
-                                  playerName: scoreModel.playerNames[i],
-                                  color: _getScoreColor(ranks[i],
-                                          scoreModel.playerNames.length)
-                                      .withAlpha(100),
-                                  onNameChanged: (newName) {
-                                    setState(() {
-                                      scoreModel.playerNames[i] = newName;
-                                    });
-                                  },
-                                  onPlayerRemoved: () {
-                                    setState(() {
-                                      scoreModel.removePlayerAt(i);
-                                    });
-                                  },
-                                ),
-                              ),
-                            ),
-                          DataColumn(
-                            label: IconButton(
-                                onPressed: () => _addPlayer(scoreModel),
-                                icon: const Icon(Icons.add)),
-                          ),
-                        ],
-                        // Player Names and Scores
-                        rows: [
-                          for (int i = 0; i < scoreModel.scores.length; i++)
-                            DataRow(cells: [
-                              for (int j = 0;
-                                  j < scoreModel.playerNames.length;
-                                  j++)
-                                DataCell(
-                                  GestureDetector(
-                                    onTap: () {
-                                      setState(() {
-                                        _selectedCell = {'row': i, 'col': j};
-                                      });
-                                    },
-                                    child: Container(
-                                      width: columnWidth,
-                                      decoration: BoxDecoration(
-                                        color: Colors.black26,
-                                        border: Border.all(
-                                          color: _selectedCell != null &&
-                                                  _selectedCell!['row'] == i &&
-                                                  _selectedCell!['col'] == j
-                                              ? Colors.blue
-                                              : Colors.transparent,
-                                          width: 2,
-                                        ),
-                                        borderRadius: const BorderRadius.all(
-                                            Radius.circular(5)),
-                                      ),
-                                      child: Text(
-                                        scoreModel.scores[i][j] == 0
-                                            ? '0'
-                                            : scoreModel.scores[i][j]
-                                                .toString(),
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 20,
-                                            color: _getScoreColor(ranks[j],
-                                                scoreModel.playerNames.length)),
-                                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          // Header row with player names
+                          Row(
+                            children: [
+                              for (int i = 0;
+                                  i < scoreModel.playerNames.length;
+                                  i++)
+                                Padding(
+                                  padding: EdgeInsets.only(right: columnGap),
+                                  child: SizedBox(
+                                    width: columnWidth,
+                                    child: EditablePlayerName(
+                                      key: Key(
+                                          '\$i\${scoreModel.playerNames[i]}'),
+                                      playerName: scoreModel.playerNames[i],
+                                      color: _getScoreColor(
+                                        ranks[i],
+                                        scoreModel.playerNames.length,
+                                      ).withAlpha(100),
+                                      onNameChanged: (newName) {
+                                        setState(() {
+                                          scoreModel.playerNames[i] = newName;
+                                        });
+                                      },
+                                      onPlayerRemoved: () {
+                                        setState(() {
+                                          scoreModel.removePlayerAt(i);
+                                        });
+                                      },
                                     ),
                                   ),
                                 ),
-                              DataCell(
-                                SizedBox(
-                                  width: columnWidth / 2,
-                                  child: (i == 0)
-                                      ? const Text('')
-                                      : IconButton(
-                                          icon: const Icon(Icons.close),
-                                          onPressed: () {
-                                            confirmDeleteRound(i, scoreModel);
-                                          },
-                                        ),
-                                ),
+                              // Add player button
+                              IconButton(
+                                onPressed: () => _addPlayer(scoreModel),
+                                icon: const Icon(Icons.add),
                               ),
-                            ]),
+                            ],
+                          ),
+                          const SizedBox(height: 8),
+                          // Score rows
+                          for (int i = 0; i < scoreModel.scores.length; i++)
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 8.0),
+                              child: Row(
+                                children: [
+                                  for (int j = 0;
+                                      j < scoreModel.playerNames.length;
+                                      j++)
+                                    Padding(
+                                      padding:
+                                          EdgeInsets.only(right: columnGap),
+                                      child: GestureDetector(
+                                        onTap: () {
+                                          setState(() {
+                                            _selectedCell = {
+                                              'row': i,
+                                              'col': j
+                                            };
+                                          });
+                                        },
+                                        child: Container(
+                                          width: columnWidth,
+                                          height: 40,
+                                          decoration: BoxDecoration(
+                                            color: Colors.black26,
+                                            border: Border.all(
+                                              color: _selectedCell != null &&
+                                                      _selectedCell!['row'] ==
+                                                          i &&
+                                                      _selectedCell!['col'] == j
+                                                  ? Colors.yellow
+                                                  : Colors.transparent,
+                                              width: 2,
+                                            ),
+                                            borderRadius:
+                                                const BorderRadius.all(
+                                              Radius.circular(5),
+                                            ),
+                                          ),
+                                          child: Center(
+                                            child: Text(
+                                              scoreModel.scores[i][j] == 0
+                                                  ? '0'
+                                                  : scoreModel.scores[i][j]
+                                                      .toString(),
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 20,
+                                                color: _getScoreColor(
+                                                  ranks[j],
+                                                  scoreModel.playerNames.length,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  // Delete round button
+                                  SizedBox(
+                                    width: columnWidth / 2,
+                                    child: i == 0
+                                        ? const SizedBox.shrink()
+                                        : IconButton(
+                                            padding: EdgeInsets.zero,
+                                            icon: const Icon(Icons.close,
+                                                size: 20),
+                                            onPressed: () {
+                                              confirmDeleteRound(i, scoreModel);
+                                            },
+                                          ),
+                                  ),
+                                ],
+                              ),
+                            ),
                         ],
                       ),
                     ),
