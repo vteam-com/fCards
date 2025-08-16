@@ -129,7 +129,6 @@ class GameScreenState extends State<GameScreen> {
     return Screen(
       isWaiting: !isReady,
       title: widget.gameModel.getGameStateAsString(),
-      version: widget.gameModel.version,
       rightText:
           '${widget.gameModel.roomName} [ ${widget.gameModel.loginUserName} ]',
       onRefresh: _onRefresh,

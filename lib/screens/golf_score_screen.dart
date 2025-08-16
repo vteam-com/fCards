@@ -17,7 +17,6 @@ class GolfScoreScreen extends StatefulWidget {
 
 class _GolfScoreScreenState extends State<GolfScoreScreen> {
   late Future<GolfScoreModel> _scoreModelFuture;
-  final String _version = '1.0.+2';
   Map<String, int>? _selectedCell;
 
   @override
@@ -99,7 +98,6 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
             snapshot.hasError) {
           return Screen(
             title: '9 Cards Golf Scorekeeper',
-            version: _version,
             isWaiting: true,
             child: Center(
                 child: snapshot.connectionState == ConnectionState.waiting
@@ -115,7 +113,6 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
 
         return Screen(
           title: '9 Cards Golf Scorekeeper',
-          version: _version,
           isWaiting: false,
           onRefresh: () => confirmNewGame(scoreModel),
           child: GestureDetector(

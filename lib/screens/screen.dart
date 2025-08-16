@@ -1,5 +1,7 @@
+import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:share_plus/share_plus.dart';
 
 /// Defines breakpoint constants for responsive design
@@ -31,11 +33,10 @@ extension DeviceType on BuildContext {
 }
 
 /// A scaffold widget that provides a common screen layout with app bar and background
-class Screen extends StatelessWidget {
+class Screen extends StatefulWidget {
   /// Creates a Screen widget
   ///
   /// [title] - Text shown in app bar
-  /// [version] - Version number shown in app bar
   /// [child] - Main content widget
   /// [onRefresh] - Optional callback for refresh button
   /// [getLinkToShare] - Optional callback to get shareable link
@@ -44,7 +45,6 @@ class Screen extends StatelessWidget {
   const Screen({
     super.key,
     required this.title,
-    required this.version,
     required this.child,
     this.onRefresh,
     this.getLinkToShare,
@@ -55,12 +55,6 @@ class Screen extends StatelessWidget {
   /// Title text shown in the app bar
   final String title;
 
-  /// Version number shown in app bar that links to licenses page
-  final String version;
-
-  /// Optional text shown on right side of app bar (e.g. user name)
-  final String rightText;
-
   /// Main content widget displayed in the body
   final Widget child;
 
@@ -70,8 +64,34 @@ class Screen extends StatelessWidget {
   /// Optional callback that returns a string URL/link for sharing
   final String Function()? getLinkToShare;
 
+  /// Optional text shown on right side of app bar (e.g. user name)
+  final String rightText;
+
   /// When true, displays a loading indicator instead of the main content
   final bool isWaiting;
+
+  @override
+  State<Screen> createState() => _ScreenState();
+}
+
+class _ScreenState extends State<Screen> {
+  String _version = '';
+
+  @override
+  void initState() {
+    super.initState();
+    _getAppVersion();
+  }
+
+  /// Fetches the application version from the platform package info.
+  Future<void> _getAppVersion() async {
+    final packageInfo = await PackageInfo.fromPlatform();
+    if (mounted) {
+      setState(() {
+        _version = packageInfo.version;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -80,7 +100,7 @@ class Screen extends StatelessWidget {
         title: FittedBox(
           fit: BoxFit.scaleDown,
           child: Text(
-            title,
+            widget.title,
             style: TextStyle(color: Colors.yellow.shade100.withAlpha(200)),
           ),
         ),
@@ -89,7 +109,7 @@ class Screen extends StatelessWidget {
           /// VERSION & LICENSES
           ///
           TextButton(
-            child: Text(version),
+            child: Text(_version),
             onPressed: () async {
               if (context.mounted) {
                 Navigator.push(
@@ -98,7 +118,7 @@ class Screen extends StatelessWidget {
                     pageBuilder: (context, animation, secondaryAnimation) =>
                         LicensePage(
                       applicationName: 'VTeam Cards',
-                      applicationVersion: version,
+                      applicationVersion: _version,
                     ),
                   ),
                 );
@@ -109,36 +129,31 @@ class Screen extends StatelessWidget {
           ///
           /// REFRESH
           ///
-          if (onRefresh != null)
+          if (widget.onRefresh != null)
             IconButton(
               icon: const Icon(Icons.refresh),
-              onPressed: () {
-                onRefresh!();
-              },
+              onPressed: () => widget.onRefresh!(),
             ),
 
           /// RIGHT SIDE TEXT (User Name)
-          if (rightText.isNotEmpty)
+          if (widget.rightText.isNotEmpty)
             Padding(
-              // Add padding to prevent text from being cut off
-              padding: EdgeInsets.only(right: 8.0), // Adjust as needed
-              child: Padding(
-                padding: const EdgeInsets.only(left: 8.0),
-                child: Text(
-                  rightText,
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                widget.rightText,
+                style: TextStyle(color: Colors.yellow.shade100.withAlpha(200)),
               ),
             ),
 
           //
           // Share link
           //
-          if (getLinkToShare != null)
+          if (widget.getLinkToShare != null)
             IconButton(
               icon: const Icon(Icons.ios_share),
               onPressed: () {
-                SharePlus.instance.share(ShareParams(text: getLinkToShare!()));
+                SharePlus.instance
+                    .share(ShareParams(text: widget.getLinkToShare!()));
               },
             ),
         ],
@@ -149,7 +164,7 @@ class Screen extends StatelessWidget {
             decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage('assets/images/table_top.png'),
-                fit: BoxFit.cover, // adjust the fit as needed
+                fit: BoxFit.cover,
               ),
             ),
             child: SizedBox.expand(
@@ -157,8 +172,8 @@ class Screen extends StatelessWidget {
                 style: TextStyle(
                   color: Colors.green.shade100,
                   fontSize: 20,
-                ), // Your default style
-                child: isWaiting ? _displayWaiting() : child,
+                ),
+                child: widget.isWaiting ? _displayWaiting() : widget.child,
               ),
             ),
           ),

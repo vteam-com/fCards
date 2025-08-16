@@ -223,7 +223,6 @@ class StartScreenState extends State<StartScreen> {
     return Screen(
       isWaiting: _waitingOnFirstBackendData,
       title: 'Card Games',
-      version: appVersion,
       getLinkToShare: () {
         return _getUrlToGame();
       },
