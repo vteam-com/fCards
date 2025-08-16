@@ -64,11 +64,11 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
             currentValue = '0';
           }
         }
-      } else if (key == '-') {
+      } else if (key == '−') {
         if (currentValue.startsWith('-')) {
           currentValue = currentValue.substring(1);
         } else {
-          currentValue = '-\$currentValue';
+          currentValue = '-$currentValue';
         }
       } else {
         if (currentValue == '0') {
@@ -79,15 +79,13 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
       }
 
       final int? parsedValue = int.tryParse(currentValue);
-      if (parsedValue != null) {
-        model.updateScore(
-          row,
-          col,
-          parsedValue,
-        );
-        if (!model.isLastRoundEmpty()) {
-          model.addRound();
-        }
+      model.updateScore(
+        row,
+        col,
+        parsedValue ?? 0,
+      );
+      if (!model.isLastRoundEmpty()) {
+        model.addRound();
       }
     });
   }

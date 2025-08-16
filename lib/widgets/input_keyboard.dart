@@ -11,7 +11,7 @@ class InputKeyboard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 200,
+      width: 400,
       child: Column(
         children: [
           Row(
@@ -20,28 +20,18 @@ class InputKeyboard extends StatelessWidget {
               _buildButton('1'),
               _buildButton('2'),
               _buildButton('3'),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
               _buildButton('4'),
               _buildButton('5'),
-              _buildButton('6'),
+              _buildButton('−'),
             ],
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              _buildButton('6'),
               _buildButton('7'),
               _buildButton('8'),
               _buildButton('9'),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              _buildButton('-'),
               _buildButton('0'),
               _buildButton('⇐'),
             ],
