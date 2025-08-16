@@ -10,7 +10,17 @@ class InputKeyboard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.black26,
+        border: Border.all(
+          color: Colors.black26,
+        ),
+        borderRadius: const BorderRadius.all(
+          Radius.circular(40),
+        ),
+      ),
+      padding: EdgeInsets.all(10),
       width: 400,
       child: Column(
         children: [
@@ -47,7 +57,7 @@ class InputKeyboard extends StatelessWidget {
         padding: const EdgeInsets.all(4.0),
         child: SizedBox(
           width: 50,
-          height: 60,
+          height: 55,
           child: ElevatedButton(
             onPressed: () => onKeyPressed(text),
             style: ButtonStyle(
