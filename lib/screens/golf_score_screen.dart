@@ -2,6 +2,7 @@
 
 import 'package:cards/models/golf_score_model.dart';
 import 'package:cards/screens/screen.dart';
+import 'package:cards/widgets/editable_player_name.dart';
 import 'package:flutter/material.dart';
 
 /// A screen for keeping score of 9 Cards Golf games.
@@ -37,10 +38,10 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
   @override
   Widget build(BuildContext context) {
     final List<int> ranks = _scoreModel.getPlayerRanks();
-    const double columnWidth = 80;
+    const double columnWidth = 90;
     return Screen(
       title: '9 Cards Golf Scorekeeper',
-      version: '1.0.0',
+      version: '1.0.1',
       isWaiting: false,
       onRefresh: confirmNewGame,
       child: Padding(
@@ -59,21 +60,21 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
                     DataColumn(
                       label: SizedBox(
                         width: columnWidth, // Adjust width as needed
-                        child: TextField(
-                          controller: TextEditingController(
-                              text: _scoreModel.playerNames[i]),
-                          textAlign: TextAlign.center,
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(5))),
-                            fillColor: _getScoreColor(
-                                    ranks[i], _scoreModel.playerNames.length)
-                                .withAlpha(100),
-                            contentPadding: EdgeInsets.all(8.0),
-                          ),
-                          onChanged: (newName) {
-                            _scoreModel.playerNames[i] = newName;
+                        child: EditablePlayerName(
+                          key: Key('$i${_scoreModel.playerNames[i]}'),
+                          playerName: _scoreModel.playerNames[i],
+                          color: _getScoreColor(
+                                  ranks[i], _scoreModel.playerNames.length)
+                              .withAlpha(100),
+                          onNameChanged: (newName) {
+                            setState(() {
+                              _scoreModel.playerNames[i] = newName;
+                            });
+                          },
+                          onPlayerRemoved: () {
+                            setState(() {
+                              _scoreModel.removePlayerAt(i);
+                            });
                           },
                         ),
                       ),

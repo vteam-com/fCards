@@ -84,6 +84,16 @@ class GolfScoreModel {
     }
   }
 
+  /// Removes a player from the game by name.
+  ///
+  /// [playerName] The name of the player to remove.
+  void removePlayer(String playerName) {
+    final int index = playerNames.indexOf(playerName);
+    if (index != -1) {
+      removePlayerAt(index);
+    }
+  }
+
   /// Checks if the last round is empty (all scores are 0).
   bool isLastRoundEmpty() {
     if (scores.isEmpty) {
