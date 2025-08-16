@@ -118,138 +118,149 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
           version: _version,
           isWaiting: false,
           onRefresh: () => confirmNewGame(scoreModel),
-          child: Padding(
-            padding:
-                const EdgeInsets.only(top: 8, bottom: 8, left: 4, right: 4),
-            child: Column(
-              children: [
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: DataTable(
-                    columnSpacing: columnGap,
-                    horizontalMargin: 0,
-                    columns: [
-                      // Player Names
-                      for (int i = 0; i < scoreModel.playerNames.length; i++)
-                        DataColumn(
-                          label: SizedBox(
-                            width: columnWidth, // Adjust width as needed
-                            child: EditablePlayerName(
-                              key: Key('\$i\${scoreModel.playerNames[i]}'),
-                              playerName: scoreModel.playerNames[i],
-                              color: _getScoreColor(
-                                      ranks[i], scoreModel.playerNames.length)
-                                  .withAlpha(100),
-                              onNameChanged: (newName) {
-                                setState(() {
-                                  scoreModel.playerNames[i] = newName;
-                                });
-                              },
-                              onPlayerRemoved: () {
-                                setState(() {
-                                  scoreModel.removePlayerAt(i);
-                                });
-                              },
-                            ),
-                          ),
-                        ),
-                      DataColumn(
-                        label: IconButton(
-                            onPressed: () => _addPlayer(scoreModel),
-                            icon: const Icon(Icons.add)),
-                      ),
-                    ],
-                    // Player Names and Scores
-                    rows: [
-                      for (int i = 0; i < scoreModel.scores.length; i++)
-                        DataRow(cells: [
-                          for (int j = 0;
-                              j < scoreModel.playerNames.length;
-                              j++)
-                            DataCell(
-                              GestureDetector(
-                                onTap: () {
+          child: GestureDetector(
+            behavior: HitTestBehavior.translucent,
+            onTap: () {
+              setState(() {
+                _selectedCell = null;
+              });
+            },
+            child: Padding(
+              padding:
+                  const EdgeInsets.only(top: 8, bottom: 8, left: 4, right: 4),
+              child: Column(
+                children: [
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: DataTable(
+                      columnSpacing: columnGap,
+                      horizontalMargin: 0,
+                      columns: [
+                        // Player Names
+                        for (int i = 0; i < scoreModel.playerNames.length; i++)
+                          DataColumn(
+                            label: SizedBox(
+                              width: columnWidth, // Adjust width as needed
+                              child: EditablePlayerName(
+                                key: Key('\$i\${scoreModel.playerNames[i]}'),
+                                playerName: scoreModel.playerNames[i],
+                                color: _getScoreColor(
+                                        ranks[i], scoreModel.playerNames.length)
+                                    .withAlpha(100),
+                                onNameChanged: (newName) {
                                   setState(() {
-                                    _selectedCell = {'row': i, 'col': j};
+                                    scoreModel.playerNames[i] = newName;
                                   });
                                 },
-                                child: Container(
-                                  width: columnWidth,
-                                  decoration: BoxDecoration(
-                                    color: Colors.black26,
-                                    border: Border.all(
-                                      color: _selectedCell != null &&
-                                              _selectedCell!['row'] == i &&
-                                              _selectedCell!['col'] == j
-                                          ? Colors.blue
-                                          : Colors.transparent,
-                                      width: 2,
+                                onPlayerRemoved: () {
+                                  setState(() {
+                                    scoreModel.removePlayerAt(i);
+                                  });
+                                },
+                              ),
+                            ),
+                          ),
+                        DataColumn(
+                          label: IconButton(
+                              onPressed: () => _addPlayer(scoreModel),
+                              icon: const Icon(Icons.add)),
+                        ),
+                      ],
+                      // Player Names and Scores
+                      rows: [
+                        for (int i = 0; i < scoreModel.scores.length; i++)
+                          DataRow(cells: [
+                            for (int j = 0;
+                                j < scoreModel.playerNames.length;
+                                j++)
+                              DataCell(
+                                GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      _selectedCell = {'row': i, 'col': j};
+                                    });
+                                  },
+                                  child: Container(
+                                    width: columnWidth,
+                                    decoration: BoxDecoration(
+                                      color: Colors.black26,
+                                      border: Border.all(
+                                        color: _selectedCell != null &&
+                                                _selectedCell!['row'] == i &&
+                                                _selectedCell!['col'] == j
+                                            ? Colors.blue
+                                            : Colors.transparent,
+                                        width: 2,
+                                      ),
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(5)),
                                     ),
-                                    borderRadius: const BorderRadius.all(
-                                        Radius.circular(5)),
-                                  ),
-                                  child: Text(
-                                    scoreModel.scores[i][j].toString(),
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 20,
-                                        color: _getScoreColor(ranks[j],
-                                            scoreModel.playerNames.length)),
+                                    child: Text(
+                                      scoreModel.scores[i][j].toString(),
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 20,
+                                          color: _getScoreColor(ranks[j],
+                                              scoreModel.playerNames.length)),
+                                    ),
                                   ),
                                 ),
                               ),
+                            DataCell(
+                              SizedBox(
+                                width: columnWidth / 2,
+                                child: (i == 0)
+                                    ? const Text('')
+                                    : IconButton(
+                                        icon: const Icon(Icons.close),
+                                        onPressed: () {
+                                          confirmDeleteRound(i, scoreModel);
+                                        },
+                                      ),
+                              ),
                             ),
-                          DataCell(
-                            SizedBox(
-                              width: columnWidth / 2,
-                              child: (i == 0)
-                                  ? const Text('')
-                                  : IconButton(
-                                      icon: const Icon(Icons.close),
-                                      onPressed: () {
-                                        confirmDeleteRound(i, scoreModel);
-                                      },
-                                    ),
-                            ),
-                          ),
-                        ]),
-                    ],
+                          ]),
+                      ],
+                    ),
                   ),
-                ),
-                if (_selectedCell != null)
-                  InputKeyboard(
-                    onKeyPressed: (key) => _handleKeyPress(key, scoreModel),
-                  ),
-                // Total Row
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  spacing: columnGap,
-                  children: [
-                    for (int j = 0; j < scoreModel.playerNames.length; j++)
-                      SizedBox(
-                        width: columnWidth,
-                        child: Container(
-                          // color: Colors.black12,
-                          margin: EdgeInsets.only(top: 20),
+                  if (_selectedCell != null)
+                    Padding(
+                      padding: const EdgeInsets.only(right: columnWidth / 2),
+                      child: InputKeyboard(
+                        onKeyPressed: (key) => _handleKeyPress(key, scoreModel),
+                      ),
+                    ),
+                  // Total Row
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    spacing: columnGap,
+                    children: [
+                      for (int j = 0; j < scoreModel.playerNames.length; j++)
+                        SizedBox(
                           width: columnWidth,
-                          child: Text(
-                            scoreModel.getPlayerTotalScore(j).toString(),
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 24,
-                                color: _getScoreColor(
-                                    ranks[j], scoreModel.playerNames.length)),
-                            textAlign: TextAlign.center,
+                          child: Container(
+                            // color: Colors.black12,
+                            margin: EdgeInsets.only(top: 20),
+                            width: columnWidth,
+                            child: Text(
+                              scoreModel.getPlayerTotalScore(j).toString(),
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 24,
+                                  color: _getScoreColor(
+                                      ranks[j], scoreModel.playerNames.length)),
+                              textAlign: TextAlign.center,
+                            ),
                           ),
                         ),
-                      ),
-                    SizedBox(
-                      width: columnWidth / 2,
-                    )
-                  ],
-                ),
-              ],
+                      SizedBox(
+                        width: columnWidth / 2,
+                      )
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         );
