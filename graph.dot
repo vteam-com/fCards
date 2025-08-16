@@ -34,6 +34,7 @@ digraph "" {
   "/lib/screens/start_screen.dart" [label="start_screen"];
   "/lib/screens/screen.dart" [label="screen"];
   "/lib/main.dart" [label="main"];
+  "/lib/widgets/input_keyboard.dart" [label="input_keyboard"];
   "/lib/widgets/date_importance.dart" [label="date_importance"];
   "/lib/widgets/cards/card_pile_widget.dart" [label="card_pile_widget"];
   "/lib/widgets/cards/card_face_skyjo_widget.dart" [label="card_face_skyjo_widget"];
@@ -105,6 +106,7 @@ digraph "" {
       }
       subgraph "cluster~/lib/widgets" {
         label="widgets";
+        "/lib/widgets/input_keyboard.dart";
         "/lib/widgets/date_importance.dart";
         "/lib/widgets/dialog.dart";
         "/lib/widgets/wiggle_widget.dart";
@@ -183,6 +185,7 @@ digraph "" {
   "/lib/screens/golf_score_screen.dart" -> "/lib/models/golf_score_model.dart";
   "/lib/screens/golf_score_screen.dart" -> "/lib/screens/screen.dart";
   "/lib/screens/golf_score_screen.dart" -> "/lib/widgets/editable_player_name.dart";
+  "/lib/screens/golf_score_screen.dart" -> "/lib/widgets/input_keyboard.dart";
   "/lib/screens/game_screen.dart" -> "/lib/models/backend_model.dart";
   "/lib/screens/game_screen.dart" -> "/lib/models/game_model.dart";
   "/lib/screens/game_screen.dart" -> "/lib/screens/game_over_dialog.dart";

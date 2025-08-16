@@ -3,6 +3,7 @@
 import 'package:cards/models/golf_score_model.dart';
 import 'package:cards/screens/screen.dart';
 import 'package:cards/widgets/editable_player_name.dart';
+import 'package:cards/widgets/input_keyboard.dart';
 import 'package:flutter/material.dart';
 
 /// A screen for keeping score of 9 Cards Golf games.
@@ -17,6 +18,7 @@ class GolfScoreScreen extends StatefulWidget {
 class _GolfScoreScreenState extends State<GolfScoreScreen> {
   late Future<GolfScoreModel> _scoreModelFuture;
   final String _version = '1.0.+2';
+  Map<String, int>? _selectedCell;
 
   @override
   void initState() {
@@ -38,6 +40,51 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
   void _clearScores(GolfScoreModel model) {
     setState(() {
       model.clearScores();
+    });
+  }
+
+  void _handleKeyPress(String key, GolfScoreModel model) {
+    if (_selectedCell == null) {
+      return;
+    }
+
+    final int row = _selectedCell!['row']!;
+    final int col = _selectedCell!['col']!;
+    String currentValue = model.scores[row][col].toString();
+
+    setState(() {
+      if (key == '⇐') {
+        if (currentValue.isNotEmpty) {
+          currentValue = currentValue.substring(0, currentValue.length - 1);
+          if (currentValue.isEmpty) {
+            currentValue = '0';
+          }
+        }
+      } else if (key == '-') {
+        if (currentValue.startsWith('-')) {
+          currentValue = currentValue.substring(1);
+        } else {
+          currentValue = '-$currentValue';
+        }
+      } else {
+        if (currentValue == '0') {
+          currentValue = key;
+        } else {
+          currentValue += key;
+        }
+      }
+
+      final int? parsedValue = int.tryParse(currentValue);
+      if (parsedValue != null) {
+        model.updateScore(
+          row,
+          col,
+          parsedValue,
+        );
+        if (!model.isLastRoundEmpty()) {
+          model.addRound();
+        }
+      }
     });
   }
 
@@ -85,7 +132,7 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
                           label: SizedBox(
                             width: columnWidth, // Adjust width as needed
                             child: EditablePlayerName(
-                              key: Key('$i${scoreModel.playerNames[i]}'),
+                              key: Key('\$i\${scoreModel.playerNames[i]}'),
                               playerName: scoreModel.playerNames[i],
                               color: _getScoreColor(
                                       ranks[i], scoreModel.playerNames.length)
@@ -117,47 +164,30 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
                               j < scoreModel.playerNames.length;
                               j++)
                             DataCell(
-                              SizedBox(
-                                width: columnWidth,
-                                child: TextFormField(
-                                  key: Key(
-                                      '$i,$j ${scoreModel.scores[i][j].toString()}'),
-                                  // keyboardType:
-                                  //     const TextInputType.numberWithOptions(
-                                  //   signed: true,
-                                  //   decimal: false,
-                                  // ),
-                                  initialValue:
-                                      scoreModel.scores[i][j].toString(),
-                                  decoration: const InputDecoration(
-                                    border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(5))),
-                                    fillColor: Colors.black,
+                              GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    _selectedCell = {'row': i, 'col': j};
+                                  });
+                                },
+                                child: Container(
+                                  width: columnWidth,
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                      color: _selectedCell != null &&
+                                              _selectedCell!['row'] == i &&
+                                              _selectedCell!['col'] == j
+                                          ? Colors.blue
+                                          : Colors.transparent,
+                                      width: 2,
+                                    ),
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(5)),
                                   ),
-                                  onChanged: (value) {
-                                    final int? parsedValue =
-                                        int.tryParse(value);
-                                    if (parsedValue != null) {
-                                      setState(() {
-                                        scoreModel.updateScore(
-                                          i,
-                                          j,
-                                          parsedValue,
-                                        );
-                                        if (!scoreModel.isLastRoundEmpty()) {
-                                          scoreModel.addRound();
-                                        }
-                                      });
-                                    }
-                                  },
-                                  validator: (value) {
-                                    if (value == null ||
-                                        int.tryParse(value) == null) {
-                                      return ''; // Invalid
-                                    }
-                                    return null; // Valid
-                                  },
+                                  child: Text(
+                                    scoreModel.scores[i][j].toString(),
+                                    textAlign: TextAlign.center,
+                                  ),
                                 ),
                               ),
                             ),
@@ -200,6 +230,10 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
                     ],
                   ),
                 ),
+                if (_selectedCell != null)
+                  InputKeyboard(
+                    onKeyPressed: (key) => _handleKeyPress(key, scoreModel),
+                  ),
               ],
             ),
           ),
