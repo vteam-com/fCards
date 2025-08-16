@@ -55,9 +55,23 @@ class InputKeyboard extends StatelessWidget {
     return Expanded(
       child: Padding(
         padding: const EdgeInsets.all(4.0),
-        child: ElevatedButton(
-          onPressed: () => onKeyPressed(text),
-          child: Text(text, style: TextStyle(fontSize: 20)),
+        child: SizedBox(
+          width: 50,
+          height: 60,
+          child: ElevatedButton(
+            onPressed: () => onKeyPressed(text),
+            style: ButtonStyle(
+              backgroundColor: WidgetStateProperty.all<Color>(
+                Colors.black.withAlpha(60),
+              ),
+              shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(100.0),
+                ),
+              ),
+            ),
+            child: Text(text, style: TextStyle(fontSize: 20)),
+          ),
         ),
       ),
     );

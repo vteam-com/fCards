@@ -55,7 +55,11 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
     setState(() {
       if (key == '⇐') {
         if (currentValue.isNotEmpty) {
-          currentValue = currentValue.substring(0, currentValue.length - 1);
+          if (currentValue.length == 2 && currentValue.startsWith('-')) {
+            currentValue = '0';
+          } else {
+            currentValue = currentValue.substring(0, currentValue.length - 1);
+          }
           if (currentValue.isEmpty) {
             currentValue = '0';
           }
@@ -64,7 +68,7 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
         if (currentValue.startsWith('-')) {
           currentValue = currentValue.substring(1);
         } else {
-          currentValue = '-$currentValue';
+          currentValue = '-\$currentValue';
         }
       } else {
         if (currentValue == '0') {
@@ -109,6 +113,7 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
         final GolfScoreModel scoreModel = snapshot.data!;
         final List<int> ranks = scoreModel.getPlayerRanks();
         const double columnWidth = 90;
+        const double columnGap = 8;
 
         return Screen(
           title: '9 Cards Golf Scorekeeper',
@@ -123,7 +128,7 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: DataTable(
-                    columnSpacing: 8,
+                    columnSpacing: columnGap,
                     horizontalMargin: 0,
                     columns: [
                       // Player Names
@@ -173,6 +178,7 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
                                 child: Container(
                                   width: columnWidth,
                                   decoration: BoxDecoration(
+                                    color: Colors.black26,
                                     border: Border.all(
                                       color: _selectedCell != null &&
                                               _selectedCell!['row'] == i &&
@@ -187,46 +193,29 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
                                   child: Text(
                                     scoreModel.scores[i][j].toString(),
                                     textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 20,
+                                        color: _getScoreColor(ranks[j],
+                                            scoreModel.playerNames.length)),
                                   ),
                                 ),
                               ),
                             ),
                           DataCell(
-                            (i == 0)
-                                ? const Text('')
-                                : IconButton(
-                                    icon: const Icon(Icons.close),
-                                    onPressed: () {
-                                      confirmDeleteRound(i, scoreModel);
-                                    },
-                                  ),
+                            SizedBox(
+                              width: columnWidth / 2,
+                              child: (i == 0)
+                                  ? const Text('')
+                                  : IconButton(
+                                      icon: const Icon(Icons.close),
+                                      onPressed: () {
+                                        confirmDeleteRound(i, scoreModel);
+                                      },
+                                    ),
+                            ),
                           ),
                         ]),
-
-                      // Total Row
-                      DataRow(
-                        cells: [
-                          for (int j = 0;
-                              j < scoreModel.playerNames.length;
-                              j++)
-                            DataCell(
-                              Container(
-                                color: Colors.black38,
-                                width: columnWidth,
-                                child: Text(
-                                  scoreModel.getPlayerTotalScore(j).toString(),
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 24,
-                                      color: _getScoreColor(ranks[j],
-                                          scoreModel.playerNames.length)),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ),
-                            ),
-                          const DataCell(SizedBox.shrink()),
-                        ],
-                      ),
                     ],
                   ),
                 ),
@@ -234,6 +223,34 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
                   InputKeyboard(
                     onKeyPressed: (key) => _handleKeyPress(key, scoreModel),
                   ),
+                // Total Row
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  spacing: columnGap,
+                  children: [
+                    for (int j = 0; j < scoreModel.playerNames.length; j++)
+                      SizedBox(
+                        width: columnWidth,
+                        child: Container(
+                          // color: Colors.black12,
+                          margin: EdgeInsets.only(top: 20),
+                          width: columnWidth,
+                          child: Text(
+                            scoreModel.getPlayerTotalScore(j).toString(),
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 24,
+                                color: _getScoreColor(
+                                    ranks[j], scoreModel.playerNames.length)),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ),
+                    SizedBox(
+                      width: columnWidth / 2,
+                    )
+                  ],
+                ),
               ],
             ),
           ),
@@ -299,11 +316,11 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
 
   Color _getScoreColor(int rank, int numberOfPlayers) {
     if (rank == 1) {
-      return Colors.green;
+      return Colors.green.shade300;
     } else if (rank == numberOfPlayers) {
-      return Colors.pink;
+      return Colors.red.shade300;
     } else {
-      return Colors.orange;
+      return Colors.orange.shade300;
     }
   }
 }
