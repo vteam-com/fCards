@@ -42,6 +42,7 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
       title: '9 Cards Golf Scorekeeper',
       version: '1.0.0',
       isWaiting: false,
+      onRefresh: confirmNewGame,
       child: Padding(
         padding: const EdgeInsets.only(top: 8, bottom: 8, left: 4, right: 4),
         child: Column(
@@ -90,7 +91,13 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
                           SizedBox(
                             width: columnWidth,
                             child: TextFormField(
-                              keyboardType: TextInputType.number,
+                              key: Key(
+                                  '$i,$j ${_scoreModel.scores[i][j].toString()}'),
+                              keyboardType:
+                                  const TextInputType.numberWithOptions(
+                                signed: true,
+                                decimal: false,
+                              ),
                               initialValue: _scoreModel.scores[i][j].toString(),
                               decoration: const InputDecoration(
                                 border: OutlineInputBorder(
@@ -160,12 +167,6 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
                 ],
               ),
             ),
-            Spacer(),
-            // Add Round Button
-            ElevatedButton(
-              onPressed: _clearScores,
-              child: const Text('New Game'),
-            ),
           ],
         ),
       ),
@@ -195,6 +196,34 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
     if (confirmed == true) {
       setState(() {
         _scoreModel.removeRoundAt(i);
+      });
+    }
+  }
+
+  /// Shows a confirmation dialog before deleting a round.
+  Future<void> confirmNewGame() async {
+    final bool? confirmed = await showDialog<bool>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: const Text('New Game'),
+        content: Text(
+            'Are you sure you want to start a new game? All scores will be lost?'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(ctx).pop(false),
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () => Navigator.of(ctx).pop(true),
+            child: const Text('Confirm'),
+          ),
+        ],
+      ),
+    );
+
+    if (confirmed == true) {
+      setState(() {
+        _clearScores();
       });
     }
   }
