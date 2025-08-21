@@ -113,8 +113,10 @@ class GolfScoreModel {
     if (scores.isEmpty) {
       return true;
     }
-    final lastRound = scores.last;
-    return lastRound.every((score) => score == 0);
+    // We can automated adding new row if needed
+    // final lastRound = scores.last;
+    // return lastRound.every((score) => score == 0);
+    return false;
   }
 
   /// Adds a new player to the game.

@@ -21,6 +21,8 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
   Map<String, int>? _selectedCell;
   final FocusNode _keyboardFocusNode = FocusNode();
   final Set<LogicalKeyboardKey> _keysPressed = {};
+  final double columnWidth = 90;
+  final double columnGap = 8;
 
   @override
   void initState() {
@@ -127,9 +129,6 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
           parsedValue ?? 0,
         );
       }
-      if (!model.isLastRoundEmpty()) {
-        model.addRound();
-      }
     });
   }
 
@@ -152,8 +151,6 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
 
         final GolfScoreModel scoreModel = snapshot.data!;
         final List<int> ranks = scoreModel.getPlayerRanks();
-        const double columnWidth = 90;
-        const double columnGap = 8;
 
         return Screen(
           title: '9 Cards Golf Scorekeeper',
@@ -185,36 +182,21 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           // Header row with player names
-                          _buildPlayersHeader(
-                            scoreModel,
-                            ranks,
-                            columnWidth,
-                            columnGap,
-                          ),
+                          _buildPlayersHeader(scoreModel, ranks),
 
                           const SizedBox(height: 8),
-                          ..._buildScores(
-                            scoreModel,
-                            ranks,
-                            columnWidth,
-                            columnGap,
-                          ),
+                          ..._buildScores(scoreModel, ranks),
+                          _buildAddRow(scoreModel),
                           if (_selectedCell != null)
                             Padding(
-                              padding:
-                                  const EdgeInsets.only(right: columnWidth / 2),
+                              padding: EdgeInsets.only(right: columnWidth / 2),
                               child: InputKeyboard(
                                 onKeyPressed: (key) =>
                                     _handleKeyPress(key, scoreModel),
                               ),
                             ),
                           // Total Row
-                          _buildTotals(
-                            scoreModel,
-                            ranks,
-                            columnWidth,
-                            columnGap,
-                          ),
+                          _buildTotals(scoreModel, ranks),
                         ],
                       ),
                     ),
@@ -228,12 +210,20 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
     );
   }
 
-  Widget _buildPlayersHeader(
-    final dynamic scoreModel,
-    final dynamic ranks,
-    final double columnWidth,
-    final double columnGap,
-  ) {
+  Widget _buildAddRow(final dynamic scoreModel) {
+    return Padding(
+      padding: EdgeInsets.only(bottom: 8, right: columnWidth / 2),
+      child: OutlinedButton(
+          onPressed: () {
+            setState(() {
+              scoreModel.addRound();
+            });
+          },
+          child: SizedBox(width: 100, child: Icon(Icons.add))),
+    );
+  }
+
+  Widget _buildPlayersHeader(final dynamic scoreModel, final dynamic ranks) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -271,12 +261,7 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
     );
   }
 
-  List<Widget> _buildScores(
-    final dynamic scoreModel,
-    final dynamic ranks,
-    final double columnWidth,
-    final double columnGap,
-  ) {
+  List<Widget> _buildScores(final dynamic scoreModel, final dynamic ranks) {
     List<Widget> widgets = [
       for (int i = 0; i < scoreModel.scores.length; i++)
         Padding(
@@ -348,12 +333,7 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
     return widgets;
   }
 
-  Widget _buildTotals(
-    final dynamic scoreModel,
-    final dynamic ranks,
-    final double columnWidth,
-    final double columnGap,
-  ) {
+  Widget _buildTotals(final dynamic scoreModel, final dynamic ranks) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       spacing: columnGap,
