@@ -180,41 +180,43 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
                   ),
                   child: SingleChildScrollView(
                     scrollDirection: Axis.vertical,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        // Header row with player names
-                        _buildPlayersHeader(
-                          scoreModel,
-                          ranks,
-                          columnWidth,
-                          columnGap,
-                        ),
-
-                        const SizedBox(height: 8),
-                        ..._buildScores(
-                          scoreModel,
-                          ranks,
-                          columnWidth,
-                          columnGap,
-                        ),
-                        if (_selectedCell != null)
-                          Padding(
-                            padding:
-                                const EdgeInsets.only(right: columnWidth / 2),
-                            child: InputKeyboard(
-                              onKeyPressed: (key) =>
-                                  _handleKeyPress(key, scoreModel),
-                            ),
+                    child: FittedBox(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          // Header row with player names
+                          _buildPlayersHeader(
+                            scoreModel,
+                            ranks,
+                            columnWidth,
+                            columnGap,
                           ),
-                        // Total Row
-                        _buildTotals(
-                          scoreModel,
-                          ranks,
-                          columnWidth,
-                          columnGap,
-                        ),
-                      ],
+
+                          const SizedBox(height: 8),
+                          ..._buildScores(
+                            scoreModel,
+                            ranks,
+                            columnWidth,
+                            columnGap,
+                          ),
+                          if (_selectedCell != null)
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(right: columnWidth / 2),
+                              child: InputKeyboard(
+                                onKeyPressed: (key) =>
+                                    _handleKeyPress(key, scoreModel),
+                              ),
+                            ),
+                          // Total Row
+                          _buildTotals(
+                            scoreModel,
+                            ranks,
+                            columnWidth,
+                            columnGap,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
