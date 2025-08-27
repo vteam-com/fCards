@@ -12,6 +12,8 @@ class EditablePlayerName extends StatefulWidget {
     required this.color,
     required this.onNameChanged,
     required this.onPlayerRemoved,
+    this.onPlayerAdded,
+    this.playerIndex,
   });
 
   /// The name of the player.
@@ -26,6 +28,12 @@ class EditablePlayerName extends StatefulWidget {
   /// A callback that is called when the player is removed.
   final void Function() onPlayerRemoved;
 
+  /// A callback that is called when a new player should be added.
+  final void Function()? onPlayerAdded;
+
+  /// The index of the player.
+  final int? playerIndex;
+
   @override
   State<EditablePlayerName> createState() => _EditablePlayerNameState();
 }
@@ -38,35 +46,70 @@ class _EditablePlayerNameState extends State<EditablePlayerName> {
     showDialog(
       context: context,
       builder: (context) {
-        return AlertDialog(
-          title: const Text('Edit Player Name'),
-          content: TextField(
-            controller: controller,
-            autofocus: true,
-            decoration: const InputDecoration(hintText: 'Player Name'),
+        return Theme(
+          data: Theme.of(context).copyWith(
+            textSelectionTheme: TextSelectionThemeData(
+              selectionColor: Colors.green.shade800,
+            ),
           ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-                _showRemoveConfirmationDialog();
-              },
-              child: const Text('Remove Player'),
+          child: AlertDialog(
+            title: Text(
+              widget.playerIndex != null
+                  ? 'Edit Name of Player #${widget.playerIndex! + 1}'
+                  : 'Edit Player Name',
             ),
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(),
-              child: const Text('Cancel'),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                TextField(
+                  controller: controller,
+                  autofocus: true,
+                  style: const TextStyle(color: Colors.white, fontSize: 30),
+                  decoration: InputDecoration(
+                    hintText: 'Player Name',
+                    hintStyle: TextStyle(color: Colors.grey[400]),
+                    filled: true,
+                    fillColor: Colors.black,
+                    border: const OutlineInputBorder(),
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Divider(
+                  color: Colors.white,
+                ),
+              ],
             ),
-            TextButton(
-              onPressed: () {
-                if (controller.text.isNotEmpty) {
-                  widget.onNameChanged(controller.text);
-                }
-                Navigator.of(context).pop();
-              },
-              child: const Text('Done'),
-            ),
-          ],
+            actions: [
+              OutlinedButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  widget.onPlayerAdded?.call();
+                },
+                child: const Text('Add another player'),
+              ),
+              OutlinedButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  _showRemoveConfirmationDialog();
+                },
+                child: const Text(
+                  'Remove this player',
+                  style: TextStyle(color: Colors.red),
+                ),
+              ),
+              TextButton(
+                onPressed: () {
+                  if (controller.text.isNotEmpty) {
+                    widget.onNameChanged(controller.text);
+                  }
+                  Navigator.of(context).pop();
+                },
+                child: const Text('Done'),
+              ),
+            ],
+          ),
         );
       },
     );

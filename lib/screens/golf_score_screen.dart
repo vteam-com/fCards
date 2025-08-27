@@ -186,7 +186,7 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
 
                           const SizedBox(height: 8),
                           ..._buildScores(scoreModel, ranks),
-                          _buildAddRow(scoreModel),
+                          _buildAddOrRemoveRow(scoreModel),
                           if (_selectedCell != null)
                             Padding(
                               padding: EdgeInsets.only(right: columnWidth / 2),
@@ -210,16 +210,31 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
     );
   }
 
-  Widget _buildAddRow(final dynamic scoreModel) {
+  Widget _buildAddOrRemoveRow(final dynamic scoreModel) {
     return Padding(
       padding: EdgeInsets.only(bottom: 8, right: columnWidth / 2),
-      child: OutlinedButton(
-          onPressed: () {
-            setState(() {
-              scoreModel.addRound();
-            });
-          },
-          child: SizedBox(width: 100, child: Icon(Icons.add))),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          OutlinedButton(
+            onPressed: () {
+              setState(() {
+                scoreModel.addRound();
+              });
+            },
+            child: const SizedBox(width: 100, child: Icon(Icons.add)),
+          ),
+          const SizedBox(width: 8),
+          OutlinedButton(
+            onPressed: () {
+              if (scoreModel.scores.length > 1) {
+                confirmDeleteRound(scoreModel.scores.length - 1, scoreModel);
+              }
+            },
+            child: const SizedBox(width: 100, child: Icon(Icons.remove)),
+          ),
+        ],
+      ),
     );
   }
 
@@ -240,6 +255,7 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
                   EditablePlayerName(
                     key: Key('\$i\${scoreModel.playerNames[i]}'),
                     playerName: scoreModel.playerNames[i],
+                    playerIndex: i,
                     color: _getScoreColor(
                       ranks[i],
                       scoreModel.playerNames.length,
@@ -254,15 +270,17 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
                         scoreModel.removePlayerAt(i);
                       });
                     },
+                    onPlayerAdded: () {
+                      _addPlayer(scoreModel);
+                    },
                   ),
                 ],
               ),
             ),
           ),
         // Add player button
-        IconButton(
-          onPressed: () => _addPlayer(scoreModel),
-          icon: const Icon(Icons.add),
+        SizedBox(
+          width: columnWidth / 2,
         ),
       ],
     );
@@ -321,18 +339,7 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
                   ),
                 ),
               // Delete round button
-              SizedBox(
-                width: columnWidth / 2,
-                child: i == 0
-                    ? const SizedBox.shrink()
-                    : IconButton(
-                        padding: EdgeInsets.zero,
-                        icon: const Icon(Icons.close, size: 20),
-                        onPressed: () {
-                          confirmDeleteRound(i, scoreModel);
-                        },
-                      ),
-              ),
+              SizedBox(width: columnWidth / 2, child: const SizedBox.shrink()),
             ],
           ),
         )
@@ -375,8 +382,8 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
     final bool? confirmed = await showDialog<bool>(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: const Text('Delete Round'),
-        content: Text('Are you sure you want to delete this round $i?'),
+        title: const Text('Delete Last Row'),
+        content: Text('Are you sure you want to delete round ${i + 1}?'),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(ctx).pop(false),
