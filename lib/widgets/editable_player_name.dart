@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 
 /// A widget for editing a player's name.
 ///
-/// This widget displays a text field with the player's name. When the user
-/// taps on the text field, it becomes editable. If the user clears the text
-/// field and it loses focus, a confirmation dialog is shown to confirm the
-/// removal of the player.
+/// This widget displays the player's name. When the user taps on it, a dialog
+/// appears to edit the name or remove the player.
 class EditablePlayerName extends StatefulWidget {
   /// Creates an [EditablePlayerName] widget.
   const EditablePlayerName({
@@ -33,57 +31,66 @@ class EditablePlayerName extends StatefulWidget {
 }
 
 class _EditablePlayerNameState extends State<EditablePlayerName> {
-  late final TextEditingController _controller;
-  late final FocusNode _focusNode;
-  late String _originalName;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = TextEditingController(text: widget.playerName);
-    _originalName = widget.playerName;
-    _focusNode = FocusNode();
-    _focusNode.addListener(_onFocusChange);
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    _focusNode.removeListener(_onFocusChange);
-    _focusNode.dispose();
-    super.dispose();
-  }
-
-  void _onFocusChange() {
-    if (!_focusNode.hasFocus) {
-      if (_controller.text.isEmpty) {
-        _showConfirmationDialog();
-      } else {
-        widget.onNameChanged(_controller.text);
-      }
-    }
-  }
-
-  void _showConfirmationDialog() {
+  void _showEditPlayerDialog() {
+    final controller = TextEditingController(text: widget.playerName);
+    controller.selection =
+        TextSelection(baseOffset: 0, extentOffset: controller.text.length);
     showDialog(
       context: context,
-      builder: (BuildContext context) {
+      builder: (context) {
         return AlertDialog(
-          title: const Text('Remove Player'),
-          content: Text('Are you sure you want to remove "$_originalName"?'),
-          actions: <Widget>[
+          title: const Text('Edit Player Name'),
+          content: TextField(
+            controller: controller,
+            autofocus: true,
+            decoration: const InputDecoration(hintText: 'Player Name'),
+          ),
+          actions: [
             TextButton(
-              child: const Text('Cancel'),
               onPressed: () {
                 Navigator.of(context).pop();
+                _showRemoveConfirmationDialog();
               },
+              child: const Text('Remove Player'),
             ),
             TextButton(
-              child: const Text('Remove'),
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () {
+                if (controller.text.isNotEmpty) {
+                  widget.onNameChanged(controller.text);
+                }
+                Navigator.of(context).pop();
+              },
+              child: const Text('Done'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _showRemoveConfirmationDialog() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text('Remove Player'),
+          content:
+              Text('Are you sure you want to remove "${widget.playerName}"?'),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('Cancel'),
+            ),
+            TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
                 widget.onPlayerRemoved();
               },
+              child: const Text('Remove'),
             ),
           ],
         );
@@ -93,17 +100,21 @@ class _EditablePlayerNameState extends State<EditablePlayerName> {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      controller: _controller,
-      keyboardType: TextInputType.text,
-      focusNode: _focusNode,
-      decoration: InputDecoration(
-        fillColor: widget.color,
-        hintText: 'Enter player name',
+    return InkWell(
+      onTap: _showEditPlayerDialog,
+      child: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.symmetric(vertical: 18.0, horizontal: 8.0),
+        decoration: BoxDecoration(
+          color: widget.color,
+          borderRadius: BorderRadius.circular(4),
+        ),
+        child: Text(
+          widget.playerName,
+          textAlign: TextAlign.center,
+          overflow: TextOverflow.ellipsis,
+        ),
       ),
-      onSubmitted: (value) {
-        widget.onNameChanged(value);
-      },
     );
   }
 }

@@ -233,6 +233,7 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
             child: SizedBox(
               width: columnWidth,
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(_getScoreEmoji(ranks[i], scoreModel.playerNames.length),
                       style: TextStyle(fontWeight: FontWeight.w900)),
