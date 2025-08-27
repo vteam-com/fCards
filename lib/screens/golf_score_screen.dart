@@ -232,23 +232,29 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
             padding: EdgeInsets.only(right: columnGap),
             child: SizedBox(
               width: columnWidth,
-              child: EditablePlayerName(
-                key: Key('\$i\${scoreModel.playerNames[i]}'),
-                playerName: scoreModel.playerNames[i],
-                color: _getScoreColor(
-                  ranks[i],
-                  scoreModel.playerNames.length,
-                ).withAlpha(100),
-                onNameChanged: (newName) {
-                  setState(() {
-                    scoreModel.playerNames[i] = newName;
-                  });
-                },
-                onPlayerRemoved: () {
-                  setState(() {
-                    scoreModel.removePlayerAt(i);
-                  });
-                },
+              child: Column(
+                children: [
+                  Text(_getScoreEmoji(ranks[i], scoreModel.playerNames.length),
+                      style: TextStyle(fontWeight: FontWeight.w900)),
+                  EditablePlayerName(
+                    key: Key('\$i\${scoreModel.playerNames[i]}'),
+                    playerName: scoreModel.playerNames[i],
+                    color: _getScoreColor(
+                      ranks[i],
+                      scoreModel.playerNames.length,
+                    ).withAlpha(100),
+                    onNameChanged: (newName) {
+                      setState(() {
+                        scoreModel.playerNames[i] = newName;
+                      });
+                    },
+                    onPlayerRemoved: () {
+                      setState(() {
+                        scoreModel.removePlayerAt(i);
+                      });
+                    },
+                  ),
+                ],
               ),
             ),
           ),
@@ -425,6 +431,16 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
       return Colors.red.shade300;
     } else {
       return Colors.orange.shade300;
+    }
+  }
+
+  String _getScoreEmoji(int rank, int numberOfPlayers) {
+    if (rank == 1) {
+      return '👑';
+    } else if (rank == numberOfPlayers) {
+      return 'L';
+    } else {
+      return rank.toString();
     }
   }
 }
