@@ -80,6 +80,7 @@ class _PlayerHeaderState extends State<PlayerHeader> {
     final controller = TextEditingController(text: widget.playerName);
     controller.selection =
         TextSelection(baseOffset: 0, extentOffset: controller.text.length);
+    final focusNode = FocusNode();
     showDialog(
       context: context,
       builder: (context) {
@@ -90,16 +91,22 @@ class _PlayerHeaderState extends State<PlayerHeader> {
             ),
           ),
           child: AlertDialog(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16),
+              side: BorderSide(color: Colors.green.shade300, width: 1),
+            ),
             title: Text(
               widget.playerIndex != null
-                  ? 'Edit Name of Player #${widget.playerIndex! + 1}'
-                  : 'Edit Player Name',
+                  ? 'Name for Player #${widget.playerIndex! + 1}'
+                  : 'Player Name',
             ),
             content: Column(
               mainAxisSize: MainAxisSize.min,
+              spacing: 16,
               children: [
                 TextField(
                   controller: controller,
+                  focusNode: focusNode,
                   autofocus: true,
                   style: const TextStyle(color: Colors.white, fontSize: 30),
                   decoration: InputDecoration(
@@ -110,46 +117,59 @@ class _PlayerHeaderState extends State<PlayerHeader> {
                     border: const OutlineInputBorder(),
                   ),
                 ),
-                SizedBox(
-                  height: 20,
+                ElevatedButton(
+                  onPressed: () {
+                    if (controller.text.isNotEmpty) {
+                      widget.onNameChanged(controller.text);
+                    }
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text('Done'),
                 ),
                 Divider(
-                  color: Colors.white,
+                  color: Colors.green,
+                ),
+                Wrap(
+                  spacing: 16,
+                  runSpacing: 16,
+                  children: [
+                    OutlinedButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                        widget.onPlayerAdded?.call();
+                      },
+                      child: const Text(
+                        'Add another player',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                    OutlinedButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                        _showRemoveConfirmationDialog();
+                      },
+                      child: Text(
+                        'Remove this player',
+                        style: TextStyle(color: Colors.red.shade200),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
-            actions: [
-              OutlinedButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                  widget.onPlayerAdded?.call();
-                },
-                child: const Text('Add another player'),
-              ),
-              OutlinedButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                  _showRemoveConfirmationDialog();
-                },
-                child: const Text(
-                  'Remove this player',
-                  style: TextStyle(color: Colors.red),
-                ),
-              ),
-              TextButton(
-                onPressed: () {
-                  if (controller.text.isNotEmpty) {
-                    widget.onNameChanged(controller.text);
-                  }
-                  Navigator.of(context).pop();
-                },
-                child: const Text('Done'),
-              ),
-            ],
           ),
         );
       },
     );
+    if (mounted) {
+      focusNode.requestFocus();
+    }
+    Future.delayed(const Duration(milliseconds: 150), () {
+      if (mounted) {
+        controller.selection =
+            TextSelection(baseOffset: 0, extentOffset: controller.text.length);
+      }
+    });
   }
 
   void _showRemoveConfirmationDialog() {
@@ -157,6 +177,10 @@ class _PlayerHeaderState extends State<PlayerHeader> {
       context: context,
       builder: (context) {
         return AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+            side: BorderSide(color: Colors.green.shade600, width: 1),
+          ),
           title: const Text('Remove Player'),
           content:
               Text('Are you sure you want to remove "${widget.playerName}"?'),
