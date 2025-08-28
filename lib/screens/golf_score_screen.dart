@@ -208,30 +208,49 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
     );
   }
 
-  Widget _buildAddOrRemoveRow(final dynamic scoreModel) {
-    return Padding(
-      padding: EdgeInsets.only(bottom: 8, top: 8),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          MyButton(
-            onTap: () {
-              setState(() {
-                scoreModel.addRound();
-              });
-            },
-            child: Icon(Icons.add),
-          ),
-          const SizedBox(width: 8),
-          MyButton(
-            onTap: () {
-              if (scoreModel.scores.length > 1) {
-                confirmDeleteRound(scoreModel.scores.length - 1, scoreModel);
-              }
-            },
-            child: Icon(Icons.remove),
-          ),
-        ],
+  Widget _buildAddOrRemoveRow(final GolfScoreModel scoreModel) {
+    return Container(
+      margin: EdgeInsets.all(8),
+      decoration: BoxDecoration(
+        color: Colors.black26,
+        border: Border.all(
+          color: Colors.black26,
+        ),
+        borderRadius: const BorderRadius.all(
+          Radius.circular(40),
+        ),
+      ),
+      padding: EdgeInsets.all(10),
+      child: Padding(
+        padding: EdgeInsets.only(bottom: 8, top: 8),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          spacing: 8,
+          children: [
+            MyButton(
+              size: 30,
+              onTap: () {
+                setState(() {
+                  scoreModel.addRound();
+                });
+              },
+              child: Icon(Icons.add),
+            ),
+            Text(
+              '${scoreModel.scores.length} Rounds',
+              style: TextStyle(fontSize: 14),
+            ),
+            MyButton(
+              size: 30,
+              onTap: () {
+                if (scoreModel.scores.length > 1) {
+                  confirmDeleteRound(scoreModel.scores.length - 1, scoreModel);
+                }
+              },
+              child: Icon(Icons.remove),
+            ),
+          ],
+        ),
       ),
     );
   }

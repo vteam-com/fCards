@@ -28,7 +28,6 @@ class InputKeyboard extends StatelessWidget {
         ),
       ),
       padding: EdgeInsets.all(10),
-      width: 240,
       child: Column(
         children: [
           Row(
@@ -69,20 +68,15 @@ class InputKeyboard extends StatelessWidget {
   }
 
   Widget _buildButton(String text) {
-    return Expanded(
-      child: Padding(
-        padding: const EdgeInsets.all(4.0),
-        child: SizedBox(
-          width: 40,
-          height: 45,
-          child: MyButton(
-            onTap: () => onKeyPressed(text),
-            child: Text(
-              text,
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 20),
-            ),
-          ),
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: MyButton(
+        size: 50,
+        onTap: () => onKeyPressed(text),
+        child: Text(
+          text,
+          textAlign: TextAlign.center,
+          style: TextStyle(fontSize: 20),
         ),
       ),
     );
