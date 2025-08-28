@@ -171,34 +171,29 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
               child: SingleChildScrollView(
                 scrollDirection: Axis.vertical,
                 child: Center(
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                      top: 8,
-                      bottom: 8,
-                      left: 4,
-                      right: 4,
-                    ),
-                    child: FittedBox(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          // Header row with player names
-                          _buildPlayersHeader(scoreModel, ranks),
-
-                          // Rounds
-                          ..._buildRounds(scoreModel, ranks),
-
-                          // ( Add - Remove ) Row
-                          if (_selectedCell == null)
-                            _buildAddOrRemoveRow(scoreModel),
-                          if (_selectedCell != null)
-                            InputKeyboard(
-                              onKeyPressed: (key) =>
-                                  _handleKeyPress(key, scoreModel),
-                            ),
-                        ],
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    spacing: 8,
+                    children: [
+                      // Header row with player names
+                      FittedBox(
+                        child: Column(
+                          children: [
+                            _buildPlayersHeader(scoreModel, ranks),
+                            // Rounds
+                            ..._buildRounds(scoreModel, ranks),
+                          ],
+                        ),
                       ),
-                    ),
+                      // ( Add - Remove ) Row
+                      if (_selectedCell == null)
+                        _buildAddOrRemoveRow(scoreModel),
+                      if (_selectedCell != null)
+                        InputKeyboard(
+                          onKeyPressed: (key) =>
+                              _handleKeyPress(key, scoreModel),
+                        ),
+                    ],
                   ),
                 ),
               ),
@@ -210,53 +205,56 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
   }
 
   Widget _buildAddOrRemoveRow(final GolfScoreModel scoreModel) {
-    return Container(
-      margin: EdgeInsets.all(8),
-      decoration: BoxDecoration(
-        color: Colors.black26,
-        border: Border.all(
+    return IntrinsicWidth(
+      child: Container(
+        margin: EdgeInsets.all(8),
+        decoration: BoxDecoration(
           color: Colors.black26,
-        ),
-        borderRadius: const BorderRadius.all(
-          Radius.circular(40),
-        ),
-      ),
-      padding: EdgeInsets.all(10),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        spacing: 8,
-        children: [
-          MyButton(
-            size: 30,
-            onTap: () {
-              setState(() {
-                scoreModel.addRound();
-              });
-            },
-            child: Icon(Icons.add),
+          border: Border.all(
+            color: Colors.black26,
           ),
-          Text(
-            '${scoreModel.scores.length} Rounds',
-            style: TextStyle(fontSize: 14),
+          borderRadius: const BorderRadius.all(
+            Radius.circular(40),
           ),
-          if (scoreModel.scores.length > 1)
+        ),
+        padding: EdgeInsets.all(10),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          spacing: 8,
+          children: [
             MyButton(
               size: 30,
               onTap: () {
-                final lastRoundScores = scoreModel.scores.last;
-                final allScoresAreZero =
-                    lastRoundScores.every((score) => score == 0);
-                if (allScoresAreZero) {
-                  setState(() {
-                    scoreModel.removeRoundAt(scoreModel.scores.length - 1);
-                  });
-                } else {
-                  confirmDeleteRound(scoreModel.scores.length - 1, scoreModel);
-                }
+                setState(() {
+                  scoreModel.addRound();
+                });
               },
-              child: Icon(Icons.remove),
+              child: Icon(Icons.add),
             ),
-        ],
+            Text(
+              '${scoreModel.scores.length} Rounds',
+              style: TextStyle(fontSize: 14),
+            ),
+            if (scoreModel.scores.length > 1)
+              MyButton(
+                size: 30,
+                onTap: () {
+                  final lastRoundScores = scoreModel.scores.last;
+                  final allScoresAreZero =
+                      lastRoundScores.every((score) => score == 0);
+                  if (allScoresAreZero) {
+                    setState(() {
+                      scoreModel.removeRoundAt(scoreModel.scores.length - 1);
+                    });
+                  } else {
+                    confirmDeleteRound(
+                        scoreModel.scores.length - 1, scoreModel);
+                  }
+                },
+                child: Icon(Icons.remove),
+              ),
+          ],
+        ),
       ),
     );
   }
@@ -316,35 +314,38 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
                     }
                   });
                 },
-                child: Container(
-                  width: columnWidth,
-                  height: 40,
-                  margin: EdgeInsets.only(top: columnGap),
-                  decoration: BoxDecoration(
-                    color: Colors.black26,
-                    border: Border.all(
-                      color: _selectedCell != null &&
-                              _selectedCell!['row'] == i &&
-                              _selectedCell!['col'] == j
-                          ? Colors.yellow
-                          : Colors.transparent,
-                      width: 2,
+                child: Listener(
+                  onPointerDown: (event) {},
+                  child: Container(
+                    width: columnWidth,
+                    height: 40,
+                    margin: EdgeInsets.only(top: columnGap),
+                    decoration: BoxDecoration(
+                      color: Colors.black26,
+                      border: Border.all(
+                        color: _selectedCell != null &&
+                                _selectedCell!['row'] == i &&
+                                _selectedCell!['col'] == j
+                            ? Colors.yellow
+                            : Colors.transparent,
+                        width: 2,
+                      ),
+                      borderRadius: const BorderRadius.all(
+                        Radius.circular(5),
+                      ),
                     ),
-                    borderRadius: const BorderRadius.all(
-                      Radius.circular(5),
-                    ),
-                  ),
-                  child: Center(
-                    child: Text(
-                      scoreModel.scores[i][j] == 0
-                          ? '0'
-                          : scoreModel.scores[i][j].toString(),
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
-                        color: _getScoreColor(
-                          ranks[j],
-                          scoreModel.playerNames.length,
+                    child: Center(
+                      child: Text(
+                        scoreModel.scores[i][j] == 0
+                            ? '0'
+                            : scoreModel.scores[i][j].toString(),
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                          color: _getScoreColor(
+                            ranks[j],
+                            scoreModel.playerNames.length,
+                          ),
                         ),
                       ),
                     ),
