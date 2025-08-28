@@ -168,16 +168,16 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
                   _selectedCell = null;
                 });
               },
-              child: Center(
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                    top: 8,
-                    bottom: 8,
-                    left: 4,
-                    right: 4,
-                  ),
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.vertical,
+              child: SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                      top: 8,
+                      bottom: 8,
+                      left: 4,
+                      right: 4,
+                    ),
                     child: FittedBox(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
