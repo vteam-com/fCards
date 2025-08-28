@@ -4,6 +4,7 @@ import 'package:cards/models/golf_score_model.dart';
 import 'package:cards/screens/screen.dart';
 import 'package:cards/widgets/editable_player_name.dart';
 import 'package:cards/widgets/input_keyboard.dart';
+import 'package:cards/widgets/my_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -184,19 +185,16 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
                           // Header row with player names
                           _buildPlayersHeader(scoreModel, ranks),
 
-                          const SizedBox(height: 8),
-                          ..._buildScores(scoreModel, ranks),
+                          // Rounds
+                          ..._buildRounds(scoreModel, ranks),
+
+                          // ( Add - Remove ) Row
                           _buildAddOrRemoveRow(scoreModel),
                           if (_selectedCell != null)
-                            Padding(
-                              padding: EdgeInsets.only(right: columnWidth / 2),
-                              child: InputKeyboard(
-                                onKeyPressed: (key) =>
-                                    _handleKeyPress(key, scoreModel),
-                              ),
+                            InputKeyboard(
+                              onKeyPressed: (key) =>
+                                  _handleKeyPress(key, scoreModel),
                             ),
-                          // Total Row
-                          _buildTotals(scoreModel, ranks),
                         ],
                       ),
                     ),
@@ -212,169 +210,120 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
 
   Widget _buildAddOrRemoveRow(final dynamic scoreModel) {
     return Padding(
-      padding: EdgeInsets.only(bottom: 8, right: columnWidth / 2),
+      padding: EdgeInsets.only(bottom: 8, top: 8),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          OutlinedButton(
-            onPressed: () {
+          MyButton(
+            onTap: () {
               setState(() {
                 scoreModel.addRound();
               });
             },
-            child: const SizedBox(width: 100, child: Icon(Icons.add)),
+            child: Icon(Icons.add),
           ),
           const SizedBox(width: 8),
-          OutlinedButton(
-            onPressed: () {
+          MyButton(
+            onTap: () {
               if (scoreModel.scores.length > 1) {
                 confirmDeleteRound(scoreModel.scores.length - 1, scoreModel);
               }
             },
-            child: const SizedBox(width: 100, child: Icon(Icons.remove)),
+            child: Icon(Icons.remove),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildPlayersHeader(final dynamic scoreModel, final dynamic ranks) {
+  Widget _buildPlayersHeader(
+      final GolfScoreModel scoreModel, final dynamic ranks) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
+      spacing: columnGap,
       children: [
         for (int i = 0; i < scoreModel.playerNames.length; i++)
-          Padding(
-            padding: EdgeInsets.only(right: columnGap),
-            child: SizedBox(
-              width: columnWidth,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(_getScoreEmoji(ranks[i], scoreModel.playerNames.length),
-                      style: TextStyle(fontWeight: FontWeight.w900)),
-                  EditablePlayerName(
-                    key: Key('\$i\${scoreModel.playerNames[i]}'),
-                    playerName: scoreModel.playerNames[i],
-                    playerIndex: i,
-                    color: _getScoreColor(
-                      ranks[i],
-                      scoreModel.playerNames.length,
-                    ).withAlpha(100),
-                    onNameChanged: (newName) {
-                      setState(() {
-                        scoreModel.playerNames[i] = newName;
-                      });
-                    },
-                    onPlayerRemoved: () {
-                      setState(() {
-                        scoreModel.removePlayerAt(i);
-                      });
-                    },
-                    onPlayerAdded: () {
-                      _addPlayer(scoreModel);
-                    },
-                  ),
-                ],
-              ),
+          SizedBox(
+            width: columnWidth,
+            child: EditablePlayerName(
+              key: Key('\$i\${scoreModel.playerNames[i]}'),
+              playerName: scoreModel.playerNames[i],
+              playerIndex: i,
+              rank: ranks[i],
+              numberOfPlayers: scoreModel.playerNames.length,
+              totalScore: scoreModel.getPlayerTotalScore(i),
+              onNameChanged: (newName) {
+                setState(() {
+                  scoreModel.playerNames[i] = newName;
+                });
+              },
+              onPlayerRemoved: () {
+                setState(() {
+                  scoreModel.removePlayerAt(i);
+                });
+              },
+              onPlayerAdded: () {
+                _addPlayer(scoreModel);
+              },
             ),
           ),
-        // Add player button
-        SizedBox(
-          width: columnWidth / 2,
-        ),
       ],
     );
   }
 
-  List<Widget> _buildScores(final dynamic scoreModel, final dynamic ranks) {
+  List<Widget> _buildRounds(final dynamic scoreModel, final dynamic ranks) {
     List<Widget> widgets = [
       for (int i = 0; i < scoreModel.scores.length; i++)
-        Padding(
-          padding: const EdgeInsets.only(bottom: 8.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              for (int j = 0; j < scoreModel.playerNames.length; j++)
-                Padding(
-                  padding: EdgeInsets.only(right: columnGap),
-                  child: GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        _selectedCell = {'row': i, 'col': j};
-                      });
-                    },
-                    child: Container(
-                      width: columnWidth,
-                      height: 40,
-                      decoration: BoxDecoration(
-                        color: Colors.black26,
-                        border: Border.all(
-                          color: _selectedCell != null &&
-                                  _selectedCell!['row'] == i &&
-                                  _selectedCell!['col'] == j
-                              ? Colors.yellow
-                              : Colors.transparent,
-                          width: 2,
-                        ),
-                        borderRadius: const BorderRadius.all(
-                          Radius.circular(5),
-                        ),
-                      ),
-                      child: Center(
-                        child: Text(
-                          scoreModel.scores[i][j] == 0
-                              ? '0'
-                              : scoreModel.scores[i][j].toString(),
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
-                            color: _getScoreColor(
-                              ranks[j],
-                              scoreModel.playerNames.length,
-                            ),
-                          ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          spacing: columnGap,
+          children: [
+            for (int j = 0; j < scoreModel.playerNames.length; j++)
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    _selectedCell = {'row': i, 'col': j};
+                  });
+                },
+                child: Container(
+                  width: columnWidth,
+                  height: 40,
+                  margin: EdgeInsets.only(top: columnGap),
+                  decoration: BoxDecoration(
+                    color: Colors.black26,
+                    border: Border.all(
+                      color: _selectedCell != null &&
+                              _selectedCell!['row'] == i &&
+                              _selectedCell!['col'] == j
+                          ? Colors.yellow
+                          : Colors.transparent,
+                      width: 2,
+                    ),
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(5),
+                    ),
+                  ),
+                  child: Center(
+                    child: Text(
+                      scoreModel.scores[i][j] == 0
+                          ? '0'
+                          : scoreModel.scores[i][j].toString(),
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                        color: _getScoreColor(
+                          ranks[j],
+                          scoreModel.playerNames.length,
                         ),
                       ),
                     ),
                   ),
                 ),
-              // Delete round button
-              SizedBox(width: columnWidth / 2, child: const SizedBox.shrink()),
-            ],
-          ),
+              ),
+          ],
         )
     ];
     return widgets;
-  }
-
-  Widget _buildTotals(final dynamic scoreModel, final dynamic ranks) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      spacing: columnGap,
-      children: [
-        for (int j = 0; j < scoreModel.playerNames.length; j++)
-          SizedBox(
-            width: columnWidth,
-            child: Container(
-              // color: Colors.black12,
-              margin: EdgeInsets.only(top: 20),
-              width: columnWidth,
-              child: Text(
-                scoreModel.getPlayerTotalScore(j).toString(),
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 24,
-                    color: _getScoreColor(
-                        ranks[j], scoreModel.playerNames.length)),
-                textAlign: TextAlign.center,
-              ),
-            ),
-          ),
-        SizedBox(
-          width: columnWidth / 2,
-        ),
-      ],
-    );
   }
 
   /// Shows a confirmation dialog before deleting a round.
@@ -439,16 +388,6 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
       return Colors.red.shade300;
     } else {
       return Colors.orange.shade300;
-    }
-  }
-
-  String _getScoreEmoji(int rank, int numberOfPlayers) {
-    if (rank == 1) {
-      return '👑';
-    } else if (rank == numberOfPlayers) {
-      return 'L';
-    } else {
-      return rank.toString();
     }
   }
 }

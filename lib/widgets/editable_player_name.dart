@@ -9,18 +9,17 @@ class EditablePlayerName extends StatefulWidget {
   const EditablePlayerName({
     super.key,
     required this.playerName,
-    required this.color,
     required this.onNameChanged,
     required this.onPlayerRemoved,
     this.onPlayerAdded,
     this.playerIndex,
+    required this.rank,
+    required this.numberOfPlayers,
+    required this.totalScore,
   });
 
   /// The name of the player.
   final String playerName;
-
-  /// Background color
-  final Color color;
 
   /// A callback that is called when the player's name is changed.
   final void Function(String) onNameChanged;
@@ -34,11 +33,49 @@ class EditablePlayerName extends StatefulWidget {
   /// The index of the player.
   final int? playerIndex;
 
+  /// The rank of the player.
+  final int rank;
+
+  /// The total number of players.
+  final int numberOfPlayers;
+
+  /// The total score of the player.
+  final int totalScore;
+
   @override
   State<EditablePlayerName> createState() => _EditablePlayerNameState();
 }
 
 class _EditablePlayerNameState extends State<EditablePlayerName> {
+  Color _getScoreColor(int rank, int numberOfPlayers) {
+    if (rank == 1) {
+      return Colors.green.shade300;
+    } else if (rank == numberOfPlayers) {
+      return Colors.red.shade300;
+    } else {
+      return Colors.orange.shade300;
+    }
+  }
+
+  Widget _buildWiningPosition(int rank, int numberOfPlayers) {
+    if (rank == 1) {
+      return Text(
+        '👑',
+        style: TextStyle(fontWeight: FontWeight.w900),
+      );
+    } else if (rank == numberOfPlayers) {
+      return Text(
+        'LAST',
+        style: TextStyle(fontWeight: FontWeight.w900, fontSize: 12),
+      );
+    } else {
+      return Text(
+        '#$rank',
+        style: TextStyle(fontWeight: FontWeight.w100, fontSize: 12),
+      );
+    }
+  }
+
   void _showEditPlayerDialog() {
     final controller = TextEditingController(text: widget.playerName);
     controller.selection =
@@ -147,15 +184,53 @@ class _EditablePlayerNameState extends State<EditablePlayerName> {
       onTap: _showEditPlayerDialog,
       child: Container(
         width: double.infinity,
-        padding: const EdgeInsets.symmetric(vertical: 18.0, horizontal: 8.0),
+        padding: const EdgeInsets.symmetric(vertical: 18.0, horizontal: 0.0),
         decoration: BoxDecoration(
-          color: widget.color,
+          color: _getScoreColor(widget.rank, widget.numberOfPlayers)
+              .withAlpha(100),
           borderRadius: BorderRadius.circular(4),
         ),
-        child: Text(
-          widget.playerName,
-          textAlign: TextAlign.center,
-          overflow: TextOverflow.ellipsis,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          spacing: 8,
+          children: [
+            SizedBox(
+              height: 24,
+              child: Center(
+                child: _buildWiningPosition(
+                  widget.rank,
+                  widget.numberOfPlayers,
+                ),
+              ),
+            ),
+            Text(
+              widget.playerName,
+              textAlign: TextAlign.center,
+              overflow: TextOverflow.ellipsis,
+            ),
+            Text(
+              widget.totalScore.toString(),
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 30,
+                color: _getScoreColor(widget.rank, widget.numberOfPlayers),
+                shadows: <Shadow>[
+                  const Shadow(
+                    color: Colors.white54,
+                    offset: Offset(-1, -1),
+                    blurRadius: 2,
+                  ),
+                  const Shadow(
+                    color: Colors.black54,
+                    offset: Offset(1, 1),
+                    blurRadius: 2,
+                  ),
+                ],
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ],
         ),
       ),
     );

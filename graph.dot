@@ -43,6 +43,7 @@ digraph "" {
   "/lib/widgets/dialog.dart" [label="dialog"];
   "/lib/widgets/wiggle_widget.dart" [label="wiggle_widget"];
   "/lib/widgets/editable_player_name.dart" [label="editable_player_name"];
+  "/lib/widgets/my_button.dart" [label="my_button"];
   "/lib/widgets/players_in_room_widget.dart" [label="players_in_room_widget"];
   "/lib/widgets/text_edit_with_submit.dart" [label="text_edit_with_submit"];
   "/lib/widgets/rooms_widget.dart" [label="rooms_widget"];
@@ -111,6 +112,7 @@ digraph "" {
         "/lib/widgets/dialog.dart";
         "/lib/widgets/wiggle_widget.dart";
         "/lib/widgets/editable_player_name.dart";
+        "/lib/widgets/my_button.dart";
         "/lib/widgets/players_in_room_widget.dart";
         "/lib/widgets/text_edit_with_submit.dart";
         "/lib/widgets/rooms_widget.dart";
@@ -186,6 +188,7 @@ digraph "" {
   "/lib/screens/golf_score_screen.dart" -> "/lib/screens/screen.dart";
   "/lib/screens/golf_score_screen.dart" -> "/lib/widgets/editable_player_name.dart";
   "/lib/screens/golf_score_screen.dart" -> "/lib/widgets/input_keyboard.dart";
+  "/lib/screens/golf_score_screen.dart" -> "/lib/widgets/my_button.dart";
   "/lib/screens/game_screen.dart" -> "/lib/models/backend_model.dart";
   "/lib/screens/game_screen.dart" -> "/lib/models/game_model.dart";
   "/lib/screens/game_screen.dart" -> "/lib/screens/game_over_dialog.dart";
@@ -200,6 +203,7 @@ digraph "" {
   "/lib/screens/start_screen.dart" -> "/lib/widgets/rooms_widget.dart";
   "/lib/main.dart" -> "/lib/screens/golf_score_screen.dart";
   "/lib/main.dart" -> "/lib/screens/start_screen.dart";
+  "/lib/widgets/input_keyboard.dart" -> "/lib/widgets/my_button.dart";
   "/lib/widgets/cards/card_pile_widget.dart" -> "/lib/models/card_model.dart";
   "/lib/widgets/cards/card_pile_widget.dart" -> "/lib/widgets/cards/card_widget.dart";
   "/lib/widgets/cards/card_face_skyjo_widget.dart" -> "/lib/models/card_model.dart";

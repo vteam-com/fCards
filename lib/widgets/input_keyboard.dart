@@ -1,3 +1,4 @@
+import 'package:cards/widgets/my_button.dart';
 import 'package:flutter/material.dart';
 
 ///
@@ -74,18 +75,8 @@ class InputKeyboard extends StatelessWidget {
         child: SizedBox(
           width: 40,
           height: 45,
-          child: ElevatedButton(
-            onPressed: () => onKeyPressed(text),
-            style: ButtonStyle(
-              backgroundColor: WidgetStateProperty.all<Color>(
-                Colors.black.withAlpha(60),
-              ),
-              shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(100.0),
-                ),
-              ),
-            ),
+          child: MyButton(
+            onTap: () => onKeyPressed(text),
             child: Text(
               text,
               textAlign: TextAlign.center,
