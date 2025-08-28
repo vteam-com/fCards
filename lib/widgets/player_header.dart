@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 ///
 /// This widget displays the player's name. When the user taps on it, a dialog
 /// appears to edit the name or remove the player.
-class EditablePlayerName extends StatefulWidget {
-  /// Creates an [EditablePlayerName] widget.
-  const EditablePlayerName({
+class PlayerHeader extends StatefulWidget {
+  /// Creates an [PlayerHeader] widget.
+  const PlayerHeader({
     super.key,
     required this.playerName,
     required this.onNameChanged,
@@ -43,10 +43,10 @@ class EditablePlayerName extends StatefulWidget {
   final int totalScore;
 
   @override
-  State<EditablePlayerName> createState() => _EditablePlayerNameState();
+  State<PlayerHeader> createState() => _PlayerHeaderState();
 }
 
-class _EditablePlayerNameState extends State<EditablePlayerName> {
+class _PlayerHeaderState extends State<PlayerHeader> {
   Color _getScoreColor(int rank, int numberOfPlayers) {
     if (rank == 1) {
       return Colors.green.shade300;
@@ -66,12 +66,12 @@ class _EditablePlayerNameState extends State<EditablePlayerName> {
     } else if (rank == numberOfPlayers) {
       return Text(
         'LAST',
-        style: TextStyle(fontWeight: FontWeight.w900, fontSize: 12),
+        style: TextStyle(fontWeight: FontWeight.w900, fontSize: 14),
       );
     } else {
       return Text(
         '#$rank',
-        style: TextStyle(fontWeight: FontWeight.w100, fontSize: 12),
+        style: TextStyle(fontWeight: FontWeight.w900, fontSize: 14),
       );
     }
   }

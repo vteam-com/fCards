@@ -2,9 +2,9 @@
 
 import 'package:cards/models/golf_score_model.dart';
 import 'package:cards/screens/screen.dart';
-import 'package:cards/widgets/editable_player_name.dart';
 import 'package:cards/widgets/input_keyboard.dart';
 import 'package:cards/widgets/my_button.dart';
+import 'package:cards/widgets/player_header.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -268,7 +268,7 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
         for (int i = 0; i < scoreModel.playerNames.length; i++)
           SizedBox(
             width: columnWidth,
-            child: EditablePlayerName(
+            child: PlayerHeader(
               key: Key('\$i\${scoreModel.playerNames[i]}'),
               playerName: scoreModel.playerNames[i],
               playerIndex: i,
