@@ -42,11 +42,11 @@ digraph "" {
   "/lib/widgets/cards/card_face_french_widget.dart" [label="card_face_french_widget"];
   "/lib/widgets/dialog.dart" [label="dialog"];
   "/lib/widgets/wiggle_widget.dart" [label="wiggle_widget"];
-  "/lib/widgets/editable_player_name.dart" [label="editable_player_name"];
   "/lib/widgets/my_button.dart" [label="my_button"];
   "/lib/widgets/players_in_room_widget.dart" [label="players_in_room_widget"];
   "/lib/widgets/text_edit_with_submit.dart" [label="text_edit_with_submit"];
   "/lib/widgets/rooms_widget.dart" [label="rooms_widget"];
+  "/lib/widgets/player_header.dart" [label="player_header"];
   "/lib/widgets/player/player_zone_cta_widget.dart" [label="player_zone_cta_widget"];
   "/lib/widgets/player/status_picker.dart" [label="status_picker"];
   "/lib/widgets/player/player_header_widget.dart" [label="player_header_widget"];
@@ -111,11 +111,11 @@ digraph "" {
         "/lib/widgets/date_importance.dart";
         "/lib/widgets/dialog.dart";
         "/lib/widgets/wiggle_widget.dart";
-        "/lib/widgets/editable_player_name.dart";
         "/lib/widgets/my_button.dart";
         "/lib/widgets/players_in_room_widget.dart";
         "/lib/widgets/text_edit_with_submit.dart";
         "/lib/widgets/rooms_widget.dart";
+        "/lib/widgets/player_header.dart";
         subgraph "cluster~/lib/widgets/cards" {
           label="cards";
           "/lib/widgets/cards/card_pile_widget.dart";
@@ -186,9 +186,9 @@ digraph "" {
   "/lib/screens/game_over_dialog.dart" -> "/lib/widgets/dialog.dart";
   "/lib/screens/golf_score_screen.dart" -> "/lib/models/golf_score_model.dart";
   "/lib/screens/golf_score_screen.dart" -> "/lib/screens/screen.dart";
-  "/lib/screens/golf_score_screen.dart" -> "/lib/widgets/editable_player_name.dart";
   "/lib/screens/golf_score_screen.dart" -> "/lib/widgets/input_keyboard.dart";
   "/lib/screens/golf_score_screen.dart" -> "/lib/widgets/my_button.dart";
+  "/lib/screens/golf_score_screen.dart" -> "/lib/widgets/player_header.dart";
   "/lib/screens/game_screen.dart" -> "/lib/models/backend_model.dart";
   "/lib/screens/game_screen.dart" -> "/lib/models/game_model.dart";
   "/lib/screens/game_screen.dart" -> "/lib/screens/game_over_dialog.dart";

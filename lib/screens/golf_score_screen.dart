@@ -24,6 +24,7 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
   final Set<LogicalKeyboardKey> _keysPressed = {};
   final double columnWidth = 90;
   final double columnGap = 8;
+  final ScrollController _scrollController = ScrollController();
 
   @override
   void initState() {
@@ -40,6 +41,7 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
   @override
   void dispose() {
     _keyboardFocusNode.dispose();
+    _scrollController.dispose();
     super.dispose();
   }
 
@@ -168,33 +170,39 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
                   _selectedCell = null;
                 });
               },
-              child: SingleChildScrollView(
-                scrollDirection: Axis.vertical,
-                child: Center(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    spacing: 8,
-                    children: [
-                      // Header row with player names
-                      FittedBox(
-                        child: Column(
-                          children: [
-                            _buildPlayersHeader(scoreModel, ranks),
-                            // Rounds
-                            ..._buildRounds(scoreModel, ranks),
-                          ],
-                        ),
+              child: Center(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  spacing: 8,
+                  children: [
+                    FittedBox(
+                      child:
+                          // Header row with player names
+                          _buildPlayersHeader(scoreModel, ranks),
+                    ),
+                    Expanded(
+                      child: Column(
+                        children: [
+                          Expanded(
+                            child: SingleChildScrollView(
+                              controller: _scrollController,
+                              // padding: EdgeInsets.all(8),
+                              child: FittedBox(
+                                child: _buildRounds(scoreModel, ranks),
+                              ),
+                            ),
+                          ),
+                          if (_selectedCell == null)
+                            _buildAddOrRemoveRow(scoreModel),
+                          if (_selectedCell != null)
+                            InputKeyboard(
+                              onKeyPressed: (key) =>
+                                  _handleKeyPress(key, scoreModel),
+                            ),
+                        ],
                       ),
-                      // ( Add - Remove ) Row
-                      if (_selectedCell == null)
-                        _buildAddOrRemoveRow(scoreModel),
-                      if (_selectedCell != null)
-                        InputKeyboard(
-                          onKeyPressed: (key) =>
-                              _handleKeyPress(key, scoreModel),
-                        ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             ),
@@ -227,6 +235,13 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
               onTap: () {
                 setState(() {
                   scoreModel.addRound();
+                });
+                WidgetsBinding.instance.addPostFrameCallback((_) {
+                  _scrollController.animateTo(
+                    _scrollController.position.maxScrollExtent,
+                    duration: Duration(milliseconds: 300),
+                    curve: Curves.easeInOut,
+                  );
                 });
               },
               child: Icon(Icons.add),
@@ -294,7 +309,7 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
     );
   }
 
-  List<Widget> _buildRounds(final dynamic scoreModel, final dynamic ranks) {
+  Widget _buildRounds(final dynamic scoreModel, final dynamic ranks) {
     List<Widget> widgets = [
       for (int i = 0; i < scoreModel.scores.length; i++)
         Row(
@@ -313,50 +328,75 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
                       _selectedCell = {'row': i, 'col': j};
                     }
                   });
+                  if (_selectedCell != null &&
+                      _selectedCell!['row'] == i &&
+                      _selectedCell!['col'] == j) {
+                    WidgetsBinding.instance.addPostFrameCallback((_) {
+                      final context = _cellContext;
+                      if (context != null) {
+                        _scrollController.position.ensureVisible(
+                          context.findRenderObject() as RenderObject,
+                          alignment: 0.5,
+                          duration: Duration(milliseconds: 300),
+                          curve: Curves.easeInOut,
+                        );
+                      }
+                    });
+                  }
                 },
-                child: Listener(
-                  onPointerDown: (event) {},
-                  child: Container(
-                    width: columnWidth,
-                    height: 40,
-                    margin: EdgeInsets.only(top: columnGap),
-                    decoration: BoxDecoration(
-                      color: Colors.black26,
-                      border: Border.all(
-                        color: _selectedCell != null &&
-                                _selectedCell!['row'] == i &&
-                                _selectedCell!['col'] == j
-                            ? Colors.yellow
-                            : Colors.transparent,
-                        width: 2,
+                child: Builder(
+                  builder: (BuildContext context) {
+                    _cellContext = context;
+                    return Container(
+                      width: columnWidth,
+                      height: 40,
+                      margin: EdgeInsets.only(top: columnGap),
+                      decoration: BoxDecoration(
+                        color: Colors.black26,
+                        border: Border.all(
+                          color: _selectedCell != null &&
+                                  _selectedCell!['row'] == i &&
+                                  _selectedCell!['col'] == j
+                              ? Colors.yellow
+                              : Colors.transparent,
+                          width: 2,
+                        ),
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(5),
+                        ),
                       ),
-                      borderRadius: const BorderRadius.all(
-                        Radius.circular(5),
-                      ),
-                    ),
-                    child: Center(
-                      child: Text(
-                        scoreModel.scores[i][j] == 0
-                            ? '0'
-                            : scoreModel.scores[i][j].toString(),
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
-                          color: _getScoreColor(
-                            ranks[j],
-                            scoreModel.playerNames.length,
+                      child: Center(
+                        child: Text(
+                          scoreModel.scores[i][j] == 0
+                              ? '0'
+                              : scoreModel.scores[i][j].toString(),
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                            color: _getScoreColor(
+                              ranks[j],
+                              scoreModel.playerNames.length,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ),
+                    );
+                  },
                 ),
               ),
           ],
         )
     ];
-    return widgets;
+
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      spacing: 1,
+      children: widgets,
+    );
   }
+
+  BuildContext? _cellContext;
 
   /// Shows a confirmation dialog before deleting a round.
   Future<void> confirmDeleteRound(int i, GolfScoreModel model) async {
