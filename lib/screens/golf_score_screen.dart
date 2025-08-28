@@ -307,7 +307,13 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
               GestureDetector(
                 onTap: () {
                   setState(() {
-                    _selectedCell = {'row': i, 'col': j};
+                    if (_selectedCell != null &&
+                        _selectedCell!['row'] == i &&
+                        _selectedCell!['col'] == j) {
+                      _selectedCell = null;
+                    } else {
+                      _selectedCell = {'row': i, 'col': j};
+                    }
                   });
                 },
                 child: Container(
