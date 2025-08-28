@@ -204,58 +204,57 @@ class _PlayerHeaderState extends State<PlayerHeader> {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: _showEditPlayerDialog,
-      child: Container(
-        width: double.infinity,
-        padding: const EdgeInsets.symmetric(vertical: 18.0, horizontal: 0.0),
-        decoration: BoxDecoration(
-          color: _getScoreColor(widget.rank, widget.numberOfPlayers)
-              .withAlpha(100),
-          borderRadius: BorderRadius.circular(4),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          spacing: 8,
-          children: [
-            SizedBox(
-              height: 24,
-              child: Center(
-                child: _buildWiningPosition(
-                  widget.rank,
-                  widget.numberOfPlayers,
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        backgroundColor:
+            _getScoreColor(widget.rank, widget.numberOfPlayers).withAlpha(150),
+      ),
+      onPressed: _showEditPlayerDialog,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        spacing: 8,
+        children: [
+          SizedBox(
+            height: 24,
+            child: Center(
+              child: _buildWiningPosition(
+                widget.rank,
+                widget.numberOfPlayers,
+              ),
+            ),
+          ),
+          Text(
+            widget.playerName,
+            textAlign: TextAlign.center,
+            overflow: TextOverflow.ellipsis,
+          ),
+          Text(
+            widget.totalScore.toString(),
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 30,
+              // Make the score color brighter by blending with white
+              color: Color.alphaBlend(
+                Colors.white.withAlpha(100),
+                _getScoreColor(widget.rank, widget.numberOfPlayers),
+              ),
+              shadows: <Shadow>[
+                const Shadow(
+                  color: Colors.white54,
+                  offset: Offset(-1, -1),
+                  blurRadius: 2,
                 ),
-              ),
+                const Shadow(
+                  color: Colors.black54,
+                  offset: Offset(1, 1),
+                  blurRadius: 2,
+                ),
+              ],
             ),
-            Text(
-              widget.playerName,
-              textAlign: TextAlign.center,
-              overflow: TextOverflow.ellipsis,
-            ),
-            Text(
-              widget.totalScore.toString(),
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 30,
-                color: _getScoreColor(widget.rank, widget.numberOfPlayers),
-                shadows: <Shadow>[
-                  const Shadow(
-                    color: Colors.white54,
-                    offset: Offset(-1, -1),
-                    blurRadius: 2,
-                  ),
-                  const Shadow(
-                    color: Colors.black54,
-                    offset: Offset(1, 1),
-                    blurRadius: 2,
-                  ),
-                ],
-              ),
-              textAlign: TextAlign.center,
-            ),
-          ],
-        ),
+            textAlign: TextAlign.center,
+          ),
+        ],
       ),
     );
   }

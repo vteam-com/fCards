@@ -173,33 +173,29 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
               child: Center(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  spacing: 8,
                   children: [
+                    // Header row with player names
                     FittedBox(
-                      child:
-                          // Header row with player names
-                          _buildPlayersHeader(scoreModel, ranks),
+                      child: _buildPlayersHeader(scoreModel, ranks),
                     ),
                     Expanded(
-                      child: Column(
-                        children: [
-                          Expanded(
-                            child: SingleChildScrollView(
-                              controller: _scrollController,
-                              // padding: EdgeInsets.all(8),
-                              child: FittedBox(
-                                child: _buildRounds(scoreModel, ranks),
-                              ),
-                            ),
+                      child: SingleChildScrollView(
+                        controller: _scrollController,
+                        // padding: EdgeInsets.all(8),
+                        child: FittedBox(
+                          child: Column(
+                            children: [
+                              _buildRounds(scoreModel, ranks),
+                              if (_selectedCell == null)
+                                _buildAddOrRemoveRow(scoreModel),
+                              if (_selectedCell != null)
+                                InputKeyboard(
+                                  onKeyPressed: (key) =>
+                                      _handleKeyPress(key, scoreModel),
+                                ),
+                            ],
                           ),
-                          if (_selectedCell == null)
-                            _buildAddOrRemoveRow(scoreModel),
-                          if (_selectedCell != null)
-                            InputKeyboard(
-                              onKeyPressed: (key) =>
-                                  _handleKeyPress(key, scoreModel),
-                            ),
-                        ],
+                        ),
                       ),
                     ),
                   ],
@@ -276,36 +272,39 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
 
   Widget _buildPlayersHeader(
       final GolfScoreModel scoreModel, final dynamic ranks) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      spacing: columnGap,
-      children: [
-        for (int i = 0; i < scoreModel.playerNames.length; i++)
-          SizedBox(
-            width: columnWidth,
-            child: PlayerHeader(
-              key: Key('\$i\${scoreModel.playerNames[i]}'),
-              playerName: scoreModel.playerNames[i],
-              playerIndex: i,
-              rank: ranks[i],
-              numberOfPlayers: scoreModel.playerNames.length,
-              totalScore: scoreModel.getPlayerTotalScore(i),
-              onNameChanged: (newName) {
-                setState(() {
-                  scoreModel.playerNames[i] = newName;
-                });
-              },
-              onPlayerRemoved: () {
-                setState(() {
-                  scoreModel.removePlayerAt(i);
-                });
-              },
-              onPlayerAdded: () {
-                _addPlayer(scoreModel);
-              },
+    return Padding(
+      padding: const EdgeInsets.only(top: 8.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        spacing: columnGap,
+        children: [
+          for (int i = 0; i < scoreModel.playerNames.length; i++)
+            SizedBox(
+              width: columnWidth,
+              child: PlayerHeader(
+                key: Key('\$i\${scoreModel.playerNames[i]}'),
+                playerName: scoreModel.playerNames[i],
+                playerIndex: i,
+                rank: ranks[i],
+                numberOfPlayers: scoreModel.playerNames.length,
+                totalScore: scoreModel.getPlayerTotalScore(i),
+                onNameChanged: (newName) {
+                  setState(() {
+                    scoreModel.playerNames[i] = newName;
+                  });
+                },
+                onPlayerRemoved: () {
+                  setState(() {
+                    scoreModel.removePlayerAt(i);
+                  });
+                },
+                onPlayerAdded: () {
+                  _addPlayer(scoreModel);
+                },
+              ),
             ),
-          ),
-      ],
+        ],
+      ),
     );
   }
 
