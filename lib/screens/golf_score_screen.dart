@@ -189,7 +189,8 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
                           ..._buildRounds(scoreModel, ranks),
 
                           // ( Add - Remove ) Row
-                          _buildAddOrRemoveRow(scoreModel),
+                          if (_selectedCell == null)
+                            _buildAddOrRemoveRow(scoreModel),
                           if (_selectedCell != null)
                             InputKeyboard(
                               onKeyPressed: (key) =>
@@ -221,36 +222,41 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
         ),
       ),
       padding: EdgeInsets.all(10),
-      child: Padding(
-        padding: EdgeInsets.only(bottom: 8, top: 8),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          spacing: 8,
-          children: [
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        spacing: 8,
+        children: [
+          MyButton(
+            size: 30,
+            onTap: () {
+              setState(() {
+                scoreModel.addRound();
+              });
+            },
+            child: Icon(Icons.add),
+          ),
+          Text(
+            '${scoreModel.scores.length} Rounds',
+            style: TextStyle(fontSize: 14),
+          ),
+          if (scoreModel.scores.length > 1)
             MyButton(
               size: 30,
               onTap: () {
-                setState(() {
-                  scoreModel.addRound();
-                });
-              },
-              child: Icon(Icons.add),
-            ),
-            Text(
-              '${scoreModel.scores.length} Rounds',
-              style: TextStyle(fontSize: 14),
-            ),
-            MyButton(
-              size: 30,
-              onTap: () {
-                if (scoreModel.scores.length > 1) {
+                final lastRoundScores = scoreModel.scores.last;
+                final allScoresAreZero =
+                    lastRoundScores.every((score) => score == 0);
+                if (allScoresAreZero) {
+                  setState(() {
+                    scoreModel.removeRoundAt(scoreModel.scores.length - 1);
+                  });
+                } else {
                   confirmDeleteRound(scoreModel.scores.length - 1, scoreModel);
                 }
               },
               child: Icon(Icons.remove),
             ),
-          ],
-        ),
+        ],
       ),
     );
   }

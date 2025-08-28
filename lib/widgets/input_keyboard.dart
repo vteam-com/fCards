@@ -18,6 +18,7 @@ class InputKeyboard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.all(8),
       decoration: BoxDecoration(
         color: Colors.black26,
         border: Border.all(
