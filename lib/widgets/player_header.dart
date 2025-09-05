@@ -64,14 +64,20 @@ class _PlayerHeaderState extends State<PlayerHeader> {
         style: TextStyle(fontWeight: FontWeight.w900),
       );
     } else if (rank == numberOfPlayers) {
-      return Text(
-        'LAST',
-        style: TextStyle(fontWeight: FontWeight.w900, fontSize: 14),
+      return Opacity(
+        opacity: 0.5,
+        child: Text(
+          'LAST',
+          style: TextStyle(fontWeight: FontWeight.w900, fontSize: 14),
+        ),
       );
     } else {
-      return Text(
-        '#$rank',
-        style: TextStyle(fontWeight: FontWeight.w900, fontSize: 14),
+      return Opacity(
+        opacity: 0.7,
+        child: Text(
+          '#$rank',
+          style: TextStyle(fontWeight: FontWeight.w900, fontSize: 14),
+        ),
       );
     }
   }
@@ -215,6 +221,9 @@ class _PlayerHeaderState extends State<PlayerHeader> {
         crossAxisAlignment: CrossAxisAlignment.center,
         spacing: 8,
         children: [
+          //
+          // Running place King,2,3,4,Last
+          //
           SizedBox(
             height: 24,
             child: Center(
@@ -224,35 +233,48 @@ class _PlayerHeaderState extends State<PlayerHeader> {
               ),
             ),
           ),
+
+          //
+          // Name of the Player
+          //
           Text(
             widget.playerName,
             textAlign: TextAlign.center,
             overflow: TextOverflow.ellipsis,
           ),
-          Text(
-            widget.totalScore.toString(),
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 30,
-              // Make the score color brighter by blending with white
-              color: Color.alphaBlend(
-                Colors.white.withAlpha(100),
-                _getScoreColor(widget.rank, widget.numberOfPlayers),
+
+          //
+          // Score
+          //
+          SizedBox(
+            height: 30,
+            child: FittedBox(
+              child: Text(
+                widget.totalScore.toString(),
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 30,
+                  // Make the score color brighter by blending with white
+                  color: Color.alphaBlend(
+                    Colors.white.withAlpha(200),
+                    _getScoreColor(widget.rank, widget.numberOfPlayers),
+                  ),
+                  shadows: <Shadow>[
+                    const Shadow(
+                      color: Colors.white54,
+                      offset: Offset(-1, -1),
+                      blurRadius: 2,
+                    ),
+                    const Shadow(
+                      color: Colors.black54,
+                      offset: Offset(1, 1),
+                      blurRadius: 2,
+                    ),
+                  ],
+                ),
+                textAlign: TextAlign.center,
               ),
-              shadows: <Shadow>[
-                const Shadow(
-                  color: Colors.white54,
-                  offset: Offset(-1, -1),
-                  blurRadius: 2,
-                ),
-                const Shadow(
-                  color: Colors.black54,
-                  offset: Offset(1, 1),
-                  blurRadius: 2,
-                ),
-              ],
             ),
-            textAlign: TextAlign.center,
           ),
         ],
       ),
