@@ -1,7 +1,12 @@
 #!/bin/sh
+echo --- Pub Clean
+flutter clean > /dev/null || { echo "Pub get failed"; exit 1; }
 
-# rm -R ./build
+echo --- Pub Get
+flutter pub get > /dev/null || { echo "Pub get failed"; exit 1; }
 
-flutter clean
-flutter pub get
-rm flutter_*.log
+echo --- Pub Upgrade
+flutter pub upgrade > /dev/null || { echo "Pub get failed"; exit 1; }
+
+echo --- Pub Outdated
+flutter pub outdated --no-transitive --no-prereleases

@@ -34,10 +34,13 @@ dependencies:
   firebase_database: ^12.0.1
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
   flutter_markdown: ^0.7.7+1
+  intl: ^0.20.2
   mockito: ^5.5.1
-  package_info_plus: ^8.3.1
-  share_plus: ^11.1.0
+  package_info_plus: ^9.0.0
+  share_plus: ^12.0.1
   shared_preferences: ^2.5.3
   universal_platform: ^1.1.0
   url_launcher: ^6.3.2
@@ -70,6 +73,7 @@ flutter:
     - family: Roboto
       fonts:
         - asset: assets/fonts/Roboto/Roboto-Regular.ttf
+  generate: true
 
 # dart run flutter_launcher_icons
 flutter_launcher_icons:

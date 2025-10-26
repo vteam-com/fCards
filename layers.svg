@@ -1,5 +1,5 @@
 <?xml version="1.0" standalone="no"?>
-<svg width="2400" height="450" xmlns="http://www.w3.org/2000/svg" font-family="Arial, Helvetica, sans-serif">
+<svg width="2700" height="450" xmlns="http://www.w3.org/2000/svg" font-family="Arial, Helvetica, sans-serif">
   <style>
     .layerRectangle {
       stroke: black;
@@ -93,7 +93,7 @@
     <rect x="4" y="39" width="292" height="72" rx="8" ry="8" class="nodeFile"/>
   </g>
   <g id='Node_animate_do'>
-    <rect x="604" y="339" width="292" height="72" rx="8" ry="8" class="nodeFile"/>
+    <rect x="904" y="339" width="292" height="72" rx="8" ry="8" class="nodeFile"/>
   </g>
   <g id='Node_firebase_auth'>
     <rect x="1504" y="189" width="292" height="72" rx="8" ry="8" class="nodeFile"/>
@@ -104,8 +104,14 @@
   <g id='Node_firebase_database'>
     <rect x="1804" y="189" width="292" height="72" rx="8" ry="8" class="nodeFile"/>
   </g>
+  <g id='Node_flutter_localizations'>
+    <rect x="2404" y="189" width="292" height="72" rx="8" ry="8" class="nodeFile"/>
+  </g>
   <g id='Node_flutter_markdown'>
     <rect x="2104" y="189" width="292" height="72" rx="8" ry="8" class="nodeFile"/>
+  </g>
+  <g id='Node_intl'>
+    <rect x="604" y="339" width="292" height="72" rx="8" ry="8" class="nodeFile"/>
   </g>
   <g id='Node_mockito'>
     <rect x="304" y="189" width="292" height="72" rx="8" ry="8" class="nodeFile"/>
@@ -120,7 +126,7 @@
     <rect x="1204" y="189" width="292" height="72" rx="8" ry="8" class="nodeFile"/>
   </g>
   <g id='Node_universal_platform'>
-    <rect x="904" y="339" width="292" height="72" rx="8" ry="8" class="nodeFile"/>
+    <rect x="1204" y="339" width="292" height="72" rx="8" ry="8" class="nodeFile"/>
   </g>
   <g id='Node_url_launcher'>
     <rect x="904" y="189" width="292" height="72" rx="8" ry="8" class="nodeFile"/>
@@ -129,7 +135,7 @@
     <rect x="304" y="339" width="292" height="72" rx="8" ry="8" class="nodeFile"/>
   </g>
   <g id='Edges'>
-    <path class="line" d="M280 95 C 290 225,610 225, 620 355" fill="none" stroke="#377E22">
+    <path class="line" d="M280 95 C 290 225,910 225, 920 355" fill="none" stroke="#377E22">
       <title>cards
 ⬇
 animate_do</title>
@@ -149,10 +155,20 @@ firebase_core</title>
 ⬇
 firebase_database</title>
     </path>
+    <path class="line" d="M280 95 C 290 150,2410 150, 2420 205" fill="none" stroke="#377E22">
+      <title>cards
+⬇
+flutter_localizations</title>
+    </path>
     <path class="line" d="M280 95 C 290 150,2110 150, 2120 205" fill="none" stroke="#377E22">
       <title>cards
 ⬇
 flutter_markdown</title>
+    </path>
+    <path class="line" d="M280 95 C 290 225,610 225, 620 355" fill="none" stroke="#377E22">
+      <title>cards
+⬇
+intl</title>
     </path>
     <path class="line" d="M280 95 C 290 150,310 150, 320 205" fill="none" stroke="#377E22">
       <title>cards
@@ -174,7 +190,7 @@ share_plus</title>
 ⬇
 shared_preferences</title>
     </path>
-    <path class="line" d="M280 95 C 290 225,910 225, 920 355" fill="none" stroke="#377E22">
+    <path class="line" d="M280 95 C 290 225,1210 225, 1220 355" fill="none" stroke="#377E22">
       <title>cards
 ⬇
 universal_platform</title>
@@ -199,6 +215,11 @@ firebase_core</title>
 ⬇
 firebase_core</title>
     </path>
+    <path class="line" d="M2680 245 C 2690 300,610 300, 620 355" fill="none" stroke="#377E22">
+      <title>flutter_localizations
+⬇
+intl</title>
+    </path>
     <path class="line" d="M880 245 C 890 300,310 300, 320 355" fill="none" stroke="#377E22">
       <title>package_info_plus
 ⬇
@@ -213,7 +234,7 @@ web</title>
   <g id='Counters_cards'>
     <g>
       <circle cx="280" cy="95" r="10" fill="green"/>
-      <text x="280" y="95" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">18</text>
+      <text x="280" y="95" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">20</text>
       <title>cards
 ⬇
 1 /dev/firebase_core_platform_interface
@@ -226,20 +247,22 @@ web</title>
 8 /direct/firebase_auth
 9 /direct/firebase_core
 10 /direct/firebase_database
-11 /direct/flutter_markdown
-12 /direct/mockito
-13 /direct/package_info_plus
-14 /direct/share_plus
-15 /direct/shared_preferences
-16 /direct/universal_platform
-17 /direct/url_launcher
-18 /direct/web</title>
+11 /direct/flutter_localizations
+12 /direct/flutter_markdown
+13 /direct/intl
+14 /direct/mockito
+15 /direct/package_info_plus
+16 /direct/share_plus
+17 /direct/shared_preferences
+18 /direct/universal_platform
+19 /direct/url_launcher
+20 /direct/web</title>
     </g>
   </g>
   <g id='Counters_animate_do'>
     <g>
-      <circle cx="620" cy="355" r="10" fill="blue"/>
-      <text x="620" y="355" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">1</text>
+      <circle cx="920" cy="355" r="10" fill="blue"/>
+      <text x="920" y="355" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">1</text>
       <title>1 /root/cards
 ⬇
 animate_do</title>
@@ -309,6 +332,23 @@ firebase_core</title>
 firebase_database</title>
     </g>
   </g>
+  <g id='Counters_flutter_localizations'>
+    <g>
+      <circle cx="2680" cy="245" r="10" fill="green"/>
+      <text x="2680" y="245" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">2</text>
+      <title>flutter_localizations
+⬇
+1 /direct/intl
+2 /transitive/path</title>
+    </g>
+    <g>
+      <circle cx="2420" cy="205" r="10" fill="blue"/>
+      <text x="2420" y="205" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">1</text>
+      <title>1 /root/cards
+⬇
+flutter_localizations</title>
+    </g>
+  </g>
   <g id='Counters_flutter_markdown'>
     <g>
       <circle cx="2380" cy="245" r="10" fill="green"/>
@@ -325,6 +365,25 @@ firebase_database</title>
       <title>1 /root/cards
 ⬇
 flutter_markdown</title>
+    </g>
+  </g>
+  <g id='Counters_intl'>
+    <g>
+      <circle cx="880" cy="395" r="10" fill="green"/>
+      <text x="880" y="395" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">3</text>
+      <title>intl
+⬇
+1 /transitive/clock
+2 /transitive/meta
+3 /transitive/path</title>
+    </g>
+    <g>
+      <circle cx="620" cy="355" r="10" fill="blue"/>
+      <text x="620" y="355" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">2</text>
+      <title>1 /direct/flutter_localizations
+2 /root/cards
+⬇
+intl</title>
     </g>
   </g>
   <g id='Counters_mockito'>
@@ -427,8 +486,8 @@ shared_preferences</title>
   </g>
   <g id='Counters_universal_platform'>
     <g>
-      <circle cx="920" cy="355" r="10" fill="blue"/>
-      <text x="920" y="355" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">1</text>
+      <circle cx="1220" cy="355" r="10" fill="blue"/>
+      <text x="1220" y="355" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">1</text>
       <title>1 /root/cards
 ⬇
 universal_platform</title>
@@ -480,28 +539,36 @@ web</title>
     <text class="nodeName" x="150" y="95" font-size="80%">1.8.4</text>
   </g>
   <g id='Labels_animate_do'>
-    <text class="nodeName" x="750" y="375" font-size="120%">animate_do</text>
-    <text class="nodeName" x="750" y="395" font-size="80%">4.2.0</text>
+    <text class="nodeName" x="1050" y="375" font-size="120%">animate_do</text>
+    <text class="nodeName" x="1050" y="395" font-size="80%">4.2.0</text>
   </g>
   <g id='Labels_firebase_auth'>
     <text class="nodeName" x="1650" y="225" font-size="120%">firebase_auth</text>
-    <text class="nodeName" x="1650" y="245" font-size="80%">6.0.1</text>
+    <text class="nodeName" x="1650" y="245" font-size="80%">6.0.2</text>
   </g>
   <g id='Labels_firebase_core'>
     <text class="nodeName" x="150" y="375" font-size="120%">firebase_core</text>
-    <text class="nodeName" x="150" y="395" font-size="80%">4.0.0</text>
+    <text class="nodeName" x="150" y="395" font-size="80%">4.1.0</text>
   </g>
   <g id='Labels_firebase_database'>
     <text class="nodeName" x="1950" y="225" font-size="120%">firebase_database</text>
-    <text class="nodeName" x="1950" y="245" font-size="80%">12.0.0</text>
+    <text class="nodeName" x="1950" y="245" font-size="80%">12.0.1</text>
+  </g>
+  <g id='Labels_flutter_localizations'>
+    <text class="nodeName" x="2550" y="225" font-size="120%">flutter_localizations</text>
+    <text class="nodeName" x="2550" y="245" font-size="80%">0.0.0</text>
   </g>
   <g id='Labels_flutter_markdown'>
     <text class="nodeName" x="2250" y="225" font-size="120%">flutter_markdown</text>
     <text class="nodeName" x="2250" y="245" font-size="80%">0.7.7+1</text>
   </g>
+  <g id='Labels_intl'>
+    <text class="nodeName" x="750" y="375" font-size="120%">intl</text>
+    <text class="nodeName" x="750" y="395" font-size="80%">0.20.2</text>
+  </g>
   <g id='Labels_mockito'>
     <text class="nodeName" x="450" y="225" font-size="120%">mockito</text>
-    <text class="nodeName" x="450" y="245" font-size="80%">5.5.0</text>
+    <text class="nodeName" x="450" y="245" font-size="80%">5.5.1</text>
   </g>
   <g id='Labels_package_info_plus'>
     <text class="nodeName" x="750" y="225" font-size="120%">package_info_plus</text>
@@ -516,8 +583,8 @@ web</title>
     <text class="nodeName" x="1350" y="245" font-size="80%">2.5.3</text>
   </g>
   <g id='Labels_universal_platform'>
-    <text class="nodeName" x="1050" y="375" font-size="120%">universal_platform</text>
-    <text class="nodeName" x="1050" y="395" font-size="80%">1.1.0</text>
+    <text class="nodeName" x="1350" y="375" font-size="120%">universal_platform</text>
+    <text class="nodeName" x="1350" y="395" font-size="80%">1.1.0</text>
   </g>
   <g id='Labels_url_launcher'>
     <text class="nodeName" x="1050" y="225" font-size="120%">url_launcher</text>
