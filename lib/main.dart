@@ -1,5 +1,11 @@
+import 'package:cards/models/backend_model.dart';
+import 'package:cards/models/firebase_options.dart';
 import 'package:cards/screens/golf_score_screen.dart';
+import 'package:cards/screens/join_game_screen.dart';
+import 'package:cards/screens/main_menu.dart';
 import 'package:cards/screens/start_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 /// The entry point of the application.
@@ -8,6 +14,21 @@ import 'package:flutter/material.dart';
 /// which is the root of the application's widget tree.
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // Initialize Firebase for the entire app (if not offline)
+  if (!isRunningOffLine) {
+    try {
+      await Firebase.initializeApp(
+        options: DefaultFirebaseOptions.currentPlatform,
+      );
+      await FirebaseAuth.instance.signInAnonymously();
+      backendReady = true;
+      debugPrint('Firebase initialized successfully');
+    } catch (e) {
+      backendReady = false;
+      debugPrint('Firebase initialization error: $e');
+    }
+  }
 
   runApp(const MyApp());
 }
@@ -100,7 +121,9 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
-        '/': (context) => const StartScreen(),
+        '/': (context) => const MainMenu(),
+        '/game': (context) => const StartScreen(joinMode: false),
+        '/join': (context) => const JoinGameScreen(),
         '/score': (context) => const GolfScoreScreen(),
       },
       debugShowCheckedModeBanner: false,

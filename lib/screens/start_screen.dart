@@ -38,7 +38,12 @@ import 'package:web/web.dart' as web;
 /// - **Offline Mode**: Provides an offline mode for testing and development.
 class StartScreen extends StatefulWidget {
   /// Creates a [StartScreen] widget.
-  const StartScreen({super.key});
+  ///
+  /// [joinMode] when true, pre-expands the rooms dropdown and focuses on joining.
+  const StartScreen({super.key, this.joinMode = false});
+
+  /// Whether this screen is opened in join mode.
+  final bool joinMode;
 
   @override
   StartScreenState createState() => StartScreenState();
@@ -99,6 +104,7 @@ class StartScreenState extends State<StartScreen> {
   @override
   void initState() {
     super.initState();
+    _isExpandedRooms = widget.joinMode;
     _processUrlArguments();
     _getAppVersion();
   }
@@ -325,19 +331,6 @@ class StartScreenState extends State<StartScreen> {
                   ),
                   const SizedBox(height: 20),
                   actionButton(),
-                  const SizedBox(height: 20),
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/score');
-                    },
-                    child: const Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Text(
-                        'Keep Scores',
-                        style: TextStyle(fontSize: 20),
-                      ),
-                    ),
-                  ),
                   const SizedBox(height: 20),
                 ],
               ),
