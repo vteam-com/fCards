@@ -514,7 +514,7 @@ void main() {
   group('Game Link Generation', () {
     test('should generate correct game link', () {
       final gameModel = getNewSkyJoInstance();
-      final expectedLink = '?mode=Custom&room=testRoom&players=Player1,Player2';
+      final expectedLink = '?mode=1&room=testRoom&players=Player1%2CPlayer2';
       expect(gameModel.linkUri, equals(expectedLink));
 
       // because this is running in a none-browser mode the expected url will be empty

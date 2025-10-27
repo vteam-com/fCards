@@ -1,10 +1,42 @@
 import 'package:cards/screens/screen.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 /// Welcome screen that provides options to start new game, join existing game, or keep scores.
-class MainMenu extends StatelessWidget {
+class MainMenu extends StatefulWidget {
   ///
   const MainMenu({super.key});
+
+  @override
+  State<MainMenu> createState() => _MainMenuState();
+}
+
+class _MainMenuState extends State<MainMenu> {
+  @override
+  void initState() {
+    super.initState();
+    // Check if we have URL parameters that should redirect to game
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _checkForUrlParameters();
+    });
+  }
+
+  void _checkForUrlParameters() {
+    if (!kIsWeb) {
+      return; // Only check on web
+    }
+
+    final uri = Uri.parse(Uri.base.toString());
+    if (uri.queryParameters.isNotEmpty) {
+      // We have query parameters, redirect to start screen which can handle them
+      // Use Future.delayed to ensure context is available
+      Future.delayed(Duration.zero, () {
+        if (mounted) {
+          Navigator.pushReplacementNamed(context, '/game');
+        }
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +66,7 @@ class MainMenu extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
                 MenuButton(
-                  label: 'Scorekeeper',
+                  label: 'Score Keeper',
                   icon: Icons.scoreboard,
                   onPressed: () => Navigator.pushNamed(context, '/score'),
                 ),

@@ -121,9 +121,6 @@ class GameModel with ChangeNotifier {
     }
   }
 
-  /// must be override by models
-  String get mode => 'Custom';
-
   /// Sets the game state and updates the database if backend is ready.
   set gameState(GameStates value) {
     if (_gameState != value) {
@@ -675,7 +672,7 @@ class GameModel with ChangeNotifier {
   /// The link URI includes the game mode, room name, and a comma-separated list of player names.
   /// This method is used to construct the URL for the game, which can be shared with other players.
   ///
-  /// @param mode The game mode, e.g. "classic", "timed", etc.
+  /// @param mode The game mode (as an integer string representing GameStyles enum index).
   /// @param room The name of the game room.
   /// @param names A list of player names.
   /// @return The generated link URI.
@@ -697,7 +694,7 @@ class GameModel with ChangeNotifier {
   /// @param names A list of player names.
   /// @return The generated link URI.
   String get linkUri => getLinkToGameFromInput(
-        this.mode,
+        this.gameStyle.index.toString(),
         this.roomName,
         this.getPlayersNames(),
       );
