@@ -31,9 +31,7 @@ class RoomsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      constraints: BoxConstraints(
-        maxHeight: 400,
-      ),
+      constraints: BoxConstraints(maxHeight: 400),
       decoration: BoxDecoration(
         color: Colors.black.withAlpha(100),
         borderRadius: BorderRadius.all(Radius.circular(8)),
@@ -45,10 +43,7 @@ class RoomsWidget extends StatelessWidget {
           return ListTile(
             title: TextButton(
               onPressed: () => onSelected(rooms[index]),
-              child: Text(
-                nameToDisplay,
-                style: const TextStyle(fontSize: 20),
-              ),
+              child: Text(nameToDisplay, style: const TextStyle(fontSize: 20)),
             ),
             leading: SizedBox(
               width: 40,

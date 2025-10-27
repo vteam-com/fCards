@@ -163,8 +163,8 @@ class GameScreenState extends State<GameScreen> {
           .ref(_getFirebaseRef())
           .onValue
           .listen((DatabaseEvent event) {
-        _dataSnapshotToGameModel(event.snapshot);
-      });
+            _dataSnapshotToGameModel(event.snapshot);
+          });
     }
   }
 
@@ -185,8 +185,9 @@ class GameScreenState extends State<GameScreen> {
     if (isRunningOffLine) {
       _jsonToGameModel(fakeData());
     } else {
-      final DataSnapshot snapshot =
-          await FirebaseDatabase.instance.ref(_getFirebaseRef()).get();
+      final DataSnapshot snapshot = await FirebaseDatabase.instance
+          .ref(_getFirebaseRef())
+          .get();
       _dataSnapshotToGameModel(snapshot);
     }
   }
@@ -219,10 +220,7 @@ class GameScreenState extends State<GameScreen> {
       if (widget.gameModel.gameState == GameStates.gameOver) {
         widget.gameModel.endedOn = DateTime.now();
 
-        showGameOverDialog(
-          context,
-          widget.gameModel,
-        );
+        showGameOverDialog(context, widget.gameModel);
       }
       isReady = true;
     });
@@ -258,13 +256,14 @@ class GameScreenState extends State<GameScreen> {
       if (playerIndex < _playerKeys.length) {
         final RenderBox? containerBox =
             context.findRenderObject() as RenderBox?;
-        final RenderBox? playerBox = _playerKeys[playerIndex]
-            .currentContext
-            ?.findRenderObject() as RenderBox?;
+        final RenderBox? playerBox =
+            _playerKeys[playerIndex].currentContext?.findRenderObject()
+                as RenderBox?;
 
         if (containerBox != null && playerBox != null) {
-          final double containerOffset =
-              containerBox.localToGlobal(Offset.zero).dy;
+          final double containerOffset = containerBox
+              .localToGlobal(Offset.zero)
+              .dy;
           final double playerOffset =
               playerBox.localToGlobal(Offset.zero).dy - containerOffset;
           final double offset = _scrollController.offset + playerOffset;

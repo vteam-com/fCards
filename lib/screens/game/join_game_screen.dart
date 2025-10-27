@@ -84,8 +84,9 @@ class JoinGameScreenState extends State<JoinGameScreen> {
           _playerNames = Set.from(invitees);
           _waitingOnFirstBackendData = false;
 
-          _streamSubscription =
-              onBackendInviteesUpdated(roomId, (invitees) async {
+          _streamSubscription = onBackendInviteesUpdated(roomId, (
+            invitees,
+          ) async {
             final List<String> rooms = await getAllRooms();
             if (mounted) {
               setState(() {
@@ -143,8 +144,10 @@ class JoinGameScreenState extends State<JoinGameScreen> {
       names: _playerNames.toList(),
       cardsToDeal: numberOfCards(GameStyles.frenchCards9),
       deck: DeckModel(
-        numberOfDecks:
-            numberOfDecks(GameStyles.frenchCards9, _playerNames.length),
+        numberOfDecks: numberOfDecks(
+          GameStyles.frenchCards9,
+          _playerNames.length,
+        ),
         gameStyle: GameStyles.frenchCards9,
       ),
       isNewGame: true,
@@ -170,8 +173,9 @@ class JoinGameScreenState extends State<JoinGameScreen> {
             margin: const EdgeInsets.symmetric(horizontal: 4),
             child: CircleAvatar(
               radius: 12,
-              backgroundColor:
-                  i <= _currentStep ? Colors.green[400] : Colors.grey[400],
+              backgroundColor: i <= _currentStep
+                  ? Colors.green[400]
+                  : Colors.grey[400],
               child: Text(
                 '${i + 1}',
                 style: const TextStyle(
@@ -371,9 +375,7 @@ class JoinGameScreenState extends State<JoinGameScreen> {
             _buildStepIndicator(),
             Expanded(
               child: Center(
-                child: SingleChildScrollView(
-                  child: _buildStepContent(),
-                ),
+                child: SingleChildScrollView(child: _buildStepContent()),
               ),
             ),
             Row(
@@ -398,8 +400,9 @@ class JoinGameScreenState extends State<JoinGameScreen> {
                         }
                       : null,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor:
-                        _canProceed ? Colors.green[600] : Colors.grey[600],
+                    backgroundColor: _canProceed
+                        ? Colors.green[600]
+                        : Colors.grey[600],
                     padding: const EdgeInsets.symmetric(
                       horizontal: 24,
                       vertical: 12,

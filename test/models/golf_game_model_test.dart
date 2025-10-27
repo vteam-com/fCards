@@ -124,30 +124,32 @@ void main() {
     expect(gameModel.isFinalTurn, true);
   });
 
-  test('getGameStateAsString returns correct message for different scenarios',
-      () {
-    final gameModel = GameModel(
-      gameStyle: GameStyles.frenchCards9,
-      roomName: 'testRoom',
-      roomHistory: [],
-      loginUserName: 'Player 1',
-      names: ['Player 1', 'Player 2'],
-      cardsToDeal: 9,
-      deck: DeckModel(numberOfDecks: 1, gameStyle: GameStyles.frenchCards9),
-      isNewGame: true,
-    );
+  test(
+    'getGameStateAsString returns correct message for different scenarios',
+    () {
+      final gameModel = GameModel(
+        gameStyle: GameStyles.frenchCards9,
+        roomName: 'testRoom',
+        roomHistory: [],
+        loginUserName: 'Player 1',
+        names: ['Player 1', 'Player 2'],
+        cardsToDeal: 9,
+        deck: DeckModel(numberOfDecks: 1, gameStyle: GameStyles.frenchCards9),
+        isNewGame: true,
+      );
 
-    expect(gameModel.getGameStateAsString(), "It's your turn Player 1");
+      expect(gameModel.getGameStateAsString(), "It's your turn Player 1");
 
-    gameModel.setActivePlayer(1);
-    expect(gameModel.getGameStateAsString(), "It's Player 2's turn");
+      gameModel.setActivePlayer(1);
+      expect(gameModel.getGameStateAsString(), "It's Player 2's turn");
 
-    gameModel.playerIdAttacking = 0;
-    expect(
-      gameModel.getGameStateAsString(),
-      "Final Round. It's Player 2's turn. You have to beat Player 1",
-    );
-  });
+      gameModel.playerIdAttacking = 0;
+      expect(
+        gameModel.getGameStateAsString(),
+        "Final Round. It's Player 2's turn. You have to beat Player 1",
+      );
+    },
+  );
 
   test('areAllCardsFromHandsRevealed returns correct state', () {
     final gameModel = GameModel(
@@ -191,10 +193,7 @@ void main() {
         loginUserName: playersNames.first,
         names: playersNames,
         cardsToDeal: 9,
-        deck: DeckModel(
-          numberOfDecks: 1,
-          gameStyle: GameStyles.frenchCards9,
-        ),
+        deck: DeckModel(numberOfDecks: 1, gameStyle: GameStyles.frenchCards9),
         isNewGame: true,
       );
 
@@ -215,10 +214,7 @@ void main() {
         loginUserName: playersNames.first,
         names: playersNames,
         cardsToDeal: 4,
-        deck: DeckModel(
-          numberOfDecks: 1,
-          gameStyle: GameStyles.miniPut,
-        ),
+        deck: DeckModel(numberOfDecks: 1, gameStyle: GameStyles.miniPut),
         isNewGame: true,
       );
 
@@ -239,10 +235,7 @@ void main() {
         loginUserName: playersNames.first,
         names: playersNames,
         cardsToDeal: 9,
-        deck: DeckModel(
-          numberOfDecks: 1,
-          gameStyle: GameStyles.custom,
-        ),
+        deck: DeckModel(numberOfDecks: 1, gameStyle: GameStyles.custom),
         isNewGame: true,
       );
 

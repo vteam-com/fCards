@@ -79,8 +79,9 @@ Future<List<String>> getPlayersInRoom(final String roomId) async {
     return ['BOB', 'SUE', 'JOHN', 'MARY'];
   }
 
-  final DataSnapshot dataSnapshot =
-      await FirebaseDatabase.instance.ref('rooms/$roomId/invitees').get();
+  final DataSnapshot dataSnapshot = await FirebaseDatabase.instance
+      .ref('rooms/$roomId/invitees')
+      .get();
 
   final List? players = dataSnapshot.value as List?;
 
@@ -122,16 +123,18 @@ Future<List<GameHistory>> getGameHistory(final String roomName) async {
   List<GameHistory> list = [];
   if (!isRunningOffLine) {
     try {
-      final DataSnapshot dataSnapshot =
-          await FirebaseDatabase.instance.ref('history/$roomName/').get();
+      final DataSnapshot dataSnapshot = await FirebaseDatabase.instance
+          .ref('history/$roomName/')
+          .get();
 
       if (dataSnapshot.exists && dataSnapshot.value is Map) {
         final Map data = dataSnapshot.value as Map;
 
         data.forEach((key, value) {
           final gameHistory = GameHistory();
-          gameHistory.date =
-              DateTime.fromMillisecondsSinceEpoch(int.parse(key));
+          gameHistory.date = DateTime.fromMillisecondsSinceEpoch(
+            int.parse(key),
+          );
           gameHistory.playersNames = [value];
 
           list.add(gameHistory);
@@ -163,21 +166,17 @@ Future<void> recordPlayerWin(
   }
 
   try {
-    final String dateTimeAsKey =
-        gameStartDate.millisecondsSinceEpoch.toString();
+    final String dateTimeAsKey = gameStartDate.millisecondsSinceEpoch
+        .toString();
 
     final DatabaseEvent dataFound = await FirebaseDatabase.instance
-        .ref(
-          'history/$roomName/$dateTimeAsKey',
-        )
+        .ref('history/$roomName/$dateTimeAsKey')
         .once();
 
     // only record it once
     if (!dataFound.snapshot.exists) {
       await FirebaseDatabase.instance
-          .ref(
-            'history/$roomName/$dateTimeAsKey',
-          )
+          .ref('history/$roomName/$dateTimeAsKey')
           .set(playerName);
     }
   } catch (error) {
@@ -198,10 +197,9 @@ StreamSubscription onBackendInviteesUpdated(
   final String roomId,
   void Function(List<String>) onInviteesNamesChanged,
 ) {
-  return FirebaseDatabase.instance
-      .ref()
-      .onValue
-      .listen((final DatabaseEvent event) {
+  return FirebaseDatabase.instance.ref().onValue.listen((
+    final DatabaseEvent event,
+  ) {
     getInviteesFromDataSnapshot(event.snapshot, roomId);
     onInviteesNamesChanged(getInviteesFromDataSnapshot(event.snapshot, roomId));
   });
@@ -249,8 +247,9 @@ Future<List<String>> getAllRooms() async {
     return ['TEST_ROOM'];
   }
 
-  final DataSnapshot dataSnapshot =
-      await FirebaseDatabase.instance.ref('rooms').get();
+  final DataSnapshot dataSnapshot = await FirebaseDatabase.instance
+      .ref('rooms')
+      .get();
   final List<String> rooms = [];
 
   if (dataSnapshot.exists && dataSnapshot.value is Map) {

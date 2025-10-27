@@ -37,12 +37,7 @@ class CardModelFrench {
   }
 
   /// A list of valid suits for a French-suited deck of cards.
-  static const List<String> suits = [
-    '♠️',
-    '♥️',
-    '♣️',
-    '♦️',
-  ];
+  static const List<String> suits = ['♠️', '♥️', '♣️', '♦️'];
 
   /// A list of valid ranks for a French-suited deck of cards.
   ///

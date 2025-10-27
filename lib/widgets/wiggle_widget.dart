@@ -38,12 +38,10 @@ class WiggleWidgetState extends State<WiggleWidget>
     _controller!.repeat(reverse: true);
 
     // Define the wiggle animation with a slight rotation angle
-    _wiggleAnimation = Tween<double>(begin: -0.05, end: 0.05).animate(
-      CurvedAnimation(
-        parent: _controller!,
-        curve: Curves.easeInOut,
-      ),
-    );
+    _wiggleAnimation = Tween<double>(
+      begin: -0.05,
+      end: 0.05,
+    ).animate(CurvedAnimation(parent: _controller!, curve: Curves.easeInOut));
   }
 
   @override

@@ -22,12 +22,8 @@ class InputKeyboard extends StatelessWidget {
         margin: EdgeInsets.all(8),
         decoration: BoxDecoration(
           color: Colors.black26,
-          border: Border.all(
-            color: Colors.black26,
-          ),
-          borderRadius: const BorderRadius.all(
-            Radius.circular(40),
-          ),
+          border: Border.all(color: Colors.black26),
+          borderRadius: const BorderRadius.all(Radius.circular(40)),
         ),
         padding: EdgeInsets.all(10),
         child: Column(

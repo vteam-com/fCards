@@ -5,12 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   group('CardModel', () {
     test('fromJson creates correct card model', () {
-      final json = {
-        'suit': '♥️',
-        'rank': 'A',
-        'value': 1,
-        'isRevealed': true,
-      };
+      final json = {'suit': '♥️', 'rank': 'A', 'value': 1, 'isRevealed': true};
 
       final card = CardModel.fromJson(json);
 
@@ -20,12 +15,7 @@ void main() {
     });
 
     test('toJson creates correct json representation', () {
-      final card = CardModel(
-        suit: '♦️',
-        rank: 'K',
-        value: 0,
-        isRevealed: true,
-      );
+      final card = CardModel(suit: '♦️', rank: 'K', value: 0, isRevealed: true);
 
       final json = card.toJson();
 
@@ -49,51 +39,24 @@ void main() {
 
     group('value getter', () {
       test('returns correct values for face cards', () {
-        expect(
-          CardModel(suit: '♠️', rank: 'K', value: 0).value,
-          0,
-        );
-        expect(
-          CardModel(suit: '♠️', rank: 'Q', value: 12).value,
-          12,
-        );
-        expect(
-          CardModel(suit: '♠️', rank: 'J', value: 11).value,
-          11,
-        );
-        expect(
-          CardModel(suit: '♠️', rank: 'A', value: 1).value,
-          1,
-        );
+        expect(CardModel(suit: '♠️', rank: 'K', value: 0).value, 0);
+        expect(CardModel(suit: '♠️', rank: 'Q', value: 12).value, 12);
+        expect(CardModel(suit: '♠️', rank: 'J', value: 11).value, 11);
+        expect(CardModel(suit: '♠️', rank: 'A', value: 1).value, 1);
       });
 
       test('returns correct values for number cards', () {
-        expect(
-          CardModel(suit: '♥️', rank: '2', value: 2).value,
-          2,
-        );
-        expect(
-          CardModel(suit: '♥️', rank: '5', value: 5).value,
-          5,
-        );
-        expect(
-          CardModel(suit: '♥️', rank: '10', value: 10).value,
-          10,
-        );
+        expect(CardModel(suit: '♥️', rank: '2', value: 2).value, 2);
+        expect(CardModel(suit: '♥️', rank: '5', value: 5).value, 5);
+        expect(CardModel(suit: '♥️', rank: '10', value: 10).value, 10);
       });
 
       test('returns -2 for Joker', () {
-        expect(
-          CardModel(suit: '♠️', rank: '§', value: -2).value,
-          -2,
-        );
+        expect(CardModel(suit: '♠️', rank: '§', value: -2).value, -2);
       });
 
       test('returns 0 for invalid rank', () {
-        expect(
-          CardModel(suit: '♠️', rank: 'Invalid', value: 0).value,
-          0,
-        );
+        expect(CardModel(suit: '♠️', rank: 'Invalid', value: 0).value, 0);
       });
     });
 
@@ -103,12 +66,7 @@ void main() {
     });
 
     test('suits list contains all required suits', () {
-      expect(CardModelFrench.suits, [
-        '♠️',
-        '♥️',
-        '♣️',
-        '♦️',
-      ]);
+      expect(CardModelFrench.suits, ['♠️', '♥️', '♣️', '♦️']);
     });
 
     test('ranks list contains all required ranks', () {

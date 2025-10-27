@@ -9,10 +9,7 @@ import 'package:flutter/material.dart';
 /// The widget uses different methods to display the front and back of the card depending on its properties.
 class CardFaceFrenchWidget extends StatelessWidget {
   /// Creates a [CardFaceFrenchWidget] with a [CardModel] card.
-  const CardFaceFrenchWidget({
-    super.key,
-    required this.card,
-  });
+  const CardFaceFrenchWidget({super.key, required this.card});
 
   /// The playing card to be displayed.
   final CardModel card;
@@ -28,13 +25,7 @@ class CardFaceFrenchWidget extends StatelessWidget {
       padding: const EdgeInsets.all(4.0),
       child: Stack(
         children: [
-          Column(
-            children: [
-              buildRank(),
-              const Spacer(),
-              buildValue(),
-            ],
-          ),
+          Column(children: [buildRank(), const Spacer(), buildValue()]),
           ...buildSuitSymbols(),
         ],
       ),
@@ -62,31 +53,14 @@ class CardFaceFrenchWidget extends StatelessWidget {
         return Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            TextSize(
-              card.rank,
-              40,
-              bold: true,
-              color: color,
-            ),
-            TextSize(
-              card.suit,
-              20,
-              bold: true,
-              color: color,
-            ),
+            TextSize(card.rank, 40, bold: true, color: color),
+            TextSize(card.suit, 20, bold: true, color: color),
           ],
         );
       default:
         return Row(
           mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            TextSize(
-              card.rank,
-              40,
-              bold: true,
-              color: color,
-            ),
-          ],
+          children: [TextSize(card.rank, 40, bold: true, color: color)],
         );
     }
   }
@@ -155,11 +129,7 @@ class CardFaceFrenchWidget extends StatelessWidget {
         positions = [Offset(0, -30), Offset(0, 30)];
         break;
       case 3:
-        positions = [
-          Offset(0, -30),
-          Offset(0, 0),
-          Offset(0, 30),
-        ];
+        positions = [Offset(0, -30), Offset(0, 0), Offset(0, 30)];
         break;
       case 4:
         positions = [

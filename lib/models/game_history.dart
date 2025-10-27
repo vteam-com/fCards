@@ -31,10 +31,7 @@ class GameHistory {
   ///
   /// This method is useful for serializing a [GameHistory] instance to a JSON format.
   Map<String, dynamic> toJson() {
-    return {
-      'date': date,
-      'playersNames': playersNames,
-    };
+    return {'date': date, 'playersNames': playersNames};
   }
 
   @override

@@ -40,18 +40,15 @@ class MockDataSnapshotImpl implements DataSnapshot {
 }
 
 void main() {
-  group(
-    'BackEndModel',
-    () {
-      test('mock backend', () {
-        DefaultFirebaseOptions.currentPlatform;
-        DefaultFirebaseOptions.web;
-        DefaultFirebaseOptions.ios;
-        DefaultFirebaseOptions.macos;
-        DefaultFirebaseOptions.windows;
-      });
-    },
-  );
+  group('BackEndModel', () {
+    test('mock backend', () {
+      DefaultFirebaseOptions.currentPlatform;
+      DefaultFirebaseOptions.web;
+      DefaultFirebaseOptions.ios;
+      DefaultFirebaseOptions.macos;
+      DefaultFirebaseOptions.windows;
+    });
+  });
 
   group('useFirebase', () {
     test('should set backendReady to true when offline', () async {
@@ -86,8 +83,10 @@ void main() {
   group('test offline', () {
     test('getInviteesFromDataSnapshot', () async {
       isRunningOffLine = false;
-      final players =
-          getInviteesFromDataSnapshot(MockDataSnapshotImpl(), 'TEST_ROOM');
+      final players = getInviteesFromDataSnapshot(
+        MockDataSnapshotImpl(),
+        'TEST_ROOM',
+      );
       expect(players, ['JOHN', 'PAUL', 'GORGES', 'RINGO']);
     });
 

@@ -167,8 +167,8 @@ class StartScreenState extends State<StartScreen> {
           .toList();
       _controllerName.text =
           playerNames.first; // Set the first player as the default name.
-      _playerNames =
-          playerNames.toSet(); // Set the list of players in the room.
+      _playerNames = playerNames
+          .toSet(); // Set the list of players in the room.
 
       // Delay setting players in the room until after the initial data load completes.
       Future.delayed(Duration.zero, () async {
@@ -181,9 +181,7 @@ class StartScreenState extends State<StartScreen> {
     }
 
     // Initialize the backend connection for the room.
-    prepareBackEndForRoom(
-      roomName,
-    );
+    prepareBackEndForRoom(roomName);
   }
 
   /// Prepares the backend for the specified room.
@@ -211,12 +209,13 @@ class StartScreenState extends State<StartScreen> {
         _waitingOnFirstBackendData = false;
 
         // Listen for updates to the list of invitees.
-        _streamSubscription =
-            onBackendInviteesUpdated(roomId, (invitees) async {
+        _streamSubscription = onBackendInviteesUpdated(roomId, (
+          invitees,
+        ) async {
           final List<String> listOfRooms = await getAllRooms();
 
           setState(() {
-            this._listOfRooms = listOfRooms;
+            _listOfRooms = listOfRooms;
             _playerNames = Set.from(invitees);
           });
         });
@@ -251,8 +250,8 @@ class StartScreenState extends State<StartScreen> {
                         'Room',
                         _controllerRoom,
                         () {
-                          _controllerRoom.text =
-                              _controllerRoom.text.toUpperCase();
+                          _controllerRoom.text = _controllerRoom.text
+                              .toUpperCase();
                           prepareBackEndForRoom(roomName);
                         },
                         _errorTextRoom,
@@ -284,8 +283,9 @@ class StartScreenState extends State<StartScreen> {
                           _isExpandedRooms = false;
                         });
                       },
-                      onRemoveRoom:
-                          _playerName == 'JP' ? (String room) {} : null,
+                      onRemoveRoom: _playerName == 'JP'
+                          ? (String room) {}
+                          : null,
                     ),
                   const SizedBox(height: 2),
                   SizedBox(
@@ -304,9 +304,7 @@ class StartScreenState extends State<StartScreen> {
                   const SizedBox(height: 8),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      'Who Are You?\nSelect above ⬆ or join below ⬇',
-                    ),
+                    child: Text('Who Are You?\nSelect above ⬆ or join below ⬇'),
                   ),
                   const SizedBox(height: 8),
                   editBox(
@@ -323,10 +321,7 @@ class StartScreenState extends State<StartScreen> {
                           joinGame(_controllerName.text);
                         });
                       },
-                      icon: Icon(
-                        Icons.add,
-                        color: Colors.green.shade900,
-                      ),
+                      icon: Icon(Icons.add, color: Colors.green.shade900),
                     ),
                   ),
                   const SizedBox(height: 20),
@@ -443,8 +438,9 @@ class StartScreenState extends State<StartScreen> {
                 final String uppercaseText = text.toUpperCase();
                 controller.value = controller.value.copyWith(
                   text: uppercaseText,
-                  selection:
-                      TextSelection.collapsed(offset: uppercaseText.length),
+                  selection: TextSelection.collapsed(
+                    offset: uppercaseText.length,
+                  ),
                   composing: TextRange.empty,
                 );
               },
@@ -504,10 +500,7 @@ class StartScreenState extends State<StartScreen> {
       names: _playerNames.toList(),
       cardsToDeal: numberOfCards(_selectedGameStyle),
       deck: DeckModel(
-        numberOfDecks: numberOfDecks(
-          _selectedGameStyle,
-          _playerNames.length,
-        ),
+        numberOfDecks: numberOfDecks(_selectedGameStyle, _playerNames.length),
         gameStyle: _selectedGameStyle,
       ),
       isNewGame: true,
@@ -520,9 +513,7 @@ class StartScreenState extends State<StartScreen> {
     if (context.mounted) {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(
-          builder: (context) => GameScreen(gameModel: newGame),
-        ),
+        MaterialPageRoute(builder: (context) => GameScreen(gameModel: newGame)),
       );
     }
   }
@@ -571,8 +562,8 @@ class StartScreenState extends State<StartScreen> {
 
     String label = isPartOfTheList
         ? (_playerNames.length > 1
-            ? 'Start Game'
-            : 'Waiting for players to join')
+              ? 'Start Game'
+              : 'Waiting for players to join')
         : 'Join Game';
     return ElevatedButton(
       onPressed: () {
@@ -586,10 +577,7 @@ class StartScreenState extends State<StartScreen> {
       },
       child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Text(
-          label,
-          style: const TextStyle(fontSize: 20),
-        ),
+        child: Text(label, style: const TextStyle(fontSize: 20)),
       ),
     );
   }

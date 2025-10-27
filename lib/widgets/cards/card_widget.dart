@@ -29,11 +29,7 @@ class CardDimensions {
 class CardWidget extends StatelessWidget {
   /// Creates a [CardWidget] with a [CardModel] card.
   /// If the card is null, a placeholder is shown.
-  const CardWidget({
-    super.key,
-    required this.card,
-    this.onDropped,
-  });
+  const CardWidget({super.key, required this.card, this.onDropped});
 
   /// The playing card to be displayed.
   final CardModel card;
@@ -88,15 +84,9 @@ Widget dragSource(final CardModel card) {
     data: card,
     feedback: Opacity(
       opacity: 0.8,
-      child: CardWidget(
-        card: card,
-        onDropped: null,
-      ),
+      child: CardWidget(card: card, onDropped: null),
     ),
     childWhenDragging: SizedBox(), // hide it when dragging
-    child: CardWidget(
-      card: card,
-      onDropped: null,
-    ),
+    child: CardWidget(card: card, onDropped: null),
   );
 }

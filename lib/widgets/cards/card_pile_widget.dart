@@ -49,10 +49,7 @@ class CardPileWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return FittedBox(
       fit: BoxFit.scaleDown,
-      child: Transform.scale(
-        scale: scale,
-        child: _buildPileUnplayedCards(),
-      ),
+      child: Transform.scale(scale: scale, child: _buildPileUnplayedCards()),
     );
   }
 
@@ -71,7 +68,8 @@ class CardPileWidget extends StatelessWidget {
           child: Stack(
             alignment: Alignment.center,
             children: List.generate(cards.length, (index) {
-              double offset = index.toDouble() *
+              double offset =
+                  index.toDouble() *
                   cardStackOffset; // Offset for stacking effect
               bool isTopCard = index == cards.length - 1;
               final CardModel card = cards[index];
@@ -82,10 +80,7 @@ class CardPileWidget extends StatelessWidget {
                 top: offset,
                 child: isDragSource
                     ? dragSource(card)
-                    : CardWidget(
-                        card: card,
-                        onDropped: onDragDropped,
-                      ),
+                    : CardWidget(card: card, onDropped: onDragDropped),
               );
             }),
           ),

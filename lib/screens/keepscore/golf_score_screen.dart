@@ -126,11 +126,7 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
       // Only update the score if we have a valid number or are in the middle of typing a negative number
       if (currentValue != '-') {
         final int? parsedValue = int.tryParse(currentValue);
-        model.updateScore(
-          row,
-          col,
-          parsedValue ?? 0,
-        );
+        model.updateScore(row, col, parsedValue ?? 0);
       }
     });
   }
@@ -146,9 +142,10 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
             title: '9 Cards Golf Scorekeeper',
             isWaiting: true,
             child: Center(
-                child: snapshot.connectionState == ConnectionState.waiting
-                    ? CircularProgressIndicator()
-                    : Text('Error loading scores: ${snapshot.error}')),
+              child: snapshot.connectionState == ConnectionState.waiting
+                  ? CircularProgressIndicator()
+                  : Text('Error loading scores: ${snapshot.error}'),
+            ),
           );
         }
 
@@ -175,9 +172,7 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     // Header row with player names
-                    FittedBox(
-                      child: _buildPlayersHeader(scoreModel, ranks),
-                    ),
+                    FittedBox(child: _buildPlayersHeader(scoreModel, ranks)),
                     Expanded(
                       child: SingleChildScrollView(
                         controller: _scrollController,
@@ -214,12 +209,8 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
         margin: EdgeInsets.all(8),
         decoration: BoxDecoration(
           color: Colors.black26,
-          border: Border.all(
-            color: Colors.black26,
-          ),
-          borderRadius: const BorderRadius.all(
-            Radius.circular(40),
-          ),
+          border: Border.all(color: Colors.black26),
+          borderRadius: const BorderRadius.all(Radius.circular(40)),
         ),
         padding: EdgeInsets.all(10),
         child: Row(
@@ -251,15 +242,18 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
                 size: 30,
                 onTap: () {
                   final lastRoundScores = scoreModel.scores.last;
-                  final allScoresAreZero =
-                      lastRoundScores.every((score) => score == 0);
+                  final allScoresAreZero = lastRoundScores.every(
+                    (score) => score == 0,
+                  );
                   if (allScoresAreZero) {
                     setState(() {
                       scoreModel.removeRoundAt(scoreModel.scores.length - 1);
                     });
                   } else {
                     confirmDeleteRound(
-                        scoreModel.scores.length - 1, scoreModel);
+                      scoreModel.scores.length - 1,
+                      scoreModel,
+                    );
                   }
                 },
                 child: Icon(Icons.remove),
@@ -271,7 +265,9 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
   }
 
   Widget _buildPlayersHeader(
-      final GolfScoreModel scoreModel, final dynamic ranks) {
+    final GolfScoreModel scoreModel,
+    final dynamic ranks,
+  ) {
     return Padding(
       padding: const EdgeInsets.only(top: 8.0),
       child: Row(
@@ -353,7 +349,8 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
                       decoration: BoxDecoration(
                         color: Colors.black26,
                         border: Border.all(
-                          color: _selectedCell != null &&
+                          color:
+                              _selectedCell != null &&
                                   _selectedCell!['row'] == i &&
                                   _selectedCell!['col'] == j
                               ? Colors.yellow
@@ -384,7 +381,7 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
                 ),
               ),
           ],
-        )
+        ),
     ];
 
     return Column(
@@ -431,7 +428,8 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
       builder: (ctx) => AlertDialog(
         title: const Text('New Game'),
         content: const Text(
-            'Are you sure you want to start a new game? All scores will be lost?'),
+          'Are you sure you want to start a new game? All scores will be lost?',
+        ),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(ctx).pop(false),

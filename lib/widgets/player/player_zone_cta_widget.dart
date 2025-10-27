@@ -83,19 +83,16 @@ class PlayerZoneCtaWidget extends StatelessWidget {
           onDragDropped: (cardSource, cardTarget) =>
               gameModel.onDropCardOnCard(context, cardSource, cardTarget),
         ),
-        buildMiniInstructions(
-          true,
-          'Discard →\nor\n↓ swap',
-          TextAlign.center,
-        ),
+        buildMiniInstructions(true, 'Discard →\nor\n↓ swap', TextAlign.center),
         CardPileWidget(
           cards: gameModel.deck.cardsDeckDiscarded,
           scale: 0.75,
           onDraw: () {
             // Player has discard the top deck revealed card
             // they now have to turn over one of their hidden card
-            gameModel.deck.cardsDeckDiscarded
-                .add(gameModel.deck.cardsDeckPile.removeLast());
+            gameModel.deck.cardsDeckDiscarded.add(
+              gameModel.deck.cardsDeckPile.removeLast(),
+            );
             gameModel.gameState = GameStates.revealOneHiddenCard;
           },
           cardsAreHidden: false,
@@ -131,11 +128,7 @@ class PlayerZoneCtaWidget extends StatelessWidget {
         ),
 
         // Let them know what to do
-        buildMiniInstructions(
-          true,
-          'swap this →\n\nwith ↓',
-          TextAlign.center,
-        ),
+        buildMiniInstructions(true, 'swap this →\n\nwith ↓', TextAlign.center),
 
         // Right Discarded pile
         CardPileWidget(
@@ -174,18 +167,15 @@ class PlayerZoneCtaWidget extends StatelessWidget {
       children: [
         if (GameStates.swapTopDeckCardWithAnyCardsInHandOrDiscard !=
             gameModel.gameState)
-          buildMiniInstructions(
-            true,
-            'Draw\na card\nhere\n→',
-            TextAlign.left,
-          ),
+          buildMiniInstructions(true, 'Draw\na card\nhere\n→', TextAlign.left),
         const SizedBox(width: 10),
         CardPileWidget(
           cards: gameModel.deck.cardsDeckPile,
           scale: 1.00,
           wiggleTopCard: true,
           cardsAreHidden: true,
-          revealTopDeckCard: gameModel.gameState ==
+          revealTopDeckCard:
+              gameModel.gameState ==
               GameStates.swapTopDeckCardWithAnyCardsInHandOrDiscard,
           isDragSource: false,
           isDropTarget: false,
@@ -206,11 +196,7 @@ class PlayerZoneCtaWidget extends StatelessWidget {
               gameModel.selectTopCardOfDeck(context, fromDiscardPile: true),
         ),
         const SizedBox(width: 10),
-        buildMiniInstructions(
-          true,
-          '\nor\nhere\n←',
-          TextAlign.right,
-        ),
+        buildMiniInstructions(true, '\nor\nhere\n←', TextAlign.right),
       ],
     );
   }

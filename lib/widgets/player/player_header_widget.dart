@@ -30,8 +30,8 @@ class PlayerHeaderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<DateTime> listOfWinsForThisPlayer =
-        gameModel.getWinsForPlayerName(player.name);
+    final List<DateTime> listOfWinsForThisPlayer = gameModel
+        .getWinsForPlayerName(player.name);
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -90,11 +90,7 @@ class PlayerHeaderWidget extends StatelessWidget {
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: listOfWinsForThisPlayer
-            .map(
-              (date) => DateTimeWidget(
-                dateTime: date,
-              ),
-            )
+            .map((date) => DateTimeWidget(dateTime: date))
             .toList(),
       ),
     );

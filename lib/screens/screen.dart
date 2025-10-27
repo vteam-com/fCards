@@ -117,9 +117,9 @@ class _ScreenState extends State<Screen> {
                   PageRouteBuilder(
                     pageBuilder: (context, animation, secondaryAnimation) =>
                         LicensePage(
-                      applicationName: 'VTeam Cards',
-                      applicationVersion: _version,
-                    ),
+                          applicationName: 'VTeam Cards',
+                          applicationVersion: _version,
+                        ),
                   ),
                 );
               }
@@ -152,8 +152,9 @@ class _ScreenState extends State<Screen> {
             IconButton(
               icon: const Icon(Icons.ios_share),
               onPressed: () {
-                SharePlus.instance
-                    .share(ShareParams(text: widget.getLinkToShare!()));
+                SharePlus.instance.share(
+                  ShareParams(text: widget.getLinkToShare!()),
+                );
               },
             ),
         ],
@@ -169,10 +170,7 @@ class _ScreenState extends State<Screen> {
             ),
             child: SizedBox.expand(
               child: DefaultTextStyle(
-                style: TextStyle(
-                  color: Colors.green.shade100,
-                  fontSize: 20,
-                ),
+                style: TextStyle(color: Colors.green.shade100, fontSize: 20),
                 child: widget.isWaiting ? _displayWaiting() : widget.child,
               ),
             ),
@@ -187,11 +185,7 @@ class _ScreenState extends State<Screen> {
     return SizedBox(
       width: 400,
       height: 400,
-      child: Center(
-        child: const CupertinoActivityIndicator(
-          radius: 40,
-        ),
-      ),
+      child: Center(child: const CupertinoActivityIndicator(radius: 40)),
     );
   }
 }

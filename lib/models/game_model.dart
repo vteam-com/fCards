@@ -37,7 +37,9 @@ class GameModel with ChangeNotifier {
     this.version = '',
   }) {
     // Initialize players from the list of names
-    names.forEach((name) => addPlayer(name));
+    for (var name in names) {
+      addPlayer(name);
+    }
 
     if (isNewGame) {
       initializeGame();
@@ -102,21 +104,11 @@ class GameModel with ChangeNotifier {
   void addPlayer(String name) {
     if (gameStyle == GameStyles.skyJo) {
       players.add(
-        PlayerModel(
-          name: name,
-          columns: 4,
-          rows: 3,
-          skyJoLogic: true,
-        ),
+        PlayerModel(name: name, columns: 4, rows: 3, skyJoLogic: true),
       );
     } else {
       players.add(
-        PlayerModel(
-          name: name,
-          columns: 3,
-          rows: 3,
-          skyJoLogic: false,
-        ),
+        PlayerModel(name: name, columns: 3, rows: 3, skyJoLogic: false),
       );
     }
   }
@@ -140,9 +132,10 @@ class GameModel with ChangeNotifier {
   void pushGameModelToBackend() {
     if (backendReady) {
       if (isRunningOffLine == false) {
-        final refPlayers =
-            FirebaseDatabase.instance.ref().child('rooms/$roomName');
-        refPlayers.set(this.toJson());
+        final refPlayers = FirebaseDatabase.instance.ref().child(
+          'rooms/$roomName',
+        );
+        refPlayers.set(toJson());
       }
     }
   }
@@ -191,10 +184,7 @@ class GameModel with ChangeNotifier {
   ///
   /// - Returns: A new instance of `DeckModel` representing the loaded deck, or null if the loading fails.
   DeckModel loadDeck(Map<String, dynamic> json) {
-    return DeckModel.fromJson(
-      json,
-      gameStyle,
-    );
+    return DeckModel.fromJson(json, gameStyle);
   }
 
   /// Loads a player model from a JSON object, with the player configuration based on the current game style.
@@ -326,11 +316,11 @@ class GameModel with ChangeNotifier {
     int cardsToReveal = numberOfCardsToRevealOnStartup(gameStyle);
 
     // Deal cards to each players and reveal the initial cards (cardsToReveal = 1 or 2).
-    players.forEach((player) {
+    for (var player in players) {
       player.clear();
       dealCards(player);
       player.revealRandomCardsInHand(cardsToReveal);
-    });
+    }
 
     // Add a card to the discard pile if the deck is not empty.
     if (deck.cardsDeckPile.isNotEmpty) {
@@ -345,11 +335,11 @@ class GameModel with ChangeNotifier {
   /// Returns a list of [DateTime] objects representing the dates when the player won.
   List<DateTime> getWinsForPlayerName(final String nameOfPlayer) {
     List<DateTime> list = [];
-    roomHistory.forEach((game) {
+    for (var game in roomHistory) {
       if (game.playersNames.first == nameOfPlayer) {
         list.add(game.date);
       }
-    });
+    }
     return list;
   }
 
@@ -405,10 +395,7 @@ class GameModel with ChangeNotifier {
           gameState = GameStates.revealOneHiddenCard;
           return;
         } else {
-          swapDragCardOnPlayersTargetCard(
-            context,
-            cardTarget,
-          );
+          swapDragCardOnPlayersTargetCard(context, cardTarget);
         }
       case GameStates.swapDiscardedCardWithAnyCardsInHand:
         if (cardTarget == deck.cardsDeckDiscarded.last) {
@@ -438,10 +425,7 @@ class GameModel with ChangeNotifier {
     final int targetIndex = players[playerIdPlaying].hand.indexOf(cardTarget);
 
     if (targetIndex != -1) {
-      swapCardWithTopPile(
-        players[playerIdPlaying],
-        targetIndex,
-      );
+      swapCardWithTopPile(players[playerIdPlaying], targetIndex);
       moveToNextPlayer(context); // Assuming context is available
       // Optionally add a state update notification here
       notifyListeners();
@@ -452,10 +436,7 @@ class GameModel with ChangeNotifier {
   ///
   /// [playerIndex] is the index of the player whose hand is being modified.
   /// [cardIndex] is the index of the card in the player's hand to swap.
-  void swapCardWithTopPile(
-    final PlayerModel player,
-    final int cardIndex,
-  ) {
+  void swapCardWithTopPile(final PlayerModel player, final int cardIndex) {
     if (player.hand.validIndex(cardIndex)) {
       // do the swap
       CardModel cardToSwapFromPlayer = player.hand[cardIndex];
@@ -511,7 +492,7 @@ class GameModel with ChangeNotifier {
     if (wasSwapped) {
       moveToNextPlayer(context);
 
-      if (this.isFinalTurn) {
+      if (isFinalTurn) {
         if (areAllCardsFromHandsRevealed()) {
           gameState = GameStates.gameOver;
         }
@@ -522,10 +503,7 @@ class GameModel with ChangeNotifier {
   }
 
   /// Handles the logic for flipping a card during the [GameStates.revealOneHiddenCard] game state.
-  bool handleFlipOneCardState(
-    final PlayerModel player,
-    final int cardIndex,
-  ) {
+  bool handleFlipOneCardState(final PlayerModel player, final int cardIndex) {
     if (gameState == GameStates.revealOneHiddenCard &&
         player.hand[cardIndex].isRevealed == false) {
       // reveal the card
@@ -537,16 +515,10 @@ class GameModel with ChangeNotifier {
   }
 
   /// Handles the logic for flipping and swapping a card during the 'flipAndSwap' game state.
-  bool handleFlipAndSwapState(
-    final PlayerModel player,
-    final int cardIndex,
-  ) {
+  bool handleFlipAndSwapState(final PlayerModel player, final int cardIndex) {
     if (gameState == GameStates.swapTopDeckCardWithAnyCardsInHandOrDiscard ||
         gameState == GameStates.swapDiscardedCardWithAnyCardsInHand) {
-      swapCardWithTopPile(
-        player,
-        cardIndex,
-      );
+      swapCardWithTopPile(player, cardIndex);
 
       return true;
     }
@@ -583,7 +555,7 @@ class GameModel with ChangeNotifier {
       evaluateHandSkyJo();
     } else {
       // TODO
-      //evaluateHandGolf();
+      // evaluateHandGolf();
     }
   }
 
@@ -694,10 +666,10 @@ class GameModel with ChangeNotifier {
   /// @param names A list of player names.
   /// @return The generated link URI.
   String get linkUri => getLinkToGameFromInput(
-        this.gameStyle.index.toString(),
-        this.roomName,
-        this.getPlayersNames(),
-      );
+    gameStyle.index.toString(),
+    roomName,
+    getPlayersNames(),
+  );
 
   /// Generates a link URI for the game based on the provided input parameters.
   ///

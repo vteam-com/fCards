@@ -59,10 +59,7 @@ class _PlayerHeaderState extends State<PlayerHeader> {
 
   Widget _buildWiningPosition(int rank, int numberOfPlayers) {
     if (rank == 1) {
-      return Text(
-        '👑',
-        style: TextStyle(fontWeight: FontWeight.w900),
-      );
+      return Text('👑', style: TextStyle(fontWeight: FontWeight.w900));
     } else if (rank == numberOfPlayers) {
       return Opacity(
         opacity: 0.5,
@@ -84,8 +81,10 @@ class _PlayerHeaderState extends State<PlayerHeader> {
 
   void _showEditPlayerDialog() {
     final controller = TextEditingController(text: widget.playerName);
-    controller.selection =
-        TextSelection(baseOffset: 0, extentOffset: controller.text.length);
+    controller.selection = TextSelection(
+      baseOffset: 0,
+      extentOffset: controller.text.length,
+    );
     final focusNode = FocusNode();
     showDialog(
       context: context,
@@ -132,9 +131,7 @@ class _PlayerHeaderState extends State<PlayerHeader> {
                   },
                   child: const Text('Done'),
                 ),
-                Divider(
-                  color: Colors.green,
-                ),
+                Divider(color: Colors.green),
                 Wrap(
                   spacing: 16,
                   runSpacing: 16,
@@ -172,8 +169,10 @@ class _PlayerHeaderState extends State<PlayerHeader> {
     }
     Future.delayed(const Duration(milliseconds: 150), () {
       if (mounted) {
-        controller.selection =
-            TextSelection(baseOffset: 0, extentOffset: controller.text.length);
+        controller.selection = TextSelection(
+          baseOffset: 0,
+          extentOffset: controller.text.length,
+        );
       }
     });
   }
@@ -188,8 +187,9 @@ class _PlayerHeaderState extends State<PlayerHeader> {
             side: BorderSide(color: Colors.green.shade600, width: 1),
           ),
           title: const Text('Remove Player'),
-          content:
-              Text('Are you sure you want to remove "${widget.playerName}"?'),
+          content: Text(
+            'Are you sure you want to remove "${widget.playerName}"?',
+          ),
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
@@ -212,8 +212,10 @@ class _PlayerHeaderState extends State<PlayerHeader> {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-        backgroundColor:
-            _getScoreColor(widget.rank, widget.numberOfPlayers).withAlpha(150),
+        backgroundColor: _getScoreColor(
+          widget.rank,
+          widget.numberOfPlayers,
+        ).withAlpha(150),
       ),
       onPressed: _showEditPlayerDialog,
       child: Column(
@@ -227,10 +229,7 @@ class _PlayerHeaderState extends State<PlayerHeader> {
           SizedBox(
             height: 24,
             child: Center(
-              child: _buildWiningPosition(
-                widget.rank,
-                widget.numberOfPlayers,
-              ),
+              child: _buildWiningPosition(widget.rank, widget.numberOfPlayers),
             ),
           ),
 

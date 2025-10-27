@@ -5,8 +5,9 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group('CardPileWidget', () {
-    testWidgets('initializes with required parameters',
-        (WidgetTester tester) async {
+    testWidgets('initializes with required parameters', (
+      WidgetTester tester,
+    ) async {
       final cards = [
         CardModel(suit: '♥️', rank: 'A', value: 1),
         CardModel(suit: '♦️', rank: 'K', value: 13),
@@ -21,7 +22,7 @@ void main() {
             revealTopDeckCard: false,
             isDragSource: false,
             isDropTarget: false,
-            onDragDropped: (_, __) {},
+            onDragDropped: (_, _) {},
             scale: 1.0,
           ),
         ),
@@ -31,9 +32,7 @@ void main() {
     });
 
     testWidgets('handles null onDraw callback', (WidgetTester tester) async {
-      final cards = [
-        CardModel(suit: '♥️', rank: 'A', value: 1),
-      ];
+      final cards = [CardModel(suit: '♥️', rank: 'A', value: 1)];
 
       await tester.pumpWidget(
         MaterialApp(
@@ -44,7 +43,7 @@ void main() {
             revealTopDeckCard: true,
             isDragSource: true,
             isDropTarget: true,
-            onDragDropped: (_, __) {},
+            onDragDropped: (_, _) {},
             scale: 0.8,
           ),
         ),
@@ -63,7 +62,7 @@ void main() {
             revealTopDeckCard: true,
             isDragSource: true,
             isDropTarget: true,
-            onDragDropped: (_, __) {},
+            onDragDropped: (_, _) {},
             scale: 1.2,
           ),
         ),

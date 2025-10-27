@@ -12,10 +12,7 @@ void main() {
     test('creates instance from JSON', () {
       final testDate = DateTime.now();
       final testNames = ['Player1', 'Player2', 'Player3'];
-      final json = {
-        'date': testDate,
-        'playersNames': testNames,
-      };
+      final json = {'date': testDate, 'playersNames': testNames};
 
       final history = GameHistory.fromJson(json);
 

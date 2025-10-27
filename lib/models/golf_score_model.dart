@@ -7,10 +7,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 class GolfScoreModel {
   // ignore: sort_constructors_first
   /// Creates a [GolfScoreModel] instance.
-  GolfScoreModel({
-    required this.playerNames,
-    List<List<int>>? scores,
-  }) : scores = scores ?? [] {
+  GolfScoreModel({required this.playerNames, List<List<int>>? scores})
+    : scores = scores ?? [] {
     if (this.scores.isEmpty) {
       addRound();
     }

@@ -12,10 +12,7 @@ import 'package:flutter/material.dart';
 /// The widget uses different methods to display the front and back of the card depending on its properties.
 class CardFaceSkyjoWidget extends CardFaceFrenchWidget {
   /// Creates a [CardFaceSkyjoWidget] with a [CardModel] card.
-  const CardFaceSkyjoWidget({
-    super.key,
-    required super.card,
-  });
+  const CardFaceSkyjoWidget({super.key, required super.card});
 
   @override
   Widget build(BuildContext context) {
@@ -33,10 +30,7 @@ class CardFaceSkyjoWidget extends CardFaceFrenchWidget {
             height: 300,
             decoration: BoxDecoration(
               gradient: RadialGradient(
-                colors: [
-                  Colors.white,
-                  getBackColor(card.value),
-                ],
+                colors: [Colors.white, getBackColor(card.value)],
                 center: Alignment.center,
                 radius: 0.75,
               ),
@@ -44,11 +38,7 @@ class CardFaceSkyjoWidget extends CardFaceFrenchWidget {
             // color: getBackColor(card.value),
             child: Stack(
               children: [
-                Positioned(
-                  top: 10,
-                  left: 10,
-                  child: _buildSmallText(),
-                ),
+                Positioned(top: 10, left: 10, child: _buildSmallText()),
                 Center(child: _buildMainText()),
                 Positioned(
                   bottom: 10,

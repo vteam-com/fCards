@@ -33,9 +33,7 @@ void main() {
 
     test('revealInitialCards reveals correct cards', () {
       for (int i = 0; i < 9; i++) {
-        player.addCardToHand(
-          CardModel(suit: '♥️', rank: 'A', value: 1),
-        );
+        player.addCardToHand(CardModel(suit: '♥️', rank: 'A', value: 1));
       }
       player.revealRandomCardsInHand(2);
       expect(player.hand.revealedCards.length, 2);
@@ -44,109 +42,48 @@ void main() {
     test('sumOfRevealedCards identifies vertical sets', () {
       player.hand = HandModel(3, 3, []);
       player.addCardToHand(
-        CardModel(
-          suit: '♥️',
-          rank: 'Q',
-          value: 12,
-          isRevealed: true,
-        ),
+        CardModel(suit: '♥️', rank: 'Q', value: 12, isRevealed: true),
       );
+      player.addCardToHand(CardModel(suit: '♦️', rank: '2', value: 2));
+      player.addCardToHand(CardModel(suit: '♣️', rank: '3', value: 3));
       player.addCardToHand(
-        CardModel(suit: '♦️', rank: '2', value: 2),
+        CardModel(suit: '♠️', rank: 'Q', value: 12, isRevealed: true),
       );
+      player.addCardToHand(CardModel(suit: '♥️', rank: '5', value: 5));
+      player.addCardToHand(CardModel(suit: '♦️', rank: '6', value: 6));
       player.addCardToHand(
-        CardModel(suit: '♣️', rank: '3', value: 3),
+        CardModel(suit: '♣️', rank: 'Q', value: 12, isRevealed: true),
       );
-      player.addCardToHand(
-        CardModel(
-          suit: '♠️',
-          rank: 'Q',
-          value: 12,
-          isRevealed: true,
-        ),
-      );
-      player.addCardToHand(
-        CardModel(suit: '♥️', rank: '5', value: 5),
-      );
-      player.addCardToHand(
-        CardModel(suit: '♦️', rank: '6', value: 6),
-      );
-      player.addCardToHand(
-        CardModel(
-          suit: '♣️',
-          rank: 'Q',
-          value: 12,
-          isRevealed: true,
-        ),
-      );
-      player.addCardToHand(
-        CardModel(suit: '♠️', rank: '8', value: 8),
-      );
-      player.addCardToHand(
-        CardModel(suit: '♥️', rank: '9', value: 9),
-      );
+      player.addCardToHand(CardModel(suit: '♠️', rank: '8', value: 8));
+      player.addCardToHand(CardModel(suit: '♥️', rank: '9', value: 9));
       expect(player.sumOfRevealedCards, 0);
     });
 
     test('sumOfRevealedCards identifies vertical sets of Jokers', () {
       // 3 lined up Jokers shall not be Zero, we expect -6
       player.addCardToHand(
-        CardModel(
-          suit: '♥️',
-          rank: '§',
-          value: -2,
-          isRevealed: true,
-        ),
+        CardModel(suit: '♥️', rank: '§', value: -2, isRevealed: true),
       );
+      player.addCardToHand(CardModel(suit: '♦️', rank: '2', value: 2));
+      player.addCardToHand(CardModel(suit: '♣️', rank: '3', value: 3));
       player.addCardToHand(
-        CardModel(suit: '♦️', rank: '2', value: 2),
+        CardModel(suit: '♠️', rank: '§', value: -2, isRevealed: true),
       );
+      player.addCardToHand(CardModel(suit: '♥️', rank: '5', value: 5));
+      player.addCardToHand(CardModel(suit: '♦️', rank: '6', value: 6));
       player.addCardToHand(
-        CardModel(suit: '♣️', rank: '3', value: 3),
+        CardModel(suit: '♣️', rank: '§', value: -2, isRevealed: true),
       );
-      player.addCardToHand(
-        CardModel(
-          suit: '♠️',
-          rank: '§',
-          value: -2,
-          isRevealed: true,
-        ),
-      );
-      player.addCardToHand(
-        CardModel(suit: '♥️', rank: '5', value: 5),
-      );
-      player.addCardToHand(
-        CardModel(suit: '♦️', rank: '6', value: 6),
-      );
-      player.addCardToHand(
-        CardModel(
-          suit: '♣️',
-          rank: '§',
-          value: -2,
-          isRevealed: true,
-        ),
-      );
-      player.addCardToHand(
-        CardModel(suit: '♠️', rank: '8', value: 8),
-      );
-      player.addCardToHand(
-        CardModel(suit: '♥️', rank: '9', value: 9),
-      );
+      player.addCardToHand(CardModel(suit: '♠️', rank: '8', value: 8));
+      player.addCardToHand(CardModel(suit: '♥️', rank: '9', value: 9));
       expect(player.sumOfRevealedCards, -6);
     });
 
     test('toJson creates correct json representation', () {
       player.addCardToHand(
-        CardModel(
-          suit: '♥️',
-          rank: 'A',
-          value: 1,
-          isRevealed: true,
-        ),
+        CardModel(suit: '♥️', rank: 'A', value: 1, isRevealed: true),
       );
-      player.addCardToHand(
-        CardModel(suit: '♦️', rank: '2', value: 2),
-      );
+      player.addCardToHand(CardModel(suit: '♦️', rank: '2', value: 2));
 
       final json = player.toJson();
 

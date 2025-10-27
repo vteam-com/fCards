@@ -68,39 +68,20 @@ void main() {
     });
 
     test('from Json', () {
-      expect(
-        intToGameStyles(-1),
-        GameStyles.frenchCards9,
-      );
-      expect(
-        intToGameStyles(0),
-        GameStyles.frenchCards9,
-      );
-      expect(
-        intToGameStyles(1),
-        GameStyles.skyJo,
-      );
-      expect(
-        intToGameStyles(2),
-        GameStyles.miniPut,
-      );
-      expect(
-        intToGameStyles(3),
-        GameStyles.custom,
-      );
-      expect(
-        intToGameStyles(99),
-        GameStyles.frenchCards9,
-      );
+      expect(intToGameStyles(-1), GameStyles.frenchCards9);
+      expect(intToGameStyles(0), GameStyles.frenchCards9);
+      expect(intToGameStyles(1), GameStyles.skyJo);
+      expect(intToGameStyles(2), GameStyles.miniPut);
+      expect(intToGameStyles(3), GameStyles.custom);
+      expect(intToGameStyles(99), GameStyles.frenchCards9);
     });
   });
 
-  testWidgets('GameStyle French Cards 9 widget test',
-      (WidgetTester tester) async {
+  testWidgets('GameStyle French Cards 9 widget test', (
+    WidgetTester tester,
+  ) async {
     await tester.pumpWidget(
-      MaterialApp(
-        home: GameStyle(style: GameStyles.frenchCards9),
-      ),
+      MaterialApp(home: GameStyle(style: GameStyles.frenchCards9)),
     );
 
     // Verify Markdown widget is present
@@ -111,9 +92,7 @@ void main() {
   });
   testWidgets('GameStyle SkyJo widget test', (WidgetTester tester) async {
     await tester.pumpWidget(
-      MaterialApp(
-        home: GameStyle(style: GameStyles.skyJo),
-      ),
+      MaterialApp(home: GameStyle(style: GameStyles.skyJo)),
     );
 
     // Verify Markdown widget is present
@@ -122,12 +101,11 @@ void main() {
     // Verify cards are displayed
     expect(find.byType(CardWidget), findsWidgets);
   });
-  testWidgets('GameStyle French MiniPut 4 widget test',
-      (WidgetTester tester) async {
+  testWidgets('GameStyle French MiniPut 4 widget test', (
+    WidgetTester tester,
+  ) async {
     await tester.pumpWidget(
-      MaterialApp(
-        home: GameStyle(style: GameStyles.miniPut),
-      ),
+      MaterialApp(home: GameStyle(style: GameStyles.miniPut)),
     );
 
     // Verify Markdown widget is present
@@ -138,9 +116,7 @@ void main() {
   });
   testWidgets('GameStyle Custom widget test', (WidgetTester tester) async {
     await tester.pumpWidget(
-      MaterialApp(
-        home: GameStyle(style: GameStyles.custom),
-      ),
+      MaterialApp(home: GameStyle(style: GameStyles.custom)),
     );
 
     // Verify Markdown widget is present

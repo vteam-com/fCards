@@ -98,12 +98,8 @@ class GameStyle extends StatelessWidget {
   /// special cards and standard ranked cards.
   List<CardModel> getAllFrenchCards() {
     List<CardModel> cards = [];
-    cards.add(
-      CardModel(suit: '*', rank: '§', value: -2, isRevealed: false),
-    );
-    cards.add(
-      CardModel(suit: '*', rank: '§', value: -2, isRevealed: true),
-    );
+    cards.add(CardModel(suit: '*', rank: '§', value: -2, isRevealed: false));
+    cards.add(CardModel(suit: '*', rank: '§', value: -2, isRevealed: true));
     int suit = 0;
     for (String rank in CardModelFrench.ranks) {
       cards.add(
@@ -128,14 +124,7 @@ class GameStyle extends StatelessWidget {
   /// ranging from -2 to 12.
   List<CardModel> getAllSkyJoCards() {
     List<CardModel> cards = [];
-    cards.add(
-      CardModel(
-        suit: '',
-        rank: '1',
-        value: 1,
-        isRevealed: false,
-      ),
-    );
+    cards.add(CardModel(suit: '', rank: '1', value: 1, isRevealed: false));
 
     for (int rank = -2; rank <= 12; rank++) {
       cards.add(

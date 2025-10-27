@@ -59,8 +59,9 @@ void main() {
       expect(tapped, true);
     });
 
-    testWidgets('renders different suits correctly',
-        (WidgetTester tester) async {
+    testWidgets('renders different suits correctly', (
+      WidgetTester tester,
+    ) async {
       final List<String> suits = ['♣️', '♠️', '♥️', '♦️'];
 
       for (final String suit in suits) {
@@ -83,10 +84,11 @@ void main() {
       }
     });
 
-    testWidgets('renders different ranks correctly',
-        (WidgetTester tester) async {
+    testWidgets('renders different ranks correctly', (
+      WidgetTester tester,
+    ) async {
       final List<String> ranks = [
-        '§', // TODO
+        '§',
         'A',
         '2',
         '3',

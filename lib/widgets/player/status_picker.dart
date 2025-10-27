@@ -52,19 +52,9 @@ class _StatusPickerState extends State<StatusPicker> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              TextSize(
-                status.emoji,
-                20,
-                color: Colors.yellow,
-                bold: true,
-              ),
+              TextSize(status.emoji, 20, color: Colors.yellow, bold: true),
               SizedBox(width: 8),
-              TextSize(
-                status.phrase,
-                16,
-                color: Colors.yellow,
-                bold: true,
-              ),
+              TextSize(status.phrase, 16, color: Colors.yellow, bold: true),
             ],
           ),
         );

@@ -47,18 +47,13 @@ class PlayerZoneWidget extends StatelessWidget {
     final double width = min(400, MediaQuery.of(context).size.width);
     return Stack(
       children: [
-        FadeIn(
-          child: _containerBorder(width, heightZone),
-        ),
+        FadeIn(child: _containerBorder(width, heightZone)),
         Container(
           width: width,
           height: heightZone,
           decoration: BoxDecoration(
             color: Colors.green.shade800.withAlpha(50),
-            border: Border.all(
-              color: Colors.transparent,
-              width: 8,
-            ),
+            border: Border.all(color: Colors.transparent, width: 8),
             borderRadius: BorderRadius.circular(20.0),
             // No shadow.
           ),
@@ -85,10 +80,7 @@ class PlayerZoneWidget extends StatelessWidget {
       width: width,
       height: height,
       decoration: BoxDecoration(
-        border: Border.all(
-          color: color,
-          width: 8,
-        ),
+        border: Border.all(color: color, width: 8),
         borderRadius: BorderRadius.circular(20.0),
         // No shadow.
       ),
@@ -100,10 +92,7 @@ class PlayerZoneWidget extends StatelessWidget {
     return LinearGradient(
       begin: Alignment.topLeft,
       end: Alignment.bottomRight,
-      colors: [
-        Colors.yellow.shade200,
-        Colors.yellow.shade700,
-      ],
+      colors: [Colors.yellow.shade200, Colors.yellow.shade700],
     );
   }
 
@@ -130,10 +119,7 @@ class PlayerZoneWidget extends StatelessWidget {
         //
         SizedBox(
           height: heightOfCTA,
-          child: PlayerZoneCtaWidget(
-            player: player,
-            gameModel: gameModel,
-          ),
+          child: PlayerZoneCtaWidget(player: player, gameModel: gameModel),
         ),
 
         //
@@ -143,11 +129,7 @@ class PlayerZoneWidget extends StatelessWidget {
           height: heightOfCardGrid,
           child: FittedBox(
             fit: BoxFit.scaleDown,
-            child: _buildPlayerHand(
-              context,
-              gameModel,
-              player,
-            ),
+            child: _buildPlayerHand(context, gameModel, player),
           ),
         ),
       ],
@@ -166,24 +148,13 @@ class PlayerZoneWidget extends StatelessWidget {
       List<Widget> columnChildren = [];
       for (int j = 0; j < columns && (i + j) < player.hand.length; j++) {
         columnChildren.add(
-          _buildPlayerCardButton(
-            context,
-            gameModel,
-            player,
-            i + j,
-          ),
+          _buildPlayerCardButton(context, gameModel, player, i + j),
         );
       }
-      row.add(
-        Column(
-          children: columnChildren,
-        ),
-      );
+      row.add(Column(children: columnChildren));
     }
 
-    return Row(
-      children: [...row],
-    );
+    return Row(children: [...row]);
   }
 
   Widget _buildPlayerCardButton(
@@ -200,7 +171,8 @@ class PlayerZoneWidget extends StatelessWidget {
 
     card.isRevealed = player.hand[gridIndex].isRevealed;
 
-    card.isSelectable = player.isActivePlayer &&
+    card.isSelectable =
+        player.isActivePlayer &&
         (gameModel.gameState ==
                 GameStates.swapDiscardedCardWithAnyCardsInHand ||
             gameModel.gameState ==

@@ -74,8 +74,10 @@ class MyApp extends StatelessWidget {
           hintStyle: TextStyle(color: Colors.white70),
           labelStyle: TextStyle(color: Colors.white),
           enabledBorder: OutlineInputBorder(
-            borderSide:
-                BorderSide(color: Colors.green.withAlpha(100), width: 1.0),
+            borderSide: BorderSide(
+              color: Colors.green.withAlpha(100),
+              width: 1.0,
+            ),
           ),
           focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(color: Colors.yellow, width: 4.0),

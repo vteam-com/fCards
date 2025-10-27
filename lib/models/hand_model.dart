@@ -206,9 +206,7 @@ class HandModel {
   /// - Checks if cards at specified positions have matching ranks
   /// - If they match, aren't already part of a set, and are revealed, marks them as part of a set
   /// - Cards with rank '§' are excluded from being marked as part of a set
-  void markIfSameRankForGolf(
-    List<int> indices,
-  ) {
+  void markIfSameRankForGolf(List<int> indices) {
     // Validate all cards are revealed and not already part of a set
     final bool allCardsValid = indices.every(
       (index) => _list[index].isRevealed && !_list[index].partOfSet,
@@ -222,7 +220,7 @@ class HandModel {
     final bool haveSameRank = indices.length == 2
         ? _list[indices[0]].rank == _list[indices[1]].rank
         : _list[indices[0]].rank == _list[indices[1]].rank &&
-            _list[indices[1]].rank == _list[indices[2]].rank;
+              _list[indices[1]].rank == _list[indices[2]].rank;
 
     if (haveSameRank) {
       // Mark matching cards as part of set if not special rank

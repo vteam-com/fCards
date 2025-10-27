@@ -33,10 +33,6 @@ class DateTimeWidget extends StatelessWidget {
   }
 
   Widget _buildText(final num value, double fontSize) {
-    return TextSize(
-      value.toString().padLeft(2, '0'),
-      fontSize,
-      bold: true,
-    );
+    return TextSize(value.toString().padLeft(2, '0'), fontSize, bold: true);
   }
 }

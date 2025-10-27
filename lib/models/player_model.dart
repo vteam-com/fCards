@@ -72,9 +72,8 @@ class PlayerModel {
         rows,
         (json['hand'] as List<dynamic>)
             .map(
-              (cardJson) => CardModel.fromJson(
-                cardJson as Map<String, dynamic>,
-              ),
+              (cardJson) =>
+                  CardModel.fromJson(cardJson as Map<String, dynamic>),
             )
             .toList(),
       );
@@ -205,11 +204,7 @@ class PlayerModel {
   ///   - 'status': A JSON representation of the player's status, obtained by calling
   ///               [toJson] on the [status] property.
   Map<String, dynamic> toJson() {
-    return {
-      'name': name,
-      'hand': hand.toJson(),
-      'status': status.toJson(),
-    };
+    return {'name': name, 'hand': hand.toJson(), 'status': status.toJson()};
   }
 
   @override
@@ -227,8 +222,10 @@ class PlayerModel {
         other.name == name &&
         other.isActivePlayer == isActivePlayer &&
         other.hand.length == hand.length &&
-        List.generate(hand.length, (i) => hand[i] == other.hand[i])
-            .every((bool equalResult) => equalResult);
+        List.generate(
+          hand.length,
+          (i) => hand[i] == other.hand[i],
+        ).every((bool equalResult) => equalResult);
   }
 
   @override

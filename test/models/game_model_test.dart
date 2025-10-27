@@ -5,10 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'golf_game_model_test.dart';
 
 void main() {
-  final testPlayers = [
-    'Player1',
-    'Player2',
-  ];
+  final testPlayers = ['Player1', 'Player2'];
 
   GameModel getNewSkyJoInstance() {
     return GameModel(
@@ -18,10 +15,7 @@ void main() {
       loginUserName: testPlayers.first,
       names: testPlayers,
       cardsToDeal: 12,
-      deck: DeckModel(
-        numberOfDecks: 1,
-        gameStyle: GameStyles.skyJo,
-      ),
+      deck: DeckModel(numberOfDecks: 1, gameStyle: GameStyles.skyJo),
       isNewGame: true,
     );
   }
@@ -34,10 +28,7 @@ void main() {
       loginUserName: testPlayers.first,
       names: testPlayers,
       cardsToDeal: 9,
-      deck: DeckModel(
-        numberOfDecks: 1,
-        gameStyle: GameStyles.frenchCards9,
-      ),
+      deck: DeckModel(numberOfDecks: 1, gameStyle: GameStyles.frenchCards9),
       isNewGame: true,
     );
   }
@@ -50,10 +41,7 @@ void main() {
       loginUserName: testPlayers.first,
       names: testPlayers,
       cardsToDeal: 4,
-      deck: DeckModel(
-        numberOfDecks: 1,
-        gameStyle: GameStyles.miniPut,
-      ),
+      deck: DeckModel(numberOfDecks: 1, gameStyle: GameStyles.miniPut),
       isNewGame: true,
     );
   }
@@ -120,8 +108,9 @@ void main() {
         'playersNames': [testPlayers.first],
       });
       gameModel.roomHistory.add(win1);
-      final List<DateTime> wins =
-          gameModel.getWinsForPlayerName(testPlayers.first);
+      final List<DateTime> wins = gameModel.getWinsForPlayerName(
+        testPlayers.first,
+      );
       expect(wins.length, 1);
     });
 
@@ -175,299 +164,87 @@ void main() {
         loginUserName: testPlayers.first,
         names: testPlayers,
         cardsToDeal: 9,
-        deck: DeckModel(
-          numberOfDecks: 1,
-          gameStyle: GameStyles.skyJo,
-        ),
+        deck: DeckModel(numberOfDecks: 1, gameStyle: GameStyles.skyJo),
       );
 
       newGameModel.fromJson({
         'deck': {
           'cardsDeckDiscarded': [
-            {
-              'rank': 'K',
-              'suit': '♥️',
-              'value': 0,
-            },
-            {
-              'rank': '7',
-              'suit': '♣️',
-            },
-            {
-              'rank': '5',
-              'suit': '♠️',
-            },
-            {
-              'rank': '4',
-              'suit': '♦️',
-            },
-            {
-              'rank': '6',
-              'suit': '♦️',
-            },
-            {
-              'rank': '7',
-              'suit': '♦️',
-            },
-            {
-              'rank': 'J',
-              'suit': '♦️',
-              'value': 11,
-            },
-            {
-              'rank': 'Q',
-              'suit': '♠️',
-              'value': 12,
-            },
-            {
-              'rank': '9',
-              'suit': '♥️',
-            },
-            {
-              'rank': '9',
-              'suit': '♦️',
-            },
-            {
-              'isRevealed': true,
-              'rank': '3',
-              'suit': '♠️',
-            },
-            {
-              'isRevealed': true,
-              'rank': '5',
-              'suit': '♦️',
-            }
+            {'rank': 'K', 'suit': '♥️', 'value': 0},
+            {'rank': '7', 'suit': '♣️'},
+            {'rank': '5', 'suit': '♠️'},
+            {'rank': '4', 'suit': '♦️'},
+            {'rank': '6', 'suit': '♦️'},
+            {'rank': '7', 'suit': '♦️'},
+            {'rank': 'J', 'suit': '♦️', 'value': 11},
+            {'rank': 'Q', 'suit': '♠️', 'value': 12},
+            {'rank': '9', 'suit': '♥️'},
+            {'rank': '9', 'suit': '♦️'},
+            {'isRevealed': true, 'rank': '3', 'suit': '♠️'},
+            {'isRevealed': true, 'rank': '5', 'suit': '♦️'},
           ],
           'cardsDeckPile': [
-            {
-              'rank': 'K',
-              'suit': '♦️',
-              'value': 0,
-            },
-            {
-              'rank': 'X',
-              'suit': '♣️',
-              'value': 10,
-            },
-            {
-              'rank': '3',
-              'suit': '♥️',
-            },
-            {
-              'rank': '7',
-              'suit': '♥️',
-            },
-            {
-              'rank': '2',
-              'suit': '♣️',
-            },
-            {
-              'rank': '3',
-              'suit': '♦️',
-            },
-            {
-              'rank': 'A',
-              'suit': '♦️',
-              'value': 1,
-            },
-            {
-              'rank': 'J',
-              'suit': '♣️',
-              'value': 11,
-            },
-            {
-              'rank': '2',
-              'suit': '♥️',
-            },
-            {
-              'rank': '5',
-              'suit': '♥️',
-            },
-            {
-              'rank': 'A',
-              'suit': '♥️',
-              'value': 1,
-            },
-            {
-              'rank': '4',
-              'suit': '♠️',
-            },
-            {
-              'rank': 'Q',
-              'suit': '♣️',
-              'value': 12,
-            },
-            {
-              'rank': '2',
-              'suit': '♦️',
-            },
-            {
-              'rank': 'J',
-              'suit': '♠️',
-              'value': 11,
-            },
-            {
-              'rank': '8',
-              'suit': '♣️',
-            },
-            {
-              'rank': '8',
-              'suit': '♥️',
-            },
-            {
-              'rank': 'K',
-              'suit': '♠️',
-              'value': 0,
-            },
-            {
-              'rank': '4',
-              'suit': '♣️',
-            },
-            {
-              'rank': '4',
-              'suit': '♥️',
-            },
-            {
-              'rank': '9',
-              'suit': '♣️',
-            },
-            {
-              'rank': '8',
-              'suit': '♦️',
-            },
-            {
-              'rank': 'X',
-              'suit': '♦️',
-              'value': 10,
-            },
-            {
-              'rank': '6',
-              'suit': '♥️',
-            }
+            {'rank': 'K', 'suit': '♦️', 'value': 0},
+            {'rank': 'X', 'suit': '♣️', 'value': 10},
+            {'rank': '3', 'suit': '♥️'},
+            {'rank': '7', 'suit': '♥️'},
+            {'rank': '2', 'suit': '♣️'},
+            {'rank': '3', 'suit': '♦️'},
+            {'rank': 'A', 'suit': '♦️', 'value': 1},
+            {'rank': 'J', 'suit': '♣️', 'value': 11},
+            {'rank': '2', 'suit': '♥️'},
+            {'rank': '5', 'suit': '♥️'},
+            {'rank': 'A', 'suit': '♥️', 'value': 1},
+            {'rank': '4', 'suit': '♠️'},
+            {'rank': 'Q', 'suit': '♣️', 'value': 12},
+            {'rank': '2', 'suit': '♦️'},
+            {'rank': 'J', 'suit': '♠️', 'value': 11},
+            {'rank': '8', 'suit': '♣️'},
+            {'rank': '8', 'suit': '♥️'},
+            {'rank': 'K', 'suit': '♠️', 'value': 0},
+            {'rank': '4', 'suit': '♣️'},
+            {'rank': '4', 'suit': '♥️'},
+            {'rank': '9', 'suit': '♣️'},
+            {'rank': '8', 'suit': '♦️'},
+            {'rank': 'X', 'suit': '♦️', 'value': 10},
+            {'rank': '6', 'suit': '♥️'},
           ],
           'numberOfDecks': 1,
         },
-        'invitees': [
-          'JP',
-          'GILLES',
-        ],
+        'invitees': ['JP', 'GILLES'],
         'playerIdAttacking': -1,
         'playerIdPlaying': 1,
         'players': [
           {
             'hand': [
-              {
-                'isRevealed': true,
-                'rank': 'K',
-                'suit': '♣️',
-                'value': 0,
-              },
-              {
-                'isRevealed': true,
-                'rank': 'J',
-                'suit': '♥️',
-                'value': 11,
-              },
-              {
-                'rank': 'X',
-                'suit': '♥️',
-                'value': 10,
-              },
-              {
-                'isRevealed': true,
-                'rank': 'Q',
-                'suit': '♥️',
-                'value': 12,
-              },
-              {
-                'isRevealed': true,
-                'rank': '§',
-                'suit': '*',
-                'value': -2,
-              },
-              {
-                'isRevealed': true,
-                'rank': 'Q',
-                'suit': '♦️',
-                'value': 12,
-              },
-              {
-                'isRevealed': true,
-                'rank': '8',
-                'suit': '♠️',
-              },
-              {
-                'isRevealed': true,
-                'rank': 'A',
-                'suit': '♠️',
-                'value': 1,
-              },
-              {
-                'rank': '9',
-                'suit': '♠️',
-              }
+              {'isRevealed': true, 'rank': 'K', 'suit': '♣️', 'value': 0},
+              {'isRevealed': true, 'rank': 'J', 'suit': '♥️', 'value': 11},
+              {'rank': 'X', 'suit': '♥️', 'value': 10},
+              {'isRevealed': true, 'rank': 'Q', 'suit': '♥️', 'value': 12},
+              {'isRevealed': true, 'rank': '§', 'suit': '*', 'value': -2},
+              {'isRevealed': true, 'rank': 'Q', 'suit': '♦️', 'value': 12},
+              {'isRevealed': true, 'rank': '8', 'suit': '♠️'},
+              {'isRevealed': true, 'rank': 'A', 'suit': '♠️', 'value': 1},
+              {'rank': '9', 'suit': '♠️'},
             ],
             'name': 'JP',
-            'status': {
-              'emoji': '',
-              'phrase': '',
-            },
+            'status': {'emoji': '', 'phrase': ''},
           },
           {
             'hand': [
-              {
-                'isRevealed': true,
-                'rank': 'X',
-                'suit': '♠️',
-                'value': 10,
-              },
-              {
-                'isRevealed': true,
-                'rank': '5',
-                'suit': '♣️',
-              },
-              {
-                'isRevealed': true,
-                'rank': '3',
-                'suit': '♣️',
-              },
-              {
-                'isRevealed': true,
-                'rank': '§',
-                'suit': '*',
-                'value': -2,
-              },
-              {
-                'isRevealed': true,
-                'rank': 'A',
-                'suit': '♣️',
-                'value': 1,
-              },
-              {
-                'isRevealed': true,
-                'rank': '7',
-                'suit': '♠️',
-              },
-              {
-                'isRevealed': true,
-                'rank': '6',
-                'suit': '♣️',
-              },
-              {
-                'rank': '2',
-                'suit': '♠️',
-              },
-              {
-                'rank': '6',
-                'suit': '♠️',
-              }
+              {'isRevealed': true, 'rank': 'X', 'suit': '♠️', 'value': 10},
+              {'isRevealed': true, 'rank': '5', 'suit': '♣️'},
+              {'isRevealed': true, 'rank': '3', 'suit': '♣️'},
+              {'isRevealed': true, 'rank': '§', 'suit': '*', 'value': -2},
+              {'isRevealed': true, 'rank': 'A', 'suit': '♣️', 'value': 1},
+              {'isRevealed': true, 'rank': '7', 'suit': '♠️'},
+              {'isRevealed': true, 'rank': '6', 'suit': '♣️'},
+              {'rank': '2', 'suit': '♠️'},
+              {'rank': '6', 'suit': '♠️'},
             ],
             'name': 'GILLES',
-            'status': {
-              'emoji': '',
-              'phrase': '',
-            },
-          }
+            'status': {'emoji': '', 'phrase': ''},
+          },
         ],
         'state': 'GameStates.pickCardFromEitherPiles',
       });
@@ -501,11 +278,7 @@ void main() {
 
       // execute the "reveal card" code
       newGameModel.players.first.hand.first.isRevealed = false;
-      newGameModel.revealCard(
-        context,
-        newGameModel.players.first,
-        0,
-      );
+      newGameModel.revealCard(context, newGameModel.players.first, 0);
       final output = newGameModel.toString();
       expect(output.isEmpty, isFalse);
     });

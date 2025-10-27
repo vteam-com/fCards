@@ -15,7 +15,9 @@ void showGameOverDialog(
     (a, b) => a.sumOfRevealedCards.compareTo(b.sumOfRevealedCards),
   );
 
-  gameModel.players.forEach((player) => player.isWinner = false);
+  for (var player in gameModel.players) {
+    player.isWinner = false;
+  }
   gameModel.players.first.isWinner = true;
 
   await recordPlayerWin(
@@ -33,16 +35,11 @@ void showGameOverDialog(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Expanded(
-            child: Text('Players'),
-          ),
+          Expanded(child: Text('Players')),
           Expanded(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text('Games Won'),
-                Text('This Game'),
-              ],
+              children: [Text('Games Won'), Text('This Game')],
             ),
           ),
         ],
@@ -57,10 +54,7 @@ void showGameOverDialog(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Expanded(
-            child: Text(
-              player.name,
-              style: const TextStyle(fontSize: 20),
-            ),
+            child: Text(player.name, style: const TextStyle(fontSize: 20)),
           ),
           Expanded(
             child: Row(
@@ -70,11 +64,7 @@ void showGameOverDialog(
                   gameModel.getWinsForPlayerName(player.name).length.toString(),
                   style: const TextStyle(fontSize: 12),
                 ),
-                TextSize(
-                  player.sumOfRevealedCards.toString(),
-                  22,
-                  bold: true,
-                ),
+                TextSize(player.sumOfRevealedCards.toString(), 22, bold: true),
               ],
             ),
           ),

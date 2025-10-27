@@ -32,10 +32,7 @@ class DeckModel {
   ///
   /// @param numberOfDecks The number of decks to include in this deck.
   /// @param gameStyle The game style to use for the deck.
-  DeckModel({
-    required this.numberOfDecks,
-    required this.gameStyle,
-  });
+  DeckModel({required this.numberOfDecks, required this.gameStyle});
 
   /// The game style to use for the deck.
   GameStyles gameStyle;
@@ -68,7 +65,7 @@ class DeckModel {
   ///
   /// This method clears the existing deck and discarded piles, generates the specified number of decks, and then shuffles the main deck pile.
   void shuffle() {
-    this.numberOfDecks = numberOfDecks;
+    numberOfDecks = numberOfDecks;
     cardsDeckPile = [];
     cardsDeckDiscarded = [];
 
@@ -90,16 +87,10 @@ class DeckModel {
         int count = i == 0
             ? 15
             : i == -2
-                ? 5
-                : 10;
+            ? 5
+            : 10;
         for (int j = 0; j < count; j++) {
-          cardsDeckPile.add(
-            CardModel(
-              suit: '',
-              rank: i.toString(),
-              value: i,
-            ),
-          );
+          cardsDeckPile.add(CardModel(suit: '', rank: i.toString(), value: i));
         }
       }
     } else {
@@ -136,9 +127,10 @@ class DeckModel {
   ///
   /// @return A JSON map representing the deck.
   Map<String, dynamic> toJson() => {
-        'numberOfDecks': numberOfDecks,
-        'cardsDeckPile': cardsDeckPile.map((card) => card.toJson()).toList(),
-        'cardsDeckDiscarded':
-            cardsDeckDiscarded.map((card) => card.toJson()).toList(),
-      };
+    'numberOfDecks': numberOfDecks,
+    'cardsDeckPile': cardsDeckPile.map((card) => card.toJson()).toList(),
+    'cardsDeckDiscarded': cardsDeckDiscarded
+        .map((card) => card.toJson())
+        .toList(),
+  };
 }

@@ -33,9 +33,7 @@ class PlayersInRoomWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      constraints: BoxConstraints(
-        maxHeight: 250,
-      ),
+      constraints: BoxConstraints(maxHeight: 250),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -82,8 +80,10 @@ class PlayersInRoomWidget extends StatelessWidget {
                           : null,
                     ),
                     trailing: IconButton(
-                      icon:
-                          Icon(Icons.remove_circle, color: Colors.red.shade300),
+                      icon: Icon(
+                        Icons.remove_circle,
+                        color: Colors.red.shade300,
+                      ),
                       onPressed: () => onRemovePlayer(playerNames[index]),
                     ),
                   );
