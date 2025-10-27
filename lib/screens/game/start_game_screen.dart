@@ -3,7 +3,7 @@ import 'package:cards/misc.dart';
 import 'package:cards/models/backend_model.dart';
 import 'package:cards/models/game_history.dart';
 import 'package:cards/models/game_model.dart';
-import 'package:cards/screens/game_screen.dart';
+import 'package:cards/screens/game/game_screen.dart';
 
 import 'package:cards/screens/screen.dart';
 import 'package:cards/widgets/players_in_room_widget.dart';

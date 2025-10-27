@@ -1,9 +1,9 @@
 import 'package:cards/models/backend_model.dart';
 import 'package:cards/models/firebase_options.dart';
-import 'package:cards/screens/golf_score_screen.dart';
-import 'package:cards/screens/join_game_screen.dart';
+import 'package:cards/screens/game/join_game_screen.dart';
+import 'package:cards/screens/game/start_game_screen.dart';
+import 'package:cards/screens/keepscore/golf_score_screen.dart';
 import 'package:cards/screens/main_menu.dart';
-import 'package:cards/screens/start_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';

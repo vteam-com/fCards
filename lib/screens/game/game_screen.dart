@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:cards/models/backend_model.dart';
 import 'package:cards/models/game_model.dart';
-import 'package:cards/screens/game_over_dialog.dart';
+import 'package:cards/screens/game/game_over_dialog.dart';
 import 'package:cards/screens/screen.dart';
 import 'package:cards/widgets/player/player_zone_widget.dart';
 import 'package:firebase_database/firebase_database.dart';
