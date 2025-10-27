@@ -23,6 +23,6 @@ flutter build web --release
 
 # Deploy to Firebase
 echo "🚀 Deploying to Firebase..."
-firebase deploy
+firebase deploy --project vteam-cards
 
 echo "✅ Deployment completed successfully!"
