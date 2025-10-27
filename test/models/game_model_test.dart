@@ -90,7 +90,6 @@ void main() {
   test('MiniPut', () {
     final gameModel3 = getNewInstanceFrenchMiniPut();
     gameModel3.players.first.hand.revealAllCards();
-    // TODO
     // note that there is a chance that all reveal cards adds up to zero
     final int count = gameModel3.players.first.hand.getSumOfCardsForGolf();
     expect(count > 0, true);

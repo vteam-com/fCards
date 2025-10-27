@@ -155,10 +155,27 @@ class HandModel {
     return score;
   }
 
-  /// Calculates the sum of card values for the Golf game variant.
+  /// Calculates the sum of card values for the Golf game variant and related games.
   ///
-  /// Takes into account special scoring rules for matched sets of cards.
-  /// Returns the total score based on the values of cards not part of sets.
+  /// 🏌️ **Golf-Style Scoring Logic (PASSED SCORING)**:
+  /// Unlike SkyJo which modifies hands during play, Golf games calculate scores
+  /// passively based on the final revealed card layout after all play is complete.
+  ///
+  /// **Scoring Rules:**
+  /// - Revealed cards are scored based on their face values
+  /// - Cards that match in rank (same number/symbol) don't count toward the score
+  ///   - In 3x3 grids: matches can be horizonal (rows) or vertical (columns)
+  ///   - In 2x2 grids: matches can be pairs in rows or columns
+  /// - Only the unmatched revealed cards contribute to the final score
+  ///
+  /// **Used By:**
+  /// - French Cards (3x3 grid)
+  /// - MiniPut (2x2 grid)
+  /// - Any other Golf-style variant games
+  ///
+  /// **Called From UI:** When displaying final scores to players
+  ///
+  /// @return The total score (sum of values of scoring cards)
   int getSumOfCardsForGolf() {
     int score = 0;
 

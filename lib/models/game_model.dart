@@ -547,16 +547,31 @@ class GameModel with ChangeNotifier {
     return true;
   }
 
-  /// Evaluates the player's hand based on the current game style.
-  /// If the game style is 'skyJo', it calls [evaluateHandSkyJo()].
-  /// Otherwise, it calls the 'evaluateHandGolf()' method (which is currently commented out).
+  /// Evaluates the current player's hand based on the game style.
+  ///
+  /// **Different Game Styles Use Different Scoring Approaches:**
+  ///
+  /// 🎯 **SkyJo (Active Evaluation)**:
+  /// - Removes completed card sets from the player's hand during gameplay
+  /// - Cards that form sets (3 of same rank) are discarded and removed from play
+  /// - Hand physical composition changes during the game
+  ///
+  /// 🏌️ **Golf-Style Games (Passive Scoring)**:
+  /// - No hand modification - scoring is calculated based on final card layout
+  /// - Matched sets don't count toward final score, but cards remain in hand
+  /// - Scoring logic resides in `HandModel.getSumOfCardsForGolf()`
+  /// - Called when displaying scores, not during active play
+  ///
+  /// Currently only SkyJo uses active evaluation. Other game styles use
+  /// passive scoring through the HandModel's scoring methods.
   void evaluateHand() {
     if (gameStyle == GameStyles.skyJo) {
+      // SkyJo actively modifies the hand by removing completed sets
       evaluateHandSkyJo();
-    } else {
-      // TODO
-      // evaluateHandGolf();
     }
+    // Golf-style games (French Cards, MiniPut) don't need hand evaluation
+    // They use passive scoring via HandModel.getSumOfCardsForGolf()
+    // which calculates scores without modifying the hand
   }
 
   /// Evaluates the player's hand in the 'skyJo' game style.
