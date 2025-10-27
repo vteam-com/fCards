@@ -684,7 +684,7 @@ class GameModel with ChangeNotifier {
     final String room,
     final List<String> names,
   ) {
-    return '?mode=$mode&room=$room&players=${names.join(",")}';
+    return '?mode=$mode&room=${Uri.encodeComponent(room)}&players=${Uri.encodeComponent(names.join(","))}';
   }
 
   /// Generates a link URI for the game based on the provided input parameters.
