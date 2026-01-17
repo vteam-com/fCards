@@ -8,10 +8,10 @@ import 'package:cards/screens/game/game_screen.dart';
 import 'package:cards/screens/screen.dart';
 import 'package:cards/widgets/players_in_room_widget.dart';
 import 'package:cards/widgets/rooms_widget.dart';
+import 'package:cards/utils/browser_utils.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:web/web.dart' as web;
 
 /// The initial screen for the card game application.
 ///
@@ -523,15 +523,15 @@ class StartScreenState extends State<StartScreen> {
   /// This method constructs a URL that includes the current game mode, room name,
   /// and player list, allowing others to join the game directly.
   String _getUrlToGame() {
-    if (kIsWeb) {
-      return web.window.location.origin +
-          GameModel.getLinkToGameFromInput(
-            _selectedGameStyle.index.toString(),
-            roomName,
-            _playerNames.toList(),
-          );
+    if (!kIsWeb) {
+      return '';
     }
-    return '';
+    return getWindowOrigin() +
+        GameModel.getLinkToGameFromInput(
+          _selectedGameStyle.index.toString(),
+          roomName,
+          _playerNames.toList(),
+        );
   }
 
   /// Updates the browser's URL without reloading the page.
@@ -542,11 +542,7 @@ class StartScreenState extends State<StartScreen> {
   void _updateUrlWithoutReload() {
     if (kIsWeb) {
       // Push the new state to the browser's history.
-      web.window.history.pushState(
-        null,
-        'vteam cards $roomName',
-        _getUrlToGame(),
-      );
+      pushHistoryState('vteam cards $roomName', _getUrlToGame());
     }
   }
 

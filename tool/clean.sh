@@ -10,3 +10,10 @@ flutter pub upgrade > /dev/null || { echo "Pub get failed"; exit 1; }
 
 echo --- Pub Outdated
 flutter pub outdated --no-transitive --no-prereleases
+
+echo -- delete Pods
+rm -rf ios/Pods
+rm -rf ios/Podfile.lock
+
+rm -rf macos/Pods
+rm -rf macos/Podfile.lock
