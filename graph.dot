@@ -16,6 +16,7 @@ digraph "" {
   "/test/models/backend_model_test.dart" [label="backend_model_test"];
   "/test/widgets/cards/card_pile_widget_test.dart" [label="card_pile_widget_test"];
   "/test/widgets/cards/card_widget_test.dart" [label="card_widget_test"];
+  "/lib/utils/fullscreen_helper.dart" [label="fullscreen_helper"];
   "/lib/utils/browser_utils_stub.dart" [label="browser_utils_stub"];
   "/lib/utils/browser_utils.dart" [label="browser_utils"];
   "/lib/utils/browser_utils_web.dart" [label="browser_utils_web"];
@@ -89,6 +90,7 @@ digraph "" {
       "/lib/main.dart";
       subgraph "cluster~/lib/utils" {
         label="utils";
+        "/lib/utils/fullscreen_helper.dart";
         "/lib/utils/browser_utils_stub.dart";
         "/lib/utils/browser_utils.dart";
         "/lib/utils/browser_utils_web.dart";
@@ -229,6 +231,8 @@ digraph "" {
   "/lib/screens/keepscore/golf_score_screen.dart" -> "/lib/widgets/input_keyboard.dart";
   "/lib/screens/keepscore/golf_score_screen.dart" -> "/lib/widgets/my_button.dart";
   "/lib/screens/keepscore/golf_score_screen.dart" -> "/lib/widgets/player_header.dart";
+  "/lib/screens/screen.dart" -> "/lib/utils/browser_utils.dart";
+  "/lib/screens/screen.dart" -> "/lib/utils/fullscreen_helper.dart";
   "/lib/main.dart" -> "/lib/models/backend_model.dart";
   "/lib/main.dart" -> "/lib/models/firebase_options.dart";
   "/lib/main.dart" -> "/lib/screens/game/join_game_screen.dart";

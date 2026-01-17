@@ -1,8 +1,11 @@
 import 'dart:async';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:cards/utils/browser_utils.dart';
+import 'package:cards/utils/fullscreen_helper.dart';
 
 /// Defines breakpoint constants for responsive design
 class ResponsiveBreakpoints {
@@ -85,11 +88,20 @@ class _ScreenState extends State<Screen> {
 
   /// Fetches the application version from the platform package info.
   Future<void> _getAppVersion() async {
-    final packageInfo = await PackageInfo.fromPlatform();
-    if (mounted) {
-      setState(() {
-        _version = packageInfo.version;
-      });
+    try {
+      final packageInfo = await PackageInfo.fromPlatform();
+      if (mounted) {
+        setState(() {
+          _version = packageInfo.version;
+        });
+      }
+    } catch (e) {
+      debugPrint('Error getting package info: $e');
+      if (mounted) {
+        setState(() {
+          _version = '1.0.0';
+        });
+      }
     }
   }
 
@@ -105,6 +117,38 @@ class _ScreenState extends State<Screen> {
           ),
         ),
         actions: [
+          ///
+          /// FULLSCREEN TOGGLE
+          ///
+          if (FullscreenHelper.isSupported)
+            IconButton(
+              icon: const Icon(Icons.fullscreen),
+              tooltip: FullscreenHelper.isSupported
+                  ? 'Toggle fullscreen'
+                  : 'Fullscreen not supported on this platform',
+              onPressed: () async {
+                if (kIsWeb) {
+                  await toggleFullscreen();
+                } else {
+                  if (FullscreenHelper.isSupported) {
+                    await FullscreenHelper.toggleFullscreen();
+                  } else {
+                    // Show a snackbar or message that fullscreen is not supported
+                    if (mounted) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text(
+                            'Fullscreen is not supported on this platform',
+                          ),
+                          duration: Duration(seconds: 2),
+                        ),
+                      );
+                    }
+                  }
+                }
+              },
+            ),
+
           ///
           /// VERSION & LICENSES
           ///
