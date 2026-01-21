@@ -4,6 +4,8 @@ import 'package:cards/screens/game/join_game_screen.dart';
 import 'package:cards/screens/game/start_game_screen.dart';
 import 'package:cards/screens/keepscore/golf_score_screen.dart';
 import 'package:cards/screens/main_menu.dart';
+import 'package:cards/theme/app_theme.dart';
+import 'package:cards/utils/font_scale_notifier.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -37,98 +39,113 @@ void main() async {
 ///
 /// Sets up the application's theme and navigates to the [StartScreen].
 class MyApp extends StatelessWidget {
-  /// Constructs a new instance of the `MyApp` widget.
+  /// Constructs a new instance of `MyApp` widget.
   ///
   /// The `super.key` parameter is passed to the parent class constructor.
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Cards',
-      theme: ThemeData(
-        brightness: Brightness.dark,
-        scaffoldBackgroundColor: Colors.green[800],
-        cardColor: Colors.green[800],
-        fontFamilyFallback: const ['Roboto'],
-        textTheme: const TextTheme(
-          bodyMedium: TextStyle(color: Colors.white),
-          bodyLarge: TextStyle(color: Colors.white),
-          displayLarge: TextStyle(color: Colors.white),
-          displayMedium: TextStyle(color: Colors.white),
-          displaySmall: TextStyle(color: Colors.white),
-          headlineLarge: TextStyle(color: Colors.white),
-          headlineMedium: TextStyle(color: Colors.white),
-          headlineSmall: TextStyle(color: Colors.white),
-          titleLarge: TextStyle(color: Colors.white),
-          titleMedium: TextStyle(color: Colors.white),
-          titleSmall: TextStyle(color: Colors.white),
-          labelLarge: TextStyle(color: Colors.white),
-          labelMedium: TextStyle(color: Colors.white),
-          labelSmall: TextStyle(color: Colors.white),
-        ),
-        hintColor: Colors.white70,
-        inputDecorationTheme: InputDecorationTheme(
-          filled: true,
-          fillColor: Colors.white.withAlpha(100),
-          hintStyle: TextStyle(color: Colors.white70),
-          labelStyle: TextStyle(color: Colors.white),
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: Colors.green.withAlpha(100),
-              width: 1.0,
+    final fontScaleNotifier = FontScaleNotifier();
+
+    return AnimatedBuilder(
+      animation: fontScaleNotifier,
+      builder: (context, child) {
+        return MaterialApp(
+          title: 'Cards',
+          theme: AppTheme.darkTheme.copyWith(
+            brightness: Brightness.dark,
+            scaffoldBackgroundColor: Colors.green[800],
+            cardColor: Colors.green[800],
+            textTheme: AppTheme.darkTheme.textTheme
+                .apply(fontFamily: 'Roboto')
+                .copyWith(
+                  bodyMedium: const TextStyle(color: Colors.white),
+                  bodyLarge: const TextStyle(color: Colors.white),
+                  displayLarge: const TextStyle(color: Colors.white),
+                  displayMedium: const TextStyle(color: Colors.white),
+                  displaySmall: const TextStyle(color: Colors.white),
+                  headlineLarge: const TextStyle(color: Colors.white),
+                  headlineMedium: const TextStyle(color: Colors.white),
+                  headlineSmall: const TextStyle(color: Colors.white),
+                  titleLarge: const TextStyle(color: Colors.white),
+                  titleMedium: const TextStyle(color: Colors.white),
+                  titleSmall: const TextStyle(color: Colors.white),
+                  labelLarge: const TextStyle(color: Colors.white),
+                  labelMedium: const TextStyle(color: Colors.white),
+                  labelSmall: const TextStyle(color: Colors.white),
+                ),
+            hintColor: Colors.white70,
+            inputDecorationTheme: InputDecorationTheme(
+              filled: true,
+              fillColor: Colors.white.withAlpha(100),
+              hintStyle: TextStyle(color: Colors.white70),
+              labelStyle: TextStyle(color: Colors.white),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: Colors.green.withAlpha(100),
+                  width: 1.0,
+                ),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.yellow, width: 4.0),
+              ),
             ),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.yellow, width: 4.0),
-          ),
-        ),
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.green[700],
-            foregroundColor: Colors.white,
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-            textStyle: const TextStyle(fontSize: 16),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8.0),
+            elevatedButtonTheme: ElevatedButtonThemeData(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.green[700],
+                foregroundColor: Colors.white,
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 12,
+                ),
+                textStyle: TextStyle(
+                  fontSize: fontScaleNotifier.getScaledFontSize(16),
+                ),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+              ),
             ),
-          ),
-        ),
-        textButtonTheme: TextButtonThemeData(
-          // Add TextButtonThemeData
-          style: TextButton.styleFrom(
-            foregroundColor: Colors.white, // Text color
-            textStyle: const TextStyle(fontSize: 16), // Text style
-            padding: const EdgeInsets.symmetric(
-              horizontal: 16,
-              vertical: 12,
-            ), //padding
-            shape: RoundedRectangleBorder(
-              // Rounded corners
-              borderRadius: BorderRadius.circular(8.0),
+            textButtonTheme: TextButtonThemeData(
+              // Add TextButtonThemeData
+              style: TextButton.styleFrom(
+                foregroundColor: Colors.white, // Text color
+                textStyle: TextStyle(
+                  fontSize: fontScaleNotifier.getScaledFontSize(16),
+                ), // Text style
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 12,
+                ), //padding
+                shape: RoundedRectangleBorder(
+                  // Rounded corners
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+              ),
             ),
+            appBarTheme: AppBarTheme(
+              backgroundColor: const Color.fromARGB(255, 32, 41, 33),
+              titleTextStyle: TextStyle(
+                color: Colors.white,
+                fontSize: fontScaleNotifier.getScaledFontSize(20.0),
+                fontWeight: FontWeight.bold,
+              ),
+              iconTheme: const IconThemeData(color: Colors.white),
+            ),
+            iconTheme: const IconThemeData(color: Colors.white),
+            primaryIconTheme: const IconThemeData(color: Colors.white),
           ),
-        ),
-        appBarTheme: AppBarTheme(
-          backgroundColor: const Color.fromARGB(255, 32, 41, 33),
-          titleTextStyle: const TextStyle(
-            color: Colors.white,
-            fontSize: 20.0,
-            fontWeight: FontWeight.bold,
-          ),
-          iconTheme: const IconThemeData(color: Colors.white),
-        ),
-        iconTheme: const IconThemeData(color: Colors.white),
-        primaryIconTheme: const IconThemeData(color: Colors.white),
-      ),
-      initialRoute: '/',
-      routes: {
-        '/': (context) => const MainMenu(),
-        '/game': (context) => const StartScreen(joinMode: false),
-        '/join': (context) => const JoinGameScreen(),
-        '/score': (context) => const GolfScoreScreen(),
+          initialRoute: '/',
+          routes: {
+            '/': (context) => const MainMenu(),
+            '/game': (context) => const StartScreen(joinMode: false),
+            '/join': (context) => const JoinGameScreen(),
+            '/score': (context) => const GolfScoreScreen(),
+          },
+          debugShowCheckedModeBanner: false,
+        );
       },
-      debugShowCheckedModeBanner: false,
     );
   }
 }

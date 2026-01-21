@@ -6,6 +6,8 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:cards/utils/browser_utils.dart';
 import 'package:cards/utils/fullscreen_helper.dart';
+import 'package:cards/utils/font_scale_notifier.dart';
+import 'package:cards/utils/scale_helper.dart';
 
 /// Defines breakpoint constants for responsive design
 class ResponsiveBreakpoints {
@@ -79,10 +81,13 @@ class Screen extends StatefulWidget {
 
 class _ScreenState extends State<Screen> {
   String _version = '';
+  late final FontScaleNotifier _fontScaleNotifier;
 
   @override
   void initState() {
     super.initState();
+    _fontScaleNotifier = FontScaleNotifier();
+    _fontScaleNotifier.initialize();
     _getAppVersion();
   }
 
@@ -150,6 +155,33 @@ class _ScreenState extends State<Screen> {
             ),
 
           ///
+          /// FONT SCALE TOGGLE
+          ///
+          AnimatedBuilder(
+            animation: _fontScaleNotifier,
+            builder: (context, child) {
+              return IconButton(
+                icon: Icon(_fontScaleNotifier.currentIcon),
+                tooltip: 'Font size: ${_fontScaleNotifier.currentLabel}',
+                onPressed: () async {
+                  await _fontScaleNotifier.toggleFontScale();
+                  if (mounted) {
+                    // ignore: use_build_context_synchronously
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(
+                          'Font size: ${_fontScaleNotifier.currentLabel}',
+                        ),
+                        duration: const Duration(seconds: 1),
+                      ),
+                    );
+                  }
+                },
+              );
+            },
+          ),
+
+          ///
           /// VERSION & LICENSES
           ///
           TextButton(
@@ -214,7 +246,10 @@ class _ScreenState extends State<Screen> {
             ),
             child: SizedBox.expand(
               child: DefaultTextStyle(
-                style: TextStyle(color: Colors.green.shade100, fontSize: 20),
+                style: ScaleHelper.getScaledTextStyle(
+                  color: Colors.green.shade100,
+                  fontSize: 20,
+                ),
                 child: widget.isWaiting ? _displayWaiting() : widget.child,
               ),
             ),
@@ -227,9 +262,13 @@ class _ScreenState extends State<Screen> {
   Widget _displayWaiting() {
     /// Builds a loading indicator widget
     return SizedBox(
-      width: 400,
-      height: 400,
-      child: Center(child: const CupertinoActivityIndicator(radius: 40)),
+      width: ScaleHelper.scaleDimension(400),
+      height: ScaleHelper.scaleDimension(400),
+      child: Center(
+        child: CupertinoActivityIndicator(
+          radius: ScaleHelper.scaleDimension(40),
+        ),
+      ),
     );
   }
 }

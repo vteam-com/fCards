@@ -1,4 +1,5 @@
 import 'package:cards/models/card_model.dart';
+import 'package:cards/utils/scale_helper.dart';
 import 'package:cards/widgets/cards/card_face_french_widget.dart';
 import 'package:cards/widgets/cards/card_face_skyjo_widget.dart';
 import 'package:cards/widgets/wiggle_widget.dart';
@@ -61,13 +62,20 @@ class CardWidget extends StatelessWidget {
       child: FittedBox(
         fit: BoxFit.scaleDown,
         child: Container(
-          margin: const EdgeInsets.all(CardDimensions.margin),
-          width: CardDimensions.width,
-          height: CardDimensions.height,
+          margin: ScaleHelper.scaleEdgeInsets(
+            const EdgeInsets.all(CardDimensions.margin),
+          ),
+          width: ScaleHelper.scaleDimension(CardDimensions.width),
+          height: ScaleHelper.scaleDimension(CardDimensions.height),
           decoration: BoxDecoration(
             color: Colors.white,
-            borderRadius: BorderRadius.circular(CardDimensions.borderRadius),
-            border: Border.all(color: Colors.black, width: 1),
+            borderRadius: ScaleHelper.scaleBorderRadius(
+              BorderRadius.circular(CardDimensions.borderRadius),
+            ),
+            border: Border.all(
+              color: Colors.black,
+              width: ScaleHelper.scaleDimension(1),
+            ),
           ),
           child: card.suit == ''
               ? CardFaceSkyjoWidget(card: card)

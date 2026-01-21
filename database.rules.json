@@ -1,0 +1,24 @@
+{
+  "rules": {
+    ".read": "auth != null",
+    ".write": "auth != null",
+    "rooms": {
+      ".read": "auth != null",
+      ".write": "auth != null",
+      "$roomId": {
+        "invitees": {
+          ".read": "auth != null",
+          ".write": "auth != null"
+        }
+      }
+    },
+    "history": {
+      ".read": "auth != null",
+      ".write": "auth != null",
+      "$roomName": {
+        ".read": "auth != null",
+        ".write": "auth != null"
+      }
+    }
+  }
+}

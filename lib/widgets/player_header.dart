@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cards/utils/scale_helper.dart';
 
 /// A widget for editing a player's name.
 ///
@@ -59,13 +60,19 @@ class _PlayerHeaderState extends State<PlayerHeader> {
 
   Widget _buildWiningPosition(int rank, int numberOfPlayers) {
     if (rank == 1) {
-      return Text('👑', style: TextStyle(fontWeight: FontWeight.w900));
+      return Text(
+        '👑',
+        style: ScaleHelper.getScaledTextStyle(fontWeight: FontWeight.w900),
+      );
     } else if (rank == numberOfPlayers) {
       return Opacity(
         opacity: 0.5,
         child: Text(
           'LAST',
-          style: TextStyle(fontWeight: FontWeight.w900, fontSize: 14),
+          style: ScaleHelper.getScaledTextStyle(
+            fontWeight: FontWeight.w900,
+            fontSize: 14,
+          ),
         ),
       );
     } else {
@@ -73,7 +80,10 @@ class _PlayerHeaderState extends State<PlayerHeader> {
         opacity: 0.7,
         child: Text(
           '#$rank',
-          style: TextStyle(fontWeight: FontWeight.w900, fontSize: 14),
+          style: ScaleHelper.getScaledTextStyle(
+            fontWeight: FontWeight.w900,
+            fontSize: 14,
+          ),
         ),
       );
     }
@@ -96,9 +106,15 @@ class _PlayerHeaderState extends State<PlayerHeader> {
             ),
           ),
           child: AlertDialog(
+            backgroundColor: Colors.green.shade900,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16),
-              side: BorderSide(color: Colors.green.shade300, width: 1),
+              borderRadius: ScaleHelper.scaleBorderRadius(
+                BorderRadius.circular(16),
+              ),
+              side: BorderSide(
+                color: Colors.green.shade300,
+                width: ScaleHelper.scaleDimension(1),
+              ),
             ),
             title: Text(
               widget.playerIndex != null
@@ -107,16 +123,21 @@ class _PlayerHeaderState extends State<PlayerHeader> {
             ),
             content: Column(
               mainAxisSize: MainAxisSize.min,
-              spacing: 16,
+              spacing: ScaleHelper.scaleDimension(16),
               children: [
                 TextField(
                   controller: controller,
                   focusNode: focusNode,
                   autofocus: true,
-                  style: const TextStyle(color: Colors.white, fontSize: 30),
+                  style: ScaleHelper.getScaledTextStyle(
+                    color: Colors.white,
+                    fontSize: 30,
+                  ),
                   decoration: InputDecoration(
                     hintText: 'Player Name',
-                    hintStyle: TextStyle(color: Colors.grey[400]),
+                    hintStyle: ScaleHelper.getScaledTextStyle(
+                      color: Colors.grey[400],
+                    ),
                     filled: true,
                     fillColor: Colors.black,
                     border: const OutlineInputBorder(),
@@ -133,8 +154,8 @@ class _PlayerHeaderState extends State<PlayerHeader> {
                 ),
                 Divider(color: Colors.green),
                 Wrap(
-                  spacing: 16,
-                  runSpacing: 16,
+                  spacing: ScaleHelper.scaleDimension(16),
+                  runSpacing: ScaleHelper.scaleDimension(16),
                   children: [
                     OutlinedButton(
                       onPressed: () {

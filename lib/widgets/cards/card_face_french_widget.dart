@@ -1,5 +1,6 @@
 import 'package:cards/misc.dart';
 import 'package:cards/models/card_model.dart';
+import 'package:cards/utils/scale_helper.dart';
 import 'package:flutter/material.dart';
 
 /// A widget that displays a playing card's face or back.
@@ -22,7 +23,7 @@ class CardFaceFrenchWidget extends StatelessWidget {
   /// Render the front of the card
   Widget buildFaceUp() {
     return Padding(
-      padding: const EdgeInsets.all(4.0),
+      padding: ScaleHelper.scaleEdgeInsets(const EdgeInsets.all(4.0)),
       child: Stack(
         children: [
           Column(children: [buildRank(), const Spacer(), buildValue()]),
@@ -97,7 +98,7 @@ class CardFaceFrenchWidget extends StatelessWidget {
   Widget buildSuitSymbol({final double size = 18}) {
     return Text(
       card.suit,
-      style: TextStyle(
+      style: ScaleHelper.getScaledTextStyle(
         fontSize: size,
         color: getSuitColor(card.suit),
         decoration: TextDecoration.none,
@@ -236,8 +237,16 @@ class CardFaceFrenchWidget extends StatelessWidget {
     for (final Offset position in positions) {
       symbols.add(
         Positioned(
-          left: 35 + position.dx, // Adjust 50 to center horizontally
-          top: 70 + position.dy, // Adjust 75 to center vertically
+          left:
+              ScaleHelper.scaleDimension(35) +
+              ScaleHelper.scaleOffset(
+                position,
+              ).dx, // Adjust 50 to center horizontally
+          top:
+              ScaleHelper.scaleDimension(70) +
+              ScaleHelper.scaleOffset(
+                position,
+              ).dy, // Adjust 75 to center vertically
           child: buildSuitSymbol(),
         ),
       );
@@ -250,13 +259,13 @@ class CardFaceFrenchWidget extends StatelessWidget {
   Widget figureCards(final String text) {
     return Center(
       child: Padding(
-        padding: const EdgeInsets.only(top: 30.0),
+        padding: EdgeInsets.only(top: ScaleHelper.scaleDimension(30.0)),
         child: Text(
           text,
           textAlign: TextAlign.center,
-          style: TextStyle(
-            color: getSuitColor(card.suit),
+          style: ScaleHelper.getScaledTextStyle(
             fontSize: 60,
+            color: getSuitColor(card.suit),
             decoration: TextDecoration.none,
           ),
         ),
