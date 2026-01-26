@@ -120,33 +120,6 @@ class _ScreenState extends State<Screen> {
         ),
         actions: [
           ///
-          /// FONT SCALE TOGGLE
-          ///
-          AnimatedBuilder(
-            animation: _fontScaleNotifier,
-            builder: (context, child) {
-              return IconButton(
-                icon: Icon(_fontScaleNotifier.currentIcon),
-                tooltip: 'Font size: ${_fontScaleNotifier.currentLabel}',
-                onPressed: () async {
-                  await _fontScaleNotifier.toggleFontScale();
-                  if (mounted) {
-                    // ignore: use_build_context_synchronously
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(
-                          'Font size: ${_fontScaleNotifier.currentLabel}',
-                        ),
-                        duration: const Duration(seconds: 1),
-                      ),
-                    );
-                  }
-                },
-              );
-            },
-          ),
-
-          ///
           /// VERSION & LICENSES
           ///
           TextButton(
@@ -210,13 +183,7 @@ class _ScreenState extends State<Screen> {
               ),
             ),
             child: SizedBox.expand(
-              child: DefaultTextStyle(
-                style: ScaleHelper.getScaledTextStyle(
-                  color: Colors.green.shade100,
-                  fontSize: 20,
-                ),
-                child: widget.isWaiting ? _displayWaiting() : widget.child,
-              ),
+              child: widget.isWaiting ? _displayWaiting() : widget.child,
             ),
           ),
         ],

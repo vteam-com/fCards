@@ -16,7 +16,6 @@ digraph "" {
   "/test/models/backend_model_test.dart" [label="backend_model_test"];
   "/test/widgets/cards/card_pile_widget_test.dart" [label="card_pile_widget_test"];
   "/test/widgets/cards/card_widget_test.dart" [label="card_widget_test"];
-  "/lib/utils/fullscreen_helper.dart" [label="fullscreen_helper"];
   "/lib/utils/scale_helper.dart" [label="scale_helper"];
   "/lib/utils/font_scale_notifier.dart" [label="font_scale_notifier"];
   "/lib/utils/browser_utils_stub.dart" [label="browser_utils_stub"];
@@ -95,7 +94,6 @@ digraph "" {
       "/lib/main.dart";
       subgraph "cluster~/lib/utils" {
         label="utils";
-        "/lib/utils/fullscreen_helper.dart";
         "/lib/utils/scale_helper.dart";
         "/lib/utils/font_scale_notifier.dart";
         "/lib/utils/browser_utils_stub.dart";
