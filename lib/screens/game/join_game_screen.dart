@@ -241,7 +241,7 @@ class JoinGameScreenState extends State<JoinGameScreen> {
           Container(
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-              color: Colors.green[800],
+              color: Colors.green.shade900,
               borderRadius: BorderRadius.circular(12),
               border: Border.all(color: Colors.green[400]!),
             ),
