@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:cards/utils/font_scale_helper.dart';
 
 class AppTheme {
   static ThemeData get lightTheme {
@@ -9,59 +8,29 @@ class AppTheme {
     return baseTheme.copyWith(
       textTheme: textTheme.copyWith(
         // Display styles
-        displayLarge: textTheme.displayLarge?.copyWith(
-          fontSize: FontScaleHelper.getScaledFontSize(57),
-        ),
-        displayMedium: textTheme.displayMedium?.copyWith(
-          fontSize: FontScaleHelper.getScaledFontSize(45),
-        ),
-        displaySmall: textTheme.displaySmall?.copyWith(
-          fontSize: FontScaleHelper.getScaledFontSize(36),
-        ),
+        displayLarge: textTheme.displayLarge?.copyWith(fontSize: 57),
+        displayMedium: textTheme.displayMedium?.copyWith(fontSize: 45),
+        displaySmall: textTheme.displaySmall?.copyWith(fontSize: 36),
 
         // Headline styles
-        headlineLarge: textTheme.headlineLarge?.copyWith(
-          fontSize: FontScaleHelper.getScaledFontSize(32),
-        ),
-        headlineMedium: textTheme.headlineMedium?.copyWith(
-          fontSize: FontScaleHelper.getScaledFontSize(28),
-        ),
-        headlineSmall: textTheme.headlineSmall?.copyWith(
-          fontSize: FontScaleHelper.getScaledFontSize(24),
-        ),
+        headlineLarge: textTheme.headlineLarge?.copyWith(fontSize: 32),
+        headlineMedium: textTheme.headlineMedium?.copyWith(fontSize: 28),
+        headlineSmall: textTheme.headlineSmall?.copyWith(fontSize: 24),
 
         // Title styles
-        titleLarge: textTheme.titleLarge?.copyWith(
-          fontSize: FontScaleHelper.getScaledFontSize(22),
-        ),
-        titleMedium: textTheme.titleMedium?.copyWith(
-          fontSize: FontScaleHelper.getScaledFontSize(16),
-        ),
-        titleSmall: textTheme.titleSmall?.copyWith(
-          fontSize: FontScaleHelper.getScaledFontSize(14),
-        ),
+        titleLarge: textTheme.titleLarge?.copyWith(fontSize: 22),
+        titleMedium: textTheme.titleMedium?.copyWith(fontSize: 16),
+        titleSmall: textTheme.titleSmall?.copyWith(fontSize: 14),
 
         // Body styles
-        bodyLarge: textTheme.bodyLarge?.copyWith(
-          fontSize: FontScaleHelper.getScaledFontSize(16),
-        ),
-        bodyMedium: textTheme.bodyMedium?.copyWith(
-          fontSize: FontScaleHelper.getScaledFontSize(14),
-        ),
-        bodySmall: textTheme.bodySmall?.copyWith(
-          fontSize: FontScaleHelper.getScaledFontSize(12),
-        ),
+        bodyLarge: textTheme.bodyLarge?.copyWith(fontSize: 16),
+        bodyMedium: textTheme.bodyMedium?.copyWith(fontSize: 14),
+        bodySmall: textTheme.bodySmall?.copyWith(fontSize: 12),
 
         // Label styles
-        labelLarge: textTheme.labelLarge?.copyWith(
-          fontSize: FontScaleHelper.getScaledFontSize(14),
-        ),
-        labelMedium: textTheme.labelMedium?.copyWith(
-          fontSize: FontScaleHelper.getScaledFontSize(12),
-        ),
-        labelSmall: textTheme.labelSmall?.copyWith(
-          fontSize: FontScaleHelper.getScaledFontSize(10),
-        ),
+        labelLarge: textTheme.labelLarge?.copyWith(fontSize: 14),
+        labelMedium: textTheme.labelMedium?.copyWith(fontSize: 12),
+        labelSmall: textTheme.labelSmall?.copyWith(fontSize: 10),
       ),
     );
   }
@@ -73,59 +42,29 @@ class AppTheme {
     return baseTheme.copyWith(
       textTheme: textTheme.copyWith(
         // Display styles
-        displayLarge: textTheme.displayLarge?.copyWith(
-          fontSize: FontScaleHelper.getScaledFontSize(57),
-        ),
-        displayMedium: textTheme.displayMedium?.copyWith(
-          fontSize: FontScaleHelper.getScaledFontSize(45),
-        ),
-        displaySmall: textTheme.displaySmall?.copyWith(
-          fontSize: FontScaleHelper.getScaledFontSize(36),
-        ),
+        displayLarge: textTheme.displayLarge?.copyWith(fontSize: 57),
+        displayMedium: textTheme.displayMedium?.copyWith(fontSize: 45),
+        displaySmall: textTheme.displaySmall?.copyWith(fontSize: 36),
 
         // Headline styles
-        headlineLarge: textTheme.headlineLarge?.copyWith(
-          fontSize: FontScaleHelper.getScaledFontSize(32),
-        ),
-        headlineMedium: textTheme.headlineMedium?.copyWith(
-          fontSize: FontScaleHelper.getScaledFontSize(28),
-        ),
-        headlineSmall: textTheme.headlineSmall?.copyWith(
-          fontSize: FontScaleHelper.getScaledFontSize(24),
-        ),
+        headlineLarge: textTheme.headlineLarge?.copyWith(fontSize: 32),
+        headlineMedium: textTheme.headlineMedium?.copyWith(fontSize: 28),
+        headlineSmall: textTheme.headlineSmall?.copyWith(fontSize: 24),
 
         // Title styles
-        titleLarge: textTheme.titleLarge?.copyWith(
-          fontSize: FontScaleHelper.getScaledFontSize(22),
-        ),
-        titleMedium: textTheme.titleMedium?.copyWith(
-          fontSize: FontScaleHelper.getScaledFontSize(16),
-        ),
-        titleSmall: textTheme.titleSmall?.copyWith(
-          fontSize: FontScaleHelper.getScaledFontSize(14),
-        ),
+        titleLarge: textTheme.titleLarge?.copyWith(fontSize: 22),
+        titleMedium: textTheme.titleMedium?.copyWith(fontSize: 16),
+        titleSmall: textTheme.titleSmall?.copyWith(fontSize: 14),
 
         // Body styles
-        bodyLarge: textTheme.bodyLarge?.copyWith(
-          fontSize: FontScaleHelper.getScaledFontSize(16),
-        ),
-        bodyMedium: textTheme.bodyMedium?.copyWith(
-          fontSize: FontScaleHelper.getScaledFontSize(14),
-        ),
-        bodySmall: textTheme.bodySmall?.copyWith(
-          fontSize: FontScaleHelper.getScaledFontSize(12),
-        ),
+        bodyLarge: textTheme.bodyLarge?.copyWith(fontSize: 16),
+        bodyMedium: textTheme.bodyMedium?.copyWith(fontSize: 14),
+        bodySmall: textTheme.bodySmall?.copyWith(fontSize: 12),
 
         // Label styles
-        labelLarge: textTheme.labelLarge?.copyWith(
-          fontSize: FontScaleHelper.getScaledFontSize(14),
-        ),
-        labelMedium: textTheme.labelMedium?.copyWith(
-          fontSize: FontScaleHelper.getScaledFontSize(12),
-        ),
-        labelSmall: textTheme.labelSmall?.copyWith(
-          fontSize: FontScaleHelper.getScaledFontSize(10),
-        ),
+        labelLarge: textTheme.labelLarge?.copyWith(fontSize: 14),
+        labelMedium: textTheme.labelMedium?.copyWith(fontSize: 12),
+        labelSmall: textTheme.labelSmall?.copyWith(fontSize: 10),
       ),
     );
   }

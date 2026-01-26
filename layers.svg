@@ -1,597 +1,692 @@
-<?xml version="1.0" standalone="no"?>
-<svg width="2700" height="450" xmlns="http://www.w3.org/2000/svg" font-family="Arial, Helvetica, sans-serif">
-  <style>
-    .layerRectangle {
-      stroke: black;
-      stroke-dasharray: 5,5;
-      fill: url('#layers')
-    }
-    .layerText {
-      fill: purple;
-      font-size: 150%;
-      filter: url(#outlineWhite);
-    }
-    .nodeFolder {
-      fill: #aaaaaa;
-      opacity: 0.3;
-      stroke: whitesmoke;
-    }
-    .nodeFile {
-      fill: #ffffff;
-      opacity: 0.9;
-      stroke: gray;
-    }
-    .folderName {
-      font-size: 180%;
-      fill : white;
-      font-weight: bolder;
-      text-anchor: start;
-      letter-spacing : 1px;
-      dominant-baseline: hanging;
-      filter: url(#shadow);
-    }
-    .nodeName {
-      fill : black;
-      font-weight: bold;
-      text-anchor: middle;
-      dominant-baseline: central;
-      filter: url(#outlineWhite);
-    }
-    .line {
-      fill : none;
-      stroke-width: 3;
-      opacity: 0.5;
-    }
-    .line:hover {
-      stroke-width: 6;
-      opacity: 1;
-    }
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="3200" height="680" viewBox="0 0 3200 680" xmlns="http://www.w3.org/2000/svg" font-family="Arial, Helvetica, sans-serif">
+<defs>
+  <filter id="whiteShadow" x="-20%" y="-20%" width="140%" height="140%">
+    <feGaussianBlur in="SourceAlpha" stdDeviation="3"/>
+    <feOffset dx="0" dy="0" result="offsetblur"/>
+    <feFlood flood-color="white" flood-opacity="1"/>
+    <feComposite in2="offsetblur" operator="in"/>
+    <feMerge>
+      <feMergeNode/>
+      <feMergeNode in="SourceGraphic"/>
+    </feMerge>
+  </filter>
+  <filter id="outlineWhite">
+    <feMorphology in="SourceAlpha" result="DILATED" operator="dilate" radius="2"/>
+    <feFlood flood-color="white" flood-opacity="0.5" result="WHITE"/>
+    <feComposite in="WHITE" in2="DILATED" operator="in" result="OUTLINE"/>
+    <feMerge>
+      <feMergeNode in="OUTLINE"/>
+      <feMergeNode in="SourceGraphic"/>
+    </feMerge>
+  </filter>
+  <linearGradient id="edgeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+    <stop offset="0%" stop-color="green" stop-opacity="0.3"/>
+    <stop offset="100%" stop-color="#007bff" stop-opacity="0.3"/>
+  </linearGradient>
+</defs>
+<style>
+  .layerBackground { fill: #f8f9fa; stroke: #dee2e6; stroke-width: 1; stroke-dasharray: 4,4; }
+  .layerTitle { fill: #6c757d; font-size: 14px; font-weight: bold; text-anchor: middle; }
+  .nodeRect { fill: #ffffff; stroke: #343a40; stroke-width: 2; rx: 6; ry: 6; cursor: pointer; filter: url(#whiteShadow); }
+  .nodeRect:hover { stroke: #007bff; stroke-width: 3; }
+  .nodeText { fill: #212529; font-size: 14px; font-weight: 900; text-anchor: middle; dominant-baseline: middle; filter: url(#outlineWhite); }
+  .edge { fill: none; stroke: url(#edgeGradient); }
+  .edge:hover { stroke: #007bff; stroke-width: 3; opacity: 1.0; }
+  .cycleEdge { stroke: red; stroke-width: 5; opacity: 0.9; }
+  .badge { font-size: 10px; font-weight: bold; fill: white; text-anchor: middle; dominant-baseline: middle; cursor: help; }
+  .badge:hover { opacity: 0.8; }
 </style>
-  <defs id='idSvgDef'>
-    <linearGradient id="layers" gradientTransform="rotate(90)">
-      <stop offset="0%" stop-color="#691872" stop-opacity="0.1"/>
-      <stop offset="100%" stop-color="#691872" stop-opacity="0.3" />
-    </linearGradient>
-    <filter id="shadow">
-      <feGaussianBlur in="SourceAlpha" stdDeviation="2"/>
-      <feOffset dx="1" dy="1" result="offsetblur"/>
-      <feFlood flood-color="black"/>
-      <feComposite in2="offsetblur" operator="in"/>
-      <feMerge>
-        <feMergeNode/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
-    <filter id="outlineWhite">
-      <feMorphology in="SourceAlpha" result="DILATED" operator="dilate" radius="2"/>
-      <feFlood flood-color="white" flood-opacity="0.5" result="WHITE"/>
-      <feComposite in="WHITE" in2="DILATED" operator="in" result="OUTLINE"/>
-      <feMerge>
-        <feMergeNode in="OUTLINE" />
-        <feMergeNode in="SourceGraphic" />
-      </feMerge>
-    </filter>
-    <filter id="outlineBlack">
-      <feMorphology in="SourceAlpha" result="DILATED" operator="dilate" radius="2"/>
-      <feFlood flood-color="black" flood-opacity="0.5" result="BLACK"/>
-      <feComposite in="BLACK" in2="DILATED" operator="in" result="OUTLINE"/>
-      <feMerge>
-        <feMergeNode in="OUTLINE"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
-    <marker id='lineEnd' viewBox= '0 -5 30 10' refX='12' orient='auto'>
-      <path d='M0,-16L32,0L0,16' fill='#3058FF' opacity="0.67"/>
-    </marker>
-    <marker id='lineStart' viewBox= '0 -4 8 8' refX='4' orient='auto'>
-      <circle cx='4' r='4' fill='#377E22'/>
-    </marker>
-  </defs>
-  <rect width="100%" height="100%" fill="white"/>
-  <rect width="100%" height="100%" fill="white"/>
-  <g id='Node_cards'>
-    <rect x="4" y="39" width="292" height="72" rx="8" ry="8" class="nodeFile"/>
-  </g>
-  <g id='Node_animate_do'>
-    <rect x="904" y="339" width="292" height="72" rx="8" ry="8" class="nodeFile"/>
-  </g>
-  <g id='Node_firebase_auth'>
-    <rect x="1504" y="189" width="292" height="72" rx="8" ry="8" class="nodeFile"/>
-  </g>
-  <g id='Node_firebase_core'>
-    <rect x="4" y="339" width="292" height="72" rx="8" ry="8" class="nodeFile"/>
-  </g>
-  <g id='Node_firebase_database'>
-    <rect x="1804" y="189" width="292" height="72" rx="8" ry="8" class="nodeFile"/>
-  </g>
-  <g id='Node_flutter_localizations'>
-    <rect x="2404" y="189" width="292" height="72" rx="8" ry="8" class="nodeFile"/>
-  </g>
-  <g id='Node_flutter_markdown'>
-    <rect x="2104" y="189" width="292" height="72" rx="8" ry="8" class="nodeFile"/>
-  </g>
-  <g id='Node_intl'>
-    <rect x="604" y="339" width="292" height="72" rx="8" ry="8" class="nodeFile"/>
-  </g>
-  <g id='Node_mockito'>
-    <rect x="304" y="189" width="292" height="72" rx="8" ry="8" class="nodeFile"/>
-  </g>
-  <g id='Node_package_info_plus'>
-    <rect x="604" y="189" width="292" height="72" rx="8" ry="8" class="nodeFile"/>
-  </g>
-  <g id='Node_share_plus'>
-    <rect x="4" y="189" width="292" height="72" rx="8" ry="8" class="nodeFile"/>
-  </g>
-  <g id='Node_shared_preferences'>
-    <rect x="1204" y="189" width="292" height="72" rx="8" ry="8" class="nodeFile"/>
-  </g>
-  <g id='Node_universal_platform'>
-    <rect x="1204" y="339" width="292" height="72" rx="8" ry="8" class="nodeFile"/>
-  </g>
-  <g id='Node_url_launcher'>
-    <rect x="904" y="189" width="292" height="72" rx="8" ry="8" class="nodeFile"/>
-  </g>
-  <g id='Node_web'>
-    <rect x="304" y="339" width="292" height="72" rx="8" ry="8" class="nodeFile"/>
-  </g>
-  <g id='Edges'>
-    <path class="line" d="M280 95 C 290 225,910 225, 920 355" fill="none" stroke="#377E22">
-      <title>cards
-⬇
-animate_do</title>
-    </path>
-    <path class="line" d="M280 95 C 290 150,1510 150, 1520 205" fill="none" stroke="#377E22">
-      <title>cards
-⬇
-firebase_auth</title>
-    </path>
-    <path class="line" d="M280 95 C 290 225,10 225, 20 355" fill="none" stroke="#377E22">
-      <title>cards
-⬇
-firebase_core</title>
-    </path>
-    <path class="line" d="M280 95 C 290 150,1810 150, 1820 205" fill="none" stroke="#377E22">
-      <title>cards
-⬇
-firebase_database</title>
-    </path>
-    <path class="line" d="M280 95 C 290 150,2410 150, 2420 205" fill="none" stroke="#377E22">
-      <title>cards
-⬇
-flutter_localizations</title>
-    </path>
-    <path class="line" d="M280 95 C 290 150,2110 150, 2120 205" fill="none" stroke="#377E22">
-      <title>cards
-⬇
-flutter_markdown</title>
-    </path>
-    <path class="line" d="M280 95 C 290 225,610 225, 620 355" fill="none" stroke="#377E22">
-      <title>cards
-⬇
-intl</title>
-    </path>
-    <path class="line" d="M280 95 C 290 150,310 150, 320 205" fill="none" stroke="#377E22">
-      <title>cards
-⬇
-mockito</title>
-    </path>
-    <path class="line" d="M280 95 C 290 150,610 150, 620 205" fill="none" stroke="#377E22">
-      <title>cards
-⬇
-package_info_plus</title>
-    </path>
-    <path class="line" d="M280 95 C 290 150,10 150, 20 205" fill="none" stroke="#377E22">
-      <title>cards
-⬇
-share_plus</title>
-    </path>
-    <path class="line" d="M280 95 C 290 150,1210 150, 1220 205" fill="none" stroke="#377E22">
-      <title>cards
-⬇
-shared_preferences</title>
-    </path>
-    <path class="line" d="M280 95 C 290 225,1210 225, 1220 355" fill="none" stroke="#377E22">
-      <title>cards
-⬇
-universal_platform</title>
-    </path>
-    <path class="line" d="M280 95 C 290 150,910 150, 920 205" fill="none" stroke="#377E22">
-      <title>cards
-⬇
-url_launcher</title>
-    </path>
-    <path class="line" d="M280 95 C 290 225,310 225, 320 355" fill="none" stroke="#377E22">
-      <title>cards
-⬇
-web</title>
-    </path>
-    <path class="line" d="M1780 245 C 1790 300,10 300, 20 355" fill="none" stroke="#377E22">
-      <title>firebase_auth
-⬇
-firebase_core</title>
-    </path>
-    <path class="line" d="M2080 245 C 2090 300,10 300, 20 355" fill="none" stroke="#377E22">
-      <title>firebase_database
-⬇
-firebase_core</title>
-    </path>
-    <path class="line" d="M2680 245 C 2690 300,610 300, 620 355" fill="none" stroke="#377E22">
-      <title>flutter_localizations
-⬇
-intl</title>
-    </path>
-    <path class="line" d="M880 245 C 890 300,310 300, 320 355" fill="none" stroke="#377E22">
-      <title>package_info_plus
-⬇
-web</title>
-    </path>
-    <path class="line" d="M280 245 C 290 300,310 300, 320 355" fill="none" stroke="#377E22">
-      <title>share_plus
-⬇
-web</title>
-    </path>
-  </g>
-  <g id='Counters_cards'>
-    <g>
-      <circle cx="280" cy="95" r="10" fill="green"/>
-      <text x="280" y="95" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">20</text>
-      <title>cards
-⬇
-1 /dev/firebase_core_platform_interface
-2 /dev/flutter_launcher_icons
-3 /dev/flutter_lints
-4 /dev/flutter_test
-5 /dev/integration_test
-6 /dev/mocktail
-7 /direct/animate_do
-8 /direct/firebase_auth
-9 /direct/firebase_core
-10 /direct/firebase_database
-11 /direct/flutter_localizations
-12 /direct/flutter_markdown
-13 /direct/intl
-14 /direct/mockito
-15 /direct/package_info_plus
-16 /direct/share_plus
-17 /direct/shared_preferences
-18 /direct/universal_platform
-19 /direct/url_launcher
-20 /direct/web</title>
-    </g>
-  </g>
-  <g id='Counters_animate_do'>
-    <g>
-      <circle cx="920" cy="355" r="10" fill="blue"/>
-      <text x="920" y="355" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">1</text>
-      <title>1 /root/cards
-⬇
-animate_do</title>
-    </g>
-  </g>
-  <g id='Counters_firebase_auth'>
-    <g>
-      <circle cx="1780" cy="245" r="10" fill="green"/>
-      <text x="1780" y="245" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">5</text>
-      <title>firebase_auth
-⬇
-1 /dev/firebase_core_platform_interface
-2 /direct/firebase_core
-3 /transitive/firebase_auth_platform_interface
-4 /transitive/firebase_auth_web
-5 /transitive/meta</title>
-    </g>
-    <g>
-      <circle cx="1520" cy="205" r="10" fill="blue"/>
-      <text x="1520" y="205" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">1</text>
-      <title>1 /root/cards
-⬇
-firebase_auth</title>
-    </g>
-  </g>
-  <g id='Counters_firebase_core'>
-    <g>
-      <circle cx="280" cy="395" r="10" fill="green"/>
-      <text x="280" y="395" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">3</text>
-      <title>firebase_core
-⬇
-1 /dev/firebase_core_platform_interface
-2 /transitive/firebase_core_web
-3 /transitive/meta</title>
-    </g>
-    <g>
-      <circle cx="20" cy="355" r="10" fill="blue"/>
-      <text x="20" y="355" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">8</text>
-      <title>1 /direct/firebase_auth
-2 /direct/firebase_database
-3 /root/cards
-4 /transitive/_flutterfire_internals
-5 /transitive/firebase_auth_platform_interface
-6 /transitive/firebase_auth_web
-7 /transitive/firebase_database_platform_interface
-8 /transitive/firebase_database_web
-⬇
-firebase_core</title>
-    </g>
-  </g>
-  <g id='Counters_firebase_database'>
-    <g>
-      <circle cx="2080" cy="245" r="10" fill="green"/>
-      <text x="2080" y="245" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">4</text>
-      <title>firebase_database
-⬇
-1 /dev/firebase_core_platform_interface
-2 /direct/firebase_core
-3 /transitive/firebase_database_platform_interface
-4 /transitive/firebase_database_web</title>
-    </g>
-    <g>
-      <circle cx="1820" cy="205" r="10" fill="blue"/>
-      <text x="1820" y="205" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">1</text>
-      <title>1 /root/cards
-⬇
-firebase_database</title>
-    </g>
-  </g>
-  <g id='Counters_flutter_localizations'>
-    <g>
-      <circle cx="2680" cy="245" r="10" fill="green"/>
-      <text x="2680" y="245" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">2</text>
-      <title>flutter_localizations
-⬇
-1 /direct/intl
-2 /transitive/path</title>
-    </g>
-    <g>
-      <circle cx="2420" cy="205" r="10" fill="blue"/>
-      <text x="2420" y="205" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">1</text>
-      <title>1 /root/cards
-⬇
-flutter_localizations</title>
-    </g>
-  </g>
-  <g id='Counters_flutter_markdown'>
-    <g>
-      <circle cx="2380" cy="245" r="10" fill="green"/>
-      <text x="2380" y="245" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">3</text>
-      <title>flutter_markdown
-⬇
-1 /transitive/markdown
-2 /transitive/meta
-3 /transitive/path</title>
-    </g>
-    <g>
-      <circle cx="2120" cy="205" r="10" fill="blue"/>
-      <text x="2120" y="205" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">1</text>
-      <title>1 /root/cards
-⬇
-flutter_markdown</title>
-    </g>
-  </g>
-  <g id='Counters_intl'>
-    <g>
-      <circle cx="880" cy="395" r="10" fill="green"/>
-      <text x="880" y="395" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">3</text>
-      <title>intl
-⬇
-1 /transitive/clock
-2 /transitive/meta
-3 /transitive/path</title>
-    </g>
-    <g>
-      <circle cx="620" cy="355" r="10" fill="blue"/>
-      <text x="620" y="355" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">2</text>
-      <title>1 /direct/flutter_localizations
-2 /root/cards
-⬇
-intl</title>
-    </g>
-  </g>
-  <g id='Counters_mockito'>
-    <g>
-      <circle cx="580" cy="245" r="10" fill="green"/>
-      <text x="580" y="245" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">10</text>
-      <title>mockito
-⬇
-1 /transitive/analyzer
-2 /transitive/build
-3 /transitive/code_builder
-4 /transitive/collection
-5 /transitive/dart_style
-6 /transitive/matcher
-7 /transitive/meta
-8 /transitive/path
-9 /transitive/source_gen
-10 /transitive/test_api</title>
-    </g>
-    <g>
-      <circle cx="320" cy="205" r="10" fill="blue"/>
-      <text x="320" y="205" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">1</text>
-      <title>1 /root/cards
-⬇
-mockito</title>
-    </g>
-  </g>
-  <g id='Counters_package_info_plus'>
-    <g>
-      <circle cx="880" cy="245" r="10" fill="green"/>
-      <text x="880" y="245" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">9</text>
-      <title>package_info_plus
-⬇
-1 /direct/web
-2 /transitive/clock
-3 /transitive/ffi
-4 /transitive/flutter_web_plugins
-5 /transitive/http
-6 /transitive/meta
-7 /transitive/package_info_plus_platform_interface
-8 /transitive/path
-9 /transitive/win32</title>
-    </g>
-    <g>
-      <circle cx="620" cy="205" r="10" fill="blue"/>
-      <text x="620" y="205" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">1</text>
-      <title>1 /root/cards
-⬇
-package_info_plus</title>
-    </g>
-  </g>
-  <g id='Counters_share_plus'>
-    <g>
-      <circle cx="280" cy="245" r="10" fill="green"/>
-      <text x="280" y="245" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">13</text>
-      <title>share_plus
-⬇
-1 /direct/web
-2 /transitive/cross_file
-3 /transitive/ffi
-4 /transitive/file
-5 /transitive/flutter_web_plugins
-6 /transitive/meta
-7 /transitive/mime
-8 /transitive/share_plus_platform_interface
-9 /transitive/url_launcher_linux
-10 /transitive/url_launcher_platform_interface
-11 /transitive/url_launcher_web
-12 /transitive/url_launcher_windows
-13 /transitive/win32</title>
-    </g>
-    <g>
-      <circle cx="20" cy="205" r="10" fill="blue"/>
-      <text x="20" y="205" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">1</text>
-      <title>1 /root/cards
-⬇
-share_plus</title>
-    </g>
-  </g>
-  <g id='Counters_shared_preferences'>
-    <g>
-      <circle cx="1480" cy="245" r="10" fill="green"/>
-      <text x="1480" y="245" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">6</text>
-      <title>shared_preferences
-⬇
-1 /transitive/shared_preferences_android
-2 /transitive/shared_preferences_foundation
-3 /transitive/shared_preferences_linux
-4 /transitive/shared_preferences_platform_interface
-5 /transitive/shared_preferences_web
-6 /transitive/shared_preferences_windows</title>
-    </g>
-    <g>
-      <circle cx="1220" cy="205" r="10" fill="blue"/>
-      <text x="1220" y="205" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">1</text>
-      <title>1 /root/cards
-⬇
-shared_preferences</title>
-    </g>
-  </g>
-  <g id='Counters_universal_platform'>
-    <g>
-      <circle cx="1220" cy="355" r="10" fill="blue"/>
-      <text x="1220" y="355" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">1</text>
-      <title>1 /root/cards
-⬇
-universal_platform</title>
-    </g>
-  </g>
-  <g id='Counters_url_launcher'>
-    <g>
-      <circle cx="1180" cy="245" r="10" fill="green"/>
-      <text x="1180" y="245" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">7</text>
-      <title>url_launcher
-⬇
-1 /transitive/url_launcher_android
-2 /transitive/url_launcher_ios
-3 /transitive/url_launcher_linux
-4 /transitive/url_launcher_macos
-5 /transitive/url_launcher_platform_interface
-6 /transitive/url_launcher_web
-7 /transitive/url_launcher_windows</title>
-    </g>
-    <g>
-      <circle cx="920" cy="205" r="10" fill="blue"/>
-      <text x="920" y="205" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">1</text>
-      <title>1 /root/cards
-⬇
-url_launcher</title>
-    </g>
-  </g>
-  <g id='Counters_web'>
-    <g>
-      <circle cx="320" cy="355" r="10" fill="blue"/>
-      <text x="320" y="355" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">11</text>
-      <title>1 /direct/package_info_plus
-2 /direct/share_plus
-3 /root/cards
-4 /transitive/cross_file
-5 /transitive/firebase_auth_web
-6 /transitive/firebase_core_web
-7 /transitive/http
-8 /transitive/shared_preferences_web
-9 /transitive/url_launcher_web
-10 /transitive/web_socket
-11 /transitive/web_socket_channel
-⬇
-web</title>
-    </g>
-  </g>
-  <g id='Labels_cards'>
-    <text class="nodeName" x="150" y="75" font-size="120%">cards</text>
-    <text class="nodeName" x="150" y="95" font-size="80%">1.8.4</text>
-  </g>
-  <g id='Labels_animate_do'>
-    <text class="nodeName" x="1050" y="375" font-size="120%">animate_do</text>
-    <text class="nodeName" x="1050" y="395" font-size="80%">4.2.0</text>
-  </g>
-  <g id='Labels_firebase_auth'>
-    <text class="nodeName" x="1650" y="225" font-size="120%">firebase_auth</text>
-    <text class="nodeName" x="1650" y="245" font-size="80%">6.0.2</text>
-  </g>
-  <g id='Labels_firebase_core'>
-    <text class="nodeName" x="150" y="375" font-size="120%">firebase_core</text>
-    <text class="nodeName" x="150" y="395" font-size="80%">4.1.0</text>
-  </g>
-  <g id='Labels_firebase_database'>
-    <text class="nodeName" x="1950" y="225" font-size="120%">firebase_database</text>
-    <text class="nodeName" x="1950" y="245" font-size="80%">12.0.1</text>
-  </g>
-  <g id='Labels_flutter_localizations'>
-    <text class="nodeName" x="2550" y="225" font-size="120%">flutter_localizations</text>
-    <text class="nodeName" x="2550" y="245" font-size="80%">0.0.0</text>
-  </g>
-  <g id='Labels_flutter_markdown'>
-    <text class="nodeName" x="2250" y="225" font-size="120%">flutter_markdown</text>
-    <text class="nodeName" x="2250" y="245" font-size="80%">0.7.7+1</text>
-  </g>
-  <g id='Labels_intl'>
-    <text class="nodeName" x="750" y="375" font-size="120%">intl</text>
-    <text class="nodeName" x="750" y="395" font-size="80%">0.20.2</text>
-  </g>
-  <g id='Labels_mockito'>
-    <text class="nodeName" x="450" y="225" font-size="120%">mockito</text>
-    <text class="nodeName" x="450" y="245" font-size="80%">5.5.1</text>
-  </g>
-  <g id='Labels_package_info_plus'>
-    <text class="nodeName" x="750" y="225" font-size="120%">package_info_plus</text>
-    <text class="nodeName" x="750" y="245" font-size="80%">8.3.1</text>
-  </g>
-  <g id='Labels_share_plus'>
-    <text class="nodeName" x="150" y="225" font-size="120%">share_plus</text>
-    <text class="nodeName" x="150" y="245" font-size="80%">11.1.0</text>
-  </g>
-  <g id='Labels_shared_preferences'>
-    <text class="nodeName" x="1350" y="225" font-size="120%">shared_preferences</text>
-    <text class="nodeName" x="1350" y="245" font-size="80%">2.5.3</text>
-  </g>
-  <g id='Labels_universal_platform'>
-    <text class="nodeName" x="1350" y="375" font-size="120%">universal_platform</text>
-    <text class="nodeName" x="1350" y="395" font-size="80%">1.1.0</text>
-  </g>
-  <g id='Labels_url_launcher'>
-    <text class="nodeName" x="1050" y="225" font-size="120%">url_launcher</text>
-    <text class="nodeName" x="1050" y="245" font-size="80%">6.3.2</text>
-  </g>
-  <g id='Labels_web'>
-    <text class="nodeName" x="450" y="375" font-size="120%">web</text>
-    <text class="nodeName" x="450" y="395" font-size="80%">1.1.1</text>
-  </g>
+<rect width="100%" height="100%" fill="white"/>
+<rect x="25.0" y="50" width="270.0" height="580" rx="8" class="layerBackground"/>
+<text x="160.0" y="75" class="layerTitle">1</text>
+<rect x="345.0" y="50" width="270.0" height="580" rx="8" class="layerBackground"/>
+<text x="480.0" y="75" class="layerTitle">2</text>
+<rect x="665.0" y="50" width="270.0" height="580" rx="8" class="layerBackground"/>
+<text x="800.0" y="75" class="layerTitle">3</text>
+<rect x="985.0" y="50" width="270.0" height="580" rx="8" class="layerBackground"/>
+<text x="1120.0" y="75" class="layerTitle">4</text>
+<rect x="1305.0" y="50" width="270.0" height="580" rx="8" class="layerBackground"/>
+<text x="1440.0" y="75" class="layerTitle">5</text>
+<rect x="1625.0" y="50" width="270.0" height="580" rx="8" class="layerBackground"/>
+<text x="1760.0" y="75" class="layerTitle">6</text>
+<rect x="1945.0" y="50" width="270.0" height="580" rx="8" class="layerBackground"/>
+<text x="2080.0" y="75" class="layerTitle">7</text>
+<rect x="2265.0" y="50" width="270.0" height="580" rx="8" class="layerBackground"/>
+<text x="2400.0" y="75" class="layerTitle">8</text>
+<rect x="2585.0" y="50" width="270.0" height="580" rx="8" class="layerBackground"/>
+<text x="2720.0" y="75" class="layerTitle">9</text>
+<rect x="2905.0" y="50" width="270.0" height="580" rx="8" class="layerBackground"/>
+<text x="3040.0" y="75" class="layerTitle">10</text>
+<rect x="50.0" y="90.0" width="220" height="50" class="nodeRect"/>
+<rect x="50.0" y="160.0" width="220" height="50" class="nodeRect"/>
+<rect x="370.0" y="90.0" width="220" height="50" class="nodeRect"/>
+<rect x="370.0" y="160.0" width="220" height="50" class="nodeRect"/>
+<rect x="370.0" y="230.0" width="220" height="50" class="nodeRect"/>
+<rect x="370.0" y="300.0" width="220" height="50" class="nodeRect"/>
+<rect x="370.0" y="370.0" width="220" height="50" class="nodeRect"/>
+<rect x="690.0" y="90.0" width="220" height="50" class="nodeRect"/>
+<rect x="690.0" y="160.0" width="220" height="50" class="nodeRect"/>
+<rect x="690.0" y="230.0" width="220" height="50" class="nodeRect"/>
+<rect x="690.0" y="300.0" width="220" height="50" class="nodeRect"/>
+<rect x="690.0" y="370.0" width="220" height="50" class="nodeRect"/>
+<rect x="690.0" y="440.0" width="220" height="50" class="nodeRect"/>
+<rect x="690.0" y="510.0" width="220" height="50" class="nodeRect"/>
+<rect x="690.0" y="580.0" width="220" height="50" class="nodeRect"/>
+<rect x="1010.0" y="90.0" width="220" height="50" class="nodeRect"/>
+<rect x="1010.0" y="160.0" width="220" height="50" class="nodeRect"/>
+<rect x="1010.0" y="230.0" width="220" height="50" class="nodeRect"/>
+<rect x="1010.0" y="300.0" width="220" height="50" class="nodeRect"/>
+<rect x="1010.0" y="370.0" width="220" height="50" class="nodeRect"/>
+<rect x="1330.0" y="90.0" width="220" height="50" class="nodeRect"/>
+<rect x="1330.0" y="160.0" width="220" height="50" class="nodeRect"/>
+<rect x="1650.0" y="90.0" width="220" height="50" class="nodeRect"/>
+<rect x="1650.0" y="160.0" width="220" height="50" class="nodeRect"/>
+<rect x="1650.0" y="230.0" width="220" height="50" class="nodeRect"/>
+<rect x="1650.0" y="300.0" width="220" height="50" class="nodeRect"/>
+<rect x="1650.0" y="370.0" width="220" height="50" class="nodeRect"/>
+<rect x="1970.0" y="90.0" width="220" height="50" class="nodeRect"/>
+<rect x="1970.0" y="160.0" width="220" height="50" class="nodeRect"/>
+<rect x="1970.0" y="230.0" width="220" height="50" class="nodeRect"/>
+<rect x="1970.0" y="300.0" width="220" height="50" class="nodeRect"/>
+<rect x="2290.0" y="90.0" width="220" height="50" class="nodeRect"/>
+<rect x="2290.0" y="160.0" width="220" height="50" class="nodeRect"/>
+<rect x="2290.0" y="230.0" width="220" height="50" class="nodeRect"/>
+<rect x="2290.0" y="300.0" width="220" height="50" class="nodeRect"/>
+<rect x="2290.0" y="370.0" width="220" height="50" class="nodeRect"/>
+<rect x="2290.0" y="440.0" width="220" height="50" class="nodeRect"/>
+<rect x="2290.0" y="510.0" width="220" height="50" class="nodeRect"/>
+<rect x="2290.0" y="580.0" width="220" height="50" class="nodeRect"/>
+<rect x="2610.0" y="90.0" width="220" height="50" class="nodeRect"/>
+<rect x="2930.0" y="90.0" width="220" height="50" class="nodeRect"/>
+<rect x="2930.0" y="160.0" width="220" height="50" class="nodeRect"/>
+<path d="M 898.0 408.0 C 948.0 408.0, 972.0 382.0, 1022.0 382.0" class="edge"/>
+<path d="M 1858.0 128.0 C 1908.0 128.0, 1932.0 102.0, 1982.0 102.0" class="edge"/>
+<path d="M 1858.0 128.0 C 1908.0 128.0, 1932.0 312.0, 1982.0 312.0" class="edge"/>
+<path d="M 1858.0 128.0 C 1908.0 128.0, 2252.0 172.0, 2302.0 172.0" class="edge"/>
+<path d="M 1858.0 128.0 C 1908.0 128.0, 2252.0 102.0, 2302.0 102.0" class="edge"/>
+<path d="M 1858.0 128.0 C 1908.0 128.0, 1932.0 242.0, 1982.0 242.0" class="edge"/>
+<path d="M 1858.0 128.0 C 1908.0 128.0, 1932.0 312.0, 1982.0 312.0" class="edge"/>
+<path d="M 1858.0 128.0 C 1908.0 128.0, 1932.0 242.0, 1982.0 242.0" class="edge"/>
+<path d="M 2498.0 338.0 C 2548.0 338.0, 2892.0 172.0, 2942.0 172.0" class="edge"/>
+<path d="M 2498.0 338.0 C 2548.0 338.0, 2892.0 172.0, 2942.0 172.0" class="edge"/>
+<path d="M 2178.0 268.0 C 2228.0 268.0, 2892.0 102.0, 2942.0 102.0" class="edge"/>
+<path d="M 2178.0 268.0 C 2228.0 268.0, 2252.0 312.0, 2302.0 312.0" class="edge"/>
+<path d="M 2178.0 268.0 C 2228.0 268.0, 2252.0 242.0, 2302.0 242.0" class="edge"/>
+<path d="M 2178.0 268.0 C 2228.0 268.0, 2892.0 172.0, 2942.0 172.0" class="edge"/>
+<path d="M 2178.0 268.0 C 2228.0 268.0, 2252.0 312.0, 2302.0 312.0" class="edge"/>
+<path d="M 2178.0 268.0 C 2228.0 268.0, 2252.0 242.0, 2302.0 242.0" class="edge"/>
+<path d="M 2178.0 128.0 C 2228.0 128.0, 2892.0 102.0, 2942.0 102.0" class="edge"/>
+<path d="M 2178.0 128.0 C 2228.0 128.0, 2252.0 452.0, 2302.0 452.0" class="edge"/>
+<path d="M 2178.0 128.0 C 2228.0 128.0, 2252.0 172.0, 2302.0 172.0" class="edge"/>
+<path d="M 2178.0 338.0 C 2228.0 338.0, 2892.0 172.0, 2942.0 172.0" class="edge"/>
+<path d="M 2178.0 338.0 C 2228.0 338.0, 2252.0 382.0, 2302.0 382.0" class="edge"/>
+<path d="M 2178.0 338.0 C 2228.0 338.0, 2252.0 102.0, 2302.0 102.0" class="edge"/>
+<path d="M 2178.0 338.0 C 2228.0 338.0, 2892.0 172.0, 2942.0 172.0" class="edge"/>
+<path d="M 578.0 198.0 C 628.0 198.0, 1932.0 102.0, 1982.0 102.0" class="edge"/>
+<path d="M 578.0 198.0 C 628.0 198.0, 2252.0 172.0, 2302.0 172.0" class="edge"/>
+<path d="M 578.0 198.0 C 628.0 198.0, 1612.0 102.0, 1662.0 102.0" class="edge"/>
+<path d="M 578.0 198.0 C 628.0 198.0, 652.0 172.0, 702.0 172.0" class="edge"/>
+<path d="M 578.0 198.0 C 628.0 198.0, 2252.0 102.0, 2302.0 102.0" class="edge"/>
+<path d="M 578.0 198.0 C 628.0 198.0, 652.0 102.0, 702.0 102.0" class="edge"/>
+<path d="M 578.0 198.0 C 628.0 198.0, 972.0 102.0, 1022.0 102.0" class="edge"/>
+<path d="M 578.0 198.0 C 628.0 198.0, 652.0 242.0, 702.0 242.0" class="edge"/>
+<path d="M 578.0 198.0 C 628.0 198.0, 652.0 312.0, 702.0 312.0" class="edge"/>
+<path d="M 1218.0 338.0 C 1268.0 338.0, 2892.0 102.0, 2942.0 102.0" class="edge"/>
+<path d="M 1218.0 338.0 C 1268.0 338.0, 1932.0 102.0, 1982.0 102.0" class="edge"/>
+<path d="M 1218.0 338.0 C 1268.0 338.0, 1612.0 102.0, 1662.0 102.0" class="edge"/>
+<path d="M 1218.0 338.0 C 1268.0 338.0, 1612.0 172.0, 1662.0 172.0" class="edge"/>
+<path d="M 898.0 128.0 C 948.0 128.0, 1932.0 102.0, 1982.0 102.0" class="edge"/>
+<path d="M 898.0 128.0 C 948.0 128.0, 1612.0 102.0, 1662.0 102.0" class="edge"/>
+<path d="M 898.0 128.0 C 948.0 128.0, 972.0 312.0, 1022.0 312.0" class="edge"/>
+<path d="M 898.0 128.0 C 948.0 128.0, 972.0 102.0, 1022.0 102.0" class="edge"/>
+<path d="M 898.0 128.0 C 948.0 128.0, 972.0 242.0, 1022.0 242.0" class="edge"/>
+<path d="M 578.0 128.0 C 628.0 128.0, 2892.0 102.0, 2942.0 102.0" class="edge"/>
+<path d="M 578.0 128.0 C 628.0 128.0, 1932.0 102.0, 1982.0 102.0" class="edge"/>
+<path d="M 578.0 128.0 C 628.0 128.0, 2252.0 172.0, 2302.0 172.0" class="edge"/>
+<path d="M 578.0 128.0 C 628.0 128.0, 1612.0 102.0, 1662.0 102.0" class="edge"/>
+<path d="M 578.0 128.0 C 628.0 128.0, 652.0 172.0, 702.0 172.0" class="edge"/>
+<path d="M 578.0 128.0 C 628.0 128.0, 2252.0 102.0, 2302.0 102.0" class="edge"/>
+<path d="M 578.0 128.0 C 628.0 128.0, 652.0 102.0, 702.0 102.0" class="edge"/>
+<path d="M 578.0 128.0 C 628.0 128.0, 972.0 102.0, 1022.0 102.0" class="edge"/>
+<path d="M 578.0 128.0 C 628.0 128.0, 652.0 242.0, 702.0 242.0" class="edge"/>
+<path d="M 578.0 128.0 C 628.0 128.0, 652.0 312.0, 702.0 312.0" class="edge"/>
+<path d="M 578.0 128.0 C 628.0 128.0, 652.0 382.0, 702.0 382.0" class="edge"/>
+<path d="M 578.0 338.0 C 628.0 338.0, 972.0 102.0, 1022.0 102.0" class="edge"/>
+<path d="M 578.0 268.0 C 628.0 268.0, 652.0 522.0, 702.0 522.0" class="edge"/>
+<path d="M 578.0 268.0 C 628.0 268.0, 972.0 102.0, 1022.0 102.0" class="edge"/>
+<path d="M 578.0 268.0 C 628.0 268.0, 652.0 452.0, 702.0 452.0" class="edge"/>
+<path d="M 578.0 268.0 C 628.0 268.0, 972.0 172.0, 1022.0 172.0" class="edge"/>
+<path d="M 578.0 268.0 C 628.0 268.0, 652.0 592.0, 702.0 592.0" class="edge"/>
+<path d="M 258.0 128.0 C 308.0 128.0, 1932.0 102.0, 1982.0 102.0" class="edge"/>
+<path d="M 258.0 128.0 C 308.0 128.0, 2252.0 452.0, 2302.0 452.0" class="edge"/>
+<path d="M 258.0 128.0 C 308.0 128.0, 332.0 172.0, 382.0 172.0" class="edge"/>
+<path d="M 258.0 128.0 C 308.0 128.0, 332.0 102.0, 382.0 102.0" class="edge"/>
+<path d="M 258.0 128.0 C 308.0 128.0, 332.0 242.0, 382.0 242.0" class="edge"/>
+<path d="M 258.0 128.0 C 308.0 128.0, 332.0 312.0, 382.0 312.0" class="edge"/>
+<path d="M 258.0 128.0 C 308.0 128.0, 332.0 382.0, 382.0 382.0" class="edge"/>
+<path d="M 898.0 478.0 C 948.0 478.0, 972.0 172.0, 1022.0 172.0" class="edge"/>
+<path d="M 1858.0 408.0 C 1908.0 408.0, 2892.0 102.0, 2942.0 102.0" class="edge"/>
+<path d="M 1858.0 268.0 C 1908.0 268.0, 2892.0 172.0, 2942.0 172.0" class="edge"/>
+<path d="M 1858.0 268.0 C 1908.0 268.0, 1932.0 172.0, 1982.0 172.0" class="edge"/>
+<path d="M 2498.0 548.0 C 2548.0 548.0, 2892.0 102.0, 2942.0 102.0" class="edge"/>
+<path d="M 2498.0 548.0 C 2548.0 548.0, 2892.0 172.0, 2942.0 172.0" class="edge"/>
+<path d="M 2498.0 548.0 C 2548.0 548.0, 2572.0 102.0, 2622.0 102.0" class="edge"/>
+<path d="M 2178.0 198.0 C 2228.0 198.0, 2892.0 172.0, 2942.0 172.0" class="edge"/>
+<path d="M 2178.0 198.0 C 2228.0 198.0, 2572.0 102.0, 2622.0 102.0" class="edge"/>
+<path d="M 2178.0 198.0 C 2228.0 198.0, 2252.0 522.0, 2302.0 522.0" class="edge"/>
+<path d="M 2178.0 198.0 C 2228.0 198.0, 2252.0 592.0, 2302.0 592.0" class="edge"/>
+<path d="M 2818.0 128.0 C 2868.0 128.0, 2892.0 102.0, 2942.0 102.0" class="edge"/>
+<path d="M 2818.0 128.0 C 2868.0 128.0, 2892.0 172.0, 2942.0 172.0" class="edge"/>
+<path d="M 898.0 198.0 C 948.0 198.0, 2892.0 102.0, 2942.0 102.0" class="edge"/>
+<path d="M 898.0 198.0 C 948.0 198.0, 2252.0 382.0, 2302.0 382.0" class="edge"/>
+<path d="M 898.0 198.0 C 948.0 198.0, 1612.0 102.0, 1662.0 102.0" class="edge"/>
+<path d="M 898.0 198.0 C 948.0 198.0, 2252.0 102.0, 2302.0 102.0" class="edge"/>
+<path d="M 898.0 198.0 C 948.0 198.0, 1932.0 172.0, 1982.0 172.0" class="edge"/>
+<path d="M 1538.0 198.0 C 1588.0 198.0, 1612.0 102.0, 1662.0 102.0" class="edge"/>
+<path d="M 1538.0 198.0 C 1588.0 198.0, 1612.0 242.0, 1662.0 242.0" class="edge"/>
+<path d="M 1858.0 338.0 C 1908.0 338.0, 2892.0 102.0, 2942.0 102.0" class="edge"/>
+<path d="M 1858.0 338.0 C 1908.0 338.0, 2252.0 242.0, 2302.0 242.0" class="edge"/>
+<path d="M 1538.0 128.0 C 1588.0 128.0, 2892.0 102.0, 2942.0 102.0" class="edge"/>
+<path d="M 1538.0 128.0 C 1588.0 128.0, 1612.0 102.0, 1662.0 102.0" class="edge"/>
+<path d="M 1538.0 128.0 C 1588.0 128.0, 1612.0 382.0, 1662.0 382.0" class="edge"/>
+<path d="M 1538.0 128.0 C 1588.0 128.0, 1612.0 172.0, 1662.0 172.0" class="edge"/>
+<path d="M 1538.0 128.0 C 1588.0 128.0, 1612.0 312.0, 1662.0 312.0" class="edge"/>
+<path d="M 1218.0 268.0 C 1268.0 268.0, 2892.0 102.0, 2942.0 102.0" class="edge"/>
+<path d="M 1218.0 268.0 C 1268.0 268.0, 1612.0 102.0, 1662.0 102.0" class="edge"/>
+<path d="M 1218.0 268.0 C 1268.0 268.0, 1932.0 172.0, 1982.0 172.0" class="edge"/>
+<path d="M 1218.0 268.0 C 1268.0 268.0, 1292.0 102.0, 1342.0 102.0" class="edge"/>
+<path d="M 1218.0 268.0 C 1268.0 268.0, 1292.0 172.0, 1342.0 172.0" class="edge"/>
+<g>
+<circle cx="258.0" cy="128.0" r="9" fill="#28a745"/>
+<text x="258.0" y="129.0" class="badge">7</text>
+<title>app_theme.dart
+backend_model.dart
+firebase_options.dart
+golf_score_screen.dart
+join_game_screen.dart
+main_menu.dart
+start_game_screen.dart</title>
+</g>
+<text x="160.0" y="115.0" class="nodeText">main.dart</text>
+<text x="160.0" y="185.0" class="nodeText">browser_utils_web.dart</text>
+<g>
+<circle cx="382.0" cy="102.0" r="9" fill="#007bff"/>
+<text x="382.0" y="103.0" class="badge">1</text>
+<title>main.dart</title>
+</g>
+<g>
+<circle cx="578.0" cy="128.0" r="9" fill="#28a745"/>
+<text x="578.0" y="129.0" class="badge">11</text>
+<title>backend_model.dart
+browser_utils.dart
+game_history.dart
+game_model.dart
+game_screen.dart
+game_style.dart
+game_styles.dart
+misc.dart
+players_in_room_widget.dart
+rooms_widget.dart
+screen.dart</title>
+</g>
+<text x="480.0" y="115.0" class="nodeText">start_game_screen.dart</text>
+<g>
+<circle cx="382.0" cy="172.0" r="9" fill="#007bff"/>
+<text x="382.0" y="173.0" class="badge">1</text>
+<title>main.dart</title>
+</g>
+<g>
+<circle cx="578.0" cy="198.0" r="9" fill="#28a745"/>
+<text x="578.0" y="199.0" class="badge">9</text>
+<title>backend_model.dart
+game_history.dart
+game_model.dart
+game_screen.dart
+game_style.dart
+game_styles.dart
+players_in_room_widget.dart
+rooms_widget.dart
+screen.dart</title>
+</g>
+<text x="480.0" y="185.0" class="nodeText">join_game_screen.dart</text>
+<g>
+<circle cx="382.0" cy="242.0" r="9" fill="#007bff"/>
+<text x="382.0" y="243.0" class="badge">1</text>
+<title>main.dart</title>
+</g>
+<g>
+<circle cx="578.0" cy="268.0" r="9" fill="#28a745"/>
+<text x="578.0" y="269.0" class="badge">5</text>
+<title>golf_score_model.dart
+input_keyboard.dart
+my_button.dart
+player_header.dart
+screen.dart</title>
+</g>
+<text x="480.0" y="255.0" class="nodeText">golf_score_screen.dart</text>
+<g>
+<circle cx="382.0" cy="312.0" r="9" fill="#007bff"/>
+<text x="382.0" y="313.0" class="badge">1</text>
+<title>main.dart</title>
+</g>
+<g>
+<circle cx="578.0" cy="338.0" r="9" fill="#28a745"/>
+<text x="578.0" y="339.0" class="badge">1</text>
+<title>screen.dart</title>
+</g>
+<text x="480.0" y="325.0" class="nodeText">main_menu.dart</text>
+<g>
+<circle cx="382.0" cy="382.0" r="9" fill="#007bff"/>
+<text x="382.0" y="383.0" class="badge">1</text>
+<title>main.dart</title>
+</g>
+<text x="480.0" y="395.0" class="nodeText">app_theme.dart</text>
+<g>
+<circle cx="702.0" cy="102.0" r="9" fill="#007bff"/>
+<text x="702.0" y="103.0" class="badge">2</text>
+<title>join_game_screen.dart
+start_game_screen.dart</title>
+</g>
+<g>
+<circle cx="898.0" cy="128.0" r="9" fill="#28a745"/>
+<text x="898.0" y="129.0" class="badge">5</text>
+<title>backend_model.dart
+game_model.dart
+game_over_dialog.dart
+player_zone_widget.dart
+screen.dart</title>
+</g>
+<text x="800.0" y="115.0" class="nodeText">game_screen.dart</text>
+<g>
+<circle cx="702.0" cy="172.0" r="9" fill="#007bff"/>
+<text x="702.0" y="173.0" class="badge">2</text>
+<title>join_game_screen.dart
+start_game_screen.dart</title>
+</g>
+<g>
+<circle cx="898.0" cy="198.0" r="9" fill="#28a745"/>
+<text x="898.0" y="199.0" class="badge">5</text>
+<title>card_model_french.dart
+card_widget.dart
+game_model.dart
+game_styles.dart
+misc.dart</title>
+</g>
+<text x="800.0" y="185.0" class="nodeText">game_style.dart</text>
+<g>
+<circle cx="702.0" cy="242.0" r="9" fill="#007bff"/>
+<text x="702.0" y="243.0" class="badge">2</text>
+<title>join_game_screen.dart
+start_game_screen.dart</title>
+</g>
+<text x="800.0" y="255.0" class="nodeText">players_in_room_widget...</text>
+<g>
+<circle cx="702.0" cy="312.0" r="9" fill="#007bff"/>
+<text x="702.0" y="313.0" class="badge">2</text>
+<title>join_game_screen.dart
+start_game_screen.dart</title>
+</g>
+<text x="800.0" y="325.0" class="nodeText">rooms_widget.dart</text>
+<g>
+<circle cx="702.0" cy="382.0" r="9" fill="#007bff"/>
+<text x="702.0" y="383.0" class="badge">1</text>
+<title>start_game_screen.dart</title>
+</g>
+<g>
+<circle cx="898.0" cy="408.0" r="9" fill="#28a745"/>
+<text x="898.0" y="409.0" class="badge">1</text>
+<title>browser_utils_stub.dart</title>
+</g>
+<text x="800.0" y="395.0" class="nodeText">browser_utils.dart</text>
+<g>
+<circle cx="702.0" cy="452.0" r="9" fill="#007bff"/>
+<text x="702.0" y="453.0" class="badge">1</text>
+<title>golf_score_screen.dart</title>
+</g>
+<g>
+<circle cx="898.0" cy="478.0" r="9" fill="#28a745"/>
+<text x="898.0" y="479.0" class="badge">1</text>
+<title>my_button.dart</title>
+</g>
+<text x="800.0" y="465.0" class="nodeText">input_keyboard.dart</text>
+<g>
+<circle cx="702.0" cy="522.0" r="9" fill="#007bff"/>
+<text x="702.0" y="523.0" class="badge">1</text>
+<title>golf_score_screen.dart</title>
+</g>
+<text x="800.0" y="535.0" class="nodeText">golf_score_model.dart</text>
+<g>
+<circle cx="702.0" cy="592.0" r="9" fill="#007bff"/>
+<text x="702.0" y="593.0" class="badge">1</text>
+<title>golf_score_screen.dart</title>
+</g>
+<text x="800.0" y="605.0" class="nodeText">player_header.dart</text>
+<g>
+<circle cx="1022.0" cy="102.0" r="9" fill="#007bff"/>
+<text x="1022.0" y="103.0" class="badge">5</text>
+<title>game_screen.dart
+golf_score_screen.dart
+join_game_screen.dart
+main_menu.dart
+start_game_screen.dart</title>
+</g>
+<text x="1120.0" y="115.0" class="nodeText">screen.dart</text>
+<g>
+<circle cx="1022.0" cy="172.0" r="9" fill="#007bff"/>
+<text x="1022.0" y="173.0" class="badge">2</text>
+<title>golf_score_screen.dart
+input_keyboard.dart</title>
+</g>
+<text x="1120.0" y="185.0" class="nodeText">my_button.dart</text>
+<g>
+<circle cx="1022.0" cy="242.0" r="9" fill="#007bff"/>
+<text x="1022.0" y="243.0" class="badge">1</text>
+<title>game_screen.dart</title>
+</g>
+<g>
+<circle cx="1218.0" cy="268.0" r="9" fill="#28a745"/>
+<text x="1218.0" y="269.0" class="badge">5</text>
+<title>card_widget.dart
+game_model.dart
+misc.dart
+player_header_widget.dart
+player_zone_cta_widget.dart</title>
+</g>
+<text x="1120.0" y="255.0" class="nodeText">player_zone_widget.dart</text>
+<g>
+<circle cx="1022.0" cy="312.0" r="9" fill="#007bff"/>
+<text x="1022.0" y="313.0" class="badge">1</text>
+<title>game_screen.dart</title>
+</g>
+<g>
+<circle cx="1218.0" cy="338.0" r="9" fill="#28a745"/>
+<text x="1218.0" y="339.0" class="badge">4</text>
+<title>backend_model.dart
+dialog.dart
+game_model.dart
+misc.dart</title>
+</g>
+<text x="1120.0" y="325.0" class="nodeText">game_over_dialog.dart</text>
+<g>
+<circle cx="1022.0" cy="382.0" r="9" fill="#007bff"/>
+<text x="1022.0" y="383.0" class="badge">1</text>
+<title>browser_utils.dart</title>
+</g>
+<text x="1120.0" y="395.0" class="nodeText">browser_utils_stub.dart</text>
+<g>
+<circle cx="1342.0" cy="102.0" r="9" fill="#007bff"/>
+<text x="1342.0" y="103.0" class="badge">1</text>
+<title>player_zone_widget.dart</title>
+</g>
+<g>
+<circle cx="1538.0" cy="128.0" r="9" fill="#28a745"/>
+<text x="1538.0" y="129.0" class="badge">5</text>
+<title>date_importance.dart
+dialog.dart
+game_model.dart
+misc.dart
+status_picker.dart</title>
+</g>
+<text x="1440.0" y="115.0" class="nodeText">player_header_widget.dart</text>
+<g>
+<circle cx="1342.0" cy="172.0" r="9" fill="#007bff"/>
+<text x="1342.0" y="173.0" class="badge">1</text>
+<title>player_zone_widget.dart</title>
+</g>
+<g>
+<circle cx="1538.0" cy="198.0" r="9" fill="#28a745"/>
+<text x="1538.0" y="199.0" class="badge">2</text>
+<title>card_pile_widget.dart
+game_model.dart</title>
+</g>
+<text x="1440.0" y="185.0" class="nodeText">player_zone_cta_widget...</text>
+<g>
+<circle cx="1662.0" cy="102.0" r="9" fill="#007bff"/>
+<text x="1662.0" y="103.0" class="badge">8</text>
+<title>game_over_dialog.dart
+game_screen.dart
+game_style.dart
+join_game_screen.dart
+player_header_widget.dart
+player_zone_cta_widget.dart
+player_zone_widget.dart
+start_game_screen.dart</title>
+</g>
+<g>
+<circle cx="1858.0" cy="128.0" r="9" fill="#28a745"/>
+<text x="1858.0" y="129.0" class="badge">7</text>
+<title>backend_model.dart
+deck_model.dart
+deck_model.dart
+game_history.dart
+game_styles.dart
+player_model.dart
+player_model.dart</title>
+</g>
+<text x="1760.0" y="115.0" class="nodeText">game_model.dart</text>
+<g>
+<circle cx="1662.0" cy="172.0" r="9" fill="#007bff"/>
+<text x="1662.0" y="173.0" class="badge">2</text>
+<title>game_over_dialog.dart
+player_header_widget.dart</title>
+</g>
+<text x="1760.0" y="185.0" class="nodeText">dialog.dart</text>
+<g>
+<circle cx="1662.0" cy="242.0" r="9" fill="#007bff"/>
+<text x="1662.0" y="243.0" class="badge">1</text>
+<title>player_zone_cta_widget.dart</title>
+</g>
+<g>
+<circle cx="1858.0" cy="268.0" r="9" fill="#28a745"/>
+<text x="1858.0" y="269.0" class="badge">2</text>
+<title>card_model.dart
+card_widget.dart</title>
+</g>
+<text x="1760.0" y="255.0" class="nodeText">card_pile_widget.dart</text>
+<g>
+<circle cx="1662.0" cy="312.0" r="9" fill="#007bff"/>
+<text x="1662.0" y="313.0" class="badge">1</text>
+<title>player_header_widget.dart</title>
+</g>
+<g>
+<circle cx="1858.0" cy="338.0" r="9" fill="#28a745"/>
+<text x="1858.0" y="339.0" class="badge">2</text>
+<title>misc.dart
+player_status.dart</title>
+</g>
+<text x="1760.0" y="325.0" class="nodeText">status_picker.dart</text>
+<g>
+<circle cx="1662.0" cy="382.0" r="9" fill="#007bff"/>
+<text x="1662.0" y="383.0" class="badge">1</text>
+<title>player_header_widget.dart</title>
+</g>
+<g>
+<circle cx="1858.0" cy="408.0" r="9" fill="#28a745"/>
+<text x="1858.0" y="409.0" class="badge">1</text>
+<title>misc.dart</title>
+</g>
+<text x="1760.0" y="395.0" class="nodeText">date_importance.dart</text>
+<g>
+<circle cx="1982.0" cy="102.0" r="9" fill="#007bff"/>
+<text x="1982.0" y="103.0" class="badge">6</text>
+<title>game_model.dart
+game_over_dialog.dart
+game_screen.dart
+join_game_screen.dart
+main.dart
+start_game_screen.dart</title>
+</g>
+<g>
+<circle cx="2178.0" cy="128.0" r="9" fill="#28a745"/>
+<text x="2178.0" y="129.0" class="badge">3</text>
+<title>firebase_options.dart
+game_history.dart
+misc.dart</title>
+</g>
+<text x="2080.0" y="115.0" class="nodeText">backend_model.dart</text>
+<g>
+<circle cx="1982.0" cy="172.0" r="9" fill="#007bff"/>
+<text x="1982.0" y="173.0" class="badge">3</text>
+<title>card_pile_widget.dart
+game_style.dart
+player_zone_widget.dart</title>
+</g>
+<g>
+<circle cx="2178.0" cy="198.0" r="9" fill="#28a745"/>
+<text x="2178.0" y="199.0" class="badge">4</text>
+<title>card_face_french_widget.dart
+card_face_skyjo_widget.dart
+card_model.dart
+wiggle_widget.dart</title>
+</g>
+<text x="2080.0" y="185.0" class="nodeText">card_widget.dart</text>
+<g>
+<circle cx="1982.0" cy="242.0" r="9" fill="#007bff"/>
+<text x="1982.0" y="243.0" class="badge">2</text>
+<title>game_model.dart
+game_model.dart</title>
+</g>
+<g>
+<circle cx="2178.0" cy="268.0" r="9" fill="#28a745"/>
+<text x="2178.0" y="269.0" class="badge">6</text>
+<title>card_model.dart
+hand_model.dart
+hand_model.dart
+misc.dart
+player_status.dart
+player_status.dart</title>
+</g>
+<text x="2080.0" y="255.0" class="nodeText">player_model.dart</text>
+<g>
+<circle cx="1982.0" cy="312.0" r="9" fill="#007bff"/>
+<text x="1982.0" y="313.0" class="badge">2</text>
+<title>game_model.dart
+game_model.dart</title>
+</g>
+<g>
+<circle cx="2178.0" cy="338.0" r="9" fill="#28a745"/>
+<text x="2178.0" y="339.0" class="badge">4</text>
+<title>card_model.dart
+card_model.dart
+card_model_french.dart
+game_styles.dart</title>
+</g>
+<text x="2080.0" y="325.0" class="nodeText">deck_model.dart</text>
+<g>
+<circle cx="2302.0" cy="102.0" r="9" fill="#007bff"/>
+<text x="2302.0" y="103.0" class="badge">5</text>
+<title>deck_model.dart
+game_model.dart
+game_style.dart
+join_game_screen.dart
+start_game_screen.dart</title>
+</g>
+<text x="2400.0" y="115.0" class="nodeText">game_styles.dart</text>
+<g>
+<circle cx="2302.0" cy="172.0" r="9" fill="#007bff"/>
+<text x="2302.0" y="173.0" class="badge">4</text>
+<title>backend_model.dart
+game_model.dart
+join_game_screen.dart
+start_game_screen.dart</title>
+</g>
+<text x="2400.0" y="185.0" class="nodeText">game_history.dart</text>
+<g>
+<circle cx="2302.0" cy="242.0" r="9" fill="#007bff"/>
+<text x="2302.0" y="243.0" class="badge">3</text>
+<title>player_model.dart
+player_model.dart
+status_picker.dart</title>
+</g>
+<text x="2400.0" y="255.0" class="nodeText">player_status.dart</text>
+<g>
+<circle cx="2302.0" cy="312.0" r="9" fill="#007bff"/>
+<text x="2302.0" y="313.0" class="badge">2</text>
+<title>player_model.dart
+player_model.dart</title>
+</g>
+<g>
+<circle cx="2498.0" cy="338.0" r="9" fill="#28a745"/>
+<text x="2498.0" y="339.0" class="badge">2</text>
+<title>card_model.dart
+card_model.dart</title>
+</g>
+<text x="2400.0" y="325.0" class="nodeText">hand_model.dart</text>
+<g>
+<circle cx="2302.0" cy="382.0" r="9" fill="#007bff"/>
+<text x="2302.0" y="383.0" class="badge">2</text>
+<title>deck_model.dart
+game_style.dart</title>
+</g>
+<text x="2400.0" y="395.0" class="nodeText">card_model_french.dart</text>
+<g>
+<circle cx="2302.0" cy="452.0" r="9" fill="#007bff"/>
+<text x="2302.0" y="453.0" class="badge">2</text>
+<title>backend_model.dart
+main.dart</title>
+</g>
+<text x="2400.0" y="465.0" class="nodeText">firebase_options.dart</text>
+<g>
+<circle cx="2302.0" cy="522.0" r="9" fill="#007bff"/>
+<text x="2302.0" y="523.0" class="badge">1</text>
+<title>card_widget.dart</title>
+</g>
+<g>
+<circle cx="2498.0" cy="548.0" r="9" fill="#28a745"/>
+<text x="2498.0" y="549.0" class="badge">3</text>
+<title>card_face_french_widget.dart
+card_model.dart
+misc.dart</title>
+</g>
+<text x="2400.0" y="535.0" class="nodeText">card_face_skyjo_widget...</text>
+<g>
+<circle cx="2302.0" cy="592.0" r="9" fill="#007bff"/>
+<text x="2302.0" y="593.0" class="badge">1</text>
+<title>card_widget.dart</title>
+</g>
+<text x="2400.0" y="605.0" class="nodeText">wiggle_widget.dart</text>
+<g>
+<circle cx="2622.0" cy="102.0" r="9" fill="#007bff"/>
+<text x="2622.0" y="103.0" class="badge">2</text>
+<title>card_face_skyjo_widget.dart
+card_widget.dart</title>
+</g>
+<g>
+<circle cx="2818.0" cy="128.0" r="9" fill="#28a745"/>
+<text x="2818.0" y="129.0" class="badge">2</text>
+<title>card_model.dart
+misc.dart</title>
+</g>
+<text x="2720.0" y="115.0" class="nodeText">card_face_french_widge...</text>
+<g>
+<circle cx="2942.0" cy="102.0" r="9" fill="#007bff"/>
+<text x="2942.0" y="103.0" class="badge">11</text>
+<title>backend_model.dart
+card_face_french_widget.dart
+card_face_skyjo_widget.dart
+date_importance.dart
+game_over_dialog.dart
+game_style.dart
+player_header_widget.dart
+player_model.dart
+player_zone_widget.dart
+start_game_screen.dart
+status_picker.dart</title>
+</g>
+<text x="3040.0" y="115.0" class="nodeText">misc.dart</text>
+<g>
+<circle cx="2942.0" cy="172.0" r="9" fill="#007bff"/>
+<text x="2942.0" y="173.0" class="badge">9</text>
+<title>card_face_french_widget.dart
+card_face_skyjo_widget.dart
+card_pile_widget.dart
+card_widget.dart
+deck_model.dart
+deck_model.dart
+hand_model.dart
+hand_model.dart
+player_model.dart</title>
+</g>
+<text x="3040.0" y="185.0" class="nodeText">card_model.dart</text>
 </svg>

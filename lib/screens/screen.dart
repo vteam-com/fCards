@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:cards/utils/font_scale_helper.dart';
 
 /// Defines breakpoint constants for responsive design
 class ResponsiveBreakpoints {
@@ -77,13 +76,10 @@ class Screen extends StatefulWidget {
 
 class _ScreenState extends State<Screen> {
   String _version = '';
-  late final FontScaleNotifier _fontScaleNotifier;
 
   @override
   void initState() {
     super.initState();
-    _fontScaleNotifier = FontScaleNotifier();
-    _fontScaleNotifier.initialize();
     _getAppVersion();
   }
 
