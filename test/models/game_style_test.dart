@@ -1,4 +1,4 @@
-import 'package:cards/models/game_style.dart';
+import 'package:cards/widgets/game_style.dart';
 import 'package:cards/models/game_styles.dart';
 import 'package:cards/widgets/cards/card_widget.dart';
 import 'package:flutter/material.dart';

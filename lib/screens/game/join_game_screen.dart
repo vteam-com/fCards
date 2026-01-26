@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:cards/models/backend_model.dart';
 import 'package:cards/models/game_history.dart';
 import 'package:cards/models/game_model.dart';
-import 'package:cards/models/game_style.dart';
+import 'package:cards/widgets/game_style.dart';
 import 'package:cards/models/game_styles.dart';
 import 'package:cards/screens/game/game_screen.dart';
 import 'package:cards/screens/screen.dart';
