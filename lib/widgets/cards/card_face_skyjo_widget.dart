@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:cards/misc.dart';
 import 'package:cards/models/card_model.dart';
-import 'package:cards/utils/scale_helper.dart';
+
 import 'package:cards/widgets/cards/card_face_french_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -23,12 +23,12 @@ class CardFaceSkyjoWidget extends CardFaceFrenchWidget {
   @override
   Widget buildFaceUp() {
     return Padding(
-      padding: ScaleHelper.scaleEdgeInsets(const EdgeInsets.all(4.0)),
+      padding: const EdgeInsets.all(4.0),
       child: Stack(
         children: [
           Container(
-            width: ScaleHelper.scaleDimension(200),
-            height: ScaleHelper.scaleDimension(300),
+            width: 200,
+            height: 300,
             decoration: BoxDecoration(
               gradient: RadialGradient(
                 colors: [Colors.white, getBackColor(card.value)],
@@ -39,15 +39,11 @@ class CardFaceSkyjoWidget extends CardFaceFrenchWidget {
             // color: getBackColor(card.value),
             child: Stack(
               children: [
-                Positioned(
-                  top: ScaleHelper.scaleDimension(10),
-                  left: ScaleHelper.scaleDimension(10),
-                  child: _buildSmallText(),
-                ),
+                Positioned(top: 10, left: 10, child: _buildSmallText()),
                 Center(child: _buildMainText()),
                 Positioned(
-                  bottom: ScaleHelper.scaleDimension(10),
-                  right: ScaleHelper.scaleDimension(10),
+                  bottom: 10,
+                  right: 10,
                   child: Transform.rotate(
                     angle: pi, // 180 degrees in radians
                     child: _buildSmallText(),
@@ -81,7 +77,7 @@ class CardFaceSkyjoWidget extends CardFaceFrenchWidget {
         Text(
           card.value.toString(),
           style:
-              ScaleHelper.getScaledTextStyle(
+              TextStyle(
                 fontFamily: 'Comic Sans MS',
                 fontSize: 60,
                 color: Colors.white,
@@ -89,13 +85,13 @@ class CardFaceSkyjoWidget extends CardFaceFrenchWidget {
               ).copyWith(
                 foreground: Paint()
                   ..style = PaintingStyle.stroke
-                  ..strokeWidth = ScaleHelper.scaleStrokeWidth(6)
+                  ..strokeWidth = 6
                   ..color = Colors.white,
               ),
         ),
         Text(
           card.value.toString(),
-          style: ScaleHelper.getScaledTextStyle(
+          style: TextStyle(
             fontFamily: 'Comic Sans MS',
             fontSize: 60,
             color: Colors.black,

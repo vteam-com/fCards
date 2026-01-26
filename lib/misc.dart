@@ -1,6 +1,5 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:cards/utils/scale_helper.dart';
 
 /// Logs a debug message if the app is running in debug mode.
 ///
@@ -45,7 +44,7 @@ Widget TextSize(
   return Text(
     text,
     textAlign: align,
-    style: ScaleHelper.getScaledTextStyle(
+    style: TextStyle(
       fontSize: fontSize.toDouble(),
       color: color,
       fontWeight: bold ? FontWeight.bold : null,

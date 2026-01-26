@@ -1,5 +1,5 @@
 import 'package:cards/screens/screen.dart';
-import 'package:cards/utils/scale_helper.dart';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -48,7 +48,7 @@ class _MainMenuState extends State<MainMenu> {
         child: ConstrainedBox(
           constraints: const BoxConstraints(maxWidth: 400),
           child: Padding(
-            padding: ScaleHelper.scaleEdgeInsets(const EdgeInsets.all(16.0)),
+            padding: const EdgeInsets.all(16.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -59,13 +59,13 @@ class _MainMenuState extends State<MainMenu> {
                   icon: Icons.play_circle_fill,
                   onPressed: () => Navigator.pushNamed(context, '/game'),
                 ),
-                SizedBox(height: ScaleHelper.scaleDimension(20)),
+                SizedBox(height: 20),
                 MenuButton(
                   label: 'Join an Existing Game',
                   icon: Icons.group_add,
                   onPressed: () => Navigator.pushNamed(context, '/join'),
                 ),
-                SizedBox(height: ScaleHelper.scaleDimension(20)),
+                SizedBox(height: 20),
                 MenuButton(
                   label: 'Score Keeper',
                   icon: Icons.scoreboard,
@@ -104,27 +104,19 @@ class MenuButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      height: ScaleHelper.scaleDimension(80),
+      height: 80,
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.green.withAlpha(200),
           foregroundColor: Colors.white,
-          padding: ScaleHelper.scaleEdgeInsets(
-            const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-          ),
-          textStyle: ScaleHelper.getScaledTextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-          ),
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+
+          textStyle: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           shape: RoundedRectangleBorder(
-            borderRadius: ScaleHelper.scaleBorderRadius(
-              BorderRadius.circular(16.0),
-            ),
-            side: BorderSide(
-              color: Colors.green[600]!,
-              width: ScaleHelper.scaleDimension(2),
-            ),
+            borderRadius: BorderRadius.circular(16.0),
+
+            side: BorderSide(color: Colors.green[600]!, width: 2),
           ),
           elevation: 8,
           shadowColor: Colors.black45,
@@ -132,16 +124,9 @@ class MenuButton extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
-              icon,
-              size: ScaleHelper.scaleIconSize(32),
-              color: Colors.yellow.shade300,
-            ),
-            SizedBox(width: ScaleHelper.scaleDimension(16)),
-            SizedBox(
-              width: ScaleHelper.scaleDimension(200),
-              child: Text(label),
-            ),
+            Icon(icon, size: 32, color: Colors.yellow.shade300),
+            SizedBox(width: 16),
+            SizedBox(width: 200, child: Text(label)),
           ],
         ),
       ),

@@ -2,7 +2,6 @@
 
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:cards/utils/scale_helper.dart';
 
 /// A custom circular glass-like button with blur and ripple effects.
 ///
@@ -39,10 +38,10 @@ class MyButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: ScaleHelper.scaleEdgeInsets(padding),
+      padding: padding,
       child: SizedBox(
-        width: ScaleHelper.scaleDimension(size),
-        height: ScaleHelper.scaleDimension(size),
+        width: size,
+        height: size,
         child: ClipOval(
           child: Stack(
             fit: StackFit.expand,
@@ -66,19 +65,19 @@ class MyButton extends StatelessWidget {
                   ),
                   border: Border.all(
                     color: Colors.white.withOpacity(0.5),
-                    width: ScaleHelper.scaleDimension(1),
+                    width: 1,
                   ),
                   boxShadow: [
                     BoxShadow(
-                      blurRadius: ScaleHelper.scaleDimension(10),
+                      blurRadius: 10,
                       spreadRadius: 0,
-                      offset: ScaleHelper.scaleOffset(const Offset(0, 4)),
+                      offset: const Offset(0, 4),
                       color: Colors.black.withOpacity(0.8),
                     ),
                     BoxShadow(
-                      blurRadius: ScaleHelper.scaleDimension(6),
+                      blurRadius: 6,
                       spreadRadius: 0,
-                      offset: ScaleHelper.scaleOffset(const Offset(-2, -2)),
+                      offset: const Offset(-2, -2),
                       color: Colors.white.withOpacity(0.3),
                     ),
                   ],

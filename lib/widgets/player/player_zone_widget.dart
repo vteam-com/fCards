@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:animate_do/animate_do.dart';
 import 'package:cards/misc.dart';
 import 'package:cards/models/game_model.dart';
-import 'package:cards/utils/scale_helper.dart';
+
 import 'package:cards/widgets/cards/card_widget.dart';
 import 'package:cards/widgets/player/player_header_widget.dart';
 import 'package:cards/widgets/player/player_zone_cta_widget.dart';
@@ -45,27 +45,20 @@ class PlayerZoneWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     debugLog(player.toString());
-    final double width = ScaleHelper.scaleDimension(
-      min(400, MediaQuery.of(context).size.width),
-    );
+    final double width = min(400, MediaQuery.of(context).size.width);
     return Stack(
       children: [
         FadeIn(child: _containerBorder(width, heightZone)),
         Container(
           width: width,
-          height: ScaleHelper.scaleDimension(heightZone),
+          height: heightZone,
           decoration: BoxDecoration(
             color: Colors.green.shade800.withAlpha(50),
-            border: Border.all(
-              color: Colors.transparent,
-              width: ScaleHelper.scaleDimension(8),
-            ),
-            borderRadius: ScaleHelper.scaleBorderRadius(
-              BorderRadius.circular(20.0),
-            ),
+            border: Border.all(color: Colors.transparent, width: 8),
+            borderRadius: BorderRadius.circular(20.0),
             // No shadow.
           ),
-          padding: ScaleHelper.scaleEdgeInsets(const EdgeInsets.all(10)),
+          padding: const EdgeInsets.all(10),
           child: _buildContent(context),
         ),
       ],
@@ -86,12 +79,10 @@ class PlayerZoneWidget extends StatelessWidget {
 
     return Container(
       width: width,
-      height: ScaleHelper.scaleDimension(height),
+      height: height,
       decoration: BoxDecoration(
-        border: Border.all(color: color, width: ScaleHelper.scaleDimension(8)),
-        borderRadius: ScaleHelper.scaleBorderRadius(
-          BorderRadius.circular(20.0),
-        ),
+        border: Border.all(color: color, width: 8),
+        borderRadius: BorderRadius.circular(20.0),
         // No shadow.
       ),
     );

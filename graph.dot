@@ -16,8 +16,6 @@ digraph "" {
   "/test/models/backend_model_test.dart" [label="backend_model_test"];
   "/test/widgets/cards/card_pile_widget_test.dart" [label="card_pile_widget_test"];
   "/test/widgets/cards/card_widget_test.dart" [label="card_widget_test"];
-  "/lib/utils/scale_helper.dart" [label="scale_helper"];
-  "/lib/utils/font_scale_notifier.dart" [label="font_scale_notifier"];
   "/lib/utils/browser_utils_stub.dart" [label="browser_utils_stub"];
   "/lib/utils/browser_utils.dart" [label="browser_utils"];
   "/lib/utils/browser_utils_web.dart" [label="browser_utils_web"];
@@ -54,7 +52,6 @@ digraph "" {
   "/lib/widgets/wiggle_widget.dart" [label="wiggle_widget"];
   "/lib/widgets/my_button.dart" [label="my_button"];
   "/lib/widgets/players_in_room_widget.dart" [label="players_in_room_widget"];
-  "/lib/widgets/text_edit_with_submit.dart" [label="text_edit_with_submit"];
   "/lib/widgets/font_scale_builder.dart" [label="font_scale_builder"];
   "/lib/widgets/rooms_widget.dart" [label="rooms_widget"];
   "/lib/widgets/player_header.dart" [label="player_header"];
@@ -95,8 +92,6 @@ digraph "" {
       "/lib/main.dart";
       subgraph "cluster~/lib/utils" {
         label="utils";
-        "/lib/utils/scale_helper.dart";
-        "/lib/utils/font_scale_notifier.dart";
         "/lib/utils/browser_utils_stub.dart";
         "/lib/utils/browser_utils.dart";
         "/lib/utils/browser_utils_web.dart";
@@ -146,7 +141,6 @@ digraph "" {
         "/lib/widgets/wiggle_widget.dart";
         "/lib/widgets/my_button.dart";
         "/lib/widgets/players_in_room_widget.dart";
-        "/lib/widgets/text_edit_with_submit.dart";
         "/lib/widgets/font_scale_builder.dart";
         "/lib/widgets/rooms_widget.dart";
         "/lib/widgets/player_header.dart";
@@ -195,7 +189,6 @@ digraph "" {
   "/test/widgets/cards/card_widget_test.dart" -> "/lib/models/card_model.dart";
   "/test/widgets/cards/card_widget_test.dart" -> "/lib/models/card_model_french.dart";
   "/test/widgets/cards/card_widget_test.dart" -> "/lib/widgets/cards/card_widget.dart";
-  "/lib/utils/scale_helper.dart" -> "/lib/utils/font_scale_notifier.dart";
   "/lib/models/game_model.dart" -> "/lib/models/backend_model.dart";
   "/lib/models/game_model.dart" -> "/lib/models/deck_model.dart";
   "/lib/models/game_model.dart" -> "/lib/models/game_history.dart";
@@ -248,14 +241,12 @@ digraph "" {
   "/lib/screens/game/start_game_screen.dart" -> "/lib/widgets/rooms_widget.dart";
   "/lib/screens/game/start_game_screen.dart" -> "/lib/utils/browser_utils.dart";
   "/lib/screens/main_menu.dart" -> "/lib/screens/screen.dart";
-  "/lib/screens/main_menu.dart" -> "/lib/utils/scale_helper.dart";
   "/lib/screens/keepscore/golf_score_screen.dart" -> "/lib/models/golf_score_model.dart";
   "/lib/screens/keepscore/golf_score_screen.dart" -> "/lib/screens/screen.dart";
   "/lib/screens/keepscore/golf_score_screen.dart" -> "/lib/widgets/input_keyboard.dart";
   "/lib/screens/keepscore/golf_score_screen.dart" -> "/lib/widgets/my_button.dart";
   "/lib/screens/keepscore/golf_score_screen.dart" -> "/lib/widgets/player_header.dart";
-  "/lib/screens/screen.dart" -> "/lib/utils/font_scale_notifier.dart";
-  "/lib/screens/screen.dart" -> "/lib/utils/scale_helper.dart";
+  "/lib/screens/screen.dart" -> "/lib/utils/font_scale_helper.dart";
   "/lib/main.dart" -> "/lib/models/backend_model.dart";
   "/lib/main.dart" -> "/lib/models/firebase_options.dart";
   "/lib/main.dart" -> "/lib/screens/game/join_game_screen.dart";
@@ -263,24 +254,18 @@ digraph "" {
   "/lib/main.dart" -> "/lib/screens/keepscore/golf_score_screen.dart";
   "/lib/main.dart" -> "/lib/screens/main_menu.dart";
   "/lib/main.dart" -> "/lib/theme/app_theme.dart";
-  "/lib/main.dart" -> "/lib/utils/font_scale_notifier.dart";
   "/lib/theme/app_theme.dart" -> "/lib/utils/font_scale_helper.dart";
   "/lib/widgets/input_keyboard.dart" -> "/lib/widgets/my_button.dart";
   "/lib/widgets/cards/card_pile_widget.dart" -> "/lib/models/card_model.dart";
   "/lib/widgets/cards/card_pile_widget.dart" -> "/lib/widgets/cards/card_widget.dart";
   "/lib/widgets/cards/card_face_skyjo_widget.dart" -> "/lib/models/card_model.dart";
-  "/lib/widgets/cards/card_face_skyjo_widget.dart" -> "/lib/utils/scale_helper.dart";
   "/lib/widgets/cards/card_face_skyjo_widget.dart" -> "/lib/widgets/cards/card_face_french_widget.dart";
   "/lib/widgets/cards/card_widget.dart" -> "/lib/models/card_model.dart";
-  "/lib/widgets/cards/card_widget.dart" -> "/lib/utils/scale_helper.dart";
   "/lib/widgets/cards/card_widget.dart" -> "/lib/widgets/cards/card_face_french_widget.dart";
   "/lib/widgets/cards/card_widget.dart" -> "/lib/widgets/cards/card_face_skyjo_widget.dart";
   "/lib/widgets/cards/card_widget.dart" -> "/lib/widgets/wiggle_widget.dart";
   "/lib/widgets/cards/card_face_french_widget.dart" -> "/lib/models/card_model.dart";
-  "/lib/widgets/cards/card_face_french_widget.dart" -> "/lib/utils/scale_helper.dart";
-  "/lib/widgets/my_button.dart" -> "/lib/utils/scale_helper.dart";
   "/lib/widgets/font_scale_builder.dart" -> "/lib/utils/font_scale_helper.dart";
-  "/lib/widgets/player_header.dart" -> "/lib/utils/scale_helper.dart";
   "/lib/widgets/player/player_zone_cta_widget.dart" -> "/lib/models/game_model.dart";
   "/lib/widgets/player/player_zone_cta_widget.dart" -> "/lib/widgets/cards/card_pile_widget.dart";
   "/lib/widgets/player/status_picker.dart" -> "/lib/models/player_status.dart";
@@ -289,7 +274,6 @@ digraph "" {
   "/lib/widgets/player/player_header_widget.dart" -> "/lib/widgets/dialog.dart";
   "/lib/widgets/player/player_header_widget.dart" -> "/lib/widgets/player/status_picker.dart";
   "/lib/widgets/player/player_zone_widget.dart" -> "/lib/models/game_model.dart";
-  "/lib/widgets/player/player_zone_widget.dart" -> "/lib/utils/scale_helper.dart";
   "/lib/widgets/player/player_zone_widget.dart" -> "/lib/widgets/cards/card_widget.dart";
   "/lib/widgets/player/player_zone_widget.dart" -> "/lib/widgets/player/player_header_widget.dart";
   "/lib/widgets/player/player_zone_widget.dart" -> "/lib/widgets/player/player_zone_cta_widget.dart";

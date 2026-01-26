@@ -3,8 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:cards/utils/font_scale_notifier.dart';
-import 'package:cards/utils/scale_helper.dart';
+import 'package:cards/utils/font_scale_helper.dart';
 
 /// Defines breakpoint constants for responsive design
 class ResponsiveBreakpoints {
@@ -194,13 +193,9 @@ class _ScreenState extends State<Screen> {
   Widget _displayWaiting() {
     /// Builds a loading indicator widget
     return SizedBox(
-      width: ScaleHelper.scaleDimension(400),
-      height: ScaleHelper.scaleDimension(400),
-      child: Center(
-        child: CupertinoActivityIndicator(
-          radius: ScaleHelper.scaleDimension(40),
-        ),
-      ),
+      width: 400,
+      height: 400,
+      child: Center(child: CupertinoActivityIndicator(radius: 40)),
     );
   }
 }
