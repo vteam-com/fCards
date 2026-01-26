@@ -3,7 +3,8 @@
 import 'package:cards/models/backend_model.dart';
 import 'package:cards/models/deck_model.dart';
 import 'package:cards/models/game_history.dart';
-import 'package:cards/models/game_style.dart';
+import 'package:cards/models/game_styles.dart';
+
 import 'package:cards/models/player_model.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/foundation.dart';
@@ -11,7 +12,6 @@ import 'package:flutter/material.dart';
 
 // Exports
 export 'package:cards/models/deck_model.dart';
-export 'package:cards/models/game_style.dart';
 export 'package:cards/models/player_model.dart';
 
 /// Represents a game model that manages the state and logic of a game.

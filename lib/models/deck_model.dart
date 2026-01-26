@@ -1,6 +1,6 @@
 import 'package:cards/models/card_model.dart';
 import 'package:cards/models/card_model_french.dart';
-import 'package:cards/models/game_style.dart';
+import 'package:cards/models/game_styles.dart';
 export 'package:cards/models/card_model.dart';
 
 /// Represents a deck of playing cards.

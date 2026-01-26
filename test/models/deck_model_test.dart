@@ -1,5 +1,5 @@
 import 'package:cards/models/deck_model.dart';
-import 'package:cards/models/game_style.dart';
+import 'package:cards/models/game_styles.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
