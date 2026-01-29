@@ -19,9 +19,6 @@ class PlayersInRoomWidget extends StatelessWidget {
   /// The name of the currently active player.
   final String activePlayerName;
 
-  /// List of all player names in the room.
-  final List<String> playerNames;
-
   /// Callback function that is called when a player is selected.
   /// Takes the selected player's name as a parameter.
   final Function(String) onPlayerSelected;
@@ -29,6 +26,9 @@ class PlayersInRoomWidget extends StatelessWidget {
   /// Callback function that is called when a player is removed.
   /// Takes the removed player's name as a parameter.
   final Function(String) onRemovePlayer;
+
+  /// List of all player names in the room.
+  final List<String> playerNames;
 
   @override
   Widget build(BuildContext context) {

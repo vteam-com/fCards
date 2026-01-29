@@ -20,6 +20,18 @@ class CardFaceFrenchWidget extends StatelessWidget {
     return card.isRevealed ? buildFaceUp() : buildFaceDown();
   }
 
+  /// Render the back of the card
+  Widget buildFaceDown() {
+    return const DecoratedBox(
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage('assets/images/back_of_card.png'),
+          fit: BoxFit.fill, // adjust the fit as needed
+        ),
+      ),
+    );
+  }
+
   /// Render the front of the card
   Widget buildFaceUp() {
     return Padding(
@@ -64,34 +76,6 @@ class CardFaceFrenchWidget extends StatelessWidget {
           children: [TextSize(card.rank, 40, bold: true, color: color)],
         );
     }
-  }
-
-  ///
-  Widget buildValue() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.end,
-      children: [
-        TextSize(
-          card.value.toString(),
-          20,
-          align: TextAlign.right,
-          bold: true,
-          color: getSuitColor(card.suit),
-        ),
-      ],
-    );
-  }
-
-  /// Render the back of the card
-  Widget buildFaceDown() {
-    return const DecoratedBox(
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage('assets/images/back_of_card.png'),
-          fit: BoxFit.fill, // adjust the fit as needed
-        ),
-      ),
-    );
   }
 
   ///
@@ -245,6 +229,22 @@ class CardFaceFrenchWidget extends StatelessWidget {
     }
 
     return symbols;
+  }
+
+  ///
+  Widget buildValue() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        TextSize(
+          card.value.toString(),
+          20,
+          align: TextAlign.right,
+          bold: true,
+          color: getSuitColor(card.suit),
+        ),
+      ],
+    );
   }
 
   ///

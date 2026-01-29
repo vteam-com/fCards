@@ -23,5 +23,5 @@ echo --- Test
 echo "    Running tests..."
 flutter test --reporter=compact --no-pub
 
-echo --- Graph Dependencies
-tool/graph.sh | sed 's/^/    /'
+echo --- fCheck
+dart run fcheck --svg --svgfolder --fix .

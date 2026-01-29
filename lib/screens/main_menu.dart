@@ -22,23 +22,6 @@ class _MainMenuState extends State<MainMenu> {
     });
   }
 
-  void _checkForUrlParameters() {
-    if (!kIsWeb) {
-      return; // Only check on web
-    }
-
-    final uri = Uri.parse(Uri.base.toString());
-    if (uri.queryParameters.isNotEmpty) {
-      // We have query parameters, redirect to start screen which can handle them
-      // Use Future.delayed to ensure context is available
-      Future.delayed(Duration.zero, () {
-        if (mounted) {
-          Navigator.pushReplacementNamed(context, '/game');
-        }
-      });
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Screen(
@@ -79,6 +62,23 @@ class _MainMenuState extends State<MainMenu> {
       ),
     );
   }
+
+  void _checkForUrlParameters() {
+    if (!kIsWeb) {
+      return; // Only check on web
+    }
+
+    final uri = Uri.parse(Uri.base.toString());
+    if (uri.queryParameters.isNotEmpty) {
+      // We have query parameters, redirect to start screen which can handle them
+      // Use Future.delayed to ensure context is available
+      Future.delayed(Duration.zero, () {
+        if (mounted) {
+          Navigator.pushReplacementNamed(context, '/game');
+        }
+      });
+    }
+  }
 }
 
 /// A styled button for the main menu.
@@ -92,10 +92,10 @@ class MenuButton extends StatelessWidget {
   });
 
   ///
-  final String label;
+  final IconData icon;
 
   ///
-  final IconData icon;
+  final String label;
 
   ///
   final VoidCallback onPressed;

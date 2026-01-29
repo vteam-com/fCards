@@ -52,23 +52,23 @@ class Screen extends StatefulWidget {
     required this.isWaiting,
   });
 
-  /// Title text shown in the app bar
-  final String title;
-
   /// Main content widget displayed in the body
   final Widget child;
-
-  /// Optional callback function triggered when refresh button is pressed
-  final Function? onRefresh;
 
   /// Optional callback that returns a string URL/link for sharing
   final String Function()? getLinkToShare;
 
+  /// When true, displays a loading indicator instead of the main content
+  final bool isWaiting;
+
+  /// Optional callback function triggered when refresh button is pressed
+  final Function? onRefresh;
+
   /// Optional text shown on right side of app bar (e.g. user name)
   final String rightText;
 
-  /// When true, displays a loading indicator instead of the main content
-  final bool isWaiting;
+  /// Title text shown in the app bar
+  final String title;
 
   @override
   State<Screen> createState() => _ScreenState();
@@ -81,25 +81,6 @@ class _ScreenState extends State<Screen> {
   void initState() {
     super.initState();
     _getAppVersion();
-  }
-
-  /// Fetches the application version from the platform package info.
-  Future<void> _getAppVersion() async {
-    try {
-      final packageInfo = await PackageInfo.fromPlatform();
-      if (mounted) {
-        setState(() {
-          _version = packageInfo.version;
-        });
-      }
-    } catch (e) {
-      debugPrint('Error getting package info: $e');
-      if (mounted) {
-        setState(() {
-          _version = '1.0.0';
-        });
-      }
-    }
   }
 
   @override
@@ -193,5 +174,24 @@ class _ScreenState extends State<Screen> {
       height: 400,
       child: Center(child: CupertinoActivityIndicator(radius: 40)),
     );
+  }
+
+  /// Fetches the application version from the platform package info.
+  Future<void> _getAppVersion() async {
+    try {
+      final packageInfo = await PackageInfo.fromPlatform();
+      if (mounted) {
+        setState(() {
+          _version = packageInfo.version;
+        });
+      }
+    } catch (e) {
+      debugPrint('Error getting package info: $e');
+      if (mounted) {
+        setState(() {
+          _version = '1.0.0';
+        });
+      }
+    }
   }
 }

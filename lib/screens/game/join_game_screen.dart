@@ -22,20 +22,28 @@ class JoinGameScreen extends StatefulWidget {
 
 ///
 class JoinGameScreenState extends State<JoinGameScreen> {
+  final TextEditingController _controllerName = TextEditingController();
+
+  final TextEditingController _controllerRoom = TextEditingController();
+
   int _currentStep = 0;
-  StreamSubscription? _streamSubscription;
+
   late List<String> _listOfRooms;
-  late String _selectedRoom;
+
   late String _playerName;
+
   late Set<String> _playerNames;
+
   bool _roomsFetched = false;
+
+  late String _selectedRoom;
+
+  StreamSubscription? _streamSubscription;
+
+  bool _waitingOnFirstBackendData = false;
 
   ///
   late String appVersion;
-
-  final TextEditingController _controllerRoom = TextEditingController();
-  final TextEditingController _controllerName = TextEditingController();
-  bool _waitingOnFirstBackendData = false;
 
   @override
   void initState() {
@@ -48,211 +56,66 @@ class JoinGameScreenState extends State<JoinGameScreen> {
     // Don't fetch rooms immediately - wait until user chooses to join
   }
 
-  Future<void> _getAppVersion() async {
-    PackageInfo packageInfo = await PackageInfo.fromPlatform();
-    setState(() {
-      appVersion = packageInfo.version;
-    });
-  }
-
-  Future<void> _fetchAllRooms() async {
-    if (isRunningOffLine) {
-      _listOfRooms = ['BANANA', 'KIWI', 'APPLE']; // Demo rooms
-      setState(() {});
-      return;
-    }
-
-    try {
-      await useFirebase();
-      final rooms = await getAllRooms();
-      if (mounted) {
-        setState(() {
-          _listOfRooms = List.from(rooms);
-        });
-      }
-    } catch (e) {
-      debugPrint('Error fetching rooms: $e');
-    }
-  }
-
-  void _prepareForRoom(String roomId) {
-    _waitingOnFirstBackendData = true;
+  @override
+  void dispose() {
     _streamSubscription?.cancel();
-
-    useFirebase().then((_) async {
-      final List<String> invitees = await getPlayersInRoom(roomId);
-      if (mounted) {
-        setState(() {
-          _playerNames = Set.from(invitees);
-          _waitingOnFirstBackendData = false;
-
-          _streamSubscription = onBackendInviteesUpdated(roomId, (
-            invitees,
-          ) async {
-            final List<String> rooms = await getAllRooms();
-            if (mounted) {
-              setState(() {
-                _listOfRooms = List.from(rooms);
-                _playerNames = Set.from(invitees);
-              });
-            }
-          });
-        });
-      }
-    });
+    _controllerRoom.dispose();
+    _controllerName.dispose();
+    super.dispose();
   }
 
-  void _joinGame() {
-    final name = _controllerName.text.trim().toUpperCase();
-    if (name.isNotEmpty) {
-      _playerNames.add(name);
-      setPlayersInRoom(_selectedRoom, _playerNames);
-      _controllerName.text = name;
-      _playerName = name;
-      setState(() {});
-    }
-  }
-
-  void _removePlayer(String nameToRemove) {
-    _playerNames.remove(nameToRemove);
-    setPlayersInRoom(_selectedRoom, _playerNames);
-    if (mounted) {
-      setState(() {});
-    }
-  }
-
-  bool get _canProceed {
-    switch (_currentStep) {
-      case 0:
-        return _selectedRoom.isNotEmpty;
-      case 1:
-        return _playerName.isNotEmpty;
-      case 2:
-        return _playerNames.length >= 2;
-      default:
-        return false;
-    }
-  }
-
-  Future<void> _startGame(BuildContext context) async {
-    final List<GameHistory> history = await getGameHistory(_selectedRoom);
-
-    final gameModel = GameModel(
-      version: appVersion,
-      gameStyle: GameStyles.frenchCards9, // Default, could make configurable
-      roomName: _selectedRoom,
-      roomHistory: history,
-      loginUserName: _playerName,
-      names: _playerNames.toList(),
-      cardsToDeal: numberOfCards(GameStyles.frenchCards9),
-      deck: DeckModel(
-        numberOfDecks: numberOfDecks(
-          GameStyles.frenchCards9,
-          _playerNames.length,
-        ),
-        gameStyle: GameStyles.frenchCards9,
-      ),
-      isNewGame: true,
-    );
-
-    if (mounted) {
-      Navigator.pushReplacement(
-        // ignore: use_build_context_synchronously
-        context,
-        MaterialPageRoute(
-          builder: (context) => GameScreen(gameModel: gameModel),
-        ),
-      );
-    }
-  }
-
-  Widget _buildStepIndicator() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        for (int i = 0; i < 3; i++)
-          Container(
-            margin: const EdgeInsets.symmetric(horizontal: 4),
-            child: CircleAvatar(
-              radius: 12,
-              backgroundColor: i <= _currentStep
-                  ? Colors.green[400]
-                  : Colors.grey[400],
-              child: Text(
-                '${i + 1}',
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                ),
+  @override
+  Widget build(BuildContext context) {
+    return Screen(
+      isWaiting: false,
+      title: 'Join Game',
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            _buildStepIndicator(),
+            Expanded(
+              child: Center(
+                child: SingleChildScrollView(child: _buildStepContent()),
               ),
             ),
-          ),
-      ],
-    );
-  }
-
-  Widget _buildStepContent() {
-    switch (_currentStep) {
-      case 0:
-        return _buildRoomSelectionStep();
-      case 1:
-        return _buildNameEntryStep();
-      case 2:
-        return _buildWaitingStep();
-      default:
-        return const SizedBox();
-    }
-  }
-
-  Widget _buildRoomSelectionStep() {
-    // Fetch rooms if not already done
-    if (!_roomsFetched) {
-      _roomsFetched = true;
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        _fetchAllRooms();
-      });
-    }
-
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        const Text(
-          'Select a Room to Join',
-          style: TextStyle(
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
-          textAlign: TextAlign.center,
-        ),
-        const SizedBox(height: 20),
-        RoomsWidget(
-          roomId: _selectedRoom.isEmpty ? 'SELECT_ROOM' : _selectedRoom,
-          rooms: _listOfRooms,
-          onSelected: (String room) {
-            setState(() {
-              _selectedRoom = room;
-            });
-          },
-          onRemoveRoom: null, // No remove for join mode
-        ),
-        if (_selectedRoom.isNotEmpty) ...[
-          const SizedBox(height: 20),
-          Container(
-            padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              color: Colors.green.shade900,
-              borderRadius: BorderRadius.circular(12),
-              border: Border.all(color: Colors.green[400]!),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                if (_currentStep > 0)
+                  ElevatedButton.icon(
+                    onPressed: () => setState(() => _currentStep--),
+                    icon: const Icon(Icons.arrow_back),
+                    label: const Text('Back'),
+                  )
+                else
+                  const SizedBox.shrink(),
+                ElevatedButton(
+                  onPressed: _canProceed
+                      ? () {
+                          if (_currentStep < 2) {
+                            setState(() => _currentStep++);
+                          } else {
+                            _startGame(context);
+                          }
+                        }
+                      : null,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: _canProceed
+                        ? Colors.green[600]
+                        : Colors.grey[600],
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 24,
+                      vertical: 12,
+                    ),
+                  ),
+                  child: Text(_currentStep < 2 ? 'Next' : 'Start Game'),
+                ),
+              ],
             ),
-            child: Text(
-              'Selected: $_selectedRoom',
-              style: const TextStyle(fontSize: 18, color: Colors.white),
-              textAlign: TextAlign.center,
-            ),
-          ),
-        ],
-      ],
+          ],
+        ),
+      ),
     );
   }
 
@@ -323,6 +186,96 @@ class JoinGameScreenState extends State<JoinGameScreen> {
     );
   }
 
+  Widget _buildRoomSelectionStep() {
+    // Fetch rooms if not already done
+    if (!_roomsFetched) {
+      _roomsFetched = true;
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        _fetchAllRooms();
+      });
+    }
+
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const Text(
+          'Select a Room to Join',
+          style: TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+          textAlign: TextAlign.center,
+        ),
+        const SizedBox(height: 20),
+        RoomsWidget(
+          roomId: _selectedRoom.isEmpty ? 'SELECT_ROOM' : _selectedRoom,
+          rooms: _listOfRooms,
+          onSelected: (String room) {
+            setState(() {
+              _selectedRoom = room;
+            });
+          },
+          onRemoveRoom: null, // No remove for join mode
+        ),
+        if (_selectedRoom.isNotEmpty) ...[
+          const SizedBox(height: 20),
+          Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: Colors.green.shade900,
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(color: Colors.green[400]!),
+            ),
+            child: Text(
+              'Selected: $_selectedRoom',
+              style: const TextStyle(fontSize: 18, color: Colors.white),
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ],
+      ],
+    );
+  }
+
+  Widget _buildStepContent() {
+    switch (_currentStep) {
+      case 0:
+        return _buildRoomSelectionStep();
+      case 1:
+        return _buildNameEntryStep();
+      case 2:
+        return _buildWaitingStep();
+      default:
+        return const SizedBox();
+    }
+  }
+
+  Widget _buildStepIndicator() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        for (int i = 0; i < 3; i++)
+          Container(
+            margin: const EdgeInsets.symmetric(horizontal: 4),
+            child: CircleAvatar(
+              radius: 12,
+              backgroundColor: i <= _currentStep
+                  ? Colors.green[400]
+                  : Colors.grey[400],
+              child: Text(
+                '${i + 1}',
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+      ],
+    );
+  }
+
   Widget _buildWaitingStep() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -365,66 +318,121 @@ class JoinGameScreenState extends State<JoinGameScreen> {
     );
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Screen(
-      isWaiting: false,
-      title: 'Join Game',
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            _buildStepIndicator(),
-            Expanded(
-              child: Center(
-                child: SingleChildScrollView(child: _buildStepContent()),
-              ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                if (_currentStep > 0)
-                  ElevatedButton.icon(
-                    onPressed: () => setState(() => _currentStep--),
-                    icon: const Icon(Icons.arrow_back),
-                    label: const Text('Back'),
-                  )
-                else
-                  const SizedBox.shrink(),
-                ElevatedButton(
-                  onPressed: _canProceed
-                      ? () {
-                          if (_currentStep < 2) {
-                            setState(() => _currentStep++);
-                          } else {
-                            _startGame(context);
-                          }
-                        }
-                      : null,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: _canProceed
-                        ? Colors.green[600]
-                        : Colors.grey[600],
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 24,
-                      vertical: 12,
-                    ),
-                  ),
-                  child: Text(_currentStep < 2 ? 'Next' : 'Start Game'),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
+  bool get _canProceed {
+    switch (_currentStep) {
+      case 0:
+        return _selectedRoom.isNotEmpty;
+      case 1:
+        return _playerName.isNotEmpty;
+      case 2:
+        return _playerNames.length >= 2;
+      default:
+        return false;
+    }
   }
 
-  @override
-  void dispose() {
+  Future<void> _fetchAllRooms() async {
+    if (isRunningOffLine) {
+      _listOfRooms = ['BANANA', 'KIWI', 'APPLE']; // Demo rooms
+      setState(() {});
+      return;
+    }
+
+    try {
+      await useFirebase();
+      final rooms = await getAllRooms();
+      if (mounted) {
+        setState(() {
+          _listOfRooms = List.from(rooms);
+        });
+      }
+    } catch (e) {
+      debugPrint('Error fetching rooms: $e');
+    }
+  }
+
+  Future<void> _getAppVersion() async {
+    PackageInfo packageInfo = await PackageInfo.fromPlatform();
+    setState(() {
+      appVersion = packageInfo.version;
+    });
+  }
+
+  void _joinGame() {
+    final name = _controllerName.text.trim().toUpperCase();
+    if (name.isNotEmpty) {
+      _playerNames.add(name);
+      setPlayersInRoom(_selectedRoom, _playerNames);
+      _controllerName.text = name;
+      _playerName = name;
+      setState(() {});
+    }
+  }
+
+  void _prepareForRoom(String roomId) {
+    _waitingOnFirstBackendData = true;
     _streamSubscription?.cancel();
-    _controllerRoom.dispose();
-    _controllerName.dispose();
-    super.dispose();
+
+    useFirebase().then((_) async {
+      final List<String> invitees = await getPlayersInRoom(roomId);
+      if (mounted) {
+        setState(() {
+          _playerNames = Set.from(invitees);
+          _waitingOnFirstBackendData = false;
+
+          _streamSubscription = onBackendInviteesUpdated(roomId, (
+            invitees,
+          ) async {
+            final List<String> rooms = await getAllRooms();
+            if (mounted) {
+              setState(() {
+                _listOfRooms = List.from(rooms);
+                _playerNames = Set.from(invitees);
+              });
+            }
+          });
+        });
+      }
+    });
+  }
+
+  void _removePlayer(String nameToRemove) {
+    _playerNames.remove(nameToRemove);
+    setPlayersInRoom(_selectedRoom, _playerNames);
+    if (mounted) {
+      setState(() {});
+    }
+  }
+
+  Future<void> _startGame(BuildContext context) async {
+    final List<GameHistory> history = await getGameHistory(_selectedRoom);
+
+    final gameModel = GameModel(
+      version: appVersion,
+      gameStyle: GameStyles.frenchCards9, // Default, could make configurable
+      roomName: _selectedRoom,
+      roomHistory: history,
+      loginUserName: _playerName,
+      names: _playerNames.toList(),
+      cardsToDeal: numberOfCards(GameStyles.frenchCards9),
+      deck: DeckModel(
+        numberOfDecks: numberOfDecks(
+          GameStyles.frenchCards9,
+          _playerNames.length,
+        ),
+        gameStyle: GameStyles.frenchCards9,
+      ),
+      isNewGame: true,
+    );
+
+    if (mounted) {
+      Navigator.pushReplacement(
+        // ignore: use_build_context_synchronously
+        context,
+        MaterialPageRoute(
+          builder: (context) => GameScreen(gameModel: gameModel),
+        ),
+      );
+    }
   }
 }

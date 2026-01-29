@@ -20,10 +20,10 @@ class PlayerHeaderWidget extends StatelessWidget {
   final GameModel gameModel;
 
   ///
-  final PlayerModel player;
+  final Function(PlayerStatus) onStatusChanged;
 
   ///
-  final Function(PlayerStatus) onStatusChanged;
+  final PlayerModel player;
 
   ///
   final int sumOfRevealedCards;

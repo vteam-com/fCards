@@ -11,11 +11,11 @@ class StatusPicker extends StatefulWidget {
     required this.onStatusChanged,
   });
 
-  /// The current status of the player
-  final PlayerStatus status;
-
   /// Callback function that is called when the player's status changes
   final Function(PlayerStatus) onStatusChanged;
+
+  /// The current status of the player
+  final PlayerStatus status;
 
   @override
   State<StatusPicker> createState() => _StatusPickerState();

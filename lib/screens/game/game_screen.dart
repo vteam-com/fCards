@@ -69,21 +69,22 @@ class GameScreen extends StatefulWidget {
 /// )
 /// ```  /// Stream subscription for listening to changes in the Firebase database.
 class GameScreenState extends State<GameScreen> {
-  late StreamSubscription _streamSubscription;
+  /// List of GlobalKeys for each player widget, used for scrolling.
+  List<GlobalKey> _playerKeys = [];
 
   /// Scroll controller for managing the scrolling behavior of the player list.
   late ScrollController _scrollController;
 
-  /// List of GlobalKeys for each player widget, used for scrolling.
-  List<GlobalKey> _playerKeys = [];
-
-  /// Flag indicating whether the layout is for a phone-sized screen.
-  bool phoneLayout = false;
+  late StreamSubscription _streamSubscription;
 
   /// Flag indicating whether the initial game data has been loaded and processed.
   /// Set to [isRunningOffLine] initially since offline mode doesn't need to wait for data loading.
   /// Used to control display of loading indicator and enable/disable game interactions.
   bool isReady = isRunningOffLine;
+
+  /// Flag indicating whether the layout is for a phone-sized screen.
+  bool phoneLayout = false;
+
   @override
   void initState() {
     super.initState();
@@ -139,35 +140,6 @@ class GameScreenState extends State<GameScreen> {
     );
   }
 
-  /// Gets the Firebase database reference path for this game room
-  String _getFirebaseRef() {
-    return 'rooms/${widget.gameModel.roomName}';
-  }
-
-  /// Refreshes the game state by fetching the latest data from Firebase.
-  ///
-  /// Sets the loading state to true, retrieves the game data from the
-  /// corresponding Firebase node, and then updates the game model with
-  /// the retrieved data.  Finally, sets the loading state back to false
-  /// after the data has been processed.
-  void _onRefresh() {
-    _getFirebaseData();
-  }
-
-  /// Initializes the Firebase listener for game state updates.
-  void _initializeFirebaseListener() {
-    if (isRunningOffLine) {
-      _jsonToGameModel(fakeData());
-    } else {
-      _streamSubscription = FirebaseDatabase.instance
-          .ref(_getFirebaseRef())
-          .onValue
-          .listen((DatabaseEvent event) {
-            _dataSnapshotToGameModel(event.snapshot);
-          });
-    }
-  }
-
   /// Returns a simulated data snapshot for offline testing mode.
   ///
   /// This method creates a JSON representation of the current game model state
@@ -178,52 +150,6 @@ class GameScreenState extends State<GameScreen> {
   ///   A ```Map<String, dynamic>``` containing the game model data in JSON format
   Map<String, dynamic> fakeData() {
     return widget.gameModel.toJson();
-  }
-
-  /// Fetches game data from Firebase
-  Future<void> _getFirebaseData() async {
-    if (isRunningOffLine) {
-      _jsonToGameModel(fakeData());
-    } else {
-      final DataSnapshot snapshot = await FirebaseDatabase.instance
-          .ref(_getFirebaseRef())
-          .get();
-      _dataSnapshotToGameModel(snapshot);
-    }
-  }
-
-  void _createGlobalKeyForPlayers() {
-    _playerKeys = List.generate(
-      widget.gameModel.numPlayers,
-      (index) => GlobalKey(),
-    );
-  }
-
-  void _dataSnapshotToGameModel(final DataSnapshot snapshot) {
-    if (!snapshot.exists) {
-      return;
-    }
-
-    final Object? data = snapshot.value;
-    if (data != null) {
-      // Convert the data to a Map<String, dynamic>
-      String jsonData = jsonEncode(data);
-      Map<String, dynamic> mapData = jsonDecode(jsonData);
-      _jsonToGameModel(mapData);
-    }
-  }
-
-  void _jsonToGameModel(Map<String, dynamic> mapData) {
-    widget.gameModel.fromJson(mapData);
-    setState(() {
-      _createGlobalKeyForPlayers();
-      if (widget.gameModel.gameState == GameStates.gameOver) {
-        widget.gameModel.endedOn = DateTime.now();
-
-        showGameOverDialog(context, widget.gameModel);
-      }
-      isReady = true;
-    });
   }
 
   /// Adapts the layout based on the screen width.
@@ -249,40 +175,86 @@ class GameScreenState extends State<GameScreen> {
     return _layoutForPhone();
   }
 
-  /// Scrolls to the currently active player.
-  void _setupScrollToActivePlayer() {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      final int playerIndex = widget.gameModel.playerIdPlaying;
-      if (playerIndex < _playerKeys.length) {
-        final RenderBox? containerBox =
-            context.findRenderObject() as RenderBox?;
-        final RenderBox? playerBox =
-            _playerKeys[playerIndex].currentContext?.findRenderObject()
-                as RenderBox?;
+  /// Builds a horizontally wrapping layout of player zones.
+  Widget _buildPlayersWrapLayout() {
+    return Wrap(
+      spacing: 40.0,
+      runSpacing: 40.0,
+      children: List.generate(widget.gameModel.numPlayers, (index) {
+        return PlayerZoneWidget(
+          key: _playerKeys[index],
+          gameModel: widget.gameModel,
+          player: widget.gameModel.players[index],
+          heightZone: 700,
+          heightOfCTA: 140,
+          heightOfCardGrid: 400,
+        );
+      }),
+    );
+  }
 
-        if (containerBox != null && playerBox != null) {
-          final double containerOffset = containerBox
-              .localToGlobal(Offset.zero)
-              .dy;
-          final double playerOffset =
-              playerBox.localToGlobal(Offset.zero).dy - containerOffset;
-          final double offset = _scrollController.offset + playerOffset;
+  void _createGlobalKeyForPlayers() {
+    _playerKeys = List.generate(
+      widget.gameModel.numPlayers,
+      (index) => GlobalKey(),
+    );
+  }
 
-          // Calculate maximum scroll extent and clamp offset
-          final double maxScrollExtent =
-              _scrollController.position.maxScrollExtent;
-          final double targetOffset = (offset - (phoneLayout ? 50 : 100)).clamp(
-            0.0,
-            maxScrollExtent,
-          );
+  void _dataSnapshotToGameModel(final DataSnapshot snapshot) {
+    if (!snapshot.exists) {
+      return;
+    }
 
-          _scrollController.animateTo(
-            targetOffset,
-            duration: const Duration(milliseconds: 500),
-            curve: Curves.easeInOut,
-          );
-        }
+    final Object? data = snapshot.value;
+    if (data != null) {
+      // Convert the data to a Map<String, dynamic>
+      String jsonData = jsonEncode(data);
+      Map<String, dynamic> mapData = jsonDecode(jsonData);
+      _jsonToGameModel(mapData);
+    }
+  }
+
+  /// Fetches game data from Firebase
+  Future<void> _getFirebaseData() async {
+    if (isRunningOffLine) {
+      _jsonToGameModel(fakeData());
+    } else {
+      final DataSnapshot snapshot = await FirebaseDatabase.instance
+          .ref(_getFirebaseRef())
+          .get();
+      _dataSnapshotToGameModel(snapshot);
+    }
+  }
+
+  /// Gets the Firebase database reference path for this game room
+  String _getFirebaseRef() {
+    return 'rooms/${widget.gameModel.roomName}';
+  }
+
+  /// Initializes the Firebase listener for game state updates.
+  void _initializeFirebaseListener() {
+    if (isRunningOffLine) {
+      _jsonToGameModel(fakeData());
+    } else {
+      _streamSubscription = FirebaseDatabase.instance
+          .ref(_getFirebaseRef())
+          .onValue
+          .listen((DatabaseEvent event) {
+            _dataSnapshotToGameModel(event.snapshot);
+          });
+    }
+  }
+
+  void _jsonToGameModel(Map<String, dynamic> mapData) {
+    widget.gameModel.fromJson(mapData);
+    setState(() {
+      _createGlobalKeyForPlayers();
+      if (widget.gameModel.gameState == GameStates.gameOver) {
+        widget.gameModel.endedOn = DateTime.now();
+
+        showGameOverDialog(context, widget.gameModel);
       }
+      isReady = true;
     });
   }
 
@@ -322,21 +294,50 @@ class GameScreenState extends State<GameScreen> {
     );
   }
 
-  /// Builds a horizontally wrapping layout of player zones.
-  Widget _buildPlayersWrapLayout() {
-    return Wrap(
-      spacing: 40.0,
-      runSpacing: 40.0,
-      children: List.generate(widget.gameModel.numPlayers, (index) {
-        return PlayerZoneWidget(
-          key: _playerKeys[index],
-          gameModel: widget.gameModel,
-          player: widget.gameModel.players[index],
-          heightZone: 700,
-          heightOfCTA: 140,
-          heightOfCardGrid: 400,
-        );
-      }),
-    );
+  /// Refreshes the game state by fetching the latest data from Firebase.
+  ///
+  /// Sets the loading state to true, retrieves the game data from the
+  /// corresponding Firebase node, and then updates the game model with
+  /// the retrieved data.  Finally, sets the loading state back to false
+  /// after the data has been processed.
+  void _onRefresh() {
+    _getFirebaseData();
+  }
+
+  /// Scrolls to the currently active player.
+  void _setupScrollToActivePlayer() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final int playerIndex = widget.gameModel.playerIdPlaying;
+      if (playerIndex < _playerKeys.length) {
+        final RenderBox? containerBox =
+            context.findRenderObject() as RenderBox?;
+        final RenderBox? playerBox =
+            _playerKeys[playerIndex].currentContext?.findRenderObject()
+                as RenderBox?;
+
+        if (containerBox != null && playerBox != null) {
+          final double containerOffset = containerBox
+              .localToGlobal(Offset.zero)
+              .dy;
+          final double playerOffset =
+              playerBox.localToGlobal(Offset.zero).dy - containerOffset;
+          final double offset = _scrollController.offset + playerOffset;
+
+          // Calculate maximum scroll extent and clamp offset
+          final double maxScrollExtent =
+              _scrollController.position.maxScrollExtent;
+          final double targetOffset = (offset - (phoneLayout ? 50 : 100)).clamp(
+            0.0,
+            maxScrollExtent,
+          );
+
+          _scrollController.animateTo(
+            targetOffset,
+            duration: const Duration(milliseconds: 500),
+            curve: Curves.easeInOut,
+          );
+        }
+      }
+    });
   }
 }

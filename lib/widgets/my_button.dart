@@ -23,17 +23,17 @@ class MyButton extends StatelessWidget {
     this.padding = const EdgeInsets.all(0),
   });
 
-  /// Called when the button is tapped.
-  final VoidCallback onTap;
-
-  /// The diameter of the circular button.
-  final double size;
-
   /// The widget displayed at the center of the button.
   final Widget child;
 
+  /// Called when the button is tapped.
+  final VoidCallback onTap;
+
   /// Padding around the button.
   final EdgeInsets padding;
+
+  /// The diameter of the circular button.
+  final double size;
 
   @override
   Widget build(BuildContext context) {

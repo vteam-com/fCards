@@ -30,17 +30,17 @@ class PlayerZoneWidget extends StatelessWidget {
   /// The game model containing the current game state and logic
   final GameModel gameModel;
 
-  /// The player model representing this zone's player
-  final PlayerModel player;
-
-  /// The total height of the player zone widget
-  final double heightZone;
-
   /// The height allocated for the call-to-action section
   final double heightOfCTA;
 
   /// The height allocated for displaying the player's card grid
   final double heightOfCardGrid;
+
+  /// The total height of the player zone widget
+  final double heightZone;
+
+  /// The player model representing this zone's player
+  final PlayerModel player;
 
   @override
   Widget build(BuildContext context) {
@@ -62,29 +62,6 @@ class PlayerZoneWidget extends StatelessWidget {
           child: _buildContent(context),
         ),
       ],
-    );
-  }
-
-  Widget _containerBorder(double width, double height) {
-    Color color = Colors.transparent;
-    if (gameModel.gameState == GameStates.gameOver) {
-      color = player.isWinner ? Colors.green : Colors.red;
-    } else {
-      if (player.areAllCardsRevealed()) {
-        color = Colors.blue;
-      } else if (player.isActivePlayer) {
-        color = Colors.yellow;
-      }
-    }
-
-    return Container(
-      width: width,
-      height: height,
-      decoration: BoxDecoration(
-        border: Border.all(color: color, width: 8),
-        borderRadius: BorderRadius.circular(20.0),
-        // No shadow.
-      ),
     );
   }
 
@@ -137,27 +114,6 @@ class PlayerZoneWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildPlayerHand(
-    BuildContext context,
-    GameModel gameModel,
-    PlayerModel player,
-  ) {
-    List row = List.empty(growable: true);
-    int columns = player.hand.length == 4 ? 2 : 3;
-
-    for (int i = 0; i < player.hand.length; i += columns) {
-      List<Widget> columnChildren = [];
-      for (int j = 0; j < columns && (i + j) < player.hand.length; j++) {
-        columnChildren.add(
-          _buildPlayerCardButton(context, gameModel, player, i + j),
-        );
-      }
-      row.add(Column(children: columnChildren));
-    }
-
-    return Row(children: [...row]);
-  }
-
   Widget _buildPlayerCardButton(
     BuildContext context,
     GameModel gameModel,
@@ -190,6 +146,50 @@ class PlayerZoneWidget extends StatelessWidget {
         onDropped: (cardSource, cardTarget) {
           gameModel.onDropCardOnCard(context, cardSource, cardTarget);
         },
+      ),
+    );
+  }
+
+  Widget _buildPlayerHand(
+    BuildContext context,
+    GameModel gameModel,
+    PlayerModel player,
+  ) {
+    List row = List.empty(growable: true);
+    int columns = player.hand.length == 4 ? 2 : 3;
+
+    for (int i = 0; i < player.hand.length; i += columns) {
+      List<Widget> columnChildren = [];
+      for (int j = 0; j < columns && (i + j) < player.hand.length; j++) {
+        columnChildren.add(
+          _buildPlayerCardButton(context, gameModel, player, i + j),
+        );
+      }
+      row.add(Column(children: columnChildren));
+    }
+
+    return Row(children: [...row]);
+  }
+
+  Widget _containerBorder(double width, double height) {
+    Color color = Colors.transparent;
+    if (gameModel.gameState == GameStates.gameOver) {
+      color = player.isWinner ? Colors.green : Colors.red;
+    } else {
+      if (player.areAllCardsRevealed()) {
+        color = Colors.blue;
+      } else if (player.isActivePlayer) {
+        color = Colors.yellow;
+      }
+    }
+
+    return Container(
+      width: width,
+      height: height,
+      decoration: BoxDecoration(
+        border: Border.all(color: color, width: 8),
+        borderRadius: BorderRadius.circular(20.0),
+        // No shadow.
       ),
     );
   }

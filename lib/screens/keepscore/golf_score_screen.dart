@@ -18,13 +18,21 @@ class GolfScoreScreen extends StatefulWidget {
 }
 
 class _GolfScoreScreenState extends State<GolfScoreScreen> {
-  late Future<GolfScoreModel> _scoreModelFuture;
-  Map<String, int>? _selectedCell;
+  BuildContext? _cellContext;
+
   final FocusNode _keyboardFocusNode = FocusNode();
+
   final Set<LogicalKeyboardKey> _keysPressed = {};
-  final double columnWidth = 90;
-  final double columnGap = 8;
+
+  late Future<GolfScoreModel> _scoreModelFuture;
+
   final ScrollController _scrollController = ScrollController();
+
+  Map<String, int>? _selectedCell;
+
+  final double columnGap = 8;
+
+  final double columnWidth = 90;
 
   @override
   void initState() {
@@ -43,92 +51,6 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
     _keyboardFocusNode.dispose();
     _scrollController.dispose();
     super.dispose();
-  }
-
-  void _addPlayer(GolfScoreModel model) {
-    setState(() {
-      model.addPlayer('Player${model.playerNames.length + 1}');
-    });
-  }
-
-  void _clearScores(GolfScoreModel model) {
-    setState(() {
-      model.clearScores();
-    });
-  }
-
-  void _handleKeyEvent(RawKeyEvent event) async {
-    if (_selectedCell == null) {
-      return;
-    }
-
-    if (event is RawKeyDownEvent) {
-      final key = event.logicalKey;
-      if (_keysPressed.contains(key)) {
-        return;
-      }
-      _keysPressed.add(key);
-
-      // Get the model from the future
-      final model = await _scoreModelFuture;
-
-      if (key == LogicalKeyboardKey.backspace) {
-        _handleKeyPress('⇐', model);
-      } else if (key == LogicalKeyboardKey.minus) {
-        _handleKeyPress('−', model);
-      } else if (key.keyLabel.length == 1) {
-        final keyLabel = key.keyLabel;
-        if (RegExp(r'^[0-9]$').hasMatch(keyLabel)) {
-          _handleKeyPress(keyLabel, model);
-        }
-      }
-    } else if (event is RawKeyUpEvent) {
-      _keysPressed.remove(event.logicalKey);
-    }
-  }
-
-  void _handleKeyPress(String key, GolfScoreModel model) {
-    if (_selectedCell == null) {
-      return;
-    }
-
-    final int row = _selectedCell!['row']!;
-    final int col = _selectedCell!['col']!;
-    String currentValue = model.scores[row][col].toString();
-
-    setState(() {
-      if (key == keyBackspace) {
-        if (currentValue.isNotEmpty) {
-          if (currentValue.length == 2 && currentValue.startsWith('-')) {
-            currentValue = '0';
-          } else {
-            currentValue = currentValue.substring(0, currentValue.length - 1);
-          }
-          if (currentValue.isEmpty) {
-            currentValue = '0';
-          }
-        }
-      } else if (key == keyChangeSign) {
-        if (currentValue.startsWith('-')) {
-          currentValue = currentValue.substring(1);
-        } else if (currentValue == '0') {
-          currentValue = '0'; // Start a negative number when at 0
-        } else {
-          currentValue = '-$currentValue';
-        }
-      } else {
-        if (currentValue == '0' || currentValue == '-') {
-          currentValue = currentValue == '-' ? '-$key' : key;
-        } else {
-          currentValue += key;
-        }
-      }
-      // Only update the score if we have a valid number or are in the middle of typing a negative number
-      if (currentValue != '-') {
-        final int? parsedValue = int.tryParse(currentValue);
-        model.updateScore(row, col, parsedValue ?? 0);
-      }
-    });
   }
 
   @override
@@ -201,6 +123,68 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
         );
       },
     );
+  }
+
+  /// Shows a confirmation dialog before deleting a round.
+  Future<void> confirmDeleteRound(int i, GolfScoreModel model) async {
+    final bool? confirmed = await showDialog<bool>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: const Text('Delete Last Row'),
+        content: Text('Are you sure you want to delete round ${i + 1}?'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(ctx).pop(false),
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () => Navigator.of(ctx).pop(true),
+            child: const Text('Confirm'),
+          ),
+        ],
+      ),
+    );
+
+    if (confirmed == true) {
+      setState(() {
+        model.removeRoundAt(i);
+      });
+    }
+  }
+
+  /// Shows a confirmation dialog before deleting a round.
+  Future<void> confirmNewGame(GolfScoreModel model) async {
+    final bool? confirmed = await showDialog<bool>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: const Text('New Game'),
+        content: const Text(
+          'Are you sure you want to start a new game? All scores will be lost?',
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(ctx).pop(false),
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () => Navigator.of(ctx).pop(true),
+            child: const Text('Confirm'),
+          ),
+        ],
+      ),
+    );
+
+    if (confirmed == true) {
+      setState(() {
+        _clearScores(model);
+      });
+    }
+  }
+
+  void _addPlayer(GolfScoreModel model) {
+    setState(() {
+      model.addPlayer('Player${model.playerNames.length + 1}');
+    });
   }
 
   Widget _buildAddOrRemoveRow(final GolfScoreModel scoreModel) {
@@ -392,62 +376,10 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
     );
   }
 
-  BuildContext? _cellContext;
-
-  /// Shows a confirmation dialog before deleting a round.
-  Future<void> confirmDeleteRound(int i, GolfScoreModel model) async {
-    final bool? confirmed = await showDialog<bool>(
-      context: context,
-      builder: (ctx) => AlertDialog(
-        title: const Text('Delete Last Row'),
-        content: Text('Are you sure you want to delete round ${i + 1}?'),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(ctx).pop(false),
-            child: const Text('Cancel'),
-          ),
-          TextButton(
-            onPressed: () => Navigator.of(ctx).pop(true),
-            child: const Text('Confirm'),
-          ),
-        ],
-      ),
-    );
-
-    if (confirmed == true) {
-      setState(() {
-        model.removeRoundAt(i);
-      });
-    }
-  }
-
-  /// Shows a confirmation dialog before deleting a round.
-  Future<void> confirmNewGame(GolfScoreModel model) async {
-    final bool? confirmed = await showDialog<bool>(
-      context: context,
-      builder: (ctx) => AlertDialog(
-        title: const Text('New Game'),
-        content: const Text(
-          'Are you sure you want to start a new game? All scores will be lost?',
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(ctx).pop(false),
-            child: const Text('Cancel'),
-          ),
-          TextButton(
-            onPressed: () => Navigator.of(ctx).pop(true),
-            child: const Text('Confirm'),
-          ),
-        ],
-      ),
-    );
-
-    if (confirmed == true) {
-      setState(() {
-        _clearScores(model);
-      });
-    }
+  void _clearScores(GolfScoreModel model) {
+    setState(() {
+      model.clearScores();
+    });
   }
 
   Color _getScoreColor(int rank, int numberOfPlayers) {
@@ -458,5 +390,79 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
     } else {
       return Colors.orange.shade300;
     }
+  }
+
+  void _handleKeyEvent(RawKeyEvent event) async {
+    if (_selectedCell == null) {
+      return;
+    }
+
+    if (event is RawKeyDownEvent) {
+      final key = event.logicalKey;
+      if (_keysPressed.contains(key)) {
+        return;
+      }
+      _keysPressed.add(key);
+
+      // Get the model from the future
+      final model = await _scoreModelFuture;
+
+      if (key == LogicalKeyboardKey.backspace) {
+        _handleKeyPress('⇐', model);
+      } else if (key == LogicalKeyboardKey.minus) {
+        _handleKeyPress('−', model);
+      } else if (key.keyLabel.length == 1) {
+        final keyLabel = key.keyLabel;
+        if (RegExp(r'^[0-9]$').hasMatch(keyLabel)) {
+          _handleKeyPress(keyLabel, model);
+        }
+      }
+    } else if (event is RawKeyUpEvent) {
+      _keysPressed.remove(event.logicalKey);
+    }
+  }
+
+  void _handleKeyPress(String key, GolfScoreModel model) {
+    if (_selectedCell == null) {
+      return;
+    }
+
+    final int row = _selectedCell!['row']!;
+    final int col = _selectedCell!['col']!;
+    String currentValue = model.scores[row][col].toString();
+
+    setState(() {
+      if (key == keyBackspace) {
+        if (currentValue.isNotEmpty) {
+          if (currentValue.length == 2 && currentValue.startsWith('-')) {
+            currentValue = '0';
+          } else {
+            currentValue = currentValue.substring(0, currentValue.length - 1);
+          }
+          if (currentValue.isEmpty) {
+            currentValue = '0';
+          }
+        }
+      } else if (key == keyChangeSign) {
+        if (currentValue.startsWith('-')) {
+          currentValue = currentValue.substring(1);
+        } else if (currentValue == '0') {
+          currentValue = '0'; // Start a negative number when at 0
+        } else {
+          currentValue = '-$currentValue';
+        }
+      } else {
+        if (currentValue == '0' || currentValue == '-') {
+          currentValue = currentValue == '-' ? '-$key' : key;
+        } else {
+          currentValue += key;
+        }
+      }
+      // Only update the score if we have a valid number or are in the middle of typing a negative number
+      if (currentValue != '-') {
+        final int? parsedValue = int.tryParse(currentValue);
+        model.updateScore(row, col, parsedValue ?? 0);
+      }
+    });
   }
 }

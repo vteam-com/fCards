@@ -21,8 +21,10 @@ class WiggleWidget extends StatefulWidget {
 class WiggleWidgetState extends State<WiggleWidget>
     with SingleTickerProviderStateMixin {
   AnimationController? _controller;
-  Animation<double>? _wiggleAnimation;
+
   final Random _random = Random();
+
+  Animation<double>? _wiggleAnimation;
 
   @override
   void initState() {

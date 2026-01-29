@@ -13,20 +13,20 @@ class RoomsWidget extends StatelessWidget {
     required this.onRemoveRoom,
   });
 
-  /// The ID of the currently selected room.
-  final String roomId;
-
-  /// The list of room names to display.
-  final List<String> rooms;
+  /// Optional callback function called when a room is removed.
+  /// Takes the room name to remove as a parameter.
+  /// If null, room removal functionality will be disabled.
+  final Function(String)? onRemoveRoom;
 
   /// Callback function called when a room is selected.
   /// Takes the selected room's name as a parameter.
   final Function(String) onSelected;
 
-  /// Optional callback function called when a room is removed.
-  /// Takes the room name to remove as a parameter.
-  /// If null, room removal functionality will be disabled.
-  final Function(String)? onRemoveRoom;
+  /// The ID of the currently selected room.
+  final String roomId;
+
+  /// The list of room names to display.
+  final List<String> rooms;
 
   @override
   Widget build(BuildContext context) {

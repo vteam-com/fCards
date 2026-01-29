@@ -15,10 +15,10 @@ class PlayerZoneCtaWidget extends StatelessWidget {
   });
 
   ///
-  final PlayerModel player;
+  final GameModel gameModel;
 
   ///
-  final GameModel gameModel;
+  final PlayerModel player;
 
   @override
   Widget build(BuildContext context) {
@@ -64,86 +64,11 @@ class PlayerZoneCtaWidget extends StatelessWidget {
   }
 
   ///
-  /// [DECK]   [DISCARDED]
-  ///
-  Widget ctaSwapTopDeckCardWithAnyCardsInHandOrDiscard(
-    final BuildContext context,
-  ) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        CardPileWidget(
-          cards: gameModel.deck.cardsDeckPile,
-          scale: 1.0,
-          wiggleTopCard: false,
-          cardsAreHidden: true,
-          revealTopDeckCard: true,
-          isDragSource: true,
-          isDropTarget: false,
-          onDragDropped: (cardSource, cardTarget) =>
-              gameModel.onDropCardOnCard(context, cardSource, cardTarget),
-        ),
-        buildMiniInstructions(true, 'Discard →\nor\n↓ swap', TextAlign.center),
-        CardPileWidget(
-          cards: gameModel.deck.cardsDeckDiscarded,
-          scale: 0.75,
-          onDraw: () {
-            // Player has discard the top deck revealed card
-            // they now have to turn over one of their hidden card
-            gameModel.deck.cardsDeckDiscarded.add(
-              gameModel.deck.cardsDeckPile.removeLast(),
-            );
-            gameModel.gameState = GameStates.revealOneHiddenCard;
-          },
-          cardsAreHidden: false,
-          wiggleTopCard: true,
-          revealTopDeckCard: true,
-          isDragSource: false,
-          isDropTarget: true,
-          onDragDropped: (cardSource, cardTarget) =>
-              gameModel.onDropCardOnCard(context, cardSource, cardTarget),
-        ),
-      ],
-    );
-  }
-
-  ///
-  /// [DECK] (instructions)[DISCARD]<<Active
-  ///
-  Widget ctaSwapDiscardedCardWithAnyCardsInHand(BuildContext context) {
-    gameModel.deck.cardsDeckDiscarded.last.isSelectable = false;
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        // left Pile
-        CardPileWidget(
-          cards: gameModel.deck.cardsDeckPile,
-          scale: 0.80,
-          wiggleTopCard: false,
-          cardsAreHidden: true,
-          revealTopDeckCard: false,
-          isDragSource: false,
-          isDropTarget: false,
-          onDragDropped: null,
-        ),
-
-        // Let them know what to do
-        buildMiniInstructions(true, 'swap this →\n\nwith ↓', TextAlign.center),
-
-        // Right Discarded pile
-        CardPileWidget(
-          cards: gameModel.deck.cardsDeckDiscarded,
-          scale: 1.0,
-          wiggleTopCard: false,
-          cardsAreHidden: false,
-          revealTopDeckCard: true,
-          isDragSource: true,
-          isDropTarget: false,
-          onDragDropped: null,
-          onDraw: () =>
-              gameModel.selectTopCardOfDeck(context, fromDiscardPile: true),
-        ),
-      ],
+  Widget buildWaitingForTurnContent() {
+    return buildMiniInstructions(
+      player.isActivePlayer,
+      player.areAllCardsRevealed() ? 'You are done.' : 'Wait for your turn :)',
+      TextAlign.center,
     );
   }
 
@@ -202,11 +127,86 @@ class PlayerZoneCtaWidget extends StatelessWidget {
   }
 
   ///
-  Widget buildWaitingForTurnContent() {
-    return buildMiniInstructions(
-      player.isActivePlayer,
-      player.areAllCardsRevealed() ? 'You are done.' : 'Wait for your turn :)',
-      TextAlign.center,
+  /// [DECK] (instructions)[DISCARD]<<Active
+  ///
+  Widget ctaSwapDiscardedCardWithAnyCardsInHand(BuildContext context) {
+    gameModel.deck.cardsDeckDiscarded.last.isSelectable = false;
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        // left Pile
+        CardPileWidget(
+          cards: gameModel.deck.cardsDeckPile,
+          scale: 0.80,
+          wiggleTopCard: false,
+          cardsAreHidden: true,
+          revealTopDeckCard: false,
+          isDragSource: false,
+          isDropTarget: false,
+          onDragDropped: null,
+        ),
+
+        // Let them know what to do
+        buildMiniInstructions(true, 'swap this →\n\nwith ↓', TextAlign.center),
+
+        // Right Discarded pile
+        CardPileWidget(
+          cards: gameModel.deck.cardsDeckDiscarded,
+          scale: 1.0,
+          wiggleTopCard: false,
+          cardsAreHidden: false,
+          revealTopDeckCard: true,
+          isDragSource: true,
+          isDropTarget: false,
+          onDragDropped: null,
+          onDraw: () =>
+              gameModel.selectTopCardOfDeck(context, fromDiscardPile: true),
+        ),
+      ],
+    );
+  }
+
+  ///
+  /// [DECK]   [DISCARDED]
+  ///
+  Widget ctaSwapTopDeckCardWithAnyCardsInHandOrDiscard(
+    final BuildContext context,
+  ) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        CardPileWidget(
+          cards: gameModel.deck.cardsDeckPile,
+          scale: 1.0,
+          wiggleTopCard: false,
+          cardsAreHidden: true,
+          revealTopDeckCard: true,
+          isDragSource: true,
+          isDropTarget: false,
+          onDragDropped: (cardSource, cardTarget) =>
+              gameModel.onDropCardOnCard(context, cardSource, cardTarget),
+        ),
+        buildMiniInstructions(true, 'Discard →\nor\n↓ swap', TextAlign.center),
+        CardPileWidget(
+          cards: gameModel.deck.cardsDeckDiscarded,
+          scale: 0.75,
+          onDraw: () {
+            // Player has discard the top deck revealed card
+            // they now have to turn over one of their hidden card
+            gameModel.deck.cardsDeckDiscarded.add(
+              gameModel.deck.cardsDeckPile.removeLast(),
+            );
+            gameModel.gameState = GameStates.revealOneHiddenCard;
+          },
+          cardsAreHidden: false,
+          wiggleTopCard: true,
+          revealTopDeckCard: true,
+          isDragSource: false,
+          isDropTarget: true,
+          onDragDropped: (cardSource, cardTarget) =>
+              gameModel.onDropCardOnCard(context, cardSource, cardTarget),
+        ),
+      ],
     );
   }
 }

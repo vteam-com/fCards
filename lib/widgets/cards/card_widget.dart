@@ -1,24 +1,10 @@
+import 'package:cards/models/card_dimensions.dart';
 import 'package:cards/models/card_model.dart';
 
 import 'package:cards/widgets/cards/card_face_french_widget.dart';
 import 'package:cards/widgets/cards/card_face_skyjo_widget.dart';
 import 'package:cards/widgets/wiggle_widget.dart';
 import 'package:flutter/material.dart';
-
-///
-class CardDimensions {
-  ///
-  static const double width = 100.0;
-
-  ///
-  static const double height = 150.0;
-
-  ///
-  static const double margin = 4.0;
-
-  ///
-  static const double borderRadius = 4.0;
-}
 
 /// A widget that displays a playing card or a placeholder.
 ///

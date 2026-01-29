@@ -18,26 +18,26 @@ class PlayerHeader extends StatefulWidget {
     required this.totalScore,
   });
 
-  /// The name of the player.
-  final String playerName;
+  /// The total number of players.
+  final int numberOfPlayers;
 
   /// A callback that is called when the player's name is changed.
   final void Function(String) onNameChanged;
 
-  /// A callback that is called when the player is removed.
-  final void Function() onPlayerRemoved;
-
   /// A callback that is called when a new player should be added.
   final void Function()? onPlayerAdded;
+
+  /// A callback that is called when the player is removed.
+  final void Function() onPlayerRemoved;
 
   /// The index of the player.
   final int? playerIndex;
 
+  /// The name of the player.
+  final String playerName;
+
   /// The rank of the player.
   final int rank;
-
-  /// The total number of players.
-  final int numberOfPlayers;
 
   /// The total score of the player.
   final int totalScore;
@@ -47,14 +47,76 @@ class PlayerHeader extends StatefulWidget {
 }
 
 class _PlayerHeaderState extends State<PlayerHeader> {
-  Color _getScoreColor(int rank, int numberOfPlayers) {
-    if (rank == 1) {
-      return Colors.green.shade300;
-    } else if (rank == numberOfPlayers) {
-      return Colors.red.shade300;
-    } else {
-      return Colors.orange.shade300;
-    }
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: _getScoreColor(
+          widget.rank,
+          widget.numberOfPlayers,
+        ).withAlpha(150),
+      ),
+      onPressed: _showEditPlayerDialog,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        spacing: 8,
+        children: [
+          //
+          // Running place King,2,3,4,Last
+          //
+          SizedBox(
+            height: 24,
+            child: Center(
+              child: _buildWiningPosition(widget.rank, widget.numberOfPlayers),
+            ),
+          ),
+
+          //
+          // Name of the Player
+          //
+          Text(
+            widget.playerName,
+            textAlign: TextAlign.center,
+            overflow: TextOverflow.ellipsis,
+          ),
+
+          //
+          // Score
+          //
+          SizedBox(
+            height: 30,
+            child: FittedBox(
+              child: Text(
+                widget.totalScore.toString(),
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 30,
+                  // Make the score color brighter by blending with white
+                  color: Color.alphaBlend(
+                    Colors.white.withAlpha(200),
+                    _getScoreColor(widget.rank, widget.numberOfPlayers),
+                  ),
+                  shadows: <Shadow>[
+                    const Shadow(
+                      color: Colors.white54,
+                      offset: Offset(-1, -1),
+                      blurRadius: 2,
+                    ),
+                    const Shadow(
+                      color: Colors.black54,
+                      offset: Offset(1, 1),
+                      blurRadius: 2,
+                    ),
+                  ],
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
   Widget _buildWiningPosition(int rank, int numberOfPlayers) {
@@ -76,6 +138,16 @@ class _PlayerHeaderState extends State<PlayerHeader> {
           style: TextStyle(fontWeight: FontWeight.w900, fontSize: 14),
         ),
       );
+    }
+  }
+
+  Color _getScoreColor(int rank, int numberOfPlayers) {
+    if (rank == 1) {
+      return Colors.green.shade300;
+    } else if (rank == numberOfPlayers) {
+      return Colors.red.shade300;
+    } else {
+      return Colors.orange.shade300;
     }
   }
 
@@ -206,78 +278,6 @@ class _PlayerHeaderState extends State<PlayerHeader> {
           ],
         );
       },
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        backgroundColor: _getScoreColor(
-          widget.rank,
-          widget.numberOfPlayers,
-        ).withAlpha(150),
-      ),
-      onPressed: _showEditPlayerDialog,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        spacing: 8,
-        children: [
-          //
-          // Running place King,2,3,4,Last
-          //
-          SizedBox(
-            height: 24,
-            child: Center(
-              child: _buildWiningPosition(widget.rank, widget.numberOfPlayers),
-            ),
-          ),
-
-          //
-          // Name of the Player
-          //
-          Text(
-            widget.playerName,
-            textAlign: TextAlign.center,
-            overflow: TextOverflow.ellipsis,
-          ),
-
-          //
-          // Score
-          //
-          SizedBox(
-            height: 30,
-            child: FittedBox(
-              child: Text(
-                widget.totalScore.toString(),
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 30,
-                  // Make the score color brighter by blending with white
-                  color: Color.alphaBlend(
-                    Colors.white.withAlpha(200),
-                    _getScoreColor(widget.rank, widget.numberOfPlayers),
-                  ),
-                  shadows: <Shadow>[
-                    const Shadow(
-                      color: Colors.white54,
-                      offset: Offset(-1, -1),
-                      blurRadius: 2,
-                    ),
-                    const Shadow(
-                      color: Colors.black54,
-                      offset: Offset(1, 1),
-                      blurRadius: 2,
-                    ),
-                  ],
-                ),
-                textAlign: TextAlign.center,
-              ),
-            ),
-          ),
-        ],
-      ),
     );
   }
 }

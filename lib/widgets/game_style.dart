@@ -6,6 +6,7 @@
 library;
 
 import 'package:cards/misc.dart';
+import 'package:cards/models/card_dimensions.dart';
 import 'package:cards/models/card_model_french.dart';
 import 'package:cards/models/game_model.dart';
 import 'package:cards/models/game_styles.dart';
@@ -44,37 +45,6 @@ class GameStyle extends StatelessWidget {
         ),
         showAllCards(),
       ],
-    );
-  }
-
-  /// Displays all cards based on the selected game style.
-  ///
-  /// Returns a [Widget] containing a wrapped layout of all available cards
-  /// for the current game style.
-  Widget showAllCards() {
-    List<CardModel> cards = [];
-    switch (style) {
-      case GameStyles.frenchCards9:
-        cards = getAllFrenchCards();
-      case GameStyles.skyJo:
-        cards = getAllSkyJoCards();
-      case GameStyles.miniPut:
-        cards = getAllFrenchCards(); // Similar to French Cards for simplicity
-      case GameStyles.custom:
-        cards = getAllFrenchCards(); // Similar to French Cards for simplicity
-    }
-    return Wrap(
-      spacing: 8.0,
-      runSpacing: 8.0,
-      children: cards
-          .map(
-            (card) => SizedBox(
-              width: CardDimensions.width / 3,
-              height: CardDimensions.height / 3,
-              child: CardWidget(card: card),
-            ),
-          )
-          .toList(),
     );
   }
 
@@ -123,6 +93,37 @@ class GameStyle extends StatelessWidget {
       );
     }
     return cards;
+  }
+
+  /// Displays all cards based on the selected game style.
+  ///
+  /// Returns a [Widget] containing a wrapped layout of all available cards
+  /// for the current game style.
+  Widget showAllCards() {
+    List<CardModel> cards = [];
+    switch (style) {
+      case GameStyles.frenchCards9:
+        cards = getAllFrenchCards();
+      case GameStyles.skyJo:
+        cards = getAllSkyJoCards();
+      case GameStyles.miniPut:
+        cards = getAllFrenchCards(); // Similar to French Cards for simplicity
+      case GameStyles.custom:
+        cards = getAllFrenchCards(); // Similar to French Cards for simplicity
+    }
+    return Wrap(
+      spacing: 8.0,
+      runSpacing: 8.0,
+      children: cards
+          .map(
+            (card) => SizedBox(
+              width: CardDimensions.width / 3,
+              height: CardDimensions.height / 3,
+              child: CardWidget(card: card),
+            ),
+          )
+          .toList(),
+    );
   }
 }
 

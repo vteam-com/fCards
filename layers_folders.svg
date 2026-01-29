@@ -1,0 +1,1014 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="748.0" height="2228.0" viewBox="0 0 748.0 2228.0" xmlns="http://www.w3.org/2000/svg" font-family="Arial, Helvetica, sans-serif">
+<defs>
+  <filter id="hierarchicalShadow" x="-20%" y="-20%" width="140%" height="140%">
+    <feGaussianBlur in="SourceAlpha" stdDeviation="5"/>
+    <feOffset dx="2" dy="2" result="offsetblur"/>
+    <feFlood flood-color="rgba(0,0,0,0.1)" flood-opacity="0.8"/>
+    <feComposite in2="offsetblur" operator="in"/>
+    <feMerge>
+      <feMergeNode/>
+      <feMergeNode in="SourceGraphic"/>
+    </feMerge>
+  </filter>
+  <filter id="outlineWhite">
+    <feMorphology in="SourceAlpha" result="DILATED" operator="dilate" radius="2"/>
+    <feFlood flood-color="white" flood-opacity="0.7" result="WHITE"/>
+    <feComposite in="WHITE" in2="DILATED" operator="in" result="OUTLINE"/>
+    <feMerge>
+      <feMergeNode in="OUTLINE"/>
+      <feMergeNode in="SourceGraphic"/>
+    </feMerge>
+  </filter>
+  <linearGradient id="hierarchicalEdgeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" stop-color="#6c757d" stop-opacity="0.4"/>
+    <stop offset="100%" stop-color="#495057" stop-opacity="0.4"/>
+  </linearGradient>
+  <linearGradient id="edgeGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+    <stop offset="0%" stop-color="green" stop-opacity="0.3"/>
+    <stop offset="100%" stop-color="blue" stop-opacity="0.3"/>
+  </linearGradient>
+</defs>
+<style>
+  .hierarchicalBackground { fill: rgba(52, 58, 64, 0.08); stroke: none; rx: 12; ry: 12; filter: url(#hierarchicalShadow); }
+  .hierarchicalBackground:hover { fill: rgba(52, 58, 64, 0.12); }
+  .hierarchicalTitle { fill: #495057; font-size: 16px; font-weight: bold; text-anchor: middle; filter: url(#outlineWhite); }
+  .hierarchicalMetric { fill: #6c757d; font-size: 12px; font-weight: normal; text-anchor: middle; }
+  .hierarchicalItem { fill: #212529; font-size: 12px; font-weight: normal; cursor: pointer; filter: url(#outlineWhite); }
+  .hierarchicalItem:hover { fill: #007bff; font-weight: bold; }
+  .hierarchicalEdge { fill: none; stroke: url(#hierarchicalEdgeGradient); stroke-width: 1; }
+  .hierarchicalEdge:hover { stroke: #007bff; stroke-width: 4; opacity: 1.0; }
+  .hierarchicalBadge { font-size: 8px; font-weight: bold; fill: white; text-anchor: middle; dominant-baseline: middle; }
+  .hierarchicalBadge { cursor: help; }
+  .hierarchicalBadge:hover { opacity: 0.8; }
+  .dependencyEdge { fill: none; stroke: url(#edgeGradient); opacity: 0.9; }
+  .dependencyEdge:hover { stroke: purple; opacity: 1; }
+  .fileEdge { stroke-width: 0.5; }
+  .fileEdge:hover { stroke-width: 1; }
+  .fileNode { fill: #ffffff; stroke: #d0d7de; stroke-width: 1; }
+  g.folderTitleLayer { pointer-events: none; isolation: isolate; }
+</style>
+<rect width="100%" height="100%" fill="#f8f9fa"/>
+<path d="M 75.0 241.0 C 84.0 241.0, 67.0 241.0, 76.0 241.0" class="hierarchicalEdge"/>
+<title>. → utils (parent-child)</title>
+<path d="M 75.0 545.0 C 84.0 545.0, 67.0 545.0, 76.0 545.0" class="hierarchicalEdge"/>
+<title>. → models (parent-child)</title>
+<path d="M 75.0 1017.0 C 84.0 1017.0, 67.0 1017.0, 76.0 1017.0" class="hierarchicalEdge"/>
+<title>. → screens (parent-child)</title>
+<path d="M 75.0 1632.0 C 84.0 1632.0, 67.0 1632.0, 76.0 1632.0" class="hierarchicalEdge"/>
+<title>. → widgets (parent-child)</title>
+<path d="M 75.0 2076.0 C 84.0 2076.0, 67.0 2076.0, 76.0 2076.0" class="hierarchicalEdge"/>
+<title>. → theme (parent-child)</title>
+<path d="M 109.0 981.0 C 118.0 981.0, 101.0 981.0, 110.0 981.0" class="hierarchicalEdge"/>
+<title>screens → game (parent-child)</title>
+<path d="M 109.0 1156.0 C 118.0 1156.0, 101.0 1156.0, 110.0 1156.0" class="hierarchicalEdge"/>
+<title>screens → keepscore (parent-child)</title>
+<path d="M 109.0 1677.0 C 118.0 1677.0, 101.0 1677.0, 110.0 1677.0" class="hierarchicalEdge"/>
+<title>widgets → player (parent-child)</title>
+<path d="M 109.0 1869.0 C 118.0 1869.0, 101.0 1869.0, 110.0 1869.0" class="hierarchicalEdge"/>
+<title>widgets → cards (parent-child)</title>
+<g class="folderLayer">
+<rect x="50.0" y="50.0" width="360.0" height="2128.0" rx="12" ry="12" class="hierarchicalBackground"/>
+</g>
+<g class="folderLayer">
+<rect x="84.0" y="168.0" width="260.0" height="146.0" rx="12" ry="12" class="hierarchicalBackground"/>
+</g>
+<g class="folderLayer">
+<rect x="84.0" y="332.0" width="260.0" height="426.0" rx="12" ry="12" class="hierarchicalBackground"/>
+</g>
+<g class="folderLayer">
+<rect x="84.0" y="776.0" width="310.0" height="482.0" rx="12" ry="12" class="hierarchicalBackground"/>
+</g>
+<g class="folderLayer">
+<rect x="118.0" y="894.0" width="260.0" height="174.0" rx="12" ry="12" class="hierarchicalBackground"/>
+</g>
+<g class="folderLayer">
+<rect x="118.0" y="1086.0" width="260.0" height="140.0" rx="12" ry="12" class="hierarchicalBackground"/>
+</g>
+<g class="folderLayer">
+<rect x="84.0" y="1276.0" width="310.0" height="712.0" rx="12" ry="12" class="hierarchicalBackground"/>
+</g>
+<g class="folderLayer">
+<rect x="118.0" y="1590.0" width="260.0" height="174.0" rx="12" ry="12" class="hierarchicalBackground"/>
+</g>
+<g class="folderLayer">
+<rect x="118.0" y="1782.0" width="260.0" height="174.0" rx="12" ry="12" class="hierarchicalBackground"/>
+</g>
+<g class="folderLayer">
+<rect x="84.0" y="2006.0" width="260.0" height="140.0" rx="12" ry="12" class="hierarchicalBackground"/>
+</g>
+<path d="M 84.0 354.0 H 28.0 Q 18.0 354.0 18.0 344.0 V 64.0 Q 18.0 54.0 28.0 54.0 H 50.0" class="dependencyEdge"/>
+<title>models → . (folder dependency)</title>
+<path d="M 118.0 916.0 H 60.0 Q 50.0 916.0 50.0 906.0 V 346.0 Q 50.0 336.0 60.0 336.0 H 84.0" class="dependencyEdge"/>
+<title>screens/game → models (folder dependency)</title>
+<path d="M 118.0 916.0 H 58.0 Q 48.0 916.0 48.0 926.0 V 1270.0 Q 48.0 1280.0 58.0 1280.0 H 84.0" class="dependencyEdge"/>
+<title>screens/game → widgets (folder dependency)</title>
+<path d="M 118.0 916.0 H 56.0 Q 46.0 916.0 46.0 906.0 V 790.0 Q 46.0 780.0 56.0 780.0 H 84.0" class="dependencyEdge"/>
+<title>screens/game → screens (folder dependency)</title>
+<path d="M 118.0 916.0 H 20.0 Q 10.0 916.0 10.0 906.0 V 64.0 Q 10.0 54.0 20.0 54.0 H 50.0" class="dependencyEdge"/>
+<title>screens/game → . (folder dependency)</title>
+<path d="M 118.0 916.0 H 86.0 Q 76.0 916.0 76.0 926.0 V 1584.0 Q 76.0 1594.0 86.0 1594.0 H 118.0" class="dependencyEdge"/>
+<title>screens/game → widgets/player (folder dependency)</title>
+<path d="M 118.0 916.0 H 50.0 Q 40.0 916.0 40.0 906.0 V 182.0 Q 40.0 172.0 50.0 172.0 H 84.0" class="dependencyEdge"/>
+<title>screens/game → utils (folder dependency)</title>
+<path d="M 118.0 1108.0 H 48.0 Q 38.0 1108.0 38.0 1098.0 V 346.0 Q 38.0 336.0 48.0 336.0 H 84.0" class="dependencyEdge"/>
+<title>screens/keepscore → models (folder dependency)</title>
+<path d="M 118.0 1108.0 H 46.0 Q 36.0 1108.0 36.0 1098.0 V 790.0 Q 36.0 780.0 46.0 780.0 H 84.0" class="dependencyEdge"/>
+<title>screens/keepscore → screens (folder dependency)</title>
+<path d="M 118.0 1108.0 H 44.0 Q 34.0 1108.0 34.0 1118.0 V 1270.0 Q 34.0 1280.0 44.0 1280.0 H 84.0" class="dependencyEdge"/>
+<title>screens/keepscore → widgets (folder dependency)</title>
+<path d="M 50.0 72.0 H 18.0 Q 8.0 72.0 8.0 82.0 V 326.0 Q 8.0 336.0 18.0 336.0 H 84.0" class="dependencyEdge"/>
+<title>. → models (folder dependency)</title>
+<path d="M 50.0 72.0 H 18.0 Q 8.0 72.0 8.0 82.0 V 888.0 Q 8.0 898.0 18.0 898.0 H 118.0" class="dependencyEdge"/>
+<title>. → screens/game (folder dependency)</title>
+<path d="M 50.0 72.0 H 18.0 Q 8.0 72.0 8.0 82.0 V 1080.0 Q 8.0 1090.0 18.0 1090.0 H 118.0" class="dependencyEdge"/>
+<title>. → screens/keepscore (folder dependency)</title>
+<path d="M 50.0 72.0 H 18.0 Q 8.0 72.0 8.0 82.0 V 770.0 Q 8.0 780.0 18.0 780.0 H 84.0" class="dependencyEdge"/>
+<title>. → screens (folder dependency)</title>
+<path d="M 50.0 72.0 H 18.0 Q 8.0 72.0 8.0 82.0 V 2000.0 Q 8.0 2010.0 18.0 2010.0 H 84.0" class="dependencyEdge"/>
+<title>. → theme (folder dependency)</title>
+<path d="M 84.0 1298.0 H 18.0 Q 8.0 1298.0 8.0 1288.0 V 64.0 Q 8.0 54.0 18.0 54.0 H 50.0" class="dependencyEdge"/>
+<title>widgets → . (folder dependency)</title>
+<path d="M 118.0 1804.0 H 30.0 Q 20.0 1804.0 20.0 1794.0 V 346.0 Q 20.0 336.0 30.0 336.0 H 84.0" class="dependencyEdge"/>
+<title>widgets/cards → models (folder dependency)</title>
+<path d="M 118.0 1804.0 H 18.0 Q 8.0 1804.0 8.0 1794.0 V 64.0 Q 8.0 54.0 18.0 54.0 H 50.0" class="dependencyEdge"/>
+<title>widgets/cards → . (folder dependency)</title>
+<path d="M 118.0 1804.0 H 26.0 Q 16.0 1804.0 16.0 1794.0 V 1290.0 Q 16.0 1280.0 26.0 1280.0 H 84.0" class="dependencyEdge"/>
+<title>widgets/cards → widgets (folder dependency)</title>
+<path d="M 84.0 1298.0 H 24.0 Q 14.0 1298.0 14.0 1288.0 V 346.0 Q 14.0 336.0 24.0 336.0 H 84.0" class="dependencyEdge"/>
+<title>widgets → models (folder dependency)</title>
+<path d="M 84.0 1298.0 H 22.0 Q 12.0 1298.0 12.0 1308.0 V 1776.0 Q 12.0 1786.0 22.0 1786.0 H 118.0" class="dependencyEdge"/>
+<title>widgets → widgets/cards (folder dependency)</title>
+<path d="M 118.0 1612.0 H 20.0 Q 10.0 1612.0 10.0 1602.0 V 346.0 Q 10.0 336.0 20.0 336.0 H 84.0" class="dependencyEdge"/>
+<title>widgets/player → models (folder dependency)</title>
+<path d="M 118.0 1612.0 H 52.0 Q 42.0 1612.0 42.0 1622.0 V 1776.0 Q 42.0 1786.0 52.0 1786.0 H 118.0" class="dependencyEdge"/>
+<title>widgets/player → widgets/cards (folder dependency)</title>
+<path d="M 118.0 1612.0 H 18.0 Q 8.0 1612.0 8.0 1602.0 V 64.0 Q 8.0 54.0 18.0 54.0 H 50.0" class="dependencyEdge"/>
+<title>widgets/player → . (folder dependency)</title>
+<path d="M 118.0 1612.0 H 18.0 Q 8.0 1612.0 8.0 1602.0 V 1290.0 Q 8.0 1280.0 18.0 1280.0 H 84.0" class="dependencyEdge"/>
+<title>widgets/player → widgets (folder dependency)</title>
+<g class="hierarchicalBadge">
+<circle cx="50.0" cy="54.0" r="8.0" fill="#007bff" opacity="0.85"/>
+<text x="50.0" y="56.0">11</text>
+<title>cards
+game
+models
+player
+widgets</title>
+</g>
+<g class="hierarchicalBadge">
+<circle cx="50.0" cy="72.0" r="8.0" fill="#28a745" opacity="0.85"/>
+<text x="50.0" y="74.0">7</text>
+<title>game
+keepscore
+models
+screens
+theme</title>
+</g>
+<g class="hierarchicalBadge">
+<circle cx="84.0" cy="172.0" r="8.0" fill="#007bff" opacity="0.85"/>
+<text x="84.0" y="174.0">1</text>
+<title>game</title>
+</g>
+<g class="hierarchicalBadge">
+<circle cx="84.0" cy="336.0" r="8.0" fill="#007bff" opacity="0.85"/>
+<text x="84.0" y="338.0">29</text>
+<title>.
+cards
+game
+keepscore
+player
+widgets</title>
+</g>
+<g class="hierarchicalBadge">
+<circle cx="84.0" cy="354.0" r="8.0" fill="#28a745" opacity="0.85"/>
+<text x="84.0" y="356.0">2</text>
+<title>.</title>
+</g>
+<g class="hierarchicalBadge">
+<circle cx="84.0" cy="780.0" r="8.0" fill="#007bff" opacity="0.85"/>
+<text x="84.0" y="782.0">5</text>
+<title>.
+game
+keepscore</title>
+</g>
+<g class="hierarchicalBadge">
+<circle cx="118.0" cy="898.0" r="8.0" fill="#007bff" opacity="0.85"/>
+<text x="118.0" y="900.0">2</text>
+<title>.</title>
+</g>
+<g class="hierarchicalBadge">
+<circle cx="118.0" cy="916.0" r="8.0" fill="#28a745" opacity="0.85"/>
+<text x="118.0" y="918.0">26</text>
+<title>.
+models
+player
+screens
+utils
+widgets</title>
+</g>
+<g class="hierarchicalBadge">
+<circle cx="118.0" cy="1090.0" r="8.0" fill="#007bff" opacity="0.85"/>
+<text x="118.0" y="1092.0">1</text>
+<title>.</title>
+</g>
+<g class="hierarchicalBadge">
+<circle cx="118.0" cy="1108.0" r="8.0" fill="#28a745" opacity="0.85"/>
+<text x="118.0" y="1110.0">5</text>
+<title>models
+screens
+widgets</title>
+</g>
+<g class="hierarchicalBadge">
+<circle cx="84.0" cy="1280.0" r="8.0" fill="#007bff" opacity="0.85"/>
+<text x="84.0" y="1282.0">13</text>
+<title>cards
+game
+keepscore
+player</title>
+</g>
+<g class="hierarchicalBadge">
+<circle cx="84.0" cy="1298.0" r="8.0" fill="#28a745" opacity="0.85"/>
+<text x="84.0" y="1300.0">7</text>
+<title>.
+cards
+models</title>
+</g>
+<g class="hierarchicalBadge">
+<circle cx="118.0" cy="1594.0" r="8.0" fill="#007bff" opacity="0.85"/>
+<text x="118.0" y="1596.0">1</text>
+<title>game</title>
+</g>
+<g class="hierarchicalBadge">
+<circle cx="118.0" cy="1612.0" r="8.0" fill="#28a745" opacity="0.85"/>
+<text x="118.0" y="1614.0">11</text>
+<title>.
+cards
+models
+widgets</title>
+</g>
+<g class="hierarchicalBadge">
+<circle cx="118.0" cy="1786.0" r="8.0" fill="#007bff" opacity="0.85"/>
+<text x="118.0" y="1788.0">3</text>
+<title>player
+widgets</title>
+</g>
+<g class="hierarchicalBadge">
+<circle cx="118.0" cy="1804.0" r="8.0" fill="#28a745" opacity="0.85"/>
+<text x="118.0" y="1806.0">9</text>
+<title>.
+models
+widgets</title>
+</g>
+<g class="hierarchicalBadge">
+<circle cx="84.0" cy="2010.0" r="8.0" fill="#007bff" opacity="0.85"/>
+<text x="84.0" y="2012.0">1</text>
+<title>.</title>
+</g>
+<rect x="92.0" y="206.0" width="244.0" height="28.0" rx="5" ry="5" class="fileNode"/>
+<rect x="92.0" y="234.0" width="244.0" height="28.0" rx="5" ry="5" class="fileNode"/>
+<rect x="92.0" y="262.0" width="244.0" height="28.0" rx="5" ry="5" class="fileNode"/>
+<rect x="92.0" y="370.0" width="244.0" height="28.0" rx="5" ry="5" class="fileNode"/>
+<rect x="92.0" y="398.0" width="244.0" height="28.0" rx="5" ry="5" class="fileNode"/>
+<rect x="92.0" y="426.0" width="244.0" height="28.0" rx="5" ry="5" class="fileNode"/>
+<rect x="92.0" y="454.0" width="244.0" height="28.0" rx="5" ry="5" class="fileNode"/>
+<rect x="92.0" y="482.0" width="244.0" height="28.0" rx="5" ry="5" class="fileNode"/>
+<rect x="92.0" y="510.0" width="244.0" height="28.0" rx="5" ry="5" class="fileNode"/>
+<rect x="92.0" y="538.0" width="244.0" height="28.0" rx="5" ry="5" class="fileNode"/>
+<rect x="92.0" y="566.0" width="244.0" height="28.0" rx="5" ry="5" class="fileNode"/>
+<rect x="92.0" y="594.0" width="244.0" height="28.0" rx="5" ry="5" class="fileNode"/>
+<rect x="92.0" y="622.0" width="244.0" height="28.0" rx="5" ry="5" class="fileNode"/>
+<rect x="92.0" y="650.0" width="244.0" height="28.0" rx="5" ry="5" class="fileNode"/>
+<rect x="92.0" y="678.0" width="244.0" height="28.0" rx="5" ry="5" class="fileNode"/>
+<rect x="92.0" y="706.0" width="244.0" height="28.0" rx="5" ry="5" class="fileNode"/>
+<rect x="126.0" y="932.0" width="244.0" height="28.0" rx="5" ry="5" class="fileNode"/>
+<rect x="126.0" y="960.0" width="244.0" height="28.0" rx="5" ry="5" class="fileNode"/>
+<rect x="126.0" y="988.0" width="244.0" height="28.0" rx="5" ry="5" class="fileNode"/>
+<rect x="126.0" y="1016.0" width="244.0" height="28.0" rx="5" ry="5" class="fileNode"/>
+<rect x="126.0" y="1124.0" width="244.0" height="28.0" rx="5" ry="5" class="fileNode"/>
+<rect x="92.0" y="814.0" width="294.0" height="28.0" rx="5" ry="5" class="fileNode"/>
+<rect x="92.0" y="842.0" width="294.0" height="28.0" rx="5" ry="5" class="fileNode"/>
+<rect x="126.0" y="1628.0" width="244.0" height="28.0" rx="5" ry="5" class="fileNode"/>
+<rect x="126.0" y="1656.0" width="244.0" height="28.0" rx="5" ry="5" class="fileNode"/>
+<rect x="126.0" y="1684.0" width="244.0" height="28.0" rx="5" ry="5" class="fileNode"/>
+<rect x="126.0" y="1712.0" width="244.0" height="28.0" rx="5" ry="5" class="fileNode"/>
+<rect x="126.0" y="1820.0" width="244.0" height="28.0" rx="5" ry="5" class="fileNode"/>
+<rect x="126.0" y="1848.0" width="244.0" height="28.0" rx="5" ry="5" class="fileNode"/>
+<rect x="126.0" y="1876.0" width="244.0" height="28.0" rx="5" ry="5" class="fileNode"/>
+<rect x="126.0" y="1904.0" width="244.0" height="28.0" rx="5" ry="5" class="fileNode"/>
+<rect x="92.0" y="1314.0" width="294.0" height="28.0" rx="5" ry="5" class="fileNode"/>
+<rect x="92.0" y="1342.0" width="294.0" height="28.0" rx="5" ry="5" class="fileNode"/>
+<rect x="92.0" y="1370.0" width="294.0" height="28.0" rx="5" ry="5" class="fileNode"/>
+<rect x="92.0" y="1398.0" width="294.0" height="28.0" rx="5" ry="5" class="fileNode"/>
+<rect x="92.0" y="1426.0" width="294.0" height="28.0" rx="5" ry="5" class="fileNode"/>
+<rect x="92.0" y="1454.0" width="294.0" height="28.0" rx="5" ry="5" class="fileNode"/>
+<rect x="92.0" y="1482.0" width="294.0" height="28.0" rx="5" ry="5" class="fileNode"/>
+<rect x="92.0" y="1510.0" width="294.0" height="28.0" rx="5" ry="5" class="fileNode"/>
+<rect x="92.0" y="1538.0" width="294.0" height="28.0" rx="5" ry="5" class="fileNode"/>
+<rect x="92.0" y="2044.0" width="244.0" height="28.0" rx="5" ry="5" class="fileNode"/>
+<rect x="58.0" y="88.0" width="344.0" height="28.0" rx="5" ry="5" class="fileNode"/>
+<rect x="58.0" y="116.0" width="344.0" height="28.0" rx="5" ry="5" class="fileNode"/>
+<path d="M 322.0 226.0 H 344.0 Q 350.0 226.0 350.0 232.0 V 236.0 Q 350.0 242.0 344.0 242.0 H 322.0" class="dependencyEdge fileEdge"/>
+<title>utils/browser_utils.dart → utils/browser_utils_stub.dart</title>
+<path d="M 322.0 390.0 H 345.0 Q 351.0 390.0 351.0 396.0 V 400.0 Q 351.0 406.0 345.0 406.0 H 322.0" class="dependencyEdge fileEdge"/>
+<title>models/game_model.dart → models/backend_model.dart</title>
+<path d="M 322.0 390.0 H 346.0 Q 352.0 390.0 352.0 396.0 V 484.0 Q 352.0 490.0 346.0 490.0 H 322.0" class="dependencyEdge fileEdge"/>
+<title>models/game_model.dart → models/deck_model.dart</title>
+<path d="M 322.0 390.0 H 347.0 Q 353.0 390.0 353.0 396.0 V 428.0 Q 353.0 434.0 347.0 434.0 H 322.0" class="dependencyEdge fileEdge"/>
+<title>models/game_model.dart → models/game_history.dart</title>
+<path d="M 322.0 390.0 H 348.0 Q 354.0 390.0 354.0 396.0 V 512.0 Q 354.0 518.0 348.0 518.0 H 322.0" class="dependencyEdge fileEdge"/>
+<title>models/game_model.dart → models/game_styles.dart</title>
+<path d="M 322.0 390.0 H 349.0 Q 355.0 390.0 355.0 396.0 V 596.0 Q 355.0 602.0 349.0 602.0 H 322.0" class="dependencyEdge fileEdge"/>
+<title>models/game_model.dart → models/player_model.dart</title>
+<path d="M 322.0 390.0 H 350.0 Q 356.0 390.0 356.0 396.0 V 484.0 Q 356.0 490.0 350.0 490.0 H 322.0" class="dependencyEdge fileEdge"/>
+<title>models/game_model.dart → models/deck_model.dart</title>
+<path d="M 322.0 390.0 H 351.0 Q 357.0 390.0 357.0 396.0 V 596.0 Q 357.0 602.0 351.0 602.0 H 322.0" class="dependencyEdge fileEdge"/>
+<title>models/game_model.dart → models/player_model.dart</title>
+<path d="M 322.0 670.0 H 352.0 Q 358.0 670.0 358.0 676.0 V 680.0 Q 358.0 686.0 352.0 686.0 H 322.0" class="dependencyEdge fileEdge"/>
+<title>models/hand_model.dart → models/card_model.dart</title>
+<path d="M 322.0 670.0 H 353.0 Q 359.0 670.0 359.0 676.0 V 680.0 Q 359.0 686.0 353.0 686.0 H 322.0" class="dependencyEdge fileEdge"/>
+<title>models/hand_model.dart → models/card_model.dart</title>
+<path d="M 322.0 614.0 H 354.0 Q 360.0 614.0 360.0 608.0 V 102.0 Q 360.0 96.0 354.0 96.0 H 388.0" class="dependencyEdge fileEdge"/>
+<title>models/player_model.dart → misc.dart</title>
+<path d="M 322.0 614.0 H 355.0 Q 361.0 614.0 361.0 620.0 V 652.0 Q 361.0 658.0 355.0 658.0 H 322.0" class="dependencyEdge fileEdge"/>
+<title>models/player_model.dart → models/hand_model.dart</title>
+<path d="M 322.0 614.0 H 356.0 Q 362.0 614.0 362.0 620.0 V 624.0 Q 362.0 630.0 356.0 630.0 H 322.0" class="dependencyEdge fileEdge"/>
+<title>models/player_model.dart → models/player_status.dart</title>
+<path d="M 322.0 614.0 H 357.0 Q 363.0 614.0 363.0 620.0 V 680.0 Q 363.0 686.0 357.0 686.0 H 322.0" class="dependencyEdge fileEdge"/>
+<title>models/player_model.dart → models/card_model.dart</title>
+<path d="M 322.0 614.0 H 358.0 Q 364.0 614.0 364.0 620.0 V 652.0 Q 364.0 658.0 358.0 658.0 H 322.0" class="dependencyEdge fileEdge"/>
+<title>models/player_model.dart → models/hand_model.dart</title>
+<path d="M 322.0 614.0 H 359.0 Q 365.0 614.0 365.0 620.0 V 624.0 Q 365.0 630.0 359.0 630.0 H 322.0" class="dependencyEdge fileEdge"/>
+<title>models/player_model.dart → models/player_status.dart</title>
+<path d="M 322.0 418.0 H 360.0 Q 366.0 418.0 366.0 412.0 V 102.0 Q 366.0 96.0 360.0 96.0 H 388.0" class="dependencyEdge fileEdge"/>
+<title>models/backend_model.dart → misc.dart</title>
+<path d="M 322.0 418.0 H 361.0 Q 367.0 418.0 367.0 424.0 V 568.0 Q 367.0 574.0 361.0 574.0 H 322.0" class="dependencyEdge fileEdge"/>
+<title>models/backend_model.dart → models/firebase_options.dart</title>
+<path d="M 322.0 418.0 H 362.0 Q 368.0 418.0 368.0 424.0 V 428.0 Q 368.0 434.0 362.0 434.0 H 322.0" class="dependencyEdge fileEdge"/>
+<title>models/backend_model.dart → models/game_history.dart</title>
+<path d="M 322.0 502.0 H 363.0 Q 369.0 502.0 369.0 508.0 V 680.0 Q 369.0 686.0 363.0 686.0 H 322.0" class="dependencyEdge fileEdge"/>
+<title>models/deck_model.dart → models/card_model.dart</title>
+<path d="M 322.0 502.0 H 364.0 Q 370.0 502.0 370.0 508.0 V 540.0 Q 370.0 546.0 364.0 546.0 H 322.0" class="dependencyEdge fileEdge"/>
+<title>models/deck_model.dart → models/card_model_french.dart</title>
+<path d="M 322.0 502.0 H 365.0 Q 371.0 502.0 371.0 508.0 V 512.0 Q 371.0 518.0 365.0 518.0 H 322.0" class="dependencyEdge fileEdge"/>
+<title>models/deck_model.dart → models/game_styles.dart</title>
+<path d="M 322.0 502.0 H 366.0 Q 372.0 502.0 372.0 508.0 V 680.0 Q 372.0 686.0 366.0 686.0 H 322.0" class="dependencyEdge fileEdge"/>
+<title>models/deck_model.dart → models/card_model.dart</title>
+<path d="M 356.0 952.0 H 401.0 Q 407.0 952.0 407.0 946.0 V 412.0 Q 407.0 406.0 401.0 406.0 H 322.0" class="dependencyEdge fileEdge"/>
+<title>screens/game/join_game_screen.dart → models/backend_model.dart</title>
+<path d="M 356.0 952.0 H 402.0 Q 408.0 952.0 408.0 946.0 V 440.0 Q 408.0 434.0 402.0 434.0 H 322.0" class="dependencyEdge fileEdge"/>
+<title>screens/game/join_game_screen.dart → models/game_history.dart</title>
+<path d="M 356.0 952.0 H 403.0 Q 409.0 952.0 409.0 946.0 V 384.0 Q 409.0 378.0 403.0 378.0 H 322.0" class="dependencyEdge fileEdge"/>
+<title>screens/game/join_game_screen.dart → models/game_model.dart</title>
+<path d="M 356.0 952.0 H 404.0 Q 410.0 952.0 410.0 958.0 V 1344.0 Q 410.0 1350.0 404.0 1350.0 H 372.0" class="dependencyEdge fileEdge"/>
+<title>screens/game/join_game_screen.dart → widgets/game_style.dart</title>
+<path d="M 356.0 952.0 H 405.0 Q 411.0 952.0 411.0 946.0 V 524.0 Q 411.0 518.0 405.0 518.0 H 322.0" class="dependencyEdge fileEdge"/>
+<title>screens/game/join_game_screen.dart → models/game_styles.dart</title>
+<path d="M 356.0 952.0 H 406.0 Q 412.0 952.0 412.0 958.0 V 990.0 Q 412.0 996.0 406.0 996.0 H 356.0" class="dependencyEdge fileEdge"/>
+<title>screens/game/join_game_screen.dart → screens/game/game_screen.dart</title>
+<path d="M 356.0 952.0 H 407.0 Q 413.0 952.0 413.0 946.0 V 856.0 Q 413.0 850.0 407.0 850.0 H 372.0" class="dependencyEdge fileEdge"/>
+<title>screens/game/join_game_screen.dart → screens/screen.dart</title>
+<path d="M 356.0 952.0 H 408.0 Q 414.0 952.0 414.0 958.0 V 1372.0 Q 414.0 1378.0 408.0 1378.0 H 372.0" class="dependencyEdge fileEdge"/>
+<title>screens/game/join_game_screen.dart → widgets/players_in_room_widget.dart</title>
+<path d="M 356.0 952.0 H 409.0 Q 415.0 952.0 415.0 958.0 V 1400.0 Q 415.0 1406.0 409.0 1406.0 H 372.0" class="dependencyEdge fileEdge"/>
+<title>screens/game/join_game_screen.dart → widgets/rooms_widget.dart</title>
+<path d="M 356.0 1036.0 H 410.0 Q 416.0 1036.0 416.0 1030.0 V 102.0 Q 416.0 96.0 410.0 96.0 H 388.0" class="dependencyEdge fileEdge"/>
+<title>screens/game/game_over_dialog.dart → misc.dart</title>
+<path d="M 356.0 1036.0 H 411.0 Q 417.0 1036.0 417.0 1030.0 V 412.0 Q 417.0 406.0 411.0 406.0 H 322.0" class="dependencyEdge fileEdge"/>
+<title>screens/game/game_over_dialog.dart → models/backend_model.dart</title>
+<path d="M 356.0 1036.0 H 412.0 Q 418.0 1036.0 418.0 1030.0 V 384.0 Q 418.0 378.0 412.0 378.0 H 322.0" class="dependencyEdge fileEdge"/>
+<title>screens/game/game_over_dialog.dart → models/game_model.dart</title>
+<path d="M 356.0 1036.0 H 413.0 Q 419.0 1036.0 419.0 1042.0 V 1316.0 Q 419.0 1322.0 413.0 1322.0 H 372.0" class="dependencyEdge fileEdge"/>
+<title>screens/game/game_over_dialog.dart → widgets/dialog.dart</title>
+<path d="M 356.0 1008.0 H 414.0 Q 420.0 1008.0 420.0 1002.0 V 412.0 Q 420.0 406.0 414.0 406.0 H 322.0" class="dependencyEdge fileEdge"/>
+<title>screens/game/game_screen.dart → models/backend_model.dart</title>
+<path d="M 356.0 1008.0 H 415.0 Q 421.0 1008.0 421.0 1002.0 V 384.0 Q 421.0 378.0 415.0 378.0 H 322.0" class="dependencyEdge fileEdge"/>
+<title>screens/game/game_screen.dart → models/game_model.dart</title>
+<path d="M 356.0 1008.0 H 416.0 Q 422.0 1008.0 422.0 1014.0 V 1018.0 Q 422.0 1024.0 416.0 1024.0 H 356.0" class="dependencyEdge fileEdge"/>
+<title>screens/game/game_screen.dart → screens/game/game_over_dialog.dart</title>
+<path d="M 356.0 1008.0 H 417.0 Q 423.0 1008.0 423.0 1002.0 V 856.0 Q 423.0 850.0 417.0 850.0 H 372.0" class="dependencyEdge fileEdge"/>
+<title>screens/game/game_screen.dart → screens/screen.dart</title>
+<path d="M 356.0 1008.0 H 418.0 Q 424.0 1008.0 424.0 1014.0 V 1630.0 Q 424.0 1636.0 418.0 1636.0 H 356.0" class="dependencyEdge fileEdge"/>
+<title>screens/game/game_screen.dart → widgets/player/player_zone_widget.dart</title>
+<path d="M 356.0 980.0 H 419.0 Q 425.0 980.0 425.0 974.0 V 102.0 Q 425.0 96.0 419.0 96.0 H 388.0" class="dependencyEdge fileEdge"/>
+<title>screens/game/start_game_screen.dart → misc.dart</title>
+<path d="M 356.0 980.0 H 420.0 Q 426.0 980.0 426.0 974.0 V 412.0 Q 426.0 406.0 420.0 406.0 H 322.0" class="dependencyEdge fileEdge"/>
+<title>screens/game/start_game_screen.dart → models/backend_model.dart</title>
+<path d="M 356.0 980.0 H 421.0 Q 427.0 980.0 427.0 974.0 V 440.0 Q 427.0 434.0 421.0 434.0 H 322.0" class="dependencyEdge fileEdge"/>
+<title>screens/game/start_game_screen.dart → models/game_history.dart</title>
+<path d="M 356.0 980.0 H 422.0 Q 428.0 980.0 428.0 974.0 V 384.0 Q 428.0 378.0 422.0 378.0 H 322.0" class="dependencyEdge fileEdge"/>
+<title>screens/game/start_game_screen.dart → models/game_model.dart</title>
+<path d="M 356.0 980.0 H 423.0 Q 429.0 980.0 429.0 986.0 V 1344.0 Q 429.0 1350.0 423.0 1350.0 H 372.0" class="dependencyEdge fileEdge"/>
+<title>screens/game/start_game_screen.dart → widgets/game_style.dart</title>
+<path d="M 356.0 980.0 H 424.0 Q 430.0 980.0 430.0 974.0 V 524.0 Q 430.0 518.0 424.0 518.0 H 322.0" class="dependencyEdge fileEdge"/>
+<title>screens/game/start_game_screen.dart → models/game_styles.dart</title>
+<path d="M 356.0 980.0 H 425.0 Q 431.0 980.0 431.0 986.0 V 990.0 Q 431.0 996.0 425.0 996.0 H 356.0" class="dependencyEdge fileEdge"/>
+<title>screens/game/start_game_screen.dart → screens/game/game_screen.dart</title>
+<path d="M 356.0 980.0 H 426.0 Q 432.0 980.0 432.0 974.0 V 856.0 Q 432.0 850.0 426.0 850.0 H 372.0" class="dependencyEdge fileEdge"/>
+<title>screens/game/start_game_screen.dart → screens/screen.dart</title>
+<path d="M 356.0 980.0 H 427.0 Q 433.0 980.0 433.0 986.0 V 1372.0 Q 433.0 1378.0 427.0 1378.0 H 372.0" class="dependencyEdge fileEdge"/>
+<title>screens/game/start_game_screen.dart → widgets/players_in_room_widget.dart</title>
+<path d="M 356.0 980.0 H 428.0 Q 434.0 980.0 434.0 986.0 V 1400.0 Q 434.0 1406.0 428.0 1406.0 H 372.0" class="dependencyEdge fileEdge"/>
+<title>screens/game/start_game_screen.dart → widgets/rooms_widget.dart</title>
+<path d="M 356.0 980.0 H 429.0 Q 435.0 980.0 435.0 974.0 V 220.0 Q 435.0 214.0 429.0 214.0 H 322.0" class="dependencyEdge fileEdge"/>
+<title>screens/game/start_game_screen.dart → utils/browser_utils.dart</title>
+<path d="M 372.0 834.0 H 446.0 Q 452.0 834.0 452.0 840.0 V 844.0 Q 452.0 850.0 446.0 850.0 H 372.0" class="dependencyEdge fileEdge"/>
+<title>screens/main_menu.dart → screens/screen.dart</title>
+<path d="M 356.0 1144.0 H 431.0 Q 437.0 1144.0 437.0 1138.0 V 720.0 Q 437.0 714.0 431.0 714.0 H 322.0" class="dependencyEdge fileEdge"/>
+<title>screens/keepscore/golf_score_screen.dart → models/golf_score_model.dart</title>
+<path d="M 356.0 1144.0 H 432.0 Q 438.0 1144.0 438.0 1138.0 V 856.0 Q 438.0 850.0 432.0 850.0 H 372.0" class="dependencyEdge fileEdge"/>
+<title>screens/keepscore/golf_score_screen.dart → screens/screen.dart</title>
+<path d="M 356.0 1144.0 H 433.0 Q 439.0 1144.0 439.0 1150.0 V 1456.0 Q 439.0 1462.0 433.0 1462.0 H 372.0" class="dependencyEdge fileEdge"/>
+<title>screens/keepscore/golf_score_screen.dart → widgets/input_keyboard.dart</title>
+<path d="M 356.0 1144.0 H 434.0 Q 440.0 1144.0 440.0 1150.0 V 1484.0 Q 440.0 1490.0 434.0 1490.0 H 372.0" class="dependencyEdge fileEdge"/>
+<title>screens/keepscore/golf_score_screen.dart → widgets/my_button.dart</title>
+<path d="M 356.0 1144.0 H 435.0 Q 441.0 1144.0 441.0 1150.0 V 1512.0 Q 441.0 1518.0 435.0 1518.0 H 372.0" class="dependencyEdge fileEdge"/>
+<title>screens/keepscore/golf_score_screen.dart → widgets/player_header.dart</title>
+<path d="M 388.0 136.0 H 468.0 Q 474.0 136.0 474.0 142.0 V 400.0 Q 474.0 406.0 468.0 406.0 H 322.0" class="dependencyEdge fileEdge"/>
+<title>main.dart → models/backend_model.dart</title>
+<path d="M 388.0 136.0 H 469.0 Q 475.0 136.0 475.0 142.0 V 568.0 Q 475.0 574.0 469.0 574.0 H 322.0" class="dependencyEdge fileEdge"/>
+<title>main.dart → models/firebase_options.dart</title>
+<path d="M 388.0 136.0 H 470.0 Q 476.0 136.0 476.0 142.0 V 934.0 Q 476.0 940.0 470.0 940.0 H 356.0" class="dependencyEdge fileEdge"/>
+<title>main.dart → screens/game/join_game_screen.dart</title>
+<path d="M 388.0 136.0 H 471.0 Q 477.0 136.0 477.0 142.0 V 962.0 Q 477.0 968.0 471.0 968.0 H 356.0" class="dependencyEdge fileEdge"/>
+<title>main.dart → screens/game/start_game_screen.dart</title>
+<path d="M 388.0 136.0 H 472.0 Q 478.0 136.0 478.0 142.0 V 1126.0 Q 478.0 1132.0 472.0 1132.0 H 356.0" class="dependencyEdge fileEdge"/>
+<title>main.dart → screens/keepscore/golf_score_screen.dart</title>
+<path d="M 388.0 136.0 H 473.0 Q 479.0 136.0 479.0 142.0 V 816.0 Q 479.0 822.0 473.0 822.0 H 372.0" class="dependencyEdge fileEdge"/>
+<title>main.dart → screens/main_menu.dart</title>
+<path d="M 388.0 136.0 H 474.0 Q 480.0 136.0 480.0 142.0 V 2046.0 Q 480.0 2052.0 474.0 2052.0 H 322.0" class="dependencyEdge fileEdge"/>
+<title>main.dart → theme/app_theme.dart</title>
+<path d="M 372.0 1474.0 H 459.0 Q 465.0 1474.0 465.0 1480.0 V 1484.0 Q 465.0 1490.0 459.0 1490.0 H 372.0" class="dependencyEdge fileEdge"/>
+<title>widgets/input_keyboard.dart → widgets/my_button.dart</title>
+<path d="M 372.0 1446.0 H 460.0 Q 466.0 1446.0 466.0 1440.0 V 102.0 Q 466.0 96.0 460.0 96.0 H 388.0" class="dependencyEdge fileEdge"/>
+<title>widgets/date_importance.dart → misc.dart</title>
+<path d="M 356.0 1840.0 H 445.0 Q 451.0 1840.0 451.0 1834.0 V 468.0 Q 451.0 462.0 445.0 462.0 H 322.0" class="dependencyEdge fileEdge"/>
+<title>widgets/cards/card_pile_widget.dart → models/card_dimensions.dart</title>
+<path d="M 356.0 1840.0 H 446.0 Q 452.0 1840.0 452.0 1834.0 V 692.0 Q 452.0 686.0 446.0 686.0 H 322.0" class="dependencyEdge fileEdge"/>
+<title>widgets/cards/card_pile_widget.dart → models/card_model.dart</title>
+<path d="M 356.0 1840.0 H 447.0 Q 453.0 1840.0 453.0 1846.0 V 1850.0 Q 453.0 1856.0 447.0 1856.0 H 356.0" class="dependencyEdge fileEdge"/>
+<title>widgets/cards/card_pile_widget.dart → widgets/cards/card_widget.dart</title>
+<path d="M 356.0 1896.0 H 448.0 Q 454.0 1896.0 454.0 1890.0 V 102.0 Q 454.0 96.0 448.0 96.0 H 388.0" class="dependencyEdge fileEdge"/>
+<title>widgets/cards/card_face_skyjo_widget.dart → misc.dart</title>
+<path d="M 356.0 1896.0 H 449.0 Q 455.0 1896.0 455.0 1890.0 V 692.0 Q 455.0 686.0 449.0 686.0 H 322.0" class="dependencyEdge fileEdge"/>
+<title>widgets/cards/card_face_skyjo_widget.dart → models/card_model.dart</title>
+<path d="M 356.0 1896.0 H 450.0 Q 456.0 1896.0 456.0 1902.0 V 1906.0 Q 456.0 1912.0 450.0 1912.0 H 356.0" class="dependencyEdge fileEdge"/>
+<title>widgets/cards/card_face_skyjo_widget.dart → widgets/cards/card_face_french_widget.dart</title>
+<path d="M 356.0 1868.0 H 451.0 Q 457.0 1868.0 457.0 1862.0 V 468.0 Q 457.0 462.0 451.0 462.0 H 322.0" class="dependencyEdge fileEdge"/>
+<title>widgets/cards/card_widget.dart → models/card_dimensions.dart</title>
+<path d="M 356.0 1868.0 H 452.0 Q 458.0 1868.0 458.0 1862.0 V 692.0 Q 458.0 686.0 452.0 686.0 H 322.0" class="dependencyEdge fileEdge"/>
+<title>widgets/cards/card_widget.dart → models/card_model.dart</title>
+<path d="M 356.0 1868.0 H 453.0 Q 459.0 1868.0 459.0 1874.0 V 1906.0 Q 459.0 1912.0 453.0 1912.0 H 356.0" class="dependencyEdge fileEdge"/>
+<title>widgets/cards/card_widget.dart → widgets/cards/card_face_french_widget.dart</title>
+<path d="M 356.0 1868.0 H 454.0 Q 460.0 1868.0 460.0 1874.0 V 1878.0 Q 460.0 1884.0 454.0 1884.0 H 356.0" class="dependencyEdge fileEdge"/>
+<title>widgets/cards/card_widget.dart → widgets/cards/card_face_skyjo_widget.dart</title>
+<path d="M 356.0 1868.0 H 455.0 Q 461.0 1868.0 461.0 1862.0 V 1552.0 Q 461.0 1546.0 455.0 1546.0 H 372.0" class="dependencyEdge fileEdge"/>
+<title>widgets/cards/card_widget.dart → widgets/wiggle_widget.dart</title>
+<path d="M 356.0 1924.0 H 456.0 Q 462.0 1924.0 462.0 1918.0 V 102.0 Q 462.0 96.0 456.0 96.0 H 388.0" class="dependencyEdge fileEdge"/>
+<title>widgets/cards/card_face_french_widget.dart → misc.dart</title>
+<path d="M 356.0 1924.0 H 457.0 Q 463.0 1924.0 463.0 1918.0 V 692.0 Q 463.0 686.0 457.0 686.0 H 322.0" class="dependencyEdge fileEdge"/>
+<title>widgets/cards/card_face_french_widget.dart → models/card_model.dart</title>
+<path d="M 372.0 1362.0 H 474.0 Q 480.0 1362.0 480.0 1356.0 V 102.0 Q 480.0 96.0 474.0 96.0 H 388.0" class="dependencyEdge fileEdge"/>
+<title>widgets/game_style.dart → misc.dart</title>
+<path d="M 372.0 1362.0 H 475.0 Q 481.0 1362.0 481.0 1356.0 V 468.0 Q 481.0 462.0 475.0 462.0 H 322.0" class="dependencyEdge fileEdge"/>
+<title>widgets/game_style.dart → models/card_dimensions.dart</title>
+<path d="M 372.0 1362.0 H 476.0 Q 482.0 1362.0 482.0 1356.0 V 552.0 Q 482.0 546.0 476.0 546.0 H 322.0" class="dependencyEdge fileEdge"/>
+<title>widgets/game_style.dart → models/card_model_french.dart</title>
+<path d="M 372.0 1362.0 H 477.0 Q 483.0 1362.0 483.0 1356.0 V 384.0 Q 483.0 378.0 477.0 378.0 H 322.0" class="dependencyEdge fileEdge"/>
+<title>widgets/game_style.dart → models/game_model.dart</title>
+<path d="M 372.0 1362.0 H 478.0 Q 484.0 1362.0 484.0 1356.0 V 524.0 Q 484.0 518.0 478.0 518.0 H 322.0" class="dependencyEdge fileEdge"/>
+<title>widgets/game_style.dart → models/game_styles.dart</title>
+<path d="M 372.0 1362.0 H 479.0 Q 485.0 1362.0 485.0 1368.0 V 1850.0 Q 485.0 1856.0 479.0 1856.0 H 356.0" class="dependencyEdge fileEdge"/>
+<title>widgets/game_style.dart → widgets/cards/card_widget.dart</title>
+<path d="M 356.0 1704.0 H 464.0 Q 470.0 1704.0 470.0 1698.0 V 384.0 Q 470.0 378.0 464.0 378.0 H 322.0" class="dependencyEdge fileEdge"/>
+<title>widgets/player/player_zone_cta_widget.dart → models/game_model.dart</title>
+<path d="M 356.0 1704.0 H 465.0 Q 471.0 1704.0 471.0 1710.0 V 1822.0 Q 471.0 1828.0 465.0 1828.0 H 356.0" class="dependencyEdge fileEdge"/>
+<title>widgets/player/player_zone_cta_widget.dart → widgets/cards/card_pile_widget.dart</title>
+<path d="M 356.0 1732.0 H 466.0 Q 472.0 1732.0 472.0 1726.0 V 102.0 Q 472.0 96.0 466.0 96.0 H 388.0" class="dependencyEdge fileEdge"/>
+<title>widgets/player/status_picker.dart → misc.dart</title>
+<path d="M 356.0 1732.0 H 467.0 Q 473.0 1732.0 473.0 1726.0 V 636.0 Q 473.0 630.0 467.0 630.0 H 322.0" class="dependencyEdge fileEdge"/>
+<title>widgets/player/status_picker.dart → models/player_status.dart</title>
+<path d="M 356.0 1676.0 H 468.0 Q 474.0 1676.0 474.0 1670.0 V 102.0 Q 474.0 96.0 468.0 96.0 H 388.0" class="dependencyEdge fileEdge"/>
+<title>widgets/player/player_header_widget.dart → misc.dart</title>
+<path d="M 356.0 1676.0 H 469.0 Q 475.0 1676.0 475.0 1670.0 V 384.0 Q 475.0 378.0 469.0 378.0 H 322.0" class="dependencyEdge fileEdge"/>
+<title>widgets/player/player_header_widget.dart → models/game_model.dart</title>
+<path d="M 356.0 1676.0 H 470.0 Q 476.0 1676.0 476.0 1670.0 V 1440.0 Q 476.0 1434.0 470.0 1434.0 H 372.0" class="dependencyEdge fileEdge"/>
+<title>widgets/player/player_header_widget.dart → widgets/date_importance.dart</title>
+<path d="M 356.0 1676.0 H 471.0 Q 477.0 1676.0 477.0 1670.0 V 1328.0 Q 477.0 1322.0 471.0 1322.0 H 372.0" class="dependencyEdge fileEdge"/>
+<title>widgets/player/player_header_widget.dart → widgets/dialog.dart</title>
+<path d="M 356.0 1676.0 H 472.0 Q 478.0 1676.0 478.0 1682.0 V 1714.0 Q 478.0 1720.0 472.0 1720.0 H 356.0" class="dependencyEdge fileEdge"/>
+<title>widgets/player/player_header_widget.dart → widgets/player/status_picker.dart</title>
+<path d="M 356.0 1648.0 H 473.0 Q 479.0 1648.0 479.0 1642.0 V 102.0 Q 479.0 96.0 473.0 96.0 H 388.0" class="dependencyEdge fileEdge"/>
+<title>widgets/player/player_zone_widget.dart → misc.dart</title>
+<path d="M 356.0 1648.0 H 474.0 Q 480.0 1648.0 480.0 1642.0 V 384.0 Q 480.0 378.0 474.0 378.0 H 322.0" class="dependencyEdge fileEdge"/>
+<title>widgets/player/player_zone_widget.dart → models/game_model.dart</title>
+<path d="M 356.0 1648.0 H 475.0 Q 481.0 1648.0 481.0 1654.0 V 1850.0 Q 481.0 1856.0 475.0 1856.0 H 356.0" class="dependencyEdge fileEdge"/>
+<title>widgets/player/player_zone_widget.dart → widgets/cards/card_widget.dart</title>
+<path d="M 356.0 1648.0 H 476.0 Q 482.0 1648.0 482.0 1654.0 V 1658.0 Q 482.0 1664.0 476.0 1664.0 H 356.0" class="dependencyEdge fileEdge"/>
+<title>widgets/player/player_zone_widget.dart → widgets/player/player_header_widget.dart</title>
+<path d="M 356.0 1648.0 H 477.0 Q 483.0 1648.0 483.0 1654.0 V 1686.0 Q 483.0 1692.0 477.0 1692.0 H 356.0" class="dependencyEdge fileEdge"/>
+<title>widgets/player/player_zone_widget.dart → widgets/player/player_zone_cta_widget.dart</title>
+<g class="hierarchicalBadge">
+<circle cx="322.0" cy="214.0" r="7.0" fill="#007bff" opacity="0.85"/>
+<text x="322.0" y="216.0">1</text>
+<title>start_game_screen.dart</title>
+</g>
+<g class="hierarchicalBadge">
+<circle cx="322.0" cy="226.0" r="7.0" fill="#28a745" opacity="0.85"/>
+<text x="322.0" y="228.0">1</text>
+<title>browser_utils_stub.dart</title>
+</g>
+<text x="106.0" y="220.0" text-anchor="start" dominant-baseline="middle" class="hierarchicalItem">browser_utils.dart</text>
+<g class="hierarchicalBadge">
+<circle cx="322.0" cy="242.0" r="7.0" fill="#007bff" opacity="0.85"/>
+<text x="322.0" y="244.0">1</text>
+<title>browser_utils.dart</title>
+</g>
+<text x="106.0" y="248.0" text-anchor="start" dominant-baseline="middle" class="hierarchicalItem">browser_utils_stub.dart</text>
+<text x="106.0" y="276.0" text-anchor="start" dominant-baseline="middle" class="hierarchicalItem">browser_utils_web.dart</text>
+<g class="hierarchicalBadge">
+<circle cx="322.0" cy="378.0" r="7.0" fill="#007bff" opacity="0.85"/>
+<text x="322.0" y="380.0">8</text>
+<title>game_over_dialog.dart
+game_screen.dart
+game_style.dart
+join_game_screen.dart
+player_header_widget.dart
+player_zone_cta_widget.dart
+player_zone_widget.dart
+start_game_screen.dart</title>
+</g>
+<g class="hierarchicalBadge">
+<circle cx="322.0" cy="390.0" r="7.0" fill="#28a745" opacity="0.85"/>
+<text x="322.0" y="392.0">7</text>
+<title>backend_model.dart
+deck_model.dart
+game_history.dart
+game_styles.dart
+player_model.dart</title>
+</g>
+<text x="106.0" y="384.0" text-anchor="start" dominant-baseline="middle" class="hierarchicalItem">game_model.dart</text>
+<g class="hierarchicalBadge">
+<circle cx="322.0" cy="406.0" r="7.0" fill="#007bff" opacity="0.85"/>
+<text x="322.0" y="408.0">6</text>
+<title>game_model.dart
+game_over_dialog.dart
+game_screen.dart
+join_game_screen.dart
+main.dart
+start_game_screen.dart</title>
+</g>
+<g class="hierarchicalBadge">
+<circle cx="322.0" cy="418.0" r="7.0" fill="#28a745" opacity="0.85"/>
+<text x="322.0" y="420.0">3</text>
+<title>firebase_options.dart
+game_history.dart
+misc.dart</title>
+</g>
+<text x="106.0" y="412.0" text-anchor="start" dominant-baseline="middle" class="hierarchicalItem">backend_model.dart</text>
+<g class="hierarchicalBadge">
+<circle cx="322.0" cy="434.0" r="7.0" fill="#007bff" opacity="0.85"/>
+<text x="322.0" y="436.0">4</text>
+<title>backend_model.dart
+game_model.dart
+join_game_screen.dart
+start_game_screen.dart</title>
+</g>
+<text x="106.0" y="440.0" text-anchor="start" dominant-baseline="middle" class="hierarchicalItem">game_history.dart</text>
+<g class="hierarchicalBadge">
+<circle cx="322.0" cy="462.0" r="7.0" fill="#007bff" opacity="0.85"/>
+<text x="322.0" y="464.0">3</text>
+<title>card_pile_widget.dart
+card_widget.dart
+game_style.dart</title>
+</g>
+<text x="106.0" y="468.0" text-anchor="start" dominant-baseline="middle" class="hierarchicalItem">card_dimensions.dart</text>
+<g class="hierarchicalBadge">
+<circle cx="322.0" cy="490.0" r="7.0" fill="#007bff" opacity="0.85"/>
+<text x="322.0" y="492.0">2</text>
+<title>game_model.dart</title>
+</g>
+<g class="hierarchicalBadge">
+<circle cx="322.0" cy="502.0" r="7.0" fill="#28a745" opacity="0.85"/>
+<text x="322.0" y="504.0">4</text>
+<title>card_model.dart
+card_model_french.dart
+game_styles.dart</title>
+</g>
+<text x="106.0" y="496.0" text-anchor="start" dominant-baseline="middle" class="hierarchicalItem">deck_model.dart</text>
+<g class="hierarchicalBadge">
+<circle cx="322.0" cy="518.0" r="7.0" fill="#007bff" opacity="0.85"/>
+<text x="322.0" y="520.0">5</text>
+<title>deck_model.dart
+game_model.dart
+game_style.dart
+join_game_screen.dart
+start_game_screen.dart</title>
+</g>
+<text x="106.0" y="524.0" text-anchor="start" dominant-baseline="middle" class="hierarchicalItem">game_styles.dart</text>
+<g class="hierarchicalBadge">
+<circle cx="322.0" cy="546.0" r="7.0" fill="#007bff" opacity="0.85"/>
+<text x="322.0" y="548.0">2</text>
+<title>deck_model.dart
+game_style.dart</title>
+</g>
+<text x="106.0" y="552.0" text-anchor="start" dominant-baseline="middle" class="hierarchicalItem">card_model_french.dart</text>
+<g class="hierarchicalBadge">
+<circle cx="322.0" cy="574.0" r="7.0" fill="#007bff" opacity="0.85"/>
+<text x="322.0" y="576.0">2</text>
+<title>backend_model.dart
+main.dart</title>
+</g>
+<text x="106.0" y="580.0" text-anchor="start" dominant-baseline="middle" class="hierarchicalItem">firebase_options.dart</text>
+<g class="hierarchicalBadge">
+<circle cx="322.0" cy="602.0" r="7.0" fill="#007bff" opacity="0.85"/>
+<text x="322.0" y="604.0">2</text>
+<title>game_model.dart</title>
+</g>
+<g class="hierarchicalBadge">
+<circle cx="322.0" cy="614.0" r="7.0" fill="#28a745" opacity="0.85"/>
+<text x="322.0" y="616.0">6</text>
+<title>card_model.dart
+hand_model.dart
+misc.dart
+player_status.dart</title>
+</g>
+<text x="106.0" y="608.0" text-anchor="start" dominant-baseline="middle" class="hierarchicalItem">player_model.dart</text>
+<g class="hierarchicalBadge">
+<circle cx="322.0" cy="630.0" r="7.0" fill="#007bff" opacity="0.85"/>
+<text x="322.0" y="632.0">3</text>
+<title>player_model.dart
+status_picker.dart</title>
+</g>
+<text x="106.0" y="636.0" text-anchor="start" dominant-baseline="middle" class="hierarchicalItem">player_status.dart</text>
+<g class="hierarchicalBadge">
+<circle cx="322.0" cy="658.0" r="7.0" fill="#007bff" opacity="0.85"/>
+<text x="322.0" y="660.0">2</text>
+<title>player_model.dart</title>
+</g>
+<g class="hierarchicalBadge">
+<circle cx="322.0" cy="670.0" r="7.0" fill="#28a745" opacity="0.85"/>
+<text x="322.0" y="672.0">2</text>
+<title>card_model.dart</title>
+</g>
+<text x="106.0" y="664.0" text-anchor="start" dominant-baseline="middle" class="hierarchicalItem">hand_model.dart</text>
+<g class="hierarchicalBadge">
+<circle cx="322.0" cy="686.0" r="7.0" fill="#007bff" opacity="0.85"/>
+<text x="322.0" y="688.0">9</text>
+<title>card_face_french_widget.dart
+card_face_skyjo_widget.dart
+card_pile_widget.dart
+card_widget.dart
+deck_model.dart
+hand_model.dart
+player_model.dart</title>
+</g>
+<text x="106.0" y="692.0" text-anchor="start" dominant-baseline="middle" class="hierarchicalItem">card_model.dart</text>
+<g class="hierarchicalBadge">
+<circle cx="322.0" cy="714.0" r="7.0" fill="#007bff" opacity="0.85"/>
+<text x="322.0" y="716.0">1</text>
+<title>golf_score_screen.dart</title>
+</g>
+<text x="106.0" y="720.0" text-anchor="start" dominant-baseline="middle" class="hierarchicalItem">golf_score_model.dart</text>
+<g class="hierarchicalBadge">
+<circle cx="356.0" cy="940.0" r="7.0" fill="#007bff" opacity="0.85"/>
+<text x="356.0" y="942.0">1</text>
+<title>main.dart</title>
+</g>
+<g class="hierarchicalBadge">
+<circle cx="356.0" cy="952.0" r="7.0" fill="#28a745" opacity="0.85"/>
+<text x="356.0" y="954.0">9</text>
+<title>backend_model.dart
+game_history.dart
+game_model.dart
+game_screen.dart
+game_style.dart
+game_styles.dart
+players_in_room_widget.dart
+rooms_widget.dart
+screen.dart</title>
+</g>
+<text x="140.0" y="946.0" text-anchor="start" dominant-baseline="middle" class="hierarchicalItem">join_game_screen.dart</text>
+<g class="hierarchicalBadge">
+<circle cx="356.0" cy="968.0" r="7.0" fill="#007bff" opacity="0.85"/>
+<text x="356.0" y="970.0">1</text>
+<title>main.dart</title>
+</g>
+<g class="hierarchicalBadge">
+<circle cx="356.0" cy="980.0" r="7.0" fill="#28a745" opacity="0.85"/>
+<text x="356.0" y="982.0">11</text>
+<title>backend_model.dart
+browser_utils.dart
+game_history.dart
+game_model.dart
+game_screen.dart
+game_style.dart
+game_styles.dart
+misc.dart
+players_in_room_widget.dart
+rooms_widget.dart
+screen.dart</title>
+</g>
+<text x="140.0" y="974.0" text-anchor="start" dominant-baseline="middle" class="hierarchicalItem">start_game_screen.dart</text>
+<g class="hierarchicalBadge">
+<circle cx="356.0" cy="996.0" r="7.0" fill="#007bff" opacity="0.85"/>
+<text x="356.0" y="998.0">2</text>
+<title>join_game_screen.dart
+start_game_screen.dart</title>
+</g>
+<g class="hierarchicalBadge">
+<circle cx="356.0" cy="1008.0" r="7.0" fill="#28a745" opacity="0.85"/>
+<text x="356.0" y="1010.0">5</text>
+<title>backend_model.dart
+game_model.dart
+game_over_dialog.dart
+player_zone_widget.dart
+screen.dart</title>
+</g>
+<text x="140.0" y="1002.0" text-anchor="start" dominant-baseline="middle" class="hierarchicalItem">game_screen.dart</text>
+<g class="hierarchicalBadge">
+<circle cx="356.0" cy="1024.0" r="7.0" fill="#007bff" opacity="0.85"/>
+<text x="356.0" y="1026.0">1</text>
+<title>game_screen.dart</title>
+</g>
+<g class="hierarchicalBadge">
+<circle cx="356.0" cy="1036.0" r="7.0" fill="#28a745" opacity="0.85"/>
+<text x="356.0" y="1038.0">4</text>
+<title>backend_model.dart
+dialog.dart
+game_model.dart
+misc.dart</title>
+</g>
+<text x="140.0" y="1030.0" text-anchor="start" dominant-baseline="middle" class="hierarchicalItem">game_over_dialog.dart</text>
+<g class="hierarchicalBadge">
+<circle cx="356.0" cy="1132.0" r="7.0" fill="#007bff" opacity="0.85"/>
+<text x="356.0" y="1134.0">1</text>
+<title>main.dart</title>
+</g>
+<g class="hierarchicalBadge">
+<circle cx="356.0" cy="1144.0" r="7.0" fill="#28a745" opacity="0.85"/>
+<text x="356.0" y="1146.0">5</text>
+<title>golf_score_model.dart
+input_keyboard.dart
+my_button.dart
+player_header.dart
+screen.dart</title>
+</g>
+<text x="140.0" y="1138.0" text-anchor="start" dominant-baseline="middle" class="hierarchicalItem">golf_score_screen.dart</text>
+<g class="hierarchicalBadge">
+<circle cx="372.0" cy="822.0" r="7.0" fill="#007bff" opacity="0.85"/>
+<text x="372.0" y="824.0">1</text>
+<title>main.dart</title>
+</g>
+<g class="hierarchicalBadge">
+<circle cx="372.0" cy="834.0" r="7.0" fill="#28a745" opacity="0.85"/>
+<text x="372.0" y="836.0">1</text>
+<title>screen.dart</title>
+</g>
+<text x="106.0" y="828.0" text-anchor="start" dominant-baseline="middle" class="hierarchicalItem">main_menu.dart</text>
+<g class="hierarchicalBadge">
+<circle cx="372.0" cy="850.0" r="7.0" fill="#007bff" opacity="0.85"/>
+<text x="372.0" y="852.0">5</text>
+<title>game_screen.dart
+golf_score_screen.dart
+join_game_screen.dart
+main_menu.dart
+start_game_screen.dart</title>
+</g>
+<text x="106.0" y="856.0" text-anchor="start" dominant-baseline="middle" class="hierarchicalItem">screen.dart</text>
+<g class="hierarchicalBadge">
+<circle cx="356.0" cy="1636.0" r="7.0" fill="#007bff" opacity="0.85"/>
+<text x="356.0" y="1638.0">1</text>
+<title>game_screen.dart</title>
+</g>
+<g class="hierarchicalBadge">
+<circle cx="356.0" cy="1648.0" r="7.0" fill="#28a745" opacity="0.85"/>
+<text x="356.0" y="1650.0">5</text>
+<title>card_widget.dart
+game_model.dart
+misc.dart
+player_header_widget.dart
+player_zone_cta_widget.dart</title>
+</g>
+<text x="140.0" y="1642.0" text-anchor="start" dominant-baseline="middle" class="hierarchicalItem">player_zone_widget.dart</text>
+<g class="hierarchicalBadge">
+<circle cx="356.0" cy="1664.0" r="7.0" fill="#007bff" opacity="0.85"/>
+<text x="356.0" y="1666.0">1</text>
+<title>player_zone_widget.dart</title>
+</g>
+<g class="hierarchicalBadge">
+<circle cx="356.0" cy="1676.0" r="7.0" fill="#28a745" opacity="0.85"/>
+<text x="356.0" y="1678.0">5</text>
+<title>date_importance.dart
+dialog.dart
+game_model.dart
+misc.dart
+status_picker.dart</title>
+</g>
+<text x="140.0" y="1670.0" text-anchor="start" dominant-baseline="middle" class="hierarchicalItem">player_header_widget.dart</text>
+<g class="hierarchicalBadge">
+<circle cx="356.0" cy="1692.0" r="7.0" fill="#007bff" opacity="0.85"/>
+<text x="356.0" y="1694.0">1</text>
+<title>player_zone_widget.dart</title>
+</g>
+<g class="hierarchicalBadge">
+<circle cx="356.0" cy="1704.0" r="7.0" fill="#28a745" opacity="0.85"/>
+<text x="356.0" y="1706.0">2</text>
+<title>card_pile_widget.dart
+game_model.dart</title>
+</g>
+<text x="140.0" y="1698.0" text-anchor="start" dominant-baseline="middle" class="hierarchicalItem">player_zone_cta_widget.dart</text>
+<g class="hierarchicalBadge">
+<circle cx="356.0" cy="1720.0" r="7.0" fill="#007bff" opacity="0.85"/>
+<text x="356.0" y="1722.0">1</text>
+<title>player_header_widget.dart</title>
+</g>
+<g class="hierarchicalBadge">
+<circle cx="356.0" cy="1732.0" r="7.0" fill="#28a745" opacity="0.85"/>
+<text x="356.0" y="1734.0">2</text>
+<title>misc.dart
+player_status.dart</title>
+</g>
+<text x="140.0" y="1726.0" text-anchor="start" dominant-baseline="middle" class="hierarchicalItem">status_picker.dart</text>
+<g class="hierarchicalBadge">
+<circle cx="356.0" cy="1828.0" r="7.0" fill="#007bff" opacity="0.85"/>
+<text x="356.0" y="1830.0">1</text>
+<title>player_zone_cta_widget.dart</title>
+</g>
+<g class="hierarchicalBadge">
+<circle cx="356.0" cy="1840.0" r="7.0" fill="#28a745" opacity="0.85"/>
+<text x="356.0" y="1842.0">3</text>
+<title>card_dimensions.dart
+card_model.dart
+card_widget.dart</title>
+</g>
+<text x="140.0" y="1834.0" text-anchor="start" dominant-baseline="middle" class="hierarchicalItem">card_pile_widget.dart</text>
+<g class="hierarchicalBadge">
+<circle cx="356.0" cy="1856.0" r="7.0" fill="#007bff" opacity="0.85"/>
+<text x="356.0" y="1858.0">3</text>
+<title>card_pile_widget.dart
+game_style.dart
+player_zone_widget.dart</title>
+</g>
+<g class="hierarchicalBadge">
+<circle cx="356.0" cy="1868.0" r="7.0" fill="#28a745" opacity="0.85"/>
+<text x="356.0" y="1870.0">5</text>
+<title>card_dimensions.dart
+card_face_french_widget.dart
+card_face_skyjo_widget.dart
+card_model.dart
+wiggle_widget.dart</title>
+</g>
+<text x="140.0" y="1862.0" text-anchor="start" dominant-baseline="middle" class="hierarchicalItem">card_widget.dart</text>
+<g class="hierarchicalBadge">
+<circle cx="356.0" cy="1884.0" r="7.0" fill="#007bff" opacity="0.85"/>
+<text x="356.0" y="1886.0">1</text>
+<title>card_widget.dart</title>
+</g>
+<g class="hierarchicalBadge">
+<circle cx="356.0" cy="1896.0" r="7.0" fill="#28a745" opacity="0.85"/>
+<text x="356.0" y="1898.0">3</text>
+<title>card_face_french_widget.dart
+card_model.dart
+misc.dart</title>
+</g>
+<text x="140.0" y="1890.0" text-anchor="start" dominant-baseline="middle" class="hierarchicalItem">card_face_skyjo_widget.dart</text>
+<g class="hierarchicalBadge">
+<circle cx="356.0" cy="1912.0" r="7.0" fill="#007bff" opacity="0.85"/>
+<text x="356.0" y="1914.0">2</text>
+<title>card_face_skyjo_widget.dart
+card_widget.dart</title>
+</g>
+<g class="hierarchicalBadge">
+<circle cx="356.0" cy="1924.0" r="7.0" fill="#28a745" opacity="0.85"/>
+<text x="356.0" y="1926.0">2</text>
+<title>card_model.dart
+misc.dart</title>
+</g>
+<text x="140.0" y="1918.0" text-anchor="start" dominant-baseline="middle" class="hierarchicalItem">card_face_french_widget.dart</text>
+<g class="hierarchicalBadge">
+<circle cx="372.0" cy="1322.0" r="7.0" fill="#007bff" opacity="0.85"/>
+<text x="372.0" y="1324.0">2</text>
+<title>game_over_dialog.dart
+player_header_widget.dart</title>
+</g>
+<text x="106.0" y="1328.0" text-anchor="start" dominant-baseline="middle" class="hierarchicalItem">dialog.dart</text>
+<g class="hierarchicalBadge">
+<circle cx="372.0" cy="1350.0" r="7.0" fill="#007bff" opacity="0.85"/>
+<text x="372.0" y="1352.0">2</text>
+<title>join_game_screen.dart
+start_game_screen.dart</title>
+</g>
+<g class="hierarchicalBadge">
+<circle cx="372.0" cy="1362.0" r="7.0" fill="#28a745" opacity="0.85"/>
+<text x="372.0" y="1364.0">6</text>
+<title>card_dimensions.dart
+card_model_french.dart
+card_widget.dart
+game_model.dart
+game_styles.dart
+misc.dart</title>
+</g>
+<text x="106.0" y="1356.0" text-anchor="start" dominant-baseline="middle" class="hierarchicalItem">game_style.dart</text>
+<g class="hierarchicalBadge">
+<circle cx="372.0" cy="1378.0" r="7.0" fill="#007bff" opacity="0.85"/>
+<text x="372.0" y="1380.0">2</text>
+<title>join_game_screen.dart
+start_game_screen.dart</title>
+</g>
+<text x="106.0" y="1384.0" text-anchor="start" dominant-baseline="middle" class="hierarchicalItem">players_in_room_widget.dart</text>
+<g class="hierarchicalBadge">
+<circle cx="372.0" cy="1406.0" r="7.0" fill="#007bff" opacity="0.85"/>
+<text x="372.0" y="1408.0">2</text>
+<title>join_game_screen.dart
+start_game_screen.dart</title>
+</g>
+<text x="106.0" y="1412.0" text-anchor="start" dominant-baseline="middle" class="hierarchicalItem">rooms_widget.dart</text>
+<g class="hierarchicalBadge">
+<circle cx="372.0" cy="1434.0" r="7.0" fill="#007bff" opacity="0.85"/>
+<text x="372.0" y="1436.0">1</text>
+<title>player_header_widget.dart</title>
+</g>
+<g class="hierarchicalBadge">
+<circle cx="372.0" cy="1446.0" r="7.0" fill="#28a745" opacity="0.85"/>
+<text x="372.0" y="1448.0">1</text>
+<title>misc.dart</title>
+</g>
+<text x="106.0" y="1440.0" text-anchor="start" dominant-baseline="middle" class="hierarchicalItem">date_importance.dart</text>
+<g class="hierarchicalBadge">
+<circle cx="372.0" cy="1462.0" r="7.0" fill="#007bff" opacity="0.85"/>
+<text x="372.0" y="1464.0">1</text>
+<title>golf_score_screen.dart</title>
+</g>
+<g class="hierarchicalBadge">
+<circle cx="372.0" cy="1474.0" r="7.0" fill="#28a745" opacity="0.85"/>
+<text x="372.0" y="1476.0">1</text>
+<title>my_button.dart</title>
+</g>
+<text x="106.0" y="1468.0" text-anchor="start" dominant-baseline="middle" class="hierarchicalItem">input_keyboard.dart</text>
+<g class="hierarchicalBadge">
+<circle cx="372.0" cy="1490.0" r="7.0" fill="#007bff" opacity="0.85"/>
+<text x="372.0" y="1492.0">2</text>
+<title>golf_score_screen.dart
+input_keyboard.dart</title>
+</g>
+<text x="106.0" y="1496.0" text-anchor="start" dominant-baseline="middle" class="hierarchicalItem">my_button.dart</text>
+<g class="hierarchicalBadge">
+<circle cx="372.0" cy="1518.0" r="7.0" fill="#007bff" opacity="0.85"/>
+<text x="372.0" y="1520.0">1</text>
+<title>golf_score_screen.dart</title>
+</g>
+<text x="106.0" y="1524.0" text-anchor="start" dominant-baseline="middle" class="hierarchicalItem">player_header.dart</text>
+<g class="hierarchicalBadge">
+<circle cx="372.0" cy="1546.0" r="7.0" fill="#007bff" opacity="0.85"/>
+<text x="372.0" y="1548.0">1</text>
+<title>card_widget.dart</title>
+</g>
+<text x="106.0" y="1552.0" text-anchor="start" dominant-baseline="middle" class="hierarchicalItem">wiggle_widget.dart</text>
+<g class="hierarchicalBadge">
+<circle cx="322.0" cy="2052.0" r="7.0" fill="#007bff" opacity="0.85"/>
+<text x="322.0" y="2054.0">1</text>
+<title>main.dart</title>
+</g>
+<text x="106.0" y="2058.0" text-anchor="start" dominant-baseline="middle" class="hierarchicalItem">app_theme.dart</text>
+<g class="hierarchicalBadge">
+<circle cx="388.0" cy="96.0" r="7.0" fill="#007bff" opacity="0.85"/>
+<text x="388.0" y="98.0">11</text>
+<title>backend_model.dart
+card_face_french_widget.dart
+card_face_skyjo_widget.dart
+date_importance.dart
+game_over_dialog.dart
+game_style.dart
+player_header_widget.dart
+player_model.dart
+player_zone_widget.dart
+start_game_screen.dart
+status_picker.dart</title>
+</g>
+<text x="72.0" y="102.0" text-anchor="start" dominant-baseline="middle" class="hierarchicalItem">misc.dart</text>
+<g class="hierarchicalBadge">
+<circle cx="388.0" cy="136.0" r="7.0" fill="#28a745" opacity="0.85"/>
+<text x="388.0" y="138.0">7</text>
+<title>app_theme.dart
+backend_model.dart
+firebase_options.dart
+golf_score_screen.dart
+join_game_screen.dart
+main_menu.dart
+start_game_screen.dart</title>
+</g>
+<text x="72.0" y="130.0" text-anchor="start" dominant-baseline="middle" class="hierarchicalItem">main.dart</text>
+<g class="folderTitleLayer">
+<text x="230.0" y="75.0" class="hierarchicalTitle">.</text>
+<text x="214.0" y="193.0" class="hierarchicalTitle">  utils</text>
+<text x="214.0" y="357.0" class="hierarchicalTitle">  models</text>
+<text x="239.0" y="801.0" class="hierarchicalTitle">  screens</text>
+<text x="248.0" y="919.0" class="hierarchicalTitle">    game</text>
+<text x="248.0" y="1111.0" class="hierarchicalTitle">    keepscore</text>
+<text x="239.0" y="1301.0" class="hierarchicalTitle">  widgets</text>
+<text x="248.0" y="1615.0" class="hierarchicalTitle">    player</text>
+<text x="248.0" y="1807.0" class="hierarchicalTitle">    cards</text>
+<text x="214.0" y="2031.0" class="hierarchicalTitle">  theme</text>
+</g>
+</svg>
