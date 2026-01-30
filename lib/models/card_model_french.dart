@@ -4,6 +4,24 @@
 /// a standard French-suited deck of playing cards. It includes methods for getting the
 /// numerical value of a card rank and defines the valid suits and ranks.
 class CardModelFrench {
+  /// The value of a Joker card ('§')
+  static const int jokerValue = -2;
+
+  /// The value of an Ace card ('A')
+  static const int aceValue = 1;
+
+  /// The value of a 10 card ('X')
+  static const int tenValue = 10;
+
+  /// The value of a Jack card ('J')
+  static const int jackValue = 11;
+
+  /// The value of a Queen card ('Q')
+  static const int queenValue = 12;
+
+  /// The value of a King card ('K')
+  static const int kingValue = 0;
+
   /// Returns the numerical value of a card rank.
   ///
   /// Handles special cases for 'A', 'X', 'K', 'Q', 'J', '§'
@@ -14,22 +32,22 @@ class CardModelFrench {
   /// @return The numerical value of the card rank as an int.
   static int getValue(String rank) {
     if (rank == '§') {
-      return -2;
+      return jokerValue;
     }
     if (rank == 'A') {
-      return 1;
+      return aceValue;
     }
     if (rank == 'X') {
-      return 10;
+      return tenValue;
     }
     if (rank == 'J') {
-      return 11;
+      return jackValue;
     }
     if (rank == 'Q') {
-      return 12;
+      return queenValue;
     }
     if (rank == 'K') {
-      return 0;
+      return kingValue;
     }
 
     // face value for cards from 2 to 10

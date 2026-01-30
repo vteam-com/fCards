@@ -205,10 +205,10 @@ packages:
     dependency: "direct dev"
     description:
       name: fcheck
-      sha256: "9d883a4638c40013b38a23c5d191b339bf117d9caef68554adaab91964e9eb84"
+      sha256: ecfb3f24efb148cd74547fb8ca979e44ea65aa56fafaf50b78cb37c7929d657f
       url: "https://pub.dev"
     source: hosted
-    version: "0.5.2"
+    version: "0.7.0"
   ffi:
     dependency: transitive
     description:

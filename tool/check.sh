@@ -6,12 +6,6 @@ flutter pub upgrade > /dev/null
 echo --- Pub Outdated
 flutter pub outdated
 
-# echo --- Generate Loc
-# python3 tool/loc.py
-
-echo --- Sort code
-dart run tool/sort_source.dart
-
 echo --- Format sources
 dart format . | sed 's/^/    /'
 dart fix --apply | sed 's/^/    /'

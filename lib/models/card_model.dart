@@ -1,3 +1,5 @@
+import 'package:cards/models/constants.dart';
+
 /// Represents a playing card with a suit and rank.
 ///
 /// The [CardModel] class represents a single playing card, with properties for the suit, rank, and whether the card is revealed. It provides methods for converting the card to and from JSON, as well as getting the numerical value of the card.
@@ -61,7 +63,7 @@ class CardModel {
   /// The string includes the rank, suit, value, reveal state, and selectability.
   @override
   String toString() {
-    return '$rank$suit${value.toString().padLeft(2)}${isRevealed ? '^' : 'v'}${isSelectable ? 'S' : ' '}';
+    return '$rank$suit${value.toString().padLeft(Constants.cardDisplayPaddingWidth)}${isRevealed ? '^' : 'v'}${isSelectable ? 'S' : ' '}';
   }
 
   /// Converts the [CardModel] to a JSON map.

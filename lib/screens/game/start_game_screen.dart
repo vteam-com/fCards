@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:cards/misc.dart';
 import 'package:cards/models/backend_model.dart';
+import 'package:cards/models/constants.dart';
 import 'package:cards/models/game_history.dart';
 import 'package:cards/models/game_model.dart';
 import 'package:cards/widgets/game_style.dart';
@@ -291,7 +292,7 @@ class StartScreenState extends State<StartScreen> {
               controller: controller,
               style: const TextStyle(
                 color: Colors.black,
-                fontSize: 24,
+                fontSize: Constants.textSizeX1,
                 fontWeight: FontWeight.bold,
               ),
               decoration: InputDecoration(

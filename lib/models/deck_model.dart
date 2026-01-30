@@ -1,6 +1,7 @@
 import 'package:cards/models/card_model.dart';
 import 'package:cards/models/card_model_french.dart';
 import 'package:cards/models/game_styles.dart';
+import 'package:cards/models/constants.dart';
 export 'package:cards/models/card_model.dart';
 
 /// Represents a deck of playing cards.
@@ -83,12 +84,12 @@ class DeckModel {
   /// Otherwise, it calls `addCardsToDeckGolf()` to add cards for a standard French-suited deck.
   void addCardsToDeck() {
     if (gameStyle == GameStyles.skyJo) {
-      for (int i = -2; i <= 12; i++) {
+      for (int i = Constants.skyjoMinValue; i <= Constants.skyjoMaxValue; i++) {
         int count = i == 0
-            ? 15
-            : i == -2
-            ? 5
-            : 10;
+            ? Constants.skyjoZeroCardCount
+            : i == Constants.skyjoMinValue
+            ? Constants.skyjoNegativeTwoCardCount
+            : Constants.skyjoOtherCardCount;
         for (int j = 0; j < count; j++) {
           cardsDeckPile.add(CardModel(suit: '', rank: i.toString(), value: i));
         }
@@ -101,7 +102,7 @@ class DeckModel {
   /// Adds cards for a standard French-suited deck.
   ///
   /// This method adds cards with suits and ranks from `CardModelFrench.suits` and `CardModelFrench.ranks`,
-  /// and adds two Jokers to the deck.
+  /// and adds Jokers to the deck.
   void addCardsToDeckGolf() {
     for (String suit in CardModelFrench.suits) {
       for (String rank in CardModelFrench.ranks) {
@@ -114,11 +115,12 @@ class DeckModel {
         );
       }
     }
-    // Add 2 Jokers to each deck
-    cardsDeckPile.addAll([
-      CardModel(suit: '*', rank: '§', value: -2),
-      CardModel(suit: '*', rank: '§', value: -2),
-    ]);
+    // Add Jokers to each deck
+    for (int i = 0; i < Constants.golfJokerCount; i++) {
+      cardsDeckPile.add(
+        CardModel(suit: '*', rank: '§', value: Constants.golfJokerValue),
+      );
+    }
   }
 
   /// Converts the [DeckModel] to a JSON map.

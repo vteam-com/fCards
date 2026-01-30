@@ -1,6 +1,8 @@
+// ignore: fcheck_magic_numbers
 import 'dart:math';
 
 import 'package:cards/models/card_model.dart';
+import 'package:cards/models/constants.dart';
 export 'package:cards/models/card_model.dart';
 
 /// A model class representing a hand of cards in a card game.
@@ -157,7 +159,7 @@ class HandModel {
 
   /// Calculates the sum of card values for the Golf game variant and related games.
   ///
-  /// 🏌️ **Golf-Style Scoring Logic (PASSED SCORING)**:
+  /// **Golf-Style Scoring Logic (PASSED SCORING)**:
   /// Unlike SkyJo which modifies hands during play, Golf games calculate scores
   /// passively based on the final revealed card layout after all play is complete.
   ///
@@ -181,7 +183,7 @@ class HandModel {
 
     List<List<int>> checkingIndices;
 
-    if (_list.length == 4) {
+    if (_list.length == Constants.golfGrid2x2Size) {
       // 2x2
       checkingIndices = [
         [0, 1],
@@ -234,7 +236,7 @@ class HandModel {
     }
 
     // Check if all cards have matching ranks
-    final bool haveSameRank = indices.length == 2
+    final bool haveSameRank = indices.length == Constants.twoCardMatchSize
         ? _list[indices[0]].rank == _list[indices[1]].rank
         : _list[indices[0]].rank == _list[indices[1]].rank &&
               _list[indices[1]].rank == _list[indices[2]].rank;

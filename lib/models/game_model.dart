@@ -1,7 +1,8 @@
-// ignore: avoid_web_libraries_in_flutter
+// fcheck - ignore magic numbers
 // Imports
 import 'package:cards/models/backend_model.dart';
 import 'package:cards/models/deck_model.dart';
+import 'package:cards/models/constants.dart';
 import 'package:cards/models/game_history.dart';
 import 'package:cards/models/game_styles.dart';
 
@@ -104,11 +105,21 @@ class GameModel with ChangeNotifier {
   void addPlayer(String name) {
     if (gameStyle == GameStyles.skyJo) {
       players.add(
-        PlayerModel(name: name, columns: 4, rows: 3, skyJoLogic: true),
+        PlayerModel(
+          name: name,
+          columns: Constants.skyjoColumns,
+          rows: Constants.skyjoRows,
+          skyJoLogic: true,
+        ),
       );
     } else {
       players.add(
-        PlayerModel(name: name, columns: 3, rows: 3, skyJoLogic: false),
+        PlayerModel(
+          name: name,
+          columns: Constants.standardColumns,
+          rows: Constants.standardRows,
+          skyJoLogic: false,
+        ),
       );
     }
   }
@@ -198,22 +209,22 @@ class GameModel with ChangeNotifier {
       case GameStyles.skyJo:
         return PlayerModel.fromJson(
           json: json,
-          columns: 4,
-          rows: 3,
+          columns: Constants.skyjoColumns,
+          rows: Constants.skyjoRows,
           skyJoLogic: true,
         );
       case GameStyles.frenchCards9:
         return PlayerModel.fromJson(
           json: json,
-          columns: 3,
-          rows: 3,
+          columns: Constants.standardColumns,
+          rows: Constants.standardRows,
           skyJoLogic: false,
         );
       case GameStyles.miniPut:
         return PlayerModel.fromJson(
           json: json,
-          columns: 2,
-          rows: 2,
+          columns: Constants.miniPutColumns,
+          rows: Constants.miniPutRows,
           skyJoLogic: false,
         );
       case GameStyles.custom:
@@ -582,14 +593,20 @@ class GameModel with ChangeNotifier {
   void evaluateHandSkyJo() {
     var player = players[playerIdPlaying];
 
-    for (int i = 0; i < player.hand.length - 2; i += 3) {
-      if (player.hand[i].isRevealed &&
-          player.hand[i + 1].isRevealed &&
-          player.hand[i + 2].isRevealed &&
+    for (
+      int i = 0;
+      i <
+          player.hand.length -
+              (Constants.skyjoSetSize - Constants.setStartOffset);
+      i += Constants.skyjoSetSize
+    ) {
+      if (player.hand[i + Constants.firstCardIndexOffset].isRevealed &&
+          player.hand[i + Constants.secondCardIndexOffset].isRevealed &&
+          player.hand[i + Constants.thirdCardIndexOffset].isRevealed &&
           player.areAllTheSameRank(
-            player.hand[i].rank,
-            player.hand[i + 1].rank,
-            player.hand[i + 2].rank,
+            player.hand[i + Constants.firstCardIndexOffset].rank,
+            player.hand[i + Constants.secondCardIndexOffset].rank,
+            player.hand[i + Constants.thirdCardIndexOffset].rank,
           )) {
         deck.cardsDeckDiscarded.add(player.hand[i]);
         player.hand.removeAt(i);
@@ -599,7 +616,7 @@ class GameModel with ChangeNotifier {
         player.hand.removeAt(i);
         // We have removed the cards from the hand, reduce the index before the
         // next iteration
-        i -= 3;
+        i -= Constants.skyjoSetSize;
       }
     }
   }

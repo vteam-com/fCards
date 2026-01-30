@@ -1,4 +1,5 @@
 import 'package:cards/misc.dart';
+import 'package:cards/models/constants.dart';
 import 'package:cards/models/hand_model.dart';
 import 'package:cards/models/player_status.dart';
 
@@ -209,7 +210,7 @@ class PlayerModel {
 
   @override
   String toString() {
-    return 'Player[$id] ${name.padRight(10)} ${isActivePlayer ? "* " : '  '} $hand ${sumOfRevealedCards.toString().padLeft(3)}';
+    return 'Player[$id] ${name.padRight(Constants.playerNamePaddingWidth)} ${isActivePlayer ? "* " : '  '} $hand ${sumOfRevealedCards.toString().padLeft(Constants.playerDisplayPaddingWidth)}';
   }
 
   @override

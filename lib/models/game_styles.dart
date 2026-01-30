@@ -1,4 +1,5 @@
-/// Enum to represent different game styles.
+import 'package:cards/models/constants.dart';
+
 enum GameStyles {
   /// Classic French cards with a 9x9 grid and special rules.
   frenchCards9,
@@ -20,12 +21,12 @@ enum GameStyles {
 int numberOfCardsToRevealOnStartup(GameStyles style) {
   switch (style) {
     case GameStyles.frenchCards9:
-      return 2;
+      return Constants.frenchCardsRevealCount;
     case GameStyles.skyJo:
-      return 2;
+      return Constants.skyjoRevealCount;
     case GameStyles.miniPut:
-      return 1;
+      return Constants.miniPutRevealCount;
     case GameStyles.custom:
-      return 0;
+      return Constants.customRevealCount;
   }
 }
