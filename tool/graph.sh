@@ -6,4 +6,4 @@ echo "Generate Graph dependencies"
 # lakos . --no-tree -o graph.dot 
 lakos .  -o graph.dot  --ignore=**/firebase_options_private.dart --ignore=**/misc.dart
 
-fcheck --svg --svgfolder .
+npx --yes @jpdup/glad graph.dot -o graph.svg --exclude "*l10n*" --details

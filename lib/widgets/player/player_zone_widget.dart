@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:animate_do/animate_do.dart';
-import 'package:cards/misc.dart';
+import 'package:cards/widgets/misc.dart';
 import 'package:cards/models/game_model.dart';
 
 import 'package:cards/widgets/cards/card_widget.dart';

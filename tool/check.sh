@@ -19,3 +19,6 @@ flutter test --reporter=compact --no-pub
 
 echo --- fCheck
 dart run fcheck --svg --svgfolder --fix .
+
+echo --- Graph Dependencies
+tool/graph.sh | sed 's/^/    /'

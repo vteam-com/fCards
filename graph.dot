@@ -19,6 +19,7 @@ digraph "" {
   "/lib/utils/browser_utils_stub.dart" [label="browser_utils_stub"];
   "/lib/utils/browser_utils.dart" [label="browser_utils"];
   "/lib/utils/browser_utils_web.dart" [label="browser_utils_web"];
+  "/lib/models/card_dimensions.dart" [label="card_dimensions"];
   "/lib/models/player_status.dart" [label="player_status"];
   "/lib/models/game_model.dart" [label="game_model"];
   "/lib/models/card_model_french.dart" [label="card_model_french"];
@@ -28,8 +29,10 @@ digraph "" {
   "/lib/models/firebase_options.dart" [label="firebase_options"];
   "/lib/models/hand_model.dart" [label="hand_model"];
   "/lib/models/player_model.dart" [label="player_model"];
+  "/lib/models/app_theme.dart" [label="app_theme"];
   "/lib/models/card_model.dart" [label="card_model"];
   "/lib/models/backend_model.dart" [label="backend_model"];
+  "/lib/models/constants.dart" [label="constants"];
   "/lib/models/deck_model.dart" [label="deck_model"];
   "/lib/screens/game/join_game_screen.dart" [label="join_game_screen"];
   "/lib/screens/game/game_over_dialog.dart" [label="game_over_dialog"];
@@ -39,7 +42,6 @@ digraph "" {
   "/lib/screens/keepscore/golf_score_screen.dart" [label="golf_score_screen"];
   "/lib/screens/screen.dart" [label="screen"];
   "/lib/main.dart" [label="main"];
-  "/lib/theme/app_theme.dart" [label="app_theme"];
   "/lib/widgets/input_keyboard.dart" [label="input_keyboard"];
   "/lib/widgets/date_importance.dart" [label="date_importance"];
   "/lib/widgets/cards/card_pile_widget.dart" [label="card_pile_widget"];
@@ -96,6 +98,7 @@ digraph "" {
       }
       subgraph "cluster~/lib/models" {
         label="models";
+        "/lib/models/card_dimensions.dart";
         "/lib/models/player_status.dart";
         "/lib/models/game_model.dart";
         "/lib/models/card_model_french.dart";
@@ -105,8 +108,10 @@ digraph "" {
         "/lib/models/firebase_options.dart";
         "/lib/models/hand_model.dart";
         "/lib/models/player_model.dart";
+        "/lib/models/app_theme.dart";
         "/lib/models/card_model.dart";
         "/lib/models/backend_model.dart";
+        "/lib/models/constants.dart";
         "/lib/models/deck_model.dart";
       }
       subgraph "cluster~/lib/screens" {
@@ -124,10 +129,6 @@ digraph "" {
           label="keepscore";
           "/lib/screens/keepscore/golf_score_screen.dart";
         }
-      }
-      subgraph "cluster~/lib/theme" {
-        label="theme";
-        "/lib/theme/app_theme.dart";
       }
       subgraph "cluster~/lib/widgets" {
         label="widgets";
@@ -187,23 +188,29 @@ digraph "" {
   "/test/widgets/cards/card_widget_test.dart" -> "/lib/widgets/cards/card_widget.dart";
   "/lib/models/game_model.dart" -> "/lib/models/backend_model.dart";
   "/lib/models/game_model.dart" -> "/lib/models/deck_model.dart";
+  "/lib/models/game_model.dart" -> "/lib/models/constants.dart";
   "/lib/models/game_model.dart" -> "/lib/models/game_history.dart";
   "/lib/models/game_model.dart" -> "/lib/models/game_styles.dart";
   "/lib/models/game_model.dart" -> "/lib/models/player_model.dart";
   "/lib/models/game_model.dart" -> "/lib/models/deck_model.dart" [style=dashed];
   "/lib/models/game_model.dart" -> "/lib/models/player_model.dart" [style=dashed];
+  "/lib/models/game_styles.dart" -> "/lib/models/constants.dart";
   "/lib/models/hand_model.dart" -> "/lib/models/card_model.dart";
+  "/lib/models/hand_model.dart" -> "/lib/models/constants.dart";
   "/lib/models/hand_model.dart" -> "/lib/models/card_model.dart" [style=dashed];
+  "/lib/models/player_model.dart" -> "/lib/models/constants.dart";
   "/lib/models/player_model.dart" -> "/lib/models/hand_model.dart";
   "/lib/models/player_model.dart" -> "/lib/models/player_status.dart";
   "/lib/models/player_model.dart" -> "/lib/models/card_model.dart" [style=dashed];
   "/lib/models/player_model.dart" -> "/lib/models/hand_model.dart" [style=dashed];
   "/lib/models/player_model.dart" -> "/lib/models/player_status.dart" [style=dashed];
+  "/lib/models/card_model.dart" -> "/lib/models/constants.dart";
   "/lib/models/backend_model.dart" -> "/lib/models/firebase_options.dart";
   "/lib/models/backend_model.dart" -> "/lib/models/game_history.dart";
   "/lib/models/deck_model.dart" -> "/lib/models/card_model.dart";
   "/lib/models/deck_model.dart" -> "/lib/models/card_model_french.dart";
   "/lib/models/deck_model.dart" -> "/lib/models/game_styles.dart";
+  "/lib/models/deck_model.dart" -> "/lib/models/constants.dart";
   "/lib/models/deck_model.dart" -> "/lib/models/card_model.dart" [style=dashed];
   "/lib/screens/game/join_game_screen.dart" -> "/lib/models/backend_model.dart";
   "/lib/screens/game/join_game_screen.dart" -> "/lib/models/game_history.dart";
@@ -214,6 +221,7 @@ digraph "" {
   "/lib/screens/game/join_game_screen.dart" -> "/lib/screens/screen.dart";
   "/lib/screens/game/join_game_screen.dart" -> "/lib/widgets/players_in_room_widget.dart";
   "/lib/screens/game/join_game_screen.dart" -> "/lib/widgets/rooms_widget.dart";
+  "/lib/screens/game/join_game_screen.dart" -> "/lib/models/constants.dart";
   "/lib/screens/game/game_over_dialog.dart" -> "/lib/models/backend_model.dart";
   "/lib/screens/game/game_over_dialog.dart" -> "/lib/models/game_model.dart";
   "/lib/screens/game/game_over_dialog.dart" -> "/lib/widgets/dialog.dart";
@@ -223,6 +231,7 @@ digraph "" {
   "/lib/screens/game/game_screen.dart" -> "/lib/screens/screen.dart";
   "/lib/screens/game/game_screen.dart" -> "/lib/widgets/player/player_zone_widget.dart";
   "/lib/screens/game/start_game_screen.dart" -> "/lib/models/backend_model.dart";
+  "/lib/screens/game/start_game_screen.dart" -> "/lib/models/constants.dart";
   "/lib/screens/game/start_game_screen.dart" -> "/lib/models/game_history.dart";
   "/lib/screens/game/start_game_screen.dart" -> "/lib/models/game_model.dart";
   "/lib/screens/game/start_game_screen.dart" -> "/lib/widgets/game_style.dart";
@@ -244,17 +253,20 @@ digraph "" {
   "/lib/main.dart" -> "/lib/screens/game/start_game_screen.dart";
   "/lib/main.dart" -> "/lib/screens/keepscore/golf_score_screen.dart";
   "/lib/main.dart" -> "/lib/screens/main_menu.dart";
-  "/lib/main.dart" -> "/lib/theme/app_theme.dart";
+  "/lib/main.dart" -> "/lib/models/app_theme.dart";
   "/lib/widgets/input_keyboard.dart" -> "/lib/widgets/my_button.dart";
+  "/lib/widgets/cards/card_pile_widget.dart" -> "/lib/models/card_dimensions.dart";
   "/lib/widgets/cards/card_pile_widget.dart" -> "/lib/models/card_model.dart";
   "/lib/widgets/cards/card_pile_widget.dart" -> "/lib/widgets/cards/card_widget.dart";
   "/lib/widgets/cards/card_face_skyjo_widget.dart" -> "/lib/models/card_model.dart";
   "/lib/widgets/cards/card_face_skyjo_widget.dart" -> "/lib/widgets/cards/card_face_french_widget.dart";
+  "/lib/widgets/cards/card_widget.dart" -> "/lib/models/card_dimensions.dart";
   "/lib/widgets/cards/card_widget.dart" -> "/lib/models/card_model.dart";
   "/lib/widgets/cards/card_widget.dart" -> "/lib/widgets/cards/card_face_french_widget.dart";
   "/lib/widgets/cards/card_widget.dart" -> "/lib/widgets/cards/card_face_skyjo_widget.dart";
   "/lib/widgets/cards/card_widget.dart" -> "/lib/widgets/wiggle_widget.dart";
   "/lib/widgets/cards/card_face_french_widget.dart" -> "/lib/models/card_model.dart";
+  "/lib/widgets/game_style.dart" -> "/lib/models/card_dimensions.dart";
   "/lib/widgets/game_style.dart" -> "/lib/models/card_model_french.dart";
   "/lib/widgets/game_style.dart" -> "/lib/models/game_model.dart";
   "/lib/widgets/game_style.dart" -> "/lib/models/game_styles.dart";

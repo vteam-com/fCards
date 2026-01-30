@@ -135,6 +135,12 @@ class Constants {
   /// The vertical padding for the start game button.
   static const double joinGameButtonVerticalPadding = 12.0;
 
+  /// The spacing between widgets in join game screen.
+  static const double joinGameSpacing = 20.0;
+
+  /// The radius for circle avatar in join game screen.
+  static const double circleAvatarRadius = 12.0;
+
   /// Column spacing
   static const double spacing = 20.0;
 }

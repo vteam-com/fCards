@@ -1,3 +1,4 @@
+// ignore: fcheck_layers
 import 'package:web/web.dart' as web;
 
 String getWindowOrigin() => web.window.location.origin;

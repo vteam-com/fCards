@@ -4,7 +4,7 @@ import 'package:cards/screens/game/join_game_screen.dart';
 import 'package:cards/screens/game/start_game_screen.dart';
 import 'package:cards/screens/keepscore/golf_score_screen.dart';
 import 'package:cards/screens/main_menu.dart';
-import 'package:cards/theme/app_theme.dart';
+import 'package:cards/models/app_theme.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';

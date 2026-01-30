@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:cards/misc.dart';
+import 'package:cards/widgets/misc.dart';
 import 'package:cards/models/card_model.dart';
 
 import 'package:cards/widgets/cards/card_face_french_widget.dart';

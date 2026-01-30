@@ -5,7 +5,7 @@
 /// instructions, and other utility functions related to game settings.
 library;
 
-import 'package:cards/misc.dart';
+import 'package:cards/widgets/misc.dart';
 import 'package:cards/models/card_dimensions.dart';
 import 'package:cards/models/card_model_french.dart';
 import 'package:cards/models/game_model.dart';

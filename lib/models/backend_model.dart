@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:core';
 
-import 'package:cards/misc.dart';
+import 'package:cards/widgets/misc.dart';
 import 'package:cards/models/firebase_options.dart';
 import 'package:cards/models/game_history.dart';
 import 'package:firebase_auth/firebase_auth.dart';
