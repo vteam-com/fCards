@@ -179,11 +179,19 @@ class GolfScoreModel {
     final scoresJson = prefs.getString('scores');
 
     if (playerNamesJson != null && scoresJson != null) {
-      final playerNames = (jsonDecode(playerNamesJson) as List).cast<String>();
-      final scores = (jsonDecode(scoresJson) as List)
-          .map((list) => (list as List).cast<int>())
-          .toList();
-      return GolfScoreModel(playerNames: playerNames, scores: scores);
+      try {
+        final playerNames = (jsonDecode(playerNamesJson) as List)
+            .cast<String>();
+        final scores = (jsonDecode(scoresJson) as List)
+            .map((list) => (list as List).cast<int>())
+            .toList();
+        return GolfScoreModel(playerNames: playerNames, scores: scores);
+      } catch (e) {
+        // Handle corrupted JSON data by returning default model
+        return GolfScoreModel(
+          playerNames: ['Player1', 'Player2', 'Player3', 'Player4'],
+        );
+      }
     } else {
       return GolfScoreModel(
         playerNames: ['Player1', 'Player2', 'Player3', 'Player4'],

@@ -14,6 +14,8 @@ digraph "" {
   "/test/models/golf_game_model_test.dart" [label="golf_game_model_test"];
   "/test/models/game_history_test.dart" [label="game_history_test"];
   "/test/models/backend_model_test.dart" [label="backend_model_test"];
+  "/test/keepscore/input_keyboard_test.dart" [label="input_keyboard_test"];
+  "/test/keepscore/golf_score_model_test.dart" [label="golf_score_model_test"];
   "/test/widgets/cards/card_pile_widget_test.dart" [label="card_pile_widget_test"];
   "/test/widgets/cards/card_widget_test.dart" [label="card_widget_test"];
   "/lib/utils/browser_utils_stub.dart" [label="browser_utils_stub"];
@@ -78,6 +80,11 @@ digraph "" {
         "/test/models/golf_game_model_test.dart";
         "/test/models/game_history_test.dart";
         "/test/models/backend_model_test.dart";
+      }
+      subgraph "cluster~/test/keepscore" {
+        label="keepscore";
+        "/test/keepscore/input_keyboard_test.dart";
+        "/test/keepscore/golf_score_model_test.dart";
       }
       subgraph "cluster~/test/widgets" {
         label="widgets";
@@ -201,6 +208,8 @@ digraph "" {
   "/test/models/backend_model_test.dart" -> "/lib/models/game/backend_model.dart";
   "/test/models/backend_model_test.dart" -> "/lib/models/app/firebase_options.dart";
   "/test/models/backend_model_test.dart" -> "/test/models/backend_json_data.dart";
+  "/test/keepscore/input_keyboard_test.dart" -> "/lib/widgets/helpers/input_keyboard.dart";
+  "/test/keepscore/golf_score_model_test.dart" -> "/lib/models/game/golf_score_model.dart";
   "/test/widgets/cards/card_pile_widget_test.dart" -> "/lib/models/card/card_model.dart";
   "/test/widgets/cards/card_pile_widget_test.dart" -> "/lib/widgets/cards/card_pile_widget.dart";
   "/test/widgets/cards/card_widget_test.dart" -> "/lib/models/card/card_model.dart";
