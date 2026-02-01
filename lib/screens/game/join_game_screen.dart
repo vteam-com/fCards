@@ -132,12 +132,12 @@ class JoinGameScreenState extends State<JoinGameScreen> {
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
-      spacing: Constants.spacing,
+      spacing: Constants.sizeS,
       children: [
         Text(
           'Joining Room: $_selectedRoom',
           style: const TextStyle(
-            fontSize: Constants.textSizeX1,
+            fontSize: Constants.textS,
             fontWeight: FontWeight.bold,
             color: Colors.white,
           ),
@@ -145,7 +145,7 @@ class JoinGameScreenState extends State<JoinGameScreen> {
         ),
         const Text(
           'Enter Your Name',
-          style: TextStyle(fontSize: Constants.textSizeX1, color: Colors.white),
+          style: TextStyle(fontSize: Constants.textS, color: Colors.white),
         ),
 
         Container(
@@ -161,7 +161,7 @@ class JoinGameScreenState extends State<JoinGameScreen> {
             controller: _controllerName,
             style: const TextStyle(
               color: Colors.black,
-              fontSize: Constants.textSizeX1,
+              fontSize: Constants.textS,
               fontWeight: FontWeight.bold,
             ),
             textAlign: TextAlign.center,
@@ -183,7 +183,7 @@ class JoinGameScreenState extends State<JoinGameScreen> {
           onPressed: _joinGame,
           child: const Text(
             'Join Room',
-            style: TextStyle(fontSize: Constants.textSizeX1),
+            style: TextStyle(fontSize: Constants.textS),
           ),
         ),
 
@@ -191,7 +191,7 @@ class JoinGameScreenState extends State<JoinGameScreen> {
           Text(
             'Welcome, $_playerName!',
             style: TextStyle(
-              fontSize: Constants.textSizeX1,
+              fontSize: Constants.textS,
               color: Colors.yellow.shade300,
             ),
           ),
@@ -210,12 +210,12 @@ class JoinGameScreenState extends State<JoinGameScreen> {
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
-      spacing: Constants.spacing,
+      spacing: Constants.sizeS,
       children: [
         const Text(
           'Select a Room to Join',
           style: TextStyle(
-            fontSize: Constants.textSizeX1,
+            fontSize: Constants.textS,
             fontWeight: FontWeight.bold,
             color: Colors.white,
           ),
@@ -245,7 +245,7 @@ class JoinGameScreenState extends State<JoinGameScreen> {
             child: Text(
               'Selected: $_selectedRoom',
               style: const TextStyle(
-                fontSize: Constants.textSizeX1,
+                fontSize: Constants.textS,
                 color: Colors.white,
               ),
               textAlign: TextAlign.center,
@@ -275,9 +275,7 @@ class JoinGameScreenState extends State<JoinGameScreen> {
       children: [
         for (int i = 0; i < Constants.joinGameStepCount; i++)
           Container(
-            margin: const EdgeInsets.symmetric(
-              horizontal: Constants.paddingExtraSmall,
-            ),
+            margin: const EdgeInsets.symmetric(horizontal: Constants.sizeXS),
             child: CircleAvatar(
               radius: Constants.circleAvatarRadius,
               backgroundColor: i <= _currentStep
@@ -299,12 +297,12 @@ class JoinGameScreenState extends State<JoinGameScreen> {
   Widget _buildWaitingStep() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
-      spacing: Constants.spacing,
+      spacing: Constants.sizeM,
       children: [
         Text(
           'Room: $_selectedRoom',
           style: const TextStyle(
-            fontSize: Constants.titleLargeSize,
+            fontSize: Constants.textM,
             fontWeight: FontWeight.bold,
             color: Colors.white,
           ),
@@ -329,17 +327,14 @@ class JoinGameScreenState extends State<JoinGameScreen> {
         if (_playerNames.length < Constants.minPlayersToStartGame)
           const Text(
             'Waiting for more players to join...',
-            style: TextStyle(
-              fontSize: Constants.textSizeX1,
-              color: Colors.white70,
-            ),
+            style: TextStyle(fontSize: Constants.textS, color: Colors.white70),
           )
         else
           Text(
             'Ready to play! ${_playerNames.length} players in room.',
             style: TextStyle(
-              fontSize: Constants.textSizeX1,
-              color: Constants.successTextColor,
+              fontSize: Constants.textS,
+              color: Constants.textSuccess,
             ),
           ),
       ],

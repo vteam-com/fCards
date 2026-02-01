@@ -67,7 +67,7 @@ class CardFaceSkyjoWidget extends CardFaceFrenchWidget {
       children: [
         TextSize(
           card.rank,
-          Constants.fontSize20,
+          Constants.textM,
           align: TextAlign.center,
           color: Colors.black,
           bold: true,
@@ -84,7 +84,7 @@ class CardFaceSkyjoWidget extends CardFaceFrenchWidget {
           style:
               TextStyle(
                 fontFamily: 'Comic Sans MS',
-                fontSize: Constants.fontSize60,
+                fontSize: Constants.textXL,
                 color: Colors.white,
                 decoration: TextDecoration.none,
               ).copyWith(
@@ -98,7 +98,7 @@ class CardFaceSkyjoWidget extends CardFaceFrenchWidget {
           card.value.toString(),
           style: TextStyle(
             fontFamily: 'Comic Sans MS',
-            fontSize: Constants.fontSize60,
+            fontSize: Constants.textXL,
             color: Colors.black,
             decoration: TextDecoration.none,
           ),

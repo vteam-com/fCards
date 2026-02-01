@@ -34,7 +34,7 @@ class _MainMenuState extends State<MainMenu> {
             maxWidth: Constants.mainMenuMaxWidth,
           ),
           child: Padding(
-            padding: const EdgeInsets.all(Constants.paddingMedium),
+            padding: const EdgeInsets.all(Constants.sizeM),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -45,13 +45,13 @@ class _MainMenuState extends State<MainMenu> {
                   icon: Icons.play_circle_fill,
                   onPressed: () => Navigator.pushNamed(context, '/game'),
                 ),
-                SizedBox(height: Constants.spacing),
+                SizedBox(height: Constants.sizeM),
                 MenuButton(
                   label: 'Join an Existing Game',
                   icon: Icons.group_add,
                   onPressed: () => Navigator.pushNamed(context, '/join'),
                 ),
-                SizedBox(height: Constants.spacing),
+                SizedBox(height: Constants.sizeM),
                 MenuButton(
                   label: 'Score Keeper',
                   icon: Icons.scoreboard,
@@ -114,34 +114,30 @@ class MenuButton extends StatelessWidget {
           backgroundColor: Colors.green.withAlpha(Constants.alpha200),
           foregroundColor: Colors.white,
           padding: const EdgeInsets.symmetric(
-            horizontal: Constants.paddingLarge,
-            vertical: Constants.paddingMedium,
+            horizontal: Constants.sizeL,
+            vertical: Constants.sizeM,
           ),
 
           textStyle: TextStyle(
-            fontSize: Constants.fontSize20,
+            fontSize: Constants.textM,
             fontWeight: FontWeight.bold,
           ),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(Constants.borderRadiusLarge),
+            borderRadius: BorderRadius.circular(Constants.radiusL),
 
             side: BorderSide(
-              color: Constants.green600,
-              width: Constants.borderWidth2,
+              color: Constants.primaryGreenLight,
+              width: Constants.strokeS,
             ),
           ),
-          elevation: Constants.elevation8,
+          elevation: Constants.elevationL,
           shadowColor: Colors.black45,
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
-              icon,
-              size: Constants.iconSize32,
-              color: Colors.yellow.shade300,
-            ),
-            SizedBox(width: Constants.paddingMedium),
+            Icon(icon, size: Constants.iconM, color: Colors.yellow.shade300),
+            SizedBox(width: Constants.sizeM),
             SizedBox(
               width: Constants.mainMenuButtonTextWidth,
               child: Text(label),

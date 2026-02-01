@@ -38,42 +38,32 @@ class PlayerHeaderWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
-        SizedBox(
-          width: Constants.playerDisplayPaddingWidth.toDouble(),
-          child: FittedBox(
-            fit: BoxFit.scaleDown,
-            child: Tooltip(
-              message: listOfWinsForThisPlayer.length.toString(),
-              child: TextButton(
-                onPressed: () {
-                  showHistory(context, listOfWinsForThisPlayer);
-                },
-                child: TextSize(
-                  player.name,
-                  Constants.textSizeX1,
-                  color: Colors.white,
-                  bold: true,
-                ),
+        FittedBox(
+          fit: BoxFit.scaleDown,
+          child: Tooltip(
+            message: listOfWinsForThisPlayer.length.toString(),
+            child: TextButton(
+              onPressed: () {
+                showHistory(context, listOfWinsForThisPlayer);
+              },
+              child: TextSize(
+                player.name,
+                Constants.textM,
+                color: Colors.white,
+                bold: true,
               ),
             ),
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: Constants.spacing),
-          child: StatusPicker(
-            status: player.status,
-            onStatusChanged: onStatusChanged,
-          ),
-        ),
-        SizedBox(
-          width: Constants.cardDisplayPaddingWidth.toDouble(),
-          child: TextSize(
-            sumOfRevealedCards.toString(),
-            Constants.textSizeX1,
-            align: TextAlign.end,
-            color: Colors.white.withAlpha(Constants.golfJokerValue),
-            bold: true,
-          ),
+
+        StatusPicker(status: player.status, onStatusChanged: onStatusChanged),
+
+        TextSize(
+          sumOfRevealedCards.toString(),
+          Constants.textM,
+          align: TextAlign.end,
+          color: Colors.white.withAlpha(Constants.golfJokerValue),
+          bold: true,
         ),
       ],
     );

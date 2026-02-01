@@ -130,36 +130,50 @@ class Constants {
   /// The border radius for container in join game screen.
   static const double joinGameContainerBorderRadius = 8.0;
 
-  /// The font size X1
-  static const double textSizeX1 = 15.0;
+  // Fibonacci-based sizing system
 
-  /// The font size X2
-  static const double textSizeX2 = 30.0;
+  // Base Fibonacci numbers: 1, 2, 3, 5, 8, 13, 21, 34, 55, 89
+  // Text sizes (S/M/L approach)
+  static const double textXS = 8.0; // Extra Small
+  static const double textS = 13.0; // Small
+  static const double textM = 21.0; // Medium
+  static const double textL = 34.0; // Large
+  static const double textXL = 55.0; // Extra Large
 
-  /// Text sizes for display styles
-  static const double displayLargeSize = 57.0;
-  static const double displayMediumSize = 45.0;
-  static const double displaySmallSize = 36.0;
+  // Size (XS/S/M/L/XL approach)
+  static const double sizeXS = 2.0; // Extra Small
+  static const double sizeS = 5.0; // Small
+  static const double sizeM = 13.0; // Medium
+  static const double sizeL = 21.0; // Large
+  static const double sizeXL = 34.0; // Extra Large
 
-  /// Text sizes for headline styles
-  static const double headlineLargeSize = 32.0;
-  static const double headlineMediumSize = 28.0;
-  static const double headlineSmallSize = 24.0;
+  // Border radius (S/M/L approach)
+  static const double radiusXS = 2.0; // Extra Small
+  static const double radiusS = 5.0; // Small
+  static const double radiusM = 13.0; // Medium
+  static const double radiusL = 21.0; // Large
+  static const double radiusXL = 34.0; // Extra Large
 
-  /// Text sizes for title styles
-  static const double titleLargeSize = 22.0;
-  static const double titleMediumSize = 16.0;
-  static const double titleSmallSize = 14.0;
+  // Icon sizes (S/M/L approach)
+  static const double iconXS = 13.0; // Extra Small
+  static const double iconS = 21.0; // Small
+  static const double iconM = 34.0; // Medium
+  static const double iconL = 55.0; // Large
+  static const double iconXL = 89.0; // Extra Large
 
-  /// Text sizes for body styles
-  static const double bodyLargeSize = 16.0;
-  static const double bodyMediumSize = 14.0;
-  static const double bodySmallSize = 12.0;
+  // Stroke widths (S/M/L approach)
+  static const double strokeXS = 1.0; // Extra Small
+  static const double strokeS = 2.0; // Small
+  static const double strokeM = 3.0; // Medium
+  static const double strokeL = 5.0; // Large
+  static const double strokeXL = 8.0; // Extra Large
 
-  /// Text sizes for label styles
-  static const double labelLargeSize = 14.0;
-  static const double labelMediumSize = 12.0;
-  static const double labelSmallSize = 10.0;
+  // Elevation (S/M/L approach)
+  static const double elevationXS = 1.0; // Extra Small
+  static const double elevationS = 2.0; // Small
+  static const double elevationM = 5.0; // Medium
+  static const double elevationL = 8.0; // Large
+  static const double elevationXL = 13.0; // Extra Large
 
   /// The horizontal padding for the start game button.
   static const double joinGameButtonHorizontalPadding = 24.0;
@@ -173,26 +187,25 @@ class Constants {
   /// The radius for circle avatar in join game screen.
   static const double circleAvatarRadius = 12.0;
 
-  /// Column spacing
-  static const double spacing = 20.0;
+  // Normalized color system
 
-  /// The color for the app's background (green shade 900)
-  static final Color appBackgroundColor = Colors.green.shade900;
+  // Primary colors (green theme)
+  static final Color primaryGreen = Colors.green.shade900;
+  static final Color primaryGreenLight = Colors.green[600]!;
+  static final Color primaryGreenDark = Color.fromARGB(255, 19, 67, 22);
 
-  /// The color for cards (green shade 900)
-  static final Color cardColor = Colors.green.shade900;
+  // Text colors
+  static final Color textPrimary = Colors.white;
+  static final Color textHint = Colors.white70;
+  static final Color textSuccess = Colors.green[400]!;
 
-  /// The color for text (white)
-  static final Color textColor = Colors.white;
+  // Background colors
+  static final Color backgroundPrimary = primaryGreen;
+  static final Color backgroundCard = primaryGreen;
 
-  /// The color for hint text (white with 70% alpha)
-  static final Color hintTextColor = Colors.white70;
-
-  /// The color for green with 100 alpha
-  static final Color greenWithAlpha100 = Colors.green.withAlpha(100);
-
-  /// The color for yellow
-  static const Color yellowColor = Colors.yellow;
+  // Accent colors
+  static const Color accentYellow = Colors.yellow;
+  static final Color accentGreenAlpha = Colors.green.withAlpha(100);
 
   /// The border width for enabled borders
   static const double enabledBorderWidth = 1.0;
@@ -211,9 +224,6 @@ class Constants {
 
   /// The border radius multiplier for selected room container
   static const double selectedRoomBorderRadiusMultiplier = 1.5;
-
-  /// The color for success messages (green shade 400)
-  static final Color successTextColor = Colors.green[400]!;
 
   /// The width for the game over dialog
   static const double gameOverDialogWidth = 500.0;
@@ -257,51 +267,6 @@ class Constants {
   /// Height for the game style widget
   static const double gameStyleWidgetHeight = 500.0;
 
-  /// Green color for labels in edit box
-  static final Color editBoxLabelColor = Color.fromARGB(255, 19, 67, 22);
-
-  /// Dark icon color (green shade 900).
-  static final Color iconColorDark = Colors.green.shade900;
-
-  /// Green shade 600.
-  static final Color green600 = Colors.green[600]!;
-
-  /// Generic small padding (8.0).
-  static const double paddingSmall = 8.0;
-
-  /// Generic medium padding (16.0).
-  static const double paddingMedium = 16.0;
-
-  /// Generic large padding (24.0).
-  static const double paddingLarge = 24.0;
-
-  /// Generic extra small padding (4.0).
-  static const double paddingExtraSmall = 4.0;
-
-  /// Generic small border radius (4.0).
-  static const double borderRadiusSmall = 4.0;
-
-  /// Generic medium border radius (8.0).
-  static const double borderRadiusMedium = 8.0;
-
-  /// Generic large border radius (16.0).
-  static const double borderRadiusLarge = 16.0;
-
-  /// Generic extra large border radius (32.0).
-  static const double borderRadiusXLarge = 32.0;
-
-  /// Generic border width (1.0).
-  static const double borderWidth1 = 1.0;
-
-  /// Generic border width (2.0).
-  static const double borderWidth2 = 2.0;
-
-  /// Generic icon size (32.0).
-  static const double iconSize32 = 32.0;
-
-  /// Generic elevation (8.0).
-  static const double elevation8 = 8.0;
-
   /// Alpha value 100.
   static const int alpha100 = 100;
 
@@ -326,41 +291,14 @@ class Constants {
   /// Main menu spacer height (20.0).
   static const double mainMenuSpacerHeight = 20.0;
 
-  /// Tiny spacing (2.0).
-  static const double spacingTiny = 2.0;
-
-  /// Font size 14.
-  static const double fontSize14 = 14.0;
-
-  /// Font size 16.
-  static const double fontSize16 = 16.0;
-
-  /// Font size 18.
-  static const double fontSize18 = 18.0;
-
-  /// Font size 20.
-  static const double fontSize20 = 20.0;
-
   /// Golf column width (90.0).
   static const double golfColumnWidth = 90.0;
-
-  /// Icon size 30.
-  static const double iconSize30 = 30.0;
 
   /// Animation duration 300ms.
   static const int animationDuration300 = 300;
 
-  /// Border radius 40.
-  static const double borderRadius40 = 40.0;
-
-  /// Border radius 5.
-  static const double borderRadius5 = 5.0;
-
   /// Height 40.
   static const double height40 = 40.0;
-
-  /// Icon size 50.
-  static const double iconSize50 = 50.0;
 
   /// Loading indicator radius (40).
   static const double loadingIndicatorRadius = 40.0;
@@ -413,23 +351,14 @@ class Constants {
   /// Skyjo offset (10.0).
   static const double skyjoOffset = 10.0;
 
-  /// Font size 60.
-  static const double fontSize60 = 60.0;
-
   /// Stroke width 6.
-  static const double strokeWidth6 = 6.0;
+  static const double strokeWidth6 = strokeM; // 6.0 -> 3.0 (closest Fibonacci)
 
   /// Skyjo value threshold 5.
   static const int skyjoValueThreshold5 = 5;
 
   /// Skyjo value threshold 9.
   static const int skyjoValueThreshold9 = 9;
-
-  /// Font size 30.
-  static const double fontSize30 = 30.0;
-
-  /// Font size 40.
-  static const double fontSize40 = 40.0;
 
   /// Card value joker (-2).
   static const int cardValueJoker = -2;
@@ -514,11 +443,4 @@ class Constants {
   static const int wiggleAnimationDuration = 750;
   static const double wiggleAngleMin = -0.05;
   static const double wiggleAngleMax = 0.05;
-
-  // Font size constants for card_face_french_widget.dart
-  static const double jokerFontSize = 30.0;
-  static const double kingQueenFontSize = 40.0;
-  static const double suitSymbolFontSize = 18.0;
-  static const double valueFontSize = 20.0;
-  static const double figureCardsFontSize = 60.0;
 }

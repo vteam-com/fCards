@@ -1,4 +1,5 @@
 // ignore: fcheck_magic_numbers
+import 'package:cards/models/app/constants.dart';
 import 'package:flutter/material.dart';
 
 ///
@@ -42,7 +43,7 @@ class PlayersInRoomWidget extends StatelessWidget {
           Container(
             padding: EdgeInsets.all(8),
             decoration: BoxDecoration(
-              color: Colors.green.shade100,
+              color: Constants.backgroundPrimary.withAlpha(Constants.alpha100),
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(8),
                 topRight: Radius.circular(8),

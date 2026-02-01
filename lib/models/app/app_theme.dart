@@ -5,62 +5,82 @@ class AppTheme {
   static ThemeData get lightTheme {
     final baseTheme = ThemeData.light();
     final textTheme = baseTheme.textTheme;
+    final colorScheme = baseTheme.colorScheme.copyWith(
+      primary: Constants.primaryGreen,
+      surface: Constants.backgroundCard,
+    );
 
     return baseTheme.copyWith(
+      colorScheme: colorScheme,
       textTheme: textTheme.copyWith(
         // Display styles
         displayLarge: textTheme.displayLarge?.copyWith(
-          fontSize: Constants.displayLargeSize,
+          fontSize: Constants.textXL,
+          color: Constants.textPrimary,
         ),
         displayMedium: textTheme.displayMedium?.copyWith(
-          fontSize: Constants.displayMediumSize,
+          fontSize: Constants.textL,
+          color: Constants.textPrimary,
         ),
         displaySmall: textTheme.displaySmall?.copyWith(
-          fontSize: Constants.displaySmallSize,
+          fontSize: Constants.textL,
+          color: Constants.textPrimary,
         ),
 
         // Headline styles
         headlineLarge: textTheme.headlineLarge?.copyWith(
-          fontSize: Constants.headlineLargeSize,
+          fontSize: Constants.textL,
+          color: Constants.textPrimary,
         ),
         headlineMedium: textTheme.headlineMedium?.copyWith(
-          fontSize: Constants.headlineMediumSize,
+          fontSize: Constants.textM,
+          color: Constants.textPrimary,
         ),
         headlineSmall: textTheme.headlineSmall?.copyWith(
-          fontSize: Constants.headlineSmallSize,
+          fontSize: Constants.textM,
+          color: Constants.textPrimary,
         ),
 
         // Title styles
         titleLarge: textTheme.titleLarge?.copyWith(
-          fontSize: Constants.titleLargeSize,
+          fontSize: Constants.textM,
+          color: Constants.textPrimary,
         ),
         titleMedium: textTheme.titleMedium?.copyWith(
-          fontSize: Constants.titleMediumSize,
+          fontSize: Constants.textS,
+          color: Constants.textPrimary,
         ),
         titleSmall: textTheme.titleSmall?.copyWith(
-          fontSize: Constants.titleSmallSize,
+          fontSize: Constants.textS,
+          color: Constants.textPrimary,
         ),
 
         // Body styles
         bodyLarge: textTheme.bodyLarge?.copyWith(
-          fontSize: Constants.bodyLargeSize,
+          fontSize: Constants.textS,
+          color: Constants.textPrimary,
         ),
         bodyMedium: textTheme.bodyMedium?.copyWith(
-          fontSize: Constants.bodyMediumSize,
+          fontSize: Constants.textS,
+          color: Constants.textPrimary,
         ),
         bodySmall: textTheme.bodySmall?.copyWith(
-          fontSize: Constants.bodySmallSize,
+          fontSize: Constants.textXS,
+          color: Constants.textPrimary,
         ),
 
         // Label styles
         labelLarge: textTheme.labelLarge?.copyWith(
-          fontSize: Constants.labelLargeSize,
+          fontSize: Constants.textS,
+          color: Constants.textPrimary,
         ),
         labelMedium: textTheme.labelMedium?.copyWith(
-          fontSize: Constants.labelMediumSize,
+          fontSize: Constants.textXS,
+          color: Constants.textPrimary,
         ),
         labelSmall: textTheme.labelSmall?.copyWith(
-          fontSize: Constants.labelSmallSize,
+          fontSize: Constants.textXS,
+          color: Constants.textPrimary,
         ),
       ),
     );
@@ -69,62 +89,82 @@ class AppTheme {
   static ThemeData get darkTheme {
     final baseTheme = ThemeData.dark();
     final textTheme = baseTheme.textTheme;
+    final colorScheme = baseTheme.colorScheme.copyWith(
+      primary: Constants.primaryGreen,
+      surface: Constants.backgroundCard,
+    );
 
     return baseTheme.copyWith(
+      colorScheme: colorScheme,
       textTheme: textTheme.copyWith(
         // Display styles
         displayLarge: textTheme.displayLarge?.copyWith(
-          fontSize: Constants.displayLargeSize,
+          fontSize: Constants.textXL,
+          color: Constants.textPrimary,
         ),
         displayMedium: textTheme.displayMedium?.copyWith(
-          fontSize: Constants.displayMediumSize,
+          fontSize: Constants.textL,
+          color: Constants.textPrimary,
         ),
         displaySmall: textTheme.displaySmall?.copyWith(
-          fontSize: Constants.displaySmallSize,
+          fontSize: Constants.textL,
+          color: Constants.textPrimary,
         ),
 
         // Headline styles
         headlineLarge: textTheme.headlineLarge?.copyWith(
-          fontSize: Constants.headlineLargeSize,
+          fontSize: Constants.textL,
+          color: Constants.textPrimary,
         ),
         headlineMedium: textTheme.headlineMedium?.copyWith(
-          fontSize: Constants.headlineMediumSize,
+          fontSize: Constants.textM,
+          color: Constants.textPrimary,
         ),
         headlineSmall: textTheme.headlineSmall?.copyWith(
-          fontSize: Constants.headlineSmallSize,
+          fontSize: Constants.textM,
+          color: Constants.textPrimary,
         ),
 
         // Title styles
         titleLarge: textTheme.titleLarge?.copyWith(
-          fontSize: Constants.titleLargeSize,
+          fontSize: Constants.textM,
+          color: Constants.textPrimary,
         ),
         titleMedium: textTheme.titleMedium?.copyWith(
-          fontSize: Constants.titleMediumSize,
+          fontSize: Constants.textS,
+          color: Constants.textPrimary,
         ),
         titleSmall: textTheme.titleSmall?.copyWith(
-          fontSize: Constants.titleSmallSize,
+          fontSize: Constants.textS,
+          color: Constants.textPrimary,
         ),
 
         // Body styles
         bodyLarge: textTheme.bodyLarge?.copyWith(
-          fontSize: Constants.bodyLargeSize,
+          fontSize: Constants.textS,
+          color: Constants.textPrimary,
         ),
         bodyMedium: textTheme.bodyMedium?.copyWith(
-          fontSize: Constants.bodyMediumSize,
+          fontSize: Constants.textS,
+          color: Constants.textPrimary,
         ),
         bodySmall: textTheme.bodySmall?.copyWith(
-          fontSize: Constants.bodySmallSize,
+          fontSize: Constants.textXS,
+          color: Constants.textPrimary,
         ),
 
         // Label styles
         labelLarge: textTheme.labelLarge?.copyWith(
-          fontSize: Constants.labelLargeSize,
+          fontSize: Constants.textS,
+          color: Constants.textPrimary,
         ),
         labelMedium: textTheme.labelMedium?.copyWith(
-          fontSize: Constants.labelMediumSize,
+          fontSize: Constants.textXS,
+          color: Constants.textPrimary,
         ),
         labelSmall: textTheme.labelSmall?.copyWith(
-          fontSize: Constants.labelSmallSize,
+          fontSize: Constants.textXS,
+          color: Constants.textPrimary,
         ),
       ),
     );

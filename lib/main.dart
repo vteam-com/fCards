@@ -55,49 +55,49 @@ class MyApp extends StatelessWidget {
       title: 'Cards',
       theme: AppTheme.darkTheme.copyWith(
         brightness: Brightness.dark,
-        scaffoldBackgroundColor: Constants.appBackgroundColor,
-        cardColor: Constants.cardColor,
+        scaffoldBackgroundColor: Constants.backgroundPrimary,
+        cardColor: Constants.backgroundCard,
         textTheme: AppTheme.darkTheme.textTheme
             .apply(fontFamily: 'Roboto')
             .copyWith(
-              bodyMedium: TextStyle(color: Constants.textColor),
-              bodyLarge: TextStyle(color: Constants.textColor),
-              displayLarge: TextStyle(color: Constants.textColor),
-              displayMedium: TextStyle(color: Constants.textColor),
-              displaySmall: TextStyle(color: Constants.textColor),
-              headlineLarge: TextStyle(color: Constants.textColor),
-              headlineMedium: TextStyle(color: Constants.textColor),
-              headlineSmall: TextStyle(color: Constants.textColor),
-              titleLarge: TextStyle(color: Constants.textColor),
-              titleMedium: TextStyle(color: Constants.textColor),
-              titleSmall: TextStyle(color: Constants.textColor),
-              labelLarge: TextStyle(color: Constants.textColor),
-              labelMedium: TextStyle(color: Constants.textColor),
-              labelSmall: TextStyle(color: Constants.textColor),
+              bodyMedium: TextStyle(color: Constants.textPrimary),
+              bodyLarge: TextStyle(color: Constants.textPrimary),
+              displayLarge: TextStyle(color: Constants.textPrimary),
+              displayMedium: TextStyle(color: Constants.textPrimary),
+              displaySmall: TextStyle(color: Constants.textPrimary),
+              headlineLarge: TextStyle(color: Constants.textPrimary),
+              headlineMedium: TextStyle(color: Constants.textPrimary),
+              headlineSmall: TextStyle(color: Constants.textPrimary),
+              titleLarge: TextStyle(color: Constants.textPrimary),
+              titleMedium: TextStyle(color: Constants.textPrimary),
+              titleSmall: TextStyle(color: Constants.textPrimary),
+              labelLarge: TextStyle(color: Constants.textPrimary),
+              labelMedium: TextStyle(color: Constants.textPrimary),
+              labelSmall: TextStyle(color: Constants.textPrimary),
             ),
-        hintColor: Constants.hintTextColor,
+        hintColor: Constants.textHint,
         inputDecorationTheme: InputDecorationTheme(
           filled: true,
-          fillColor: Constants.textColor.withAlpha(Constants.alpha100),
-          hintStyle: TextStyle(color: Constants.hintTextColor),
-          labelStyle: TextStyle(color: Constants.textColor),
+          fillColor: Constants.textPrimary.withAlpha(Constants.alpha100),
+          hintStyle: TextStyle(color: Constants.textHint),
+          labelStyle: TextStyle(color: Constants.textPrimary),
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(
-              color: Constants.greenWithAlpha100,
+              color: Constants.accentGreenAlpha,
               width: Constants.enabledBorderWidth,
             ),
           ),
           focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(
-              color: Constants.yellowColor,
+              color: Constants.accentYellow,
               width: Constants.focusedBorderWidth,
             ),
           ),
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
-            backgroundColor: Constants.appBackgroundColor,
-            foregroundColor: Constants.textColor,
+            backgroundColor: Constants.backgroundPrimary,
+            foregroundColor: Constants.textPrimary,
             padding: const EdgeInsets.symmetric(
               horizontal: Constants.buttonHorizontalPadding,
               vertical: Constants.buttonVerticalPadding,
@@ -110,7 +110,7 @@ class MyApp extends StatelessWidget {
         textButtonTheme: TextButtonThemeData(
           // Add TextButtonThemeData
           style: TextButton.styleFrom(
-            foregroundColor: Constants.textColor, // Text color
+            foregroundColor: Constants.textPrimary, // Text color
             padding: const EdgeInsets.symmetric(
               horizontal: Constants.buttonHorizontalPadding,
               vertical: Constants.buttonVerticalPadding,
@@ -122,15 +122,15 @@ class MyApp extends StatelessWidget {
           ),
         ),
         appBarTheme: AppBarTheme(
-          backgroundColor: Constants.appBackgroundColor,
+          backgroundColor: Constants.backgroundPrimary,
           titleTextStyle: TextStyle(
-            color: Constants.textColor,
+            color: Constants.textPrimary,
             fontWeight: FontWeight.bold,
           ),
-          iconTheme: IconThemeData(color: Constants.textColor),
+          iconTheme: IconThemeData(color: Constants.textPrimary),
         ),
-        iconTheme: IconThemeData(color: Constants.textColor),
-        primaryIconTheme: IconThemeData(color: Constants.textColor),
+        iconTheme: IconThemeData(color: Constants.textPrimary),
+        primaryIconTheme: IconThemeData(color: Constants.textPrimary),
       ),
       initialRoute: '/',
       routes: {

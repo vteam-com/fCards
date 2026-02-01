@@ -20,15 +20,15 @@ class DateTimeWidget extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        _buildText(dateTime.year, Constants.fontSize14),
+        _buildText(dateTime.year, Constants.textS),
         const Text(' . '),
-        _buildText(dateTime.month, Constants.fontSize16),
+        _buildText(dateTime.month, Constants.textS),
         const Text(' . '),
-        _buildText(dateTime.day, Constants.fontSize18),
-        SizedBox(width: Constants.spacing),
-        _buildText(dateTime.hour, Constants.fontSize18),
+        _buildText(dateTime.day, Constants.textM),
+        SizedBox(width: Constants.sizeM),
+        _buildText(dateTime.hour, Constants.textM),
         const Text(':'),
-        _buildText(dateTime.minute, Constants.fontSize18),
+        _buildText(dateTime.minute, Constants.textM),
       ],
     );
   }

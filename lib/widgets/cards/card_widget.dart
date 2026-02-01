@@ -55,10 +55,7 @@ class CardWidget extends StatelessWidget {
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(CardDimensions.borderRadius),
-            border: Border.all(
-              color: Colors.black,
-              width: Constants.borderWidth1,
-            ),
+            border: Border.all(color: Colors.black, width: Constants.strokeXS),
           ),
           child: card.suit == ''
               ? CardFaceSkyjoWidget(card: card)

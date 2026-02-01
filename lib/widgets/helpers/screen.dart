@@ -131,7 +131,7 @@ class _ScreenState extends State<Screen> {
           /// RIGHT SIDE TEXT (User Name)
           if (widget.rightText.isNotEmpty)
             Padding(
-              padding: const EdgeInsets.all(Constants.paddingSmall),
+              padding: const EdgeInsets.all(Constants.sizeS),
               child: Text(
                 widget.rightText,
                 style: TextStyle(

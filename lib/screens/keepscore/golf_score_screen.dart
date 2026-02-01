@@ -31,7 +31,7 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
 
   Map<String, int>? _selectedCell;
 
-  final double columnGap = Constants.paddingSmall;
+  final double columnGap = Constants.sizeS;
 
   final double columnWidth = Constants.golfColumnWidth;
 
@@ -191,22 +191,22 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
   Widget _buildAddOrRemoveRow(final GolfScoreModel scoreModel) {
     return IntrinsicWidth(
       child: Container(
-        margin: EdgeInsets.all(Constants.paddingSmall),
+        margin: EdgeInsets.all(Constants.sizeS),
         decoration: BoxDecoration(
           color: Colors.black26,
           border: Border.all(color: Colors.black26),
           borderRadius: const BorderRadius.all(
-            Radius.circular(Constants.borderRadius40),
+            Radius.circular(Constants.radiusXL),
           ),
         ),
-        padding: EdgeInsets.all(Constants.paddingSmall),
-        /* was 10, using 8 for consistency? Or should add 10? Using paddingSmall for now if close enough or add 10 */
+        padding: EdgeInsets.all(Constants.sizeS),
+        /* was 10, using 8 for consistency? Or should add 10? Using sizeS for now if close enough or add 10 */
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          spacing: Constants.paddingSmall,
+          spacing: Constants.sizeS,
           children: [
             MyButton(
-              size: Constants.iconSize30,
+              size: Constants.iconM,
               onTap: () {
                 setState(() {
                   scoreModel.addRound();
@@ -225,11 +225,11 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
             ),
             Text(
               '${scoreModel.scores.length} Rounds',
-              style: TextStyle(fontSize: Constants.labelLargeSize),
+              style: TextStyle(fontSize: Constants.textS),
             ),
             if (scoreModel.scores.length > 1)
               MyButton(
-                size: Constants.iconSize30,
+                size: Constants.iconM,
                 onTap: () {
                   final lastRoundScores = scoreModel.scores.last;
                   final allScoresAreZero = lastRoundScores.every(
@@ -347,10 +347,10 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
                                   _selectedCell!['col'] == j
                               ? Colors.yellow
                               : Colors.transparent,
-                          width: Constants.borderWidth2,
+                          width: Constants.strokeS,
                         ),
                         borderRadius: const BorderRadius.all(
-                          Radius.circular(Constants.borderRadius5),
+                          Radius.circular(Constants.radiusS),
                         ),
                       ),
                       child: Center(
@@ -360,7 +360,7 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
                               : scoreModel.scores[i][j].toString(),
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontSize: Constants.fontSize20,
+                            fontSize: Constants.textM,
                             color: _getScoreColor(
                               ranks[j],
                               scoreModel.playerNames.length,
@@ -379,7 +379,7 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
-      spacing: Constants.borderWidth1,
+      spacing: Constants.strokeXS,
       children: widgets,
     );
   }

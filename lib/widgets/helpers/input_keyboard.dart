@@ -20,15 +20,15 @@ class InputKeyboard extends StatelessWidget {
   Widget build(BuildContext context) {
     return IntrinsicWidth(
       child: Container(
-        margin: EdgeInsets.all(Constants.paddingSmall),
+        margin: EdgeInsets.all(Constants.sizeS),
         decoration: BoxDecoration(
           color: Colors.black26,
           border: Border.all(color: Colors.black26),
           borderRadius: const BorderRadius.all(
-            Radius.circular(Constants.borderRadius40),
+            Radius.circular(Constants.radiusXL),
           ),
         ),
-        padding: EdgeInsets.all(Constants.paddingSmall),
+        padding: EdgeInsets.all(Constants.sizeS),
         child: Column(
           children: [
             Row(
@@ -71,14 +71,14 @@ class InputKeyboard extends StatelessWidget {
 
   Widget _buildButton(String text) {
     return Padding(
-      padding: const EdgeInsets.all(Constants.paddingSmall),
+      padding: const EdgeInsets.all(Constants.sizeS),
       child: MyButton(
-        size: Constants.iconSize50,
+        size: Constants.iconL,
         onTap: () => onKeyPressed(text),
         child: Text(
           text,
           textAlign: TextAlign.center,
-          style: TextStyle(fontSize: Constants.fontSize20),
+          style: TextStyle(fontSize: Constants.textM),
         ),
       ),
     );

@@ -56,7 +56,7 @@ class CardFaceFrenchWidget extends StatelessWidget {
           child: TextSize(
             'Joker',
             align: TextAlign.center,
-            Constants.fontSize30,
+            Constants.textL,
             bold: true,
             color: color,
           ),
@@ -67,37 +67,22 @@ class CardFaceFrenchWidget extends StatelessWidget {
         return Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            TextSize(
-              card.rank,
-              Constants.kingQueenFontSize,
-              bold: true,
-              color: color,
-            ),
-            TextSize(
-              card.suit,
-              Constants.suitSymbolFontSize,
-              bold: true,
-              color: color,
-            ),
+            TextSize(card.rank, Constants.textL, bold: true, color: color),
+            TextSize(card.suit, Constants.textS, bold: true, color: color),
           ],
         );
       default:
         return Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            TextSize(
-              card.rank,
-              Constants.kingQueenFontSize,
-              bold: true,
-              color: color,
-            ),
+            TextSize(card.rank, Constants.textL, bold: true, color: color),
           ],
         );
     }
   }
 
   ///
-  Widget buildSuitSymbol({final double size = Constants.fontSize18}) {
+  Widget buildSuitSymbol({final double size = Constants.textS}) {
     return Text(
       card.suit,
       style: TextStyle(
@@ -125,7 +110,7 @@ class CardFaceFrenchWidget extends StatelessWidget {
         return [figureCards('♝')];
 
       case 1:
-        return [Center(child: buildSuitSymbol(size: Constants.fontSize30))];
+        return [Center(child: buildSuitSymbol(size: Constants.textL))];
 
       // Layout for number cards 2 to 10
       case Constants.cardValue2:
@@ -267,7 +252,7 @@ class CardFaceFrenchWidget extends StatelessWidget {
       children: [
         TextSize(
           card.value.toString(),
-          Constants.fontSize20,
+          Constants.textM,
           align: TextAlign.right,
           bold: true,
           color: getSuitColor(card.suit),
@@ -285,7 +270,7 @@ class CardFaceFrenchWidget extends StatelessWidget {
           text,
           textAlign: TextAlign.center,
           style: TextStyle(
-            fontSize: Constants.fontSize60,
+            fontSize: Constants.textXL,
             color: getSuitColor(card.suit),
             decoration: TextDecoration.none,
           ),

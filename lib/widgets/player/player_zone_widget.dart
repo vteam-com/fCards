@@ -1,6 +1,5 @@
 import 'dart:math';
 import 'package:animate_do/animate_do.dart';
-import 'package:cards/utils/logger.dart';
 import 'package:cards/models/game/game_model.dart';
 import 'package:cards/widgets/cards/card_widget.dart';
 import 'package:cards/widgets/player/player_header_widget.dart';
@@ -42,7 +41,7 @@ class PlayerZoneWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    logger.d(player.toString());
+    // logger.d(player.toString());
     final double width = min(
       Constants.joinGamePlayerListMaxWidth,
       MediaQuery.of(context).size.width,
@@ -54,17 +53,15 @@ class PlayerZoneWidget extends StatelessWidget {
           width: width,
           height: heightZone,
           decoration: BoxDecoration(
-            color: Colors.green.shade800.withAlpha(Constants.golfJokerValue),
+            color: Constants.primaryGreenDark,
             border: Border.all(
               color: Colors.transparent,
               width: Constants.golfGrid2x2Size,
             ),
-            borderRadius: BorderRadius.circular(
-              Constants.skyjoColumns.toDouble(),
-            ),
+            borderRadius: BorderRadius.circular(Constants.radiusM),
             // No shadow.
           ),
-          padding: EdgeInsets.all(Constants.skyjoSetSize.toDouble()),
+          padding: EdgeInsets.all(Constants.sizeS.toDouble()),
           child: _buildContent(context),
         ),
       ],

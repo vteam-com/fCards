@@ -53,7 +53,7 @@ void myDialog({
       return AlertDialog(
         title: Text(
           title,
-          style: TextStyle(fontSize: Constants.fontSize60),
+          style: TextStyle(fontSize: Constants.textXL),
           textAlign: TextAlign.center,
         ),
         content: content,

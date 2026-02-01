@@ -57,7 +57,7 @@ void showGameOverDialog(
           Expanded(
             child: Text(
               player.name,
-              style: const TextStyle(fontSize: Constants.headlineSmallSize),
+              style: const TextStyle(fontSize: Constants.textM),
             ),
           ),
           Expanded(
@@ -66,11 +66,11 @@ void showGameOverDialog(
               children: [
                 Text(
                   gameModel.getWinsForPlayerName(player.name).length.toString(),
-                  style: const TextStyle(fontSize: Constants.bodySmallSize),
+                  style: const TextStyle(fontSize: Constants.textXS),
                 ),
                 TextSize(
                   player.sumOfRevealedCards.toString(),
-                  Constants.titleLargeSize.toInt(),
+                  Constants.textM.toInt(),
                   bold: true,
                 ),
               ],
