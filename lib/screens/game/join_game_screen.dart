@@ -9,6 +9,7 @@ import 'package:cards/widgets/helpers/screen.dart';
 import 'package:cards/widgets/helpers/players_in_room_widget.dart';
 import 'package:cards/widgets/helpers/rooms_widget.dart';
 import 'package:cards/models/app/constants.dart';
+import 'package:cards/utils/logger.dart';
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
@@ -374,7 +375,7 @@ class JoinGameScreenState extends State<JoinGameScreen> {
         });
       }
     } catch (e) {
-      debugPrint('Error fetching rooms: $e');
+      logger.e('Error fetching rooms: $e');
     }
   }
 

@@ -1,6 +1,6 @@
 import 'dart:math';
 import 'package:animate_do/animate_do.dart';
-import 'package:cards/utils/log.dart';
+import 'package:cards/utils/logger.dart';
 import 'package:cards/models/game/game_model.dart';
 import 'package:cards/widgets/cards/card_widget.dart';
 import 'package:cards/widgets/player/player_header_widget.dart';
@@ -42,7 +42,7 @@ class PlayerZoneWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    debugLog(player.toString());
+    logger.d(player.toString());
     final double width = min(
       Constants.joinGamePlayerListMaxWidth,
       MediaQuery.of(context).size.width,

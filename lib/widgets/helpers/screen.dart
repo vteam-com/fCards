@@ -1,4 +1,5 @@
 import 'package:cards/models/app/constants.dart';
+import 'package:cards/utils/logger.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -194,7 +195,7 @@ class _ScreenState extends State<Screen> {
         });
       }
     } catch (e) {
-      debugPrint('Error getting package info: $e');
+      logger.e('Error getting package info: $e');
       if (mounted) {
         setState(() {
           _version = '1.0.0';

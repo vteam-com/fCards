@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:core';
 
-import 'package:cards/utils/log.dart';
+import 'package:cards/utils/logger.dart';
 import 'package:cards/models/app/firebase_options.dart';
 import 'package:cards/models/game/game_history.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -38,9 +38,9 @@ set backendReady(bool value) {
 /// initialization, it sets the [backendReady] flag to false and logs the error.
 Future<void> useFirebase() async {
   if (isRunningOffLine) {
-    debugLog('---------------------');
-    debugLog('RUNNING OFFLINE');
-    debugLog('---------------------');
+    logger.i('---------------------');
+    logger.i('RUNNING OFFLINE');
+    logger.i('---------------------');
 
     backendReady = true;
   } else {
@@ -59,9 +59,9 @@ Future<void> useFirebase() async {
       }
     } catch (e) {
       backendReady = false;
-      debugLog('---------------------');
-      debugLog(e.toString());
-      debugLog('---------------------');
+      logger.e('---------------------');
+      logger.e(e.toString());
+      logger.e('---------------------');
     }
   }
 }
@@ -141,7 +141,7 @@ Future<List<GameHistory>> getGameHistory(final String roomName) async {
         });
       }
     } catch (error) {
-      debugLog('getGameHistory: ${error.toString()}');
+      logger.e('getGameHistory: ${error.toString()}');
     }
   }
 
@@ -180,7 +180,7 @@ Future<void> recordPlayerWin(
           .set(playerName);
     }
   } catch (error) {
-    debugLog('Error recording player win: ${error.toString()}');
+    logger.e('Error recording player win: ${error.toString()}');
   }
 }
 

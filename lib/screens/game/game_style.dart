@@ -1,5 +1,5 @@
 // ignore: fcheck_magic_numbers
-import 'package:cards/utils/log.dart';
+import 'package:cards/utils/logger.dart';
 import 'package:cards/models/card/card_dimensions.dart';
 import 'package:cards/models/card/card_model_french.dart';
 import 'package:cards/models/game/game_model.dart';
@@ -135,7 +135,7 @@ GameStyles intToGameStyles(final int gameStyleIndex) {
   if (gameStyleIndex >= 0 && gameStyleIndex < GameStyles.values.length) {
     return GameStyles.values[gameStyleIndex];
   } else {
-    debugLog(
+    logger.w(
       'Invalid gameStyleIndex: $gameStyleIndex fall back to ${GameStyles.frenchCards9}',
     );
     return GameStyles.frenchCards9;

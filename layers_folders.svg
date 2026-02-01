@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="1316.0" height="3024.0" viewBox="0 0 1316.0 3024.0" xmlns="http://www.w3.org/2000/svg" font-family="Arial, Helvetica, sans-serif">
+<svg width="1332.0" height="3024.0" viewBox="0 0 1332.0 3024.0" xmlns="http://www.w3.org/2000/svg" font-family="Arial, Helvetica, sans-serif">
 <defs>
   <filter id="whiteShadow" x="-20%" y="-20%" width="140%" height="140%">
     <feGaussianBlur in="SourceAlpha" stdDeviation="3"/>
@@ -171,848 +171,870 @@
 </style>
 <rect width="100%" height="100%" fill="#f8f9fa"/>
 <g>
-  <path d="M 264.0 181.0 C 284.0 181.0, 256.0 181.0, 276.0 181.0" class="edgeVertical"/>
+  <path d="M 268.0 181.0 C 288.0 181.0, 260.0 181.0, 280.0 181.0" class="edgeVertical"/>
   <title>. ▶ ...</title>
 </g>
 <g>
-  <path d="M 264.0 2815.0 C 284.0 2815.0, 256.0 2815.0, 276.0 2815.0" class="edgeVertical"/>
+  <path d="M 268.0 2815.0 C 288.0 2815.0, 260.0 2815.0, 280.0 2815.0" class="edgeVertical"/>
   <title>. ▶ utils</title>
 </g>
 <g>
-  <path d="M 264.0 2252.0 C 284.0 2252.0, 256.0 2252.0, 276.0 2252.0" class="edgeVertical"/>
+  <path d="M 268.0 2252.0 C 288.0 2252.0, 260.0 2252.0, 280.0 2252.0" class="edgeVertical"/>
   <title>. ▶ models</title>
 </g>
 <g>
-  <path d="M 264.0 539.0 C 284.0 539.0, 256.0 539.0, 276.0 539.0" class="edgeVertical"/>
+  <path d="M 268.0 539.0 C 288.0 539.0, 260.0 539.0, 280.0 539.0" class="edgeVertical"/>
   <title>. ▶ screens</title>
 </g>
 <g>
-  <path d="M 264.0 1309.0 C 284.0 1309.0, 256.0 1309.0, 276.0 1309.0" class="edgeVertical"/>
+  <path d="M 268.0 1309.0 C 288.0 1309.0, 260.0 1309.0, 280.0 1309.0" class="edgeVertical"/>
   <title>. ▶ widgets</title>
 </g>
 <g>
-  <path d="M 328.0 2379.0 C 348.0 2379.0, 320.0 2379.0, 340.0 2379.0" class="edgeVertical"/>
+  <path d="M 332.0 2379.0 C 352.0 2379.0, 324.0 2379.0, 344.0 2379.0" class="edgeVertical"/>
   <title>models ▶ card</title>
 </g>
 <g>
-  <path d="M 328.0 2581.0 C 348.0 2581.0, 320.0 2581.0, 340.0 2581.0" class="edgeVertical"/>
+  <path d="M 332.0 2581.0 C 352.0 2581.0, 324.0 2581.0, 344.0 2581.0" class="edgeVertical"/>
   <title>models ▶ app</title>
 </g>
 <g>
-  <path d="M 328.0 1975.0 C 348.0 1975.0, 320.0 1975.0, 340.0 1975.0" class="edgeVertical"/>
+  <path d="M 332.0 1975.0 C 352.0 1975.0, 324.0 1975.0, 344.0 1975.0" class="edgeVertical"/>
   <title>models ▶ game</title>
 </g>
 <g>
-  <path d="M 328.0 2193.0 C 348.0 2193.0, 320.0 2193.0, 340.0 2193.0" class="edgeVertical"/>
+  <path d="M 332.0 2193.0 C 352.0 2193.0, 324.0 2193.0, 344.0 2193.0" class="edgeVertical"/>
   <title>models ▶ player</title>
 </g>
 <g>
-  <path d="M 328.0 419.0 C 348.0 419.0, 320.0 419.0, 340.0 419.0" class="edgeVertical"/>
+  <path d="M 332.0 419.0 C 352.0 419.0, 324.0 419.0, 344.0 419.0" class="edgeVertical"/>
   <title>screens ▶ game</title>
 </g>
 <g>
-  <path d="M 328.0 605.0 C 348.0 605.0, 320.0 605.0, 340.0 605.0" class="edgeVertical"/>
+  <path d="M 332.0 605.0 C 352.0 605.0, 324.0 605.0, 344.0 605.0" class="edgeVertical"/>
   <title>screens ▶ welcome</title>
 </g>
 <g>
-  <path d="M 328.0 727.0 C 348.0 727.0, 320.0 727.0, 340.0 727.0" class="edgeVertical"/>
+  <path d="M 332.0 727.0 C 352.0 727.0, 324.0 727.0, 344.0 727.0" class="edgeVertical"/>
   <title>screens ▶ keepscore</title>
 </g>
 <g>
-  <path d="M 328.0 1529.0 C 348.0 1529.0, 320.0 1529.0, 340.0 1529.0" class="edgeVertical"/>
+  <path d="M 332.0 1529.0 C 352.0 1529.0, 324.0 1529.0, 344.0 1529.0" class="edgeVertical"/>
   <title>widgets ▶ helpers</title>
 </g>
 <g>
-  <path d="M 328.0 1215.0 C 348.0 1215.0, 320.0 1215.0, 340.0 1215.0" class="edgeVertical"/>
+  <path d="M 332.0 1215.0 C 352.0 1215.0, 324.0 1215.0, 344.0 1215.0" class="edgeVertical"/>
   <title>widgets ▶ cards</title>
 </g>
 <g>
-  <path d="M 328.0 997.0 C 348.0 997.0, 320.0 997.0, 340.0 997.0" class="edgeVertical"/>
+  <path d="M 332.0 997.0 C 352.0 997.0, 324.0 997.0, 344.0 997.0" class="edgeVertical"/>
   <title>widgets ▶ player</title>
 </g>
 <g class="folderLayer">
-<rect x="220.0" y="80.0" width="436.0" height="2864.0" rx="12.0" ry="12.0" class="layerBackground"/>
+<rect x="224.0" y="80.0" width="436.0" height="2864.0" rx="12.0" ry="12.0" class="layerBackground"/>
 </g>
 <g class="folderLayer">
-<rect x="284.0" y="132.0" width="348.0" height="98.0" rx="12.0" ry="12.0" class="layerBackgroundVirtualFolder" stroke-dasharray="4 2"/>
+<rect x="288.0" y="132.0" width="348.0" height="98.0" rx="12.0" ry="12.0" class="layerBackgroundVirtualFolder" stroke-dasharray="4 2"/>
 </g>
 <g class="folderLayer">
-<rect x="284.0" y="2734.0" width="348.0" height="162.0" rx="12.0" ry="12.0" class="layerBackground"/>
+<rect x="288.0" y="2734.0" width="348.0" height="162.0" rx="12.0" ry="12.0" class="layerBackground"/>
 </g>
 <g class="folderLayer">
-<rect x="284.0" y="1794.0" width="348.0" height="916.0" rx="12.0" ry="12.0" class="layerBackground"/>
+<rect x="288.0" y="1794.0" width="348.0" height="916.0" rx="12.0" ry="12.0" class="layerBackground"/>
 </g>
 <g class="folderLayer">
-<rect x="348.0" y="2282.0" width="260.0" height="194.0" rx="12.0" ry="12.0" class="layerBackground"/>
+<rect x="352.0" y="2282.0" width="260.0" height="194.0" rx="12.0" ry="12.0" class="layerBackground"/>
 </g>
 <g class="folderLayer">
-<rect x="348.0" y="2500.0" width="260.0" height="162.0" rx="12.0" ry="12.0" class="layerBackground"/>
+<rect x="352.0" y="2500.0" width="260.0" height="162.0" rx="12.0" ry="12.0" class="layerBackground"/>
 </g>
 <g class="folderLayer">
-<rect x="348.0" y="1846.0" width="260.0" height="258.0" rx="12.0" ry="12.0" class="layerBackground"/>
+<rect x="352.0" y="1846.0" width="260.0" height="258.0" rx="12.0" ry="12.0" class="layerBackground"/>
 </g>
 <g class="folderLayer">
-<rect x="348.0" y="2128.0" width="260.0" height="130.0" rx="12.0" ry="12.0" class="layerBackground"/>
+<rect x="352.0" y="2128.0" width="260.0" height="130.0" rx="12.0" ry="12.0" class="layerBackground"/>
 </g>
 <g class="folderLayer">
-<rect x="284.0" y="254.0" width="348.0" height="570.0" rx="12.0" ry="12.0" class="layerBackground"/>
+<rect x="288.0" y="254.0" width="348.0" height="570.0" rx="12.0" ry="12.0" class="layerBackground"/>
 </g>
 <g class="folderLayer">
-<rect x="348.0" y="306.0" width="260.0" height="226.0" rx="12.0" ry="12.0" class="layerBackground"/>
+<rect x="352.0" y="306.0" width="260.0" height="226.0" rx="12.0" ry="12.0" class="layerBackground"/>
 </g>
 <g class="folderLayer">
-<rect x="348.0" y="556.0" width="260.0" height="98.0" rx="12.0" ry="12.0" class="layerBackground"/>
+<rect x="352.0" y="556.0" width="260.0" height="98.0" rx="12.0" ry="12.0" class="layerBackground"/>
 </g>
 <g class="folderLayer">
-<rect x="348.0" y="678.0" width="260.0" height="98.0" rx="12.0" ry="12.0" class="layerBackground"/>
+<rect x="352.0" y="678.0" width="260.0" height="98.0" rx="12.0" ry="12.0" class="layerBackground"/>
 </g>
 <g class="folderLayer">
-<rect x="284.0" y="848.0" width="348.0" height="922.0" rx="12.0" ry="12.0" class="layerBackground"/>
+<rect x="288.0" y="848.0" width="348.0" height="922.0" rx="12.0" ry="12.0" class="layerBackground"/>
 </g>
 <g class="folderLayer">
-<rect x="348.0" y="1336.0" width="260.0" height="386.0" rx="12.0" ry="12.0" class="layerBackground"/>
+<rect x="352.0" y="1336.0" width="260.0" height="386.0" rx="12.0" ry="12.0" class="layerBackground"/>
 </g>
 <g class="folderLayer">
-<rect x="348.0" y="1118.0" width="260.0" height="194.0" rx="12.0" ry="12.0" class="layerBackground"/>
+<rect x="352.0" y="1118.0" width="260.0" height="194.0" rx="12.0" ry="12.0" class="layerBackground"/>
 </g>
 <g class="folderLayer">
-<rect x="348.0" y="900.0" width="260.0" height="194.0" rx="12.0" ry="12.0" class="layerBackground"/>
+<rect x="352.0" y="900.0" width="260.0" height="194.0" rx="12.0" ry="12.0" class="layerBackground"/>
 </g>
 <g>
-  <path d="M 354.0 2306.0 H 324.0 Q 318.0 2306.0 318.0 2312.0 V 2507.0 Q 318.0 2513.0 324.0 2513.0 H 358.0" class="edgeVertical"/>
+  <path d="M 358.0 2306.0 H 328.0 Q 322.0 2306.0 322.0 2312.0 V 2507.0 Q 322.0 2513.0 328.0 2513.0 H 362.0" class="edgeVertical"/>
   <title>models/card ▶ models/app</title>
 </g>
 <g>
-  <path d="M 354.0 1870.0 H 328.0 Q 322.0 1870.0 322.0 1876.0 V 2507.0 Q 322.0 2513.0 328.0 2513.0 H 358.0" class="edgeVertical"/>
+  <path d="M 358.0 1870.0 H 332.0 Q 326.0 1870.0 326.0 1876.0 V 2507.0 Q 326.0 2513.0 332.0 2513.0 H 362.0" class="edgeVertical"/>
   <title>models/game ▶ models/app</title>
 </g>
 <g>
-  <path d="M 354.0 1870.0 H 332.0 Q 326.0 1870.0 326.0 1876.0 V 2135.0 Q 326.0 2141.0 332.0 2141.0 H 358.0" class="edgeVertical"/>
+  <path d="M 358.0 1870.0 H 336.0 Q 330.0 1870.0 330.0 1876.0 V 2135.0 Q 330.0 2141.0 336.0 2141.0 H 362.0" class="edgeVertical"/>
   <title>models/game ▶ models/player</title>
 </g>
 <g>
-  <path d="M 354.0 1870.0 H 336.0 Q 330.0 1870.0 330.0 1876.0 V 2289.0 Q 330.0 2295.0 336.0 2295.0 H 358.0" class="edgeVertical"/>
+  <path d="M 358.0 1870.0 H 340.0 Q 334.0 1870.0 334.0 1876.0 V 2289.0 Q 334.0 2295.0 340.0 2295.0 H 362.0" class="edgeVertical"/>
   <title>models/game ▶ models/card</title>
 </g>
 <g>
-  <path d="M 354.0 2152.0 H 340.0 Q 334.0 2152.0 334.0 2158.0 V 2507.0 Q 334.0 2513.0 340.0 2513.0 H 358.0" class="edgeVertical"/>
+  <path d="M 358.0 2152.0 H 344.0 Q 338.0 2152.0 338.0 2158.0 V 2507.0 Q 338.0 2513.0 344.0 2513.0 H 362.0" class="edgeVertical"/>
   <title>models/player ▶ models/app</title>
 </g>
 <g>
-  <path d="M 354.0 2152.0 H 344.0 Q 338.0 2152.0 338.0 2158.0 V 2289.0 Q 338.0 2295.0 344.0 2295.0 H 358.0" class="edgeVertical"/>
+  <path d="M 358.0 2152.0 H 348.0 Q 342.0 2152.0 342.0 2158.0 V 2289.0 Q 342.0 2295.0 348.0 2295.0 H 362.0" class="edgeVertical"/>
   <title>models/player ▶ models/card</title>
 </g>
 <g>
-  <path d="M 290.0 1818.0 H 256.0 Q 250.0 1818.0 250.0 1824.0 V 2741.0 Q 250.0 2747.0 256.0 2747.0 H 294.0" class="edgeVertical"/>
+  <path d="M 294.0 1818.0 H 258.0 Q 252.0 1818.0 252.0 1824.0 V 2741.0 Q 252.0 2747.0 258.0 2747.0 H 298.0" class="edgeVertical"/>
   <title>models ▶ utils</title>
 </g>
 <g>
-  <path d="M 290.0 278.0 H 260.0 Q 254.0 278.0 254.0 284.0 V 1801.0 Q 254.0 1807.0 260.0 1807.0 H 294.0" class="edgeVertical"/>
+  <path d="M 294.0 278.0 H 262.0 Q 256.0 278.0 256.0 284.0 V 1801.0 Q 256.0 1807.0 262.0 1807.0 H 298.0" class="edgeVertical"/>
   <title>screens ▶ models</title>
 </g>
 <g>
-  <path d="M 290.0 278.0 H 264.0 Q 258.0 278.0 258.0 284.0 V 855.0 Q 258.0 861.0 264.0 861.0 H 294.0" class="edgeVertical"/>
+  <path d="M 294.0 278.0 H 266.0 Q 260.0 278.0 260.0 284.0 V 855.0 Q 260.0 861.0 266.0 861.0 H 298.0" class="edgeVertical"/>
   <title>screens ▶ widgets</title>
 </g>
 <g>
-  <path d="M 290.0 278.0 H 268.0 Q 262.0 278.0 262.0 284.0 V 2741.0 Q 262.0 2747.0 268.0 2747.0 H 294.0" class="edgeVertical"/>
+  <path d="M 294.0 278.0 H 270.0 Q 264.0 278.0 264.0 284.0 V 2741.0 Q 264.0 2747.0 270.0 2747.0 H 298.0" class="edgeVertical"/>
   <title>screens ▶ utils</title>
 </g>
 <g>
-  <path d="M 290.0 156.0 H 272.0 Q 266.0 156.0 266.0 162.0 V 1801.0 Q 266.0 1807.0 272.0 1807.0 H 294.0" class="edgeVertical"/>
+  <path d="M 294.0 156.0 H 274.0 Q 268.0 156.0 268.0 162.0 V 1801.0 Q 268.0 1807.0 274.0 1807.0 H 298.0" class="edgeVertical"/>
   <title>... ▶ models</title>
 </g>
 <g>
-  <path d="M 290.0 156.0 H 276.0 Q 270.0 156.0 270.0 162.0 V 261.0 Q 270.0 267.0 276.0 267.0 H 294.0" class="edgeVertical"/>
+  <path d="M 294.0 156.0 H 278.0 Q 272.0 156.0 272.0 162.0 V 261.0 Q 272.0 267.0 278.0 267.0 H 298.0" class="edgeVertical"/>
   <title>... ▶ screens</title>
 </g>
 <g>
-  <path d="M 290.0 872.0 H 280.0 Q 274.0 872.0 274.0 878.0 V 1801.0 Q 274.0 1807.0 280.0 1807.0 H 294.0" class="edgeVertical"/>
+  <path d="M 294.0 156.0 H 282.0 Q 276.0 156.0 276.0 162.0 V 2741.0 Q 276.0 2747.0 282.0 2747.0 H 298.0" class="edgeVertical"/>
+  <title>... ▶ utils</title>
+</g>
+<g>
+  <path d="M 294.0 872.0 H 286.0 Q 280.0 872.0 280.0 878.0 V 1801.0 Q 280.0 1807.0 286.0 1807.0 H 298.0" class="edgeVertical"/>
   <title>widgets ▶ models</title>
 </g>
 <g>
-  <path d="M 290.0 872.0 H 284.0 Q 278.0 872.0 278.0 878.0 V 2741.0 Q 278.0 2747.0 284.0 2747.0 H 294.0" class="edgeVertical"/>
+  <path d="M 294.0 872.0 H 290.0 Q 284.0 872.0 284.0 878.0 V 2741.0 Q 284.0 2747.0 290.0 2747.0 H 298.0" class="edgeVertical"/>
   <title>widgets ▶ utils</title>
 </g>
 <g>
-  <path d="M 354.0 1142.0 H 330.0 Q 324.0 1142.0 324.0 1148.0 V 1343.0 Q 324.0 1349.0 330.0 1349.0 H 358.0" class="edgeVertical"/>
+  <path d="M 358.0 1142.0 H 334.0 Q 328.0 1142.0 328.0 1148.0 V 1343.0 Q 328.0 1349.0 334.0 1349.0 H 362.0" class="edgeVertical"/>
   <title>widgets/cards ▶ widgets/helpers</title>
 </g>
 <g>
-  <path d="M 354.0 924.0 H 334.0 Q 328.0 924.0 328.0 930.0 V 1125.0 Q 328.0 1131.0 334.0 1131.0 H 358.0" class="edgeVertical"/>
+  <path d="M 358.0 924.0 H 338.0 Q 332.0 924.0 332.0 930.0 V 1125.0 Q 332.0 1131.0 338.0 1131.0 H 362.0" class="edgeVertical"/>
   <title>widgets/player ▶ widgets/cards</title>
 </g>
 <g>
-  <path d="M 354.0 924.0 H 338.0 Q 332.0 924.0 332.0 930.0 V 1343.0 Q 332.0 1349.0 338.0 1349.0 H 358.0" class="edgeVertical"/>
+  <path d="M 358.0 924.0 H 342.0 Q 336.0 924.0 336.0 930.0 V 1343.0 Q 336.0 1349.0 342.0 1349.0 H 362.0" class="edgeVertical"/>
   <title>widgets/player ▶ widgets/helpers</title>
 </g>
 <g class="outgoingBadge">
-  <path d="M 284.0,156.0 L 296.0,149.0 Q 299.0,149.0 299.0,152.0 L 299.0,160.0 Q 299.0,163.0 296.0,163.0 Z" fill="#10b981"/>
-  <text x="295.0" y="159.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. models
-2. screens</title></g><g class="incomingBadge">
-  <path d="M 300.0,2747.0 L 288.0,2740.0 Q 285.0,2740.0 285.0,2743.0 L 285.0,2751.0 Q 285.0,2754.0 288.0,2754.0 Z" fill="#3b82f6"/>
-  <text x="289.0" y="2750.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">3</text><title>1. models
+  <path d="M 288.0,156.0 L 300.0,149.0 Q 303.0,149.0 303.0,152.0 L 303.0,160.0 Q 303.0,163.0 300.0,163.0 Z" fill="#10b981"/>
+  <text x="299.0" y="159.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">3</text><title>1. models
 2. screens
-3. widgets</title></g><g class="incomingBadge">
-  <path d="M 300.0,1807.0 L 288.0,1800.0 Q 285.0,1800.0 285.0,1803.0 L 285.0,1811.0 Q 285.0,1814.0 288.0,1814.0 Z" fill="#3b82f6"/>
-  <text x="289.0" y="1810.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">3</text><title>1. ...
+3. utils</title></g><g class="incomingBadge">
+  <path d="M 304.0,2747.0 L 292.0,2740.0 Q 289.0,2740.0 289.0,2743.0 L 289.0,2751.0 Q 289.0,2754.0 292.0,2754.0 Z" fill="#3b82f6"/>
+  <text x="293.0" y="2750.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">4</text><title>1. ...
+2. models
+3. screens
+4. widgets</title></g><g class="incomingBadge">
+  <path d="M 304.0,1807.0 L 292.0,1800.0 Q 289.0,1800.0 289.0,1803.0 L 289.0,1811.0 Q 289.0,1814.0 292.0,1814.0 Z" fill="#3b82f6"/>
+  <text x="293.0" y="1810.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">3</text><title>1. ...
 2. screens
 3. widgets</title></g><g class="outgoingBadge">
-  <path d="M 284.0,1818.0 L 296.0,1811.0 Q 299.0,1811.0 299.0,1814.0 L 299.0,1822.0 Q 299.0,1825.0 296.0,1825.0 Z" fill="#10b981"/>
-  <text x="295.0" y="1821.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. utils</title></g><g class="incomingBadge">
-  <path d="M 364.0,2295.0 L 352.0,2288.0 Q 349.0,2288.0 349.0,2291.0 L 349.0,2299.0 Q 349.0,2302.0 352.0,2302.0 Z" fill="#3b82f6"/>
-  <text x="353.0" y="2298.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. models/game
+  <path d="M 288.0,1818.0 L 300.0,1811.0 Q 303.0,1811.0 303.0,1814.0 L 303.0,1822.0 Q 303.0,1825.0 300.0,1825.0 Z" fill="#10b981"/>
+  <text x="299.0" y="1821.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. utils</title></g><g class="incomingBadge">
+  <path d="M 368.0,2295.0 L 356.0,2288.0 Q 353.0,2288.0 353.0,2291.0 L 353.0,2299.0 Q 353.0,2302.0 356.0,2302.0 Z" fill="#3b82f6"/>
+  <text x="357.0" y="2298.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. models/game
 2. models/player</title></g><g class="outgoingBadge">
-  <path d="M 348.0,2306.0 L 360.0,2299.0 Q 363.0,2299.0 363.0,2302.0 L 363.0,2310.0 Q 363.0,2313.0 360.0,2313.0 Z" fill="#10b981"/>
-  <text x="359.0" y="2309.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. models/app</title></g><g class="incomingBadge">
-  <path d="M 364.0,2513.0 L 352.0,2506.0 Q 349.0,2506.0 349.0,2509.0 L 349.0,2517.0 Q 349.0,2520.0 352.0,2520.0 Z" fill="#3b82f6"/>
-  <text x="353.0" y="2516.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">3</text><title>1. models/card
+  <path d="M 352.0,2306.0 L 364.0,2299.0 Q 367.0,2299.0 367.0,2302.0 L 367.0,2310.0 Q 367.0,2313.0 364.0,2313.0 Z" fill="#10b981"/>
+  <text x="363.0" y="2309.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. models/app</title></g><g class="incomingBadge">
+  <path d="M 368.0,2513.0 L 356.0,2506.0 Q 353.0,2506.0 353.0,2509.0 L 353.0,2517.0 Q 353.0,2520.0 356.0,2520.0 Z" fill="#3b82f6"/>
+  <text x="357.0" y="2516.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">3</text><title>1. models/card
 2. models/game
 3. models/player</title></g><g class="outgoingBadge">
-  <path d="M 348.0,1870.0 L 360.0,1863.0 Q 363.0,1863.0 363.0,1866.0 L 363.0,1874.0 Q 363.0,1877.0 360.0,1877.0 Z" fill="#10b981"/>
-  <text x="359.0" y="1873.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">3</text><title>1. models/app
+  <path d="M 352.0,1870.0 L 364.0,1863.0 Q 367.0,1863.0 367.0,1866.0 L 367.0,1874.0 Q 367.0,1877.0 364.0,1877.0 Z" fill="#10b981"/>
+  <text x="363.0" y="1873.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">3</text><title>1. models/app
 2. models/card
 3. models/player</title></g><g class="incomingBadge">
-  <path d="M 364.0,2141.0 L 352.0,2134.0 Q 349.0,2134.0 349.0,2137.0 L 349.0,2145.0 Q 349.0,2148.0 352.0,2148.0 Z" fill="#3b82f6"/>
-  <text x="353.0" y="2144.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. models/game</title></g><g class="outgoingBadge">
-  <path d="M 348.0,2152.0 L 360.0,2145.0 Q 363.0,2145.0 363.0,2148.0 L 363.0,2156.0 Q 363.0,2159.0 360.0,2159.0 Z" fill="#10b981"/>
-  <text x="359.0" y="2155.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. models/app
+  <path d="M 368.0,2141.0 L 356.0,2134.0 Q 353.0,2134.0 353.0,2137.0 L 353.0,2145.0 Q 353.0,2148.0 356.0,2148.0 Z" fill="#3b82f6"/>
+  <text x="357.0" y="2144.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. models/game</title></g><g class="outgoingBadge">
+  <path d="M 352.0,2152.0 L 364.0,2145.0 Q 367.0,2145.0 367.0,2148.0 L 367.0,2156.0 Q 367.0,2159.0 364.0,2159.0 Z" fill="#10b981"/>
+  <text x="363.0" y="2155.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. models/app
 2. models/card</title></g><g class="incomingBadge">
-  <path d="M 300.0,267.0 L 288.0,260.0 Q 285.0,260.0 285.0,263.0 L 285.0,271.0 Q 285.0,274.0 288.0,274.0 Z" fill="#3b82f6"/>
-  <text x="289.0" y="270.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. ...</title></g><g class="outgoingBadge">
-  <path d="M 284.0,278.0 L 296.0,271.0 Q 299.0,271.0 299.0,274.0 L 299.0,282.0 Q 299.0,285.0 296.0,285.0 Z" fill="#10b981"/>
-  <text x="295.0" y="281.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">3</text><title>1. models
+  <path d="M 304.0,267.0 L 292.0,260.0 Q 289.0,260.0 289.0,263.0 L 289.0,271.0 Q 289.0,274.0 292.0,274.0 Z" fill="#3b82f6"/>
+  <text x="293.0" y="270.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. ...</title></g><g class="outgoingBadge">
+  <path d="M 288.0,278.0 L 300.0,271.0 Q 303.0,271.0 303.0,274.0 L 303.0,282.0 Q 303.0,285.0 300.0,285.0 Z" fill="#10b981"/>
+  <text x="299.0" y="281.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">3</text><title>1. models
 2. utils
 3. widgets</title></g><g class="incomingBadge">
-  <path d="M 300.0,861.0 L 288.0,854.0 Q 285.0,854.0 285.0,857.0 L 285.0,865.0 Q 285.0,868.0 288.0,868.0 Z" fill="#3b82f6"/>
-  <text x="289.0" y="864.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. screens</title></g><g class="outgoingBadge">
-  <path d="M 284.0,872.0 L 296.0,865.0 Q 299.0,865.0 299.0,868.0 L 299.0,876.0 Q 299.0,879.0 296.0,879.0 Z" fill="#10b981"/>
-  <text x="295.0" y="875.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. models
+  <path d="M 304.0,861.0 L 292.0,854.0 Q 289.0,854.0 289.0,857.0 L 289.0,865.0 Q 289.0,868.0 292.0,868.0 Z" fill="#3b82f6"/>
+  <text x="293.0" y="864.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. screens</title></g><g class="outgoingBadge">
+  <path d="M 288.0,872.0 L 300.0,865.0 Q 303.0,865.0 303.0,868.0 L 303.0,876.0 Q 303.0,879.0 300.0,879.0 Z" fill="#10b981"/>
+  <text x="299.0" y="875.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. models
 2. utils</title></g><g class="incomingBadge">
-  <path d="M 364.0,1349.0 L 352.0,1342.0 Q 349.0,1342.0 349.0,1345.0 L 349.0,1353.0 Q 349.0,1356.0 352.0,1356.0 Z" fill="#3b82f6"/>
-  <text x="353.0" y="1352.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. widgets/cards
+  <path d="M 368.0,1349.0 L 356.0,1342.0 Q 353.0,1342.0 353.0,1345.0 L 353.0,1353.0 Q 353.0,1356.0 356.0,1356.0 Z" fill="#3b82f6"/>
+  <text x="357.0" y="1352.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. widgets/cards
 2. widgets/player</title></g><g class="incomingBadge">
-  <path d="M 364.0,1131.0 L 352.0,1124.0 Q 349.0,1124.0 349.0,1127.0 L 349.0,1135.0 Q 349.0,1138.0 352.0,1138.0 Z" fill="#3b82f6"/>
-  <text x="353.0" y="1134.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. widgets/player</title></g><g class="outgoingBadge">
-  <path d="M 348.0,1142.0 L 360.0,1135.0 Q 363.0,1135.0 363.0,1138.0 L 363.0,1146.0 Q 363.0,1149.0 360.0,1149.0 Z" fill="#10b981"/>
-  <text x="359.0" y="1145.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. widgets/helpers</title></g><g class="outgoingBadge">
-  <path d="M 348.0,924.0 L 360.0,917.0 Q 363.0,917.0 363.0,920.0 L 363.0,928.0 Q 363.0,931.0 360.0,931.0 Z" fill="#10b981"/>
-  <text x="359.0" y="927.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. widgets/cards
-2. widgets/helpers</title></g><rect x="292.0" y="170.0" width="332.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
-<rect x="292.0" y="2772.0" width="332.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
-<rect x="292.0" y="2804.0" width="332.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
-<rect x="292.0" y="2836.0" width="332.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
-<rect x="356.0" y="2320.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
-<rect x="356.0" y="2352.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
-<rect x="356.0" y="2384.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
-<rect x="356.0" y="2416.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
-<rect x="356.0" y="2538.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
-<rect x="356.0" y="2570.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
-<rect x="356.0" y="2602.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
-<rect x="356.0" y="1884.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
-<rect x="356.0" y="1916.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
-<rect x="356.0" y="1948.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
-<rect x="356.0" y="1980.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
-<rect x="356.0" y="2012.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
-<rect x="356.0" y="2044.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
-<rect x="356.0" y="2166.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
-<rect x="356.0" y="2198.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
-<rect x="356.0" y="344.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
-<rect x="356.0" y="376.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
-<rect x="356.0" y="408.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
-<rect x="356.0" y="440.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
-<rect x="356.0" y="472.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
-<rect x="356.0" y="594.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
-<rect x="356.0" y="716.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
-<rect x="356.0" y="1374.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
-<rect x="356.0" y="1406.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
-<rect x="356.0" y="1438.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
-<rect x="356.0" y="1470.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
-<rect x="356.0" y="1502.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
-<rect x="356.0" y="1534.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
-<rect x="356.0" y="1566.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
-<rect x="356.0" y="1598.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
-<rect x="356.0" y="1630.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
-<rect x="356.0" y="1662.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
-<rect x="356.0" y="1156.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
-<rect x="356.0" y="1188.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
-<rect x="356.0" y="1220.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
-<rect x="356.0" y="1252.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
-<rect x="356.0" y="938.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
-<rect x="356.0" y="970.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
-<rect x="356.0" y="1002.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
-<rect x="356.0" y="1034.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
+  <path d="M 368.0,1131.0 L 356.0,1124.0 Q 353.0,1124.0 353.0,1127.0 L 353.0,1135.0 Q 353.0,1138.0 356.0,1138.0 Z" fill="#3b82f6"/>
+  <text x="357.0" y="1134.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. widgets/player</title></g><g class="outgoingBadge">
+  <path d="M 352.0,1142.0 L 364.0,1135.0 Q 367.0,1135.0 367.0,1138.0 L 367.0,1146.0 Q 367.0,1149.0 364.0,1149.0 Z" fill="#10b981"/>
+  <text x="363.0" y="1145.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. widgets/helpers</title></g><g class="outgoingBadge">
+  <path d="M 352.0,924.0 L 364.0,917.0 Q 367.0,917.0 367.0,920.0 L 367.0,928.0 Q 367.0,931.0 364.0,931.0 Z" fill="#10b981"/>
+  <text x="363.0" y="927.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. widgets/cards
+2. widgets/helpers</title></g><rect x="296.0" y="170.0" width="332.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
+<rect x="296.0" y="2772.0" width="332.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
+<rect x="296.0" y="2804.0" width="332.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
+<rect x="296.0" y="2836.0" width="332.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
+<rect x="360.0" y="2320.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
+<rect x="360.0" y="2352.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
+<rect x="360.0" y="2384.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
+<rect x="360.0" y="2416.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
+<rect x="360.0" y="2538.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
+<rect x="360.0" y="2570.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
+<rect x="360.0" y="2602.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
+<rect x="360.0" y="1884.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
+<rect x="360.0" y="1916.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
+<rect x="360.0" y="1948.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
+<rect x="360.0" y="1980.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
+<rect x="360.0" y="2012.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
+<rect x="360.0" y="2044.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
+<rect x="360.0" y="2166.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
+<rect x="360.0" y="2198.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
+<rect x="360.0" y="344.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
+<rect x="360.0" y="376.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
+<rect x="360.0" y="408.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
+<rect x="360.0" y="440.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
+<rect x="360.0" y="472.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
+<rect x="360.0" y="594.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
+<rect x="360.0" y="716.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
+<rect x="360.0" y="1374.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
+<rect x="360.0" y="1406.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
+<rect x="360.0" y="1438.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
+<rect x="360.0" y="1470.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
+<rect x="360.0" y="1502.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
+<rect x="360.0" y="1534.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
+<rect x="360.0" y="1566.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
+<rect x="360.0" y="1598.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
+<rect x="360.0" y="1630.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
+<rect x="360.0" y="1662.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
+<rect x="360.0" y="1156.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
+<rect x="360.0" y="1188.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
+<rect x="360.0" y="1220.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
+<rect x="360.0" y="1252.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
+<rect x="360.0" y="938.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
+<rect x="360.0" y="970.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
+<rect x="360.0" y="1002.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
+<rect x="360.0" y="1034.0" width="244.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"/>
 <g>
-  <path d="M 620.0 2792.0 H 678.0 Q 684.0 2792.0 684.0 2798.0 V 2807.0 Q 684.0 2813.0 678.0 2813.0 H 616.0" class="edgeVertical"/>
+  <path d="M 624.0 2792.0 H 682.0 Q 688.0 2792.0 688.0 2798.0 V 2807.0 Q 688.0 2813.0 682.0 2813.0 H 620.0" class="edgeVertical"/>
   <title>utils/browser_utils.dart ▶ utils/browser_utils_stub.dart</title>
 </g>
 <g>
-  <path d="M 596.0 2340.0 H 682.0 Q 688.0 2340.0 688.0 2346.0 V 2355.0 Q 688.0 2361.0 682.0 2361.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 2340.0 H 686.0 Q 692.0 2340.0 692.0 2346.0 V 2355.0 Q 692.0 2361.0 686.0 2361.0 H 596.0" class="edgeVertical"/>
   <title>models/card/hand_model.dart ▶ models/card/card_model.dart</title>
 </g>
 <g>
-  <path d="M 596.0 2340.0 H 686.0 Q 692.0 2340.0 692.0 2346.0 V 2605.0 Q 692.0 2611.0 686.0 2611.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 2340.0 H 690.0 Q 696.0 2340.0 696.0 2346.0 V 2605.0 Q 696.0 2611.0 690.0 2611.0 H 596.0" class="edgeVertical"/>
   <title>models/card/hand_model.dart ▶ models/app/constants.dart</title>
 </g>
 <g>
-  <path d="M 596.0 2340.0 H 690.0 Q 696.0 2340.0 696.0 2346.0 V 2355.0 Q 696.0 2361.0 690.0 2361.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 2340.0 H 694.0 Q 700.0 2340.0 700.0 2346.0 V 2355.0 Q 700.0 2361.0 694.0 2361.0 H 596.0" class="edgeVertical"/>
   <title>models/card/hand_model.dart ▶ models/card/card_model.dart</title>
 </g>
 <g>
-  <path d="M 596.0 2372.0 H 694.0 Q 700.0 2372.0 700.0 2378.0 V 2605.0 Q 700.0 2611.0 694.0 2611.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 2372.0 H 698.0 Q 704.0 2372.0 704.0 2378.0 V 2605.0 Q 704.0 2611.0 698.0 2611.0 H 596.0" class="edgeVertical"/>
   <title>models/card/card_model.dart ▶ models/app/constants.dart</title>
 </g>
 <g>
-  <path d="M 596.0 2558.0 H 698.0 Q 704.0 2558.0 704.0 2564.0 V 2605.0 Q 704.0 2611.0 698.0 2611.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 2558.0 H 702.0 Q 708.0 2558.0 708.0 2564.0 V 2605.0 Q 708.0 2611.0 702.0 2611.0 H 596.0" class="edgeVertical"/>
   <title>models/app/app_theme.dart ▶ models/app/constants.dart</title>
 </g>
 <g>
-  <path d="M 596.0 1904.0 H 702.0 Q 708.0 1904.0 708.0 1910.0 V 1951.0 Q 708.0 1957.0 702.0 1957.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 1904.0 H 706.0 Q 712.0 1904.0 712.0 1910.0 V 1951.0 Q 712.0 1957.0 706.0 1957.0 H 596.0" class="edgeVertical"/>
   <title>models/game/game_model.dart ▶ models/game/backend_model.dart</title>
 </g>
 <g>
-  <path d="M 596.0 1904.0 H 706.0 Q 712.0 1904.0 712.0 1910.0 V 1919.0 Q 712.0 1925.0 706.0 1925.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 1904.0 H 710.0 Q 716.0 1904.0 716.0 1910.0 V 1919.0 Q 716.0 1925.0 710.0 1925.0 H 596.0" class="edgeVertical"/>
   <title>models/game/game_model.dart ▶ models/game/deck_model.dart</title>
 </g>
 <g>
-  <path d="M 596.0 1904.0 H 710.0 Q 716.0 1904.0 716.0 1910.0 V 2605.0 Q 716.0 2611.0 710.0 2611.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 1904.0 H 714.0 Q 720.0 1904.0 720.0 1910.0 V 2605.0 Q 720.0 2611.0 714.0 2611.0 H 596.0" class="edgeVertical"/>
   <title>models/game/game_model.dart ▶ models/app/constants.dart</title>
 </g>
 <g>
-  <path d="M 596.0 1904.0 H 714.0 Q 720.0 1904.0 720.0 1910.0 V 2047.0 Q 720.0 2053.0 714.0 2053.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 1904.0 H 718.0 Q 724.0 1904.0 724.0 1910.0 V 2047.0 Q 724.0 2053.0 718.0 2053.0 H 596.0" class="edgeVertical"/>
   <title>models/game/game_model.dart ▶ models/game/game_history.dart</title>
 </g>
 <g>
-  <path d="M 596.0 1904.0 H 718.0 Q 724.0 1904.0 724.0 1910.0 V 1983.0 Q 724.0 1989.0 718.0 1989.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 1904.0 H 722.0 Q 728.0 1904.0 728.0 1910.0 V 1983.0 Q 728.0 1989.0 722.0 1989.0 H 596.0" class="edgeVertical"/>
   <title>models/game/game_model.dart ▶ models/game/game_styles.dart</title>
 </g>
 <g>
-  <path d="M 596.0 1904.0 H 722.0 Q 728.0 1904.0 728.0 1910.0 V 2169.0 Q 728.0 2175.0 722.0 2175.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 1904.0 H 726.0 Q 732.0 1904.0 732.0 1910.0 V 2169.0 Q 732.0 2175.0 726.0 2175.0 H 596.0" class="edgeVertical"/>
   <title>models/game/game_model.dart ▶ models/player/player_model.dart</title>
 </g>
 <g>
-  <path d="M 596.0 1904.0 H 726.0 Q 732.0 1904.0 732.0 1910.0 V 1919.0 Q 732.0 1925.0 726.0 1925.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 1904.0 H 730.0 Q 736.0 1904.0 736.0 1910.0 V 1919.0 Q 736.0 1925.0 730.0 1925.0 H 596.0" class="edgeVertical"/>
   <title>models/game/game_model.dart ▶ models/game/deck_model.dart</title>
 </g>
 <g>
-  <path d="M 596.0 1904.0 H 730.0 Q 736.0 1904.0 736.0 1910.0 V 2169.0 Q 736.0 2175.0 730.0 2175.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 1904.0 H 734.0 Q 740.0 1904.0 740.0 1910.0 V 2169.0 Q 740.0 2175.0 734.0 2175.0 H 596.0" class="edgeVertical"/>
   <title>models/game/game_model.dart ▶ models/player/player_model.dart</title>
 </g>
 <g>
-  <path d="M 596.0 2000.0 H 734.0 Q 740.0 2000.0 740.0 2006.0 V 2605.0 Q 740.0 2611.0 734.0 2611.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 2000.0 H 738.0 Q 744.0 2000.0 744.0 2006.0 V 2605.0 Q 744.0 2611.0 738.0 2611.0 H 596.0" class="edgeVertical"/>
   <title>models/game/game_styles.dart ▶ models/app/constants.dart</title>
 </g>
 <g>
-  <path d="M 596.0 1968.0 H 738.0 Q 744.0 1968.0 744.0 1974.0 V 2839.0 Q 744.0 2845.0 738.0 2845.0 H 616.0" class="edgeVertical"/>
-  <title>models/game/backend_model.dart ▶ utils/log.dart</title>
+  <path d="M 600.0 1968.0 H 742.0 Q 748.0 1968.0 748.0 1974.0 V 2839.0 Q 748.0 2845.0 742.0 2845.0 H 620.0" class="edgeVertical"/>
+  <title>models/game/backend_model.dart ▶ utils/logger.dart</title>
 </g>
 <g>
-  <path d="M 596.0 1968.0 H 742.0 Q 748.0 1968.0 748.0 1974.0 V 2573.0 Q 748.0 2579.0 742.0 2579.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 1968.0 H 746.0 Q 752.0 1968.0 752.0 1974.0 V 2573.0 Q 752.0 2579.0 746.0 2579.0 H 596.0" class="edgeVertical"/>
   <title>models/game/backend_model.dart ▶ models/app/firebase_options.dart</title>
 </g>
 <g>
-  <path d="M 596.0 1968.0 H 746.0 Q 752.0 1968.0 752.0 1974.0 V 2047.0 Q 752.0 2053.0 746.0 2053.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 1968.0 H 750.0 Q 756.0 1968.0 756.0 1974.0 V 2047.0 Q 756.0 2053.0 750.0 2053.0 H 596.0" class="edgeVertical"/>
   <title>models/game/backend_model.dart ▶ models/game/game_history.dart</title>
 </g>
 <g>
-  <path d="M 596.0 1936.0 H 750.0 Q 756.0 1936.0 756.0 1942.0 V 2355.0 Q 756.0 2361.0 750.0 2361.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 1936.0 H 754.0 Q 760.0 1936.0 760.0 1942.0 V 2355.0 Q 760.0 2361.0 754.0 2361.0 H 596.0" class="edgeVertical"/>
   <title>models/game/deck_model.dart ▶ models/card/card_model.dart</title>
 </g>
 <g>
-  <path d="M 596.0 1936.0 H 754.0 Q 760.0 1936.0 760.0 1942.0 V 2387.0 Q 760.0 2393.0 754.0 2393.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 1936.0 H 758.0 Q 764.0 1936.0 764.0 1942.0 V 2387.0 Q 764.0 2393.0 758.0 2393.0 H 596.0" class="edgeVertical"/>
   <title>models/game/deck_model.dart ▶ models/card/card_model_french.dart</title>
 </g>
 <g>
-  <path d="M 596.0 1936.0 H 758.0 Q 764.0 1936.0 764.0 1942.0 V 1983.0 Q 764.0 1989.0 758.0 1989.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 1936.0 H 762.0 Q 768.0 1936.0 768.0 1942.0 V 1983.0 Q 768.0 1989.0 762.0 1989.0 H 596.0" class="edgeVertical"/>
   <title>models/game/deck_model.dart ▶ models/game/game_styles.dart</title>
 </g>
 <g>
-  <path d="M 596.0 1936.0 H 762.0 Q 768.0 1936.0 768.0 1942.0 V 2605.0 Q 768.0 2611.0 762.0 2611.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 1936.0 H 766.0 Q 772.0 1936.0 772.0 1942.0 V 2605.0 Q 772.0 2611.0 766.0 2611.0 H 596.0" class="edgeVertical"/>
   <title>models/game/deck_model.dart ▶ models/app/constants.dart</title>
 </g>
 <g>
-  <path d="M 596.0 1936.0 H 766.0 Q 772.0 1936.0 772.0 1942.0 V 2355.0 Q 772.0 2361.0 766.0 2361.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 1936.0 H 770.0 Q 776.0 1936.0 776.0 1942.0 V 2355.0 Q 776.0 2361.0 770.0 2361.0 H 596.0" class="edgeVertical"/>
   <title>models/game/deck_model.dart ▶ models/card/card_model.dart</title>
 </g>
 <g>
-  <path d="M 596.0 2186.0 H 770.0 Q 776.0 2186.0 776.0 2192.0 V 2839.0 Q 776.0 2845.0 770.0 2845.0 H 616.0" class="edgeVertical"/>
-  <title>models/player/player_model.dart ▶ utils/log.dart</title>
+  <path d="M 600.0 2186.0 H 774.0 Q 780.0 2186.0 780.0 2192.0 V 2839.0 Q 780.0 2845.0 774.0 2845.0 H 620.0" class="edgeVertical"/>
+  <title>models/player/player_model.dart ▶ utils/logger.dart</title>
 </g>
 <g>
-  <path d="M 596.0 2186.0 H 774.0 Q 780.0 2186.0 780.0 2192.0 V 2605.0 Q 780.0 2611.0 774.0 2611.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 2186.0 H 778.0 Q 784.0 2186.0 784.0 2192.0 V 2605.0 Q 784.0 2611.0 778.0 2611.0 H 596.0" class="edgeVertical"/>
   <title>models/player/player_model.dart ▶ models/app/constants.dart</title>
 </g>
 <g>
-  <path d="M 596.0 2186.0 H 778.0 Q 784.0 2186.0 784.0 2192.0 V 2323.0 Q 784.0 2329.0 778.0 2329.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 2186.0 H 782.0 Q 788.0 2186.0 788.0 2192.0 V 2323.0 Q 788.0 2329.0 782.0 2329.0 H 596.0" class="edgeVertical"/>
   <title>models/player/player_model.dart ▶ models/card/hand_model.dart</title>
 </g>
 <g>
-  <path d="M 596.0 2186.0 H 782.0 Q 788.0 2186.0 788.0 2192.0 V 2201.0 Q 788.0 2207.0 782.0 2207.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 2186.0 H 786.0 Q 792.0 2186.0 792.0 2192.0 V 2201.0 Q 792.0 2207.0 786.0 2207.0 H 596.0" class="edgeVertical"/>
   <title>models/player/player_model.dart ▶ models/player/player_status.dart</title>
 </g>
 <g>
-  <path d="M 596.0 2186.0 H 786.0 Q 792.0 2186.0 792.0 2192.0 V 2355.0 Q 792.0 2361.0 786.0 2361.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 2186.0 H 790.0 Q 796.0 2186.0 796.0 2192.0 V 2355.0 Q 796.0 2361.0 790.0 2361.0 H 596.0" class="edgeVertical"/>
   <title>models/player/player_model.dart ▶ models/card/card_model.dart</title>
 </g>
 <g>
-  <path d="M 596.0 2186.0 H 790.0 Q 796.0 2186.0 796.0 2192.0 V 2323.0 Q 796.0 2329.0 790.0 2329.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 2186.0 H 794.0 Q 800.0 2186.0 800.0 2192.0 V 2323.0 Q 800.0 2329.0 794.0 2329.0 H 596.0" class="edgeVertical"/>
   <title>models/player/player_model.dart ▶ models/card/hand_model.dart</title>
 </g>
 <g>
-  <path d="M 596.0 2186.0 H 794.0 Q 800.0 2186.0 800.0 2192.0 V 2201.0 Q 800.0 2207.0 794.0 2207.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 2186.0 H 798.0 Q 804.0 2186.0 804.0 2192.0 V 2201.0 Q 804.0 2207.0 798.0 2207.0 H 596.0" class="edgeVertical"/>
   <title>models/player/player_model.dart ▶ models/player/player_status.dart</title>
 </g>
 <g>
-  <path d="M 596.0 396.0 H 798.0 Q 804.0 396.0 804.0 402.0 V 1951.0 Q 804.0 1957.0 798.0 1957.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 396.0 H 802.0 Q 808.0 396.0 808.0 402.0 V 1951.0 Q 808.0 1957.0 802.0 1957.0 H 596.0" class="edgeVertical"/>
   <title>screens/game/join_game_screen.dart ▶ models/game/backend_model.dart</title>
 </g>
 <g>
-  <path d="M 596.0 396.0 H 802.0 Q 808.0 396.0 808.0 402.0 V 2047.0 Q 808.0 2053.0 802.0 2053.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 396.0 H 806.0 Q 812.0 396.0 812.0 402.0 V 2047.0 Q 812.0 2053.0 806.0 2053.0 H 596.0" class="edgeVertical"/>
   <title>screens/game/join_game_screen.dart ▶ models/game/game_history.dart</title>
 </g>
 <g>
-  <path d="M 596.0 396.0 H 806.0 Q 812.0 396.0 812.0 402.0 V 1887.0 Q 812.0 1893.0 806.0 1893.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 396.0 H 810.0 Q 816.0 396.0 816.0 402.0 V 1887.0 Q 816.0 1893.0 810.0 1893.0 H 596.0" class="edgeVertical"/>
   <title>screens/game/join_game_screen.dart ▶ models/game/game_model.dart</title>
 </g>
 <g>
-  <path d="M 596.0 396.0 H 810.0 Q 816.0 396.0 816.0 402.0 V 443.0 Q 816.0 449.0 810.0 449.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 396.0 H 814.0 Q 820.0 396.0 820.0 402.0 V 443.0 Q 820.0 449.0 814.0 449.0 H 596.0" class="edgeVertical"/>
   <title>screens/game/join_game_screen.dart ▶ screens/game/game_style.dart</title>
 </g>
 <g>
-  <path d="M 596.0 396.0 H 814.0 Q 820.0 396.0 820.0 402.0 V 1983.0 Q 820.0 1989.0 814.0 1989.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 396.0 H 818.0 Q 824.0 396.0 824.0 402.0 V 1983.0 Q 824.0 1989.0 818.0 1989.0 H 596.0" class="edgeVertical"/>
   <title>screens/game/join_game_screen.dart ▶ models/game/game_styles.dart</title>
 </g>
 <g>
-  <path d="M 596.0 396.0 H 818.0 Q 824.0 396.0 824.0 402.0 V 411.0 Q 824.0 417.0 818.0 417.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 396.0 H 822.0 Q 828.0 396.0 828.0 402.0 V 411.0 Q 828.0 417.0 822.0 417.0 H 596.0" class="edgeVertical"/>
   <title>screens/game/join_game_screen.dart ▶ screens/game/game_screen.dart</title>
 </g>
 <g>
-  <path d="M 596.0 396.0 H 822.0 Q 828.0 396.0 828.0 402.0 V 1537.0 Q 828.0 1543.0 822.0 1543.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 396.0 H 826.0 Q 832.0 396.0 832.0 402.0 V 1441.0 Q 832.0 1447.0 826.0 1447.0 H 596.0" class="edgeVertical"/>
   <title>screens/game/join_game_screen.dart ▶ widgets/helpers/screen.dart</title>
 </g>
 <g>
-  <path d="M 596.0 396.0 H 826.0 Q 832.0 396.0 832.0 402.0 V 1601.0 Q 832.0 1607.0 826.0 1607.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 396.0 H 830.0 Q 836.0 396.0 836.0 402.0 V 1601.0 Q 836.0 1607.0 830.0 1607.0 H 596.0" class="edgeVertical"/>
   <title>screens/game/join_game_screen.dart ▶ widgets/helpers/players_in_room_widget.dart</title>
 </g>
 <g>
-  <path d="M 596.0 396.0 H 830.0 Q 836.0 396.0 836.0 402.0 V 1633.0 Q 836.0 1639.0 830.0 1639.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 396.0 H 834.0 Q 840.0 396.0 840.0 402.0 V 1633.0 Q 840.0 1639.0 834.0 1639.0 H 596.0" class="edgeVertical"/>
   <title>screens/game/join_game_screen.dart ▶ widgets/helpers/rooms_widget.dart</title>
 </g>
 <g>
-  <path d="M 596.0 396.0 H 834.0 Q 840.0 396.0 840.0 402.0 V 2605.0 Q 840.0 2611.0 834.0 2611.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 396.0 H 838.0 Q 844.0 396.0 844.0 402.0 V 2605.0 Q 844.0 2611.0 838.0 2611.0 H 596.0" class="edgeVertical"/>
   <title>screens/game/join_game_screen.dart ▶ models/app/constants.dart</title>
 </g>
 <g>
-  <path d="M 596.0 492.0 H 838.0 Q 844.0 492.0 844.0 498.0 V 1665.0 Q 844.0 1671.0 838.0 1671.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 396.0 H 842.0 Q 848.0 396.0 848.0 402.0 V 2839.0 Q 848.0 2845.0 842.0 2845.0 H 620.0" class="edgeVertical"/>
+  <title>screens/game/join_game_screen.dart ▶ utils/logger.dart</title>
+</g>
+<g>
+  <path d="M 600.0 492.0 H 846.0 Q 852.0 492.0 852.0 498.0 V 1665.0 Q 852.0 1671.0 846.0 1671.0 H 596.0" class="edgeVertical"/>
   <title>screens/game/game_over_dialog.dart ▶ widgets/helpers/misc.dart</title>
 </g>
 <g>
-  <path d="M 596.0 492.0 H 842.0 Q 848.0 492.0 848.0 498.0 V 1951.0 Q 848.0 1957.0 842.0 1957.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 492.0 H 850.0 Q 856.0 492.0 856.0 498.0 V 1951.0 Q 856.0 1957.0 850.0 1957.0 H 596.0" class="edgeVertical"/>
   <title>screens/game/game_over_dialog.dart ▶ models/game/backend_model.dart</title>
 </g>
 <g>
-  <path d="M 596.0 492.0 H 846.0 Q 852.0 492.0 852.0 498.0 V 1887.0 Q 852.0 1893.0 846.0 1893.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 492.0 H 854.0 Q 860.0 492.0 860.0 498.0 V 1887.0 Q 860.0 1893.0 854.0 1893.0 H 596.0" class="edgeVertical"/>
   <title>screens/game/game_over_dialog.dart ▶ models/game/game_model.dart</title>
 </g>
 <g>
-  <path d="M 596.0 492.0 H 850.0 Q 856.0 492.0 856.0 498.0 V 1473.0 Q 856.0 1479.0 850.0 1479.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 492.0 H 858.0 Q 864.0 492.0 864.0 498.0 V 1505.0 Q 864.0 1511.0 858.0 1511.0 H 596.0" class="edgeVertical"/>
   <title>screens/game/game_over_dialog.dart ▶ widgets/helpers/dialog.dart</title>
 </g>
 <g>
-  <path d="M 596.0 492.0 H 854.0 Q 860.0 492.0 860.0 498.0 V 2605.0 Q 860.0 2611.0 854.0 2611.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 492.0 H 862.0 Q 868.0 492.0 868.0 498.0 V 2605.0 Q 868.0 2611.0 862.0 2611.0 H 596.0" class="edgeVertical"/>
   <title>screens/game/game_over_dialog.dart ▶ models/app/constants.dart</title>
 </g>
 <g>
-  <path d="M 596.0 460.0 H 858.0 Q 864.0 460.0 864.0 466.0 V 2839.0 Q 864.0 2845.0 858.0 2845.0 H 616.0" class="edgeVertical"/>
-  <title>screens/game/game_style.dart ▶ utils/log.dart</title>
+  <path d="M 600.0 460.0 H 866.0 Q 872.0 460.0 872.0 466.0 V 2839.0 Q 872.0 2845.0 866.0 2845.0 H 620.0" class="edgeVertical"/>
+  <title>screens/game/game_style.dart ▶ utils/logger.dart</title>
 </g>
 <g>
-  <path d="M 596.0 460.0 H 862.0 Q 868.0 460.0 868.0 466.0 V 2419.0 Q 868.0 2425.0 862.0 2425.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 460.0 H 870.0 Q 876.0 460.0 876.0 466.0 V 2419.0 Q 876.0 2425.0 870.0 2425.0 H 596.0" class="edgeVertical"/>
   <title>screens/game/game_style.dart ▶ models/card/card_dimensions.dart</title>
 </g>
 <g>
-  <path d="M 596.0 460.0 H 866.0 Q 872.0 460.0 872.0 466.0 V 2387.0 Q 872.0 2393.0 866.0 2393.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 460.0 H 874.0 Q 880.0 460.0 880.0 466.0 V 2387.0 Q 880.0 2393.0 874.0 2393.0 H 596.0" class="edgeVertical"/>
   <title>screens/game/game_style.dart ▶ models/card/card_model_french.dart</title>
 </g>
 <g>
-  <path d="M 596.0 460.0 H 870.0 Q 876.0 460.0 876.0 466.0 V 1887.0 Q 876.0 1893.0 870.0 1893.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 460.0 H 878.0 Q 884.0 460.0 884.0 466.0 V 1887.0 Q 884.0 1893.0 878.0 1893.0 H 596.0" class="edgeVertical"/>
   <title>screens/game/game_style.dart ▶ models/game/game_model.dart</title>
 </g>
 <g>
-  <path d="M 596.0 460.0 H 874.0 Q 880.0 460.0 880.0 466.0 V 1983.0 Q 880.0 1989.0 874.0 1989.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 460.0 H 882.0 Q 888.0 460.0 888.0 466.0 V 1983.0 Q 888.0 1989.0 882.0 1989.0 H 596.0" class="edgeVertical"/>
   <title>screens/game/game_style.dart ▶ models/game/game_styles.dart</title>
 </g>
 <g>
-  <path d="M 596.0 460.0 H 878.0 Q 884.0 460.0 884.0 466.0 V 1191.0 Q 884.0 1197.0 878.0 1197.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 460.0 H 886.0 Q 892.0 460.0 892.0 466.0 V 1191.0 Q 892.0 1197.0 886.0 1197.0 H 596.0" class="edgeVertical"/>
   <title>screens/game/game_style.dart ▶ widgets/cards/card_widget.dart</title>
 </g>
 <g>
-  <path d="M 596.0 428.0 H 882.0 Q 888.0 428.0 888.0 434.0 V 1951.0 Q 888.0 1957.0 882.0 1957.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 428.0 H 890.0 Q 896.0 428.0 896.0 434.0 V 1951.0 Q 896.0 1957.0 890.0 1957.0 H 596.0" class="edgeVertical"/>
   <title>screens/game/game_screen.dart ▶ models/game/backend_model.dart</title>
 </g>
 <g>
-  <path d="M 596.0 428.0 H 886.0 Q 892.0 428.0 892.0 434.0 V 1887.0 Q 892.0 1893.0 886.0 1893.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 428.0 H 894.0 Q 900.0 428.0 900.0 434.0 V 1887.0 Q 900.0 1893.0 894.0 1893.0 H 596.0" class="edgeVertical"/>
   <title>screens/game/game_screen.dart ▶ models/game/game_model.dart</title>
 </g>
 <g>
-  <path d="M 596.0 428.0 H 890.0 Q 896.0 428.0 896.0 434.0 V 2605.0 Q 896.0 2611.0 890.0 2611.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 428.0 H 898.0 Q 904.0 428.0 904.0 434.0 V 2605.0 Q 904.0 2611.0 898.0 2611.0 H 596.0" class="edgeVertical"/>
   <title>screens/game/game_screen.dart ▶ models/app/constants.dart</title>
 </g>
 <g>
-  <path d="M 596.0 428.0 H 894.0 Q 900.0 428.0 900.0 434.0 V 475.0 Q 900.0 481.0 894.0 481.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 428.0 H 902.0 Q 908.0 428.0 908.0 434.0 V 475.0 Q 908.0 481.0 902.0 481.0 H 596.0" class="edgeVertical"/>
   <title>screens/game/game_screen.dart ▶ screens/game/game_over_dialog.dart</title>
 </g>
 <g>
-  <path d="M 596.0 428.0 H 898.0 Q 904.0 428.0 904.0 434.0 V 1537.0 Q 904.0 1543.0 898.0 1543.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 428.0 H 906.0 Q 912.0 428.0 912.0 434.0 V 1441.0 Q 912.0 1447.0 906.0 1447.0 H 596.0" class="edgeVertical"/>
   <title>screens/game/game_screen.dart ▶ widgets/helpers/screen.dart</title>
 </g>
 <g>
-  <path d="M 596.0 428.0 H 902.0 Q 908.0 428.0 908.0 434.0 V 941.0 Q 908.0 947.0 902.0 947.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 428.0 H 910.0 Q 916.0 428.0 916.0 434.0 V 941.0 Q 916.0 947.0 910.0 947.0 H 596.0" class="edgeVertical"/>
   <title>screens/game/game_screen.dart ▶ widgets/player/player_zone_widget.dart</title>
 </g>
 <g>
-  <path d="M 596.0 364.0 H 906.0 Q 912.0 364.0 912.0 370.0 V 2839.0 Q 912.0 2845.0 906.0 2845.0 H 616.0" class="edgeVertical"/>
-  <title>screens/game/start_game_screen.dart ▶ utils/log.dart</title>
+  <path d="M 600.0 364.0 H 914.0 Q 920.0 364.0 920.0 370.0 V 2839.0 Q 920.0 2845.0 914.0 2845.0 H 620.0" class="edgeVertical"/>
+  <title>screens/game/start_game_screen.dart ▶ utils/logger.dart</title>
 </g>
 <g>
-  <path d="M 596.0 364.0 H 910.0 Q 916.0 364.0 916.0 370.0 V 1665.0 Q 916.0 1671.0 910.0 1671.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 364.0 H 918.0 Q 924.0 364.0 924.0 370.0 V 1665.0 Q 924.0 1671.0 918.0 1671.0 H 596.0" class="edgeVertical"/>
   <title>screens/game/start_game_screen.dart ▶ widgets/helpers/misc.dart</title>
 </g>
 <g>
-  <path d="M 596.0 364.0 H 914.0 Q 920.0 364.0 920.0 370.0 V 1951.0 Q 920.0 1957.0 914.0 1957.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 364.0 H 922.0 Q 928.0 364.0 928.0 370.0 V 1951.0 Q 928.0 1957.0 922.0 1957.0 H 596.0" class="edgeVertical"/>
   <title>screens/game/start_game_screen.dart ▶ models/game/backend_model.dart</title>
 </g>
 <g>
-  <path d="M 596.0 364.0 H 918.0 Q 924.0 364.0 924.0 370.0 V 2605.0 Q 924.0 2611.0 918.0 2611.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 364.0 H 926.0 Q 932.0 364.0 932.0 370.0 V 2605.0 Q 932.0 2611.0 926.0 2611.0 H 596.0" class="edgeVertical"/>
   <title>screens/game/start_game_screen.dart ▶ models/app/constants.dart</title>
 </g>
 <g>
-  <path d="M 596.0 364.0 H 922.0 Q 928.0 364.0 928.0 370.0 V 2047.0 Q 928.0 2053.0 922.0 2053.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 364.0 H 930.0 Q 936.0 364.0 936.0 370.0 V 2047.0 Q 936.0 2053.0 930.0 2053.0 H 596.0" class="edgeVertical"/>
   <title>screens/game/start_game_screen.dart ▶ models/game/game_history.dart</title>
 </g>
 <g>
-  <path d="M 596.0 364.0 H 926.0 Q 932.0 364.0 932.0 370.0 V 1887.0 Q 932.0 1893.0 926.0 1893.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 364.0 H 934.0 Q 940.0 364.0 940.0 370.0 V 1887.0 Q 940.0 1893.0 934.0 1893.0 H 596.0" class="edgeVertical"/>
   <title>screens/game/start_game_screen.dart ▶ models/game/game_model.dart</title>
 </g>
 <g>
-  <path d="M 596.0 364.0 H 930.0 Q 936.0 364.0 936.0 370.0 V 443.0 Q 936.0 449.0 930.0 449.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 364.0 H 938.0 Q 944.0 364.0 944.0 370.0 V 443.0 Q 944.0 449.0 938.0 449.0 H 596.0" class="edgeVertical"/>
   <title>screens/game/start_game_screen.dart ▶ screens/game/game_style.dart</title>
 </g>
 <g>
-  <path d="M 596.0 364.0 H 934.0 Q 940.0 364.0 940.0 370.0 V 1983.0 Q 940.0 1989.0 934.0 1989.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 364.0 H 942.0 Q 948.0 364.0 948.0 370.0 V 1983.0 Q 948.0 1989.0 942.0 1989.0 H 596.0" class="edgeVertical"/>
   <title>screens/game/start_game_screen.dart ▶ models/game/game_styles.dart</title>
 </g>
 <g>
-  <path d="M 596.0 364.0 H 938.0 Q 944.0 364.0 944.0 370.0 V 411.0 Q 944.0 417.0 938.0 417.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 364.0 H 946.0 Q 952.0 364.0 952.0 370.0 V 411.0 Q 952.0 417.0 946.0 417.0 H 596.0" class="edgeVertical"/>
   <title>screens/game/start_game_screen.dart ▶ screens/game/game_screen.dart</title>
 </g>
 <g>
-  <path d="M 596.0 364.0 H 942.0 Q 948.0 364.0 948.0 370.0 V 1537.0 Q 948.0 1543.0 942.0 1543.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 364.0 H 950.0 Q 956.0 364.0 956.0 370.0 V 1441.0 Q 956.0 1447.0 950.0 1447.0 H 596.0" class="edgeVertical"/>
   <title>screens/game/start_game_screen.dart ▶ widgets/helpers/screen.dart</title>
 </g>
 <g>
-  <path d="M 596.0 364.0 H 946.0 Q 952.0 364.0 952.0 370.0 V 1601.0 Q 952.0 1607.0 946.0 1607.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 364.0 H 954.0 Q 960.0 364.0 960.0 370.0 V 1601.0 Q 960.0 1607.0 954.0 1607.0 H 596.0" class="edgeVertical"/>
   <title>screens/game/start_game_screen.dart ▶ widgets/helpers/players_in_room_widget.dart</title>
 </g>
 <g>
-  <path d="M 596.0 364.0 H 950.0 Q 956.0 364.0 956.0 370.0 V 1633.0 Q 956.0 1639.0 950.0 1639.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 364.0 H 958.0 Q 964.0 364.0 964.0 370.0 V 1633.0 Q 964.0 1639.0 958.0 1639.0 H 596.0" class="edgeVertical"/>
   <title>screens/game/start_game_screen.dart ▶ widgets/helpers/rooms_widget.dart</title>
 </g>
 <g>
-  <path d="M 596.0 364.0 H 954.0 Q 960.0 364.0 960.0 370.0 V 2775.0 Q 960.0 2781.0 954.0 2781.0 H 616.0" class="edgeVertical"/>
+  <path d="M 600.0 364.0 H 962.0 Q 968.0 364.0 968.0 370.0 V 2775.0 Q 968.0 2781.0 962.0 2781.0 H 620.0" class="edgeVertical"/>
   <title>screens/game/start_game_screen.dart ▶ utils/browser_utils.dart</title>
 </g>
 <g>
-  <path d="M 596.0 614.0 H 958.0 Q 964.0 614.0 964.0 620.0 V 2605.0 Q 964.0 2611.0 958.0 2611.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 614.0 H 966.0 Q 972.0 614.0 972.0 620.0 V 2605.0 Q 972.0 2611.0 966.0 2611.0 H 596.0" class="edgeVertical"/>
   <title>screens/welcome/main_menu.dart ▶ models/app/constants.dart</title>
 </g>
 <g>
-  <path d="M 596.0 614.0 H 962.0 Q 968.0 614.0 968.0 620.0 V 1537.0 Q 968.0 1543.0 962.0 1543.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 614.0 H 970.0 Q 976.0 614.0 976.0 620.0 V 1441.0 Q 976.0 1447.0 970.0 1447.0 H 596.0" class="edgeVertical"/>
   <title>screens/welcome/main_menu.dart ▶ widgets/helpers/screen.dart</title>
 </g>
 <g>
-  <path d="M 596.0 736.0 H 966.0 Q 972.0 736.0 972.0 742.0 V 2605.0 Q 972.0 2611.0 966.0 2611.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 736.0 H 974.0 Q 980.0 736.0 980.0 742.0 V 2605.0 Q 980.0 2611.0 974.0 2611.0 H 596.0" class="edgeVertical"/>
   <title>screens/keepscore/golf_score_screen.dart ▶ models/app/constants.dart</title>
 </g>
 <g>
-  <path d="M 596.0 736.0 H 970.0 Q 976.0 736.0 976.0 742.0 V 2015.0 Q 976.0 2021.0 970.0 2021.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 736.0 H 978.0 Q 984.0 736.0 984.0 742.0 V 2015.0 Q 984.0 2021.0 978.0 2021.0 H 596.0" class="edgeVertical"/>
   <title>screens/keepscore/golf_score_screen.dart ▶ models/game/golf_score_model.dart</title>
 </g>
 <g>
-  <path d="M 596.0 736.0 H 974.0 Q 980.0 736.0 980.0 742.0 V 1537.0 Q 980.0 1543.0 974.0 1543.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 736.0 H 982.0 Q 988.0 736.0 988.0 742.0 V 1441.0 Q 988.0 1447.0 982.0 1447.0 H 596.0" class="edgeVertical"/>
   <title>screens/keepscore/golf_score_screen.dart ▶ widgets/helpers/screen.dart</title>
 </g>
 <g>
-  <path d="M 596.0 736.0 H 978.0 Q 984.0 736.0 984.0 742.0 V 1409.0 Q 984.0 1415.0 978.0 1415.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 736.0 H 986.0 Q 992.0 736.0 992.0 742.0 V 1409.0 Q 992.0 1415.0 986.0 1415.0 H 596.0" class="edgeVertical"/>
   <title>screens/keepscore/golf_score_screen.dart ▶ widgets/helpers/input_keyboard.dart</title>
 </g>
 <g>
-  <path d="M 596.0 736.0 H 982.0 Q 988.0 736.0 988.0 742.0 V 1505.0 Q 988.0 1511.0 982.0 1511.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 736.0 H 990.0 Q 996.0 736.0 996.0 742.0 V 1537.0 Q 996.0 1543.0 990.0 1543.0 H 596.0" class="edgeVertical"/>
   <title>screens/keepscore/golf_score_screen.dart ▶ widgets/helpers/my_button.dart</title>
 </g>
 <g>
-  <path d="M 596.0 736.0 H 986.0 Q 992.0 736.0 992.0 742.0 V 1569.0 Q 992.0 1575.0 986.0 1575.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 736.0 H 994.0 Q 1000.0 736.0 1000.0 742.0 V 1569.0 Q 1000.0 1575.0 994.0 1575.0 H 596.0" class="edgeVertical"/>
   <title>screens/keepscore/golf_score_screen.dart ▶ widgets/helpers/player_header.dart</title>
 </g>
 <g>
-  <path d="M 620.0 190.0 H 990.0 Q 996.0 190.0 996.0 196.0 V 1951.0 Q 996.0 1957.0 990.0 1957.0 H 592.0" class="edgeVertical"/>
+  <path d="M 624.0 190.0 H 998.0 Q 1004.0 190.0 1004.0 196.0 V 1951.0 Q 1004.0 1957.0 998.0 1957.0 H 596.0" class="edgeVertical"/>
   <title>main.dart ▶ models/game/backend_model.dart</title>
 </g>
 <g>
-  <path d="M 620.0 190.0 H 994.0 Q 1000.0 190.0 1000.0 196.0 V 2573.0 Q 1000.0 2579.0 994.0 2579.0 H 592.0" class="edgeVertical"/>
+  <path d="M 624.0 190.0 H 1002.0 Q 1008.0 190.0 1008.0 196.0 V 2573.0 Q 1008.0 2579.0 1002.0 2579.0 H 596.0" class="edgeVertical"/>
   <title>main.dart ▶ models/app/firebase_options.dart</title>
 </g>
 <g>
-  <path d="M 620.0 190.0 H 998.0 Q 1004.0 190.0 1004.0 196.0 V 379.0 Q 1004.0 385.0 998.0 385.0 H 592.0" class="edgeVertical"/>
+  <path d="M 624.0 190.0 H 1006.0 Q 1012.0 190.0 1012.0 196.0 V 379.0 Q 1012.0 385.0 1006.0 385.0 H 596.0" class="edgeVertical"/>
   <title>main.dart ▶ screens/game/join_game_screen.dart</title>
 </g>
 <g>
-  <path d="M 620.0 190.0 H 1002.0 Q 1008.0 190.0 1008.0 196.0 V 347.0 Q 1008.0 353.0 1002.0 353.0 H 592.0" class="edgeVertical"/>
+  <path d="M 624.0 190.0 H 1010.0 Q 1016.0 190.0 1016.0 196.0 V 347.0 Q 1016.0 353.0 1010.0 353.0 H 596.0" class="edgeVertical"/>
   <title>main.dart ▶ screens/game/start_game_screen.dart</title>
 </g>
 <g>
-  <path d="M 620.0 190.0 H 1006.0 Q 1012.0 190.0 1012.0 196.0 V 719.0 Q 1012.0 725.0 1006.0 725.0 H 592.0" class="edgeVertical"/>
+  <path d="M 624.0 190.0 H 1014.0 Q 1020.0 190.0 1020.0 196.0 V 719.0 Q 1020.0 725.0 1014.0 725.0 H 596.0" class="edgeVertical"/>
   <title>main.dart ▶ screens/keepscore/golf_score_screen.dart</title>
 </g>
 <g>
-  <path d="M 620.0 190.0 H 1010.0 Q 1016.0 190.0 1016.0 196.0 V 597.0 Q 1016.0 603.0 1010.0 603.0 H 592.0" class="edgeVertical"/>
+  <path d="M 624.0 190.0 H 1018.0 Q 1024.0 190.0 1024.0 196.0 V 597.0 Q 1024.0 603.0 1018.0 603.0 H 596.0" class="edgeVertical"/>
   <title>main.dart ▶ screens/welcome/main_menu.dart</title>
 </g>
 <g>
-  <path d="M 620.0 190.0 H 1014.0 Q 1020.0 190.0 1020.0 196.0 V 2541.0 Q 1020.0 2547.0 1014.0 2547.0 H 592.0" class="edgeVertical"/>
+  <path d="M 624.0 190.0 H 1022.0 Q 1028.0 190.0 1028.0 196.0 V 2541.0 Q 1028.0 2547.0 1022.0 2547.0 H 596.0" class="edgeVertical"/>
   <title>main.dart ▶ models/app/app_theme.dart</title>
 </g>
 <g>
-  <path d="M 620.0 190.0 H 1018.0 Q 1024.0 190.0 1024.0 196.0 V 2605.0 Q 1024.0 2611.0 1018.0 2611.0 H 592.0" class="edgeVertical"/>
+  <path d="M 624.0 190.0 H 1026.0 Q 1032.0 190.0 1032.0 196.0 V 2605.0 Q 1032.0 2611.0 1026.0 2611.0 H 596.0" class="edgeVertical"/>
   <title>main.dart ▶ models/app/constants.dart</title>
 </g>
 <g>
-  <path d="M 596.0 1176.0 H 1022.0 Q 1028.0 1176.0 1028.0 1182.0 V 2419.0 Q 1028.0 2425.0 1022.0 2425.0 H 592.0" class="edgeVertical"/>
+  <path d="M 624.0 190.0 H 1030.0 Q 1036.0 190.0 1036.0 196.0 V 2839.0 Q 1036.0 2845.0 1030.0 2845.0 H 620.0" class="edgeVertical"/>
+  <title>main.dart ▶ utils/logger.dart</title>
+</g>
+<g>
+  <path d="M 600.0 1176.0 H 1034.0 Q 1040.0 1176.0 1040.0 1182.0 V 2419.0 Q 1040.0 2425.0 1034.0 2425.0 H 596.0" class="edgeVertical"/>
   <title>widgets/cards/card_pile_widget.dart ▶ models/card/card_dimensions.dart</title>
 </g>
 <g>
-  <path d="M 596.0 1176.0 H 1026.0 Q 1032.0 1176.0 1032.0 1182.0 V 2355.0 Q 1032.0 2361.0 1026.0 2361.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 1176.0 H 1038.0 Q 1044.0 1176.0 1044.0 1182.0 V 2355.0 Q 1044.0 2361.0 1038.0 2361.0 H 596.0" class="edgeVertical"/>
   <title>widgets/cards/card_pile_widget.dart ▶ models/card/card_model.dart</title>
 </g>
 <g>
-  <path d="M 596.0 1176.0 H 1030.0 Q 1036.0 1176.0 1036.0 1182.0 V 2605.0 Q 1036.0 2611.0 1030.0 2611.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 1176.0 H 1042.0 Q 1048.0 1176.0 1048.0 1182.0 V 2605.0 Q 1048.0 2611.0 1042.0 2611.0 H 596.0" class="edgeVertical"/>
   <title>widgets/cards/card_pile_widget.dart ▶ models/app/constants.dart</title>
 </g>
 <g>
-  <path d="M 596.0 1176.0 H 1034.0 Q 1040.0 1176.0 1040.0 1182.0 V 1191.0 Q 1040.0 1197.0 1034.0 1197.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 1176.0 H 1046.0 Q 1052.0 1176.0 1052.0 1182.0 V 1191.0 Q 1052.0 1197.0 1046.0 1197.0 H 596.0" class="edgeVertical"/>
   <title>widgets/cards/card_pile_widget.dart ▶ widgets/cards/card_widget.dart</title>
 </g>
 <g>
-  <path d="M 596.0 1240.0 H 1038.0 Q 1044.0 1240.0 1044.0 1246.0 V 1665.0 Q 1044.0 1671.0 1038.0 1671.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 1240.0 H 1050.0 Q 1056.0 1240.0 1056.0 1246.0 V 1665.0 Q 1056.0 1671.0 1050.0 1671.0 H 596.0" class="edgeVertical"/>
   <title>widgets/cards/card_face_skyjo_widget.dart ▶ widgets/helpers/misc.dart</title>
 </g>
 <g>
-  <path d="M 596.0 1240.0 H 1042.0 Q 1048.0 1240.0 1048.0 1246.0 V 2355.0 Q 1048.0 2361.0 1042.0 2361.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 1240.0 H 1054.0 Q 1060.0 1240.0 1060.0 1246.0 V 2355.0 Q 1060.0 2361.0 1054.0 2361.0 H 596.0" class="edgeVertical"/>
   <title>widgets/cards/card_face_skyjo_widget.dart ▶ models/card/card_model.dart</title>
 </g>
 <g>
-  <path d="M 596.0 1240.0 H 1046.0 Q 1052.0 1240.0 1052.0 1246.0 V 2605.0 Q 1052.0 2611.0 1046.0 2611.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 1240.0 H 1058.0 Q 1064.0 1240.0 1064.0 1246.0 V 2605.0 Q 1064.0 2611.0 1058.0 2611.0 H 596.0" class="edgeVertical"/>
   <title>widgets/cards/card_face_skyjo_widget.dart ▶ models/app/constants.dart</title>
 </g>
 <g>
-  <path d="M 596.0 1240.0 H 1050.0 Q 1056.0 1240.0 1056.0 1246.0 V 1255.0 Q 1056.0 1261.0 1050.0 1261.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 1240.0 H 1062.0 Q 1068.0 1240.0 1068.0 1246.0 V 1255.0 Q 1068.0 1261.0 1062.0 1261.0 H 596.0" class="edgeVertical"/>
   <title>widgets/cards/card_face_skyjo_widget.dart ▶ widgets/cards/card_face_french_widget.dart</title>
 </g>
 <g>
-  <path d="M 596.0 1208.0 H 1054.0 Q 1060.0 1208.0 1060.0 1214.0 V 2419.0 Q 1060.0 2425.0 1054.0 2425.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 1208.0 H 1066.0 Q 1072.0 1208.0 1072.0 1214.0 V 2419.0 Q 1072.0 2425.0 1066.0 2425.0 H 596.0" class="edgeVertical"/>
   <title>widgets/cards/card_widget.dart ▶ models/card/card_dimensions.dart</title>
 </g>
 <g>
-  <path d="M 596.0 1208.0 H 1058.0 Q 1064.0 1208.0 1064.0 1214.0 V 2355.0 Q 1064.0 2361.0 1058.0 2361.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 1208.0 H 1070.0 Q 1076.0 1208.0 1076.0 1214.0 V 2355.0 Q 1076.0 2361.0 1070.0 2361.0 H 596.0" class="edgeVertical"/>
   <title>widgets/cards/card_widget.dart ▶ models/card/card_model.dart</title>
 </g>
 <g>
-  <path d="M 596.0 1208.0 H 1062.0 Q 1068.0 1208.0 1068.0 1214.0 V 2605.0 Q 1068.0 2611.0 1062.0 2611.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 1208.0 H 1074.0 Q 1080.0 1208.0 1080.0 1214.0 V 2605.0 Q 1080.0 2611.0 1074.0 2611.0 H 596.0" class="edgeVertical"/>
   <title>widgets/cards/card_widget.dart ▶ models/app/constants.dart</title>
 </g>
 <g>
-  <path d="M 596.0 1208.0 H 1066.0 Q 1072.0 1208.0 1072.0 1214.0 V 1255.0 Q 1072.0 1261.0 1066.0 1261.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 1208.0 H 1078.0 Q 1084.0 1208.0 1084.0 1214.0 V 1255.0 Q 1084.0 1261.0 1078.0 1261.0 H 596.0" class="edgeVertical"/>
   <title>widgets/cards/card_widget.dart ▶ widgets/cards/card_face_french_widget.dart</title>
 </g>
 <g>
-  <path d="M 596.0 1208.0 H 1070.0 Q 1076.0 1208.0 1076.0 1214.0 V 1223.0 Q 1076.0 1229.0 1070.0 1229.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 1208.0 H 1082.0 Q 1088.0 1208.0 1088.0 1214.0 V 1223.0 Q 1088.0 1229.0 1082.0 1229.0 H 596.0" class="edgeVertical"/>
   <title>widgets/cards/card_widget.dart ▶ widgets/cards/card_face_skyjo_widget.dart</title>
 </g>
 <g>
-  <path d="M 596.0 1208.0 H 1074.0 Q 1080.0 1208.0 1080.0 1214.0 V 1441.0 Q 1080.0 1447.0 1074.0 1447.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 1208.0 H 1086.0 Q 1092.0 1208.0 1092.0 1214.0 V 1473.0 Q 1092.0 1479.0 1086.0 1479.0 H 596.0" class="edgeVertical"/>
   <title>widgets/cards/card_widget.dart ▶ widgets/helpers/wiggle_widget.dart</title>
 </g>
 <g>
-  <path d="M 596.0 1272.0 H 1078.0 Q 1084.0 1272.0 1084.0 1278.0 V 1665.0 Q 1084.0 1671.0 1078.0 1671.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 1272.0 H 1090.0 Q 1096.0 1272.0 1096.0 1278.0 V 1665.0 Q 1096.0 1671.0 1090.0 1671.0 H 596.0" class="edgeVertical"/>
   <title>widgets/cards/card_face_french_widget.dart ▶ widgets/helpers/misc.dart</title>
 </g>
 <g>
-  <path d="M 596.0 1272.0 H 1082.0 Q 1088.0 1272.0 1088.0 1278.0 V 2355.0 Q 1088.0 2361.0 1082.0 2361.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 1272.0 H 1094.0 Q 1100.0 1272.0 1100.0 1278.0 V 2355.0 Q 1100.0 2361.0 1094.0 2361.0 H 596.0" class="edgeVertical"/>
   <title>widgets/cards/card_face_french_widget.dart ▶ models/card/card_model.dart</title>
 </g>
 <g>
-  <path d="M 596.0 1272.0 H 1086.0 Q 1092.0 1272.0 1092.0 1278.0 V 2605.0 Q 1092.0 2611.0 1086.0 2611.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 1272.0 H 1098.0 Q 1104.0 1272.0 1104.0 1278.0 V 2605.0 Q 1104.0 2611.0 1098.0 2611.0 H 596.0" class="edgeVertical"/>
   <title>widgets/cards/card_face_french_widget.dart ▶ models/app/constants.dart</title>
 </g>
 <g>
-  <path d="M 596.0 1426.0 H 1090.0 Q 1096.0 1426.0 1096.0 1432.0 V 2605.0 Q 1096.0 2611.0 1090.0 2611.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 1426.0 H 1102.0 Q 1108.0 1426.0 1108.0 1432.0 V 2605.0 Q 1108.0 2611.0 1102.0 2611.0 H 596.0" class="edgeVertical"/>
   <title>widgets/helpers/input_keyboard.dart ▶ models/app/constants.dart</title>
 </g>
 <g>
-  <path d="M 596.0 1426.0 H 1094.0 Q 1100.0 1426.0 1100.0 1432.0 V 1505.0 Q 1100.0 1511.0 1094.0 1511.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 1426.0 H 1106.0 Q 1112.0 1426.0 1112.0 1432.0 V 1537.0 Q 1112.0 1543.0 1106.0 1543.0 H 596.0" class="edgeVertical"/>
   <title>widgets/helpers/input_keyboard.dart ▶ widgets/helpers/my_button.dart</title>
 </g>
 <g>
-  <path d="M 596.0 1394.0 H 1098.0 Q 1104.0 1394.0 1104.0 1400.0 V 2605.0 Q 1104.0 2611.0 1098.0 2611.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 1394.0 H 1110.0 Q 1116.0 1394.0 1116.0 1400.0 V 2605.0 Q 1116.0 2611.0 1110.0 2611.0 H 596.0" class="edgeVertical"/>
   <title>widgets/helpers/date_importance.dart ▶ models/app/constants.dart</title>
 </g>
 <g>
-  <path d="M 596.0 1394.0 H 1102.0 Q 1108.0 1394.0 1108.0 1400.0 V 1665.0 Q 1108.0 1671.0 1102.0 1671.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 1394.0 H 1114.0 Q 1120.0 1394.0 1120.0 1400.0 V 1665.0 Q 1120.0 1671.0 1114.0 1671.0 H 596.0" class="edgeVertical"/>
   <title>widgets/helpers/date_importance.dart ▶ widgets/helpers/misc.dart</title>
 </g>
 <g>
-  <path d="M 596.0 1490.0 H 1106.0 Q 1112.0 1490.0 1112.0 1496.0 V 2605.0 Q 1112.0 2611.0 1106.0 2611.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 1522.0 H 1118.0 Q 1124.0 1522.0 1124.0 1528.0 V 2605.0 Q 1124.0 2611.0 1118.0 2611.0 H 596.0" class="edgeVertical"/>
   <title>widgets/helpers/dialog.dart ▶ models/app/constants.dart</title>
 </g>
 <g>
-  <path d="M 596.0 1458.0 H 1110.0 Q 1116.0 1458.0 1116.0 1464.0 V 2605.0 Q 1116.0 2611.0 1110.0 2611.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 1490.0 H 1122.0 Q 1128.0 1490.0 1128.0 1496.0 V 2605.0 Q 1128.0 2611.0 1122.0 2611.0 H 596.0" class="edgeVertical"/>
   <title>widgets/helpers/wiggle_widget.dart ▶ models/app/constants.dart</title>
 </g>
 <g>
-  <path d="M 596.0 1522.0 H 1114.0 Q 1120.0 1522.0 1120.0 1528.0 V 2605.0 Q 1120.0 2611.0 1114.0 2611.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 1554.0 H 1126.0 Q 1132.0 1554.0 1132.0 1560.0 V 2605.0 Q 1132.0 2611.0 1126.0 2611.0 H 596.0" class="edgeVertical"/>
   <title>widgets/helpers/my_button.dart ▶ models/app/constants.dart</title>
 </g>
 <g>
-  <path d="M 596.0 1554.0 H 1118.0 Q 1124.0 1554.0 1124.0 1560.0 V 2605.0 Q 1124.0 2611.0 1118.0 2611.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 1458.0 H 1130.0 Q 1136.0 1458.0 1136.0 1464.0 V 2605.0 Q 1136.0 2611.0 1130.0 2611.0 H 596.0" class="edgeVertical"/>
   <title>widgets/helpers/screen.dart ▶ models/app/constants.dart</title>
 </g>
 <g>
-  <path d="M 596.0 1022.0 H 1122.0 Q 1128.0 1022.0 1128.0 1028.0 V 1887.0 Q 1128.0 1893.0 1122.0 1893.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 1458.0 H 1134.0 Q 1140.0 1458.0 1140.0 1464.0 V 2839.0 Q 1140.0 2845.0 1134.0 2845.0 H 620.0" class="edgeVertical"/>
+  <title>widgets/helpers/screen.dart ▶ utils/logger.dart</title>
+</g>
+<g>
+  <path d="M 600.0 1022.0 H 1138.0 Q 1144.0 1022.0 1144.0 1028.0 V 1887.0 Q 1144.0 1893.0 1138.0 1893.0 H 596.0" class="edgeVertical"/>
   <title>widgets/player/player_zone_cta_widget.dart ▶ models/game/game_model.dart</title>
 </g>
 <g>
-  <path d="M 596.0 1022.0 H 1126.0 Q 1132.0 1022.0 1132.0 1028.0 V 1159.0 Q 1132.0 1165.0 1126.0 1165.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 1022.0 H 1142.0 Q 1148.0 1022.0 1148.0 1028.0 V 1159.0 Q 1148.0 1165.0 1142.0 1165.0 H 596.0" class="edgeVertical"/>
   <title>widgets/player/player_zone_cta_widget.dart ▶ widgets/cards/card_pile_widget.dart</title>
 </g>
 <g>
-  <path d="M 596.0 1054.0 H 1130.0 Q 1136.0 1054.0 1136.0 1060.0 V 1665.0 Q 1136.0 1671.0 1130.0 1671.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 1054.0 H 1146.0 Q 1152.0 1054.0 1152.0 1060.0 V 1665.0 Q 1152.0 1671.0 1146.0 1671.0 H 596.0" class="edgeVertical"/>
   <title>widgets/player/status_picker.dart ▶ widgets/helpers/misc.dart</title>
 </g>
 <g>
-  <path d="M 596.0 1054.0 H 1134.0 Q 1140.0 1054.0 1140.0 1060.0 V 2201.0 Q 1140.0 2207.0 1134.0 2207.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 1054.0 H 1150.0 Q 1156.0 1054.0 1156.0 1060.0 V 2201.0 Q 1156.0 2207.0 1150.0 2207.0 H 596.0" class="edgeVertical"/>
   <title>widgets/player/status_picker.dart ▶ models/player/player_status.dart</title>
 </g>
 <g>
-  <path d="M 596.0 990.0 H 1138.0 Q 1144.0 990.0 1144.0 996.0 V 1665.0 Q 1144.0 1671.0 1138.0 1671.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 990.0 H 1154.0 Q 1160.0 990.0 1160.0 996.0 V 1665.0 Q 1160.0 1671.0 1154.0 1671.0 H 596.0" class="edgeVertical"/>
   <title>widgets/player/player_header_widget.dart ▶ widgets/helpers/misc.dart</title>
 </g>
 <g>
-  <path d="M 596.0 990.0 H 1142.0 Q 1148.0 990.0 1148.0 996.0 V 1887.0 Q 1148.0 1893.0 1142.0 1893.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 990.0 H 1158.0 Q 1164.0 990.0 1164.0 996.0 V 1887.0 Q 1164.0 1893.0 1158.0 1893.0 H 596.0" class="edgeVertical"/>
   <title>widgets/player/player_header_widget.dart ▶ models/game/game_model.dart</title>
 </g>
 <g>
-  <path d="M 596.0 990.0 H 1146.0 Q 1152.0 990.0 1152.0 996.0 V 1377.0 Q 1152.0 1383.0 1146.0 1383.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 990.0 H 1162.0 Q 1168.0 990.0 1168.0 996.0 V 1377.0 Q 1168.0 1383.0 1162.0 1383.0 H 596.0" class="edgeVertical"/>
   <title>widgets/player/player_header_widget.dart ▶ widgets/helpers/date_importance.dart</title>
 </g>
 <g>
-  <path d="M 596.0 990.0 H 1150.0 Q 1156.0 990.0 1156.0 996.0 V 1473.0 Q 1156.0 1479.0 1150.0 1479.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 990.0 H 1166.0 Q 1172.0 990.0 1172.0 996.0 V 1505.0 Q 1172.0 1511.0 1166.0 1511.0 H 596.0" class="edgeVertical"/>
   <title>widgets/player/player_header_widget.dart ▶ widgets/helpers/dialog.dart</title>
 </g>
 <g>
-  <path d="M 596.0 990.0 H 1154.0 Q 1160.0 990.0 1160.0 996.0 V 1037.0 Q 1160.0 1043.0 1154.0 1043.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 990.0 H 1170.0 Q 1176.0 990.0 1176.0 996.0 V 1037.0 Q 1176.0 1043.0 1170.0 1043.0 H 596.0" class="edgeVertical"/>
   <title>widgets/player/player_header_widget.dart ▶ widgets/player/status_picker.dart</title>
 </g>
 <g>
-  <path d="M 596.0 990.0 H 1158.0 Q 1164.0 990.0 1164.0 996.0 V 2605.0 Q 1164.0 2611.0 1158.0 2611.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 990.0 H 1174.0 Q 1180.0 990.0 1180.0 996.0 V 2605.0 Q 1180.0 2611.0 1174.0 2611.0 H 596.0" class="edgeVertical"/>
   <title>widgets/player/player_header_widget.dart ▶ models/app/constants.dart</title>
 </g>
 <g>
-  <path d="M 596.0 958.0 H 1162.0 Q 1168.0 958.0 1168.0 964.0 V 2839.0 Q 1168.0 2845.0 1162.0 2845.0 H 616.0" class="edgeVertical"/>
-  <title>widgets/player/player_zone_widget.dart ▶ utils/log.dart</title>
+  <path d="M 600.0 958.0 H 1178.0 Q 1184.0 958.0 1184.0 964.0 V 2839.0 Q 1184.0 2845.0 1178.0 2845.0 H 620.0" class="edgeVertical"/>
+  <title>widgets/player/player_zone_widget.dart ▶ utils/logger.dart</title>
 </g>
 <g>
-  <path d="M 596.0 958.0 H 1166.0 Q 1172.0 958.0 1172.0 964.0 V 1887.0 Q 1172.0 1893.0 1166.0 1893.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 958.0 H 1182.0 Q 1188.0 958.0 1188.0 964.0 V 1887.0 Q 1188.0 1893.0 1182.0 1893.0 H 596.0" class="edgeVertical"/>
   <title>widgets/player/player_zone_widget.dart ▶ models/game/game_model.dart</title>
 </g>
 <g>
-  <path d="M 596.0 958.0 H 1170.0 Q 1176.0 958.0 1176.0 964.0 V 1191.0 Q 1176.0 1197.0 1170.0 1197.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 958.0 H 1186.0 Q 1192.0 958.0 1192.0 964.0 V 1191.0 Q 1192.0 1197.0 1186.0 1197.0 H 596.0" class="edgeVertical"/>
   <title>widgets/player/player_zone_widget.dart ▶ widgets/cards/card_widget.dart</title>
 </g>
 <g>
-  <path d="M 596.0 958.0 H 1174.0 Q 1180.0 958.0 1180.0 964.0 V 973.0 Q 1180.0 979.0 1174.0 979.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 958.0 H 1190.0 Q 1196.0 958.0 1196.0 964.0 V 973.0 Q 1196.0 979.0 1190.0 979.0 H 596.0" class="edgeVertical"/>
   <title>widgets/player/player_zone_widget.dart ▶ widgets/player/player_header_widget.dart</title>
 </g>
 <g>
-  <path d="M 596.0 958.0 H 1178.0 Q 1184.0 958.0 1184.0 964.0 V 1005.0 Q 1184.0 1011.0 1178.0 1011.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 958.0 H 1194.0 Q 1200.0 958.0 1200.0 964.0 V 1005.0 Q 1200.0 1011.0 1194.0 1011.0 H 596.0" class="edgeVertical"/>
   <title>widgets/player/player_zone_widget.dart ▶ widgets/player/player_zone_cta_widget.dart</title>
 </g>
 <g>
-  <path d="M 596.0 958.0 H 1182.0 Q 1188.0 958.0 1188.0 964.0 V 2605.0 Q 1188.0 2611.0 1182.0 2611.0 H 592.0" class="edgeVertical"/>
+  <path d="M 600.0 958.0 H 1198.0 Q 1204.0 958.0 1204.0 964.0 V 2605.0 Q 1204.0 2611.0 1198.0 2611.0 H 596.0" class="edgeVertical"/>
   <title>widgets/player/player_zone_widget.dart ▶ models/app/constants.dart</title>
 </g>
 <g class="outgoingBadge">
-  <path d="M 626.0,190.0 L 614.0,183.0 Q 611.0,183.0 611.0,186.0 L 611.0,194.0 Q 611.0,197.0 614.0,197.0 Z" fill="#10b981"/>
-  <text x="615.0" y="193.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">8</text><title>1. models/app/app_theme.dart
+  <path d="M 630.0,190.0 L 618.0,183.0 Q 615.0,183.0 615.0,186.0 L 615.0,194.0 Q 615.0,197.0 618.0,197.0 Z" fill="#10b981"/>
+  <text x="619.0" y="193.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">9</text><title>1. models/app/app_theme.dart
 2. models/app/constants.dart
 3. models/app/firebase_options.dart
 4. models/game/backend_model.dart
 5. screens/game/join_game_screen.dart
 6. screens/game/start_game_screen.dart
 7. screens/keepscore/golf_score_screen.dart
-8. screens/welcome/main_menu.dart</title></g><text x="450.0" y="184.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">main.dart</text>
+8. screens/welcome/main_menu.dart
+9. utils/logger.dart</title></g><text x="454.0" y="184.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">main.dart</text>
 <g class="incomingBadge">
-  <path d="M 610.0,2781.0 L 622.0,2774.0 Q 625.0,2774.0 625.0,2777.0 L 625.0,2785.0 Q 625.0,2788.0 622.0,2788.0 Z" fill="#3b82f6"/>
-  <text x="621.0" y="2784.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. screens/game/start_game_screen.dart</title></g><g class="outgoingBadge">
-  <path d="M 626.0,2792.0 L 614.0,2785.0 Q 611.0,2785.0 611.0,2788.0 L 611.0,2796.0 Q 611.0,2799.0 614.0,2799.0 Z" fill="#10b981"/>
-  <text x="615.0" y="2795.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. utils/browser_utils_stub.dart</title></g><text x="450.0" y="2786.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">browser_utils.dart</text>
+  <path d="M 614.0,2781.0 L 626.0,2774.0 Q 629.0,2774.0 629.0,2777.0 L 629.0,2785.0 Q 629.0,2788.0 626.0,2788.0 Z" fill="#3b82f6"/>
+  <text x="625.0" y="2784.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. screens/game/start_game_screen.dart</title></g><g class="outgoingBadge">
+  <path d="M 630.0,2792.0 L 618.0,2785.0 Q 615.0,2785.0 615.0,2788.0 L 615.0,2796.0 Q 615.0,2799.0 618.0,2799.0 Z" fill="#10b981"/>
+  <text x="619.0" y="2795.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. utils/browser_utils_stub.dart</title></g><text x="454.0" y="2786.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">browser_utils.dart</text>
 <g class="incomingBadge">
-  <path d="M 610.0,2813.0 L 622.0,2806.0 Q 625.0,2806.0 625.0,2809.0 L 625.0,2817.0 Q 625.0,2820.0 622.0,2820.0 Z" fill="#3b82f6"/>
-  <text x="621.0" y="2816.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. utils/browser_utils.dart</title></g><text x="450.0" y="2818.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">browser_utils_stub.dart</text>
+  <path d="M 614.0,2813.0 L 626.0,2806.0 Q 629.0,2806.0 629.0,2809.0 L 629.0,2817.0 Q 629.0,2820.0 626.0,2820.0 Z" fill="#3b82f6"/>
+  <text x="625.0" y="2816.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. utils/browser_utils.dart</title></g><text x="454.0" y="2818.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">browser_utils_stub.dart</text>
 <g class="incomingBadge">
-  <path d="M 610.0,2845.0 L 622.0,2838.0 Q 625.0,2838.0 625.0,2841.0 L 625.0,2849.0 Q 625.0,2852.0 622.0,2852.0 Z" fill="#3b82f6"/>
-  <text x="621.0" y="2848.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">5</text><title>1. models/game/backend_model.dart
-2. models/player/player_model.dart
-3. screens/game/game_style.dart
-4. screens/game/start_game_screen.dart
-5. widgets/player/player_zone_widget.dart</title></g><text x="450.0" y="2850.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">log.dart</text>
+  <path d="M 614.0,2845.0 L 626.0,2838.0 Q 629.0,2838.0 629.0,2841.0 L 629.0,2849.0 Q 629.0,2852.0 626.0,2852.0 Z" fill="#3b82f6"/>
+  <text x="625.0" y="2848.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">8</text><title>1. main.dart
+2. models/game/backend_model.dart
+3. models/player/player_model.dart
+4. screens/game/game_style.dart
+5. screens/game/join_game_screen.dart
+6. screens/game/start_game_screen.dart
+7. widgets/helpers/screen.dart
+8. widgets/player/player_zone_widget.dart</title></g><text x="454.0" y="2850.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">logger.dart</text>
 <g class="incomingBadge">
-  <path d="M 586.0,2329.0 L 598.0,2322.0 Q 601.0,2322.0 601.0,2325.0 L 601.0,2333.0 Q 601.0,2336.0 598.0,2336.0 Z" fill="#3b82f6"/>
-  <text x="597.0" y="2332.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. models/player/player_model.dart</title></g><g class="outgoingBadge">
-  <path d="M 602.0,2340.0 L 590.0,2333.0 Q 587.0,2333.0 587.0,2336.0 L 587.0,2344.0 Q 587.0,2347.0 590.0,2347.0 Z" fill="#10b981"/>
-  <text x="591.0" y="2343.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">3</text><title>1. models/app/constants.dart
-2. models/card/card_model.dart</title></g><text x="470.0" y="2334.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">hand_model.dart</text>
+  <path d="M 590.0,2329.0 L 602.0,2322.0 Q 605.0,2322.0 605.0,2325.0 L 605.0,2333.0 Q 605.0,2336.0 602.0,2336.0 Z" fill="#3b82f6"/>
+  <text x="601.0" y="2332.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. models/player/player_model.dart</title></g><g class="outgoingBadge">
+  <path d="M 606.0,2340.0 L 594.0,2333.0 Q 591.0,2333.0 591.0,2336.0 L 591.0,2344.0 Q 591.0,2347.0 594.0,2347.0 Z" fill="#10b981"/>
+  <text x="595.0" y="2343.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">3</text><title>1. models/app/constants.dart
+2. models/card/card_model.dart</title></g><text x="474.0" y="2334.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">hand_model.dart</text>
 <g class="incomingBadge">
-  <path d="M 586.0,2361.0 L 598.0,2354.0 Q 601.0,2354.0 601.0,2357.0 L 601.0,2365.0 Q 601.0,2368.0 598.0,2368.0 Z" fill="#3b82f6"/>
-  <text x="597.0" y="2364.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">9</text><title>1. models/card/hand_model.dart
+  <path d="M 590.0,2361.0 L 602.0,2354.0 Q 605.0,2354.0 605.0,2357.0 L 605.0,2365.0 Q 605.0,2368.0 602.0,2368.0 Z" fill="#3b82f6"/>
+  <text x="601.0" y="2364.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">9</text><title>1. models/card/hand_model.dart
 2. models/game/deck_model.dart
 3. models/player/player_model.dart
 4. widgets/cards/card_face_french_widget.dart
 5. widgets/cards/card_face_skyjo_widget.dart
 6. widgets/cards/card_pile_widget.dart
 7. widgets/cards/card_widget.dart</title></g><g class="outgoingBadge">
-  <path d="M 602.0,2372.0 L 590.0,2365.0 Q 587.0,2365.0 587.0,2368.0 L 587.0,2376.0 Q 587.0,2379.0 590.0,2379.0 Z" fill="#10b981"/>
-  <text x="591.0" y="2375.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. models/app/constants.dart</title></g><text x="470.0" y="2366.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">card_model.dart</text>
+  <path d="M 606.0,2372.0 L 594.0,2365.0 Q 591.0,2365.0 591.0,2368.0 L 591.0,2376.0 Q 591.0,2379.0 594.0,2379.0 Z" fill="#10b981"/>
+  <text x="595.0" y="2375.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. models/app/constants.dart</title></g><text x="474.0" y="2366.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">card_model.dart</text>
 <g class="incomingBadge">
-  <path d="M 586.0,2393.0 L 598.0,2386.0 Q 601.0,2386.0 601.0,2389.0 L 601.0,2397.0 Q 601.0,2400.0 598.0,2400.0 Z" fill="#3b82f6"/>
-  <text x="597.0" y="2396.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. models/game/deck_model.dart
-2. screens/game/game_style.dart</title></g><text x="470.0" y="2398.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">card_model_french.dart</text>
+  <path d="M 590.0,2393.0 L 602.0,2386.0 Q 605.0,2386.0 605.0,2389.0 L 605.0,2397.0 Q 605.0,2400.0 602.0,2400.0 Z" fill="#3b82f6"/>
+  <text x="601.0" y="2396.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. models/game/deck_model.dart
+2. screens/game/game_style.dart</title></g><text x="474.0" y="2398.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">card_model_french.dart</text>
 <g class="incomingBadge">
-  <path d="M 586.0,2425.0 L 598.0,2418.0 Q 601.0,2418.0 601.0,2421.0 L 601.0,2429.0 Q 601.0,2432.0 598.0,2432.0 Z" fill="#3b82f6"/>
-  <text x="597.0" y="2428.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">3</text><title>1. screens/game/game_style.dart
+  <path d="M 590.0,2425.0 L 602.0,2418.0 Q 605.0,2418.0 605.0,2421.0 L 605.0,2429.0 Q 605.0,2432.0 602.0,2432.0 Z" fill="#3b82f6"/>
+  <text x="601.0" y="2428.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">3</text><title>1. screens/game/game_style.dart
 2. widgets/cards/card_pile_widget.dart
-3. widgets/cards/card_widget.dart</title></g><text x="470.0" y="2430.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">card_dimensions.dart</text>
+3. widgets/cards/card_widget.dart</title></g><text x="474.0" y="2430.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">card_dimensions.dart</text>
 <g class="incomingBadge">
-  <path d="M 586.0,2547.0 L 598.0,2540.0 Q 601.0,2540.0 601.0,2543.0 L 601.0,2551.0 Q 601.0,2554.0 598.0,2554.0 Z" fill="#3b82f6"/>
-  <text x="597.0" y="2550.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. main.dart</title></g><g class="outgoingBadge">
-  <path d="M 602.0,2558.0 L 590.0,2551.0 Q 587.0,2551.0 587.0,2554.0 L 587.0,2562.0 Q 587.0,2565.0 590.0,2565.0 Z" fill="#10b981"/>
-  <text x="591.0" y="2561.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. models/app/constants.dart</title></g><text x="470.0" y="2552.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">app_theme.dart</text>
+  <path d="M 590.0,2547.0 L 602.0,2540.0 Q 605.0,2540.0 605.0,2543.0 L 605.0,2551.0 Q 605.0,2554.0 602.0,2554.0 Z" fill="#3b82f6"/>
+  <text x="601.0" y="2550.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. main.dart</title></g><g class="outgoingBadge">
+  <path d="M 606.0,2558.0 L 594.0,2551.0 Q 591.0,2551.0 591.0,2554.0 L 591.0,2562.0 Q 591.0,2565.0 594.0,2565.0 Z" fill="#10b981"/>
+  <text x="595.0" y="2561.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. models/app/constants.dart</title></g><text x="474.0" y="2552.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">app_theme.dart</text>
 <g class="incomingBadge">
-  <path d="M 586.0,2579.0 L 598.0,2572.0 Q 601.0,2572.0 601.0,2575.0 L 601.0,2583.0 Q 601.0,2586.0 598.0,2586.0 Z" fill="#3b82f6"/>
-  <text x="597.0" y="2582.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. main.dart
-2. models/game/backend_model.dart</title></g><text x="470.0" y="2584.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">firebase_options.dart</text>
+  <path d="M 590.0,2579.0 L 602.0,2572.0 Q 605.0,2572.0 605.0,2575.0 L 605.0,2583.0 Q 605.0,2586.0 602.0,2586.0 Z" fill="#3b82f6"/>
+  <text x="601.0" y="2582.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. main.dart
+2. models/game/backend_model.dart</title></g><text x="474.0" y="2584.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">firebase_options.dart</text>
 <g class="incomingBadge">
-  <path d="M 586.0,2611.0 L 598.0,2604.0 Q 601.0,2604.0 601.0,2607.0 L 601.0,2615.0 Q 601.0,2618.0 598.0,2618.0 Z" fill="#3b82f6"/>
-  <text x="597.0" y="2614.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">26</text><title>1. main.dart
+  <path d="M 590.0,2611.0 L 602.0,2604.0 Q 605.0,2604.0 605.0,2607.0 L 605.0,2615.0 Q 605.0,2618.0 602.0,2618.0 Z" fill="#3b82f6"/>
+  <text x="601.0" y="2614.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">26</text><title>1. main.dart
 2. models/app/app_theme.dart
 3. models/card/card_model.dart
 4. models/card/hand_model.dart
@@ -1037,10 +1059,10 @@
 23. widgets/helpers/screen.dart
 24. widgets/helpers/wiggle_widget.dart
 25. widgets/player/player_header_widget.dart
-26. widgets/player/player_zone_widget.dart</title></g><text x="470.0" y="2616.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">constants.dart</text>
+26. widgets/player/player_zone_widget.dart</title></g><text x="474.0" y="2616.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">constants.dart</text>
 <g class="incomingBadge">
-  <path d="M 586.0,1893.0 L 598.0,1886.0 Q 601.0,1886.0 601.0,1889.0 L 601.0,1897.0 Q 601.0,1900.0 598.0,1900.0 Z" fill="#3b82f6"/>
-  <text x="597.0" y="1896.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">8</text><title>1. screens/game/game_over_dialog.dart
+  <path d="M 590.0,1893.0 L 602.0,1886.0 Q 605.0,1886.0 605.0,1889.0 L 605.0,1897.0 Q 605.0,1900.0 602.0,1900.0 Z" fill="#3b82f6"/>
+  <text x="601.0" y="1896.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">8</text><title>1. screens/game/game_over_dialog.dart
 2. screens/game/game_screen.dart
 3. screens/game/game_style.dart
 4. screens/game/join_game_screen.dart
@@ -1048,69 +1070,69 @@
 6. widgets/player/player_header_widget.dart
 7. widgets/player/player_zone_cta_widget.dart
 8. widgets/player/player_zone_widget.dart</title></g><g class="outgoingBadge">
-  <path d="M 602.0,1904.0 L 590.0,1897.0 Q 587.0,1897.0 587.0,1900.0 L 587.0,1908.0 Q 587.0,1911.0 590.0,1911.0 Z" fill="#10b981"/>
-  <text x="591.0" y="1907.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">8</text><title>1. models/app/constants.dart
+  <path d="M 606.0,1904.0 L 594.0,1897.0 Q 591.0,1897.0 591.0,1900.0 L 591.0,1908.0 Q 591.0,1911.0 594.0,1911.0 Z" fill="#10b981"/>
+  <text x="595.0" y="1907.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">8</text><title>1. models/app/constants.dart
 2. models/game/backend_model.dart
 3. models/game/deck_model.dart
 4. models/game/game_history.dart
 5. models/game/game_styles.dart
-6. models/player/player_model.dart</title></g><text x="470.0" y="1898.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">game_model.dart</text>
+6. models/player/player_model.dart</title></g><text x="474.0" y="1898.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">game_model.dart</text>
 <g class="incomingBadge">
-  <path d="M 586.0,1925.0 L 598.0,1918.0 Q 601.0,1918.0 601.0,1921.0 L 601.0,1929.0 Q 601.0,1932.0 598.0,1932.0 Z" fill="#3b82f6"/>
-  <text x="597.0" y="1928.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. models/game/game_model.dart</title></g><g class="outgoingBadge">
-  <path d="M 602.0,1936.0 L 590.0,1929.0 Q 587.0,1929.0 587.0,1932.0 L 587.0,1940.0 Q 587.0,1943.0 590.0,1943.0 Z" fill="#10b981"/>
-  <text x="591.0" y="1939.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">5</text><title>1. models/app/constants.dart
+  <path d="M 590.0,1925.0 L 602.0,1918.0 Q 605.0,1918.0 605.0,1921.0 L 605.0,1929.0 Q 605.0,1932.0 602.0,1932.0 Z" fill="#3b82f6"/>
+  <text x="601.0" y="1928.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. models/game/game_model.dart</title></g><g class="outgoingBadge">
+  <path d="M 606.0,1936.0 L 594.0,1929.0 Q 591.0,1929.0 591.0,1932.0 L 591.0,1940.0 Q 591.0,1943.0 594.0,1943.0 Z" fill="#10b981"/>
+  <text x="595.0" y="1939.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">5</text><title>1. models/app/constants.dart
 2. models/card/card_model.dart
 3. models/card/card_model_french.dart
-4. models/game/game_styles.dart</title></g><text x="470.0" y="1930.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">deck_model.dart</text>
+4. models/game/game_styles.dart</title></g><text x="474.0" y="1930.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">deck_model.dart</text>
 <g class="incomingBadge">
-  <path d="M 586.0,1957.0 L 598.0,1950.0 Q 601.0,1950.0 601.0,1953.0 L 601.0,1961.0 Q 601.0,1964.0 598.0,1964.0 Z" fill="#3b82f6"/>
-  <text x="597.0" y="1960.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">6</text><title>1. main.dart
+  <path d="M 590.0,1957.0 L 602.0,1950.0 Q 605.0,1950.0 605.0,1953.0 L 605.0,1961.0 Q 605.0,1964.0 602.0,1964.0 Z" fill="#3b82f6"/>
+  <text x="601.0" y="1960.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">6</text><title>1. main.dart
 2. models/game/game_model.dart
 3. screens/game/game_over_dialog.dart
 4. screens/game/game_screen.dart
 5. screens/game/join_game_screen.dart
 6. screens/game/start_game_screen.dart</title></g><g class="outgoingBadge">
-  <path d="M 602.0,1968.0 L 590.0,1961.0 Q 587.0,1961.0 587.0,1964.0 L 587.0,1972.0 Q 587.0,1975.0 590.0,1975.0 Z" fill="#10b981"/>
-  <text x="591.0" y="1971.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">3</text><title>1. models/app/firebase_options.dart
+  <path d="M 606.0,1968.0 L 594.0,1961.0 Q 591.0,1961.0 591.0,1964.0 L 591.0,1972.0 Q 591.0,1975.0 594.0,1975.0 Z" fill="#10b981"/>
+  <text x="595.0" y="1971.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">3</text><title>1. models/app/firebase_options.dart
 2. models/game/game_history.dart
-3. utils/log.dart</title></g><text x="470.0" y="1962.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">backend_model.dart</text>
+3. utils/logger.dart</title></g><text x="474.0" y="1962.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">backend_model.dart</text>
 <g class="incomingBadge">
-  <path d="M 586.0,1989.0 L 598.0,1982.0 Q 601.0,1982.0 601.0,1985.0 L 601.0,1993.0 Q 601.0,1996.0 598.0,1996.0 Z" fill="#3b82f6"/>
-  <text x="597.0" y="1992.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">5</text><title>1. models/game/deck_model.dart
+  <path d="M 590.0,1989.0 L 602.0,1982.0 Q 605.0,1982.0 605.0,1985.0 L 605.0,1993.0 Q 605.0,1996.0 602.0,1996.0 Z" fill="#3b82f6"/>
+  <text x="601.0" y="1992.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">5</text><title>1. models/game/deck_model.dart
 2. models/game/game_model.dart
 3. screens/game/game_style.dart
 4. screens/game/join_game_screen.dart
 5. screens/game/start_game_screen.dart</title></g><g class="outgoingBadge">
-  <path d="M 602.0,2000.0 L 590.0,1993.0 Q 587.0,1993.0 587.0,1996.0 L 587.0,2004.0 Q 587.0,2007.0 590.0,2007.0 Z" fill="#10b981"/>
-  <text x="591.0" y="2003.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. models/app/constants.dart</title></g><text x="470.0" y="1994.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">game_styles.dart</text>
+  <path d="M 606.0,2000.0 L 594.0,1993.0 Q 591.0,1993.0 591.0,1996.0 L 591.0,2004.0 Q 591.0,2007.0 594.0,2007.0 Z" fill="#10b981"/>
+  <text x="595.0" y="2003.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. models/app/constants.dart</title></g><text x="474.0" y="1994.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">game_styles.dart</text>
 <g class="incomingBadge">
-  <path d="M 586.0,2021.0 L 598.0,2014.0 Q 601.0,2014.0 601.0,2017.0 L 601.0,2025.0 Q 601.0,2028.0 598.0,2028.0 Z" fill="#3b82f6"/>
-  <text x="597.0" y="2024.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. screens/keepscore/golf_score_screen.dart</title></g><text x="470.0" y="2026.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">golf_score_model.dart</text>
+  <path d="M 590.0,2021.0 L 602.0,2014.0 Q 605.0,2014.0 605.0,2017.0 L 605.0,2025.0 Q 605.0,2028.0 602.0,2028.0 Z" fill="#3b82f6"/>
+  <text x="601.0" y="2024.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. screens/keepscore/golf_score_screen.dart</title></g><text x="474.0" y="2026.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">golf_score_model.dart</text>
 <g class="incomingBadge">
-  <path d="M 586.0,2053.0 L 598.0,2046.0 Q 601.0,2046.0 601.0,2049.0 L 601.0,2057.0 Q 601.0,2060.0 598.0,2060.0 Z" fill="#3b82f6"/>
-  <text x="597.0" y="2056.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">4</text><title>1. models/game/backend_model.dart
+  <path d="M 590.0,2053.0 L 602.0,2046.0 Q 605.0,2046.0 605.0,2049.0 L 605.0,2057.0 Q 605.0,2060.0 602.0,2060.0 Z" fill="#3b82f6"/>
+  <text x="601.0" y="2056.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">4</text><title>1. models/game/backend_model.dart
 2. models/game/game_model.dart
 3. screens/game/join_game_screen.dart
-4. screens/game/start_game_screen.dart</title></g><text x="470.0" y="2058.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">game_history.dart</text>
+4. screens/game/start_game_screen.dart</title></g><text x="474.0" y="2058.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">game_history.dart</text>
 <g class="incomingBadge">
-  <path d="M 586.0,2175.0 L 598.0,2168.0 Q 601.0,2168.0 601.0,2171.0 L 601.0,2179.0 Q 601.0,2182.0 598.0,2182.0 Z" fill="#3b82f6"/>
-  <text x="597.0" y="2178.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. models/game/game_model.dart</title></g><g class="outgoingBadge">
-  <path d="M 602.0,2186.0 L 590.0,2179.0 Q 587.0,2179.0 587.0,2182.0 L 587.0,2190.0 Q 587.0,2193.0 590.0,2193.0 Z" fill="#10b981"/>
-  <text x="591.0" y="2189.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">7</text><title>1. models/app/constants.dart
+  <path d="M 590.0,2175.0 L 602.0,2168.0 Q 605.0,2168.0 605.0,2171.0 L 605.0,2179.0 Q 605.0,2182.0 602.0,2182.0 Z" fill="#3b82f6"/>
+  <text x="601.0" y="2178.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. models/game/game_model.dart</title></g><g class="outgoingBadge">
+  <path d="M 606.0,2186.0 L 594.0,2179.0 Q 591.0,2179.0 591.0,2182.0 L 591.0,2190.0 Q 591.0,2193.0 594.0,2193.0 Z" fill="#10b981"/>
+  <text x="595.0" y="2189.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">7</text><title>1. models/app/constants.dart
 2. models/card/card_model.dart
 3. models/card/hand_model.dart
 4. models/player/player_status.dart
-5. utils/log.dart</title></g><text x="470.0" y="2180.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">player_model.dart</text>
+5. utils/logger.dart</title></g><text x="474.0" y="2180.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">player_model.dart</text>
 <g class="incomingBadge">
-  <path d="M 586.0,2207.0 L 598.0,2200.0 Q 601.0,2200.0 601.0,2203.0 L 601.0,2211.0 Q 601.0,2214.0 598.0,2214.0 Z" fill="#3b82f6"/>
-  <text x="597.0" y="2210.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">3</text><title>1. models/player/player_model.dart
-2. widgets/player/status_picker.dart</title></g><text x="470.0" y="2212.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">player_status.dart</text>
+  <path d="M 590.0,2207.0 L 602.0,2200.0 Q 605.0,2200.0 605.0,2203.0 L 605.0,2211.0 Q 605.0,2214.0 602.0,2214.0 Z" fill="#3b82f6"/>
+  <text x="601.0" y="2210.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">3</text><title>1. models/player/player_model.dart
+2. widgets/player/status_picker.dart</title></g><text x="474.0" y="2212.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">player_status.dart</text>
 <g class="incomingBadge">
-  <path d="M 586.0,353.0 L 598.0,346.0 Q 601.0,346.0 601.0,349.0 L 601.0,357.0 Q 601.0,360.0 598.0,360.0 Z" fill="#3b82f6"/>
-  <text x="597.0" y="356.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. main.dart</title></g><g class="outgoingBadge">
-  <path d="M 602.0,364.0 L 590.0,357.0 Q 587.0,357.0 587.0,360.0 L 587.0,368.0 Q 587.0,371.0 590.0,371.0 Z" fill="#10b981"/>
-  <text x="591.0" y="367.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">13</text><title>1. models/app/constants.dart
+  <path d="M 590.0,353.0 L 602.0,346.0 Q 605.0,346.0 605.0,349.0 L 605.0,357.0 Q 605.0,360.0 602.0,360.0 Z" fill="#3b82f6"/>
+  <text x="601.0" y="356.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. main.dart</title></g><g class="outgoingBadge">
+  <path d="M 606.0,364.0 L 594.0,357.0 Q 591.0,357.0 591.0,360.0 L 591.0,368.0 Q 591.0,371.0 594.0,371.0 Z" fill="#10b981"/>
+  <text x="595.0" y="367.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">13</text><title>1. models/app/constants.dart
 2. models/game/backend_model.dart
 3. models/game/game_history.dart
 4. models/game/game_model.dart
@@ -1118,214 +1140,216 @@
 6. screens/game/game_screen.dart
 7. screens/game/game_style.dart
 8. utils/browser_utils.dart
-9. utils/log.dart
+9. utils/logger.dart
 10. widgets/helpers/misc.dart
 11. widgets/helpers/players_in_room_widget.dart
 12. widgets/helpers/rooms_widget.dart
-13. widgets/helpers/screen.dart</title></g><text x="470.0" y="358.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">start_game_screen.dart</text>
+13. widgets/helpers/screen.dart</title></g><text x="474.0" y="358.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">start_game_screen.dart</text>
 <g class="incomingBadge">
-  <path d="M 586.0,385.0 L 598.0,378.0 Q 601.0,378.0 601.0,381.0 L 601.0,389.0 Q 601.0,392.0 598.0,392.0 Z" fill="#3b82f6"/>
-  <text x="597.0" y="388.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. main.dart</title></g><g class="outgoingBadge">
-  <path d="M 602.0,396.0 L 590.0,389.0 Q 587.0,389.0 587.0,392.0 L 587.0,400.0 Q 587.0,403.0 590.0,403.0 Z" fill="#10b981"/>
-  <text x="591.0" y="399.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">10</text><title>1. models/app/constants.dart
+  <path d="M 590.0,385.0 L 602.0,378.0 Q 605.0,378.0 605.0,381.0 L 605.0,389.0 Q 605.0,392.0 602.0,392.0 Z" fill="#3b82f6"/>
+  <text x="601.0" y="388.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. main.dart</title></g><g class="outgoingBadge">
+  <path d="M 606.0,396.0 L 594.0,389.0 Q 591.0,389.0 591.0,392.0 L 591.0,400.0 Q 591.0,403.0 594.0,403.0 Z" fill="#10b981"/>
+  <text x="595.0" y="399.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">11</text><title>1. models/app/constants.dart
 2. models/game/backend_model.dart
 3. models/game/game_history.dart
 4. models/game/game_model.dart
 5. models/game/game_styles.dart
 6. screens/game/game_screen.dart
 7. screens/game/game_style.dart
-8. widgets/helpers/players_in_room_widget.dart
-9. widgets/helpers/rooms_widget.dart
-10. widgets/helpers/screen.dart</title></g><text x="470.0" y="390.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">join_game_screen.dart</text>
+8. utils/logger.dart
+9. widgets/helpers/players_in_room_widget.dart
+10. widgets/helpers/rooms_widget.dart
+11. widgets/helpers/screen.dart</title></g><text x="474.0" y="390.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">join_game_screen.dart</text>
 <g class="incomingBadge">
-  <path d="M 586.0,417.0 L 598.0,410.0 Q 601.0,410.0 601.0,413.0 L 601.0,421.0 Q 601.0,424.0 598.0,424.0 Z" fill="#3b82f6"/>
-  <text x="597.0" y="420.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. screens/game/join_game_screen.dart
+  <path d="M 590.0,417.0 L 602.0,410.0 Q 605.0,410.0 605.0,413.0 L 605.0,421.0 Q 605.0,424.0 602.0,424.0 Z" fill="#3b82f6"/>
+  <text x="601.0" y="420.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. screens/game/join_game_screen.dart
 2. screens/game/start_game_screen.dart</title></g><g class="outgoingBadge">
-  <path d="M 602.0,428.0 L 590.0,421.0 Q 587.0,421.0 587.0,424.0 L 587.0,432.0 Q 587.0,435.0 590.0,435.0 Z" fill="#10b981"/>
-  <text x="591.0" y="431.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">6</text><title>1. models/app/constants.dart
+  <path d="M 606.0,428.0 L 594.0,421.0 Q 591.0,421.0 591.0,424.0 L 591.0,432.0 Q 591.0,435.0 594.0,435.0 Z" fill="#10b981"/>
+  <text x="595.0" y="431.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">6</text><title>1. models/app/constants.dart
 2. models/game/backend_model.dart
 3. models/game/game_model.dart
 4. screens/game/game_over_dialog.dart
 5. widgets/helpers/screen.dart
-6. widgets/player/player_zone_widget.dart</title></g><text x="470.0" y="422.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">game_screen.dart</text>
+6. widgets/player/player_zone_widget.dart</title></g><text x="474.0" y="422.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">game_screen.dart</text>
 <g class="incomingBadge">
-  <path d="M 586.0,449.0 L 598.0,442.0 Q 601.0,442.0 601.0,445.0 L 601.0,453.0 Q 601.0,456.0 598.0,456.0 Z" fill="#3b82f6"/>
-  <text x="597.0" y="452.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. screens/game/join_game_screen.dart
+  <path d="M 590.0,449.0 L 602.0,442.0 Q 605.0,442.0 605.0,445.0 L 605.0,453.0 Q 605.0,456.0 602.0,456.0 Z" fill="#3b82f6"/>
+  <text x="601.0" y="452.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. screens/game/join_game_screen.dart
 2. screens/game/start_game_screen.dart</title></g><g class="outgoingBadge">
-  <path d="M 602.0,460.0 L 590.0,453.0 Q 587.0,453.0 587.0,456.0 L 587.0,464.0 Q 587.0,467.0 590.0,467.0 Z" fill="#10b981"/>
-  <text x="591.0" y="463.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">6</text><title>1. models/card/card_dimensions.dart
+  <path d="M 606.0,460.0 L 594.0,453.0 Q 591.0,453.0 591.0,456.0 L 591.0,464.0 Q 591.0,467.0 594.0,467.0 Z" fill="#10b981"/>
+  <text x="595.0" y="463.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">6</text><title>1. models/card/card_dimensions.dart
 2. models/card/card_model_french.dart
 3. models/game/game_model.dart
 4. models/game/game_styles.dart
-5. utils/log.dart
-6. widgets/cards/card_widget.dart</title></g><text x="470.0" y="454.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">game_style.dart</text>
+5. utils/logger.dart
+6. widgets/cards/card_widget.dart</title></g><text x="474.0" y="454.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">game_style.dart</text>
 <g class="incomingBadge">
-  <path d="M 586.0,481.0 L 598.0,474.0 Q 601.0,474.0 601.0,477.0 L 601.0,485.0 Q 601.0,488.0 598.0,488.0 Z" fill="#3b82f6"/>
-  <text x="597.0" y="484.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. screens/game/game_screen.dart</title></g><g class="outgoingBadge">
-  <path d="M 602.0,492.0 L 590.0,485.0 Q 587.0,485.0 587.0,488.0 L 587.0,496.0 Q 587.0,499.0 590.0,499.0 Z" fill="#10b981"/>
-  <text x="591.0" y="495.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">5</text><title>1. models/app/constants.dart
+  <path d="M 590.0,481.0 L 602.0,474.0 Q 605.0,474.0 605.0,477.0 L 605.0,485.0 Q 605.0,488.0 602.0,488.0 Z" fill="#3b82f6"/>
+  <text x="601.0" y="484.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. screens/game/game_screen.dart</title></g><g class="outgoingBadge">
+  <path d="M 606.0,492.0 L 594.0,485.0 Q 591.0,485.0 591.0,488.0 L 591.0,496.0 Q 591.0,499.0 594.0,499.0 Z" fill="#10b981"/>
+  <text x="595.0" y="495.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">5</text><title>1. models/app/constants.dart
 2. models/game/backend_model.dart
 3. models/game/game_model.dart
 4. widgets/helpers/dialog.dart
-5. widgets/helpers/misc.dart</title></g><text x="470.0" y="486.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">game_over_dialog.dart</text>
+5. widgets/helpers/misc.dart</title></g><text x="474.0" y="486.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">game_over_dialog.dart</text>
 <g class="incomingBadge">
-  <path d="M 586.0,603.0 L 598.0,596.0 Q 601.0,596.0 601.0,599.0 L 601.0,607.0 Q 601.0,610.0 598.0,610.0 Z" fill="#3b82f6"/>
-  <text x="597.0" y="606.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. main.dart</title></g><g class="outgoingBadge">
-  <path d="M 602.0,614.0 L 590.0,607.0 Q 587.0,607.0 587.0,610.0 L 587.0,618.0 Q 587.0,621.0 590.0,621.0 Z" fill="#10b981"/>
-  <text x="591.0" y="617.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. models/app/constants.dart
-2. widgets/helpers/screen.dart</title></g><text x="470.0" y="608.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">main_menu.dart</text>
+  <path d="M 590.0,603.0 L 602.0,596.0 Q 605.0,596.0 605.0,599.0 L 605.0,607.0 Q 605.0,610.0 602.0,610.0 Z" fill="#3b82f6"/>
+  <text x="601.0" y="606.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. main.dart</title></g><g class="outgoingBadge">
+  <path d="M 606.0,614.0 L 594.0,607.0 Q 591.0,607.0 591.0,610.0 L 591.0,618.0 Q 591.0,621.0 594.0,621.0 Z" fill="#10b981"/>
+  <text x="595.0" y="617.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. models/app/constants.dart
+2. widgets/helpers/screen.dart</title></g><text x="474.0" y="608.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">main_menu.dart</text>
 <g class="incomingBadge">
-  <path d="M 586.0,725.0 L 598.0,718.0 Q 601.0,718.0 601.0,721.0 L 601.0,729.0 Q 601.0,732.0 598.0,732.0 Z" fill="#3b82f6"/>
-  <text x="597.0" y="728.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. main.dart</title></g><g class="outgoingBadge">
-  <path d="M 602.0,736.0 L 590.0,729.0 Q 587.0,729.0 587.0,732.0 L 587.0,740.0 Q 587.0,743.0 590.0,743.0 Z" fill="#10b981"/>
-  <text x="591.0" y="739.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">6</text><title>1. models/app/constants.dart
+  <path d="M 590.0,725.0 L 602.0,718.0 Q 605.0,718.0 605.0,721.0 L 605.0,729.0 Q 605.0,732.0 602.0,732.0 Z" fill="#3b82f6"/>
+  <text x="601.0" y="728.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. main.dart</title></g><g class="outgoingBadge">
+  <path d="M 606.0,736.0 L 594.0,729.0 Q 591.0,729.0 591.0,732.0 L 591.0,740.0 Q 591.0,743.0 594.0,743.0 Z" fill="#10b981"/>
+  <text x="595.0" y="739.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">6</text><title>1. models/app/constants.dart
 2. models/game/golf_score_model.dart
 3. widgets/helpers/input_keyboard.dart
 4. widgets/helpers/my_button.dart
 5. widgets/helpers/player_header.dart
-6. widgets/helpers/screen.dart</title></g><text x="470.0" y="730.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">golf_score_screen.dart</text>
+6. widgets/helpers/screen.dart</title></g><text x="474.0" y="730.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">golf_score_screen.dart</text>
 <g class="incomingBadge">
-  <path d="M 586.0,1383.0 L 598.0,1376.0 Q 601.0,1376.0 601.0,1379.0 L 601.0,1387.0 Q 601.0,1390.0 598.0,1390.0 Z" fill="#3b82f6"/>
-  <text x="597.0" y="1386.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. widgets/player/player_header_widget.dart</title></g><g class="outgoingBadge">
-  <path d="M 602.0,1394.0 L 590.0,1387.0 Q 587.0,1387.0 587.0,1390.0 L 587.0,1398.0 Q 587.0,1401.0 590.0,1401.0 Z" fill="#10b981"/>
-  <text x="591.0" y="1397.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. models/app/constants.dart
-2. widgets/helpers/misc.dart</title></g><text x="470.0" y="1388.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">date_importance.dart</text>
+  <path d="M 590.0,1383.0 L 602.0,1376.0 Q 605.0,1376.0 605.0,1379.0 L 605.0,1387.0 Q 605.0,1390.0 602.0,1390.0 Z" fill="#3b82f6"/>
+  <text x="601.0" y="1386.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. widgets/player/player_header_widget.dart</title></g><g class="outgoingBadge">
+  <path d="M 606.0,1394.0 L 594.0,1387.0 Q 591.0,1387.0 591.0,1390.0 L 591.0,1398.0 Q 591.0,1401.0 594.0,1401.0 Z" fill="#10b981"/>
+  <text x="595.0" y="1397.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. models/app/constants.dart
+2. widgets/helpers/misc.dart</title></g><text x="474.0" y="1388.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">date_importance.dart</text>
 <g class="incomingBadge">
-  <path d="M 586.0,1415.0 L 598.0,1408.0 Q 601.0,1408.0 601.0,1411.0 L 601.0,1419.0 Q 601.0,1422.0 598.0,1422.0 Z" fill="#3b82f6"/>
-  <text x="597.0" y="1418.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. screens/keepscore/golf_score_screen.dart</title></g><g class="outgoingBadge">
-  <path d="M 602.0,1426.0 L 590.0,1419.0 Q 587.0,1419.0 587.0,1422.0 L 587.0,1430.0 Q 587.0,1433.0 590.0,1433.0 Z" fill="#10b981"/>
-  <text x="591.0" y="1429.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. models/app/constants.dart
-2. widgets/helpers/my_button.dart</title></g><text x="470.0" y="1420.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">input_keyboard.dart</text>
+  <path d="M 590.0,1415.0 L 602.0,1408.0 Q 605.0,1408.0 605.0,1411.0 L 605.0,1419.0 Q 605.0,1422.0 602.0,1422.0 Z" fill="#3b82f6"/>
+  <text x="601.0" y="1418.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. screens/keepscore/golf_score_screen.dart</title></g><g class="outgoingBadge">
+  <path d="M 606.0,1426.0 L 594.0,1419.0 Q 591.0,1419.0 591.0,1422.0 L 591.0,1430.0 Q 591.0,1433.0 594.0,1433.0 Z" fill="#10b981"/>
+  <text x="595.0" y="1429.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. models/app/constants.dart
+2. widgets/helpers/my_button.dart</title></g><text x="474.0" y="1420.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">input_keyboard.dart</text>
 <g class="incomingBadge">
-  <path d="M 586.0,1447.0 L 598.0,1440.0 Q 601.0,1440.0 601.0,1443.0 L 601.0,1451.0 Q 601.0,1454.0 598.0,1454.0 Z" fill="#3b82f6"/>
-  <text x="597.0" y="1450.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. widgets/cards/card_widget.dart</title></g><g class="outgoingBadge">
-  <path d="M 602.0,1458.0 L 590.0,1451.0 Q 587.0,1451.0 587.0,1454.0 L 587.0,1462.0 Q 587.0,1465.0 590.0,1465.0 Z" fill="#10b981"/>
-  <text x="591.0" y="1461.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. models/app/constants.dart</title></g><text x="470.0" y="1452.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">wiggle_widget.dart</text>
-<g class="incomingBadge">
-  <path d="M 586.0,1479.0 L 598.0,1472.0 Q 601.0,1472.0 601.0,1475.0 L 601.0,1483.0 Q 601.0,1486.0 598.0,1486.0 Z" fill="#3b82f6"/>
-  <text x="597.0" y="1482.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. screens/game/game_over_dialog.dart
-2. widgets/player/player_header_widget.dart</title></g><g class="outgoingBadge">
-  <path d="M 602.0,1490.0 L 590.0,1483.0 Q 587.0,1483.0 587.0,1486.0 L 587.0,1494.0 Q 587.0,1497.0 590.0,1497.0 Z" fill="#10b981"/>
-  <text x="591.0" y="1493.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. models/app/constants.dart</title></g><text x="470.0" y="1484.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">dialog.dart</text>
-<g class="incomingBadge">
-  <path d="M 586.0,1511.0 L 598.0,1504.0 Q 601.0,1504.0 601.0,1507.0 L 601.0,1515.0 Q 601.0,1518.0 598.0,1518.0 Z" fill="#3b82f6"/>
-  <text x="597.0" y="1514.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. screens/keepscore/golf_score_screen.dart
-2. widgets/helpers/input_keyboard.dart</title></g><g class="outgoingBadge">
-  <path d="M 602.0,1522.0 L 590.0,1515.0 Q 587.0,1515.0 587.0,1518.0 L 587.0,1526.0 Q 587.0,1529.0 590.0,1529.0 Z" fill="#10b981"/>
-  <text x="591.0" y="1525.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. models/app/constants.dart</title></g><text x="470.0" y="1516.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">my_button.dart</text>
-<g class="incomingBadge">
-  <path d="M 586.0,1543.0 L 598.0,1536.0 Q 601.0,1536.0 601.0,1539.0 L 601.0,1547.0 Q 601.0,1550.0 598.0,1550.0 Z" fill="#3b82f6"/>
-  <text x="597.0" y="1546.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">5</text><title>1. screens/game/game_screen.dart
+  <path d="M 590.0,1447.0 L 602.0,1440.0 Q 605.0,1440.0 605.0,1443.0 L 605.0,1451.0 Q 605.0,1454.0 602.0,1454.0 Z" fill="#3b82f6"/>
+  <text x="601.0" y="1450.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">5</text><title>1. screens/game/game_screen.dart
 2. screens/game/join_game_screen.dart
 3. screens/game/start_game_screen.dart
 4. screens/keepscore/golf_score_screen.dart
 5. screens/welcome/main_menu.dart</title></g><g class="outgoingBadge">
-  <path d="M 602.0,1554.0 L 590.0,1547.0 Q 587.0,1547.0 587.0,1550.0 L 587.0,1558.0 Q 587.0,1561.0 590.0,1561.0 Z" fill="#10b981"/>
-  <text x="591.0" y="1557.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. models/app/constants.dart</title></g><text x="470.0" y="1548.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">screen.dart</text>
+  <path d="M 606.0,1458.0 L 594.0,1451.0 Q 591.0,1451.0 591.0,1454.0 L 591.0,1462.0 Q 591.0,1465.0 594.0,1465.0 Z" fill="#10b981"/>
+  <text x="595.0" y="1461.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. models/app/constants.dart
+2. utils/logger.dart</title></g><text x="474.0" y="1452.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">screen.dart</text>
 <g class="incomingBadge">
-  <path d="M 586.0,1575.0 L 598.0,1568.0 Q 601.0,1568.0 601.0,1571.0 L 601.0,1579.0 Q 601.0,1582.0 598.0,1582.0 Z" fill="#3b82f6"/>
-  <text x="597.0" y="1578.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. screens/keepscore/golf_score_screen.dart</title></g><text x="470.0" y="1580.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">player_header.dart</text>
+  <path d="M 590.0,1479.0 L 602.0,1472.0 Q 605.0,1472.0 605.0,1475.0 L 605.0,1483.0 Q 605.0,1486.0 602.0,1486.0 Z" fill="#3b82f6"/>
+  <text x="601.0" y="1482.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. widgets/cards/card_widget.dart</title></g><g class="outgoingBadge">
+  <path d="M 606.0,1490.0 L 594.0,1483.0 Q 591.0,1483.0 591.0,1486.0 L 591.0,1494.0 Q 591.0,1497.0 594.0,1497.0 Z" fill="#10b981"/>
+  <text x="595.0" y="1493.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. models/app/constants.dart</title></g><text x="474.0" y="1484.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">wiggle_widget.dart</text>
 <g class="incomingBadge">
-  <path d="M 586.0,1607.0 L 598.0,1600.0 Q 601.0,1600.0 601.0,1603.0 L 601.0,1611.0 Q 601.0,1614.0 598.0,1614.0 Z" fill="#3b82f6"/>
-  <text x="597.0" y="1610.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. screens/game/join_game_screen.dart
-2. screens/game/start_game_screen.dart</title></g><text x="470.0" y="1612.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">players_in_room_widget.dart</text>
+  <path d="M 590.0,1511.0 L 602.0,1504.0 Q 605.0,1504.0 605.0,1507.0 L 605.0,1515.0 Q 605.0,1518.0 602.0,1518.0 Z" fill="#3b82f6"/>
+  <text x="601.0" y="1514.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. screens/game/game_over_dialog.dart
+2. widgets/player/player_header_widget.dart</title></g><g class="outgoingBadge">
+  <path d="M 606.0,1522.0 L 594.0,1515.0 Q 591.0,1515.0 591.0,1518.0 L 591.0,1526.0 Q 591.0,1529.0 594.0,1529.0 Z" fill="#10b981"/>
+  <text x="595.0" y="1525.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. models/app/constants.dart</title></g><text x="474.0" y="1516.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">dialog.dart</text>
 <g class="incomingBadge">
-  <path d="M 586.0,1639.0 L 598.0,1632.0 Q 601.0,1632.0 601.0,1635.0 L 601.0,1643.0 Q 601.0,1646.0 598.0,1646.0 Z" fill="#3b82f6"/>
-  <text x="597.0" y="1642.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. screens/game/join_game_screen.dart
-2. screens/game/start_game_screen.dart</title></g><text x="470.0" y="1644.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">rooms_widget.dart</text>
+  <path d="M 590.0,1543.0 L 602.0,1536.0 Q 605.0,1536.0 605.0,1539.0 L 605.0,1547.0 Q 605.0,1550.0 602.0,1550.0 Z" fill="#3b82f6"/>
+  <text x="601.0" y="1546.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. screens/keepscore/golf_score_screen.dart
+2. widgets/helpers/input_keyboard.dart</title></g><g class="outgoingBadge">
+  <path d="M 606.0,1554.0 L 594.0,1547.0 Q 591.0,1547.0 591.0,1550.0 L 591.0,1558.0 Q 591.0,1561.0 594.0,1561.0 Z" fill="#10b981"/>
+  <text x="595.0" y="1557.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. models/app/constants.dart</title></g><text x="474.0" y="1548.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">my_button.dart</text>
 <g class="incomingBadge">
-  <path d="M 586.0,1671.0 L 598.0,1664.0 Q 601.0,1664.0 601.0,1667.0 L 601.0,1675.0 Q 601.0,1678.0 598.0,1678.0 Z" fill="#3b82f6"/>
-  <text x="597.0" y="1674.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">7</text><title>1. screens/game/game_over_dialog.dart
+  <path d="M 590.0,1575.0 L 602.0,1568.0 Q 605.0,1568.0 605.0,1571.0 L 605.0,1579.0 Q 605.0,1582.0 602.0,1582.0 Z" fill="#3b82f6"/>
+  <text x="601.0" y="1578.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. screens/keepscore/golf_score_screen.dart</title></g><text x="474.0" y="1580.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">player_header.dart</text>
+<g class="incomingBadge">
+  <path d="M 590.0,1607.0 L 602.0,1600.0 Q 605.0,1600.0 605.0,1603.0 L 605.0,1611.0 Q 605.0,1614.0 602.0,1614.0 Z" fill="#3b82f6"/>
+  <text x="601.0" y="1610.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. screens/game/join_game_screen.dart
+2. screens/game/start_game_screen.dart</title></g><text x="474.0" y="1612.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">players_in_room_widget.dart</text>
+<g class="incomingBadge">
+  <path d="M 590.0,1639.0 L 602.0,1632.0 Q 605.0,1632.0 605.0,1635.0 L 605.0,1643.0 Q 605.0,1646.0 602.0,1646.0 Z" fill="#3b82f6"/>
+  <text x="601.0" y="1642.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. screens/game/join_game_screen.dart
+2. screens/game/start_game_screen.dart</title></g><text x="474.0" y="1644.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">rooms_widget.dart</text>
+<g class="incomingBadge">
+  <path d="M 590.0,1671.0 L 602.0,1664.0 Q 605.0,1664.0 605.0,1667.0 L 605.0,1675.0 Q 605.0,1678.0 602.0,1678.0 Z" fill="#3b82f6"/>
+  <text x="601.0" y="1674.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">7</text><title>1. screens/game/game_over_dialog.dart
 2. screens/game/start_game_screen.dart
 3. widgets/cards/card_face_french_widget.dart
 4. widgets/cards/card_face_skyjo_widget.dart
 5. widgets/helpers/date_importance.dart
 6. widgets/player/player_header_widget.dart
-7. widgets/player/status_picker.dart</title></g><text x="470.0" y="1676.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">misc.dart</text>
+7. widgets/player/status_picker.dart</title></g><text x="474.0" y="1676.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">misc.dart</text>
 <g class="incomingBadge">
-  <path d="M 586.0,1165.0 L 598.0,1158.0 Q 601.0,1158.0 601.0,1161.0 L 601.0,1169.0 Q 601.0,1172.0 598.0,1172.0 Z" fill="#3b82f6"/>
-  <text x="597.0" y="1168.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. widgets/player/player_zone_cta_widget.dart</title></g><g class="outgoingBadge">
-  <path d="M 602.0,1176.0 L 590.0,1169.0 Q 587.0,1169.0 587.0,1172.0 L 587.0,1180.0 Q 587.0,1183.0 590.0,1183.0 Z" fill="#10b981"/>
-  <text x="591.0" y="1179.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">4</text><title>1. models/app/constants.dart
+  <path d="M 590.0,1165.0 L 602.0,1158.0 Q 605.0,1158.0 605.0,1161.0 L 605.0,1169.0 Q 605.0,1172.0 602.0,1172.0 Z" fill="#3b82f6"/>
+  <text x="601.0" y="1168.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. widgets/player/player_zone_cta_widget.dart</title></g><g class="outgoingBadge">
+  <path d="M 606.0,1176.0 L 594.0,1169.0 Q 591.0,1169.0 591.0,1172.0 L 591.0,1180.0 Q 591.0,1183.0 594.0,1183.0 Z" fill="#10b981"/>
+  <text x="595.0" y="1179.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">4</text><title>1. models/app/constants.dart
 2. models/card/card_dimensions.dart
 3. models/card/card_model.dart
-4. widgets/cards/card_widget.dart</title></g><text x="470.0" y="1170.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">card_pile_widget.dart</text>
+4. widgets/cards/card_widget.dart</title></g><text x="474.0" y="1170.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">card_pile_widget.dart</text>
 <g class="incomingBadge">
-  <path d="M 586.0,1197.0 L 598.0,1190.0 Q 601.0,1190.0 601.0,1193.0 L 601.0,1201.0 Q 601.0,1204.0 598.0,1204.0 Z" fill="#3b82f6"/>
-  <text x="597.0" y="1200.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">3</text><title>1. screens/game/game_style.dart
+  <path d="M 590.0,1197.0 L 602.0,1190.0 Q 605.0,1190.0 605.0,1193.0 L 605.0,1201.0 Q 605.0,1204.0 602.0,1204.0 Z" fill="#3b82f6"/>
+  <text x="601.0" y="1200.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">3</text><title>1. screens/game/game_style.dart
 2. widgets/cards/card_pile_widget.dart
 3. widgets/player/player_zone_widget.dart</title></g><g class="outgoingBadge">
-  <path d="M 602.0,1208.0 L 590.0,1201.0 Q 587.0,1201.0 587.0,1204.0 L 587.0,1212.0 Q 587.0,1215.0 590.0,1215.0 Z" fill="#10b981"/>
-  <text x="591.0" y="1211.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">6</text><title>1. models/app/constants.dart
+  <path d="M 606.0,1208.0 L 594.0,1201.0 Q 591.0,1201.0 591.0,1204.0 L 591.0,1212.0 Q 591.0,1215.0 594.0,1215.0 Z" fill="#10b981"/>
+  <text x="595.0" y="1211.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">6</text><title>1. models/app/constants.dart
 2. models/card/card_dimensions.dart
 3. models/card/card_model.dart
 4. widgets/cards/card_face_french_widget.dart
 5. widgets/cards/card_face_skyjo_widget.dart
-6. widgets/helpers/wiggle_widget.dart</title></g><text x="470.0" y="1202.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">card_widget.dart</text>
+6. widgets/helpers/wiggle_widget.dart</title></g><text x="474.0" y="1202.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">card_widget.dart</text>
 <g class="incomingBadge">
-  <path d="M 586.0,1229.0 L 598.0,1222.0 Q 601.0,1222.0 601.0,1225.0 L 601.0,1233.0 Q 601.0,1236.0 598.0,1236.0 Z" fill="#3b82f6"/>
-  <text x="597.0" y="1232.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. widgets/cards/card_widget.dart</title></g><g class="outgoingBadge">
-  <path d="M 602.0,1240.0 L 590.0,1233.0 Q 587.0,1233.0 587.0,1236.0 L 587.0,1244.0 Q 587.0,1247.0 590.0,1247.0 Z" fill="#10b981"/>
-  <text x="591.0" y="1243.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">4</text><title>1. models/app/constants.dart
+  <path d="M 590.0,1229.0 L 602.0,1222.0 Q 605.0,1222.0 605.0,1225.0 L 605.0,1233.0 Q 605.0,1236.0 602.0,1236.0 Z" fill="#3b82f6"/>
+  <text x="601.0" y="1232.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. widgets/cards/card_widget.dart</title></g><g class="outgoingBadge">
+  <path d="M 606.0,1240.0 L 594.0,1233.0 Q 591.0,1233.0 591.0,1236.0 L 591.0,1244.0 Q 591.0,1247.0 594.0,1247.0 Z" fill="#10b981"/>
+  <text x="595.0" y="1243.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">4</text><title>1. models/app/constants.dart
 2. models/card/card_model.dart
 3. widgets/cards/card_face_french_widget.dart
-4. widgets/helpers/misc.dart</title></g><text x="470.0" y="1234.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">card_face_skyjo_widget.dart</text>
+4. widgets/helpers/misc.dart</title></g><text x="474.0" y="1234.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">card_face_skyjo_widget.dart</text>
 <g class="incomingBadge">
-  <path d="M 586.0,1261.0 L 598.0,1254.0 Q 601.0,1254.0 601.0,1257.0 L 601.0,1265.0 Q 601.0,1268.0 598.0,1268.0 Z" fill="#3b82f6"/>
-  <text x="597.0" y="1264.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. widgets/cards/card_face_skyjo_widget.dart
+  <path d="M 590.0,1261.0 L 602.0,1254.0 Q 605.0,1254.0 605.0,1257.0 L 605.0,1265.0 Q 605.0,1268.0 602.0,1268.0 Z" fill="#3b82f6"/>
+  <text x="601.0" y="1264.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. widgets/cards/card_face_skyjo_widget.dart
 2. widgets/cards/card_widget.dart</title></g><g class="outgoingBadge">
-  <path d="M 602.0,1272.0 L 590.0,1265.0 Q 587.0,1265.0 587.0,1268.0 L 587.0,1276.0 Q 587.0,1279.0 590.0,1279.0 Z" fill="#10b981"/>
-  <text x="591.0" y="1275.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">3</text><title>1. models/app/constants.dart
+  <path d="M 606.0,1272.0 L 594.0,1265.0 Q 591.0,1265.0 591.0,1268.0 L 591.0,1276.0 Q 591.0,1279.0 594.0,1279.0 Z" fill="#10b981"/>
+  <text x="595.0" y="1275.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">3</text><title>1. models/app/constants.dart
 2. models/card/card_model.dart
-3. widgets/helpers/misc.dart</title></g><text x="470.0" y="1266.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">card_face_french_widget.dart</text>
+3. widgets/helpers/misc.dart</title></g><text x="474.0" y="1266.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">card_face_french_widget.dart</text>
 <g class="incomingBadge">
-  <path d="M 586.0,947.0 L 598.0,940.0 Q 601.0,940.0 601.0,943.0 L 601.0,951.0 Q 601.0,954.0 598.0,954.0 Z" fill="#3b82f6"/>
-  <text x="597.0" y="950.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. screens/game/game_screen.dart</title></g><g class="outgoingBadge">
-  <path d="M 602.0,958.0 L 590.0,951.0 Q 587.0,951.0 587.0,954.0 L 587.0,962.0 Q 587.0,965.0 590.0,965.0 Z" fill="#10b981"/>
-  <text x="591.0" y="961.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">6</text><title>1. models/app/constants.dart
+  <path d="M 590.0,947.0 L 602.0,940.0 Q 605.0,940.0 605.0,943.0 L 605.0,951.0 Q 605.0,954.0 602.0,954.0 Z" fill="#3b82f6"/>
+  <text x="601.0" y="950.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. screens/game/game_screen.dart</title></g><g class="outgoingBadge">
+  <path d="M 606.0,958.0 L 594.0,951.0 Q 591.0,951.0 591.0,954.0 L 591.0,962.0 Q 591.0,965.0 594.0,965.0 Z" fill="#10b981"/>
+  <text x="595.0" y="961.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">6</text><title>1. models/app/constants.dart
 2. models/game/game_model.dart
-3. utils/log.dart
+3. utils/logger.dart
 4. widgets/cards/card_widget.dart
 5. widgets/player/player_header_widget.dart
-6. widgets/player/player_zone_cta_widget.dart</title></g><text x="470.0" y="952.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">player_zone_widget.dart</text>
+6. widgets/player/player_zone_cta_widget.dart</title></g><text x="474.0" y="952.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">player_zone_widget.dart</text>
 <g class="incomingBadge">
-  <path d="M 586.0,979.0 L 598.0,972.0 Q 601.0,972.0 601.0,975.0 L 601.0,983.0 Q 601.0,986.0 598.0,986.0 Z" fill="#3b82f6"/>
-  <text x="597.0" y="982.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. widgets/player/player_zone_widget.dart</title></g><g class="outgoingBadge">
-  <path d="M 602.0,990.0 L 590.0,983.0 Q 587.0,983.0 587.0,986.0 L 587.0,994.0 Q 587.0,997.0 590.0,997.0 Z" fill="#10b981"/>
-  <text x="591.0" y="993.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">6</text><title>1. models/app/constants.dart
+  <path d="M 590.0,979.0 L 602.0,972.0 Q 605.0,972.0 605.0,975.0 L 605.0,983.0 Q 605.0,986.0 602.0,986.0 Z" fill="#3b82f6"/>
+  <text x="601.0" y="982.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. widgets/player/player_zone_widget.dart</title></g><g class="outgoingBadge">
+  <path d="M 606.0,990.0 L 594.0,983.0 Q 591.0,983.0 591.0,986.0 L 591.0,994.0 Q 591.0,997.0 594.0,997.0 Z" fill="#10b981"/>
+  <text x="595.0" y="993.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">6</text><title>1. models/app/constants.dart
 2. models/game/game_model.dart
 3. widgets/helpers/date_importance.dart
 4. widgets/helpers/dialog.dart
 5. widgets/helpers/misc.dart
-6. widgets/player/status_picker.dart</title></g><text x="470.0" y="984.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">player_header_widget.dart</text>
+6. widgets/player/status_picker.dart</title></g><text x="474.0" y="984.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">player_header_widget.dart</text>
 <g class="incomingBadge">
-  <path d="M 586.0,1011.0 L 598.0,1004.0 Q 601.0,1004.0 601.0,1007.0 L 601.0,1015.0 Q 601.0,1018.0 598.0,1018.0 Z" fill="#3b82f6"/>
-  <text x="597.0" y="1014.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. widgets/player/player_zone_widget.dart</title></g><g class="outgoingBadge">
-  <path d="M 602.0,1022.0 L 590.0,1015.0 Q 587.0,1015.0 587.0,1018.0 L 587.0,1026.0 Q 587.0,1029.0 590.0,1029.0 Z" fill="#10b981"/>
-  <text x="591.0" y="1025.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. models/game/game_model.dart
-2. widgets/cards/card_pile_widget.dart</title></g><text x="470.0" y="1016.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">player_zone_cta_widget.dart</text>
+  <path d="M 590.0,1011.0 L 602.0,1004.0 Q 605.0,1004.0 605.0,1007.0 L 605.0,1015.0 Q 605.0,1018.0 602.0,1018.0 Z" fill="#3b82f6"/>
+  <text x="601.0" y="1014.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. widgets/player/player_zone_widget.dart</title></g><g class="outgoingBadge">
+  <path d="M 606.0,1022.0 L 594.0,1015.0 Q 591.0,1015.0 591.0,1018.0 L 591.0,1026.0 Q 591.0,1029.0 594.0,1029.0 Z" fill="#10b981"/>
+  <text x="595.0" y="1025.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. models/game/game_model.dart
+2. widgets/cards/card_pile_widget.dart</title></g><text x="474.0" y="1016.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">player_zone_cta_widget.dart</text>
 <g class="incomingBadge">
-  <path d="M 586.0,1043.0 L 598.0,1036.0 Q 601.0,1036.0 601.0,1039.0 L 601.0,1047.0 Q 601.0,1050.0 598.0,1050.0 Z" fill="#3b82f6"/>
-  <text x="597.0" y="1046.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. widgets/player/player_header_widget.dart</title></g><g class="outgoingBadge">
-  <path d="M 602.0,1054.0 L 590.0,1047.0 Q 587.0,1047.0 587.0,1050.0 L 587.0,1058.0 Q 587.0,1061.0 590.0,1061.0 Z" fill="#10b981"/>
-  <text x="591.0" y="1057.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. models/player/player_status.dart
-2. widgets/helpers/misc.dart</title></g><text x="470.0" y="1048.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">status_picker.dart</text>
+  <path d="M 590.0,1043.0 L 602.0,1036.0 Q 605.0,1036.0 605.0,1039.0 L 605.0,1047.0 Q 605.0,1050.0 602.0,1050.0 Z" fill="#3b82f6"/>
+  <text x="601.0" y="1046.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. widgets/player/player_header_widget.dart</title></g><g class="outgoingBadge">
+  <path d="M 606.0,1054.0 L 594.0,1047.0 Q 591.0,1047.0 591.0,1050.0 L 591.0,1058.0 Q 591.0,1061.0 594.0,1061.0 Z" fill="#10b981"/>
+  <text x="595.0" y="1057.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. models/player/player_status.dart
+2. widgets/helpers/misc.dart</title></g><text x="474.0" y="1048.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">status_picker.dart</text>
 <g class="folderTitleLayer">
-<text x="438.0" y="105.0" class="layerTitle">.</text>
-<text x="458.0" y="157.0" class="layerTitle">  ...</text>
-<text x="458.0" y="2759.0" class="layerTitle">  utils</text>
-<text x="458.0" y="1819.0" class="layerTitle">  models</text>
-<text x="478.0" y="2307.0" class="layerTitle">    card</text>
-<text x="478.0" y="2525.0" class="layerTitle">    app</text>
-<text x="478.0" y="1871.0" class="layerTitle">    game</text>
-<text x="478.0" y="2153.0" class="layerTitle">    player</text>
-<text x="458.0" y="279.0" class="layerTitle">  screens</text>
-<text x="478.0" y="331.0" class="layerTitle">    game</text>
-<text x="478.0" y="581.0" class="layerTitle">    welcome</text>
-<text x="478.0" y="703.0" class="layerTitle">    keepscore</text>
-<text x="458.0" y="873.0" class="layerTitle">  widgets</text>
-<text x="478.0" y="1361.0" class="layerTitle">    helpers</text>
-<text x="478.0" y="1143.0" class="layerTitle">    cards</text>
-<text x="478.0" y="925.0" class="layerTitle">    player</text>
+<text x="442.0" y="105.0" class="layerTitle">cards v1.9.3</text>
+<text x="462.0" y="157.0" class="layerTitle">  ...</text>
+<text x="462.0" y="2759.0" class="layerTitle">  utils</text>
+<text x="462.0" y="1819.0" class="layerTitle">  models</text>
+<text x="482.0" y="2307.0" class="layerTitle">    card</text>
+<text x="482.0" y="2525.0" class="layerTitle">    app</text>
+<text x="482.0" y="1871.0" class="layerTitle">    game</text>
+<text x="482.0" y="2153.0" class="layerTitle">    player</text>
+<text x="462.0" y="279.0" class="layerTitle">  screens</text>
+<text x="482.0" y="331.0" class="layerTitle">    game</text>
+<text x="482.0" y="581.0" class="layerTitle">    welcome</text>
+<text x="482.0" y="703.0" class="layerTitle">    keepscore</text>
+<text x="462.0" y="873.0" class="layerTitle">  widgets</text>
+<text x="482.0" y="1361.0" class="layerTitle">    helpers</text>
+<text x="482.0" y="1143.0" class="layerTitle">    cards</text>
+<text x="482.0" y="925.0" class="layerTitle">    player</text>
 </g>
 </svg>

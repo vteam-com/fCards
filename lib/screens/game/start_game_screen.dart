@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:cards/utils/log.dart';
+import 'package:cards/utils/logger.dart';
 import 'package:cards/widgets/helpers/misc.dart';
 import 'package:cards/models/game/backend_model.dart';
 import 'package:cards/models/app/constants.dart';
@@ -409,7 +409,7 @@ class StartScreenState extends State<StartScreen> {
   /// to the [GameScreen].
   void startGame(BuildContext context) async {
     final List<GameHistory> history = await getGameHistory(roomName);
-    debugLog(history.join('|'));
+    logger.d(history.join('|'));
 
     final GameModel newGame = GameModel(
       version: appVersion,

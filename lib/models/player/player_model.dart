@@ -1,4 +1,4 @@
-import 'package:cards/utils/log.dart';
+import 'package:cards/utils/logger.dart';
 import 'package:cards/models/app/constants.dart';
 import 'package:cards/models/card/hand_model.dart';
 import 'package:cards/models/player/player_status.dart';
@@ -79,7 +79,7 @@ class PlayerModel {
             .toList(),
       );
     } catch (error) {
-      debugLog(error.toString());
+      logger.e(error.toString());
     }
 
     return instance;

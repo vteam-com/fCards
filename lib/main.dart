@@ -6,6 +6,7 @@ import 'package:cards/screens/keepscore/golf_score_screen.dart';
 import 'package:cards/screens/welcome/main_menu.dart';
 import 'package:cards/models/app/app_theme.dart';
 import 'package:cards/models/app/constants.dart';
+import 'package:cards/utils/logger.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -29,10 +30,10 @@ void main() async {
       );
       await FirebaseAuth.instance.signInAnonymously();
       backendReady = true;
-      debugPrint('Firebase initialized successfully');
+      logger.i('Firebase initialized successfully');
     } catch (e) {
       backendReady = false;
-      debugPrint('Firebase initialization error: $e');
+      logger.e('Firebase initialization error', e);
     }
   }
 

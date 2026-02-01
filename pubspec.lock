@@ -205,10 +205,10 @@ packages:
     dependency: "direct dev"
     description:
       name: fcheck
-      sha256: "8cad3e3477235a343131dff16bb0aa96fcc2165e5fe756e0c716192e3a60295e"
+      sha256: d9cdc819454a200128f4c6c5939f5f4de162f2a34e54ed7a04afd1b2469c5e35
       url: "https://pub.dev"
     source: hosted
-    version: "0.7.2"
+    version: "0.7.3"
   ffi:
     dependency: transitive
     description:
@@ -468,6 +468,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.1.0"
+  logger:
+    dependency: "direct main"
+    description:
+      name: logger
+      sha256: a7967e31b703831a893bbc3c3dd11db08126fe5f369b5c648a36f821979f5be3
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.6.2"
   logging:
     dependency: transitive
     description:
