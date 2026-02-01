@@ -47,6 +47,7 @@ A Flutter-based multiplayer card game application featuring multiple game modes 
 - **Splash screen** with professional branding
 - **Responsive design** for various screen sizes
 - **URL-based game joining** for easy invitations
+- **Structured logging** for debugging and monitoring
 
 ## Game Mechanics & Scoring Systems
 
@@ -191,6 +192,7 @@ To enable multiplayer functionality:
 - **Firebase Auth**: Anonymous user authentication
 - **Shared Preferences**: Local data persistence
 - **The Splash**: Professional splash screen implementation
+- **Logger**: Structured logging system with multiple levels and test silencing
 
 ### Development Tools
 

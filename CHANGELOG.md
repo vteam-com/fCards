@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 1.9.4
+
+- Add comprehensive logging with different levels (debug, info, warning, error)
+- Add test silencing to prevent log output clutter during test execution
+- Improve debugging capabilities with timestamps and stack traces
+
 ## 1.9.3
 
 - Fix macOS build issues
