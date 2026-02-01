@@ -1,6 +1,6 @@
 // ignore: fcheck_magic_numbers
 
-import 'package:cards/models/game_model.dart';
+import 'package:cards/models/game/game_model.dart';
 import 'package:cards/widgets/cards/card_pile_widget.dart';
 import 'package:flutter/material.dart';
 

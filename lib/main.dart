@@ -1,11 +1,11 @@
-import 'package:cards/models/backend_model.dart';
-import 'package:cards/models/firebase_options.dart';
+import 'package:cards/models/game/backend_model.dart';
+import 'package:cards/models/app/firebase_options.dart';
 import 'package:cards/screens/game/join_game_screen.dart';
 import 'package:cards/screens/game/start_game_screen.dart';
 import 'package:cards/screens/keepscore/golf_score_screen.dart';
-import 'package:cards/screens/main_menu.dart';
-import 'package:cards/models/app_theme.dart';
-import 'package:cards/models/constants.dart';
+import 'package:cards/screens/welcome/main_menu.dart';
+import 'package:cards/models/app/app_theme.dart';
+import 'package:cards/models/app/constants.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';

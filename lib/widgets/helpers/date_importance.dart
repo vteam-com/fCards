@@ -1,5 +1,5 @@
-import 'package:cards/models/constants.dart';
-import 'package:cards/widgets/misc.dart';
+import 'package:cards/models/app/constants.dart';
+import 'package:cards/widgets/helpers/misc.dart';
 import 'package:flutter/material.dart';
 
 /// A widget that displays a formatted date and time

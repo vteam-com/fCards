@@ -1,16 +1,17 @@
 import 'dart:async';
-import 'package:cards/widgets/misc.dart';
-import 'package:cards/models/backend_model.dart';
-import 'package:cards/models/constants.dart';
-import 'package:cards/models/game_history.dart';
-import 'package:cards/models/game_model.dart';
-import 'package:cards/widgets/game_style.dart';
-import 'package:cards/models/game_styles.dart';
+import 'package:cards/utils/log.dart';
+import 'package:cards/widgets/helpers/misc.dart';
+import 'package:cards/models/game/backend_model.dart';
+import 'package:cards/models/app/constants.dart';
+import 'package:cards/models/game/game_history.dart';
+import 'package:cards/models/game/game_model.dart';
+import 'package:cards/screens/game/game_style.dart';
+import 'package:cards/models/game/game_styles.dart';
 import 'package:cards/screens/game/game_screen.dart';
 
-import 'package:cards/screens/screen.dart';
-import 'package:cards/widgets/players_in_room_widget.dart';
-import 'package:cards/widgets/rooms_widget.dart';
+import 'package:cards/widgets/helpers/screen.dart';
+import 'package:cards/widgets/helpers/players_in_room_widget.dart';
+import 'package:cards/widgets/helpers/rooms_widget.dart';
 import 'package:cards/utils/browser_utils.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';

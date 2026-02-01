@@ -1,9 +1,9 @@
 // ignore: fcheck_magic_numbers
-import 'package:cards/widgets/misc.dart';
-import 'package:cards/models/card_dimensions.dart';
-import 'package:cards/models/card_model_french.dart';
-import 'package:cards/models/game_model.dart';
-import 'package:cards/models/game_styles.dart';
+import 'package:cards/utils/log.dart';
+import 'package:cards/models/card/card_dimensions.dart';
+import 'package:cards/models/card/card_model_french.dart';
+import 'package:cards/models/game/game_model.dart';
+import 'package:cards/models/game/game_styles.dart';
 import 'package:cards/widgets/cards/card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';

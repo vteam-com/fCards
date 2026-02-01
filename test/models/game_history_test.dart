@@ -1,4 +1,4 @@
-import 'package:cards/models/game_history.dart';
+import 'package:cards/models/game/game_history.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

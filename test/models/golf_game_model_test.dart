@@ -1,5 +1,5 @@
-import 'package:cards/models/game_model.dart';
-import 'package:cards/models/game_styles.dart';
+import 'package:cards/models/game/game_model.dart';
+import 'package:cards/models/game/game_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';

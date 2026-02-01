@@ -1,7 +1,7 @@
 // ignore: fcheck_magic_numbers
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:cards/models/constants.dart';
+import 'package:cards/models/app/constants.dart';
 
 /// Whether the [WiggleWidget] should wiggle or not.
 class WiggleWidget extends StatefulWidget {

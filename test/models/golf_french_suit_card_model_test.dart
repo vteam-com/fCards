@@ -1,4 +1,4 @@
-import 'package:cards/models/card_model.dart';
+import 'package:cards/models/card/card_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

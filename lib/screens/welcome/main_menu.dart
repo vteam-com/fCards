@@ -1,5 +1,5 @@
-import 'package:cards/models/constants.dart';
-import 'package:cards/screens/screen.dart';
+import 'package:cards/models/app/constants.dart';
+import 'package:cards/widgets/helpers/screen.dart';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';

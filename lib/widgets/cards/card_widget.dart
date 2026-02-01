@@ -1,10 +1,10 @@
-import 'package:cards/models/card_dimensions.dart';
-import 'package:cards/models/card_model.dart';
+import 'package:cards/models/card/card_dimensions.dart';
+import 'package:cards/models/card/card_model.dart';
 
-import 'package:cards/models/constants.dart';
+import 'package:cards/models/app/constants.dart';
 import 'package:cards/widgets/cards/card_face_french_widget.dart';
 import 'package:cards/widgets/cards/card_face_skyjo_widget.dart';
-import 'package:cards/widgets/wiggle_widget.dart';
+import 'package:cards/widgets/helpers/wiggle_widget.dart';
 import 'package:flutter/material.dart';
 
 /// A widget that displays a playing card or a placeholder.

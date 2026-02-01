@@ -1,19 +1,19 @@
 // fcheck - ignore magic numbers
 // Imports
-import 'package:cards/models/backend_model.dart';
-import 'package:cards/models/deck_model.dart';
-import 'package:cards/models/constants.dart';
-import 'package:cards/models/game_history.dart';
-import 'package:cards/models/game_styles.dart';
+import 'package:cards/models/game/backend_model.dart';
+import 'package:cards/models/game/deck_model.dart';
+import 'package:cards/models/app/constants.dart';
+import 'package:cards/models/game/game_history.dart';
+import 'package:cards/models/game/game_styles.dart';
 
-import 'package:cards/models/player_model.dart';
+import 'package:cards/models/player/player_model.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 // Exports
-export 'package:cards/models/deck_model.dart';
-export 'package:cards/models/player_model.dart';
+export 'package:cards/models/game/deck_model.dart';
+export 'package:cards/models/player/player_model.dart';
 
 /// Represents a game model that manages the state and logic of a game.
 /// This class extends `ChangeNotifier` to allow for state changes to be

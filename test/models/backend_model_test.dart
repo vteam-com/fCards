@@ -1,5 +1,5 @@
-import 'package:cards/models/backend_model.dart';
-import 'package:cards/models/firebase_options.dart';
+import 'package:cards/models/game/backend_model.dart';
+import 'package:cards/models/app/firebase_options.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';

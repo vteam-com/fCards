@@ -1,5 +1,5 @@
-import 'package:cards/models/constants.dart';
-import 'package:cards/widgets/my_button.dart';
+import 'package:cards/models/app/constants.dart';
+import 'package:cards/widgets/helpers/my_button.dart';
 import 'package:flutter/material.dart';
 
 ///

@@ -1,11 +1,11 @@
 // ignore_for_file: require_trailing_commas, deprecated_member_use
 
-import 'package:cards/models/constants.dart';
-import 'package:cards/models/golf_score_model.dart';
-import 'package:cards/screens/screen.dart';
-import 'package:cards/widgets/input_keyboard.dart';
-import 'package:cards/widgets/my_button.dart';
-import 'package:cards/widgets/player_header.dart';
+import 'package:cards/models/app/constants.dart';
+import 'package:cards/models/game/golf_score_model.dart';
+import 'package:cards/widgets/helpers/screen.dart';
+import 'package:cards/widgets/helpers/input_keyboard.dart';
+import 'package:cards/widgets/helpers/my_button.dart';
+import 'package:cards/widgets/helpers/player_header.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 

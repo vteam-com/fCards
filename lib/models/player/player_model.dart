@@ -1,11 +1,11 @@
-import 'package:cards/widgets/misc.dart';
-import 'package:cards/models/constants.dart';
-import 'package:cards/models/hand_model.dart';
-import 'package:cards/models/player_status.dart';
+import 'package:cards/utils/log.dart';
+import 'package:cards/models/app/constants.dart';
+import 'package:cards/models/card/hand_model.dart';
+import 'package:cards/models/player/player_status.dart';
 
-export 'package:cards/models/card_model.dart';
-export 'package:cards/models/hand_model.dart';
-export 'package:cards/models/player_status.dart';
+export 'package:cards/models/card/card_model.dart';
+export 'package:cards/models/card/hand_model.dart';
+export 'package:cards/models/player/player_status.dart';
 
 /// Represents a player in the card game.
 ///

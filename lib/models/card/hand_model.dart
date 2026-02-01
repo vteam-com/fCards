@@ -1,9 +1,9 @@
 // ignore: fcheck_magic_numbers
 import 'dart:math';
 
-import 'package:cards/models/card_model.dart';
-import 'package:cards/models/constants.dart';
-export 'package:cards/models/card_model.dart';
+import 'package:cards/models/card/card_model.dart';
+import 'package:cards/models/app/constants.dart';
+export 'package:cards/models/card/card_model.dart';
 
 /// A model class representing a hand of cards in a card game.
 ///

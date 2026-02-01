@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:cards/models/constants.dart';
+import 'package:cards/models/app/constants.dart';
 
 /// Displays a custom dialog with a title, content, and optional buttons.
 ///

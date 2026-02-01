@@ -1,8 +1,8 @@
-import 'package:cards/models/card_model.dart';
-import 'package:cards/models/card_model_french.dart';
-import 'package:cards/models/game_styles.dart';
-import 'package:cards/models/constants.dart';
-export 'package:cards/models/card_model.dart';
+import 'package:cards/models/card/card_model.dart';
+import 'package:cards/models/card/card_model_french.dart';
+import 'package:cards/models/game/game_styles.dart';
+import 'package:cards/models/app/constants.dart';
+export 'package:cards/models/card/card_model.dart';
 
 /// Represents a deck of playing cards.
 ///

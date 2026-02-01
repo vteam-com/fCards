@@ -1,8 +1,8 @@
-import 'package:cards/widgets/misc.dart';
-import 'package:cards/models/backend_model.dart';
-import 'package:cards/models/game_model.dart';
-import 'package:cards/widgets/dialog.dart';
-import 'package:cards/models/constants.dart';
+import 'package:cards/widgets/helpers/misc.dart';
+import 'package:cards/models/game/backend_model.dart';
+import 'package:cards/models/game/game_model.dart';
+import 'package:cards/widgets/helpers/dialog.dart';
+import 'package:cards/models/app/constants.dart';
 import 'package:flutter/material.dart';
 
 /// Displays a game over dialog with the final game results and options to play again or exit.

@@ -1,10 +1,10 @@
-import 'package:cards/widgets/misc.dart';
-import 'package:cards/models/game_model.dart';
-import 'package:cards/widgets/date_importance.dart';
-import 'package:cards/widgets/dialog.dart';
+import 'package:cards/widgets/helpers/misc.dart';
+import 'package:cards/models/game/game_model.dart';
+import 'package:cards/widgets/helpers/date_importance.dart';
+import 'package:cards/widgets/helpers/dialog.dart';
 import 'package:cards/widgets/player/status_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:cards/models/constants.dart';
+import 'package:cards/models/app/constants.dart';
 
 ///
 class PlayerHeaderWidget extends StatelessWidget {

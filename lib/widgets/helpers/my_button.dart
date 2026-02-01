@@ -2,7 +2,7 @@
 // ignore: fcheck_magic_numbers
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:cards/models/constants.dart';
+import 'package:cards/models/app/constants.dart';
 
 /// A custom circular glass-like button with blur and ripple effects.
 ///

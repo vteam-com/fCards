@@ -1,4 +1,4 @@
-import 'package:cards/models/constants.dart';
+import 'package:cards/models/app/constants.dart';
 
 enum GameStyles {
   /// Classic French cards with a 9x9 grid and special rules.

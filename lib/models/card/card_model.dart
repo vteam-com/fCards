@@ -1,4 +1,4 @@
-import 'package:cards/models/constants.dart';
+import 'package:cards/models/app/constants.dart';
 
 /// Represents a playing card with a suit and rank.
 ///

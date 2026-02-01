@@ -1,4 +1,4 @@
-import 'package:cards/models/player_model.dart';
+import 'package:cards/models/player/player_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

@@ -1,12 +1,12 @@
 import 'dart:math';
 import 'package:animate_do/animate_do.dart';
-import 'package:cards/widgets/misc.dart';
-import 'package:cards/models/game_model.dart';
+import 'package:cards/utils/log.dart';
+import 'package:cards/models/game/game_model.dart';
 import 'package:cards/widgets/cards/card_widget.dart';
 import 'package:cards/widgets/player/player_header_widget.dart';
 import 'package:cards/widgets/player/player_zone_cta_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:cards/models/constants.dart';
+import 'package:cards/models/app/constants.dart';
 
 class PlayerZoneWidget extends StatelessWidget {
   /// Constructs a [PlayerZoneWidget] with the provided parameters.

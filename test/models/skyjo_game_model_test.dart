@@ -1,7 +1,7 @@
 import 'dart:math';
 
-import 'package:cards/models/game_model.dart';
-import 'package:cards/models/game_styles.dart';
+import 'package:cards/models/game/game_model.dart';
+import 'package:cards/models/game/game_styles.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'golf_game_model_test.dart';
