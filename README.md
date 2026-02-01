@@ -166,6 +166,120 @@ lib/
 - **Responsive Design**: Adapts to different screen sizes
 - **State Management**: Robust game state handling
 
+## Deployment
+
+### 🚀 Firebase Web Deployment
+
+The Cards app is deployed to Firebase Hosting for web access. Follow these steps to deploy updates:
+
+#### Prerequisites firebase
+
+1. **Install Firebase CLI** (if not already installed):
+
+   ```bash
+   npm install -g firebase-tools
+   ```
+
+2. **Login to Firebase**:
+
+   ```bash
+   firebase login
+   ```
+
+#### Initial Firebase Setup (One-time)
+
+If Firebase hasn't been initialized in the project:
+
+1. **Initialize Firebase**:
+
+   ```bash
+   firebase init hosting
+   ```
+
+   - Select: "Use an existing project"
+   - Choose: "vteam-cards"
+   - Set region: "us-central1" (default)
+   - Answer "No" to GitHub integration (unless desired)
+
+2. **Enable Firebase Web Frameworks** (required for Flutter Web):
+
+   ```bash
+   firebase experiments:enable webframeworks
+   ```
+
+#### Deployment Process
+
+##### Option 1: Using the Deploy Script (Recommended)**
+
+The project includes an automated deployment script:
+
+```bash
+./tool/deploy.sh
+```
+
+This script will:
+
+- Clean the project (`flutter clean`)
+- Get dependencies (`flutter pub get`)
+- Run quality checks (`./tool/check.sh`)
+- Build the web app (`flutter build web --release`)
+- Deploy to Firebase (`firebase deploy --project vteam-cards`)
+
+##### Option 2: Manual Deployment**
+
+1. **Clean and build**:
+
+   ```bash
+   flutter clean
+   flutter pub get
+   flutter build web --release
+   ```
+
+2. **Deploy to Firebase**:
+
+   ```bash
+   firebase deploy --project vteam-cards
+   ```
+
+#### Deployment URLs
+
+- **Live App**: <https://vteam-cards.web.app>
+- **Firebase Console**: <https://console.firebase.google.com/project/vteam-cards/overview>
+- **Project ID**: vteam-cards
+
+#### Troubleshooting
+
+**Common Issues:**
+
+1. **"Not in a Firebase app directory"**:
+   - Run `firebase init hosting` first
+   - Ensure `firebase.json` exists in project root
+
+2. **"Permission denied"**:
+   - Ensure you're logged in: `firebase login`
+   - Verify you have access to the vteam-cards project
+
+3. **Build failures**:
+   - Run `flutter doctor` to check environment
+   - Ensure all dependencies are up to date: `flutter pub upgrade`
+
+4. **Firebase CLI outdated**:
+   - Update: `npm update -g firebase-tools`
+
+#### Deployment Best Practices
+
+1. **Always run tests before deployment**:
+
+   ```bash
+   ./tool/check.sh
+   ```
+
+2. **Check the live app** after deployment at <https://vteam-cards.web.app>
+
+3. **Monitor deployment** in Firebase Console for any issues
+
+4. **Keep Firebase CLI updated** for latest features and bug fixes
+
 ## Firebase Setup
 
 To enable multiplayer functionality:

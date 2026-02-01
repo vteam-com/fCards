@@ -160,7 +160,7 @@ class StartScreenState extends State<StartScreen> {
                             _isExpandedRooms
                                 ? Icons.expand_less
                                 : Icons.expand_more,
-                            color: Constants.primaryGreen,
+                            color: Constants.textPrimary,
                           ),
                         ),
                       ),
@@ -216,7 +216,7 @@ class StartScreenState extends State<StartScreen> {
                           joinGame(_controllerName.text);
                         });
                       },
-                      icon: Icon(Icons.add, color: Constants.primaryGreen),
+                      icon: Icon(Icons.add, color: Constants.textPrimary),
                     ),
                   ),
                   const SizedBox(height: Constants.sizeM),
