@@ -1,3 +1,4 @@
+
 #!/bin/sh
 echo --- Pub Clean
 flutter clean > /dev/null || { echo "Pub get failed"; exit 1; }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cards/models/constants.dart';
 
 /// Displays a custom dialog with a title, content, and optional buttons.
 ///
@@ -52,7 +53,7 @@ void myDialog({
       return AlertDialog(
         title: Text(
           title,
-          style: TextStyle(fontSize: 30),
+          style: TextStyle(fontSize: Constants.fontSize60),
           textAlign: TextAlign.center,
         ),
         content: content,

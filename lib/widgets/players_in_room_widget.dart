@@ -1,3 +1,4 @@
+// ignore: fcheck_magic_numbers
 import 'package:flutter/material.dart';
 
 ///

@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:cards/models/backend_model.dart';
 import 'package:cards/models/game_model.dart';
+import 'package:cards/models/constants.dart';
 import 'package:cards/screens/game/game_over_dialog.dart';
 import 'package:cards/screens/screen.dart';
 import 'package:cards/widgets/player/player_zone_widget.dart';
@@ -178,16 +179,16 @@ class GameScreenState extends State<GameScreen> {
   /// Builds a horizontally wrapping layout of player zones.
   Widget _buildPlayersWrapLayout() {
     return Wrap(
-      spacing: 40.0,
-      runSpacing: 40.0,
+      spacing: Constants.playerZoneSpacing,
+      runSpacing: Constants.playerZoneSpacing,
       children: List.generate(widget.gameModel.numPlayers, (index) {
         return PlayerZoneWidget(
           key: _playerKeys[index],
           gameModel: widget.gameModel,
           player: widget.gameModel.players[index],
-          heightZone: 700,
-          heightOfCTA: 140,
-          heightOfCardGrid: 400,
+          heightZone: Constants.desktopPlayerZoneHeight,
+          heightOfCTA: Constants.playerZoneCTAHeight,
+          heightOfCardGrid: Constants.desktopCardGridHeight,
         );
       }),
     );
@@ -262,7 +263,10 @@ class GameScreenState extends State<GameScreen> {
   Widget _layoutForDesktop() {
     return Center(
       child: Padding(
-        padding: const EdgeInsets.only(top: 20.0, bottom: 0.0),
+        padding: const EdgeInsets.only(
+          top: Constants.desktopTopPadding,
+          bottom: 0.0,
+        ),
         child: SingleChildScrollView(
           controller: _scrollController,
           child: _buildPlayersWrapLayout(),
@@ -279,14 +283,14 @@ class GameScreenState extends State<GameScreen> {
         mainAxisAlignment: MainAxisAlignment.start,
         children: List.generate(widget.gameModel.numPlayers, (index) {
           return Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(Constants.phonePlayerZonePadding),
             child: PlayerZoneWidget(
               key: _playerKeys[index],
               gameModel: widget.gameModel,
               player: widget.gameModel.players[index],
-              heightZone: 550,
-              heightOfCTA: 140,
-              heightOfCardGrid: 300,
+              heightZone: Constants.phonePlayerZoneHeight,
+              heightOfCTA: Constants.playerZoneCTAHeight,
+              heightOfCardGrid: Constants.phoneCardGridHeight,
             ),
           );
         }),
@@ -326,14 +330,16 @@ class GameScreenState extends State<GameScreen> {
           // Calculate maximum scroll extent and clamp offset
           final double maxScrollExtent =
               _scrollController.position.maxScrollExtent;
-          final double targetOffset = (offset - (phoneLayout ? 50 : 100)).clamp(
-            0.0,
-            maxScrollExtent,
-          );
+          final double targetOffset =
+              (offset -
+                      (phoneLayout
+                          ? Constants.phoneScrollOffset
+                          : Constants.desktopScrollOffset))
+                  .clamp(0.0, maxScrollExtent);
 
           _scrollController.animateTo(
             targetOffset,
-            duration: const Duration(milliseconds: 500),
+            duration: Duration(milliseconds: Constants.scrollAnimationDuration),
             curve: Curves.easeInOut,
           );
         }

@@ -1,3 +1,5 @@
+// ignore: fcheck_magic_numbers
+
 import 'package:flutter/material.dart';
 
 /// A widget for editing a player's name.

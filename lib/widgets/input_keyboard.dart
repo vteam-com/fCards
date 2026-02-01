@@ -1,3 +1,4 @@
+import 'package:cards/models/constants.dart';
 import 'package:cards/widgets/my_button.dart';
 import 'package:flutter/material.dart';
 
@@ -19,13 +20,15 @@ class InputKeyboard extends StatelessWidget {
   Widget build(BuildContext context) {
     return IntrinsicWidth(
       child: Container(
-        margin: EdgeInsets.all(8),
+        margin: EdgeInsets.all(Constants.paddingSmall),
         decoration: BoxDecoration(
           color: Colors.black26,
           border: Border.all(color: Colors.black26),
-          borderRadius: const BorderRadius.all(Radius.circular(40)),
+          borderRadius: const BorderRadius.all(
+            Radius.circular(Constants.borderRadius40),
+          ),
         ),
-        padding: EdgeInsets.all(10),
+        padding: EdgeInsets.all(Constants.paddingSmall),
         child: Column(
           children: [
             Row(
@@ -68,14 +71,14 @@ class InputKeyboard extends StatelessWidget {
 
   Widget _buildButton(String text) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(Constants.paddingSmall),
       child: MyButton(
-        size: 50,
+        size: Constants.iconSize50,
         onTap: () => onKeyPressed(text),
         child: Text(
           text,
           textAlign: TextAlign.center,
-          style: TextStyle(fontSize: 20),
+          style: TextStyle(fontSize: Constants.fontSize20),
         ),
       ),
     );

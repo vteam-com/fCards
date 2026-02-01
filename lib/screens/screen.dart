@@ -1,4 +1,4 @@
-import 'dart:async';
+import 'package:cards/models/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -7,13 +7,13 @@ import 'package:share_plus/share_plus.dart';
 /// Defines breakpoint constants for responsive design
 class ResponsiveBreakpoints {
   /// Maximum width for phone layout
-  static const double phone = 600;
+  static const double phone = Constants.breakpointPhone;
 
   /// Maximum width for tablet layout
-  static const double tablet = 900;
+  static const double tablet = Constants.breakpointTablet;
 
   /// Minimum width for desktop layout
-  static const double desktop = 1200;
+  static const double desktop = Constants.breakpointDesktop;
 }
 
 /// Extension on BuildContext to easily check device type based on screen width
@@ -91,7 +91,9 @@ class _ScreenState extends State<Screen> {
           fit: BoxFit.scaleDown,
           child: Text(
             widget.title,
-            style: TextStyle(color: Colors.yellow.shade100.withAlpha(200)),
+            style: TextStyle(
+              color: Colors.yellow.shade100.withAlpha(Constants.alpha200),
+            ),
           ),
         ),
         actions: [
@@ -128,10 +130,12 @@ class _ScreenState extends State<Screen> {
           /// RIGHT SIDE TEXT (User Name)
           if (widget.rightText.isNotEmpty)
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(Constants.paddingSmall),
               child: Text(
                 widget.rightText,
-                style: TextStyle(color: Colors.yellow.shade100.withAlpha(200)),
+                style: TextStyle(
+                  color: Colors.yellow.shade100.withAlpha(Constants.alpha200),
+                ),
               ),
             ),
 
@@ -170,9 +174,13 @@ class _ScreenState extends State<Screen> {
   Widget _displayWaiting() {
     /// Builds a loading indicator widget
     return SizedBox(
-      width: 400,
-      height: 400,
-      child: Center(child: CupertinoActivityIndicator(radius: 40)),
+      width: Constants.waitingWidgetSize,
+      height: Constants.waitingWidgetSize,
+      child: Center(
+        child: CupertinoActivityIndicator(
+          radius: Constants.loadingIndicatorRadius,
+        ),
+      ),
     );
   }
 

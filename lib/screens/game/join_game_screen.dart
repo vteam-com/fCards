@@ -94,7 +94,7 @@ class JoinGameScreenState extends State<JoinGameScreen> {
                 ElevatedButton(
                   onPressed: _canProceed
                       ? () {
-                          if (_currentStep < 2) {
+                          if (_currentStep < Constants.joinGameStepCount - 1) {
                             setState(() => _currentStep++);
                           } else {
                             _startGame(context);
@@ -110,7 +110,11 @@ class JoinGameScreenState extends State<JoinGameScreen> {
                       vertical: Constants.joinGameButtonVerticalPadding,
                     ),
                   ),
-                  child: Text(_currentStep < 2 ? 'Next' : 'Start Game'),
+                  child: Text(
+                    _currentStep < Constants.joinGameStepCount - 1
+                        ? 'Next'
+                        : 'Start Game',
+                  ),
                 ),
               ],
             ),
@@ -144,11 +148,13 @@ class JoinGameScreenState extends State<JoinGameScreen> {
         ),
 
         Container(
-          width: 300,
-          padding: const EdgeInsets.all(16),
+          width: Constants.joinGameNameEntryWidth,
+          padding: const EdgeInsets.all(Constants.joinGameContainerPadding),
           decoration: BoxDecoration(
             color: Colors.green.shade100,
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: BorderRadius.circular(
+              Constants.joinGameContainerBorderRadius,
+            ),
           ),
           child: TextField(
             controller: _controllerName,
@@ -226,10 +232,13 @@ class JoinGameScreenState extends State<JoinGameScreen> {
         ),
         if (_selectedRoom.isNotEmpty) ...[
           Container(
-            padding: const EdgeInsets.all(16),
+            padding: const EdgeInsets.all(Constants.joinGameContainerPadding),
             decoration: BoxDecoration(
               color: Colors.green.shade900,
-              borderRadius: BorderRadius.circular(12),
+              borderRadius: BorderRadius.circular(
+                Constants.borderRadius *
+                    Constants.selectedRoomBorderRadiusMultiplier,
+              ),
               border: Border.all(color: Colors.green.shade400),
             ),
             child: Text(
@@ -252,7 +261,7 @@ class JoinGameScreenState extends State<JoinGameScreen> {
         return _buildRoomSelectionStep();
       case 1:
         return _buildNameEntryStep();
-      case 2:
+      case Constants.joinGameStepCount - 1:
         return _buildWaitingStep();
       default:
         return const SizedBox();
@@ -263,11 +272,13 @@ class JoinGameScreenState extends State<JoinGameScreen> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < Constants.joinGameStepCount; i++)
           Container(
-            margin: const EdgeInsets.symmetric(horizontal: 4),
+            margin: const EdgeInsets.symmetric(
+              horizontal: Constants.paddingExtraSmall,
+            ),
             child: CircleAvatar(
-              radius: 12,
+              radius: Constants.circleAvatarRadius,
               backgroundColor: i <= _currentStep
                   ? Colors.green.shade400
                   : Colors.grey.shade400,
@@ -292,7 +303,7 @@ class JoinGameScreenState extends State<JoinGameScreen> {
         Text(
           'Room: $_selectedRoom',
           style: const TextStyle(
-            fontSize: 22,
+            fontSize: Constants.titleLargeSize,
             fontWeight: FontWeight.bold,
             color: Colors.white,
           ),
@@ -327,7 +338,7 @@ class JoinGameScreenState extends State<JoinGameScreen> {
             'Ready to play! ${_playerNames.length} players in room.',
             style: TextStyle(
               fontSize: Constants.textSizeX1,
-              color: Colors.green[400],
+              color: Constants.successTextColor,
             ),
           ),
       ],
@@ -340,7 +351,7 @@ class JoinGameScreenState extends State<JoinGameScreen> {
         return _selectedRoom.isNotEmpty;
       case 1:
         return _playerName.isNotEmpty;
-      case 2:
+      case Constants.joinGameStepCount - 1:
         return _playerNames.length >= Constants.minPlayersToStartGame;
       default:
         return false;

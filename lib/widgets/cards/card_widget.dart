@@ -1,6 +1,7 @@
 import 'package:cards/models/card_dimensions.dart';
 import 'package:cards/models/card_model.dart';
 
+import 'package:cards/models/constants.dart';
 import 'package:cards/widgets/cards/card_face_french_widget.dart';
 import 'package:cards/widgets/cards/card_face_skyjo_widget.dart';
 import 'package:cards/widgets/wiggle_widget.dart';
@@ -34,7 +35,7 @@ class CardWidget extends StatelessWidget {
       onWillAcceptWithDetails: (data) => card.isSelectable && onDropped != null,
       builder: (context, List<CardModel?> candidateData, List rejectedData) {
         return Transform.scale(
-          scale: candidateData.isEmpty ? 1.0 : 1.5,
+          scale: candidateData.isEmpty ? 1.0 : Constants.scale15,
           child: buildCard(),
         );
       },
@@ -54,7 +55,10 @@ class CardWidget extends StatelessWidget {
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(CardDimensions.borderRadius),
-            border: Border.all(color: Colors.black, width: 1),
+            border: Border.all(
+              color: Colors.black,
+              width: Constants.borderWidth1,
+            ),
           ),
           child: card.suit == ''
               ? CardFaceSkyjoWidget(card: card)
@@ -70,7 +74,7 @@ Widget dragSource(final CardModel card) {
   return Draggable<CardModel>(
     data: card,
     feedback: Opacity(
-      opacity: 0.8,
+      opacity: Constants.opacity80,
       child: CardWidget(card: card, onDropped: null),
     ),
     childWhenDragging: SizedBox(), // hide it when dragging

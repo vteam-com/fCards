@@ -1,10 +1,4 @@
-/// File: game_style.dart
-///
-/// This file defines the models and widgets for different game styles in a card game application.
-/// It includes GameStyle enum, GameStyle widget, functions to get card lists,
-/// instructions, and other utility functions related to game settings.
-library;
-
+// ignore: fcheck_magic_numbers
 import 'package:cards/widgets/misc.dart';
 import 'package:cards/models/card_dimensions.dart';
 import 'package:cards/models/card_model_french.dart';
@@ -14,6 +8,12 @@ import 'package:cards/widgets/cards/card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:url_launcher/url_launcher_string.dart';
+
+/// File: game_style.dart
+///
+/// This file defines the models and widgets for different game styles in a card game application.
+/// It includes GameStyle enum, GameStyle widget, functions to get card lists,
+/// instructions, and other utility functions related to game settings.
 
 /// A StatelessWidget representing the game style UI.
 ///

@@ -1,3 +1,5 @@
+// ignore: fcheck_magic_numbers
+
 import 'package:cards/widgets/misc.dart';
 import 'package:cards/models/player_status.dart';
 import 'package:flutter/material.dart';

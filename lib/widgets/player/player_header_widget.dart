@@ -4,6 +4,7 @@ import 'package:cards/widgets/date_importance.dart';
 import 'package:cards/widgets/dialog.dart';
 import 'package:cards/widgets/player/status_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:cards/models/constants.dart';
 
 ///
 class PlayerHeaderWidget extends StatelessWidget {
@@ -38,7 +39,7 @@ class PlayerHeaderWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
         SizedBox(
-          width: 80,
+          width: Constants.playerDisplayPaddingWidth.toDouble(),
           child: FittedBox(
             fit: BoxFit.scaleDown,
             child: Tooltip(
@@ -49,7 +50,7 @@ class PlayerHeaderWidget extends StatelessWidget {
                 },
                 child: TextSize(
                   player.name,
-                  30,
+                  Constants.textSizeX1,
                   color: Colors.white,
                   bold: true,
                 ),
@@ -58,19 +59,19 @@ class PlayerHeaderWidget extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 4.0),
+          padding: const EdgeInsets.symmetric(horizontal: Constants.spacing),
           child: StatusPicker(
             status: player.status,
             onStatusChanged: onStatusChanged,
           ),
         ),
         SizedBox(
-          width: 50,
+          width: Constants.cardDisplayPaddingWidth.toDouble(),
           child: TextSize(
             sumOfRevealedCards.toString(),
-            30,
+            Constants.textSizeX1,
             align: TextAlign.end,
-            color: Colors.white.withAlpha(150),
+            color: Colors.white.withAlpha(Constants.golfJokerValue),
             bold: true,
           ),
         ),

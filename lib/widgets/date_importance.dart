@@ -1,3 +1,4 @@
+import 'package:cards/models/constants.dart';
 import 'package:cards/widgets/misc.dart';
 import 'package:flutter/material.dart';
 
@@ -19,20 +20,24 @@ class DateTimeWidget extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        _buildText(dateTime.year, 14),
+        _buildText(dateTime.year, Constants.fontSize14),
         const Text(' . '),
-        _buildText(dateTime.month, 16),
+        _buildText(dateTime.month, Constants.fontSize16),
         const Text(' . '),
-        _buildText(dateTime.day, 18),
-        SizedBox(width: 20),
-        _buildText(dateTime.hour, 18),
+        _buildText(dateTime.day, Constants.fontSize18),
+        SizedBox(width: Constants.spacing),
+        _buildText(dateTime.hour, Constants.fontSize18),
         const Text(':'),
-        _buildText(dateTime.minute, 18),
+        _buildText(dateTime.minute, Constants.fontSize18),
       ],
     );
   }
 
   Widget _buildText(final num value, double fontSize) {
-    return TextSize(value.toString().padLeft(2, '0'), fontSize, bold: true);
+    return TextSize(
+      value.toString().padLeft(Constants.datePaddingLength, '0'),
+      fontSize,
+      bold: true,
+    );
   }
 }

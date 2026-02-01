@@ -1,5 +1,6 @@
 import 'package:cards/widgets/misc.dart';
 import 'package:cards/models/card_model.dart';
+import 'package:cards/models/constants.dart';
 
 import 'package:flutter/material.dart';
 
@@ -55,7 +56,7 @@ class CardFaceFrenchWidget extends StatelessWidget {
           child: TextSize(
             'Joker',
             align: TextAlign.center,
-            30,
+            Constants.fontSize30,
             bold: true,
             color: color,
           ),
@@ -66,20 +67,37 @@ class CardFaceFrenchWidget extends StatelessWidget {
         return Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            TextSize(card.rank, 40, bold: true, color: color),
-            TextSize(card.suit, 20, bold: true, color: color),
+            TextSize(
+              card.rank,
+              Constants.kingQueenFontSize,
+              bold: true,
+              color: color,
+            ),
+            TextSize(
+              card.suit,
+              Constants.suitSymbolFontSize,
+              bold: true,
+              color: color,
+            ),
           ],
         );
       default:
         return Row(
           mainAxisAlignment: MainAxisAlignment.start,
-          children: [TextSize(card.rank, 40, bold: true, color: color)],
+          children: [
+            TextSize(
+              card.rank,
+              Constants.kingQueenFontSize,
+              bold: true,
+              color: color,
+            ),
+          ],
         );
     }
   }
 
   ///
-  Widget buildSuitSymbol({final double size = 18}) {
+  Widget buildSuitSymbol({final double size = Constants.fontSize18}) {
     return Text(
       card.suit,
       style: TextStyle(
@@ -97,121 +115,128 @@ class CardFaceFrenchWidget extends StatelessWidget {
 
     List<Offset> positions;
     switch (numSymbols) {
-      case -2: // Joker
+      case Constants.cardValueJoker: // Joker
         return [figureCards('⛳')];
-      case 0: // King
+      case Constants.cardValueKing: // King
         return [figureCards('♚')];
-      case 12: // Queen
+      case Constants.cardValueQueen: // Queen
         return [figureCards('♛')];
-      case 11: // Jack
+      case Constants.cardValueJack: // Jack
         return [figureCards('♝')];
 
       case 1:
-        return [Center(child: buildSuitSymbol(size: 30))];
+        return [Center(child: buildSuitSymbol(size: Constants.fontSize30))];
 
       // Layout for number cards 2 to 10
-      case 2:
-        positions = [Offset(0, -30), Offset(0, 30)];
-        break;
-      case 3:
-        positions = [Offset(0, -30), Offset(0, 0), Offset(0, 30)];
-        break;
-      case 4:
+      case Constants.cardValue2:
         positions = [
-          Offset(-20, -20),
-          Offset(20, -20),
-          Offset(-20, 20),
-          Offset(20, 20),
+          Offset(0, -Constants.cardOffset30),
+          Offset(0, Constants.cardOffset30),
         ];
         break;
-      case 5:
+      case Constants.cardValue3:
+        positions = [
+          Offset(0, -Constants.cardOffset30),
+          Offset(0, 0),
+          Offset(0, Constants.cardOffset30),
+        ];
+        break;
+      case Constants.cardValue4:
+        positions = [
+          Offset(-Constants.cardOffset20, -Constants.cardOffset20),
+          Offset(Constants.cardOffset20, -Constants.cardOffset20),
+          Offset(-Constants.cardOffset20, Constants.cardOffset20),
+          Offset(Constants.cardOffset20, Constants.cardOffset20),
+        ];
+        break;
+      case Constants.cardValue5:
         positions = [
           // top
           Offset(0, 0),
 
           // left
-          Offset(-20, -20),
-          Offset(-20, 20),
+          Offset(-Constants.cardOffset20, -Constants.cardOffset20),
+          Offset(-Constants.cardOffset20, Constants.cardOffset20),
 
           // right
-          Offset(20, -20),
-          Offset(20, 20),
+          Offset(Constants.cardOffset20, -Constants.cardOffset20),
+          Offset(Constants.cardOffset20, Constants.cardOffset20),
         ];
         break;
-      case 6:
+      case Constants.cardValue6:
         positions = [
           // left column
-          Offset(-15, -30),
-          Offset(-15, 0),
-          Offset(-15, 30),
+          Offset(-Constants.cardOffset15, -Constants.cardOffset30),
+          Offset(-Constants.cardOffset15, 0),
+          Offset(-Constants.cardOffset15, Constants.cardOffset30),
 
           // right column
-          Offset(20, -30),
-          Offset(20, 0),
-          Offset(20, 30),
+          Offset(Constants.cardOffset20, -Constants.cardOffset30),
+          Offset(Constants.cardOffset20, 0),
+          Offset(Constants.cardOffset20, Constants.cardOffset30),
         ];
         break;
-      case 7:
+      case Constants.cardValue7:
         positions = [
           // left
-          Offset(-20, -30),
-          Offset(-20, 0),
-          Offset(-20, 30),
+          Offset(-Constants.cardOffset20, -Constants.cardOffset30),
+          Offset(-Constants.cardOffset20, 0),
+          Offset(-Constants.cardOffset20, Constants.cardOffset30),
           // center
           Offset(0, 0),
           // right
-          Offset(20, -30),
-          Offset(20, 0),
-          Offset(20, 30),
+          Offset(Constants.cardOffset20, -Constants.cardOffset30),
+          Offset(Constants.cardOffset20, 0),
+          Offset(Constants.cardOffset20, Constants.cardOffset30),
         ];
         break;
-      case 8:
+      case Constants.cardValue8:
         positions = [
           // top row
-          Offset(-20, -30),
-          Offset(20, -30),
+          Offset(-Constants.cardOffset20, -Constants.cardOffset30),
+          Offset(Constants.cardOffset20, -Constants.cardOffset30),
           // second
-          Offset(-20, -10),
-          Offset(20, -10),
+          Offset(-Constants.cardOffset20, -Constants.cardOffset10),
+          Offset(Constants.cardOffset20, -Constants.cardOffset10),
           // third
-          Offset(-20, 10),
-          Offset(20, 10),
+          Offset(-Constants.cardOffset20, Constants.cardOffset10),
+          Offset(Constants.cardOffset20, Constants.cardOffset10),
           // last
-          Offset(-20, 30),
-          Offset(20, 30),
+          Offset(-Constants.cardOffset20, Constants.cardOffset30),
+          Offset(Constants.cardOffset20, Constants.cardOffset30),
         ];
         break;
-      case 9:
+      case Constants.cardValue9:
         positions = [
           // left
-          Offset(-20, -30),
-          Offset(-20, 0),
-          Offset(-20, 30),
+          Offset(-Constants.cardOffset20, -Constants.cardOffset30),
+          Offset(-Constants.cardOffset20, 0),
+          Offset(-Constants.cardOffset20, Constants.cardOffset30),
           // center
-          Offset(0, -30),
+          Offset(0, -Constants.cardOffset30),
           Offset(0, 0),
-          Offset(0, 30),
+          Offset(0, Constants.cardOffset30),
           // right
-          Offset(20, -30),
-          Offset(20, 0),
-          Offset(20, 30),
+          Offset(Constants.cardOffset20, -Constants.cardOffset30),
+          Offset(Constants.cardOffset20, 0),
+          Offset(Constants.cardOffset20, Constants.cardOffset30),
         ];
         break;
-      case 10:
+      case Constants.cardValue10:
         positions = [
           // Left column
-          Offset(-20, -30),
-          Offset(-20, -10),
-          Offset(-20, 10),
-          Offset(-20, 30),
-          Offset(-20, 50),
+          Offset(-Constants.cardOffset20, -Constants.cardOffset30),
+          Offset(-Constants.cardOffset20, -Constants.cardOffset10),
+          Offset(-Constants.cardOffset20, Constants.cardOffset10),
+          Offset(-Constants.cardOffset20, Constants.cardOffset30),
+          Offset(-Constants.cardOffset20, Constants.cardOffset50),
 
           // right column
-          Offset(20, -50),
-          Offset(20, -30),
-          Offset(20, -10),
-          Offset(20, 10),
-          Offset(20, 30),
+          Offset(Constants.cardOffset20, -Constants.cardOffset50),
+          Offset(Constants.cardOffset20, -Constants.cardOffset30),
+          Offset(Constants.cardOffset20, -Constants.cardOffset10),
+          Offset(Constants.cardOffset20, Constants.cardOffset10),
+          Offset(Constants.cardOffset20, Constants.cardOffset30),
         ];
         break;
       default:
@@ -221,8 +246,12 @@ class CardFaceFrenchWidget extends StatelessWidget {
     for (final Offset position in positions) {
       symbols.add(
         Positioned(
-          left: 35 + position.dx, // Adjust 50 to center horizontally
-          top: 70 + position.dy, // Adjust 75 to center vertically
+          left:
+              Constants.cardCenterOffsetX +
+              position.dx, // Adjust to center horizontally
+          top:
+              Constants.cardCenterOffsetY +
+              position.dy, // Adjust to center vertically
           child: buildSuitSymbol(),
         ),
       );
@@ -238,7 +267,7 @@ class CardFaceFrenchWidget extends StatelessWidget {
       children: [
         TextSize(
           card.value.toString(),
-          20,
+          Constants.fontSize20,
           align: TextAlign.right,
           bold: true,
           color: getSuitColor(card.suit),
@@ -256,7 +285,7 @@ class CardFaceFrenchWidget extends StatelessWidget {
           text,
           textAlign: TextAlign.center,
           style: TextStyle(
-            fontSize: 60,
+            fontSize: Constants.fontSize60,
             color: getSuitColor(card.suit),
             decoration: TextDecoration.none,
           ),

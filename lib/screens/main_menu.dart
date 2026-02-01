@@ -1,3 +1,4 @@
+import 'package:cards/models/constants.dart';
 import 'package:cards/screens/screen.dart';
 
 import 'package:flutter/foundation.dart';
@@ -29,9 +30,11 @@ class _MainMenuState extends State<MainMenu> {
       isWaiting: false,
       child: Center(
         child: ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 400),
+          constraints: const BoxConstraints(
+            maxWidth: Constants.mainMenuMaxWidth,
+          ),
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(Constants.paddingMedium),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -42,13 +45,13 @@ class _MainMenuState extends State<MainMenu> {
                   icon: Icons.play_circle_fill,
                   onPressed: () => Navigator.pushNamed(context, '/game'),
                 ),
-                SizedBox(height: 20),
+                SizedBox(height: Constants.spacing),
                 MenuButton(
                   label: 'Join an Existing Game',
                   icon: Icons.group_add,
                   onPressed: () => Navigator.pushNamed(context, '/join'),
                 ),
-                SizedBox(height: 20),
+                SizedBox(height: Constants.spacing),
                 MenuButton(
                   label: 'Score Keeper',
                   icon: Icons.scoreboard,
@@ -104,29 +107,45 @@ class MenuButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      height: 80,
+      height: Constants.mainMenuButtonHeight,
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.green.withAlpha(200),
+          backgroundColor: Colors.green.withAlpha(Constants.alpha200),
           foregroundColor: Colors.white,
-          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-
-          textStyle: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(16.0),
-
-            side: BorderSide(color: Colors.green[600]!, width: 2),
+          padding: const EdgeInsets.symmetric(
+            horizontal: Constants.paddingLarge,
+            vertical: Constants.paddingMedium,
           ),
-          elevation: 8,
+
+          textStyle: TextStyle(
+            fontSize: Constants.fontSize20,
+            fontWeight: FontWeight.bold,
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(Constants.borderRadiusLarge),
+
+            side: BorderSide(
+              color: Constants.green600,
+              width: Constants.borderWidth2,
+            ),
+          ),
+          elevation: Constants.elevation8,
           shadowColor: Colors.black45,
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(icon, size: 32, color: Colors.yellow.shade300),
-            SizedBox(width: 16),
-            SizedBox(width: 200, child: Text(label)),
+            Icon(
+              icon,
+              size: Constants.iconSize32,
+              color: Colors.yellow.shade300,
+            ),
+            SizedBox(width: Constants.paddingMedium),
+            SizedBox(
+              width: Constants.mainMenuButtonTextWidth,
+              child: Text(label),
+            ),
           ],
         ),
       ),

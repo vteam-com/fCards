@@ -1,7 +1,8 @@
 // ignore_for_file: deprecated_member_use
-
+// ignore: fcheck_magic_numbers
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:cards/models/constants.dart';
 
 /// A custom circular glass-like button with blur and ripple effects.
 ///
@@ -48,7 +49,10 @@ class MyButton extends StatelessWidget {
             children: [
               // Blur whatever is behind the button
               BackdropFilter(
-                filter: ImageFilter.blur(sigmaX: 14, sigmaY: 14),
+                filter: ImageFilter.blur(
+                  sigmaX: Constants.blurSigma,
+                  sigmaY: Constants.blurSigma,
+                ),
                 child: const SizedBox.shrink(),
               ),
               // Glassy layer
@@ -59,12 +63,14 @@ class MyButton extends StatelessWidget {
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                     colors: [
-                      Colors.black.withOpacity(0.28),
-                      Colors.black.withOpacity(0.12),
+                      Colors.black.withOpacity(Constants.blackOverlayOpacity),
+                      Colors.black.withOpacity(
+                        Constants.blackBackgroundOpacity,
+                      ),
                     ],
                   ),
                   border: Border.all(
-                    color: Colors.white.withOpacity(0.5),
+                    color: Colors.white.withOpacity(Constants.borderOpacity),
                     width: 1,
                   ),
                   boxShadow: [
@@ -88,8 +94,12 @@ class MyButton extends StatelessWidget {
                 type: MaterialType.transparency,
                 child: InkWell(
                   onTap: onTap,
-                  splashColor: Colors.white.withOpacity(0.25),
-                  highlightColor: Colors.white.withOpacity(0.1),
+                  splashColor: Colors.white.withOpacity(
+                    Constants.whiteOverlayOpacity,
+                  ),
+                  highlightColor: Colors.white.withOpacity(
+                    Constants.whiteHighlightOpacity,
+                  ),
                   child: Center(child: child),
                 ),
               ),

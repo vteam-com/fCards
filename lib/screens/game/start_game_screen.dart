@@ -126,16 +126,18 @@ class StartScreenState extends State<StartScreen> {
       child: SingleChildScrollView(
         child: Center(
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(Constants.paddingMedium),
             child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 400),
+              constraints: const BoxConstraints(
+                maxWidth: Constants.startGameScreenMaxWidth,
+              ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   _gameMode(),
                   IntrinsicHeight(child: _gameInstructionsWidget()),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: Constants.spacing),
                   Row(
                     children: [
                       editBox(
@@ -157,7 +159,7 @@ class StartScreenState extends State<StartScreen> {
                             _isExpandedRooms
                                 ? Icons.expand_less
                                 : Icons.expand_more,
-                            color: Colors.green.shade900,
+                            color: Constants.iconColorDark,
                           ),
                         ),
                       ),
@@ -179,9 +181,9 @@ class StartScreenState extends State<StartScreen> {
                           ? (String room) {}
                           : null,
                     ),
-                  const SizedBox(height: 2),
+                  const SizedBox(height: Constants.spacingTiny),
                   SizedBox(
-                    width: 400,
+                    width: Constants.startGameScreenMaxWidth,
                     child: PlayersInRoomWidget(
                       activePlayerName: _playerName,
                       playerNames: _playerNames.toList(),
@@ -193,12 +195,12 @@ class StartScreenState extends State<StartScreen> {
                       onRemovePlayer: removePlayer,
                     ),
                   ),
-                  const SizedBox(height: 8),
+                  const SizedBox(height: Constants.paddingSmall),
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(Constants.paddingSmall),
                     child: Text('Who Are You?\nSelect above ⬆ or join below ⬇'),
                   ),
-                  const SizedBox(height: 8),
+                  const SizedBox(height: Constants.paddingSmall),
                   editBox(
                     'Join',
                     _controllerName,
@@ -213,12 +215,12 @@ class StartScreenState extends State<StartScreen> {
                           joinGame(_controllerName.text);
                         });
                       },
-                      icon: Icon(Icons.add, color: Colors.green.shade900),
+                      icon: Icon(Icons.add, color: Constants.iconColorDark),
                     ),
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: Constants.spacing),
                   actionButton(),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: Constants.spacing),
                 ],
               ),
             ),
@@ -254,8 +256,11 @@ class StartScreenState extends State<StartScreen> {
         }
       },
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Text(label, style: const TextStyle(fontSize: 20)),
+        padding: const EdgeInsets.all(Constants.paddingSmall),
+        child: Text(
+          label,
+          style: const TextStyle(fontSize: Constants.fontSize20),
+        ),
       ),
     );
   }
@@ -272,21 +277,21 @@ class StartScreenState extends State<StartScreen> {
     final Widget rightSideChild,
   ) {
     return Container(
-      width: 400,
-      padding: const EdgeInsets.all(8),
+      width: Constants.startGameScreenMaxWidth,
+      padding: const EdgeInsets.all(Constants.paddingSmall),
       decoration: BoxDecoration(
         color: Colors.green.shade100,
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(Constants.borderRadiusMedium),
       ),
       child: Row(
         children: [
           TextSize(
             label,
-            20,
-            color: Color.fromARGB(255, 19, 67, 22),
+            Constants.fontSize20,
+            color: Constants.editBoxLabelColor,
             bold: true,
           ),
-          const SizedBox(width: 20),
+          const SizedBox(width: Constants.spacing),
           Expanded(
             child: TextField(
               controller: controller,
@@ -297,7 +302,9 @@ class StartScreenState extends State<StartScreen> {
               ),
               decoration: InputDecoration(
                 hintText: 'Type your $label here',
-                hintStyle: TextStyle(color: Colors.black.withAlpha(100)),
+                hintStyle: TextStyle(
+                  color: Colors.black.withAlpha(Constants.alpha100),
+                ),
                 errorText: errorStatus.isEmpty ? null : errorStatus,
               ),
               onEditingComplete: onSubmitted,
@@ -441,13 +448,16 @@ class StartScreenState extends State<StartScreen> {
       },
       title: Text(
         'Game Rules',
-        style: TextStyle(fontSize: 20, color: Colors.green.shade100),
+        style: TextStyle(
+          fontSize: Constants.fontSize20,
+          color: Colors.green.shade100,
+        ),
       ),
       children: <Widget>[
         SizedBox(
-          height: 500,
+          height: Constants.gameStyleWidgetHeight,
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(Constants.paddingSmall),
             child: GameStyle(style: _selectedGameStyle),
           ),
         ),
@@ -458,7 +468,7 @@ class StartScreenState extends State<StartScreen> {
   /// A widget for selecting the game mode.
   Widget _gameMode() {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(Constants.paddingSmall),
       child: SegmentedButton<GameStyles>(
         segments: [
           ButtonSegment<GameStyles>(

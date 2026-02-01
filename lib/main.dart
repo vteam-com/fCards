@@ -5,6 +5,7 @@ import 'package:cards/screens/game/start_game_screen.dart';
 import 'package:cards/screens/keepscore/golf_score_screen.dart';
 import 'package:cards/screens/main_menu.dart';
 import 'package:cards/models/app_theme.dart';
+import 'package:cards/models/constants.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -53,76 +54,82 @@ class MyApp extends StatelessWidget {
       title: 'Cards',
       theme: AppTheme.darkTheme.copyWith(
         brightness: Brightness.dark,
-        scaffoldBackgroundColor: Colors.green.shade900,
-        cardColor: Colors.green.shade900,
+        scaffoldBackgroundColor: Constants.appBackgroundColor,
+        cardColor: Constants.cardColor,
         textTheme: AppTheme.darkTheme.textTheme
             .apply(fontFamily: 'Roboto')
             .copyWith(
-              bodyMedium: const TextStyle(color: Colors.white),
-              bodyLarge: const TextStyle(color: Colors.white),
-              displayLarge: const TextStyle(color: Colors.white),
-              displayMedium: const TextStyle(color: Colors.white),
-              displaySmall: const TextStyle(color: Colors.white),
-              headlineLarge: const TextStyle(color: Colors.white),
-              headlineMedium: const TextStyle(color: Colors.white),
-              headlineSmall: const TextStyle(color: Colors.white),
-              titleLarge: const TextStyle(color: Colors.white),
-              titleMedium: const TextStyle(color: Colors.white),
-              titleSmall: const TextStyle(color: Colors.white),
-              labelLarge: const TextStyle(color: Colors.white),
-              labelMedium: const TextStyle(color: Colors.white),
-              labelSmall: const TextStyle(color: Colors.white),
+              bodyMedium: TextStyle(color: Constants.textColor),
+              bodyLarge: TextStyle(color: Constants.textColor),
+              displayLarge: TextStyle(color: Constants.textColor),
+              displayMedium: TextStyle(color: Constants.textColor),
+              displaySmall: TextStyle(color: Constants.textColor),
+              headlineLarge: TextStyle(color: Constants.textColor),
+              headlineMedium: TextStyle(color: Constants.textColor),
+              headlineSmall: TextStyle(color: Constants.textColor),
+              titleLarge: TextStyle(color: Constants.textColor),
+              titleMedium: TextStyle(color: Constants.textColor),
+              titleSmall: TextStyle(color: Constants.textColor),
+              labelLarge: TextStyle(color: Constants.textColor),
+              labelMedium: TextStyle(color: Constants.textColor),
+              labelSmall: TextStyle(color: Constants.textColor),
             ),
-        hintColor: Colors.white70,
+        hintColor: Constants.hintTextColor,
         inputDecorationTheme: InputDecorationTheme(
           filled: true,
-          fillColor: Colors.white.withAlpha(100),
-          hintStyle: TextStyle(color: Colors.white70),
-          labelStyle: TextStyle(color: Colors.white),
+          fillColor: Constants.textColor.withAlpha(Constants.alpha100),
+          hintStyle: TextStyle(color: Constants.hintTextColor),
+          labelStyle: TextStyle(color: Constants.textColor),
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(
-              color: Colors.green.withAlpha(100),
-              width: 1.0,
+              color: Constants.greenWithAlpha100,
+              width: Constants.enabledBorderWidth,
             ),
           ),
           focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.yellow, width: 4.0),
+            borderSide: BorderSide(
+              color: Constants.yellowColor,
+              width: Constants.focusedBorderWidth,
+            ),
           ),
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.green.shade900,
-            foregroundColor: Colors.white,
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+            backgroundColor: Constants.appBackgroundColor,
+            foregroundColor: Constants.textColor,
+            padding: const EdgeInsets.symmetric(
+              horizontal: Constants.buttonHorizontalPadding,
+              vertical: Constants.buttonVerticalPadding,
+            ),
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8.0),
+              borderRadius: BorderRadius.circular(Constants.borderRadius),
             ),
           ),
         ),
         textButtonTheme: TextButtonThemeData(
           // Add TextButtonThemeData
           style: TextButton.styleFrom(
-            foregroundColor: Colors.white, // Text color
+            foregroundColor: Constants.textColor, // Text color
             padding: const EdgeInsets.symmetric(
-              horizontal: 16,
-              vertical: 12,
+              horizontal: Constants.buttonHorizontalPadding,
+              vertical: Constants.buttonVerticalPadding,
             ), //padding
             shape: RoundedRectangleBorder(
               // Rounded corners
-              borderRadius: BorderRadius.circular(8.0),
+              borderRadius: BorderRadius.circular(Constants.borderRadius),
             ),
           ),
         ),
         appBarTheme: AppBarTheme(
-          backgroundColor: Colors.green.shade900,
+          backgroundColor: Constants.appBackgroundColor,
           titleTextStyle: TextStyle(
-            color: Colors.white,
+            color: Constants.textColor,
             fontWeight: FontWeight.bold,
           ),
-          iconTheme: const IconThemeData(color: Colors.white),
+          iconTheme: IconThemeData(color: Constants.textColor),
         ),
-        iconTheme: const IconThemeData(color: Colors.white),
-        primaryIconTheme: const IconThemeData(color: Colors.white),
+        iconTheme: IconThemeData(color: Constants.textColor),
+        primaryIconTheme: IconThemeData(color: Constants.textColor),
       ),
       initialRoute: '/',
       routes: {

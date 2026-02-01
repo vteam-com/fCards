@@ -1,3 +1,5 @@
+// ignore: fcheck_magic_numbers
+
 import 'package:flutter/material.dart';
 
 /// A widget that displays a list of rooms, allowing the user to select a room and optionally remove a room.

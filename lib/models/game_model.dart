@@ -69,10 +69,14 @@ class GameModel with ChangeNotifier {
   final String loginUserName;
 
   /// When did the date start
-  DateTime startedOn = DateTime.fromMillisecondsSinceEpoch(0);
+  DateTime startedOn = DateTime.fromMillisecondsSinceEpoch(
+    Constants.cardValueJoker,
+  );
 
   /// When did the date end
-  DateTime endedOn = DateTime.fromMillisecondsSinceEpoch(0);
+  DateTime endedOn = DateTime.fromMillisecondsSinceEpoch(
+    Constants.cardValueJoker,
+  );
 
   /// The deck of cards used in the game.
   DeckModel deck;
@@ -81,10 +85,10 @@ class GameModel with ChangeNotifier {
   final List<PlayerModel> players = [];
 
   /// The index of the player currently playing.
-  int playerIdPlaying = 0;
+  int playerIdPlaying = Constants.cardValueKing;
 
   /// The index of the player being attacked in the final turn. -1 if not the final turn.
-  int playerIdAttacking = -1;
+  int playerIdAttacking = Constants.cardValueJoker;
 
   /// Whether the game is in the final turn.
   bool get isFinalTurn => playerIdAttacking != -1;
@@ -257,7 +261,7 @@ class GameModel with ChangeNotifier {
   /// assigning sequential IDs starting from 0.
   void _loadPlayers(List<dynamic> playersJson) {
     players.clear();
-    int index = 0;
+    int index = Constants.cardValueAce;
     for (final dynamic playerJson in playersJson) {
       final PlayerModel player = loadPlayer(playerJson);
       player.id = index++;
@@ -272,7 +276,7 @@ class GameModel with ChangeNotifier {
   /// to true for the selected player and false for all other players.
   void setActivePlayer(final int index) {
     playerIdPlaying = index;
-    for (int index = 0; index < players.length; index++) {
+    for (int index = Constants.cardValueAce; index < players.length; index++) {
       players[index].isActivePlayer = (index == playerIdPlaying);
     }
   }
