@@ -321,6 +321,8 @@ digraph "" {
   "/lib/widgets/helpers/dialog.dart" -> "/lib/models/app/constants.dart";
   "/lib/widgets/helpers/wiggle_widget.dart" -> "/lib/models/app/constants.dart";
   "/lib/widgets/helpers/my_button.dart" -> "/lib/models/app/constants.dart";
+  "/lib/widgets/helpers/players_in_room_widget.dart" -> "/lib/models/app/constants.dart";
+  "/lib/widgets/helpers/rooms_widget.dart" -> "/lib/models/app/constants.dart";
   "/lib/widgets/helpers/screen.dart" -> "/lib/models/app/constants.dart";
   "/lib/widgets/helpers/screen.dart" -> "/lib/utils/logger.dart";
   "/lib/widgets/player/player_zone_cta_widget.dart" -> "/lib/models/game/game_model.dart";
@@ -331,7 +333,6 @@ digraph "" {
   "/lib/widgets/player/player_header_widget.dart" -> "/lib/widgets/helpers/dialog.dart";
   "/lib/widgets/player/player_header_widget.dart" -> "/lib/widgets/player/status_picker.dart";
   "/lib/widgets/player/player_header_widget.dart" -> "/lib/models/app/constants.dart";
-  "/lib/widgets/player/player_zone_widget.dart" -> "/lib/utils/logger.dart";
   "/lib/widgets/player/player_zone_widget.dart" -> "/lib/models/game/game_model.dart";
   "/lib/widgets/player/player_zone_widget.dart" -> "/lib/widgets/cards/card_widget.dart";
   "/lib/widgets/player/player_zone_widget.dart" -> "/lib/widgets/player/player_header_widget.dart";

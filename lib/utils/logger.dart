@@ -2,6 +2,11 @@ import 'package:flutter/foundation.dart';
 import 'package:logger/logger.dart';
 import 'dart:io';
 
+// Logger configuration constants
+const int loggerMethodCount = 2;
+const int loggerErrorMethodCount = 8;
+const int loggerLineLength = 120;
+
 /// Custom silent printer for tests
 class SilentPrinter extends LogPrinter {
   @override
@@ -26,9 +31,9 @@ class AppLogger {
     _instance = Logger(
       printer: kDebugMode && !_isRunningTests()
           ? PrettyPrinter(
-              methodCount: 2,
-              errorMethodCount: 8,
-              lineLength: 120,
+              methodCount: loggerMethodCount,
+              errorMethodCount: loggerErrorMethodCount,
+              lineLength: loggerLineLength,
               colors: true,
               printEmojis: true,
               dateTimeFormat: DateTimeFormat.onlyTimeAndSinceStart,

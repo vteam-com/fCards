@@ -43,24 +43,22 @@ class PlayersInRoomWidget extends StatelessWidget {
           Container(
             padding: EdgeInsets.all(8),
             decoration: BoxDecoration(
-              color: Constants.backgroundPrimary.withAlpha(Constants.alpha100),
+              color: Constants.backgroundContainer.withAlpha(
+                Constants.alpha100,
+              ),
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(8),
                 topRight: Radius.circular(8),
               ),
             ),
-            child: Text(
-              '${playerNames.length} players',
-              style: TextStyle(color: Colors.black),
-            ),
+            child: Text('${playerNames.length} players'),
           ),
           Expanded(
             child: DecoratedBox(
               decoration: BoxDecoration(
-                color: Colors.black.withAlpha(100),
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(8),
-                  bottomRight: Radius.circular(8),
+                color: Constants.backgroundContainer,
+                borderRadius: BorderRadius.all(
+                  Radius.circular(Constants.radiusM),
                 ),
               ),
               child: ListView.builder(

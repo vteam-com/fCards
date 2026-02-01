@@ -102,15 +102,6 @@ class JoinGameScreenState extends State<JoinGameScreen> {
                           }
                         }
                       : null,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: _canProceed
-                        ? Colors.greenAccent
-                        : Colors.grey,
-                    padding: EdgeInsets.symmetric(
-                      horizontal: Constants.joinGameButtonHorizontalPadding,
-                      vertical: Constants.joinGameButtonVerticalPadding,
-                    ),
-                  ),
                   child: Text(
                     _currentStep < Constants.joinGameStepCount - 1
                         ? 'Next'
@@ -132,7 +123,7 @@ class JoinGameScreenState extends State<JoinGameScreen> {
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
-      spacing: Constants.sizeS,
+      spacing: Constants.sizeM,
       children: [
         Text(
           'Joining Room: $_selectedRoom',
@@ -148,15 +139,8 @@ class JoinGameScreenState extends State<JoinGameScreen> {
           style: TextStyle(fontSize: Constants.textS, color: Colors.white),
         ),
 
-        Container(
+        SizedBox(
           width: Constants.joinGameNameEntryWidth,
-          padding: const EdgeInsets.all(Constants.joinGameContainerPadding),
-          decoration: BoxDecoration(
-            color: Colors.green.shade100,
-            borderRadius: BorderRadius.circular(
-              Constants.joinGameContainerBorderRadius,
-            ),
-          ),
           child: TextField(
             controller: _controllerName,
             style: const TextStyle(
@@ -210,7 +194,7 @@ class JoinGameScreenState extends State<JoinGameScreen> {
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
-      spacing: Constants.sizeS,
+      spacing: Constants.sizeM,
       children: [
         const Text(
           'Select a Room to Join',
@@ -233,7 +217,7 @@ class JoinGameScreenState extends State<JoinGameScreen> {
         ),
         if (_selectedRoom.isNotEmpty) ...[
           Container(
-            padding: const EdgeInsets.all(Constants.joinGameContainerPadding),
+            padding: const EdgeInsets.all(Constants.sizeM),
             decoration: BoxDecoration(
               color: Colors.green.shade900,
               borderRadius: BorderRadius.circular(

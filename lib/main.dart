@@ -53,11 +53,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Cards',
-      theme: AppTheme.darkTheme.copyWith(
+      theme: AppTheme.theme.copyWith(
         brightness: Brightness.dark,
-        scaffoldBackgroundColor: Constants.backgroundPrimary,
-        cardColor: Constants.backgroundCard,
-        textTheme: AppTheme.darkTheme.textTheme
+        scaffoldBackgroundColor: Constants.backgroundContainer,
+        cardColor: Constants.backgroundContainer,
+        textTheme: AppTheme.theme.textTheme
             .apply(fontFamily: 'Roboto')
             .copyWith(
               bodyMedium: TextStyle(color: Constants.textPrimary),
@@ -96,7 +96,7 @@ class MyApp extends StatelessWidget {
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
-            backgroundColor: Constants.backgroundPrimary,
+            backgroundColor: Constants.backgroundContainer,
             foregroundColor: Constants.textPrimary,
             padding: const EdgeInsets.symmetric(
               horizontal: Constants.buttonHorizontalPadding,
@@ -104,6 +104,10 @@ class MyApp extends StatelessWidget {
             ),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(Constants.borderRadius),
+              side: BorderSide(
+                color: Constants.accentGreenAlpha,
+                width: Constants.enabledBorderWidth,
+              ),
             ),
           ),
         ),
@@ -122,7 +126,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
         appBarTheme: AppBarTheme(
-          backgroundColor: Constants.backgroundPrimary,
+          backgroundColor: Constants.backgroundContainer,
           titleTextStyle: TextStyle(
             color: Constants.textPrimary,
             fontWeight: FontWeight.bold,

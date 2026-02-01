@@ -401,23 +401,23 @@
   <title>./lib/screens/game/join_game_screen.dart ▶ ./lib/utils/logger.dart</title>
 </g>
 <g>
-  <path d="M 1230.0 338.0 C 1280.0 338.0, 2886.0 172.0, 2936.0 172.0" class="edge"/>
+  <path d="M 1230.0 268.0 C 1280.0 268.0, 2886.0 172.0, 2936.0 172.0" class="edge"/>
   <title>./lib/screens/game/game_over_dialog.dart ▶ ./lib/widgets/helpers/misc.dart</title>
 </g>
 <g>
-  <path d="M 1230.0 338.0 C 1280.0 338.0, 1926.0 102.0, 1976.0 102.0" class="edge"/>
+  <path d="M 1230.0 268.0 C 1280.0 268.0, 1926.0 102.0, 1976.0 102.0" class="edge"/>
   <title>./lib/screens/game/game_over_dialog.dart ▶ ./lib/models/game/backend_model.dart</title>
 </g>
 <g>
-  <path d="M 1230.0 338.0 C 1280.0 338.0, 1606.0 102.0, 1656.0 102.0" class="edge"/>
+  <path d="M 1230.0 268.0 C 1280.0 268.0, 1606.0 102.0, 1656.0 102.0" class="edge"/>
   <title>./lib/screens/game/game_over_dialog.dart ▶ ./lib/models/game/game_model.dart</title>
 </g>
 <g>
-  <path d="M 1230.0 338.0 C 1280.0 338.0, 1606.0 172.0, 1656.0 172.0" class="edge"/>
+  <path d="M 1230.0 268.0 C 1280.0 268.0, 1606.0 172.0, 1656.0 172.0" class="edge"/>
   <title>./lib/screens/game/game_over_dialog.dart ▶ ./lib/widgets/helpers/dialog.dart</title>
 </g>
 <g>
-  <path d="M 1230.0 338.0 C 1280.0 338.0, 3206.0 102.0, 3256.0 102.0" class="edge"/>
+  <path d="M 1230.0 268.0 C 1280.0 268.0, 3206.0 102.0, 3256.0 102.0" class="edge"/>
   <title>./lib/screens/game/game_over_dialog.dart ▶ ./lib/models/app/constants.dart</title>
 </g>
 <g>
@@ -457,7 +457,7 @@
   <title>./lib/screens/game/game_screen.dart ▶ ./lib/models/app/constants.dart</title>
 </g>
 <g>
-  <path d="M 910.0 128.0 C 960.0 128.0, 966.0 312.0, 1016.0 312.0" class="edge"/>
+  <path d="M 910.0 128.0 C 960.0 128.0, 966.0 242.0, 1016.0 242.0" class="edge"/>
   <title>./lib/screens/game/game_screen.dart ▶ ./lib/screens/game/game_over_dialog.dart</title>
 </g>
 <g>
@@ -465,7 +465,7 @@
   <title>./lib/screens/game/game_screen.dart ▶ ./lib/widgets/helpers/screen.dart</title>
 </g>
 <g>
-  <path d="M 910.0 128.0 C 960.0 128.0, 966.0 242.0, 1016.0 242.0" class="edge"/>
+  <path d="M 910.0 128.0 C 960.0 128.0, 966.0 312.0, 1016.0 312.0" class="edge"/>
   <title>./lib/screens/game/game_screen.dart ▶ ./lib/widgets/player/player_zone_widget.dart</title>
 </g>
 <g>
@@ -685,6 +685,14 @@
   <title>./lib/widgets/helpers/my_button.dart ▶ ./lib/models/app/constants.dart</title>
 </g>
 <g>
+  <path d="M 910.0 268.0 C 960.0 268.0, 3206.0 102.0, 3256.0 102.0" class="edge"/>
+  <title>./lib/widgets/helpers/players_in_room_widget.dart ▶ ./lib/models/app/constants.dart</title>
+</g>
+<g>
+  <path d="M 910.0 338.0 C 960.0 338.0, 3206.0 102.0, 3256.0 102.0" class="edge"/>
+  <title>./lib/widgets/helpers/rooms_widget.dart ▶ ./lib/models/app/constants.dart</title>
+</g>
+<g>
   <path d="M 1230.0 128.0 C 1280.0 128.0, 3206.0 102.0, 3256.0 102.0" class="edge"/>
   <title>./lib/widgets/helpers/screen.dart ▶ ./lib/models/app/constants.dart</title>
 </g>
@@ -733,27 +741,23 @@
   <title>./lib/widgets/player/player_header_widget.dart ▶ ./lib/models/app/constants.dart</title>
 </g>
 <g>
-  <path d="M 1230.0 268.0 C 1280.0 268.0, 2246.0 102.0, 2296.0 102.0" class="edge"/>
-  <title>./lib/widgets/player/player_zone_widget.dart ▶ ./lib/utils/logger.dart</title>
-</g>
-<g>
-  <path d="M 1230.0 268.0 C 1280.0 268.0, 1606.0 102.0, 1656.0 102.0" class="edge"/>
+  <path d="M 1230.0 338.0 C 1280.0 338.0, 1606.0 102.0, 1656.0 102.0" class="edge"/>
   <title>./lib/widgets/player/player_zone_widget.dart ▶ ./lib/models/game/game_model.dart</title>
 </g>
 <g>
-  <path d="M 1230.0 268.0 C 1280.0 268.0, 1926.0 172.0, 1976.0 172.0" class="edge"/>
+  <path d="M 1230.0 338.0 C 1280.0 338.0, 1926.0 172.0, 1976.0 172.0" class="edge"/>
   <title>./lib/widgets/player/player_zone_widget.dart ▶ ./lib/widgets/cards/card_widget.dart</title>
 </g>
 <g>
-  <path d="M 1230.0 268.0 C 1280.0 268.0, 1286.0 102.0, 1336.0 102.0" class="edge"/>
+  <path d="M 1230.0 338.0 C 1280.0 338.0, 1286.0 102.0, 1336.0 102.0" class="edge"/>
   <title>./lib/widgets/player/player_zone_widget.dart ▶ ./lib/widgets/player/player_header_widget.dart</title>
 </g>
 <g>
-  <path d="M 1230.0 268.0 C 1280.0 268.0, 1286.0 172.0, 1336.0 172.0" class="edge"/>
+  <path d="M 1230.0 338.0 C 1280.0 338.0, 1286.0 172.0, 1336.0 172.0" class="edge"/>
   <title>./lib/widgets/player/player_zone_widget.dart ▶ ./lib/widgets/player/player_zone_cta_widget.dart</title>
 </g>
 <g>
-  <path d="M 1230.0 268.0 C 1280.0 268.0, 3206.0 102.0, 3256.0 102.0" class="edge"/>
+  <path d="M 1230.0 338.0 C 1280.0 338.0, 3206.0 102.0, 3256.0 102.0" class="edge"/>
   <title>./lib/widgets/player/player_zone_widget.dart ▶ ./lib/models/app/constants.dart</title>
 </g>
 <g class="outgoingBadge">
@@ -845,11 +849,15 @@
 <g class="incomingBadge">
   <path d="M 702.0,242.0 L 690.0,235.0 Q 687.0,235.0 687.0,238.0 L 687.0,246.0 Q 687.0,249.0 690.0,249.0 Z" fill="#3b82f6"/>
   <text x="691.0" y="245.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. join_game_screen.dart
-2. start_game_screen.dart</title></g><text x="800.0" y="255.0" class="nodeText">players_in_room_widget...</text>
+2. start_game_screen.dart</title></g><g class="outgoingBadge">
+  <path d="M 916.0,268.0 L 904.0,261.0 Q 901.0,261.0 901.0,264.0 L 901.0,272.0 Q 901.0,275.0 904.0,275.0 Z" fill="#10b981"/>
+  <text x="905.0" y="271.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. constants.dart</title></g><text x="800.0" y="255.0" class="nodeText">players_in_room_widget...</text>
 <g class="incomingBadge">
   <path d="M 702.0,312.0 L 690.0,305.0 Q 687.0,305.0 687.0,308.0 L 687.0,316.0 Q 687.0,319.0 690.0,319.0 Z" fill="#3b82f6"/>
   <text x="691.0" y="315.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. join_game_screen.dart
-2. start_game_screen.dart</title></g><text x="800.0" y="325.0" class="nodeText">rooms_widget.dart</text>
+2. start_game_screen.dart</title></g><g class="outgoingBadge">
+  <path d="M 916.0,338.0 L 904.0,331.0 Q 901.0,331.0 901.0,334.0 L 901.0,342.0 Q 901.0,345.0 904.0,345.0 Z" fill="#10b981"/>
+  <text x="905.0" y="341.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. constants.dart</title></g><text x="800.0" y="325.0" class="nodeText">rooms_widget.dart</text>
 <g class="incomingBadge">
   <path d="M 702.0,382.0 L 690.0,375.0 Q 687.0,375.0 687.0,378.0 L 687.0,386.0 Q 687.0,389.0 690.0,389.0 Z" fill="#3b82f6"/>
   <text x="691.0" y="385.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. golf_score_screen.dart</title></g><g class="outgoingBadge">
@@ -887,21 +895,20 @@
   <path d="M 1022.0,242.0 L 1010.0,235.0 Q 1007.0,235.0 1007.0,238.0 L 1007.0,246.0 Q 1007.0,249.0 1010.0,249.0 Z" fill="#3b82f6"/>
   <text x="1011.0" y="245.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. game_screen.dart</title></g><g class="outgoingBadge">
   <path d="M 1236.0,268.0 L 1224.0,261.0 Q 1221.0,261.0 1221.0,264.0 L 1221.0,272.0 Q 1221.0,275.0 1224.0,275.0 Z" fill="#10b981"/>
-  <text x="1225.0" y="271.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">6</text><title>1. card_widget.dart
+  <text x="1225.0" y="271.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">5</text><title>1. backend_model.dart
 2. constants.dart
-3. game_model.dart
-4. logger.dart
-5. player_header_widget.dart
-6. player_zone_cta_widget.dart</title></g><text x="1120.0" y="255.0" class="nodeText">player_zone_widget.dart</text>
+3. dialog.dart
+4. game_model.dart
+5. misc.dart</title></g><text x="1120.0" y="255.0" class="nodeText">game_over_dialog.dart</text>
 <g class="incomingBadge">
   <path d="M 1022.0,312.0 L 1010.0,305.0 Q 1007.0,305.0 1007.0,308.0 L 1007.0,316.0 Q 1007.0,319.0 1010.0,319.0 Z" fill="#3b82f6"/>
   <text x="1011.0" y="315.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. game_screen.dart</title></g><g class="outgoingBadge">
   <path d="M 1236.0,338.0 L 1224.0,331.0 Q 1221.0,331.0 1221.0,334.0 L 1221.0,342.0 Q 1221.0,345.0 1224.0,345.0 Z" fill="#10b981"/>
-  <text x="1225.0" y="341.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">5</text><title>1. backend_model.dart
+  <text x="1225.0" y="341.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">5</text><title>1. card_widget.dart
 2. constants.dart
-3. dialog.dart
-4. game_model.dart
-5. misc.dart</title></g><text x="1120.0" y="325.0" class="nodeText">game_over_dialog.dart</text>
+3. game_model.dart
+4. player_header_widget.dart
+5. player_zone_cta_widget.dart</title></g><text x="1120.0" y="325.0" class="nodeText">player_zone_widget.dart</text>
 <g class="incomingBadge">
   <path d="M 1022.0,382.0 L 1010.0,375.0 Q 1007.0,375.0 1007.0,378.0 L 1007.0,386.0 Q 1007.0,389.0 1010.0,389.0 Z" fill="#3b82f6"/>
   <text x="1011.0" y="385.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. browser_utils.dart</title></g><text x="1120.0" y="395.0" class="nodeText">browser_utils_stub.dart</text>
@@ -1007,14 +1014,13 @@
 4. game_styles.dart</title></g><text x="2080.0" y="325.0" class="nodeText">deck_model.dart</text>
 <g class="incomingBadge">
   <path d="M 2302.0,102.0 L 2290.0,95.0 Q 2287.0,95.0 2287.0,98.0 L 2287.0,106.0 Q 2287.0,109.0 2290.0,109.0 Z" fill="#3b82f6"/>
-  <text x="2291.0" y="105.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">8</text><title>1. backend_model.dart
+  <text x="2291.0" y="105.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">7</text><title>1. backend_model.dart
 2. game_style.dart
 3. join_game_screen.dart
 4. main.dart
 5. player_model.dart
-6. player_zone_widget.dart
-7. screen.dart
-8. start_game_screen.dart</title></g><text x="2400.0" y="115.0" class="nodeText">logger.dart</text>
+6. screen.dart
+7. start_game_screen.dart</title></g><text x="2400.0" y="115.0" class="nodeText">logger.dart</text>
 <g class="incomingBadge">
   <path d="M 2302.0,172.0 L 2290.0,165.0 Q 2287.0,165.0 2287.0,168.0 L 2287.0,176.0 Q 2287.0,179.0 2290.0,179.0 Z" fill="#3b82f6"/>
   <text x="2291.0" y="175.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">5</text><title>1. deck_model.dart
@@ -1096,7 +1102,7 @@
 7. status_picker.dart</title></g><text x="3040.0" y="185.0" class="nodeText">misc.dart</text>
 <g class="incomingBadge">
   <path d="M 3262.0,102.0 L 3250.0,95.0 Q 3247.0,95.0 3247.0,98.0 L 3247.0,106.0 Q 3247.0,109.0 3250.0,109.0 Z" fill="#3b82f6"/>
-  <text x="3251.0" y="105.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">26</text><title>1. app_theme.dart
+  <text x="3251.0" y="105.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">28</text><title>1. app_theme.dart
 2. card_face_french_widget.dart
 3. card_face_skyjo_widget.dart
 4. card_model.dart
@@ -1119,7 +1125,9 @@
 21. player_header_widget.dart
 22. player_model.dart
 23. player_zone_widget.dart
-24. screen.dart
-25. start_game_screen.dart
-26. wiggle_widget.dart</title></g><text x="3360.0" y="115.0" class="nodeText">constants.dart</text>
+24. players_in_room_widget.dart
+25. rooms_widget.dart
+26. screen.dart
+27. start_game_screen.dart
+28. wiggle_widget.dart</title></g><text x="3360.0" y="115.0" class="nodeText">constants.dart</text>
 </svg>

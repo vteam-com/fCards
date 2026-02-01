@@ -1,5 +1,6 @@
 // ignore: fcheck_magic_numbers
 
+import 'package:cards/models/app/constants.dart';
 import 'package:flutter/material.dart';
 
 /// A widget that displays a list of rooms, allowing the user to select a room and optionally remove a room.
@@ -35,8 +36,8 @@ class RoomsWidget extends StatelessWidget {
     return Container(
       constraints: BoxConstraints(maxHeight: 400),
       decoration: BoxDecoration(
-        color: Colors.black.withAlpha(100),
-        borderRadius: BorderRadius.all(Radius.circular(8)),
+        color: Constants.backgroundContainer,
+        borderRadius: BorderRadius.all(Radius.circular(Constants.radiusM)),
       ),
       child: ListView.builder(
         itemCount: rooms.length,

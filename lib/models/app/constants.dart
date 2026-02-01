@@ -124,9 +124,6 @@ class Constants {
   /// The width for the name entry field in join game screen.
   static const double joinGameNameEntryWidth = 300.0;
 
-  /// The padding value for container in join game screen.
-  static const double joinGameContainerPadding = 100.0;
-
   /// The border radius for container in join game screen.
   static const double joinGameContainerBorderRadius = 8.0;
 
@@ -200,8 +197,7 @@ class Constants {
   static final Color textSuccess = Colors.green[400]!;
 
   // Background colors
-  static final Color backgroundPrimary = primaryGreen;
-  static final Color backgroundCard = primaryGreen;
+  static final Color backgroundContainer = primaryGreen;
 
   // Accent colors
   static const Color accentYellow = Colors.yellow;
@@ -422,8 +418,6 @@ class Constants {
 
   /// Card center offset Y (70).
   static const double cardCenterOffsetY = 70.0;
-
-  // New constants for magic numbers
 
   // Blur and shadow constants for my_button.dart
   static const double blurSigma = 14.0;
