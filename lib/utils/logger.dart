@@ -8,7 +8,7 @@ const int loggerErrorMethodCount = 8;
 const int loggerLineLength = 120;
 
 /// Custom silent printer for tests
-class SilentPrinter extends LogPrinter {
+class _SilentPrinter extends LogPrinter {
   @override
   List<String> log(LogEvent event) {
     return []; // Return empty list to silence all output
@@ -38,7 +38,7 @@ class AppLogger {
               printEmojis: true,
               dateTimeFormat: DateTimeFormat.onlyTimeAndSinceStart,
             )
-          : SilentPrinter(),
+          : _SilentPrinter(),
       level: kDebugMode ? Level.debug : Level.info,
       filter: ProductionFilter(),
     );

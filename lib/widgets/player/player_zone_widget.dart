@@ -41,17 +41,17 @@ class PlayerZoneWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // logger.d(player.toString());
     final double width = min(
       Constants.joinGamePlayerListMaxWidth,
       MediaQuery.of(context).size.width,
     );
     return Stack(
+      alignment: Alignment.center,
       children: [
         FadeIn(child: _containerBorder(width, heightZone)),
         Container(
-          width: width,
-          height: heightZone,
+          width: width - Constants.radiusM,
+          height: heightZone - Constants.radiusM,
           decoration: BoxDecoration(
             color: Constants.primaryGreenDark,
             border: Border.all(
@@ -192,8 +192,8 @@ class PlayerZoneWidget extends StatelessWidget {
       width: width,
       height: height,
       decoration: BoxDecoration(
-        border: Border.all(color: color, width: Constants.golfGrid2x2Size),
-        borderRadius: BorderRadius.circular(Constants.skyjoColumns.toDouble()),
+        border: Border.all(color: color, width: Constants.sizeS),
+        borderRadius: BorderRadius.circular(Constants.radiusM),
         // No shadow.
       ),
     );
