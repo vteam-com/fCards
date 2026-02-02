@@ -92,22 +92,39 @@ jobs:
         flutter-version: '3.38.9'
         channel: 'stable'
 
-    - name: Recreate firebase.json
+    - name: Restore Firebase options
       run: |
-        if [ -n "${{ secrets.FIREBASE_JSON_FILE }}" ]; then
-          echo "${{ secrets.FIREBASE_JSON_FILE }}" | base64 --decode > firebase.json
+        mkdir -p lib/models/app
+        if [ -n "${{ secrets.FIREBASE_OPTIONS_FILE }}" ]; then
+          echo "${{ secrets.FIREBASE_OPTIONS_FILE }}" | base64 --decode > lib/models/app/firebase_options.dart
+        else
+          cp lib/models/app/firebase_options.example.dart lib/models/app/firebase_options.dart
         fi
-        
+
+    - name: Build firebase.json for static hosting
+      run: |
+        cat <<'EOF' > firebase.json
+        {
+          "hosting": {
+            "site": "vteam-cards",
+            "public": "build/web",
+            "ignore": [
+              "firebase.json",
+              "**/.*",
+              "**/node_modules/**"
+            ]
+          }
+        }
+        EOF
+
     - name: Download web build
       uses: actions/download-artifact@v5
       with:
         name: flutter-web-build
         path: build
-        
+
     - name: Deploy to Firebase Hosting (action)
       uses: FirebaseExtended/action-hosting-deploy@v0
-      env:
-        FIREBASE_CLI_EXPERIMENTS: webframeworks
       with:
         repoToken: ${{ secrets.GITHUB_TOKEN }}
         firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_VTEAM_CARDS }}
