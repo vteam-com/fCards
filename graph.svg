@@ -268,7 +268,10 @@
           <g id='Node_app'>
             <rect x="1891.5" y="2639" width="627" height="222" rx="2" ry="2" class="nodeFolder"/>
             <g id='Node_app_theme.dart'>
-              <rect x="2059" y="2674" width="292" height="72" rx="8" ry="8" class="nodeFile"/>
+              <rect x="1909" y="2674" width="292" height="72" rx="8" ry="8" class="nodeFile"/>
+            </g>
+            <g id='Node_firebase_options.example.dart'>
+              <rect x="2209" y="2674" width="292" height="72" rx="8" ry="8" class="nodeFileOrphan"/>
             </g>
             <g id='Node_constants.dart'>
               <rect x="1909" y="2754" width="292" height="72" rx="8" ry="8" class="nodeFile"/>
@@ -359,7 +362,7 @@
       </g>
     </g>
     <g id='Edges'>
-      <path d="M2335 2730 C 2345 2750,1915 2750, 1925 2770" fill="none" class="line">
+      <path d="M2185 2730 C 2195 2750,1915 2750, 1925 2770" fill="none" class="line">
         <title>app_theme.dart
 ⬇
 constants.dart</title>
@@ -849,7 +852,7 @@ constants.dart</title>
 ⬇
 screen.dart</title>
       </path>
-      <path d="M2335 430 C 2410 1560,2000 1560, 2075 2690" fill="none" class="line">
+      <path d="M2335 430 C 2410 1560,1850 1560, 1925 2690" fill="none" class="line">
         <title>main.dart
 ⬇
 app_theme.dart</title>
@@ -1831,19 +1834,21 @@ card_dimensions.dart</title>
           <g id='Counters_app'>
             <g id='Counters_app_theme.dart'>
               <g>
-                <circle cx="2335" cy="2730" r="10" fill="green"/>
-                <text x="2335" y="2730" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">1</text>
+                <circle cx="2185" cy="2730" r="10" fill="green"/>
+                <text x="2185" y="2730" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">1</text>
                 <title>app_theme.dart
 ⬇
 1 /lib/models/app/constants.dart</title>
               </g>
               <g>
-                <circle cx="2075" cy="2690" r="10" fill="blue"/>
-                <text x="2075" y="2690" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">1</text>
+                <circle cx="1925" cy="2690" r="10" fill="blue"/>
+                <text x="1925" y="2690" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">1</text>
                 <title>1 /lib/main.dart
 ⬇
 app_theme.dart</title>
               </g>
+            </g>
+            <g id='Counters_firebase_options.example.dart'>
             </g>
             <g id='Counters_constants.dart'>
               <g>
@@ -2106,10 +2111,10 @@ backend_json_data.dart</title>
     <g id='Labels_'>
       <text class="folderName" x="10" y="10">
       </text>
-      <text x="10" y="3110" fill='black' font-size="75%">20 folders, 60 files</text>
+      <text x="10" y="3110" fill='black' font-size="75%">20 folders, 61 files</text>
       <g id='Labels_lib'>
         <text class="folderName" x="1112.5" y="345">lib</text>
-        <text x="1112.5" y="3075" fill='black' font-size="75%">14 folders, 44 files, 27 incoming, path: ...///</text>
+        <text x="1112.5" y="3075" fill='black' font-size="75%">14 folders, 45 files, 27 incoming, path: ...///</text>
         <g id='Labels_main.dart'>
           <text class="nodeName" x="2205" y="410" font-size="120%">main.dart</text>
         </g>
@@ -2219,7 +2224,7 @@ backend_json_data.dart</title>
         </g>
         <g id='Labels_models'>
           <text class="folderName" x="1730" y="1840">models</text>
-          <text x="1730" y="2890" fill='black' font-size="75%">4 folders, 15 files, 73 incoming, 2 outgoing, path: ...//lib/</text>
+          <text x="1730" y="2890" fill='black' font-size="75%">4 folders, 16 files, 73 incoming, 2 outgoing, path: ...//lib/</text>
           <g id='Labels_game'>
             <text class="folderName" x="1747.5" y="1875">game</text>
             <text x="1747.5" y="2165" fill='black' font-size="75%">6 files, 32 incoming, 10 outgoing, path: ...//lib/models/</text>
@@ -2270,9 +2275,12 @@ backend_json_data.dart</title>
           </g>
           <g id='Labels_app'>
             <text class="folderName" x="1897.5" y="2645">app</text>
-            <text x="1897.5" y="2855" fill='black' font-size="75%">3 files, 31 incoming, path: ...//lib/models/</text>
+            <text x="1897.5" y="2855" fill='black' font-size="75%">4 files, 31 incoming, path: ...//lib/models/</text>
             <g id='Labels_app_theme.dart'>
-              <text class="nodeName" x="2205" y="2710" font-size="120%">app_theme.dart</text>
+              <text class="nodeName" x="2055" y="2710" font-size="120%">app_theme.dart</text>
+            </g>
+            <g id='Labels_firebase_options.example.dart'>
+              <text class="nodeName" x="2355" y="2710" font-size="90%">firebase_options.example.dart</text>
             </g>
             <g id='Labels_constants.dart'>
               <text class="nodeName" x="2055" y="2790" font-size="120%">constants.dart</text>

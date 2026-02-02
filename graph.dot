@@ -28,6 +28,7 @@ digraph "" {
   "/lib/models/card/card_model.dart" [label="card_model"];
   "/lib/models/app/firebase_options.dart" [label="firebase_options"];
   "/lib/models/app/app_theme.dart" [label="app_theme"];
+  "/lib/models/app/firebase_options.example.dart" [label="firebase_options.example"];
   "/lib/models/app/constants.dart" [label="constants"];
   "/lib/models/game/game_model.dart" [label="game_model"];
   "/lib/models/game/game_styles.dart" [label="game_styles"];
@@ -118,6 +119,7 @@ digraph "" {
           label="app";
           "/lib/models/app/firebase_options.dart";
           "/lib/models/app/app_theme.dart";
+          "/lib/models/app/firebase_options.example.dart";
           "/lib/models/app/constants.dart";
         }
         subgraph "cluster~/lib/models/game" {

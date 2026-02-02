@@ -3,8 +3,9 @@ FIREBASE_OPTIONS_FILE="lib/models/app/firebase_options.dart"
 
 echo --- Firebase config
 if [ ! -f "$FIREBASE_OPTIONS_FILE" ]; then
-  echo "ERROR: $FIREBASE_OPTIONS_FILE is missing."
-  echo "       Run 'flutterfire configure --out=$FIREBASE_OPTIONS_FILE' from the project root to generate it."
+  echo "ERROR: $FIREBASE_OPTIONS_FILE is missing (the file is intentionally gitignored)."
+  echo "       Start from the committed template at lib/models/app/firebase_options.example.dart and run"
+  echo "       'flutterfire configure --out=$FIREBASE_OPTIONS_FILE' from the project root to generate it."
   exit 1
 fi
 
