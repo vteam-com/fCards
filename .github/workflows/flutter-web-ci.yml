@@ -101,7 +101,7 @@ jobs:
           cp lib/models/app/firebase_options.example.dart lib/models/app/firebase_options.dart
         fi
 
-    - name: Build firebase.json for static hosting
+    - name: Generate firebase.json for Hosting
       run: |
         cat <<'EOF' > firebase.json
         {
@@ -121,7 +121,7 @@ jobs:
       uses: actions/download-artifact@v5
       with:
         name: flutter-web-build
-        path: build
+        path: .
 
     - name: Deploy to Firebase Hosting (action)
       uses: FirebaseExtended/action-hosting-deploy@v0
