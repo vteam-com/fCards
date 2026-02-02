@@ -1343,7 +1343,10 @@
   <text x="595.0" y="1057.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. models/player/player_status.dart
 2. widgets/helpers/misc.dart</title></g><text x="474.0" y="1048.0" text-anchor="middle" dominant-baseline="middle" class="nodeText">status_picker.dart</text>
 <g class="folderTitleLayer">
-<text x="442.0" y="105.0" class="layerTitle">cards v1.9.5</text>
+<text x="442.0" y="105.0" class="layerTitle" text-anchor="middle">
+  <tspan x="442.0" dy="0">fCards</tspan>
+  <tspan x="442.0" dy="16">cards v1.9.6</tspan>
+</text>
 <text x="462.0" y="157.0" class="layerTitle">  ...</text>
 <text x="462.0" y="2759.0" class="layerTitle">  utils</text>
 <text x="462.0" y="1819.0" class="layerTitle">  models</text>

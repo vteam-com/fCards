@@ -1,4 +1,25 @@
 #!/bin/sh
+FIREBASE_OPTIONS_FILE="lib/models/app/firebase_options.dart"
+
+echo --- Firebase config
+if [ ! -f "$FIREBASE_OPTIONS_FILE" ]; then
+  echo "ERROR: $FIREBASE_OPTIONS_FILE is missing."
+  echo "       Run 'flutterfire configure' from the project root to generate it."
+  exit 1
+fi
+
+if grep -q 'YOUR_PROJECT_ID' "$FIREBASE_OPTIONS_FILE"; then
+  cat <<'EOF'
+Firebase configuration still contains the placeholder values committed for example purposes.
+Regenerate the file for your own Firebase project with:
+
+    flutterfire configure
+
+Then rerun this script (or stage the generated `lib/models/app/firebase_options.dart` file) so the checks can pass.
+EOF
+  exit 1
+fi
+
 echo --- Pub Get
 flutter pub get > /dev/null || { echo "Pub get failed"; exit 1; }
 echo --- Pub Upgrade

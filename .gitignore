@@ -45,11 +45,9 @@ app.*.map.json
 /android/app/release
 /.firebase/
 firebase.json
+# firebase_options.dart
 .firebaserc
-lib/firebase_options_private.dart
 macos/Runner/GoogleService-Info.plist
 ios/Runner/GoogleService-Info.plist
 android/app/google-services.json
-lib/models/firebase_options.dart
-lib/models/firebase_options_private.dart
 coverage/html

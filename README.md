@@ -135,6 +135,19 @@ A Flutter-based multiplayer card game application featuring multiple game modes 
    flutter run
    ```
 
+### Firebase configuration
+
+1. Set up your **own Firebase project** (this repository ships with placeholder credentials only).
+1. From the project root run:
+
+   ```bash
+   flutterfire configure
+   ```
+
+   Follow the prompts to select your Firebase project and platforms; this regenerates `lib/models/app/firebase_options.dart` with your real Firebase credentials and overwrites the placeholder values that are committed here so the repository can compile.
+1. `tool/check.sh` will fail if the placeholder values remain in `lib/models/app/firebase_options.dart`, so make sure to rerun `flutterfire configure` anytime you switch Firebase projects or update platforms.
+1. Protect data access through Firebase Security Rules (e.g., `database.rules.json`) rather than relying on config secrecy—every app should enforce the rules that match its authorization model.
+
 ## Project Structure
 
 ```dart
