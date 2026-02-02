@@ -52,7 +52,7 @@ jobs:
       run: fcheck --svg --svgfolder --fix .
       
     - name: Upload fcheck artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: fcheck-reports
         path: |
@@ -63,7 +63,7 @@ jobs:
       run: flutter build web --release --dart-define=FLUTTER_WEB_CANVASKIT_URL=/canvaskit/
       
     - name: Upload build artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: flutter-web-build
         path: build/web/
