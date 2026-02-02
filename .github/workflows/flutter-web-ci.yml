@@ -86,6 +86,12 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
       
+    - name: Recreate firebase.json
+      run: |
+        if [ -n "${{ secrets.FIREBASE_JSON_FILE }}" ]; then
+          echo "${{ secrets.FIREBASE_JSON_FILE }}" | base64 --decode > firebase.json
+        fi
+        
     - name: Download web build
       uses: actions/download-artifact@v5
       with:
