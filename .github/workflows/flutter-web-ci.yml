@@ -14,6 +14,12 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
       
+    - name: Generate Firebase options
+      run: |
+        mkdir -p lib/models/app
+        echo "${{ secrets.FIREBASE_OPTIONS_FILE }}" | base64 --decode > lib/models/app/firebase_options.dart
+      if: secrets.FIREBASE_OPTIONS_FILE != ''
+
     - name: Setup Flutter
       uses: subosito/flutter-action@v2
       with:
