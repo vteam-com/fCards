@@ -86,15 +86,12 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
       
-    - name: Setup Flutter
-      uses: subosito/flutter-action@v2
+    - name: Download web build
+      uses: actions/download-artifact@v5
       with:
-        flutter-version: '3.38.9'
-        channel: 'stable'
+        name: flutter-web-build
+        path: build
         
-    - name: Build Flutter Web
-      run: flutter build web --release --dart-define=FLUTTER_WEB_CANVASKIT_URL=/canvaskit/
-      
     - name: Deploy to Firebase Hosting (action)
       uses: FirebaseExtended/action-hosting-deploy@v0
       with:
