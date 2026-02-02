@@ -17,8 +17,11 @@ jobs:
     - name: Generate Firebase options
       run: |
         mkdir -p lib/models/app
-        echo "${{ secrets.FIREBASE_OPTIONS_FILE }}" | base64 --decode > lib/models/app/firebase_options.dart
-      if: secrets.FIREBASE_OPTIONS_FILE != ''
+        if [ -n "${{ secrets.FIREBASE_OPTIONS_FILE }}" ]; then
+          echo "${{ secrets.FIREBASE_OPTIONS_FILE }}" | base64 --decode > lib/models/app/firebase_options.dart
+        else
+          cp lib/models/app/firebase_options.example.dart lib/models/app/firebase_options.dart
+        fi
 
     - name: Setup Flutter
       uses: subosito/flutter-action@v2
