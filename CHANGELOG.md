@@ -1,7 +1,11 @@
 # CHANGELOG
 
-## 1.9.4
+## 1.9.5
 
+- Add CI/CD workflow for Flutter web validation and build
+- Ensure fcheck is automatically updated in check.sh script
+
+## 1.9.4
 - Add comprehensive logging with different levels (debug, info, warning, error)
 - Add test silencing to prevent log output clutter during test execution
 - Improve debugging capabilities with timestamps and stack traces

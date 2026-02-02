@@ -18,7 +18,8 @@ echo "    Running tests..."
 flutter test --reporter=compact --no-pub
 
 echo --- fCheck
-dart run fcheck --svg --svgfolder --fix .
+dart pub global activate fcheck > /dev/null
+fcheck --svg --svgfolder --fix .
 
 echo --- Graph Dependencies
 tool/graph.sh | sed 's/^/    /'

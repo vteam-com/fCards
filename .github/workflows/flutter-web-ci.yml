@@ -1,0 +1,100 @@
+name: Flutter Web CI/CD
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        flutter-version: '3.27.0'
+        channel: 'stable'
+        
+    - name: Cache Flutter dependencies
+      uses: actions/cache@v3
+      with:
+        path: |
+          ~/.pub-cache
+          .dart_tool
+        key: ${{ runner.os }}-flutter-${{ hashFiles('**/pubspec.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-flutter-
+          
+    - name: Install dependencies
+      run: flutter pub get
+      
+    - name: Run code formatting
+      run: dart format --set-exit-if-changed .
+      
+    - name: Apply automatic fixes
+      run: dart fix --apply
+      
+    - name: Analyze code
+      run: flutter analyze lib test
+      
+    - name: Run tests
+      run: flutter test --reporter=compact
+      
+    - name: Install fcheck
+      run: dart pub global activate fcheck
+      
+    - name: Run fcheck analysis
+      run: fcheck --svg --svgfolder --fix .
+      
+    - name: Upload fcheck artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: fcheck-reports
+        path: |
+          layers.svg
+          layers_folders.svg
+          
+    - name: Build Flutter Web
+      run: flutter build web --release --dart-define=FLUTTER_WEB_CANVASKIT_URL=/canvaskit/
+      
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: flutter-web-build
+        path: build/web/
+
+  deploy:
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        flutter-version: '3.27.0'
+        channel: 'stable'
+        
+    - name: Install Firebase CLI
+      run: npm install -g firebase-tools
+      
+    - name: Setup Firebase
+      run: firebase login:ci --no-localhost
+      env:
+        FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+        
+    - name: Build Flutter Web
+      run: flutter build web --release --dart-define=FLUTTER_WEB_CANVASKIT_URL=/canvaskit/
+      
+    - name: Deploy to Firebase
+      run: firebase deploy --project vteam-cards --only hosting
+      env:
+        FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}

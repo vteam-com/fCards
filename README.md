@@ -310,7 +310,7 @@ To enable multiplayer functionality:
 
 ### Development Tools
 
-- **fcheck**: Code quality and magic number detection
+- **fcheck**: Code quality and magic number detection (automatically updated in check.sh)
 - **lakos + graphviz**: Dependency visualization
 - **flutter_launcher_icons**: Multi-platform icon generation
 
