@@ -100,6 +100,8 @@ jobs:
         
     - name: Deploy to Firebase Hosting (action)
       uses: FirebaseExtended/action-hosting-deploy@v0
+      env:
+        FIREBASE_CLI_EXPERIMENTS: webframeworks
       with:
         repoToken: ${{ secrets.GITHUB_TOKEN }}
         firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_VTEAM_CARDS }}
