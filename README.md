@@ -141,10 +141,10 @@ A Flutter-based multiplayer card game application featuring multiple game modes 
 1. From the project root run:
 
    ```bash
-   flutterfire configure
+   flutterfire configure --out=lib/models/app/firebase_options.dart
    ```
 
-   Follow the prompts to select your Firebase project and platforms; this regenerates `lib/models/app/firebase_options.dart` with your real Firebase credentials and overwrites the placeholder values that are committed here so the repository can compile.
+   Follow the prompts to select your Firebase project and platforms; this regenerates `lib/models/app/firebase_options.dart` with your real Firebase credentials and overwrites the placeholder values that are committed here so the repository can compile. The `--out` flag guarantees the generated file lands in `lib/models/app/firebase_options.dart` so the code that imports it continues working.
 1. `tool/check.sh` will fail if the placeholder values remain in `lib/models/app/firebase_options.dart`, so make sure to rerun `flutterfire configure` anytime you switch Firebase projects or update platforms.
 1. Protect data access through Firebase Security Rules (e.g., `database.rules.json`) rather than relying on config secrecy—every app should enforce the rules that match its authorization model.
 
