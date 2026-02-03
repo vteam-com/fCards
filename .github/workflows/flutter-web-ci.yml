@@ -121,12 +121,16 @@ jobs:
       uses: actions/download-artifact@v5
       with:
         name: flutter-web-build
-        path: .
+        path: flutter-web-build
 
     - name: Place web build in project root
       run: |
         rm -rf build
-        mv flutter-web-build/build build
+        if [ -d flutter-web-build/build ]; then
+          mv flutter-web-build/build build
+        else
+          mv flutter-web-build build
+        fi
         rm -rf flutter-web-build
 
     - name: Deploy to Firebase Hosting (action)
