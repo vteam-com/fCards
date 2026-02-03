@@ -108,8 +108,7 @@ jobs:
           echo "✓ Restored firebase.json from secret"
         else
           echo "✗ FIREBASE_JSON secret not found, creating minimal firebase.json"
-          cat <<'EOF' > firebase.json
-          {
+          echo '{
             "hosting": {
               "site": "vteam-cards",
               "public": "build/web",
@@ -119,8 +118,7 @@ jobs:
                 "**/node_modules/**"
               ]
             }
-          }
-          EOF
+          }' > firebase.json
         fi
 
     - name: Download web build
