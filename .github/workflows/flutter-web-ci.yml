@@ -123,6 +123,12 @@ jobs:
         name: flutter-web-build
         path: .
 
+    - name: Place web build in project root
+      run: |
+        rm -rf build
+        mv flutter-web-build/build build
+        rm -rf flutter-web-build
+
     - name: Deploy to Firebase Hosting (action)
       uses: FirebaseExtended/action-hosting-deploy@v0
       with:
