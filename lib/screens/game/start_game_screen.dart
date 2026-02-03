@@ -11,7 +11,7 @@ import 'package:cards/models/game/game_styles.dart';
 import 'package:cards/screens/game/game_screen.dart';
 
 import 'package:cards/widgets/helpers/screen.dart';
-import 'package:cards/widgets/helpers/players_in_room_widget.dart';
+import 'package:cards/widgets/player/players_in_room_widget.dart';
 import 'package:cards/widgets/helpers/rooms_widget.dart';
 import 'package:cards/utils/browser_utils.dart';
 import 'package:flutter/foundation.dart';

@@ -8,7 +8,7 @@ import 'package:cards/models/game/game_styles.dart';
 import 'package:cards/screens/game/game_screen.dart';
 import 'package:cards/widgets/helpers/my_button.dart';
 import 'package:cards/widgets/helpers/screen.dart';
-import 'package:cards/widgets/helpers/players_in_room_widget.dart';
+import 'package:cards/widgets/player/players_in_room_widget.dart';
 import 'package:cards/widgets/helpers/rooms_widget.dart';
 import 'package:cards/widgets/helpers/edit_box.dart';
 import 'package:cards/utils/logger.dart';

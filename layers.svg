@@ -381,7 +381,7 @@
 </g>
 <g>
   <path d="M 590.0 128.0 C 640.0 128.0, 646.0 242.0, 696.0 242.0" class="edge"/>
-  <title>./lib/screens/game/join_game_screen.dart ▶ ./lib/widgets/helpers/players_in_room_widget.dart</title>
+  <title>./lib/screens/game/join_game_screen.dart ▶ ./lib/widgets/player/players_in_room_widget.dart</title>
 </g>
 <g>
   <path d="M 590.0 128.0 C 640.0 128.0, 646.0 312.0, 696.0 312.0" class="edge"/>
@@ -505,7 +505,7 @@
 </g>
 <g>
   <path d="M 590.0 198.0 C 640.0 198.0, 646.0 242.0, 696.0 242.0" class="edge"/>
-  <title>./lib/screens/game/start_game_screen.dart ▶ ./lib/widgets/helpers/players_in_room_widget.dart</title>
+  <title>./lib/screens/game/start_game_screen.dart ▶ ./lib/widgets/player/players_in_room_widget.dart</title>
 </g>
 <g>
   <path d="M 590.0 198.0 C 640.0 198.0, 646.0 312.0, 696.0 312.0" class="edge"/>
@@ -549,7 +549,7 @@
 </g>
 <g>
   <path d="M 590.0 268.0 C 640.0 268.0, 646.0 452.0, 696.0 452.0" class="edge"/>
-  <title>./lib/screens/keepscore/golf_score_screen.dart ▶ ./lib/widgets/helpers/player_header.dart</title>
+  <title>./lib/screens/keepscore/golf_score_screen.dart ▶ ./lib/widgets/player/player_header.dart</title>
 </g>
 <g>
   <path d="M 270.0 128.0 C 320.0 128.0, 1926.0 102.0, 1976.0 102.0" class="edge"/>
@@ -688,18 +688,6 @@
   <title>./lib/widgets/helpers/my_button.dart ▶ ./lib/models/app/constants_animation.dart</title>
 </g>
 <g>
-  <path d="M 910.0 268.0 C 960.0 268.0, 1286.0 102.0, 1336.0 102.0" class="edge"/>
-  <title>./lib/widgets/helpers/players_in_room_widget.dart ▶ ./lib/models/app/app_theme.dart</title>
-</g>
-<g>
-  <path d="M 910.0 268.0 C 960.0 268.0, 2886.0 102.0, 2936.0 102.0" class="edge"/>
-  <title>./lib/widgets/helpers/players_in_room_widget.dart ▶ ./lib/models/app/constants_layout.dart</title>
-</g>
-<g>
-  <path d="M 910.0 268.0 C 960.0 268.0, 2886.0 242.0, 2936.0 242.0" class="edge"/>
-  <title>./lib/widgets/helpers/players_in_room_widget.dart ▶ ./lib/widgets/helpers/my_text.dart</title>
-</g>
-<g>
   <path d="M 1230.0 268.0 C 1280.0 268.0, 2566.0 102.0, 2616.0 102.0" class="edge"/>
   <title>./lib/widgets/helpers/my_button_round.dart ▶ ./lib/models/app/constants_animation.dart</title>
 </g>
@@ -730,14 +718,6 @@
 <g>
   <path d="M 1230.0 128.0 C 1280.0 128.0, 2246.0 102.0, 2296.0 102.0" class="edge"/>
   <title>./lib/widgets/helpers/screen.dart ▶ ./lib/utils/logger.dart</title>
-</g>
-<g>
-  <path d="M 910.0 478.0 C 960.0 478.0, 2886.0 102.0, 2936.0 102.0" class="edge"/>
-  <title>./lib/widgets/helpers/player_header.dart ▶ ./lib/models/app/constants_layout.dart</title>
-</g>
-<g>
-  <path d="M 910.0 478.0 C 960.0 478.0, 966.0 172.0, 1016.0 172.0" class="edge"/>
-  <title>./lib/widgets/helpers/player_header.dart ▶ ./lib/widgets/helpers/edit_box.dart</title>
 </g>
 <g>
   <path d="M 1550.0 268.0 C 1600.0 268.0, 1606.0 102.0, 1656.0 102.0" class="edge"/>
@@ -788,6 +768,18 @@
   <title>./lib/widgets/player/player_header_widget.dart ▶ ./lib/widgets/player/status_picker.dart</title>
 </g>
 <g>
+  <path d="M 910.0 268.0 C 960.0 268.0, 1286.0 102.0, 1336.0 102.0" class="edge"/>
+  <title>./lib/widgets/player/players_in_room_widget.dart ▶ ./lib/models/app/app_theme.dart</title>
+</g>
+<g>
+  <path d="M 910.0 268.0 C 960.0 268.0, 2886.0 102.0, 2936.0 102.0" class="edge"/>
+  <title>./lib/widgets/player/players_in_room_widget.dart ▶ ./lib/models/app/constants_layout.dart</title>
+</g>
+<g>
+  <path d="M 910.0 268.0 C 960.0 268.0, 2886.0 242.0, 2936.0 242.0" class="edge"/>
+  <title>./lib/widgets/player/players_in_room_widget.dart ▶ ./lib/widgets/helpers/my_text.dart</title>
+</g>
+<g>
   <path d="M 1230.0 408.0 C 1280.0 408.0, 2886.0 102.0, 2936.0 102.0" class="edge"/>
   <title>./lib/widgets/player/player_zone_widget.dart ▶ ./lib/models/app/constants_layout.dart</title>
 </g>
@@ -806,6 +798,14 @@
 <g>
   <path d="M 1230.0 408.0 C 1280.0 408.0, 1286.0 242.0, 1336.0 242.0" class="edge"/>
   <title>./lib/widgets/player/player_zone_widget.dart ▶ ./lib/widgets/player/player_zone_cta_widget.dart</title>
+</g>
+<g>
+  <path d="M 910.0 478.0 C 960.0 478.0, 2886.0 102.0, 2936.0 102.0" class="edge"/>
+  <title>./lib/widgets/player/player_header.dart ▶ ./lib/models/app/constants_layout.dart</title>
+</g>
+<g>
+  <path d="M 910.0 478.0 C 960.0 478.0, 966.0 172.0, 1016.0 172.0" class="edge"/>
+  <title>./lib/widgets/player/player_header.dart ▶ ./lib/widgets/helpers/edit_box.dart</title>
 </g>
 <g class="outgoingBadge">
   <path d="M 276.0,128.0 L 264.0,121.0 Q 261.0,121.0 261.0,124.0 L 261.0,132.0 Q 261.0,135.0 264.0,135.0 Z" fill="#10b981"/>

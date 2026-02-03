@@ -6,7 +6,7 @@ import 'package:cards/models/game/golf_score_model.dart';
 import 'package:cards/widgets/helpers/my_button_round.dart';
 import 'package:cards/widgets/helpers/screen.dart';
 import 'package:cards/widgets/helpers/input_keyboard.dart';
-import 'package:cards/widgets/helpers/player_header.dart';
+import 'package:cards/widgets/player/player_header.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -357,6 +357,15 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
                       margin: EdgeInsets.only(top: columnGap),
                       decoration: BoxDecoration(
                         color: AppTheme.panelInputZone,
+                        border: Border.all(
+                          color:
+                              _selectedCell != null &&
+                                  _selectedCell!['row'] == i &&
+                                  _selectedCell!['col'] == j
+                              ? Colors.yellow
+                              : Colors.transparent,
+                          width: ConstLayout.strokeS,
+                        ),
                         borderRadius: const BorderRadius.all(
                           Radius.circular(ConstLayout.radiusS),
                         ),
