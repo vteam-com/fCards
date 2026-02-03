@@ -127,6 +127,16 @@ jobs:
         name: flutter-web-build
         path: build
 
+    - name: Move build files to correct location
+      run: |
+        if [ -f "build/main.dart.js" ] && [ ! -d "build/web" ]; then
+          echo "Moving build files from build/ to build/web/"
+          mkdir -p build/web
+          mv build/* build/web/ 2>/dev/null || true
+          # Remove any empty directories that might have been created
+          rmdir build/web/web 2>/dev/null || true
+        fi
+
     - name: Verify build directory exists
       run: |
         if [ ! -d "build/web" ]; then
