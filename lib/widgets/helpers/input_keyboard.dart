@@ -1,5 +1,5 @@
 import 'package:cards/models/app/constants_layout.dart';
-import 'package:cards/widgets/helpers/my_button.dart';
+import 'package:cards/widgets/helpers/my_button_round.dart';
 import 'package:flutter/material.dart';
 
 ///
@@ -72,7 +72,7 @@ class InputKeyboard extends StatelessWidget {
   Widget _buildButton(String text) {
     return Padding(
       padding: const EdgeInsets.all(ConstLayout.sizeS),
-      child: MyButton(
+      child: MyButtonRound(
         size: ConstLayout.iconL,
         onTap: () => onKeyPressed(text),
         child: Text(

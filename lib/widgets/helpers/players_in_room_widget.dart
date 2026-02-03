@@ -1,5 +1,6 @@
+import 'package:cards/models/app/app_theme.dart';
 import 'package:cards/models/app/constants_layout.dart';
-
+import 'package:cards/widgets/helpers/my_text.dart';
 import 'package:flutter/material.dart';
 
 ///
@@ -35,29 +36,19 @@ class PlayersInRoomWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    final surface = colorScheme.surface;
-    final surfaceOverlay = surface.withAlpha(100);
+
     return Container(
-      constraints: BoxConstraints(maxHeight: 250),
+      constraints: BoxConstraints(
+        maxHeight: ConstLayout.joinGamePlayerListMaxWidth,
+      ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Container(
-            padding: const EdgeInsets.all(8),
-            decoration: BoxDecoration(
-              color: surfaceOverlay,
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(8),
-                topRight: Radius.circular(8),
-              ),
-            ),
-            child: Text('${playerNames.length} players'),
-          ),
           Expanded(
             child: DecoratedBox(
               decoration: BoxDecoration(
-                color: surface,
+                color: AppTheme.panelInputZone,
                 borderRadius: BorderRadius.all(
                   Radius.circular(ConstLayout.radiusM),
                 ),
@@ -69,22 +60,17 @@ class PlayersInRoomWidget extends StatelessWidget {
                   return ListTile(
                     title: TextButton(
                       onPressed: () => onPlayerSelected(playerNames[index]),
-                      child: Text(
-                        nameToDisplay,
-                        style: const TextStyle(fontSize: 20),
-                      ),
+                      child: MyText(nameToDisplay, fontSize: ConstLayout.textM),
                     ),
                     leading: SizedBox(
-                      width: 40,
-                      child: nameToDisplay == activePlayerName
-                          ? Text('(YOU)')
-                          : null,
+                      width: ConstLayout.sizeXL,
+                      child: MyText(
+                        nameToDisplay == activePlayerName ? 'YOU>' : '',
+                        fontSize: ConstLayout.textS,
+                      ),
                     ),
                     trailing: IconButton(
-                      icon: Icon(
-                        Icons.remove_circle,
-                        color: Colors.red.shade300,
-                      ),
+                      icon: Icon(Icons.remove_circle, color: colorScheme.error),
                       onPressed: () => onRemovePlayer(playerNames[index]),
                     ),
                   );

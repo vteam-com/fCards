@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:cards/models/app/constants_card_value.dart';
 import 'package:cards/models/app/constants_layout.dart';
-import 'package:cards/widgets/helpers/misc.dart';
+import 'package:cards/widgets/helpers/my_text.dart';
 import 'package:cards/models/card/card_model.dart';
 import 'package:cards/widgets/cards/card_face_french_widget.dart';
 import 'package:flutter/material.dart';
@@ -65,9 +65,9 @@ class CardFaceSkyjoWidget extends CardFaceFrenchWidget {
   Widget _buildSmallText() {
     return Stack(
       children: [
-        TextSize(
+        MyText(
           card.rank,
-          ConstLayout.textM,
+          fontSize: ConstLayout.textM,
           align: TextAlign.center,
           color: Colors.black,
           bold: true,

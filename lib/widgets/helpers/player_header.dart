@@ -1,6 +1,51 @@
-// ignore: fcheck_magic_numbers
-
+import 'package:cards/models/app/constants_layout.dart';
 import 'package:flutter/material.dart';
+import 'package:cards/widgets/helpers/edit_box.dart';
+
+/// Constants for player header widget dimensions and styling
+class PlayerHeaderConstants {
+  /// Height of the winning position display
+  static const double winningPositionHeight = 24.0;
+
+  /// Height of the score display
+  static const double scoreHeight = 30.0;
+
+  /// Font size for rank text
+  static const double rankFontSize = 14.0;
+
+  /// Opacity for non-first place players
+  static const double nonFirstPlaceOpacity = 0.7;
+
+  /// Opacity for last place player
+  static const double lastPlaceOpacity = 0.5;
+
+  /// Shadow blur radius for score text
+  static const double scoreShadowBlurRadius = 2.0;
+
+  /// Shadow offset for score text
+  static const double scoreShadowOffset = 1.0;
+
+  /// Selection color alpha value
+  static const int selectionColorAlpha = 150;
+
+  /// Dialog animation delay in milliseconds
+  static const int dialogAnimationDelay = 150;
+
+  /// Spacing between column children
+  static const double columnSpacing = 8.0;
+
+  /// Spacing between dialog content elements
+  static const double dialogContentSpacing = 16.0;
+
+  /// Spacing between wrap children
+  static const double wrapSpacing = 16.0;
+
+  /// Border radius for dialogs
+  static const double dialogBorderRadius = 16.0;
+
+  /// Border width for dialogs
+  static const double dialogBorderWidth = 1.0;
+}
 
 /// A widget for editing a player's name.
 ///
@@ -51,24 +96,25 @@ class PlayerHeader extends StatefulWidget {
 class _PlayerHeaderState extends State<PlayerHeader> {
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
         backgroundColor: _getScoreColor(
           widget.rank,
           widget.numberOfPlayers,
-        ).withAlpha(150),
+        ).withAlpha(PlayerHeaderConstants.selectionColorAlpha),
       ),
       onPressed: _showEditPlayerDialog,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
-        spacing: 8,
+        spacing: PlayerHeaderConstants.columnSpacing,
         children: [
           //
           // Running place King,2,3,4,Last
           //
           SizedBox(
-            height: 24,
+            height: PlayerHeaderConstants.winningPositionHeight,
             child: Center(
               child: _buildWiningPosition(widget.rank, widget.numberOfPlayers),
             ),
@@ -80,35 +126,42 @@ class _PlayerHeaderState extends State<PlayerHeader> {
           Text(
             widget.playerName,
             textAlign: TextAlign.center,
-            overflow: TextOverflow.ellipsis,
+            overflow: TextOverflow.fade,
+            style: TextStyle(fontSize: ConstLayout.textS),
           ),
 
           //
           // Score
           //
           SizedBox(
-            height: 30,
+            height: PlayerHeaderConstants.scoreHeight,
             child: FittedBox(
               child: Text(
                 widget.totalScore.toString(),
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: 30,
+                  fontSize: ConstLayout.textM,
                   // Make the score color brighter by blending with white
                   color: Color.alphaBlend(
-                    Colors.white.withAlpha(200),
+                    colorScheme.onSurface,
                     _getScoreColor(widget.rank, widget.numberOfPlayers),
                   ),
                   shadows: <Shadow>[
                     const Shadow(
                       color: Colors.white54,
-                      offset: Offset(-1, -1),
-                      blurRadius: 2,
+                      offset: Offset(
+                        -PlayerHeaderConstants.scoreShadowOffset,
+                        -PlayerHeaderConstants.scoreShadowOffset,
+                      ),
+                      blurRadius: PlayerHeaderConstants.scoreShadowBlurRadius,
                     ),
                     const Shadow(
                       color: Colors.black54,
-                      offset: Offset(1, 1),
-                      blurRadius: 2,
+                      offset: Offset(
+                        PlayerHeaderConstants.scoreShadowOffset,
+                        PlayerHeaderConstants.scoreShadowOffset,
+                      ),
+                      blurRadius: PlayerHeaderConstants.scoreShadowBlurRadius,
                     ),
                   ],
                 ),
@@ -126,18 +179,24 @@ class _PlayerHeaderState extends State<PlayerHeader> {
       return Text('👑', style: TextStyle(fontWeight: FontWeight.w900));
     } else if (rank == numberOfPlayers) {
       return Opacity(
-        opacity: 0.5,
+        opacity: PlayerHeaderConstants.lastPlaceOpacity,
         child: Text(
           'LAST',
-          style: TextStyle(fontWeight: FontWeight.w900, fontSize: 14),
+          style: TextStyle(
+            fontWeight: FontWeight.w900,
+            fontSize: PlayerHeaderConstants.rankFontSize,
+          ),
         ),
       );
     } else {
       return Opacity(
-        opacity: 0.7,
+        opacity: PlayerHeaderConstants.nonFirstPlaceOpacity,
         child: Text(
           '#$rank',
-          style: TextStyle(fontWeight: FontWeight.w900, fontSize: 14),
+          style: TextStyle(
+            fontWeight: FontWeight.w900,
+            fontSize: PlayerHeaderConstants.rankFontSize,
+          ),
         ),
       );
     }
@@ -160,20 +219,26 @@ class _PlayerHeaderState extends State<PlayerHeader> {
       extentOffset: controller.text.length,
     );
     final focusNode = FocusNode();
+    final colorScheme = Theme.of(context).colorScheme;
     showDialog(
       context: context,
       builder: (context) {
         return Theme(
           data: Theme.of(context).copyWith(
             textSelectionTheme: TextSelectionThemeData(
-              selectionColor: Colors.green.shade800,
+              selectionColor: colorScheme.primaryContainer,
             ),
           ),
           child: AlertDialog(
-            backgroundColor: Colors.green.shade900,
+            backgroundColor: colorScheme.surface,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16),
-              side: BorderSide(color: Colors.green.shade300, width: 1),
+              borderRadius: BorderRadius.circular(
+                PlayerHeaderConstants.dialogBorderRadius,
+              ),
+              side: BorderSide(
+                color: colorScheme.primary,
+                width: PlayerHeaderConstants.dialogBorderWidth,
+              ),
             ),
             title: Text(
               widget.playerIndex != null
@@ -182,20 +247,14 @@ class _PlayerHeaderState extends State<PlayerHeader> {
             ),
             content: Column(
               mainAxisSize: MainAxisSize.min,
-              spacing: 16,
+              spacing: PlayerHeaderConstants.dialogContentSpacing,
               children: [
-                TextField(
+                EditBox(
+                  label: 'Player Name',
                   controller: controller,
-                  focusNode: focusNode,
-                  autofocus: true,
-                  style: TextStyle(color: Colors.white, fontSize: 30),
-                  decoration: InputDecoration(
-                    hintText: 'Player Name',
-                    hintStyle: TextStyle(color: Colors.grey[400]),
-                    filled: true,
-                    fillColor: Colors.black,
-                    border: const OutlineInputBorder(),
-                  ),
+                  onSubmitted: () {},
+                  errorStatus: '',
+                  rightSideChild: null,
                 ),
                 ElevatedButton(
                   onPressed: () {
@@ -206,19 +265,19 @@ class _PlayerHeaderState extends State<PlayerHeader> {
                   },
                   child: const Text('Done'),
                 ),
-                Divider(color: Colors.green),
+                Divider(color: colorScheme.primary),
                 Wrap(
-                  spacing: 16,
-                  runSpacing: 16,
+                  spacing: PlayerHeaderConstants.wrapSpacing,
+                  runSpacing: PlayerHeaderConstants.wrapSpacing,
                   children: [
                     OutlinedButton(
                       onPressed: () {
                         Navigator.of(context).pop();
                         widget.onPlayerAdded?.call();
                       },
-                      child: const Text(
+                      child: Text(
                         'Add another player',
-                        style: TextStyle(color: Colors.white),
+                        style: TextStyle(color: colorScheme.onSurface),
                       ),
                     ),
                     OutlinedButton(
@@ -228,7 +287,7 @@ class _PlayerHeaderState extends State<PlayerHeader> {
                       },
                       child: Text(
                         'Remove this player',
-                        style: TextStyle(color: Colors.red.shade200),
+                        style: TextStyle(color: colorScheme.error),
                       ),
                     ),
                   ],
@@ -242,24 +301,33 @@ class _PlayerHeaderState extends State<PlayerHeader> {
     if (mounted) {
       focusNode.requestFocus();
     }
-    Future.delayed(const Duration(milliseconds: 150), () {
-      if (mounted) {
-        controller.selection = TextSelection(
-          baseOffset: 0,
-          extentOffset: controller.text.length,
-        );
-      }
-    });
+    Future.delayed(
+      Duration(milliseconds: PlayerHeaderConstants.dialogAnimationDelay),
+      () {
+        if (mounted) {
+          controller.selection = TextSelection(
+            baseOffset: 0,
+            extentOffset: controller.text.length,
+          );
+        }
+      },
+    );
   }
 
   void _showRemoveConfirmationDialog() {
+    final colorScheme = Theme.of(context).colorScheme;
     showDialog(
       context: context,
       builder: (context) {
         return AlertDialog(
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(16),
-            side: BorderSide(color: Colors.green.shade600, width: 1),
+            borderRadius: BorderRadius.circular(
+              PlayerHeaderConstants.dialogBorderRadius,
+            ),
+            side: BorderSide(
+              color: colorScheme.primaryContainer,
+              width: PlayerHeaderConstants.dialogBorderWidth,
+            ),
           ),
           title: const Text('Remove Player'),
           content: Text(

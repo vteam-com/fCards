@@ -1,4 +1,3 @@
-import 'package:cards/models/app/constants_layout.dart';
 import 'package:cards/models/game/backend_model.dart';
 import 'package:cards/models/app/firebase_options.dart';
 import 'package:cards/screens/game/join_game_screen.dart';
@@ -51,82 +50,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final baseTheme = AppTheme.theme;
-    final colorScheme = baseTheme.colorScheme;
-    final onSurface = colorScheme.onSurface;
-    final surfaceBackground = colorScheme.surface;
-    final onSurfaceHint = onSurface.withAlpha(100);
-
     return MaterialApp(
       title: 'Cards',
-      theme: baseTheme.copyWith(
-        brightness: Brightness.dark,
-        scaffoldBackgroundColor: surfaceBackground,
-        cardColor: surfaceBackground,
-        textTheme: baseTheme.textTheme.apply(
-          fontFamily: 'Roboto',
-          bodyColor: onSurface,
-          displayColor: onSurface,
-        ),
-        hintColor: onSurfaceHint,
-        inputDecorationTheme: InputDecorationTheme(
-          filled: true,
-          fillColor: onSurface.withAlpha(100),
-          hintStyle: TextStyle(color: onSurfaceHint),
-          labelStyle: TextStyle(color: onSurface),
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: colorScheme.primary.withAlpha(100),
-              width: ConstLayout.enabledBorderWidth,
-            ),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: colorScheme.secondary,
-              width: ConstLayout.focusedBorderWidth,
-            ),
-          ),
-        ),
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(
-            backgroundColor: surfaceBackground,
-            foregroundColor: onSurface,
-            padding: const EdgeInsets.symmetric(
-              horizontal: ConstLayout.buttonHorizontalPadding,
-              vertical: ConstLayout.buttonVerticalPadding,
-            ),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(ConstLayout.borderRadius),
-              side: BorderSide(
-                color: colorScheme.primary.withAlpha(100),
-                width: ConstLayout.enabledBorderWidth,
-              ),
-            ),
-          ),
-        ),
-        textButtonTheme: TextButtonThemeData(
-          style: TextButton.styleFrom(
-            foregroundColor: onSurface,
-            padding: const EdgeInsets.symmetric(
-              horizontal: ConstLayout.buttonHorizontalPadding,
-              vertical: ConstLayout.buttonVerticalPadding,
-            ),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(ConstLayout.borderRadius),
-            ),
-          ),
-        ),
-        appBarTheme: AppBarTheme(
-          backgroundColor: surfaceBackground,
-          titleTextStyle: TextStyle(
-            color: onSurface,
-            fontWeight: FontWeight.bold,
-          ),
-          iconTheme: IconThemeData(color: onSurface),
-        ),
-        iconTheme: IconThemeData(color: onSurface),
-        primaryIconTheme: IconThemeData(color: onSurface),
-      ),
+      theme: AppTheme.theme,
       initialRoute: '/',
       routes: {
         '/': (context) => const MainMenu(),

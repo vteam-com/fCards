@@ -4,9 +4,9 @@ import 'dart:ui';
 import 'package:cards/models/app/constants_animation.dart';
 import 'package:flutter/material.dart';
 
-/// A custom circular glass-like button with blur and ripple effects.
+/// A custom rounded rectangular glass-like button with blur and ripple effects.
 ///
-/// This widget displays a circular button with a glassmorphic (frosted glass) appearance,
+/// This widget displays a rounded rectangular button with a glassmorphic (frosted glass) appearance,
 /// including a blurred background, border, gradient, and ripple effect on tap.
 /// The child widget is centered inside the button.
 class MyButton extends StatelessWidget {
@@ -14,36 +14,47 @@ class MyButton extends StatelessWidget {
   ///
   /// [onTap] is called when the button is tapped.
   /// [child] is the widget displayed inside the button.
-  /// [size] determines the diameter of the button (default is 44).
+  /// [height] determines the height of the button (default is 44).
+  /// [width] determines the width of the button (default is 200).
+  /// [borderRadius] determines the corner radius of the button (default is 12).
   /// [padding] adds padding around the button (default is [EdgeInsets.all(0)]).
   const MyButton({
     super.key,
     required this.onTap,
     required this.child,
-    this.size = 44,
+    this.height = 44,
+    this.width = 200,
+    this.borderRadius = 12,
     this.padding = const EdgeInsets.all(0),
   });
+
+  /// The corner radius of the button.
+  final double borderRadius;
 
   /// The widget displayed at the center of the button.
   final Widget child;
 
+  /// The height of the button.
+  final double height;
+
   /// Called when the button is tapped.
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
 
   /// Padding around the button.
   final EdgeInsets padding;
 
-  /// The diameter of the circular button.
-  final double size;
+  /// The width of the button.
+  final double width;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: padding,
       child: SizedBox(
-        width: size,
-        height: size,
-        child: ClipOval(
+        width: width,
+        height: height,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(borderRadius),
           child: Stack(
             fit: StackFit.expand,
             children: [
@@ -58,7 +69,7 @@ class MyButton extends StatelessWidget {
               // Glassy layer
               Container(
                 decoration: BoxDecoration(
-                  shape: BoxShape.circle,
+                  borderRadius: BorderRadius.circular(borderRadius),
                   gradient: LinearGradient(
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
@@ -97,6 +108,7 @@ class MyButton extends StatelessWidget {
               Material(
                 type: MaterialType.transparency,
                 child: InkWell(
+                  enableFeedback: onTap != null,
                   onTap: onTap,
                   splashColor: Colors.white.withOpacity(
                     ConstAnimation.whiteOverlayOpacity,
@@ -104,6 +116,7 @@ class MyButton extends StatelessWidget {
                   highlightColor: Colors.white.withOpacity(
                     ConstAnimation.whiteHighlightOpacity,
                   ),
+                  borderRadius: BorderRadius.circular(borderRadius),
                   child: Center(child: child),
                 ),
               ),

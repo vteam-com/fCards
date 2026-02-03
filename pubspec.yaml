@@ -16,7 +16,7 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
-version: 1.9.8
+version: 1.9.9
 
 environment:
   sdk: ^3.10.8
@@ -78,6 +78,9 @@ flutter:
     - family: Roboto
       fonts:
         - asset: assets/fonts/Roboto/Roboto-Regular.ttf
+    - family: GameFont
+      fonts:
+        - asset: assets/fonts/Roboto_Mono/RobotoMono-Regular.ttf
   generate: true
 
 # dart run flutter_launcher_icons

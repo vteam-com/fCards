@@ -93,9 +93,7 @@ class _ScreenState extends State<Screen> {
           fit: BoxFit.scaleDown,
           child: Text(
             widget.title,
-            style: TextStyle(
-              color: Theme.of(context).colorScheme.secondary.withAlpha(200),
-            ),
+            style: TextStyle(color: Theme.of(context).colorScheme.secondary),
           ),
         ),
         actions: [
@@ -136,7 +134,7 @@ class _ScreenState extends State<Screen> {
               child: Text(
                 widget.rightText,
                 style: TextStyle(
-                  color: Theme.of(context).colorScheme.secondary.withAlpha(200),
+                  color: Theme.of(context).colorScheme.secondary,
                 ),
               ),
             ),

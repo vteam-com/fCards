@@ -1,5 +1,6 @@
+import 'package:cards/models/app/app_theme.dart';
 import 'package:cards/models/app/constants_layout.dart';
-
+import 'package:cards/widgets/helpers/edit_box.dart';
 import 'package:flutter/material.dart';
 
 /// A widget that displays a list of rooms, allowing the user to select a room and optionally remove a room.
@@ -72,40 +73,26 @@ class _RoomsWidgetState extends State<RoomsWidget> {
           // Search Box
           Padding(
             padding: const EdgeInsets.all(ConstLayout.sizeM),
-            child: TextField(
+            child: EditBox(
               controller: _searchController,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: ConstLayout.textM,
-              ),
-              decoration: InputDecoration(
-                hintText: 'Search rooms...',
-                hintStyle: const TextStyle(color: Colors.white70),
-                prefixIcon: const Icon(Icons.search, color: Colors.white70),
-                filled: true,
-                fillColor: Colors.black.withAlpha(
-                  ConstLayout.searchBoxFillAlpha,
-                ),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(ConstLayout.radiusM),
-                  borderSide: BorderSide.none,
-                ),
-                contentPadding: const EdgeInsets.symmetric(
-                  horizontal: ConstLayout.sizeM,
-                  vertical: ConstLayout.sizeS,
-                ),
-              ),
-              onChanged: (value) {
-                setState(() {
-                  _searchText = value;
-                });
-              },
-              onSubmitted: (value) {
+              onSubmitted: () {
                 // If search matches exactly one room, select it
                 if (filteredRooms.length == 1) {
                   widget.onSelected(filteredRooms[0]);
                 }
               },
+              onChanged: (value) {
+                setState(() {
+                  _searchText = value;
+                });
+              },
+              errorStatus: '',
+              rightSideChild: const SizedBox.shrink(),
+              prefixIcon: Icon(
+                Icons.search,
+                color: AppTheme.onSurfaceHint,
+                size: ConstLayout.iconM,
+              ),
             ),
           ),
 
@@ -115,7 +102,7 @@ class _RoomsWidgetState extends State<RoomsWidget> {
           // Room List
           Expanded(
             child: filteredRooms.isEmpty
-                ? _buildEmptyState()
+                ? _buildEmptyState(colorScheme)
                 : ListView.builder(
                     itemCount: filteredRooms.length,
                     itemBuilder: (context, index) {
@@ -131,8 +118,8 @@ class _RoomsWidgetState extends State<RoomsWidget> {
               padding: const EdgeInsets.all(ConstLayout.sizeM),
               child: Text(
                 'No rooms found matching "$_searchText"',
-                style: const TextStyle(
-                  color: Colors.white70,
+                style: TextStyle(
+                  color: AppTheme.onSurfaceHint,
                   fontSize: ConstLayout.textS,
                 ),
                 textAlign: TextAlign.center,
@@ -143,32 +130,24 @@ class _RoomsWidgetState extends State<RoomsWidget> {
     );
   }
 
-  Widget _buildEmptyState() {
+  Widget _buildEmptyState(ColorScheme colorScheme) {
     return Center(
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const Icon(
+          Icon(
             Icons.meeting_room,
             size: ConstLayout.iconL,
-            color: Colors.white70,
+            color: AppTheme.panelInputZone,
           ),
           const SizedBox(height: ConstLayout.sizeM),
           Text(
             _searchText.isEmpty ? 'No rooms available' : 'No matching rooms',
-            style: const TextStyle(
-              color: Colors.white70,
+            style: TextStyle(
+              color: AppTheme.onSurfaceHint,
               fontSize: ConstLayout.textM,
             ),
           ),
-          if (_searchText.isNotEmpty)
-            Text(
-              'Try a different search term',
-              style: const TextStyle(
-                color: Colors.white54,
-                fontSize: ConstLayout.textS,
-              ),
-            ),
         ],
       ),
     );
@@ -203,14 +182,14 @@ class _RoomsWidgetState extends State<RoomsWidget> {
               ? colorScheme.primaryContainer.withAlpha(
                   ConstLayout.selectedRoomBackgroundAlpha,
                 )
-              : Colors.transparent,
+              : colorScheme.surface.withAlpha(0),
         ),
         child: Align(
           alignment: Alignment.centerLeft,
           child: Text(
             roomName,
             style: TextStyle(
-              color: Colors.white,
+              color: colorScheme.onSurface,
               fontSize: ConstLayout.textM,
               fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
             ),
@@ -222,7 +201,7 @@ class _RoomsWidgetState extends State<RoomsWidget> {
           : IconButton(
               icon: Icon(
                 Icons.remove_circle,
-                color: Colors.red.shade300,
+                color: colorScheme.error,
                 size: ConstLayout.iconS,
               ),
               onPressed: () => widget.onRemoveRoom!(roomName),

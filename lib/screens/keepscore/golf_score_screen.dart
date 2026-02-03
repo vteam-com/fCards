@@ -1,10 +1,11 @@
 // ignore_for_file: require_trailing_commas, deprecated_member_use
 
+import 'package:cards/models/app/app_theme.dart';
 import 'package:cards/models/app/constants_layout.dart';
 import 'package:cards/models/game/golf_score_model.dart';
+import 'package:cards/widgets/helpers/my_button_round.dart';
 import 'package:cards/widgets/helpers/screen.dart';
 import 'package:cards/widgets/helpers/input_keyboard.dart';
-import 'package:cards/widgets/helpers/my_button.dart';
 import 'package:cards/widgets/helpers/player_header.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -74,6 +75,7 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
 
         final GolfScoreModel scoreModel = snapshot.data!;
         final List<int> ranks = scoreModel.getPlayerRanks();
+        final colorScheme = Theme.of(context).colorScheme;
 
         return Screen(
           title: '9 Cards Golf Scorekeeper',
@@ -103,9 +105,18 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
                         child: FittedBox(
                           child: Column(
                             children: [
-                              _buildRounds(scoreModel, ranks),
+                              _buildRounds(
+                                context,
+                                scoreModel,
+                                ranks,
+                                colorScheme,
+                              ),
                               if (_selectedCell == null)
-                                _buildAddOrRemoveRow(scoreModel),
+                                _buildAddOrRemoveRow(
+                                  context,
+                                  scoreModel,
+                                  colorScheme,
+                                ),
                               if (_selectedCell != null)
                                 InputKeyboard(
                                   onKeyPressed: (key) =>
@@ -188,13 +199,16 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
     });
   }
 
-  Widget _buildAddOrRemoveRow(final GolfScoreModel scoreModel) {
+  Widget _buildAddOrRemoveRow(
+    final BuildContext context,
+    final GolfScoreModel scoreModel,
+    final ColorScheme colorScheme,
+  ) {
     return IntrinsicWidth(
       child: Container(
         margin: EdgeInsets.all(ConstLayout.sizeS),
         decoration: BoxDecoration(
-          color: Colors.black26,
-          border: Border.all(color: Colors.black26),
+          color: AppTheme.panelInputZone,
           borderRadius: const BorderRadius.all(
             Radius.circular(ConstLayout.radiusXL),
           ),
@@ -205,8 +219,7 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           spacing: ConstLayout.sizeS,
           children: [
-            MyButton(
-              size: ConstLayout.iconM,
+            MyButtonRound(
               onTap: () {
                 setState(() {
                   scoreModel.addRound();
@@ -228,8 +241,7 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
               style: TextStyle(fontSize: ConstLayout.textS),
             ),
             if (scoreModel.scores.length > 1)
-              MyButton(
-                size: ConstLayout.iconM,
+              MyButtonRound(
                 onTap: () {
                   final lastRoundScores = scoreModel.scores.last;
                   final allScoresAreZero = lastRoundScores.every(
@@ -294,7 +306,12 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
     );
   }
 
-  Widget _buildRounds(final dynamic scoreModel, final dynamic ranks) {
+  Widget _buildRounds(
+    final BuildContext context,
+    final dynamic scoreModel,
+    final dynamic ranks,
+    final ColorScheme colorScheme,
+  ) {
     List<Widget> widgets = [
       for (int i = 0; i < scoreModel.scores.length; i++)
         Row(
@@ -339,16 +356,7 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
                       height: ConstLayout.height40,
                       margin: EdgeInsets.only(top: columnGap),
                       decoration: BoxDecoration(
-                        color: Colors.black26,
-                        border: Border.all(
-                          color:
-                              _selectedCell != null &&
-                                  _selectedCell!['row'] == i &&
-                                  _selectedCell!['col'] == j
-                              ? Colors.yellow
-                              : Colors.transparent,
-                          width: ConstLayout.strokeS,
-                        ),
+                        color: AppTheme.panelInputZone,
                         borderRadius: const BorderRadius.all(
                           Radius.circular(ConstLayout.radiusS),
                         ),
@@ -362,6 +370,7 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
                             fontWeight: FontWeight.bold,
                             fontSize: ConstLayout.textM,
                             color: _getScoreColor(
+                              colorScheme,
                               ranks[j],
                               scoreModel.playerNames.length,
                             ),
@@ -390,13 +399,13 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
     });
   }
 
-  Color _getScoreColor(int rank, int numberOfPlayers) {
+  Color _getScoreColor(ColorScheme colorScheme, int rank, int numberOfPlayers) {
     if (rank == 1) {
-      return Colors.green.shade300;
+      return colorScheme.primary;
     } else if (rank == numberOfPlayers) {
-      return Colors.red.shade300;
+      return colorScheme.error;
     } else {
-      return Colors.orange.shade300;
+      return colorScheme.secondary;
     }
   }
 

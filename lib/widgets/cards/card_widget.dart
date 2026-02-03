@@ -1,7 +1,6 @@
 import 'package:cards/models/app/constants_layout.dart';
 import 'package:cards/models/card/card_dimensions.dart';
 import 'package:cards/models/card/card_model.dart';
-
 import 'package:cards/widgets/cards/card_face_french_widget.dart';
 import 'package:cards/widgets/cards/card_face_skyjo_widget.dart';
 import 'package:cards/widgets/helpers/wiggle_widget.dart';
@@ -19,6 +18,8 @@ class CardWidget extends StatelessWidget {
   /// If the card is null, a placeholder is shown.
   const CardWidget({super.key, required this.card, this.onDropped});
 
+  final double _dragOperationScale = 1.5;
+
   /// The playing card to be displayed.
   final CardModel card;
 
@@ -35,7 +36,7 @@ class CardWidget extends StatelessWidget {
       onWillAcceptWithDetails: (data) => card.isSelectable && onDropped != null,
       builder: (context, List<CardModel?> candidateData, List rejectedData) {
         return Transform.scale(
-          scale: candidateData.isEmpty ? 1.0 : 1.5,
+          scale: candidateData.isEmpty ? 1.0 : _dragOperationScale,
           child: buildCard(),
         );
       },
@@ -69,12 +70,14 @@ class CardWidget extends StatelessWidget {
   }
 }
 
+final double _dragOperationOpacity = 0.8;
+
 ///
 Widget dragSource(final CardModel card) {
   return Draggable<CardModel>(
     data: card,
     feedback: Opacity(
-      opacity: 0.8,
+      opacity: _dragOperationOpacity,
       child: CardWidget(card: card, onDropped: null),
     ),
     childWhenDragging: SizedBox(), // hide it when dragging

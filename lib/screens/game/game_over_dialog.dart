@@ -1,5 +1,5 @@
 import 'package:cards/models/app/constants_layout.dart';
-import 'package:cards/widgets/helpers/misc.dart';
+import 'package:cards/widgets/helpers/my_text.dart';
 import 'package:cards/models/game/backend_model.dart';
 import 'package:cards/models/game/game_model.dart';
 import 'package:cards/widgets/helpers/dialog.dart';
@@ -69,9 +69,9 @@ void showGameOverDialog(
                   gameModel.getWinsForPlayerName(player.name).length.toString(),
                   style: const TextStyle(fontSize: ConstLayout.textXS),
                 ),
-                TextSize(
+                MyText(
                   player.sumOfRevealedCards.toString(),
-                  ConstLayout.textM.toInt(),
+                  fontSize: ConstLayout.textM.toInt(),
                   bold: true,
                 ),
               ],

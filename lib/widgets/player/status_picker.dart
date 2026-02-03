@@ -1,6 +1,5 @@
-// ignore: fcheck_magic_numbers
-
-import 'package:cards/widgets/helpers/misc.dart';
+import 'package:cards/models/app/constants_layout.dart';
+import 'package:cards/widgets/helpers/my_text.dart';
 import 'package:cards/models/player/player_status.dart';
 import 'package:flutter/material.dart';
 
@@ -53,10 +52,21 @@ class _StatusPickerState extends State<StatusPicker> {
           },
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            spacing: ConstLayout.sizeS,
             children: [
-              TextSize(status.emoji, 20, color: Colors.yellow, bold: true),
-              SizedBox(width: 8),
-              TextSize(status.phrase, 16, color: Colors.yellow, bold: true),
+              MyText(
+                status.emoji,
+                fontSize: ConstLayout.sizeL,
+                color: Colors.yellow,
+                bold: true,
+              ),
+
+              MyText(
+                status.phrase,
+                fontSize: ConstLayout.sizeL,
+                color: Colors.yellow,
+                bold: true,
+              ),
             ],
           ),
         );

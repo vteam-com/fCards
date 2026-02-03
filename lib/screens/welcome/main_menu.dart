@@ -130,7 +130,7 @@ class MenuButton extends StatelessWidget {
             ),
           ),
           elevation: ConstLayout.elevationL,
-          shadowColor: Colors.black45,
+          shadowColor: Colors.white,
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,

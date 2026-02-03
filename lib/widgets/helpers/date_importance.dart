@@ -1,5 +1,5 @@
 import 'package:cards/models/app/constants_layout.dart';
-import 'package:cards/widgets/helpers/misc.dart';
+import 'package:cards/widgets/helpers/my_text.dart';
 import 'package:flutter/material.dart';
 
 /// A widget that displays a formatted date and time
@@ -34,9 +34,9 @@ class DateTimeWidget extends StatelessWidget {
   }
 
   Widget _buildText(final num value, double fontSize) {
-    return TextSize(
+    return MyText(
       value.toString().padLeft(ConstLayout.datePaddingLength, '0'),
-      fontSize,
+      fontSize: fontSize,
       bold: true,
     );
   }

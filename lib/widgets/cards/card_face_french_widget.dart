@@ -1,6 +1,6 @@
 import 'package:cards/models/app/constants_card_value.dart';
 import 'package:cards/models/app/constants_layout.dart';
-import 'package:cards/widgets/helpers/misc.dart';
+import 'package:cards/widgets/helpers/my_text.dart';
 import 'package:cards/models/card/card_model.dart';
 
 import 'package:flutter/material.dart';
@@ -54,10 +54,10 @@ class CardFaceFrenchWidget extends StatelessWidget {
       case '§':
         return FittedBox(
           fit: BoxFit.scaleDown,
-          child: TextSize(
+          child: MyText(
             'Joker',
+            fontSize: ConstLayout.textL,
             align: TextAlign.center,
-            ConstLayout.textL,
             bold: true,
             color: color,
           ),
@@ -68,15 +68,30 @@ class CardFaceFrenchWidget extends StatelessWidget {
         return Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            TextSize(card.rank, ConstLayout.textL, bold: true, color: color),
-            TextSize(card.suit, ConstLayout.textS, bold: true, color: color),
+            MyText(
+              card.rank,
+              fontSize: ConstLayout.textL,
+              bold: true,
+              color: color,
+            ),
+            MyText(
+              card.suit,
+              fontSize: ConstLayout.textS,
+              bold: true,
+              color: color,
+            ),
           ],
         );
       default:
         return Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            TextSize(card.rank, ConstLayout.textL, bold: true, color: color),
+            MyText(
+              card.rank,
+              fontSize: ConstLayout.textL,
+              bold: true,
+              color: color,
+            ),
           ],
         );
     }
@@ -251,9 +266,9 @@ class CardFaceFrenchWidget extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        TextSize(
+        MyText(
           card.value.toString(),
-          ConstLayout.textM,
+          fontSize: ConstLayout.textM,
           align: TextAlign.right,
           bold: true,
           color: getSuitColor(card.suit),

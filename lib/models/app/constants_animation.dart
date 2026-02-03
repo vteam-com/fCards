@@ -1,5 +1,3 @@
-// ignore: fcheck_magic_numbers
-
 /// Animation constants.
 class ConstAnimation {
   const ConstAnimation();

@@ -6,9 +6,11 @@ import 'package:cards/models/game/game_model.dart';
 import 'package:cards/screens/game/game_style.dart';
 import 'package:cards/models/game/game_styles.dart';
 import 'package:cards/screens/game/game_screen.dart';
+import 'package:cards/widgets/helpers/my_button.dart';
 import 'package:cards/widgets/helpers/screen.dart';
 import 'package:cards/widgets/helpers/players_in_room_widget.dart';
 import 'package:cards/widgets/helpers/rooms_widget.dart';
+import 'package:cards/widgets/helpers/edit_box.dart';
 import 'package:cards/utils/logger.dart';
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -85,15 +87,21 @@ class JoinGameScreenState extends State<JoinGameScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 if (_currentStep > 0)
-                  ElevatedButton.icon(
-                    onPressed: () => setState(() => _currentStep--),
-                    icon: const Icon(Icons.arrow_back),
-                    label: const Text('Back'),
+                  MyButton(
+                    onTap: () => setState(() => _currentStep--),
+                    child: Row(
+                      mainAxisAlignment: .center,
+                      spacing: ConstLayout.sizeM,
+                      children: [
+                        const Icon(Icons.arrow_back),
+                        const Text('Back'),
+                      ],
+                    ),
                   )
                 else
                   const SizedBox.shrink(),
-                ElevatedButton(
-                  onPressed: _canProceed
+                MyButton(
+                  onTap: _canProceed
                       ? () {
                           if (_currentStep <
                               ConstLayout.joinGameStepCount - 1) {
@@ -118,66 +126,47 @@ class JoinGameScreenState extends State<JoinGameScreen> {
   }
 
   Widget _buildNameEntryStep() {
+    final colorScheme = Theme.of(context).colorScheme;
     if (_selectedRoom.isNotEmpty && !_waitingOnFirstBackendData) {
       _prepareForRoom(_selectedRoom);
     }
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
-      spacing: ConstLayout.sizeM,
+      spacing: ConstLayout.sizeL,
       children: [
         Text(
           'Joining Room: $_selectedRoom',
-          style: const TextStyle(
-            fontSize: ConstLayout.textS,
+          style: TextStyle(
+            fontSize: ConstLayout.textL,
             fontWeight: FontWeight.bold,
-            color: Colors.white,
           ),
           textAlign: TextAlign.center,
         ),
-        const Text(
+        Text(
           'Enter Your Name',
-          style: TextStyle(fontSize: ConstLayout.textS, color: Colors.white),
-        ),
-
-        SizedBox(
-          width: ConstLayout.joinGameNameEntryWidth,
-          child: TextField(
-            controller: _controllerName,
-            style: const TextStyle(
-              color: Colors.black,
-              fontSize: ConstLayout.textS,
-              fontWeight: FontWeight.bold,
-            ),
-            textAlign: TextAlign.center,
-            decoration: const InputDecoration(
-              hintText: 'YOUR NAME',
-              hintStyle: TextStyle(color: Colors.black54),
-              border: InputBorder.none,
-            ),
-            onChanged: (text) {
-              _controllerName.value = _controllerName.value.copyWith(
-                text: text.toUpperCase(),
-              );
-            },
-            onSubmitted: (_) => _joinGame(),
+          style: TextStyle(
+            fontSize: ConstLayout.textS,
+            color: colorScheme.onSurface,
           ),
         ),
 
-        ElevatedButton(
-          onPressed: _joinGame,
-          child: const Text(
-            'Join Room',
-            style: TextStyle(fontSize: ConstLayout.textS),
-          ),
+        EditBox(
+          label: 'Your Name',
+          controller: _controllerName,
+          onSubmitted: _joinGame,
+          errorStatus: '',
+          rightSideChild: const SizedBox.shrink(),
         ),
+
+        MyButton(onTap: _joinGame, child: const Text('Join Room')),
 
         if (_playerName.isNotEmpty)
           Text(
             'Welcome, $_playerName!',
             style: TextStyle(
-              fontSize: ConstLayout.textS,
-              color: Colors.yellow.shade300,
+              fontSize: ConstLayout.textM,
+              color: colorScheme.secondary,
             ),
           ),
       ],
@@ -185,6 +174,7 @@ class JoinGameScreenState extends State<JoinGameScreen> {
   }
 
   Widget _buildRoomSelectionStep() {
+    final colorScheme = Theme.of(context).colorScheme;
     // Fetch rooms if not already done
     if (!_roomsFetched) {
       _roomsFetched = true;
@@ -197,19 +187,19 @@ class JoinGameScreenState extends State<JoinGameScreen> {
       mainAxisAlignment: MainAxisAlignment.center,
       spacing: ConstLayout.sizeM,
       children: [
-        const Text(
+        Text(
           'Select a Room to Join',
           style: TextStyle(
             fontSize: ConstLayout.textL,
             fontWeight: FontWeight.bold,
-            color: Colors.white,
+            color: colorScheme.onSurface,
           ),
           textAlign: TextAlign.center,
         ),
         const SizedBox(height: ConstLayout.sizeS),
         Text(
           'Use the search box to quickly find a room',
-          style: TextStyle(fontSize: ConstLayout.textS, color: Colors.white70),
+          style: TextStyle(fontSize: ConstLayout.textS),
           textAlign: TextAlign.center,
         ),
         const SizedBox(height: ConstLayout.sizeM),
@@ -223,28 +213,6 @@ class JoinGameScreenState extends State<JoinGameScreen> {
           },
           onRemoveRoom: null, // No remove for join mode
         ),
-        if (_selectedRoom.isNotEmpty) ...[
-          const SizedBox(height: ConstLayout.sizeM),
-          Container(
-            padding: const EdgeInsets.all(ConstLayout.sizeM),
-            decoration: BoxDecoration(
-              color: Colors.green.shade900,
-              borderRadius: BorderRadius.circular(
-                ConstLayout.borderRadius *
-                    ConstLayout.selectedRoomBorderRadiusMultiplier,
-              ),
-              border: Border.all(color: Colors.green.shade400),
-            ),
-            child: Text(
-              'Selected: $_selectedRoom',
-              style: const TextStyle(
-                fontSize: ConstLayout.textS,
-                color: Colors.white,
-              ),
-              textAlign: TextAlign.center,
-            ),
-          ),
-        ],
       ],
     );
   }
@@ -263,6 +231,7 @@ class JoinGameScreenState extends State<JoinGameScreen> {
   }
 
   Widget _buildStepIndicator() {
+    final colorScheme = Theme.of(context).colorScheme;
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -272,12 +241,12 @@ class JoinGameScreenState extends State<JoinGameScreen> {
             child: CircleAvatar(
               radius: ConstLayout.circleAvatarRadius,
               backgroundColor: i <= _currentStep
-                  ? Colors.green.shade400
-                  : Colors.grey.shade400,
+                  ? colorScheme.primary
+                  : colorScheme.onSurface,
               child: Text(
                 '${i + 1}',
-                style: const TextStyle(
-                  color: Colors.white,
+                style: TextStyle(
+                  color: colorScheme.onPrimary,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -288,16 +257,17 @@ class JoinGameScreenState extends State<JoinGameScreen> {
   }
 
   Widget _buildWaitingStep() {
+    final colorScheme = Theme.of(context).colorScheme;
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       spacing: ConstLayout.sizeM,
       children: [
         Text(
           'Room: $_selectedRoom',
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: ConstLayout.textM,
             fontWeight: FontWeight.bold,
-            color: Colors.white,
+            color: colorScheme.onSurface,
           ),
           textAlign: TextAlign.center,
         ),
@@ -318,12 +288,9 @@ class JoinGameScreenState extends State<JoinGameScreen> {
               ),
 
         if (_playerNames.length < CardModel.minPlayersToStartGame)
-          const Text(
+          Text(
             'Waiting for more players to join...',
-            style: TextStyle(
-              fontSize: ConstLayout.textS,
-              color: Colors.white70,
-            ),
+            style: TextStyle(fontSize: ConstLayout.textS),
           )
         else
           Text(

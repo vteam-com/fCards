@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:cards/models/app/constants_layout.dart';
 import 'package:cards/utils/logger.dart';
-import 'package:cards/widgets/helpers/misc.dart';
+import 'package:cards/widgets/helpers/edit_box.dart';
 import 'package:cards/models/game/backend_model.dart';
 
 import 'package:cards/models/game/game_history.dart';
@@ -142,16 +142,16 @@ class StartScreenState extends State<StartScreen> {
                   const SizedBox(height: ConstLayout.sizeM),
                   Row(
                     children: [
-                      editBox(
-                        'Room',
-                        _controllerRoom,
-                        () {
+                      EditBox(
+                        label: 'Room',
+                        controller: _controllerRoom,
+                        onSubmitted: () {
                           _controllerRoom.text = _controllerRoom.text
                               .toUpperCase();
                           prepareBackEndForRoom(roomName);
                         },
-                        _errorTextRoom,
-                        IconButton(
+                        errorStatus: _errorTextRoom,
+                        rightSideChild: IconButton(
                           onPressed: () {
                             setState(() {
                               _isExpandedRooms = !_isExpandedRooms;
@@ -203,15 +203,15 @@ class StartScreenState extends State<StartScreen> {
                     child: Text('Who Are You?\nSelect above ⬆ or join below ⬇'),
                   ),
                   const SizedBox(height: ConstLayout.sizeS),
-                  editBox(
-                    'Join',
-                    _controllerName,
-                    () {
+                  EditBox(
+                    label: 'Join',
+                    controller: _controllerName,
+                    onSubmitted: () {
                       _controllerName.text = _controllerName.text.toUpperCase();
                       joinGame(_controllerName.text);
                     },
-                    _errorTextName,
-                    IconButton(
+                    errorStatus: _errorTextName,
+                    rightSideChild: IconButton(
                       onPressed: () {
                         setState(() {
                           joinGame(_controllerName.text);
@@ -263,68 +263,6 @@ class StartScreenState extends State<StartScreen> {
       child: Padding(
         padding: const EdgeInsets.all(ConstLayout.sizeS),
         child: Text(label, style: const TextStyle(fontSize: ConstLayout.textM)),
-      ),
-    );
-  }
-
-  /// A reusable widget for creating a labeled text input field.
-  ///
-  /// This widget includes a label, a text field, and a trailing widget (e.g., an
-  /// icon button). It is used for both the room name and player name input fields.
-  Widget editBox(
-    final String label,
-    final TextEditingController controller,
-    final Function() onSubmitted,
-    final String errorStatus,
-    final Widget rightSideChild,
-  ) {
-    return Container(
-      width: ConstLayout.startGameScreenMaxWidth,
-      padding: const EdgeInsets.all(ConstLayout.sizeS),
-      decoration: BoxDecoration(
-        color: Colors.green.shade100,
-        borderRadius: BorderRadius.circular(ConstLayout.radiusM),
-      ),
-      child: Row(
-        children: [
-          TextSize(
-            label,
-            ConstLayout.textM,
-            color: Theme.of(context).colorScheme.primaryContainer,
-            bold: true,
-          ),
-          const SizedBox(width: ConstLayout.sizeM),
-          Expanded(
-            child: TextField(
-              controller: controller,
-              style: const TextStyle(
-                color: Colors.black,
-                fontSize: ConstLayout.textS,
-                fontWeight: FontWeight.bold,
-              ),
-              decoration: InputDecoration(
-                hintText: 'Type your $label here',
-                hintStyle: TextStyle(color: Colors.black.withAlpha(100)),
-                errorText: errorStatus.isEmpty ? null : errorStatus,
-              ),
-              onEditingComplete: onSubmitted,
-              onSubmitted: (_) {
-                onSubmitted();
-              },
-              onChanged: (final String text) {
-                final String uppercaseText = text.toUpperCase();
-                controller.value = controller.value.copyWith(
-                  text: uppercaseText,
-                  selection: TextSelection.collapsed(
-                    offset: uppercaseText.length,
-                  ),
-                  composing: TextRange.empty,
-                );
-              },
-            ),
-          ),
-          rightSideChild,
-        ],
       ),
     );
   }
@@ -439,6 +377,7 @@ class StartScreenState extends State<StartScreen> {
 
   /// A widget that displays the game instructions in an expandable tile.
   Widget _gameInstructionsWidget() {
+    final colorScheme = Theme.of(context).colorScheme;
     return ExpansionTile(
       initiallyExpanded: _isExpandedRules,
       onExpansionChanged: (bool expanded) {
@@ -450,7 +389,7 @@ class StartScreenState extends State<StartScreen> {
         'Game Rules',
         style: TextStyle(
           fontSize: ConstLayout.textM,
-          color: Colors.green.shade100,
+          color: colorScheme.primaryContainer,
         ),
       ),
       children: <Widget>[

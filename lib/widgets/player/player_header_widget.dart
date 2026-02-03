@@ -1,6 +1,6 @@
 import 'package:cards/models/app/constants_card_value.dart';
 import 'package:cards/models/app/constants_layout.dart';
-import 'package:cards/widgets/helpers/misc.dart';
+import 'package:cards/widgets/helpers/my_text.dart';
 import 'package:cards/models/game/game_model.dart';
 import 'package:cards/widgets/helpers/date_importance.dart';
 import 'package:cards/widgets/helpers/dialog.dart';
@@ -47,9 +47,9 @@ class PlayerHeaderWidget extends StatelessWidget {
               onPressed: () {
                 showHistory(context, listOfWinsForThisPlayer);
               },
-              child: TextSize(
+              child: MyText(
                 player.name,
-                ConstLayout.textM,
+                fontSize: ConstLayout.textM,
                 color: Colors.white,
                 bold: true,
               ),
@@ -59,9 +59,9 @@ class PlayerHeaderWidget extends StatelessWidget {
 
         StatusPicker(status: player.status, onStatusChanged: onStatusChanged),
 
-        TextSize(
+        MyText(
           sumOfRevealedCards.toString(),
-          ConstLayout.textM,
+          fontSize: ConstLayout.textM,
           align: TextAlign.end,
           color: Colors.white.withAlpha(ConstCardValue.cardValueJoker),
           bold: true,
