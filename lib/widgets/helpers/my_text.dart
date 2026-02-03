@@ -26,7 +26,7 @@ import 'package:flutter/material.dart';
 /// )
 /// ```
 class MyText extends StatelessWidget {
-/// Creates a MyText widget.
+  /// Creates a MyText widget.
   const MyText(
     this.text, {
     super.key,
@@ -36,24 +36,22 @@ class MyText extends StatelessWidget {
     this.bold = false,
   });
 
-/// The alignment of the text.
+  /// The alignment of the text.
   final TextAlign? align;
 
-/// Whether the text should be bold.
+  /// Whether the text should be bold.
   final bool bold;
 
-/// The color of the text.
+  /// The color of the text.
   final Color? color;
 
-/// The font size of the text.
+  /// The font size of the text.
   final num fontSize;
 
-/// The text to be displayed.
+  /// The text to be displayed.
   final String text;
 
-
-
-@override
+  @override
   Widget build(BuildContext context) {
     return Text(
       text,
