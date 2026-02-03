@@ -1,6 +1,6 @@
 // ignore_for_file: require_trailing_commas, deprecated_member_use
 
-import 'package:cards/models/app/constants.dart';
+import 'package:cards/models/app/constants_layout.dart';
 import 'package:cards/models/game/golf_score_model.dart';
 import 'package:cards/widgets/helpers/screen.dart';
 import 'package:cards/widgets/helpers/input_keyboard.dart';
@@ -31,9 +31,9 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
 
   Map<String, int>? _selectedCell;
 
-  final double columnGap = Constants.sizeS;
+  final double columnGap = ConstLayout.sizeS;
 
-  final double columnWidth = Constants.golfColumnWidth;
+  final double columnWidth = ConstLayout.golfColumnWidth;
 
   @override
   void initState() {
@@ -191,22 +191,22 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
   Widget _buildAddOrRemoveRow(final GolfScoreModel scoreModel) {
     return IntrinsicWidth(
       child: Container(
-        margin: EdgeInsets.all(Constants.sizeS),
+        margin: EdgeInsets.all(ConstLayout.sizeS),
         decoration: BoxDecoration(
           color: Colors.black26,
           border: Border.all(color: Colors.black26),
           borderRadius: const BorderRadius.all(
-            Radius.circular(Constants.radiusXL),
+            Radius.circular(ConstLayout.radiusXL),
           ),
         ),
-        padding: EdgeInsets.all(Constants.sizeS),
+        padding: EdgeInsets.all(ConstLayout.sizeS),
         /* was 10, using 8 for consistency? Or should add 10? Using sizeS for now if close enough or add 10 */
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          spacing: Constants.sizeS,
+          spacing: ConstLayout.sizeS,
           children: [
             MyButton(
-              size: Constants.iconM,
+              size: ConstLayout.iconM,
               onTap: () {
                 setState(() {
                   scoreModel.addRound();
@@ -215,7 +215,7 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
                   _scrollController.animateTo(
                     _scrollController.position.maxScrollExtent,
                     duration: Duration(
-                      milliseconds: Constants.animationDuration300,
+                      milliseconds: ConstLayout.animationDuration300,
                     ),
                     curve: Curves.easeInOut,
                   );
@@ -225,11 +225,11 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
             ),
             Text(
               '${scoreModel.scores.length} Rounds',
-              style: TextStyle(fontSize: Constants.textS),
+              style: TextStyle(fontSize: ConstLayout.textS),
             ),
             if (scoreModel.scores.length > 1)
               MyButton(
-                size: Constants.iconM,
+                size: ConstLayout.iconM,
                 onTap: () {
                   final lastRoundScores = scoreModel.scores.last;
                   final allScoresAreZero = lastRoundScores.every(
@@ -321,9 +321,9 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
                       if (context != null) {
                         _scrollController.position.ensureVisible(
                           context.findRenderObject() as RenderObject,
-                          alignment: Constants.scrollAlignmentCenter,
+                          alignment: ConstLayout.scrollAlignmentCenter,
                           duration: Duration(
-                            milliseconds: Constants.animationDuration300,
+                            milliseconds: ConstLayout.animationDuration300,
                           ),
                           curve: Curves.easeInOut,
                         );
@@ -336,7 +336,7 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
                     _cellContext = context;
                     return Container(
                       width: columnWidth,
-                      height: Constants.height40,
+                      height: ConstLayout.height40,
                       margin: EdgeInsets.only(top: columnGap),
                       decoration: BoxDecoration(
                         color: Colors.black26,
@@ -347,10 +347,10 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
                                   _selectedCell!['col'] == j
                               ? Colors.yellow
                               : Colors.transparent,
-                          width: Constants.strokeS,
+                          width: ConstLayout.strokeS,
                         ),
                         borderRadius: const BorderRadius.all(
-                          Radius.circular(Constants.radiusS),
+                          Radius.circular(ConstLayout.radiusS),
                         ),
                       ),
                       child: Center(
@@ -360,7 +360,7 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
                               : scoreModel.scores[i][j].toString(),
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontSize: Constants.textM,
+                            fontSize: ConstLayout.textM,
                             color: _getScoreColor(
                               ranks[j],
                               scoreModel.playerNames.length,
@@ -379,7 +379,7 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
-      spacing: Constants.strokeXS,
+      spacing: ConstLayout.strokeXS,
       children: widgets,
     );
   }
@@ -442,7 +442,7 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
     setState(() {
       if (key == keyBackspace) {
         if (currentValue.isNotEmpty) {
-          if (currentValue.length == Constants.negativeNumberMaxLength &&
+          if (currentValue.length == ConstLayout.negativeNumberMaxLength &&
               currentValue.startsWith('-')) {
             currentValue = '0';
           } else {

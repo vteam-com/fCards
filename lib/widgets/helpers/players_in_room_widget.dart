@@ -1,5 +1,5 @@
-// ignore: fcheck_magic_numbers
-import 'package:cards/models/app/constants.dart';
+import 'package:cards/models/app/constants_layout.dart';
+
 import 'package:flutter/material.dart';
 
 ///
@@ -34,6 +34,9 @@ class PlayersInRoomWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final surface = colorScheme.surface;
+    final surfaceOverlay = surface.withAlpha(100);
     return Container(
       constraints: BoxConstraints(maxHeight: 250),
       child: Column(
@@ -41,12 +44,10 @@ class PlayersInRoomWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Container(
-            padding: EdgeInsets.all(8),
+            padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
-              color: Constants.backgroundContainer.withAlpha(
-                Constants.alpha100,
-              ),
-              borderRadius: BorderRadius.only(
+              color: surfaceOverlay,
+              borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(8),
                 topRight: Radius.circular(8),
               ),
@@ -56,9 +57,9 @@ class PlayersInRoomWidget extends StatelessWidget {
           Expanded(
             child: DecoratedBox(
               decoration: BoxDecoration(
-                color: Constants.backgroundContainer,
+                color: surface,
                 borderRadius: BorderRadius.all(
-                  Radius.circular(Constants.radiusM),
+                  Radius.circular(ConstLayout.radiusM),
                 ),
               ),
               child: ListView.builder(

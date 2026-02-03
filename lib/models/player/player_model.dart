@@ -1,5 +1,4 @@
 import 'package:cards/utils/logger.dart';
-import 'package:cards/models/app/constants.dart';
 import 'package:cards/models/card/hand_model.dart';
 import 'package:cards/models/player/player_status.dart';
 
@@ -122,6 +121,8 @@ class PlayerModel {
   /// Set to true when the player wins, false otherwise.
   bool isWinner = false;
 
+  static const int _playerNamePaddingWidth = 10;
+
   /// Calculates and returns the sum of revealed cards in the player's hand.
   ///
   /// The calculation method depends on the game logic:
@@ -210,7 +211,7 @@ class PlayerModel {
 
   @override
   String toString() {
-    return 'Player[$id] ${name.padRight(Constants.playerNamePaddingWidth)} ${isActivePlayer ? "* " : '  '} $hand ${sumOfRevealedCards.toString().padLeft(Constants.playerDisplayPaddingWidth)}';
+    return 'Player[$id] ${name.padRight(_playerNamePaddingWidth)} ${isActivePlayer ? "* " : '  '} $hand ${sumOfRevealedCards.toString().padLeft(_playerNamePaddingWidth)}';
   }
 
   @override

@@ -1,6 +1,7 @@
+import 'package:cards/models/app/constants_layout.dart';
 import 'package:cards/models/card/card_dimensions.dart';
 import 'package:cards/models/card/card_model.dart';
-import 'package:cards/models/app/constants.dart';
+
 import 'package:cards/widgets/cards/card_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -56,15 +57,15 @@ class CardPileWidget extends StatelessWidget {
   }
 
   Widget _buildPileUnplayedCards() {
-    double cardStackOffset = Constants.cardStackOffsetLarge;
-    if (cards.length > Constants.cardStackThreshold) {
-      cardStackOffset = Constants.cardStackOffsetSmall;
+    double cardStackOffset = ConstLayout.cardStackOffsetLarge;
+    if (cards.length > ConstLayout.cardStackThreshold) {
+      cardStackOffset = ConstLayout.cardStackOffsetSmall;
     }
     return Tooltip(
       message: '${cards.length}\ncards',
       child: SizedBox(
-        height: CardDimensions.height * Constants.cardHeightScale,
-        width: CardDimensions.width * Constants.cardWidthScale,
+        height: CardDimensions.height * ConstLayout.cardHeightScale,
+        width: CardDimensions.width * ConstLayout.cardWidthScale,
         child: GestureDetector(
           onTap: onDraw,
           child: Stack(

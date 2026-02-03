@@ -1,86 +1,80 @@
+import 'package:cards/models/app/constants_layout.dart';
 import 'package:flutter/material.dart';
-import 'constants.dart';
 
 class AppTheme {
   static ThemeData get theme {
+    const seedColor = Color.fromARGB(255, 63, 244, 75);
+
+    final colorScheme = ColorScheme.fromSeed(
+      seedColor: seedColor,
+      brightness: Brightness.dark,
+    ).copyWith(secondary: Colors.yellow);
+    final textColor = Colors.yellow;
     final baseTheme = ThemeData.dark();
     final textTheme = baseTheme.textTheme;
-    final colorScheme = baseTheme.colorScheme.copyWith(
-      primary: Constants.primaryGreen,
-      surface: Constants.backgroundContainer,
-    );
 
     return baseTheme.copyWith(
       colorScheme: colorScheme,
       textTheme: textTheme.copyWith(
-        // Display styles
         displayLarge: textTheme.displayLarge?.copyWith(
-          fontSize: Constants.textXL,
-          color: Constants.textPrimary,
+          fontSize: ConstLayout.textXL,
+          color: textColor,
         ),
         displayMedium: textTheme.displayMedium?.copyWith(
-          fontSize: Constants.textL,
-          color: Constants.textPrimary,
+          fontSize: ConstLayout.textL,
+          color: textColor,
         ),
         displaySmall: textTheme.displaySmall?.copyWith(
-          fontSize: Constants.textL,
-          color: Constants.textPrimary,
+          fontSize: ConstLayout.textL,
+          color: textColor,
         ),
-
-        // Headline styles
         headlineLarge: textTheme.headlineLarge?.copyWith(
-          fontSize: Constants.textL,
-          color: Constants.textPrimary,
+          fontSize: ConstLayout.textL,
+          color: textColor,
         ),
         headlineMedium: textTheme.headlineMedium?.copyWith(
-          fontSize: Constants.textM,
-          color: Constants.textPrimary,
+          fontSize: ConstLayout.textM,
+          color: textColor,
         ),
         headlineSmall: textTheme.headlineSmall?.copyWith(
-          fontSize: Constants.textM,
-          color: Constants.textPrimary,
+          fontSize: ConstLayout.textM,
+          color: textColor,
         ),
-
-        // Title styles
         titleLarge: textTheme.titleLarge?.copyWith(
-          fontSize: Constants.textM,
-          color: Constants.textPrimary,
+          fontSize: ConstLayout.textM,
+          color: textColor,
         ),
         titleMedium: textTheme.titleMedium?.copyWith(
-          fontSize: Constants.textS,
-          color: Constants.textPrimary,
+          fontSize: ConstLayout.textS,
+          color: textColor,
         ),
         titleSmall: textTheme.titleSmall?.copyWith(
-          fontSize: Constants.textS,
-          color: Constants.textPrimary,
+          fontSize: ConstLayout.textS,
+          color: textColor,
         ),
-
-        // Body styles
         bodyLarge: textTheme.bodyLarge?.copyWith(
-          fontSize: Constants.textS,
-          color: Constants.textPrimary,
+          fontSize: ConstLayout.textS,
+          color: textColor,
         ),
         bodyMedium: textTheme.bodyMedium?.copyWith(
-          fontSize: Constants.textS,
-          color: Constants.textPrimary,
+          fontSize: ConstLayout.textS,
+          color: textColor,
         ),
         bodySmall: textTheme.bodySmall?.copyWith(
-          fontSize: Constants.textXS,
-          color: Constants.textPrimary,
+          fontSize: ConstLayout.textXS,
+          color: textColor,
         ),
-
-        // Label styles
         labelLarge: textTheme.labelLarge?.copyWith(
-          fontSize: Constants.textS,
-          color: Constants.textPrimary,
+          fontSize: ConstLayout.textS,
+          color: textColor,
         ),
         labelMedium: textTheme.labelMedium?.copyWith(
-          fontSize: Constants.textXS,
-          color: Constants.textPrimary,
+          fontSize: ConstLayout.textXS,
+          color: textColor,
         ),
         labelSmall: textTheme.labelSmall?.copyWith(
-          fontSize: Constants.textXS,
-          color: Constants.textPrimary,
+          fontSize: ConstLayout.textXS,
+          color: textColor,
         ),
       ),
     );

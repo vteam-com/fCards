@@ -1,10 +1,11 @@
+import 'package:cards/models/app/constants_card_value.dart';
+import 'package:cards/models/app/constants_layout.dart';
 import 'package:cards/widgets/helpers/misc.dart';
 import 'package:cards/models/game/game_model.dart';
 import 'package:cards/widgets/helpers/date_importance.dart';
 import 'package:cards/widgets/helpers/dialog.dart';
 import 'package:cards/widgets/player/status_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:cards/models/app/constants.dart';
 
 ///
 class PlayerHeaderWidget extends StatelessWidget {
@@ -48,7 +49,7 @@ class PlayerHeaderWidget extends StatelessWidget {
               },
               child: TextSize(
                 player.name,
-                Constants.textM,
+                ConstLayout.textM,
                 color: Colors.white,
                 bold: true,
               ),
@@ -60,9 +61,9 @@ class PlayerHeaderWidget extends StatelessWidget {
 
         TextSize(
           sumOfRevealedCards.toString(),
-          Constants.textM,
+          ConstLayout.textM,
           align: TextAlign.end,
-          color: Colors.white.withAlpha(Constants.golfJokerValue),
+          color: Colors.white.withAlpha(ConstCardValue.cardValueJoker),
           bold: true,
         ),
       ],

@@ -1,8 +1,9 @@
+import 'package:cards/models/app/constants_layout.dart';
 import 'package:cards/widgets/helpers/misc.dart';
 import 'package:cards/models/game/backend_model.dart';
 import 'package:cards/models/game/game_model.dart';
 import 'package:cards/widgets/helpers/dialog.dart';
-import 'package:cards/models/app/constants.dart';
+
 import 'package:flutter/material.dart';
 
 /// Displays a game over dialog with the final game results and options to play again or exit.
@@ -32,7 +33,7 @@ void showGameOverDialog(
 
   Widget columnHeaders() {
     return SizedBox(
-      width: Constants.gameOverDialogWidth,
+      width: ConstLayout.gameOverDialogWidth,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
@@ -50,14 +51,14 @@ void showGameOverDialog(
 
   Widget playerStats(player) {
     return SizedBox(
-      width: Constants.gameOverDialogWidth,
+      width: ConstLayout.gameOverDialogWidth,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Expanded(
             child: Text(
               player.name,
-              style: const TextStyle(fontSize: Constants.textM),
+              style: const TextStyle(fontSize: ConstLayout.textM),
             ),
           ),
           Expanded(
@@ -66,11 +67,11 @@ void showGameOverDialog(
               children: [
                 Text(
                   gameModel.getWinsForPlayerName(player.name).length.toString(),
-                  style: const TextStyle(fontSize: Constants.textXS),
+                  style: const TextStyle(fontSize: ConstLayout.textXS),
                 ),
                 TextSize(
                   player.sumOfRevealedCards.toString(),
-                  Constants.textM.toInt(),
+                  ConstLayout.textM.toInt(),
                   bold: true,
                 ),
               ],

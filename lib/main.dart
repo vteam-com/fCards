@@ -1,3 +1,4 @@
+import 'package:cards/models/app/constants_layout.dart';
 import 'package:cards/models/game/backend_model.dart';
 import 'package:cards/models/app/firebase_options.dart';
 import 'package:cards/screens/game/join_game_screen.dart';
@@ -5,7 +6,6 @@ import 'package:cards/screens/game/start_game_screen.dart';
 import 'package:cards/screens/keepscore/golf_score_screen.dart';
 import 'package:cards/screens/welcome/main_menu.dart';
 import 'package:cards/models/app/app_theme.dart';
-import 'package:cards/models/app/constants.dart';
 import 'package:cards/utils/logger.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
@@ -51,90 +51,81 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final baseTheme = AppTheme.theme;
+    final colorScheme = baseTheme.colorScheme;
+    final onSurface = colorScheme.onSurface;
+    final surfaceBackground = colorScheme.surface;
+    final onSurfaceHint = onSurface.withAlpha(100);
+
     return MaterialApp(
       title: 'Cards',
-      theme: AppTheme.theme.copyWith(
+      theme: baseTheme.copyWith(
         brightness: Brightness.dark,
-        scaffoldBackgroundColor: Constants.backgroundContainer,
-        cardColor: Constants.backgroundContainer,
-        textTheme: AppTheme.theme.textTheme
-            .apply(fontFamily: 'Roboto')
-            .copyWith(
-              bodyMedium: TextStyle(color: Constants.textPrimary),
-              bodyLarge: TextStyle(color: Constants.textPrimary),
-              displayLarge: TextStyle(color: Constants.textPrimary),
-              displayMedium: TextStyle(color: Constants.textPrimary),
-              displaySmall: TextStyle(color: Constants.textPrimary),
-              headlineLarge: TextStyle(color: Constants.textPrimary),
-              headlineMedium: TextStyle(color: Constants.textPrimary),
-              headlineSmall: TextStyle(color: Constants.textPrimary),
-              titleLarge: TextStyle(color: Constants.textPrimary),
-              titleMedium: TextStyle(color: Constants.textPrimary),
-              titleSmall: TextStyle(color: Constants.textPrimary),
-              labelLarge: TextStyle(color: Constants.textPrimary),
-              labelMedium: TextStyle(color: Constants.textPrimary),
-              labelSmall: TextStyle(color: Constants.textPrimary),
-            ),
-        hintColor: Constants.textHint,
+        scaffoldBackgroundColor: surfaceBackground,
+        cardColor: surfaceBackground,
+        textTheme: baseTheme.textTheme.apply(
+          fontFamily: 'Roboto',
+          bodyColor: onSurface,
+          displayColor: onSurface,
+        ),
+        hintColor: onSurfaceHint,
         inputDecorationTheme: InputDecorationTheme(
           filled: true,
-          fillColor: Constants.textPrimary.withAlpha(Constants.alpha100),
-          hintStyle: TextStyle(color: Constants.textHint),
-          labelStyle: TextStyle(color: Constants.textPrimary),
+          fillColor: onSurface.withAlpha(100),
+          hintStyle: TextStyle(color: onSurfaceHint),
+          labelStyle: TextStyle(color: onSurface),
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(
-              color: Constants.accentGreenAlpha,
-              width: Constants.enabledBorderWidth,
+              color: colorScheme.primary.withAlpha(100),
+              width: ConstLayout.enabledBorderWidth,
             ),
           ),
           focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(
-              color: Constants.accentYellow,
-              width: Constants.focusedBorderWidth,
+              color: colorScheme.secondary,
+              width: ConstLayout.focusedBorderWidth,
             ),
           ),
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
-            backgroundColor: Constants.backgroundContainer,
-            foregroundColor: Constants.textPrimary,
+            backgroundColor: surfaceBackground,
+            foregroundColor: onSurface,
             padding: const EdgeInsets.symmetric(
-              horizontal: Constants.buttonHorizontalPadding,
-              vertical: Constants.buttonVerticalPadding,
+              horizontal: ConstLayout.buttonHorizontalPadding,
+              vertical: ConstLayout.buttonVerticalPadding,
             ),
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(Constants.borderRadius),
+              borderRadius: BorderRadius.circular(ConstLayout.borderRadius),
               side: BorderSide(
-                color: Constants.accentGreenAlpha,
-                width: Constants.enabledBorderWidth,
+                color: colorScheme.primary.withAlpha(100),
+                width: ConstLayout.enabledBorderWidth,
               ),
             ),
           ),
         ),
         textButtonTheme: TextButtonThemeData(
-          // Add TextButtonThemeData
           style: TextButton.styleFrom(
-            foregroundColor: Constants.textPrimary, // Text color
+            foregroundColor: onSurface,
             padding: const EdgeInsets.symmetric(
-              horizontal: Constants.buttonHorizontalPadding,
-              vertical: Constants.buttonVerticalPadding,
-            ), //padding
+              horizontal: ConstLayout.buttonHorizontalPadding,
+              vertical: ConstLayout.buttonVerticalPadding,
+            ),
             shape: RoundedRectangleBorder(
-              // Rounded corners
-              borderRadius: BorderRadius.circular(Constants.borderRadius),
+              borderRadius: BorderRadius.circular(ConstLayout.borderRadius),
             ),
           ),
         ),
         appBarTheme: AppBarTheme(
-          backgroundColor: Constants.backgroundContainer,
+          backgroundColor: surfaceBackground,
           titleTextStyle: TextStyle(
-            color: Constants.textPrimary,
+            color: onSurface,
             fontWeight: FontWeight.bold,
           ),
-          iconTheme: IconThemeData(color: Constants.textPrimary),
+          iconTheme: IconThemeData(color: onSurface),
         ),
-        iconTheme: IconThemeData(color: Constants.textPrimary),
-        primaryIconTheme: IconThemeData(color: Constants.textPrimary),
+        iconTheme: IconThemeData(color: onSurface),
+        primaryIconTheme: IconThemeData(color: onSurface),
       ),
       initialRoute: '/',
       routes: {

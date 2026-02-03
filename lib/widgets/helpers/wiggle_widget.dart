@@ -1,7 +1,7 @@
 // ignore: fcheck_magic_numbers
 import 'dart:math';
+import 'package:cards/models/app/constants_animation.dart';
 import 'package:flutter/material.dart';
-import 'package:cards/models/app/constants.dart';
 
 /// Whether the [WiggleWidget] should wiggle or not.
 class WiggleWidget extends StatefulWidget {
@@ -33,7 +33,9 @@ class WiggleWidgetState extends State<WiggleWidget>
 
     // Initialize the animation controller
     _controller = AnimationController(
-      duration: const Duration(milliseconds: Constants.wiggleAnimationDuration),
+      duration: const Duration(
+        milliseconds: ConstAnimation.wiggleAnimationDuration,
+      ),
       vsync: this,
     ); // Repeat the animation back and forth
 

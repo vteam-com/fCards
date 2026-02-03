@@ -1,4 +1,5 @@
-import 'package:cards/models/app/constants.dart';
+import 'package:cards/models/app/constants_layout.dart';
+
 import 'package:cards/utils/logger.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -8,13 +9,13 @@ import 'package:share_plus/share_plus.dart';
 /// Defines breakpoint constants for responsive design
 class ResponsiveBreakpoints {
   /// Maximum width for phone layout
-  static const double phone = Constants.breakpointPhone;
+  static const double phone = ConstLayout.breakpointPhone;
 
   /// Maximum width for tablet layout
-  static const double tablet = Constants.breakpointTablet;
+  static const double tablet = ConstLayout.breakpointTablet;
 
   /// Minimum width for desktop layout
-  static const double desktop = Constants.breakpointDesktop;
+  static const double desktop = ConstLayout.breakpointDesktop;
 }
 
 /// Extension on BuildContext to easily check device type based on screen width
@@ -93,7 +94,7 @@ class _ScreenState extends State<Screen> {
           child: Text(
             widget.title,
             style: TextStyle(
-              color: Colors.yellow.shade100.withAlpha(Constants.alpha200),
+              color: Theme.of(context).colorScheme.secondary.withAlpha(200),
             ),
           ),
         ),
@@ -131,11 +132,11 @@ class _ScreenState extends State<Screen> {
           /// RIGHT SIDE TEXT (User Name)
           if (widget.rightText.isNotEmpty)
             Padding(
-              padding: const EdgeInsets.all(Constants.sizeS),
+              padding: const EdgeInsets.all(ConstLayout.sizeS),
               child: Text(
                 widget.rightText,
                 style: TextStyle(
-                  color: Colors.yellow.shade100.withAlpha(Constants.alpha200),
+                  color: Theme.of(context).colorScheme.secondary.withAlpha(200),
                 ),
               ),
             ),
@@ -175,11 +176,11 @@ class _ScreenState extends State<Screen> {
   Widget _displayWaiting() {
     /// Builds a loading indicator widget
     return SizedBox(
-      width: Constants.waitingWidgetSize,
-      height: Constants.waitingWidgetSize,
+      width: ConstLayout.waitingWidgetSize,
+      height: ConstLayout.waitingWidgetSize,
       child: Center(
         child: CupertinoActivityIndicator(
-          radius: Constants.loadingIndicatorRadius,
+          radius: ConstLayout.loadingIndicatorRadius,
         ),
       ),
     );

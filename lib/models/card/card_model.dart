@@ -1,5 +1,3 @@
-import 'package:cards/models/app/constants.dart';
-
 /// Represents a playing card with a suit and rank.
 ///
 /// The [CardModel] class represents a single playing card, with properties for the suit, rank, and whether the card is revealed. It provides methods for converting the card to and from JSON, as well as getting the numerical value of the card.
@@ -39,6 +37,7 @@ class CardModel {
     this.partOfSet = false,
     this.isRevealed = false,
   });
+  static const int _cardDisplayPaddingWidth = 2;
 
   /// The suit of the card.
   final String suit;
@@ -63,7 +62,7 @@ class CardModel {
   /// The string includes the rank, suit, value, reveal state, and selectability.
   @override
   String toString() {
-    return '$rank$suit${value.toString().padLeft(Constants.cardDisplayPaddingWidth)}${isRevealed ? '^' : 'v'}${isSelectable ? 'S' : ' '}';
+    return '$rank$suit${value.toString().padLeft(_cardDisplayPaddingWidth)}${isRevealed ? '^' : 'v'}${isSelectable ? 'S' : ' '}';
   }
 
   /// Converts the [CardModel] to a JSON map.
@@ -79,4 +78,31 @@ class CardModel {
       'isRevealed': isRevealed ? true : null,
     };
   }
+
+  static const int skyjoColumns = 4;
+  static const int skyjoRows = 3;
+  static const int standardColumns = 3;
+  static const int standardRows = 3;
+  static const int miniPutColumns = 2;
+  static const int miniPutRows = 2;
+  static const int frenchCardsRevealCount = 2;
+  static const int skyjoRevealCount = 2;
+  static const int miniPutRevealCount = 1;
+  static const int customRevealCount = 0;
+  static const int skyjoSetSize = 3;
+  static const int finalTurnRevealCount = 1;
+  static const int nextPlayerIncrement = 1;
+  static const int skyjoCardsToDeal = 12;
+  static const int frenchCardsToDeal = 9;
+  static const int miniPutCardsToDeal = 4;
+  static const double golfGrid2x2Size = 4.0;
+  static const double golfGrid3x3Size = 9.0;
+  static const int twoCardMatchSize = 2;
+  static const int threeCardMatchSize = 3;
+  static const int indicesInSet = 3;
+  static const int setStartOffset = 1;
+  static const int firstCardIndexOffset = 0;
+  static const int secondCardIndexOffset = 1;
+  static const int thirdCardIndexOffset = 2;
+  static const int minPlayersToStartGame = 2;
 }

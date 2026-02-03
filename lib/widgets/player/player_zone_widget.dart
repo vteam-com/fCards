@@ -1,11 +1,12 @@
 import 'dart:math';
 import 'package:animate_do/animate_do.dart';
+
+import 'package:cards/models/app/constants_layout.dart';
 import 'package:cards/models/game/game_model.dart';
 import 'package:cards/widgets/cards/card_widget.dart';
 import 'package:cards/widgets/player/player_header_widget.dart';
 import 'package:cards/widgets/player/player_zone_cta_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:cards/models/app/constants.dart';
 
 class PlayerZoneWidget extends StatelessWidget {
   /// Constructs a [PlayerZoneWidget] with the provided parameters.
@@ -42,26 +43,27 @@ class PlayerZoneWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final double width = min(
-      Constants.joinGamePlayerListMaxWidth,
+      ConstLayout.joinGamePlayerListMaxWidth,
       MediaQuery.of(context).size.width,
     );
+    final colorScheme = Theme.of(context).colorScheme;
     return Stack(
       alignment: Alignment.center,
       children: [
         FadeIn(child: _containerBorder(width, heightZone)),
         Container(
-          width: width - Constants.radiusM,
-          height: heightZone - Constants.radiusM,
+          width: width - ConstLayout.radiusM,
+          height: heightZone - ConstLayout.radiusM,
           decoration: BoxDecoration(
-            color: Constants.primaryGreenDark,
+            color: colorScheme.primaryContainer,
             border: Border.all(
               color: Colors.transparent,
-              width: Constants.golfGrid2x2Size,
+              width: CardModel.golfGrid2x2Size,
             ),
-            borderRadius: BorderRadius.circular(Constants.radiusM),
+            borderRadius: BorderRadius.circular(ConstLayout.radiusM),
             // No shadow.
           ),
-          padding: EdgeInsets.all(Constants.sizeS.toDouble()),
+          padding: EdgeInsets.all(ConstLayout.sizeS.toDouble()),
           child: _buildContent(context),
         ),
       ],
@@ -159,9 +161,9 @@ class PlayerZoneWidget extends StatelessWidget {
     PlayerModel player,
   ) {
     List row = List.empty(growable: true);
-    int columns = player.hand.length == Constants.golfGrid2x2Size
-        ? Constants.miniPutColumns
-        : Constants.standardColumns;
+    int columns = player.hand.length == CardModel.golfGrid2x2Size
+        ? CardModel.miniPutColumns
+        : CardModel.standardColumns;
 
     for (int i = 0; i < player.hand.length; i += columns) {
       List<Widget> columnChildren = [];
@@ -192,8 +194,8 @@ class PlayerZoneWidget extends StatelessWidget {
       width: width,
       height: height,
       decoration: BoxDecoration(
-        border: Border.all(color: color, width: Constants.sizeS),
-        borderRadius: BorderRadius.circular(Constants.radiusM),
+        border: Border.all(color: color, width: ConstLayout.sizeS),
+        borderRadius: BorderRadius.circular(ConstLayout.radiusM),
         // No shadow.
       ),
     );

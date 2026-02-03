@@ -1,8 +1,9 @@
 // fcheck - ignore magic numbers
 // Imports
+
 import 'package:cards/models/game/backend_model.dart';
 import 'package:cards/models/game/deck_model.dart';
-import 'package:cards/models/app/constants.dart';
+
 import 'package:cards/models/game/game_history.dart';
 import 'package:cards/models/game/game_styles.dart';
 
@@ -107,8 +108,8 @@ class GameModel with ChangeNotifier {
       players.add(
         PlayerModel(
           name: name,
-          columns: Constants.skyjoColumns,
-          rows: Constants.skyjoRows,
+          columns: CardModel.skyjoColumns,
+          rows: CardModel.skyjoRows,
           skyJoLogic: true,
         ),
       );
@@ -116,8 +117,8 @@ class GameModel with ChangeNotifier {
       players.add(
         PlayerModel(
           name: name,
-          columns: Constants.standardColumns,
-          rows: Constants.standardRows,
+          columns: CardModel.standardColumns,
+          rows: CardModel.standardRows,
           skyJoLogic: false,
         ),
       );
@@ -209,22 +210,22 @@ class GameModel with ChangeNotifier {
       case GameStyles.skyJo:
         return PlayerModel.fromJson(
           json: json,
-          columns: Constants.skyjoColumns,
-          rows: Constants.skyjoRows,
+          columns: CardModel.skyjoColumns,
+          rows: CardModel.skyjoRows,
           skyJoLogic: true,
         );
       case GameStyles.frenchCards9:
         return PlayerModel.fromJson(
           json: json,
-          columns: Constants.standardColumns,
-          rows: Constants.standardRows,
+          columns: CardModel.standardColumns,
+          rows: CardModel.standardRows,
           skyJoLogic: false,
         );
       case GameStyles.miniPut:
         return PlayerModel.fromJson(
           json: json,
-          columns: Constants.miniPutColumns,
-          rows: Constants.miniPutRows,
+          columns: CardModel.miniPutColumns,
+          rows: CardModel.miniPutRows,
           skyJoLogic: false,
         );
       case GameStyles.custom:
@@ -597,16 +598,16 @@ class GameModel with ChangeNotifier {
       int i = 0;
       i <
           player.hand.length -
-              (Constants.skyjoSetSize - Constants.setStartOffset);
-      i += Constants.skyjoSetSize
+              (CardModel.skyjoSetSize - CardModel.setStartOffset);
+      i += CardModel.skyjoSetSize
     ) {
-      if (player.hand[i + Constants.firstCardIndexOffset].isRevealed &&
-          player.hand[i + Constants.secondCardIndexOffset].isRevealed &&
-          player.hand[i + Constants.thirdCardIndexOffset].isRevealed &&
+      if (player.hand[i + CardModel.firstCardIndexOffset].isRevealed &&
+          player.hand[i + CardModel.secondCardIndexOffset].isRevealed &&
+          player.hand[i + CardModel.thirdCardIndexOffset].isRevealed &&
           player.areAllTheSameRank(
-            player.hand[i + Constants.firstCardIndexOffset].rank,
-            player.hand[i + Constants.secondCardIndexOffset].rank,
-            player.hand[i + Constants.thirdCardIndexOffset].rank,
+            player.hand[i + CardModel.firstCardIndexOffset].rank,
+            player.hand[i + CardModel.secondCardIndexOffset].rank,
+            player.hand[i + CardModel.thirdCardIndexOffset].rank,
           )) {
         deck.cardsDeckDiscarded.add(player.hand[i]);
         player.hand.removeAt(i);
@@ -616,7 +617,7 @@ class GameModel with ChangeNotifier {
         player.hand.removeAt(i);
         // We have removed the cards from the hand, reduce the index before the
         // next iteration
-        i -= Constants.skyjoSetSize;
+        i -= CardModel.skyjoSetSize;
       }
     }
   }

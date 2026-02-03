@@ -2,7 +2,6 @@
 import 'dart:math';
 
 import 'package:cards/models/card/card_model.dart';
-import 'package:cards/models/app/constants.dart';
 export 'package:cards/models/card/card_model.dart';
 
 /// A model class representing a hand of cards in a card game.
@@ -183,7 +182,7 @@ class HandModel {
 
     List<List<int>> checkingIndices;
 
-    if (_list.length == Constants.golfGrid2x2Size) {
+    if (_list.length == CardModel.golfGrid2x2Size) {
       // 2x2
       checkingIndices = [
         [0, 1],
@@ -236,7 +235,7 @@ class HandModel {
     }
 
     // Check if all cards have matching ranks
-    final bool haveSameRank = indices.length == Constants.twoCardMatchSize
+    final bool haveSameRank = indices.length == CardModel.twoCardMatchSize
         ? _list[indices[0]].rank == _list[indices[1]].rank
         : _list[indices[0]].rank == _list[indices[1]].rank &&
               _list[indices[1]].rank == _list[indices[2]].rank;

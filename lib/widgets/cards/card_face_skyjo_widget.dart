@@ -1,9 +1,9 @@
 import 'dart:math';
 
+import 'package:cards/models/app/constants_card_value.dart';
+import 'package:cards/models/app/constants_layout.dart';
 import 'package:cards/widgets/helpers/misc.dart';
 import 'package:cards/models/card/card_model.dart';
-import 'package:cards/models/app/constants.dart';
-
 import 'package:cards/widgets/cards/card_face_french_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -28,27 +28,27 @@ class CardFaceSkyjoWidget extends CardFaceFrenchWidget {
       child: Stack(
         children: [
           Container(
-            width: Constants.skyjoCardWidth,
-            height: Constants.skyjoCardHeight,
+            width: ConstLayout.skyjoCardWidth,
+            height: ConstLayout.skyjoCardHeight,
             decoration: BoxDecoration(
               gradient: RadialGradient(
                 colors: [Colors.white, getBackColor(card.value)],
                 center: Alignment.center,
-                radius: Constants.skyjoRadialRadius,
+                radius: ConstLayout.skyjoRadialRadius,
               ),
             ),
             // color: getBackColor(card.value),
             child: Stack(
               children: [
                 Positioned(
-                  top: Constants.skyjoOffset,
-                  left: Constants.skyjoOffset,
+                  top: ConstLayout.skyjoOffset,
+                  left: ConstLayout.skyjoOffset,
                   child: _buildSmallText(),
                 ),
                 Center(child: _buildMainText()),
                 Positioned(
-                  bottom: Constants.skyjoOffset,
-                  right: Constants.skyjoOffset,
+                  bottom: ConstLayout.skyjoOffset,
+                  right: ConstLayout.skyjoOffset,
                   child: Transform.rotate(
                     angle: pi, // 180 degrees in radians
                     child: _buildSmallText(),
@@ -67,7 +67,7 @@ class CardFaceSkyjoWidget extends CardFaceFrenchWidget {
       children: [
         TextSize(
           card.rank,
-          Constants.textM,
+          ConstLayout.textM,
           align: TextAlign.center,
           color: Colors.black,
           bold: true,
@@ -84,13 +84,13 @@ class CardFaceSkyjoWidget extends CardFaceFrenchWidget {
           style:
               TextStyle(
                 fontFamily: 'Comic Sans MS',
-                fontSize: Constants.textXL,
+                fontSize: ConstLayout.textXL,
                 color: Colors.white,
                 decoration: TextDecoration.none,
               ).copyWith(
                 foreground: Paint()
                   ..style = PaintingStyle.stroke
-                  ..strokeWidth = Constants.strokeWidth6
+                  ..strokeWidth = ConstLayout.strokeWidth6
                   ..color = Colors.white,
               ),
         ),
@@ -98,7 +98,7 @@ class CardFaceSkyjoWidget extends CardFaceFrenchWidget {
           card.value.toString(),
           style: TextStyle(
             fontFamily: 'Comic Sans MS',
-            fontSize: Constants.textXL,
+            fontSize: ConstLayout.textXL,
             color: Colors.black,
             decoration: TextDecoration.none,
           ),
@@ -113,9 +113,9 @@ class CardFaceSkyjoWidget extends CardFaceFrenchWidget {
       return Colors.blueGrey;
     } else if (value == 0) {
       return Colors.blue;
-    } else if (value < Constants.skyjoValueThreshold5) {
+    } else if (value < ConstCardValue.skyjoValueThreshold5) {
       return Colors.lightGreen;
-    } else if (value < Constants.skyjoValueThreshold9) {
+    } else if (value < ConstCardValue.skyjoValueThreshold9) {
       return Colors.yellow;
     } else {
       return Colors.red;

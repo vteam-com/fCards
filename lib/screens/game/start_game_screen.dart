@@ -1,8 +1,9 @@
 import 'dart:async';
+import 'package:cards/models/app/constants_layout.dart';
 import 'package:cards/utils/logger.dart';
 import 'package:cards/widgets/helpers/misc.dart';
 import 'package:cards/models/game/backend_model.dart';
-import 'package:cards/models/app/constants.dart';
+
 import 'package:cards/models/game/game_history.dart';
 import 'package:cards/models/game/game_model.dart';
 import 'package:cards/screens/game/game_style.dart';
@@ -127,10 +128,10 @@ class StartScreenState extends State<StartScreen> {
       child: SingleChildScrollView(
         child: Center(
           child: Padding(
-            padding: const EdgeInsets.all(Constants.sizeM),
+            padding: const EdgeInsets.all(ConstLayout.sizeM),
             child: ConstrainedBox(
               constraints: const BoxConstraints(
-                maxWidth: Constants.startGameScreenMaxWidth,
+                maxWidth: ConstLayout.startGameScreenMaxWidth,
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -138,7 +139,7 @@ class StartScreenState extends State<StartScreen> {
                 children: [
                   _gameMode(),
                   IntrinsicHeight(child: _gameInstructionsWidget()),
-                  const SizedBox(height: Constants.sizeM),
+                  const SizedBox(height: ConstLayout.sizeM),
                   Row(
                     children: [
                       editBox(
@@ -160,7 +161,7 @@ class StartScreenState extends State<StartScreen> {
                             _isExpandedRooms
                                 ? Icons.expand_less
                                 : Icons.expand_more,
-                            color: Constants.textPrimary,
+                            color: Theme.of(context).colorScheme.onSurface,
                           ),
                         ),
                       ),
@@ -182,9 +183,9 @@ class StartScreenState extends State<StartScreen> {
                           ? (String room) {}
                           : null,
                     ),
-                  const SizedBox(height: Constants.sizeXS),
+                  const SizedBox(height: ConstLayout.sizeXS),
                   SizedBox(
-                    width: Constants.startGameScreenMaxWidth,
+                    width: ConstLayout.startGameScreenMaxWidth,
                     child: PlayersInRoomWidget(
                       activePlayerName: _playerName,
                       playerNames: _playerNames.toList(),
@@ -196,12 +197,12 @@ class StartScreenState extends State<StartScreen> {
                       onRemovePlayer: removePlayer,
                     ),
                   ),
-                  const SizedBox(height: Constants.sizeS),
+                  const SizedBox(height: ConstLayout.sizeS),
                   Padding(
-                    padding: const EdgeInsets.all(Constants.sizeS),
+                    padding: const EdgeInsets.all(ConstLayout.sizeS),
                     child: Text('Who Are You?\nSelect above ⬆ or join below ⬇'),
                   ),
-                  const SizedBox(height: Constants.sizeS),
+                  const SizedBox(height: ConstLayout.sizeS),
                   editBox(
                     'Join',
                     _controllerName,
@@ -216,12 +217,15 @@ class StartScreenState extends State<StartScreen> {
                           joinGame(_controllerName.text);
                         });
                       },
-                      icon: Icon(Icons.add, color: Constants.textPrimary),
+                      icon: Icon(
+                        Icons.add,
+                        color: Theme.of(context).colorScheme.onSurface,
+                      ),
                     ),
                   ),
-                  const SizedBox(height: Constants.sizeM),
+                  const SizedBox(height: ConstLayout.sizeM),
                   actionButton(),
-                  const SizedBox(height: Constants.sizeM),
+                  const SizedBox(height: ConstLayout.sizeM),
                 ],
               ),
             ),
@@ -257,8 +261,8 @@ class StartScreenState extends State<StartScreen> {
         }
       },
       child: Padding(
-        padding: const EdgeInsets.all(Constants.sizeS),
-        child: Text(label, style: const TextStyle(fontSize: Constants.textM)),
+        padding: const EdgeInsets.all(ConstLayout.sizeS),
+        child: Text(label, style: const TextStyle(fontSize: ConstLayout.textM)),
       ),
     );
   }
@@ -275,34 +279,32 @@ class StartScreenState extends State<StartScreen> {
     final Widget rightSideChild,
   ) {
     return Container(
-      width: Constants.startGameScreenMaxWidth,
-      padding: const EdgeInsets.all(Constants.sizeS),
+      width: ConstLayout.startGameScreenMaxWidth,
+      padding: const EdgeInsets.all(ConstLayout.sizeS),
       decoration: BoxDecoration(
         color: Colors.green.shade100,
-        borderRadius: BorderRadius.circular(Constants.radiusM),
+        borderRadius: BorderRadius.circular(ConstLayout.radiusM),
       ),
       child: Row(
         children: [
           TextSize(
             label,
-            Constants.textM,
-            color: Constants.primaryGreenDark,
+            ConstLayout.textM,
+            color: Theme.of(context).colorScheme.primaryContainer,
             bold: true,
           ),
-          const SizedBox(width: Constants.sizeM),
+          const SizedBox(width: ConstLayout.sizeM),
           Expanded(
             child: TextField(
               controller: controller,
               style: const TextStyle(
                 color: Colors.black,
-                fontSize: Constants.textS,
+                fontSize: ConstLayout.textS,
                 fontWeight: FontWeight.bold,
               ),
               decoration: InputDecoration(
                 hintText: 'Type your $label here',
-                hintStyle: TextStyle(
-                  color: Colors.black.withAlpha(Constants.alpha100),
-                ),
+                hintStyle: TextStyle(color: Colors.black.withAlpha(100)),
                 errorText: errorStatus.isEmpty ? null : errorStatus,
               ),
               onEditingComplete: onSubmitted,
@@ -447,15 +449,15 @@ class StartScreenState extends State<StartScreen> {
       title: Text(
         'Game Rules',
         style: TextStyle(
-          fontSize: Constants.textM,
+          fontSize: ConstLayout.textM,
           color: Colors.green.shade100,
         ),
       ),
       children: <Widget>[
         SizedBox(
-          height: Constants.gameStyleWidgetHeight,
+          height: ConstLayout.gameStyleWidgetHeight,
           child: Padding(
-            padding: const EdgeInsets.all(Constants.sizeS),
+            padding: const EdgeInsets.all(ConstLayout.sizeS),
             child: GameStyle(style: _selectedGameStyle),
           ),
         ),
@@ -466,7 +468,7 @@ class StartScreenState extends State<StartScreen> {
   /// A widget for selecting the game mode.
   Widget _gameMode() {
     return Padding(
-      padding: const EdgeInsets.all(Constants.sizeS),
+      padding: const EdgeInsets.all(ConstLayout.sizeS),
       child: SegmentedButton<GameStyles>(
         segments: [
           ButtonSegment<GameStyles>(

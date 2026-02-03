@@ -1,6 +1,5 @@
-import 'package:cards/models/app/constants.dart';
+import 'package:cards/models/app/constants_layout.dart';
 import 'package:cards/widgets/helpers/screen.dart';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -31,10 +30,10 @@ class _MainMenuState extends State<MainMenu> {
       child: Center(
         child: ConstrainedBox(
           constraints: const BoxConstraints(
-            maxWidth: Constants.mainMenuMaxWidth,
+            maxWidth: ConstLayout.mainMenuMaxWidth,
           ),
           child: Padding(
-            padding: const EdgeInsets.all(Constants.sizeM),
+            padding: const EdgeInsets.all(ConstLayout.sizeM),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -45,13 +44,13 @@ class _MainMenuState extends State<MainMenu> {
                   icon: Icons.play_circle_fill,
                   onPressed: () => Navigator.pushNamed(context, '/game'),
                 ),
-                SizedBox(height: Constants.sizeM),
+                SizedBox(height: ConstLayout.sizeM),
                 MenuButton(
                   label: 'Join an Existing Game',
                   icon: Icons.group_add,
                   onPressed: () => Navigator.pushNamed(context, '/join'),
                 ),
-                SizedBox(height: Constants.sizeM),
+                SizedBox(height: ConstLayout.sizeM),
                 MenuButton(
                   label: 'Score Keeper',
                   icon: Icons.scoreboard,
@@ -107,39 +106,43 @@ class MenuButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      height: Constants.mainMenuButtonHeight,
+      height: ConstLayout.mainMenuButtonHeight,
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.green.withAlpha(Constants.alpha200),
-          foregroundColor: Colors.white,
+          backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+          foregroundColor: Theme.of(context).colorScheme.onPrimaryContainer,
           padding: const EdgeInsets.symmetric(
-            horizontal: Constants.sizeL,
-            vertical: Constants.sizeM,
+            horizontal: ConstLayout.sizeL,
+            vertical: ConstLayout.sizeM,
           ),
 
           textStyle: TextStyle(
-            fontSize: Constants.textM,
+            fontSize: ConstLayout.textM,
             fontWeight: FontWeight.bold,
           ),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(Constants.radiusL),
+            borderRadius: BorderRadius.circular(ConstLayout.radiusL),
 
             side: BorderSide(
-              color: Constants.primaryGreenLight,
-              width: Constants.strokeS,
+              color: Theme.of(context).colorScheme.onPrimaryFixed,
+              width: ConstLayout.strokeS,
             ),
           ),
-          elevation: Constants.elevationL,
+          elevation: ConstLayout.elevationL,
           shadowColor: Colors.black45,
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(icon, size: Constants.iconM, color: Colors.yellow.shade300),
-            SizedBox(width: Constants.sizeM),
+            Icon(
+              icon,
+              size: ConstLayout.iconM,
+              color: Theme.of(context).colorScheme.secondary,
+            ),
+            SizedBox(width: ConstLayout.sizeM),
             SizedBox(
-              width: Constants.mainMenuButtonTextWidth,
+              width: ConstLayout.mainMenuButtonTextWidth,
               child: Text(label),
             ),
           ],

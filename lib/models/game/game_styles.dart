@@ -1,4 +1,4 @@
-import 'package:cards/models/app/constants.dart';
+import 'package:cards/models/card/card_model.dart';
 
 enum GameStyles {
   /// Classic French cards with a 9x9 grid and special rules.
@@ -21,12 +21,12 @@ enum GameStyles {
 int numberOfCardsToRevealOnStartup(GameStyles style) {
   switch (style) {
     case GameStyles.frenchCards9:
-      return Constants.frenchCardsRevealCount;
+      return CardModel.frenchCardsRevealCount;
     case GameStyles.skyJo:
-      return Constants.skyjoRevealCount;
+      return CardModel.skyjoRevealCount;
     case GameStyles.miniPut:
-      return Constants.miniPutRevealCount;
+      return CardModel.miniPutRevealCount;
     case GameStyles.custom:
-      return Constants.customRevealCount;
+      return CardModel.customRevealCount;
   }
 }

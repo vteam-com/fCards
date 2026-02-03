@@ -1,7 +1,8 @@
+import 'package:cards/models/app/constants_card_value.dart';
 import 'package:cards/models/card/card_model.dart';
 import 'package:cards/models/card/card_model_french.dart';
 import 'package:cards/models/game/game_styles.dart';
-import 'package:cards/models/app/constants.dart';
+
 export 'package:cards/models/card/card_model.dart';
 
 /// Represents a deck of playing cards.
@@ -84,12 +85,16 @@ class DeckModel {
   /// Otherwise, it calls `addCardsToDeckGolf()` to add cards for a standard French-suited deck.
   void addCardsToDeck() {
     if (gameStyle == GameStyles.skyJo) {
-      for (int i = Constants.skyjoMinValue; i <= Constants.skyjoMaxValue; i++) {
+      for (
+        int i = ConstCardValue.skyjoMinValue;
+        i <= ConstCardValue.skyjoMaxValue;
+        i++
+      ) {
         int count = i == 0
-            ? Constants.skyjoZeroCardCount
-            : i == Constants.skyjoMinValue
-            ? Constants.skyjoNegativeTwoCardCount
-            : Constants.skyjoOtherCardCount;
+            ? ConstCardValue.skyjoZeroCardCount
+            : i == ConstCardValue.skyjoMinValue
+            ? ConstCardValue.skyjoNegativeTwoCardCount
+            : ConstCardValue.skyjoOtherCardCount;
         for (int j = 0; j < count; j++) {
           cardsDeckPile.add(CardModel(suit: '', rank: i.toString(), value: i));
         }
@@ -116,9 +121,9 @@ class DeckModel {
       }
     }
     // Add Jokers to each deck
-    for (int i = 0; i < Constants.golfJokerCount; i++) {
+    for (int i = 0; i < ConstCardValue.golfJokerCount; i++) {
       cardsDeckPile.add(
-        CardModel(suit: '*', rank: '§', value: Constants.golfJokerValue),
+        CardModel(suit: '*', rank: '§', value: ConstCardValue.golfJokerValue),
       );
     }
   }

@@ -1,4 +1,5 @@
-import 'package:cards/models/app/constants.dart';
+import 'package:cards/models/app/constants_layout.dart';
+
 import 'package:flutter/material.dart';
 
 /// A widget that displays a list of rooms, allowing the user to select a room and optionally remove a room.
@@ -56,37 +57,42 @@ class _RoomsWidgetState extends State<RoomsWidget> {
   Widget build(BuildContext context) {
     final filteredRooms = _getFilteredRooms();
 
+    final colorScheme = Theme.of(context).colorScheme;
+    final surface = colorScheme.surface;
+
     return Container(
       constraints: const BoxConstraints(maxHeight: 500),
       decoration: BoxDecoration(
-        color: Constants.backgroundContainer,
-        borderRadius: BorderRadius.all(Radius.circular(Constants.radiusM)),
+        color: surface,
+        borderRadius: BorderRadius.all(Radius.circular(ConstLayout.radiusM)),
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           // Search Box
           Padding(
-            padding: const EdgeInsets.all(Constants.sizeM),
+            padding: const EdgeInsets.all(ConstLayout.sizeM),
             child: TextField(
               controller: _searchController,
               style: const TextStyle(
                 color: Colors.white,
-                fontSize: Constants.textM,
+                fontSize: ConstLayout.textM,
               ),
               decoration: InputDecoration(
                 hintText: 'Search rooms...',
                 hintStyle: const TextStyle(color: Colors.white70),
                 prefixIcon: const Icon(Icons.search, color: Colors.white70),
                 filled: true,
-                fillColor: Colors.black.withAlpha(Constants.searchBoxFillAlpha),
+                fillColor: Colors.black.withAlpha(
+                  ConstLayout.searchBoxFillAlpha,
+                ),
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(Constants.radiusM),
+                  borderRadius: BorderRadius.circular(ConstLayout.radiusM),
                   borderSide: BorderSide.none,
                 ),
                 contentPadding: const EdgeInsets.symmetric(
-                  horizontal: Constants.sizeM,
-                  vertical: Constants.sizeS,
+                  horizontal: ConstLayout.sizeM,
+                  vertical: ConstLayout.sizeS,
                 ),
               ),
               onChanged: (value) {
@@ -104,11 +110,7 @@ class _RoomsWidgetState extends State<RoomsWidget> {
           ),
 
           // Divider
-          Divider(
-            height: 1,
-            color: Colors.white.withAlpha(Constants.dividerAlpha),
-            thickness: 1,
-          ),
+          Divider(),
 
           // Room List
           Expanded(
@@ -126,12 +128,12 @@ class _RoomsWidgetState extends State<RoomsWidget> {
           // Search hint
           if (_searchText.isNotEmpty && filteredRooms.isEmpty)
             Padding(
-              padding: const EdgeInsets.all(Constants.sizeM),
+              padding: const EdgeInsets.all(ConstLayout.sizeM),
               child: Text(
                 'No rooms found matching "$_searchText"',
                 style: const TextStyle(
                   color: Colors.white70,
-                  fontSize: Constants.textS,
+                  fontSize: ConstLayout.textS,
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -148,15 +150,15 @@ class _RoomsWidgetState extends State<RoomsWidget> {
         children: [
           const Icon(
             Icons.meeting_room,
-            size: Constants.iconL,
+            size: ConstLayout.iconL,
             color: Colors.white70,
           ),
-          const SizedBox(height: Constants.sizeM),
+          const SizedBox(height: ConstLayout.sizeM),
           Text(
             _searchText.isEmpty ? 'No rooms available' : 'No matching rooms',
             style: const TextStyle(
               color: Colors.white70,
-              fontSize: Constants.textM,
+              fontSize: ConstLayout.textM,
             ),
           ),
           if (_searchText.isNotEmpty)
@@ -164,7 +166,7 @@ class _RoomsWidgetState extends State<RoomsWidget> {
               'Try a different search term',
               style: const TextStyle(
                 color: Colors.white54,
-                fontSize: Constants.textS,
+                fontSize: ConstLayout.textS,
               ),
             ),
         ],
@@ -174,31 +176,32 @@ class _RoomsWidgetState extends State<RoomsWidget> {
 
   Widget _buildRoomItem(String roomName) {
     final isSelected = roomName == widget.roomId;
+    final colorScheme = Theme.of(context).colorScheme;
 
     return ListTile(
       contentPadding: const EdgeInsets.symmetric(
-        horizontal: Constants.sizeM,
-        vertical: Constants.sizeXS,
+        horizontal: ConstLayout.sizeM,
+        vertical: ConstLayout.sizeXS,
       ),
       leading: SizedBox(
-        width: Constants.roomItemLeadingWidth,
+        width: ConstLayout.roomItemLeadingWidth,
         child: isSelected
-            ? Icon(Icons.check, color: Colors.green.shade400)
+            ? Icon(Icons.check, color: colorScheme.tertiary)
             : null,
       ),
       title: TextButton(
         onPressed: () => widget.onSelected(roomName),
         style: TextButton.styleFrom(
           padding: const EdgeInsets.symmetric(
-            vertical: Constants.sizeS,
-            horizontal: Constants.sizeM,
+            vertical: ConstLayout.sizeS,
+            horizontal: ConstLayout.sizeM,
           ),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(Constants.radiusS),
+            borderRadius: BorderRadius.circular(ConstLayout.radiusS),
           ),
           backgroundColor: isSelected
-              ? Colors.green.shade800.withAlpha(
-                  Constants.selectedRoomBackgroundAlpha,
+              ? colorScheme.primaryContainer.withAlpha(
+                  ConstLayout.selectedRoomBackgroundAlpha,
                 )
               : Colors.transparent,
         ),
@@ -208,7 +211,7 @@ class _RoomsWidgetState extends State<RoomsWidget> {
             roomName,
             style: TextStyle(
               color: Colors.white,
-              fontSize: Constants.textM,
+              fontSize: ConstLayout.textM,
               fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
             ),
           ),
@@ -220,7 +223,7 @@ class _RoomsWidgetState extends State<RoomsWidget> {
               icon: Icon(
                 Icons.remove_circle,
                 color: Colors.red.shade300,
-                size: Constants.iconS,
+                size: ConstLayout.iconS,
               ),
               onPressed: () => widget.onRemoveRoom!(roomName),
             ),

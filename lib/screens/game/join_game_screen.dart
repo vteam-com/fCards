@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:cards/models/app/constants_layout.dart';
 import 'package:cards/models/game/backend_model.dart';
 import 'package:cards/models/game/game_history.dart';
 import 'package:cards/models/game/game_model.dart';
@@ -8,7 +9,6 @@ import 'package:cards/screens/game/game_screen.dart';
 import 'package:cards/widgets/helpers/screen.dart';
 import 'package:cards/widgets/helpers/players_in_room_widget.dart';
 import 'package:cards/widgets/helpers/rooms_widget.dart';
-import 'package:cards/models/app/constants.dart';
 import 'package:cards/utils/logger.dart';
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -95,7 +95,8 @@ class JoinGameScreenState extends State<JoinGameScreen> {
                 ElevatedButton(
                   onPressed: _canProceed
                       ? () {
-                          if (_currentStep < Constants.joinGameStepCount - 1) {
+                          if (_currentStep <
+                              ConstLayout.joinGameStepCount - 1) {
                             setState(() => _currentStep++);
                           } else {
                             _startGame(context);
@@ -103,7 +104,7 @@ class JoinGameScreenState extends State<JoinGameScreen> {
                         }
                       : null,
                   child: Text(
-                    _currentStep < Constants.joinGameStepCount - 1
+                    _currentStep < ConstLayout.joinGameStepCount - 1
                         ? 'Next'
                         : 'Start Game',
                   ),
@@ -123,12 +124,12 @@ class JoinGameScreenState extends State<JoinGameScreen> {
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
-      spacing: Constants.sizeM,
+      spacing: ConstLayout.sizeM,
       children: [
         Text(
           'Joining Room: $_selectedRoom',
           style: const TextStyle(
-            fontSize: Constants.textS,
+            fontSize: ConstLayout.textS,
             fontWeight: FontWeight.bold,
             color: Colors.white,
           ),
@@ -136,16 +137,16 @@ class JoinGameScreenState extends State<JoinGameScreen> {
         ),
         const Text(
           'Enter Your Name',
-          style: TextStyle(fontSize: Constants.textS, color: Colors.white),
+          style: TextStyle(fontSize: ConstLayout.textS, color: Colors.white),
         ),
 
         SizedBox(
-          width: Constants.joinGameNameEntryWidth,
+          width: ConstLayout.joinGameNameEntryWidth,
           child: TextField(
             controller: _controllerName,
             style: const TextStyle(
               color: Colors.black,
-              fontSize: Constants.textS,
+              fontSize: ConstLayout.textS,
               fontWeight: FontWeight.bold,
             ),
             textAlign: TextAlign.center,
@@ -167,7 +168,7 @@ class JoinGameScreenState extends State<JoinGameScreen> {
           onPressed: _joinGame,
           child: const Text(
             'Join Room',
-            style: TextStyle(fontSize: Constants.textS),
+            style: TextStyle(fontSize: ConstLayout.textS),
           ),
         ),
 
@@ -175,7 +176,7 @@ class JoinGameScreenState extends State<JoinGameScreen> {
           Text(
             'Welcome, $_playerName!',
             style: TextStyle(
-              fontSize: Constants.textS,
+              fontSize: ConstLayout.textS,
               color: Colors.yellow.shade300,
             ),
           ),
@@ -194,24 +195,24 @@ class JoinGameScreenState extends State<JoinGameScreen> {
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
-      spacing: Constants.sizeM,
+      spacing: ConstLayout.sizeM,
       children: [
         const Text(
           'Select a Room to Join',
           style: TextStyle(
-            fontSize: Constants.textL,
+            fontSize: ConstLayout.textL,
             fontWeight: FontWeight.bold,
             color: Colors.white,
           ),
           textAlign: TextAlign.center,
         ),
-        const SizedBox(height: Constants.sizeS),
+        const SizedBox(height: ConstLayout.sizeS),
         Text(
           'Use the search box to quickly find a room',
-          style: TextStyle(fontSize: Constants.textS, color: Colors.white70),
+          style: TextStyle(fontSize: ConstLayout.textS, color: Colors.white70),
           textAlign: TextAlign.center,
         ),
-        const SizedBox(height: Constants.sizeM),
+        const SizedBox(height: ConstLayout.sizeM),
         RoomsWidget(
           roomId: _selectedRoom.isEmpty ? 'SELECT_ROOM' : _selectedRoom,
           rooms: _listOfRooms,
@@ -223,21 +224,21 @@ class JoinGameScreenState extends State<JoinGameScreen> {
           onRemoveRoom: null, // No remove for join mode
         ),
         if (_selectedRoom.isNotEmpty) ...[
-          const SizedBox(height: Constants.sizeM),
+          const SizedBox(height: ConstLayout.sizeM),
           Container(
-            padding: const EdgeInsets.all(Constants.sizeM),
+            padding: const EdgeInsets.all(ConstLayout.sizeM),
             decoration: BoxDecoration(
               color: Colors.green.shade900,
               borderRadius: BorderRadius.circular(
-                Constants.borderRadius *
-                    Constants.selectedRoomBorderRadiusMultiplier,
+                ConstLayout.borderRadius *
+                    ConstLayout.selectedRoomBorderRadiusMultiplier,
               ),
               border: Border.all(color: Colors.green.shade400),
             ),
             child: Text(
               'Selected: $_selectedRoom',
               style: const TextStyle(
-                fontSize: Constants.textS,
+                fontSize: ConstLayout.textS,
                 color: Colors.white,
               ),
               textAlign: TextAlign.center,
@@ -254,7 +255,7 @@ class JoinGameScreenState extends State<JoinGameScreen> {
         return _buildRoomSelectionStep();
       case 1:
         return _buildNameEntryStep();
-      case Constants.joinGameStepCount - 1:
+      case ConstLayout.joinGameStepCount - 1:
         return _buildWaitingStep();
       default:
         return const SizedBox();
@@ -265,11 +266,11 @@ class JoinGameScreenState extends State<JoinGameScreen> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        for (int i = 0; i < Constants.joinGameStepCount; i++)
+        for (int i = 0; i < ConstLayout.joinGameStepCount; i++)
           Container(
-            margin: const EdgeInsets.symmetric(horizontal: Constants.sizeXS),
+            margin: const EdgeInsets.symmetric(horizontal: ConstLayout.sizeXS),
             child: CircleAvatar(
-              radius: Constants.circleAvatarRadius,
+              radius: ConstLayout.circleAvatarRadius,
               backgroundColor: i <= _currentStep
                   ? Colors.green.shade400
                   : Colors.grey.shade400,
@@ -289,12 +290,12 @@ class JoinGameScreenState extends State<JoinGameScreen> {
   Widget _buildWaitingStep() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
-      spacing: Constants.sizeM,
+      spacing: ConstLayout.sizeM,
       children: [
         Text(
           'Room: $_selectedRoom',
           style: const TextStyle(
-            fontSize: Constants.textM,
+            fontSize: ConstLayout.textM,
             fontWeight: FontWeight.bold,
             color: Colors.white,
           ),
@@ -304,7 +305,7 @@ class JoinGameScreenState extends State<JoinGameScreen> {
             ? const CircularProgressIndicator()
             : Container(
                 constraints: const BoxConstraints(
-                  maxWidth: Constants.joinGamePlayerListMaxWidth,
+                  maxWidth: ConstLayout.joinGamePlayerListMaxWidth,
                 ),
                 child: PlayersInRoomWidget(
                   activePlayerName: _playerName,
@@ -316,17 +317,20 @@ class JoinGameScreenState extends State<JoinGameScreen> {
                 ),
               ),
 
-        if (_playerNames.length < Constants.minPlayersToStartGame)
+        if (_playerNames.length < CardModel.minPlayersToStartGame)
           const Text(
             'Waiting for more players to join...',
-            style: TextStyle(fontSize: Constants.textS, color: Colors.white70),
+            style: TextStyle(
+              fontSize: ConstLayout.textS,
+              color: Colors.white70,
+            ),
           )
         else
           Text(
             'Ready to play! ${_playerNames.length} players in room.',
             style: TextStyle(
-              fontSize: Constants.textS,
-              color: Constants.textSuccess,
+              fontSize: ConstLayout.textS,
+              color: Theme.of(context).colorScheme.tertiary,
             ),
           ),
       ],
@@ -339,8 +343,8 @@ class JoinGameScreenState extends State<JoinGameScreen> {
         return _selectedRoom.isNotEmpty;
       case 1:
         return _playerName.isNotEmpty;
-      case Constants.joinGameStepCount - 1:
-        return _playerNames.length >= Constants.minPlayersToStartGame;
+      case ConstLayout.joinGameStepCount - 1:
+        return _playerNames.length >= CardModel.minPlayersToStartGame;
       default:
         return false;
     }
