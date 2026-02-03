@@ -101,37 +101,56 @@ jobs:
           cp lib/models/app/firebase_options.example.dart lib/models/app/firebase_options.dart
         fi
 
-    - name: Generate firebase.json for Hosting
+    - name: Restore firebase.json from secret
       run: |
-        cat <<'EOF' > firebase.json
-        {
-          "hosting": {
-            "site": "vteam-cards",
-            "public": "build/web",
-            "ignore": [
-              "firebase.json",
-              "**/.*",
-              "**/node_modules/**"
-            ]
+        if [ -n "${{ secrets.FIREBASE_JSON }}" ]; then
+          echo "${{ secrets.FIREBASE_JSON }}" | base64 --decode > firebase.json
+          echo "✓ Restored firebase.json from secret"
+        else
+          echo "✗ FIREBASE_JSON secret not found, creating minimal firebase.json"
+          cat <<'EOF' > firebase.json
+          {
+            "hosting": {
+              "site": "vteam-cards",
+              "public": "build/web",
+              "ignore": [
+                "firebase.json",
+                "**/.*",
+                "**/node_modules/**"
+              ]
+            }
           }
-        }
-        EOF
+          EOF
+        fi
 
     - name: Download web build
       uses: actions/download-artifact@v5
       with:
         name: flutter-web-build
-        path: flutter-web-build
+        path: build
 
-    - name: Place web build in project root
+    - name: Verify build directory exists
       run: |
-        rm -rf build
-        if [ -d flutter-web-build/build ]; then
-          mv flutter-web-build/build build
-        else
-          mv flutter-web-build build
+        if [ ! -d "build/web" ]; then
+          echo "ERROR: build/web directory not found!"
+          echo "Contents of build directory:"
+          ls -la build/
+          exit 1
         fi
-        rm -rf flutter-web-build
+        echo "Build directory verified: build/web exists"
+        
+    - name: Verify firebase.json configuration
+      run: |
+        echo "Current firebase.json configuration:"
+        cat firebase.json
+        echo ""
+        echo "Checking if public directory exists in firebase.json..."
+        if grep -q '"public": "build/web"' firebase.json; then
+          echo "✓ firebase.json correctly configured for build/web"
+        else
+          echo "✗ firebase.json public path is not set to build/web"
+          exit 1
+        fi
 
     - name: Deploy to Firebase Hosting (action)
       uses: FirebaseExtended/action-hosting-deploy@v0
