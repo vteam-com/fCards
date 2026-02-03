@@ -120,6 +120,20 @@ jobs:
             }
           }' > firebase.json
         fi
+        
+        # Ensure hosting configuration has the correct public path for web deployment
+        if grep -q '"hosting"' firebase.json; then
+          # Use jq to update the hosting configuration if available, otherwise use sed
+          if command -v jq &> /dev/null; then
+            jq '.hosting.public = "build/web"' firebase.json > firebase.json.tmp && mv firebase.json.tmp firebase.json
+          else
+            # Fallback to sed if jq is not available
+            sed -i 's/"source": "\."/"public": "build\/web"/' firebase.json
+          fi
+          echo "✓ Updated hosting configuration to use build/web"
+        else
+          echo "✗ No hosting configuration found in firebase.json"
+        fi
 
     - name: Download web build
       uses: actions/download-artifact@v5
