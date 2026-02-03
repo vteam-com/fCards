@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.9.8
+
+- fix more "magic numbers"
+
 ## 1.9.7
 
 - Improve UX for "Join a Game"

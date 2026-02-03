@@ -221,6 +221,18 @@ class Constants {
   /// The border radius multiplier for selected room container
   static const double selectedRoomBorderRadiusMultiplier = 1.5;
 
+  /// Alpha value for search box fill color (77/255 ≈ 0.3)
+  static const int searchBoxFillAlpha = 77;
+
+  /// Alpha value for divider color (51/255 ≈ 0.2)
+  static const int dividerAlpha = 51;
+
+  /// Width for room item leading icon container
+  static const double roomItemLeadingWidth = 40.0;
+
+  /// Alpha value for selected room background (128/255 ≈ 0.5)
+  static const int selectedRoomBackgroundAlpha = 128;
+
   /// The width for the game over dialog
   static const double gameOverDialogWidth = 500.0;
 

@@ -1,5 +1,3 @@
-// ignore: fcheck_magic_numbers
-
 import 'package:cards/models/app/constants.dart';
 import 'package:flutter/material.dart';
 
@@ -37,26 +35,24 @@ class RoomsWidget extends StatefulWidget {
 }
 
 class _RoomsWidgetState extends State<RoomsWidget> {
-late TextEditingController _searchController;
+  late TextEditingController _searchController;
 
-late String _searchText;
+  late String _searchText;
 
-
-
-@override
+  @override
   void initState() {
     super.initState();
     _searchController = TextEditingController();
     _searchText = '';
   }
 
-@override
+  @override
   void dispose() {
     _searchController.dispose();
     super.dispose();
   }
 
-@override
+  @override
   Widget build(BuildContext context) {
     final filteredRooms = _getFilteredRooms();
 
@@ -83,7 +79,7 @@ late String _searchText;
                 hintStyle: const TextStyle(color: Colors.white70),
                 prefixIcon: const Icon(Icons.search, color: Colors.white70),
                 filled: true,
-                fillColor: Colors.black.withAlpha(77),
+                fillColor: Colors.black.withAlpha(Constants.searchBoxFillAlpha),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(Constants.radiusM),
                   borderSide: BorderSide.none,
@@ -108,7 +104,11 @@ late String _searchText;
           ),
 
           // Divider
-          Divider(height: 1, color: Colors.white.withAlpha(51), thickness: 1),
+          Divider(
+            height: 1,
+            color: Colors.white.withAlpha(Constants.dividerAlpha),
+            thickness: 1,
+          ),
 
           // Room List
           Expanded(
@@ -141,9 +141,7 @@ late String _searchText;
     );
   }
 
-
-
-Widget _buildEmptyState() {
+  Widget _buildEmptyState() {
     return Center(
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -174,7 +172,7 @@ Widget _buildEmptyState() {
     );
   }
 
-Widget _buildRoomItem(String roomName) {
+  Widget _buildRoomItem(String roomName) {
     final isSelected = roomName == widget.roomId;
 
     return ListTile(
@@ -183,7 +181,7 @@ Widget _buildRoomItem(String roomName) {
         vertical: Constants.sizeXS,
       ),
       leading: SizedBox(
-        width: 40,
+        width: Constants.roomItemLeadingWidth,
         child: isSelected
             ? Icon(Icons.check, color: Colors.green.shade400)
             : null,
@@ -199,7 +197,9 @@ Widget _buildRoomItem(String roomName) {
             borderRadius: BorderRadius.circular(Constants.radiusS),
           ),
           backgroundColor: isSelected
-              ? Colors.green.shade800.withAlpha(128)
+              ? Colors.green.shade800.withAlpha(
+                  Constants.selectedRoomBackgroundAlpha,
+                )
               : Colors.transparent,
         ),
         child: Align(
@@ -227,7 +227,7 @@ Widget _buildRoomItem(String roomName) {
     );
   }
 
-List<String> _getFilteredRooms() {
+  List<String> _getFilteredRooms() {
     if (_searchText.isEmpty) {
       return widget.rooms;
     }
