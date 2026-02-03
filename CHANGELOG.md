@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 1.9.7
+
+- Improve UX for "Join a Game"
+
+## 1.9.6
+
+- CI/CD
+
 ## 1.9.5
 
 - Add CI/CD workflow for Flutter web validation and build

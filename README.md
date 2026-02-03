@@ -181,11 +181,77 @@ lib/
 
 ## Deployment
 
-### 🚀 Firebase Web Deployment
+### 🚀 CI/CD Pipeline (GitHub Actions)
 
-The Cards app is deployed to Firebase Hosting for web access. Follow these steps to deploy updates:
+The Cards app uses an automated CI/CD pipeline via GitHub Actions for continuous integration and deployment. This ensures code quality and reliable deployments.
 
-#### Prerequisites firebase
+#### Pipeline Overview
+
+The workflow consists of two main jobs:
+
+1. **Build and Test** (`build-and-test`)
+   - ✅ Code formatting and linting
+   - ✅ Automatic code fixes
+   - ✅ Static analysis and type checking
+   - ✅ Unit tests execution
+   - ✅ Code quality analysis with fcheck
+   - ✅ Flutter web build generation
+   - ✅ Artifact upload for deployment
+
+2. **Deploy** (`deploy`) - Runs only on `main`/`master` branches
+   - ✅ Firebase configuration setup
+   - ✅ Build artifact download
+   - ✅ Firebase Hosting deployment
+   - ✅ Automatic preview deployments for pull requests
+
+#### Security Architecture
+
+Due to the open-source nature of this project, sensitive configuration files are **NOT** committed to the repository. Instead, they're securely stored as GitHub secrets:
+
+**Required GitHub Secrets:**
+
+| Secret Name | Purpose | Content |
+|-------------|---------|---------|
+| `FIREBASE_JSON` | Firebase Hosting configuration | Base64-encoded `firebase.json` |
+| `FIREBASE_OPTIONS_FILE` | Firebase project credentials | Base64-encoded `firebase_options.dart` |
+| `FIREBASE_SERVICE_ACCOUNT_*PROJECT_NAME*` | Firebase deployment permissions | Service account JSON key |
+
+**Important Note for Forks:**
+This repository is open-source and intended for community contributions. If you fork this project:
+
+1. **Create Your Own Firebase Project**: Set up a separate Firebase project for your fork
+2. **Update Project References**: Replace `vteam-cards` with your project ID in deployment configurations
+3. **Generate Your Own Secrets**: Create new GitHub secrets using your Firebase project credentials
+4. **Keep Credentials Private**: Never commit Firebase credentials or service account keys to the repository
+
+**Why This Complexity?**
+
+1. **Security**: Firebase credentials and service account keys contain sensitive information that should never be committed to a public repository
+2. **Compliance**: Prevents accidental exposure of production credentials
+3. **Flexibility**: Different environments can use different configurations
+4. **Access Control**: Only repository maintainers with secret access can deploy
+5. **Open Source Friendly**: Allows anyone to fork and deploy using their own Firebase project
+
+**Setting Up Secrets for Your Fork:**
+
+```bash
+# Upload firebase.json (base64 encoded)
+gh secret set FIREBASE_JSON --body "$(cat firebase.json | base64)"
+
+# Upload firebase_options.dart (base64 encoded)  
+gh secret set FIREBASE_OPTIONS_FILE --body "$(cat lib/models/app/firebase_options.dart | base64)"
+
+# Upload Firebase service account key (replace with your project name)
+gh secret set FIREBASE_SERVICE_ACCOUNT_YOUR_PROJECT --body "$(cat service-account-key.json | base64)"
+```
+
+**Note**: The `vteam-cards` Firebase project is specific to the original repository maintainers and should not be used by forks. Each fork should use its own Firebase project for deployment.
+
+#### Manual Deployment
+
+For local deployments or when CI/CD is not available:
+
+##### Prerequisites firebase
 
 1. **Install Firebase CLI** (if not already installed):
 
@@ -199,7 +265,7 @@ The Cards app is deployed to Firebase Hosting for web access. Follow these steps
    firebase login
    ```
 
-#### Initial Firebase Setup (One-time)
+##### Initial Firebase Setup (One-time)
 
 If Firebase hasn't been initialized in the project:
 
@@ -220,9 +286,9 @@ If Firebase hasn't been initialized in the project:
    firebase experiments:enable webframeworks
    ```
 
-#### Deployment Process
+##### Deployment Process
 
-##### Option 1: Using the Deploy Script (Recommended)**
+###### Option 1: Using the Deploy Script (Recommended)**
 
 The project includes an automated deployment script:
 
@@ -238,7 +304,7 @@ This script will:
 - Build the web app (`flutter build web --release`)
 - Deploy to Firebase (`firebase deploy --project vteam-cards`)
 
-##### Option 2: Manual Deployment**
+###### Option 2: Manual Deployment**
 
 1. **Clean and build**:
 

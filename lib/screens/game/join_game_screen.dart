@@ -199,12 +199,19 @@ class JoinGameScreenState extends State<JoinGameScreen> {
         const Text(
           'Select a Room to Join',
           style: TextStyle(
-            fontSize: Constants.textS,
+            fontSize: Constants.textL,
             fontWeight: FontWeight.bold,
             color: Colors.white,
           ),
           textAlign: TextAlign.center,
         ),
+        const SizedBox(height: Constants.sizeS),
+        Text(
+          'Use the search box to quickly find a room',
+          style: TextStyle(fontSize: Constants.textS, color: Colors.white70),
+          textAlign: TextAlign.center,
+        ),
+        const SizedBox(height: Constants.sizeM),
         RoomsWidget(
           roomId: _selectedRoom.isEmpty ? 'SELECT_ROOM' : _selectedRoom,
           rooms: _listOfRooms,
@@ -216,6 +223,7 @@ class JoinGameScreenState extends State<JoinGameScreen> {
           onRemoveRoom: null, // No remove for join mode
         ),
         if (_selectedRoom.isNotEmpty) ...[
+          const SizedBox(height: Constants.sizeM),
           Container(
             padding: const EdgeInsets.all(Constants.sizeM),
             decoration: BoxDecoration(
