@@ -123,14 +123,17 @@ jobs:
         
         # Ensure hosting configuration has the correct public path for web deployment
         if grep -q '"hosting"' firebase.json; then
-          # Use jq to update the hosting configuration if available, otherwise use sed
+          # Use jq to properly update the hosting configuration if available
           if command -v jq &> /dev/null; then
-            jq '.hosting.public = "build/web"' firebase.json > firebase.json.tmp && mv firebase.json.tmp firebase.json
+            # Remove source property and set public property
+            jq 'if .hosting.source then .hosting |= del(.source) else . end | .hosting.public = "build/web"' firebase.json > firebase.json.tmp && mv firebase.json.tmp firebase.json
+            echo "✓ Updated hosting configuration using jq: removed source, set public to build/web"
           else
-            # Fallback to sed if jq is not available
-            sed -i 's/"source": "\."/"public": "build\/web"/' firebase.json
+            # Fallback to sed if jq is not available - remove source line and add public
+            sed -i '/"source":/d' firebase.json
+            sed -i '/"hosting": {/a\    "public": "build/web",' firebase.json
+            echo "✓ Updated hosting configuration using sed: removed source, added public to build/web"
           fi
-          echo "✓ Updated hosting configuration to use build/web"
         else
           echo "✗ No hosting configuration found in firebase.json"
         fi
