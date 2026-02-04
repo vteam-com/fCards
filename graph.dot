@@ -29,6 +29,7 @@ digraph "" {
   "/lib/models/app/constants_animation.dart" [label="constants_animation"];
   "/lib/models/app/constants_layout.dart" [label="constants_layout"];
   "/lib/models/app/firebase_options.dart" [label="firebase_options"];
+  "/lib/models/app/auth_service.dart" [label="auth_service"];
   "/lib/models/app/constants_card_value.dart" [label="constants_card_value"];
   "/lib/models/app/app_theme.dart" [label="app_theme"];
   "/lib/models/app/firebase_options.example.dart" [label="firebase_options.example"];
@@ -125,6 +126,7 @@ digraph "" {
           "/lib/models/app/constants_animation.dart";
           "/lib/models/app/constants_layout.dart";
           "/lib/models/app/firebase_options.dart";
+          "/lib/models/app/auth_service.dart";
           "/lib/models/app/constants_card_value.dart";
           "/lib/models/app/app_theme.dart";
           "/lib/models/app/firebase_options.example.dart";
@@ -239,6 +241,7 @@ digraph "" {
   "/lib/models/game/game_model.dart" -> "/lib/models/player/player_model.dart" [style=dashed];
   "/lib/models/game/game_styles.dart" -> "/lib/models/card/card_model.dart";
   "/lib/models/game/backend_model.dart" -> "/lib/utils/logger.dart";
+  "/lib/models/game/backend_model.dart" -> "/lib/models/app/auth_service.dart";
   "/lib/models/game/backend_model.dart" -> "/lib/models/app/firebase_options.dart";
   "/lib/models/game/backend_model.dart" -> "/lib/models/game/game_history.dart";
   "/lib/models/game/deck_model.dart" -> "/lib/models/app/constants_card_value.dart";
@@ -295,7 +298,11 @@ digraph "" {
   "/lib/screens/game/start_game_screen.dart" -> "/lib/widgets/player/players_in_room_widget.dart";
   "/lib/screens/game/start_game_screen.dart" -> "/lib/widgets/helpers/rooms_widget.dart";
   "/lib/screens/game/start_game_screen.dart" -> "/lib/utils/browser_utils.dart";
+  "/lib/screens/welcome/main_menu.dart" -> "/lib/models/app/app_theme.dart";
   "/lib/screens/welcome/main_menu.dart" -> "/lib/models/app/constants_layout.dart";
+  "/lib/screens/welcome/main_menu.dart" -> "/lib/models/app/auth_service.dart";
+  "/lib/screens/welcome/main_menu.dart" -> "/lib/models/game/backend_model.dart";
+  "/lib/screens/welcome/main_menu.dart" -> "/lib/utils/logger.dart";
   "/lib/screens/welcome/main_menu.dart" -> "/lib/widgets/helpers/screen.dart";
   "/lib/screens/keepscore/golf_score_screen.dart" -> "/lib/models/app/app_theme.dart";
   "/lib/screens/keepscore/golf_score_screen.dart" -> "/lib/models/app/constants_layout.dart";
@@ -305,6 +312,7 @@ digraph "" {
   "/lib/screens/keepscore/golf_score_screen.dart" -> "/lib/widgets/helpers/input_keyboard.dart";
   "/lib/screens/keepscore/golf_score_screen.dart" -> "/lib/widgets/player/player_header.dart";
   "/lib/main.dart" -> "/lib/models/game/backend_model.dart";
+  "/lib/main.dart" -> "/lib/models/app/auth_service.dart";
   "/lib/main.dart" -> "/lib/models/app/firebase_options.dart";
   "/lib/main.dart" -> "/lib/screens/game/join_game_screen.dart";
   "/lib/main.dart" -> "/lib/screens/game/start_game_screen.dart";

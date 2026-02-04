@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:core';
 
 import 'package:cards/utils/logger.dart';
+import 'package:cards/models/app/auth_service.dart';
 import 'package:cards/models/app/firebase_options.dart';
 import 'package:cards/models/game/game_history.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -54,7 +55,7 @@ Future<void> useFirebase() async {
           await FirebaseAuth.instance.setPersistence(Persistence.LOCAL);
         }
 
-        await FirebaseAuth.instance.signInAnonymously();
+        await AuthService.ensureSignedIn();
         backendReady = true;
       }
     } catch (e) {

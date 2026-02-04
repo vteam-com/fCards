@@ -5,6 +5,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 /// Defines breakpoint constants for responsive design
 class ResponsiveBreakpoints {
@@ -77,15 +79,17 @@ class Screen extends StatefulWidget {
 }
 
 class _ScreenState extends State<Screen> {
-  String _version = '';
+String _version = '';
 
-  @override
+
+
+@override
   void initState() {
     super.initState();
     _getAppVersion();
   }
 
-  @override
+@override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -125,6 +129,16 @@ class _ScreenState extends State<Screen> {
             IconButton(
               icon: const Icon(Icons.refresh),
               onPressed: () => widget.onRefresh!(),
+            ),
+
+          /// USER AVATAR
+          if (Firebase.apps.isNotEmpty &&
+              FirebaseAuth.instance.currentUser != null)
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: ConstLayout.sizeS,
+              ),
+              child: _buildAvatar(FirebaseAuth.instance.currentUser!),
             ),
 
           /// RIGHT SIDE TEXT (User Name)
@@ -171,7 +185,40 @@ class _ScreenState extends State<Screen> {
     );
   }
 
-  Widget _displayWaiting() {
+
+
+Widget _buildAvatar(User user) {
+    if (user.isAnonymous) {
+      return CircleAvatar(
+        radius: ConstLayout.circleAvatarRadius,
+        backgroundColor: Theme.of(context).colorScheme.surface,
+        foregroundColor: Theme.of(context).colorScheme.onSurface,
+        child: const Icon(Icons.person_outline),
+      );
+    }
+
+    final photoUrl = user.photoURL;
+    if (photoUrl != null && photoUrl.isNotEmpty) {
+      return CircleAvatar(
+        radius: ConstLayout.circleAvatarRadius,
+        backgroundImage: NetworkImage(photoUrl),
+        backgroundColor: Theme.of(context).colorScheme.surface,
+      );
+    }
+
+    final fallbackText = user.displayName?.trim().isNotEmpty == true
+        ? user.displayName!
+        : (user.email ?? 'U');
+
+    return CircleAvatar(
+      radius: ConstLayout.circleAvatarRadius,
+      backgroundColor: Theme.of(context).colorScheme.primary,
+      foregroundColor: Theme.of(context).colorScheme.onPrimary,
+      child: Text(fallbackText.characters.first.toUpperCase()),
+    );
+  }
+
+Widget _displayWaiting() {
     /// Builds a loading indicator widget
     return SizedBox(
       width: ConstLayout.waitingWidgetSize,
@@ -184,7 +231,7 @@ class _ScreenState extends State<Screen> {
     );
   }
 
-  /// Fetches the application version from the platform package info.
+/// Fetches the application version from the platform package info.
   Future<void> _getAppVersion() async {
     try {
       final packageInfo = await PackageInfo.fromPlatform();

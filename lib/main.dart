@@ -1,4 +1,5 @@
 import 'package:cards/models/game/backend_model.dart';
+import 'package:cards/models/app/auth_service.dart';
 import 'package:cards/models/app/firebase_options.dart';
 import 'package:cards/screens/game/join_game_screen.dart';
 import 'package:cards/screens/game/start_game_screen.dart';
@@ -7,7 +8,6 @@ import 'package:cards/screens/welcome/main_menu.dart';
 import 'package:cards/models/app/app_theme.dart';
 import 'package:cards/utils/logger.dart';
 
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:the_splash/the_splash.dart';
@@ -27,7 +27,7 @@ void main() async {
       await Firebase.initializeApp(
         options: DefaultFirebaseOptions.currentPlatform,
       );
-      await FirebaseAuth.instance.signInAnonymously();
+      await AuthService.ensureSignedIn();
       backendReady = true;
       logger.i('Firebase initialized successfully');
     } catch (e) {

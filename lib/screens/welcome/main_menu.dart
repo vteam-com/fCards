@@ -1,5 +1,10 @@
+import 'package:cards/models/app/app_theme.dart';
 import 'package:cards/models/app/constants_layout.dart';
+import 'package:cards/models/app/auth_service.dart';
+import 'package:cards/models/game/backend_model.dart';
+import 'package:cards/utils/logger.dart';
 import 'package:cards/widgets/helpers/screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -13,6 +18,8 @@ class MainMenu extends StatefulWidget {
 }
 
 class _MainMenuState extends State<MainMenu> {
+  bool _isAuthWorking = false;
+
   @override
   void initState() {
     super.initState();
@@ -38,6 +45,8 @@ class _MainMenuState extends State<MainMenu> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+                const Spacer(),
+                _authSection(),
                 const Spacer(),
                 MenuButton(
                   label: 'Start a New Game',
@@ -65,6 +74,80 @@ class _MainMenuState extends State<MainMenu> {
     );
   }
 
+  Widget _authSection() {
+    if (isRunningOffLine) {
+      return const SizedBox.shrink();
+    }
+
+    final colorScheme = Theme.of(context).colorScheme;
+    return StreamBuilder<User?>(
+      stream: AuthService.authStateChanges(),
+      builder: (context, snapshot) {
+        final user = snapshot.data;
+        final bool isAnonymous = user?.isAnonymous ?? false;
+        final bool isSignedIn = user != null && !isAnonymous;
+        final String status = isSignedIn
+            ? (user.email ?? user.displayName ?? 'Signed in')
+            : (isAnonymous ? 'Playing as Guest' : 'Not signed in');
+
+        return Container(
+          width: double.infinity,
+          padding: const EdgeInsets.all(ConstLayout.sizeM),
+          decoration: BoxDecoration(
+            color: AppTheme.panelInputZone,
+            borderRadius: BorderRadius.circular(ConstLayout.radiusM),
+            border: Border.all(
+              color: colorScheme.onPrimary,
+              width: ConstLayout.strokeS,
+            ),
+          ),
+          child: Column(
+            children: [
+              Text(
+                'Account',
+                style: TextStyle(
+                  fontSize: ConstLayout.textS,
+                  fontWeight: FontWeight.bold,
+                  color: colorScheme.secondary,
+                ),
+              ),
+              SizedBox(height: ConstLayout.sizeS),
+              Text(
+                status,
+                textAlign: TextAlign.center,
+                style: TextStyle(color: colorScheme.onSurface),
+              ),
+              SizedBox(height: ConstLayout.sizeM),
+              if (!isSignedIn)
+                ElevatedButton.icon(
+                  onPressed: _isAuthWorking ? null : _handleGoogleSignIn,
+                  icon: _isAuthWorking
+                      ? SizedBox(
+                          width: ConstLayout.iconS,
+                          height: ConstLayout.iconS,
+                          child: CircularProgressIndicator(
+                            strokeWidth: ConstLayout.strokeS,
+                            color: colorScheme.secondary,
+                          ),
+                        )
+                      : const Icon(Icons.mail_outline),
+                  label: Text(
+                    _isAuthWorking ? 'Signing in...' : 'Sign in with Google',
+                  ),
+                )
+              else
+                OutlinedButton.icon(
+                  onPressed: _isAuthWorking ? null : _handleSignOut,
+                  icon: const Icon(Icons.logout),
+                  label: Text(_isAuthWorking ? 'Signing out...' : 'Sign out'),
+                ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
   void _checkForUrlParameters() {
     if (!kIsWeb) {
       return; // Only check on web
@@ -80,6 +163,58 @@ class _MainMenuState extends State<MainMenu> {
         }
       });
     }
+  }
+
+  Future<void> _handleGoogleSignIn() async {
+    setState(() {
+      _isAuthWorking = true;
+    });
+
+    try {
+      await AuthService.signInWithGoogle();
+    } on FirebaseAuthException catch (error) {
+      _showAuthError(error.message ?? 'Google sign-in failed.');
+    } catch (error) {
+      _showAuthError('Google sign-in failed.');
+    } finally {
+      if (mounted) {
+        setState(() {
+          _isAuthWorking = false;
+        });
+      }
+    }
+  }
+
+  Future<void> _handleSignOut() async {
+    setState(() {
+      _isAuthWorking = true;
+    });
+
+    try {
+      await AuthService.signOut();
+      await AuthService.ensureSignedIn();
+    } on FirebaseAuthException catch (error) {
+      _showAuthError(error.message ?? 'Sign out failed.');
+    } catch (error) {
+      _showAuthError('Sign out failed.');
+    } finally {
+      if (mounted) {
+        setState(() {
+          _isAuthWorking = false;
+        });
+      }
+    }
+  }
+
+  void _showAuthError(String message) {
+    logger.e('Auth error: $message');
+    if (!mounted) {
+      return;
+    }
+
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text(message)));
   }
 }
 
