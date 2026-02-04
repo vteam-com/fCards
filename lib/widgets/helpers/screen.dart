@@ -79,17 +79,15 @@ class Screen extends StatefulWidget {
 }
 
 class _ScreenState extends State<Screen> {
-String _version = '';
+  String _version = '';
 
-
-
-@override
+  @override
   void initState() {
     super.initState();
     _getAppVersion();
   }
 
-@override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -185,9 +183,7 @@ String _version = '';
     );
   }
 
-
-
-Widget _buildAvatar(User user) {
+  Widget _buildAvatar(User user) {
     if (user.isAnonymous) {
       return CircleAvatar(
         radius: ConstLayout.circleAvatarRadius,
@@ -218,7 +214,7 @@ Widget _buildAvatar(User user) {
     );
   }
 
-Widget _displayWaiting() {
+  Widget _displayWaiting() {
     /// Builds a loading indicator widget
     return SizedBox(
       width: ConstLayout.waitingWidgetSize,
@@ -231,7 +227,7 @@ Widget _displayWaiting() {
     );
   }
 
-/// Fetches the application version from the platform package info.
+  /// Fetches the application version from the platform package info.
   Future<void> _getAppVersion() async {
     try {
       final packageInfo = await PackageInfo.fromPlatform();

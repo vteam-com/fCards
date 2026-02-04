@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 1.10.2
+
+- Add Gmail OAuth authentication
+- Standardize UI styling and reduce constants usage
+- Fix score selection border
+- Clean up screen helper formatting
+
 ## 1.9.8
 
 - fix more "magic numbers"
