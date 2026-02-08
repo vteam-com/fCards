@@ -186,7 +186,7 @@ class GolfScoreModel {
             .map((list) => (list as List).cast<int>())
             .toList();
         return GolfScoreModel(playerNames: playerNames, scores: scores);
-      } catch (e) {
+      } catch (_) {
         // Handle corrupted JSON data by returning default model
         return GolfScoreModel(
           playerNames: ['Player1', 'Player2', 'Player3', 'Player4'],

@@ -109,8 +109,12 @@ class _ScreenState extends State<Screen> {
                 Navigator.push(
                   context,
                   PageRouteBuilder(
-                    pageBuilder: (context, animation, secondaryAnimation) =>
-                        LicensePage(
+                    pageBuilder:
+                        (
+                          BuildContext _,
+                          Animation<double> _,
+                          Animation<double> _,
+                        ) => LicensePage(
                           applicationName: 'VTeam Cards',
                           applicationVersion: _version,
                         ),

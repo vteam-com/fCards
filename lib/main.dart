@@ -55,10 +55,10 @@ class MyApp extends StatelessWidget {
       theme: AppTheme.theme,
       initialRoute: '/',
       routes: {
-        '/': (context) => const MainMenu(),
-        '/game': (context) => const StartScreen(joinMode: false),
-        '/join': (context) => const JoinGameScreen(),
-        '/score': (context) => const GolfScoreScreen(),
+        '/': (BuildContext _) => const MainMenu(),
+        '/game': (BuildContext _) => const StartScreen(joinMode: false),
+        '/join': (BuildContext _) => const JoinGameScreen(),
+        '/score': (BuildContext _) => const GolfScoreScreen(),
       },
       debugShowCheckedModeBanner: false,
     );

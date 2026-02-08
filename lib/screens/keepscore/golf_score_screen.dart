@@ -200,9 +200,9 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
   }
 
   Widget _buildAddOrRemoveRow(
-    final BuildContext context,
+    final BuildContext _,
     final GolfScoreModel scoreModel,
-    final ColorScheme colorScheme,
+    final ColorScheme _ /* colorScheme*/,
   ) {
     return IntrinsicWidth(
       child: Container(
@@ -307,7 +307,7 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
   }
 
   Widget _buildRounds(
-    final BuildContext context,
+    final BuildContext _,
     final dynamic scoreModel,
     final dynamic ranks,
     final ColorScheme colorScheme,

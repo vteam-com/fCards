@@ -82,7 +82,7 @@ class _MainMenuState extends State<MainMenu> {
     final colorScheme = Theme.of(context).colorScheme;
     return StreamBuilder<User?>(
       stream: AuthService.authStateChanges(),
-      builder: (context, snapshot) {
+      builder: (BuildContext _, snapshot) {
         final user = snapshot.data;
         final bool isAnonymous = user?.isAnonymous ?? false;
         final bool isSignedIn = user != null && !isAnonymous;
@@ -174,7 +174,7 @@ class _MainMenuState extends State<MainMenu> {
       await AuthService.signInWithGoogle();
     } on FirebaseAuthException catch (error) {
       _showAuthError(error.message ?? 'Google sign-in failed.');
-    } catch (error) {
+    } catch (_) {
       _showAuthError('Google sign-in failed.');
     } finally {
       if (mounted) {
@@ -195,7 +195,7 @@ class _MainMenuState extends State<MainMenu> {
       await AuthService.ensureSignedIn();
     } on FirebaseAuthException catch (error) {
       _showAuthError(error.message ?? 'Sign out failed.');
-    } catch (error) {
+    } catch (_) {
       _showAuthError('Sign out failed.');
     } finally {
       if (mounted) {

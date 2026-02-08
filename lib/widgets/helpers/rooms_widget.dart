@@ -105,7 +105,7 @@ class _RoomsWidgetState extends State<RoomsWidget> {
                 ? _buildEmptyState(colorScheme)
                 : ListView.builder(
                     itemCount: filteredRooms.length,
-                    itemBuilder: (context, index) {
+                    itemBuilder: (BuildContext _, int index) {
                       final roomName = filteredRooms[index];
                       return _buildRoomItem(roomName);
                     },
@@ -130,7 +130,7 @@ class _RoomsWidgetState extends State<RoomsWidget> {
     );
   }
 
-  Widget _buildEmptyState(ColorScheme colorScheme) {
+  Widget _buildEmptyState(ColorScheme _) {
     return Center(
       child: Column(
         mainAxisSize: MainAxisSize.min,

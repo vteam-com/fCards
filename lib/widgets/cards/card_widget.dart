@@ -33,8 +33,8 @@ class CardWidget extends StatelessWidget {
         // DROPPED DROP CARD
         onDropped?.call(data.data, card);
       },
-      onWillAcceptWithDetails: (data) => card.isSelectable && onDropped != null,
-      builder: (context, List<CardModel?> candidateData, List rejectedData) {
+      onWillAcceptWithDetails: (_) => card.isSelectable && onDropped != null,
+      builder: (BuildContext _, List<CardModel?> candidateData, List _) {
         return Transform.scale(
           scale: candidateData.isEmpty ? 1.0 : _dragOperationScale,
           child: buildCard(),

@@ -36,7 +36,7 @@ class GameStyle extends StatelessWidget {
             selectable: true,
             styleSheet: MarkdownStyleSheet(textScaler: TextScaler.linear(1.2)),
             data: gameInstructions(style),
-            onTapLink: (text, href, title) async {
+            onTapLink: (_ /* text */, href, _ /* title */) async {
               if (href != null) {
                 await launchUrlString(href);
               }

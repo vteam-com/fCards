@@ -57,12 +57,12 @@ class WiggleWidgetState extends State<WiggleWidget>
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext _) {
     if (widget.wiggle) {
       if (_wiggleAnimation != null) {
         return AnimatedBuilder(
           animation: _wiggleAnimation!,
-          builder: (context, child) {
+          builder: (BuildContext _, child) {
             return Transform.rotate(
               angle: _wiggleAnimation!.value,
               child: child,

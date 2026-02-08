@@ -1,3 +1,5 @@
 String getWindowOrigin() => '';
 
-void pushHistoryState(String title, String url) {}
+void pushHistoryState(String _, String _) {
+  // Stub implementation
+}

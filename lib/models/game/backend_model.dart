@@ -256,7 +256,7 @@ Future<List<String>> getAllRooms() async {
   if (dataSnapshot.exists && dataSnapshot.value is Map) {
     final Map<dynamic, dynamic> data =
         dataSnapshot.value as Map<dynamic, dynamic>;
-    data.forEach((key, value) {
+    data.forEach((key, _ /* value */) {
       rooms.add(key.toString());
     });
   }

@@ -49,7 +49,7 @@ void myDialog({
   }
   showDialog(
     context: context,
-    builder: (BuildContext context) {
+    builder: (BuildContext _) {
       return AlertDialog(
         title: Text(
           title,

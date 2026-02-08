@@ -395,7 +395,7 @@ class GameModel with ChangeNotifier {
   /// [cardTarget] The target card that the source card was dropped on.
   void onDropCardOnCard(
     final BuildContext context,
-    final CardModel cardSource,
+    final CardModel _, //cardSource,
     final CardModel cardTarget,
   ) {
     switch (gameState) {
@@ -623,7 +623,7 @@ class GameModel with ChangeNotifier {
   }
 
   /// Advances the game to the next player's turn.
-  void moveToNextPlayer(BuildContext context) {
+  void moveToNextPlayer(BuildContext _) {
     if (isFinalTurn) {
       revealAllRemainingCardsFor(playerIdPlaying);
     } else {

@@ -55,7 +55,7 @@ class PlayersInRoomWidget extends StatelessWidget {
               ),
               child: ListView.builder(
                 itemCount: playerNames.length,
-                itemBuilder: (context, index) {
+                itemBuilder: (BuildContext _, int index) {
                   String nameToDisplay = playerNames[index];
                   return ListTile(
                     title: TextButton(

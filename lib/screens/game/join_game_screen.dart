@@ -280,7 +280,7 @@ class JoinGameScreenState extends State<JoinGameScreen> {
                 child: PlayersInRoomWidget(
                   activePlayerName: _playerName,
                   playerNames: _playerNames.toList(),
-                  onPlayerSelected: (String name) {
+                  onPlayerSelected: (String _ /* name */) {
                     // Do nothing for join mode
                   },
                   onRemovePlayer: _removePlayer,
@@ -415,9 +415,7 @@ class JoinGameScreenState extends State<JoinGameScreen> {
       Navigator.pushReplacement(
         // ignore: use_build_context_synchronously
         context,
-        MaterialPageRoute(
-          builder: (context) => GameScreen(gameModel: gameModel),
-        ),
+        MaterialPageRoute(builder: (_) => GameScreen(gameModel: gameModel)),
       );
     }
   }

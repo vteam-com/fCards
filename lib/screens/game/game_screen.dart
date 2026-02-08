@@ -198,7 +198,7 @@ class GameScreenState extends State<GameScreen> {
   void _createGlobalKeyForPlayers() {
     _playerKeys = List.generate(
       widget.gameModel.numPlayers,
-      (index) => GlobalKey(),
+      (_ /* index */) => GlobalKey(),
     );
   }
 

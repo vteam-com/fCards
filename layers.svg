@@ -211,6 +211,7 @@
 <rect x="1010.0" y="300.0" width="220" height="50" class="fileNode"/>
 <rect x="1010.0" y="370.0" width="220" height="50" class="fileNode"/>
 <rect x="1010.0" y="440.0" width="220" height="50" class="fileNode"/>
+<rect x="1010.0" y="510.0" width="220" height="50" class="fileNode"/>
 <rect x="1330.0" y="90.0" width="220" height="50" class="fileNode"/>
 <rect x="1330.0" y="160.0" width="220" height="50" class="fileNode"/>
 <rect x="1330.0" y="230.0" width="220" height="50" class="fileNode"/>
@@ -241,8 +242,12 @@
 <rect x="2930.0" y="230.0" width="220" height="50" class="fileNode"/>
 <rect x="2930.0" y="300.0" width="220" height="50" class="fileNode"/>
 <g>
-  <path d="M 910.0 548.0 C 960.0 548.0, 966.0 452.0, 1016.0 452.0" class="edge"/>
+  <path d="M 910.0 408.0 C 960.0 408.0, 966.0 452.0, 1016.0 452.0" class="edge"/>
   <title>./lib/utils/browser_utils.dart ▶ ./lib/utils/browser_utils_stub.dart</title>
+</g>
+<g>
+  <path d="M 910.0 408.0 C 960.0 408.0, 966.0 522.0, 1016.0 522.0" class="edge"/>
+  <title>./lib/utils/browser_utils.dart ▶ ./lib/utils/browser_utils_web.dart</title>
 </g>
 <g>
   <path d="M 2510.0 548.0 C 2560.0 548.0, 2886.0 172.0, 2936.0 172.0" class="edge"/>
@@ -517,7 +522,7 @@
   <title>./lib/screens/game/start_game_screen.dart ▶ ./lib/widgets/helpers/rooms_widget.dart</title>
 </g>
 <g>
-  <path d="M 590.0 198.0 C 640.0 198.0, 646.0 522.0, 696.0 522.0" class="edge"/>
+  <path d="M 590.0 198.0 C 640.0 198.0, 646.0 382.0, 696.0 382.0" class="edge"/>
   <title>./lib/screens/game/start_game_screen.dart ▶ ./lib/utils/browser_utils.dart</title>
 </g>
 <g>
@@ -565,11 +570,11 @@
   <title>./lib/screens/keepscore/golf_score_screen.dart ▶ ./lib/widgets/helpers/screen.dart</title>
 </g>
 <g>
-  <path d="M 590.0 268.0 C 640.0 268.0, 646.0 382.0, 696.0 382.0" class="edge"/>
+  <path d="M 590.0 268.0 C 640.0 268.0, 646.0 452.0, 696.0 452.0" class="edge"/>
   <title>./lib/screens/keepscore/golf_score_screen.dart ▶ ./lib/widgets/helpers/input_keyboard.dart</title>
 </g>
 <g>
-  <path d="M 590.0 268.0 C 640.0 268.0, 646.0 452.0, 696.0 452.0" class="edge"/>
+  <path d="M 590.0 268.0 C 640.0 268.0, 646.0 522.0, 696.0 522.0" class="edge"/>
   <title>./lib/screens/keepscore/golf_score_screen.dart ▶ ./lib/widgets/player/player_header.dart</title>
 </g>
 <g>
@@ -685,11 +690,11 @@
   <title>./lib/widgets/cards/card_face_french_widget.dart ▶ ./lib/models/card/card_model.dart</title>
 </g>
 <g>
-  <path d="M 910.0 408.0 C 960.0 408.0, 2886.0 102.0, 2936.0 102.0" class="edge"/>
+  <path d="M 910.0 478.0 C 960.0 478.0, 2886.0 102.0, 2936.0 102.0" class="edge"/>
   <title>./lib/widgets/helpers/input_keyboard.dart ▶ ./lib/models/app/constants_layout.dart</title>
 </g>
 <g>
-  <path d="M 910.0 408.0 C 960.0 408.0, 966.0 242.0, 1016.0 242.0" class="edge"/>
+  <path d="M 910.0 478.0 C 960.0 478.0, 966.0 242.0, 1016.0 242.0" class="edge"/>
   <title>./lib/widgets/helpers/input_keyboard.dart ▶ ./lib/widgets/helpers/my_button_round.dart</title>
 </g>
 <g>
@@ -825,11 +830,11 @@
   <title>./lib/widgets/player/player_zone_widget.dart ▶ ./lib/widgets/player/player_zone_cta_widget.dart</title>
 </g>
 <g>
-  <path d="M 910.0 478.0 C 960.0 478.0, 2886.0 102.0, 2936.0 102.0" class="edge"/>
+  <path d="M 910.0 548.0 C 960.0 548.0, 2886.0 102.0, 2936.0 102.0" class="edge"/>
   <title>./lib/widgets/player/player_header.dart ▶ ./lib/models/app/constants_layout.dart</title>
 </g>
 <g>
-  <path d="M 910.0 478.0 C 960.0 478.0, 966.0 172.0, 1016.0 172.0" class="edge"/>
+  <path d="M 910.0 548.0 C 960.0 548.0, 966.0 172.0, 1016.0 172.0" class="edge"/>
   <title>./lib/widgets/player/player_header.dart ▶ ./lib/widgets/helpers/edit_box.dart</title>
 </g>
 <g class="outgoingBadge">
@@ -939,21 +944,22 @@
 3. edit_box.dart</title></g><text x="800.0" y="325.0" class="nodeText">rooms_widget.dart</text>
 <g class="incomingBadge">
   <path d="M 702.0,382.0 L 690.0,375.0 Q 687.0,375.0 687.0,378.0 L 687.0,386.0 Q 687.0,389.0 690.0,389.0 Z" fill="#3b82f6"/>
-  <text x="691.0" y="385.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. golf_score_screen.dart</title></g><g class="outgoingBadge">
+  <text x="691.0" y="385.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. start_game_screen.dart</title></g><g class="outgoingBadge">
   <path d="M 916.0,408.0 L 904.0,401.0 Q 901.0,401.0 901.0,404.0 L 901.0,412.0 Q 901.0,415.0 904.0,415.0 Z" fill="#10b981"/>
-  <text x="905.0" y="411.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. constants_layout.dart
-2. my_button_round.dart</title></g><text x="800.0" y="395.0" class="nodeText">input_keyboard.dart</text>
+  <text x="905.0" y="411.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. browser_utils_stub.dart
+2. browser_utils_web.dart</title></g><text x="800.0" y="395.0" class="nodeText">browser_utils.dart</text>
 <g class="incomingBadge">
   <path d="M 702.0,452.0 L 690.0,445.0 Q 687.0,445.0 687.0,448.0 L 687.0,456.0 Q 687.0,459.0 690.0,459.0 Z" fill="#3b82f6"/>
   <text x="691.0" y="455.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. golf_score_screen.dart</title></g><g class="outgoingBadge">
   <path d="M 916.0,478.0 L 904.0,471.0 Q 901.0,471.0 901.0,474.0 L 901.0,482.0 Q 901.0,485.0 904.0,485.0 Z" fill="#10b981"/>
   <text x="905.0" y="481.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. constants_layout.dart
-2. edit_box.dart</title></g><text x="800.0" y="465.0" class="nodeText">player_header.dart</text>
+2. my_button_round.dart</title></g><text x="800.0" y="465.0" class="nodeText">input_keyboard.dart</text>
 <g class="incomingBadge">
   <path d="M 702.0,522.0 L 690.0,515.0 Q 687.0,515.0 687.0,518.0 L 687.0,526.0 Q 687.0,529.0 690.0,529.0 Z" fill="#3b82f6"/>
-  <text x="691.0" y="525.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. start_game_screen.dart</title></g><g class="outgoingBadge">
+  <text x="691.0" y="525.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. golf_score_screen.dart</title></g><g class="outgoingBadge">
   <path d="M 916.0,548.0 L 904.0,541.0 Q 901.0,541.0 901.0,544.0 L 901.0,552.0 Q 901.0,555.0 904.0,555.0 Z" fill="#10b981"/>
-  <text x="905.0" y="551.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. browser_utils_stub.dart</title></g><text x="800.0" y="535.0" class="nodeText">browser_utils.dart</text>
+  <text x="905.0" y="551.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. constants_layout.dart
+2. edit_box.dart</title></g><text x="800.0" y="535.0" class="nodeText">player_header.dart</text>
 <g class="incomingBadge">
   <path d="M 702.0,592.0 L 690.0,585.0 Q 687.0,585.0 687.0,588.0 L 687.0,596.0 Q 687.0,599.0 690.0,599.0 Z" fill="#3b82f6"/>
   <text x="691.0" y="595.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. join_game_screen.dart</title></g><g class="outgoingBadge">
@@ -1008,6 +1014,9 @@
 <g class="incomingBadge">
   <path d="M 1022.0,452.0 L 1010.0,445.0 Q 1007.0,445.0 1007.0,448.0 L 1007.0,456.0 Q 1007.0,459.0 1010.0,459.0 Z" fill="#3b82f6"/>
   <text x="1011.0" y="455.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. browser_utils.dart</title></g><text x="1120.0" y="465.0" class="nodeText">browser_utils_stub.dart</text>
+<g class="incomingBadge">
+  <path d="M 1022.0,522.0 L 1010.0,515.0 Q 1007.0,515.0 1007.0,518.0 L 1007.0,526.0 Q 1007.0,529.0 1010.0,529.0 Z" fill="#3b82f6"/>
+  <text x="1011.0" y="525.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. browser_utils.dart</title></g><text x="1120.0" y="535.0" class="nodeText">browser_utils_web.dart</text>
 <g class="incomingBadge">
   <path d="M 1342.0,102.0 L 1330.0,95.0 Q 1327.0,95.0 1327.0,98.0 L 1327.0,106.0 Q 1327.0,109.0 1330.0,109.0 Z" fill="#3b82f6"/>
   <text x="1331.0" y="105.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">6</text><title>1. edit_box.dart

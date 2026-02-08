@@ -180,7 +180,7 @@ class StartScreenState extends State<StartScreen> {
                         });
                       },
                       onRemoveRoom: _playerName == 'JP'
-                          ? (String room) {}
+                          ? (String _ /* room */) {}
                           : null,
                     ),
                   const SizedBox(height: ConstLayout.sizeXS),
@@ -370,7 +370,9 @@ class StartScreenState extends State<StartScreen> {
     if (context.mounted) {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => GameScreen(gameModel: newGame)),
+        MaterialPageRoute(
+          builder: (BuildContext _) => GameScreen(gameModel: newGame),
+        ),
       );
     }
   }

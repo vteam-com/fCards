@@ -10,7 +10,7 @@ const int loggerLineLength = 120;
 /// Custom silent printer for tests
 class _SilentPrinter extends LogPrinter {
   @override
-  List<String> log(LogEvent event) {
+  List<String> log(LogEvent _) {
     return []; // Return empty list to silence all output
   }
 }
@@ -53,7 +53,7 @@ class AppLogger {
     // Check platform environment variable
     try {
       if (Platform.environment.containsKey('FLUTTER_TEST')) return true;
-    } catch (e) {
+    } catch (_) {
       // Platform not available (web), continue
     }
 
