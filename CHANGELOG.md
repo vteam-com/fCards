@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 1.10.3
+
+- Fix dead code and unused parameters flagged by fCheck 0.9.1
+- Update fCheck tooling to 0.9.1
+
 ## 1.10.2
 
 - Add Gmail OAuth authentication
@@ -25,6 +30,7 @@
 - Ensure fcheck is automatically updated in check.sh script
 
 ## 1.9.4
+
 - Add comprehensive logging with different levels (debug, info, warning, error)
 - Add test silencing to prevent log output clutter during test execution
 - Improve debugging capabilities with timestamps and stack traces
