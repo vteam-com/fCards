@@ -6,7 +6,7 @@ import 'package:cards/models/game/game_model.dart';
 import 'package:cards/screens/game/game_style.dart';
 import 'package:cards/models/game/game_styles.dart';
 import 'package:cards/screens/game/game_screen.dart';
-import 'package:cards/widgets/helpers/my_button.dart';
+import 'package:cards/widgets/buttons/my_button_rectangle.dart';
 import 'package:cards/widgets/helpers/screen.dart';
 import 'package:cards/widgets/player/players_in_room_widget.dart';
 import 'package:cards/widgets/helpers/rooms_widget.dart';
@@ -87,7 +87,7 @@ class JoinGameScreenState extends State<JoinGameScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 if (_currentStep > 0)
-                  MyButton(
+                  MyButtonRectangle(
                     onTap: () => setState(() => _currentStep--),
                     child: Row(
                       mainAxisAlignment: .center,
@@ -100,7 +100,7 @@ class JoinGameScreenState extends State<JoinGameScreen> {
                   )
                 else
                   const SizedBox.shrink(),
-                MyButton(
+                MyButtonRectangle(
                   onTap: _canProceed
                       ? () {
                           if (_currentStep <
@@ -159,7 +159,7 @@ class JoinGameScreenState extends State<JoinGameScreen> {
           rightSideChild: const SizedBox.shrink(),
         ),
 
-        MyButton(onTap: _joinGame, child: const Text('Join Room')),
+        MyButtonRectangle(onTap: _joinGame, child: const Text('Join Room')),
 
         if (_playerName.isNotEmpty)
           Text(

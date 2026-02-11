@@ -49,6 +49,9 @@ digraph "" {
   "/lib/screens/welcome/main_menu.dart" [label="main_menu"];
   "/lib/screens/keepscore/golf_score_screen.dart" [label="golf_score_screen"];
   "/lib/main.dart" [label="main"];
+  "/lib/widgets/buttons/my_button.dart" [label="my_button"];
+  "/lib/widgets/buttons/my_button_round.dart" [label="my_button_round"];
+  "/lib/widgets/buttons/my_button_rectangle.dart" [label="my_button_rectangle"];
   "/lib/widgets/cards/card_pile_widget.dart" [label="card_pile_widget"];
   "/lib/widgets/cards/card_face_skyjo_widget.dart" [label="card_face_skyjo_widget"];
   "/lib/widgets/cards/card_widget.dart" [label="card_widget"];
@@ -57,8 +60,6 @@ digraph "" {
   "/lib/widgets/helpers/date_importance.dart" [label="date_importance"];
   "/lib/widgets/helpers/dialog.dart" [label="dialog"];
   "/lib/widgets/helpers/wiggle_widget.dart" [label="wiggle_widget"];
-  "/lib/widgets/helpers/my_button.dart" [label="my_button"];
-  "/lib/widgets/helpers/my_button_round.dart" [label="my_button_round"];
   "/lib/widgets/helpers/rooms_widget.dart" [label="rooms_widget"];
   "/lib/widgets/helpers/edit_box.dart" [label="edit_box"];
   "/lib/widgets/helpers/screen.dart" [label="screen"];
@@ -167,6 +168,12 @@ digraph "" {
       }
       subgraph "cluster~/lib/widgets" {
         label="widgets";
+        subgraph "cluster~/lib/widgets/buttons" {
+          label="buttons";
+          "/lib/widgets/buttons/my_button.dart";
+          "/lib/widgets/buttons/my_button_round.dart";
+          "/lib/widgets/buttons/my_button_rectangle.dart";
+        }
         subgraph "cluster~/lib/widgets/cards" {
           label="cards";
           "/lib/widgets/cards/card_pile_widget.dart";
@@ -180,8 +187,6 @@ digraph "" {
           "/lib/widgets/helpers/date_importance.dart";
           "/lib/widgets/helpers/dialog.dart";
           "/lib/widgets/helpers/wiggle_widget.dart";
-          "/lib/widgets/helpers/my_button.dart";
-          "/lib/widgets/helpers/my_button_round.dart";
           "/lib/widgets/helpers/rooms_widget.dart";
           "/lib/widgets/helpers/edit_box.dart";
           "/lib/widgets/helpers/screen.dart";
@@ -262,7 +267,7 @@ digraph "" {
   "/lib/screens/game/join_game_screen.dart" -> "/lib/screens/game/game_style.dart";
   "/lib/screens/game/join_game_screen.dart" -> "/lib/models/game/game_styles.dart";
   "/lib/screens/game/join_game_screen.dart" -> "/lib/screens/game/game_screen.dart";
-  "/lib/screens/game/join_game_screen.dart" -> "/lib/widgets/helpers/my_button.dart";
+  "/lib/screens/game/join_game_screen.dart" -> "/lib/widgets/buttons/my_button_rectangle.dart";
   "/lib/screens/game/join_game_screen.dart" -> "/lib/widgets/helpers/screen.dart";
   "/lib/screens/game/join_game_screen.dart" -> "/lib/widgets/player/players_in_room_widget.dart";
   "/lib/screens/game/join_game_screen.dart" -> "/lib/widgets/helpers/rooms_widget.dart";
@@ -307,7 +312,7 @@ digraph "" {
   "/lib/screens/keepscore/golf_score_screen.dart" -> "/lib/models/app/app_theme.dart";
   "/lib/screens/keepscore/golf_score_screen.dart" -> "/lib/models/app/constants_layout.dart";
   "/lib/screens/keepscore/golf_score_screen.dart" -> "/lib/models/game/golf_score_model.dart";
-  "/lib/screens/keepscore/golf_score_screen.dart" -> "/lib/widgets/helpers/my_button_round.dart";
+  "/lib/screens/keepscore/golf_score_screen.dart" -> "/lib/widgets/buttons/my_button_round.dart";
   "/lib/screens/keepscore/golf_score_screen.dart" -> "/lib/widgets/helpers/screen.dart";
   "/lib/screens/keepscore/golf_score_screen.dart" -> "/lib/widgets/helpers/input_keyboard.dart";
   "/lib/screens/keepscore/golf_score_screen.dart" -> "/lib/widgets/player/player_header.dart";
@@ -320,6 +325,9 @@ digraph "" {
   "/lib/main.dart" -> "/lib/screens/welcome/main_menu.dart";
   "/lib/main.dart" -> "/lib/models/app/app_theme.dart";
   "/lib/main.dart" -> "/lib/utils/logger.dart";
+  "/lib/widgets/buttons/my_button.dart" -> "/lib/models/app/constants_animation.dart";
+  "/lib/widgets/buttons/my_button_round.dart" -> "/lib/widgets/buttons/my_button.dart";
+  "/lib/widgets/buttons/my_button_rectangle.dart" -> "/lib/widgets/buttons/my_button.dart";
   "/lib/widgets/cards/card_pile_widget.dart" -> "/lib/models/app/constants_layout.dart";
   "/lib/widgets/cards/card_pile_widget.dart" -> "/lib/models/card/card_dimensions.dart";
   "/lib/widgets/cards/card_pile_widget.dart" -> "/lib/models/card/card_model.dart";
@@ -340,13 +348,11 @@ digraph "" {
   "/lib/widgets/cards/card_face_french_widget.dart" -> "/lib/widgets/helpers/my_text.dart";
   "/lib/widgets/cards/card_face_french_widget.dart" -> "/lib/models/card/card_model.dart";
   "/lib/widgets/helpers/input_keyboard.dart" -> "/lib/models/app/constants_layout.dart";
-  "/lib/widgets/helpers/input_keyboard.dart" -> "/lib/widgets/helpers/my_button_round.dart";
+  "/lib/widgets/helpers/input_keyboard.dart" -> "/lib/widgets/buttons/my_button_round.dart";
   "/lib/widgets/helpers/date_importance.dart" -> "/lib/models/app/constants_layout.dart";
   "/lib/widgets/helpers/date_importance.dart" -> "/lib/widgets/helpers/my_text.dart";
   "/lib/widgets/helpers/dialog.dart" -> "/lib/models/app/constants_layout.dart";
   "/lib/widgets/helpers/wiggle_widget.dart" -> "/lib/models/app/constants_animation.dart";
-  "/lib/widgets/helpers/my_button.dart" -> "/lib/models/app/constants_animation.dart";
-  "/lib/widgets/helpers/my_button_round.dart" -> "/lib/models/app/constants_animation.dart";
   "/lib/widgets/helpers/rooms_widget.dart" -> "/lib/models/app/app_theme.dart";
   "/lib/widgets/helpers/rooms_widget.dart" -> "/lib/models/app/constants_layout.dart";
   "/lib/widgets/helpers/rooms_widget.dart" -> "/lib/widgets/helpers/edit_box.dart";

@@ -3,7 +3,7 @@
 import 'package:cards/models/app/app_theme.dart';
 import 'package:cards/models/app/constants_layout.dart';
 import 'package:cards/models/game/golf_score_model.dart';
-import 'package:cards/widgets/helpers/my_button_round.dart';
+import 'package:cards/widgets/buttons/my_button_round.dart';
 import 'package:cards/widgets/helpers/screen.dart';
 import 'package:cards/widgets/helpers/input_keyboard.dart';
 import 'package:cards/widgets/player/player_header.dart';

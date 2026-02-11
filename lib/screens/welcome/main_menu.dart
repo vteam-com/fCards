@@ -166,37 +166,33 @@ class _MainMenuState extends State<MainMenu> {
   }
 
   Future<void> _handleGoogleSignIn() async {
-    setState(() {
-      _isAuthWorking = true;
-    });
-
-    try {
-      await AuthService.signInWithGoogle();
-    } on FirebaseAuthException catch (error) {
-      _showAuthError(error.message ?? 'Google sign-in failed.');
-    } catch (_) {
-      _showAuthError('Google sign-in failed.');
-    } finally {
-      if (mounted) {
-        setState(() {
-          _isAuthWorking = false;
-        });
-      }
-    }
+    await _performAuthAction(
+      AuthService.signInWithGoogle,
+      'Google sign-in failed.',
+    );
   }
 
   Future<void> _handleSignOut() async {
+    await _performAuthAction(() async {
+      await AuthService.signOut();
+      await AuthService.ensureSignedIn();
+    }, 'Sign out failed.');
+  }
+
+  Future<void> _performAuthAction(
+    Future<void> Function() action,
+    String defaultErrorMessage,
+  ) async {
     setState(() {
       _isAuthWorking = true;
     });
 
     try {
-      await AuthService.signOut();
-      await AuthService.ensureSignedIn();
+      await action();
     } on FirebaseAuthException catch (error) {
-      _showAuthError(error.message ?? 'Sign out failed.');
+      _showAuthError(error.message ?? defaultErrorMessage);
     } catch (_) {
-      _showAuthError('Sign out failed.');
+      _showAuthError(defaultErrorMessage);
     } finally {
       if (mounted) {
         setState(() {
