@@ -1,5 +1,6 @@
 import 'package:cards/models/app/constants_layout.dart';
 import 'package:flutter/material.dart';
+import 'package:cards/widgets/buttons/my_button_rectangle.dart';
 import 'package:cards/widgets/helpers/edit_box.dart';
 
 /// Constants for player header widget dimensions and styling
@@ -256,38 +257,62 @@ class _PlayerHeaderState extends State<PlayerHeader> {
                   errorStatus: '',
                   rightSideChild: null,
                 ),
-                ElevatedButton(
-                  onPressed: () {
+                MyButtonRectangle(
+                  width: double.infinity,
+                  height: 48,
+                  onTap: () {
                     if (controller.text.isNotEmpty) {
                       widget.onNameChanged(controller.text);
                     }
                     Navigator.of(context).pop();
                   },
-                  child: const Text('Done'),
+                  child: Text(
+                    'Done',
+                    style: TextStyle(
+                      color: colorScheme.onPrimaryContainer,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ),
                 Divider(color: colorScheme.primary),
                 Wrap(
                   spacing: PlayerHeaderConstants.wrapSpacing,
                   runSpacing: PlayerHeaderConstants.wrapSpacing,
                   children: [
-                    OutlinedButton(
-                      onPressed: () {
+                    MyButtonRectangle(
+                      width: null, // Allow dynamic width
+                      height: 44,
+                      onTap: () {
                         Navigator.of(context).pop();
                         widget.onPlayerAdded?.call();
                       },
-                      child: Text(
-                        'Add another player',
-                        style: TextStyle(color: colorScheme.onSurface),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                        child: Text(
+                          'Add another player',
+                          style: TextStyle(
+                            color: colorScheme.onSurface,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                       ),
                     ),
-                    OutlinedButton(
-                      onPressed: () {
+                    MyButtonRectangle(
+                      width: null, // Allow dynamic width
+                      height: 44,
+                      onTap: () {
                         Navigator.of(context).pop();
                         _showRemoveConfirmationDialog();
                       },
-                      child: Text(
-                        'Remove this player',
-                        style: TextStyle(color: colorScheme.error),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                        child: Text(
+                          'Remove this player',
+                          style: TextStyle(
+                            color: colorScheme.error,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                       ),
                     ),
                   ],

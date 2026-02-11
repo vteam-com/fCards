@@ -3,6 +3,7 @@ import 'package:cards/models/app/constants_layout.dart';
 import 'package:cards/models/app/auth_service.dart';
 import 'package:cards/models/game/backend_model.dart';
 import 'package:cards/utils/logger.dart';
+import 'package:cards/widgets/buttons/my_button_rectangle.dart';
 import 'package:cards/widgets/helpers/screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
@@ -119,10 +120,15 @@ class _MainMenuState extends State<MainMenu> {
               ),
               SizedBox(height: ConstLayout.sizeM),
               if (!isSignedIn)
-                ElevatedButton.icon(
-                  onPressed: _isAuthWorking ? null : _handleGoogleSignIn,
-                  icon: _isAuthWorking
-                      ? SizedBox(
+                MyButtonRectangle(
+                  width: double.infinity,
+                  height: 48, // Standard height or from constants
+                  onTap: _isAuthWorking ? null : _handleGoogleSignIn,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      if (_isAuthWorking)
+                        SizedBox(
                           width: ConstLayout.iconS,
                           height: ConstLayout.iconS,
                           child: CircularProgressIndicator(
@@ -130,16 +136,40 @@ class _MainMenuState extends State<MainMenu> {
                             color: colorScheme.secondary,
                           ),
                         )
-                      : const Icon(Icons.mail_outline),
-                  label: Text(
-                    _isAuthWorking ? 'Signing in...' : 'Sign in with Google',
+                      else
+                        const Icon(Icons.mail_outline),
+                      SizedBox(width: ConstLayout.sizeS),
+                      Text(
+                        _isAuthWorking
+                            ? 'Signing in...'
+                            : 'Sign in with Google',
+                        style: TextStyle(
+                          color: colorScheme.onPrimaryContainer,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
                   ),
                 )
               else
-                OutlinedButton.icon(
-                  onPressed: _isAuthWorking ? null : _handleSignOut,
-                  icon: const Icon(Icons.logout),
-                  label: Text(_isAuthWorking ? 'Signing out...' : 'Sign out'),
+                MyButtonRectangle(
+                  width: double.infinity,
+                  height: 48,
+                  onTap: _isAuthWorking ? null : _handleSignOut,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Icon(Icons.logout),
+                      SizedBox(width: ConstLayout.sizeS),
+                      Text(
+                        _isAuthWorking ? 'Signing out...' : 'Sign out',
+                        style: TextStyle(
+                          color: colorScheme.onPrimaryContainer,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
             ],
           ),
@@ -235,49 +265,31 @@ class MenuButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return MyButtonRectangle(
       width: double.infinity,
       height: ConstLayout.mainMenuButtonHeight,
-      child: ElevatedButton(
-        onPressed: onPressed,
-        style: ElevatedButton.styleFrom(
-          backgroundColor: Theme.of(context).colorScheme.primaryContainer,
-          foregroundColor: Theme.of(context).colorScheme.onPrimaryContainer,
-          padding: const EdgeInsets.symmetric(
-            horizontal: ConstLayout.sizeL,
-            vertical: ConstLayout.sizeM,
+      onTap: onPressed,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(
+            icon,
+            size: ConstLayout.iconM,
+            color: Theme.of(context).colorScheme.secondary,
           ),
-
-          textStyle: TextStyle(
-            fontSize: ConstLayout.textM,
-            fontWeight: FontWeight.bold,
-          ),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(ConstLayout.radiusL),
-
-            side: BorderSide(
-              color: Theme.of(context).colorScheme.onPrimaryFixed,
-              width: ConstLayout.strokeS,
+          SizedBox(width: ConstLayout.sizeM),
+          SizedBox(
+            width: ConstLayout.mainMenuButtonTextWidth,
+            child: Text(
+              label,
+              style: TextStyle(
+                fontSize: ConstLayout.textM,
+                fontWeight: FontWeight.bold,
+                color: Theme.of(context).colorScheme.onPrimaryContainer,
+              ),
             ),
           ),
-          elevation: ConstLayout.elevationL,
-          shadowColor: Colors.white,
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              icon,
-              size: ConstLayout.iconM,
-              color: Theme.of(context).colorScheme.secondary,
-            ),
-            SizedBox(width: ConstLayout.sizeM),
-            SizedBox(
-              width: ConstLayout.mainMenuButtonTextWidth,
-              child: Text(label),
-            ),
-          ],
-        ),
+        ],
       ),
     );
   }

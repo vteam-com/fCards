@@ -1,4 +1,5 @@
 import 'package:cards/models/app/constants_layout.dart';
+import 'package:cards/widgets/buttons/my_button_rectangle.dart';
 import 'package:flutter/material.dart';
 
 /// Displays a custom dialog with a title, content, and optional buttons.
@@ -39,11 +40,19 @@ void myDialog({
 }) {
   if (buttons.isEmpty) {
     buttons = [
-      ElevatedButton(
-        onPressed: () {
+      MyButtonRectangle(
+        width: 100, // Reasonable width for a dialog button
+        height: 44,
+        onTap: () {
           Navigator.of(context).pop();
         },
-        child: Text('Ok'),
+        child: Text(
+          'Ok',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Theme.of(context).colorScheme.onPrimaryContainer,
+          ),
+        ),
       ),
     ];
   }

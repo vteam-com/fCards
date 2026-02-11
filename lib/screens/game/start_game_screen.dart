@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:cards/models/app/constants_layout.dart';
 import 'package:cards/utils/logger.dart';
+import 'package:cards/widgets/buttons/my_button_rectangle.dart';
 import 'package:cards/widgets/helpers/edit_box.dart';
 import 'package:cards/models/game/backend_model.dart';
 
@@ -250,8 +251,8 @@ class StartScreenState extends State<StartScreen> {
               ? 'Start Game'
               : 'Waiting for players to join')
         : 'Join Game';
-    return ElevatedButton(
-      onPressed: () {
+    return MyButtonRectangle(
+      onTap: () {
         if (isPartOfTheList) {
           if (_playerNames.length > 1) {
             startGame(context);
@@ -260,9 +261,15 @@ class StartScreenState extends State<StartScreen> {
           joinGame(_playerName);
         }
       },
-      child: Padding(
-        padding: const EdgeInsets.all(ConstLayout.sizeS),
-        child: Text(label, style: const TextStyle(fontSize: ConstLayout.textM)),
+      width: double.infinity,
+      height: 48,
+      child: Text(
+        label,
+        style: TextStyle(
+          fontSize: ConstLayout.textM,
+          fontWeight: FontWeight.bold,
+          color: Theme.of(context).colorScheme.onPrimaryContainer,
+        ),
       ),
     );
   }

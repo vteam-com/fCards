@@ -11,8 +11,8 @@ class MyButton extends StatelessWidget {
     super.key,
     required this.onTap,
     required this.child,
-    required this.width,
-    required this.height,
+    this.width,
+    this.height,
     this.borderRadius,
     this.padding = EdgeInsets.zero,
     this.isRound = false,
@@ -25,7 +25,7 @@ class MyButton extends StatelessWidget {
   final Widget child;
 
   /// The height of the button.
-  final double height;
+  final double? height;
 
   /// Whether the button should be perfectly round (circular).
   final bool isRound;
@@ -37,7 +37,7 @@ class MyButton extends StatelessWidget {
   final EdgeInsets padding;
 
   /// The width of the button.
-  final double width;
+  final double? width;
 
   @override
   Widget build(BuildContext context) {
@@ -52,77 +52,85 @@ class MyButton extends StatelessWidget {
         child: ClipRRect(
           borderRadius: radius ?? BorderRadius.zero,
           clipBehavior: isRound ? Clip.antiAlias : Clip.hardEdge,
-          child: isRound
-              ? ClipOval(child: _buildStack(context, shape, radius))
-              : _buildStack(context, shape, radius),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildStack(BuildContext _, BoxShape shape, BorderRadius? radius) {
-    return Stack(
-      fit: StackFit.expand,
-      children: [
-        // Blur whatever is behind the button
-        BackdropFilter(
-          filter: ImageFilter.blur(
-            sigmaX: ConstAnimation.blurSigma,
-            sigmaY: ConstAnimation.blurSigma,
-          ),
-          child: const SizedBox.shrink(),
-        ),
-        // Glassy layer
-        Container(
-          decoration: BoxDecoration(
-            shape: shape,
-            borderRadius: radius,
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [
-                Colors.black.withOpacity(ConstAnimation.blackOverlayOpacity),
-                Colors.black.withOpacity(ConstAnimation.blackBackgroundOpacity),
-              ],
-            ),
-            border: Border.all(
-              color: Colors.white.withOpacity(ConstAnimation.borderOpacity),
-              width: 1,
-            ),
-            boxShadow: [
-              BoxShadow(
-                blurRadius: 10,
-                spreadRadius: 0,
-                offset: const Offset(0, 4),
-                color: Colors.black.withOpacity(0.8),
+          child: Stack(
+            children: [
+              // Blur whatever is behind the button
+              Positioned.fill(
+                child: BackdropFilter(
+                  filter: ImageFilter.blur(
+                    sigmaX: ConstAnimation.blurSigma,
+                    sigmaY: ConstAnimation.blurSigma,
+                  ),
+                  child: const SizedBox.shrink(),
+                ),
               ),
-              BoxShadow(
-                blurRadius: 6,
-                spreadRadius: 0,
-                offset: const Offset(-2, -2),
-                color: Colors.white.withOpacity(0.3),
+              // Glassy layer and Content
+              Container(
+                width: width,
+                height: height,
+                decoration: BoxDecoration(
+                  shape: shape,
+                  borderRadius: radius,
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      const Color.fromARGB(
+                        255,
+                        0,
+                        73,
+                        16,
+                      ).withOpacity(ConstAnimation.blackOverlayOpacity),
+                      const Color.fromARGB(
+                        255,
+                        8,
+                        47,
+                        1,
+                      ).withOpacity(ConstAnimation.blackBackgroundOpacity),
+                    ],
+                  ),
+                  border: Border.all(
+                    color: Colors.white.withOpacity(
+                      ConstAnimation.borderOpacity,
+                    ),
+                    width: 0.5,
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                      blurRadius: 10,
+                      spreadRadius: 0,
+                      offset: const Offset(0, 4),
+                      color: Colors.black.withOpacity(0.8),
+                    ),
+                    BoxShadow(
+                      blurRadius: 6,
+                      spreadRadius: 0,
+                      offset: const Offset(-2, -2),
+                      color: Colors.white.withOpacity(0.3),
+                    ),
+                  ],
+                ),
+                child: Material(
+                  type: MaterialType.transparency,
+                  child: InkWell(
+                    enableFeedback: onTap != null,
+                    onTap: onTap,
+                    splashColor: Colors.white.withOpacity(
+                      ConstAnimation.whiteOverlayOpacity,
+                    ),
+                    highlightColor: Colors.white.withOpacity(
+                      ConstAnimation.whiteHighlightOpacity,
+                    ),
+                    borderRadius: radius,
+                    customBorder: isRound ? const CircleBorder() : null,
+                    child: Center(child: child),
+                  ),
+                ),
               ),
             ],
           ),
         ),
-        // Ink ripple
-        Material(
-          type: MaterialType.transparency,
-          child: InkWell(
-            enableFeedback: onTap != null,
-            onTap: onTap,
-            splashColor: Colors.white.withOpacity(
-              ConstAnimation.whiteOverlayOpacity,
-            ),
-            highlightColor: Colors.white.withOpacity(
-              ConstAnimation.whiteHighlightOpacity,
-            ),
-            borderRadius: radius,
-            customBorder: isRound ? const CircleBorder() : null,
-            child: Center(child: child),
-          ),
-        ),
-      ],
+      ),
     );
   }
 }
