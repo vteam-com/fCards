@@ -1,5 +1,3 @@
-import 'dart:ui';
-import 'package:cards/models/app/constants_animation.dart';
 import 'package:cards/models/app/constants_layout.dart';
 import 'package:flutter/material.dart';
 
@@ -55,17 +53,7 @@ class MyButton extends StatelessWidget {
           clipBehavior: isRound ? Clip.antiAlias : Clip.hardEdge,
           child: Stack(
             children: [
-              // Blur whatever is behind the button
-              Positioned.fill(
-                child: BackdropFilter(
-                  filter: ImageFilter.blur(
-                    sigmaX: ConstAnimation.blurSigma,
-                    sigmaY: ConstAnimation.blurSigma,
-                  ),
-                  child: const SizedBox.shrink(),
-                ),
-              ),
-              // Glassy layer and Content
+              // Frosted layer and Content
               Container(
                 width: width,
                 height: height,
@@ -73,41 +61,27 @@ class MyButton extends StatelessWidget {
                   shape: shape,
                   borderRadius: radius,
                   gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
                     colors: [
                       const Color.fromARGB(
                         255,
-                        0,
-                        73,
-                        16,
-                      ).withAlpha(ConstLayout.alphaM),
+                        40,
+                        80,
+                        40,
+                      ), //.withAlpha(ConstLayout.alphaM),
                       const Color.fromARGB(
                         255,
-                        8,
-                        47,
-                        1,
-                      ).withAlpha(ConstLayout.alphaM),
+                        10,
+                        20,
+                        10,
+                      ).withAlpha(ConstLayout.alphaL),
                     ],
                   ),
                   border: Border.all(
-                    color: Colors.white.withAlpha(ConstLayout.alphaL),
+                    color: Colors.white.withAlpha(ConstLayout.alphaM),
                     width: ConstLayout.strokeXXS,
                   ),
-                  boxShadow: [
-                    BoxShadow(
-                      blurRadius: ConstLayout.radiusM,
-                      spreadRadius: 0,
-                      offset: const Offset(0, 4),
-                      color: Colors.black.withAlpha(ConstLayout.alphaL),
-                    ),
-                    BoxShadow(
-                      blurRadius: ConstLayout.radiusS,
-                      spreadRadius: 0,
-                      offset: const Offset(-2, -2),
-                      color: Colors.white.withAlpha(ConstLayout.alphaL),
-                    ),
-                  ],
                 ),
                 child: Material(
                   type: MaterialType.transparency,
