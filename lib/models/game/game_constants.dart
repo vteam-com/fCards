@@ -2,8 +2,8 @@
 ///
 /// This class defines the rules and layout parameters for the different
 /// supported game modes (SkyJo, 9-Card Golf, MiniPut).
-class GameStyleConstants {
-  const GameStyleConstants();
+class GameConstants {
+  const GameConstants();
 
   // SkyJo Card Rules
   /// The special value for Joker/Special cards in SkyJo.

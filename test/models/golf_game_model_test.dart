@@ -125,6 +125,53 @@ void main() {
     expect(gameModel.isFinalTurn, true);
   });
 
+  test('moveToNextPlayer ends game before wrapping back to attacker', () {
+    final gameModel = GameModel(
+      gameStyle: GameStyles.frenchCards9,
+      roomName: 'testRoom',
+      roomHistory: [],
+      loginUserName: 'Player 1',
+      names: ['Player 1', 'Player 2'],
+      cardsToDeal: 9,
+      deck: DeckModel(numberOfDecks: 1, gameStyle: GameStyles.frenchCards9),
+      isNewGame: true,
+    );
+
+    gameModel.players.first.hand.revealAllCards();
+    gameModel.moveToNextPlayer(MockBuildContext());
+
+    expect(gameModel.playerIdAttacking, 0);
+    expect(gameModel.playerIdPlaying, 1);
+
+    gameModel.moveToNextPlayer(MockBuildContext());
+
+    expect(gameModel.gameState, GameStates.gameOver);
+    expect(gameModel.playerIdPlaying, 1);
+  });
+
+  test('swapDragCardOnPlayersTargetCard ends game during final round', () {
+    final gameModel = GameModel(
+      gameStyle: GameStyles.frenchCards9,
+      roomName: 'testRoom',
+      roomHistory: [],
+      loginUserName: 'Player 1',
+      names: ['Player 1', 'Player 2'],
+      cardsToDeal: 9,
+      deck: DeckModel(numberOfDecks: 1, gameStyle: GameStyles.frenchCards9),
+      isNewGame: true,
+    );
+
+    gameModel.players.first.hand.revealAllCards();
+    gameModel.moveToNextPlayer(MockBuildContext());
+
+    gameModel.gameState = GameStates.swapDiscardedCardWithAnyCardsInHand;
+    final CardModel targetCard = gameModel.players[1].hand.first;
+    gameModel.swapDragCardOnPlayersTargetCard(MockBuildContext(), targetCard);
+
+    expect(gameModel.gameState, GameStates.gameOver);
+    expect(gameModel.playerIdPlaying, 1);
+  });
+
   test(
     'getGameStateAsString returns correct message for different scenarios',
     () {

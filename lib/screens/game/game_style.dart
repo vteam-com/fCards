@@ -4,7 +4,7 @@ import 'package:cards/models/card/card_dimensions.dart';
 import 'package:cards/models/card/card_model_french.dart';
 import 'package:cards/models/game/game_model.dart';
 import 'package:cards/models/game/game_styles.dart';
-import 'package:cards/screens/game/game_style_constants.dart';
+import 'package:cards/models/game/game_constants.dart';
 import 'package:cards/widgets/cards/card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
@@ -61,7 +61,7 @@ class GameStyle extends StatelessWidget {
       CardModel(
         suit: '*',
         rank: '§',
-        value: GameStyleConstants.skyJoSpecialValue,
+        value: GameConstants.skyJoSpecialValue,
         isRevealed: false,
       ),
     );
@@ -69,7 +69,7 @@ class GameStyle extends StatelessWidget {
       CardModel(
         suit: '*',
         rank: '§',
-        value: GameStyleConstants.skyJoSpecialValue,
+        value: GameConstants.skyJoSpecialValue,
         isRevealed: true,
       ),
     );
@@ -100,8 +100,8 @@ class GameStyle extends StatelessWidget {
     cards.add(CardModel(suit: '', rank: '1', value: 1, isRevealed: false));
 
     for (
-      int rank = GameStyleConstants.skyJoRankMin;
-      rank <= GameStyleConstants.skyJoRankMax;
+      int rank = GameConstants.skyJoRankMin;
+      rank <= GameConstants.skyJoRankMax;
       rank++
     ) {
       cards.add(
@@ -138,10 +138,8 @@ class GameStyle extends StatelessWidget {
       children: cards
           .map(
             (card) => SizedBox(
-              width:
-                  CardDimensions.width / GameStyleConstants.cardDisplayDivisor,
-              height:
-                  CardDimensions.height / GameStyleConstants.cardDisplayDivisor,
+              width: CardDimensions.width / GameConstants.cardDisplayDivisor,
+              height: CardDimensions.height / GameConstants.cardDisplayDivisor,
               child: CardWidget(card: card),
             ),
           )

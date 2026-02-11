@@ -625,16 +625,26 @@ class GameModel with ChangeNotifier {
 
   /// Advances the game to the next player's turn.
   void moveToNextPlayer(BuildContext _) {
+    final int currentPlayerId = playerIdPlaying;
+
     if (isFinalTurn) {
-      revealAllRemainingCardsFor(playerIdPlaying);
+      revealAllRemainingCardsFor(currentPlayerId);
     } else {
-      if (areAllCardRevealed(playerIdPlaying)) {
+      if (areAllCardRevealed(currentPlayerId)) {
         // Start Final Turn
-        playerIdAttacking = playerIdPlaying;
+        playerIdAttacking = currentPlayerId;
       }
     }
+
     evaluateHand();
-    setActivePlayer((playerIdPlaying + 1) % players.length);
+
+    final int nextPlayerId = (currentPlayerId + 1) % players.length;
+    if (isFinalTurn && nextPlayerId == playerIdAttacking) {
+      gameState = GameStates.gameOver;
+      return;
+    }
+
+    setActivePlayer(nextPlayerId);
     gameState = GameStates.pickCardFromEitherPiles;
   }
 

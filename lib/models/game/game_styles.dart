@@ -1,5 +1,5 @@
 import 'package:cards/models/card/card_model.dart';
-import 'package:cards/screens/game/game_style_constants.dart';
+import 'package:cards/models/game/game_constants.dart';
 
 enum GameStyles {
   /// Classic French cards with a 9x9 grid and special rules.
@@ -42,25 +42,25 @@ GameStyleConfig getGameStyleConfig(GameStyles style, int numberOfPlayers) {
     case GameStyles.frenchCards9:
       return GameStyleConfig(
         cardsToReveal: CardModel.frenchCardsRevealCount,
-        cardsToDeal: GameStyleConstants.standardCardCount,
-        decks: GameStyleConstants.calculateDecks(numberOfPlayers),
+        cardsToDeal: GameConstants.standardCardCount,
+        decks: GameConstants.calculateDecks(numberOfPlayers),
       );
     case GameStyles.skyJo:
       return GameStyleConfig(
         cardsToReveal: CardModel.skyjoRevealCount,
-        cardsToDeal: GameStyleConstants.skyJoCardCount,
+        cardsToDeal: GameConstants.skyJoCardCount,
         decks: 1,
       );
     case GameStyles.miniPut:
       return GameStyleConfig(
         cardsToReveal: CardModel.miniPutRevealCount,
-        cardsToDeal: GameStyleConstants.miniPutCardCount,
+        cardsToDeal: GameConstants.miniPutCardCount,
         decks: 1,
       );
     case GameStyles.custom:
       return GameStyleConfig(
         cardsToReveal: CardModel.customRevealCount,
-        cardsToDeal: GameStyleConstants.standardCardCount,
+        cardsToDeal: GameConstants.standardCardCount,
         decks: 1,
       );
   }
@@ -74,7 +74,7 @@ GameStyleConfig getGameStyleConfig(GameStyles style, int numberOfPlayers) {
 int numberOfDecks(GameStyles style, int numberOfPlayers) {
   switch (style) {
     case GameStyles.frenchCards9:
-      return GameStyleConstants.calculateDecks(numberOfPlayers);
+      return GameConstants.calculateDecks(numberOfPlayers);
     case GameStyles.skyJo:
       return 1;
     case GameStyles.miniPut:
