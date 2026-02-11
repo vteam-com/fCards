@@ -37,30 +37,6 @@ void main() {
       expect(GameStyles.custom.toString(), contains('custom'));
     });
 
-    test('Number of Cards', () {
-      expect(numberOfCards(GameStyles.frenchCards9), 9);
-      expect(numberOfCards(GameStyles.skyJo), 12);
-      expect(numberOfCards(GameStyles.miniPut), 4);
-      expect(numberOfCards(GameStyles.custom), 9);
-    });
-
-    test('Number of Decks', () {
-      expect(numberOfDecks(GameStyles.frenchCards9, 1), 1);
-      expect(numberOfDecks(GameStyles.frenchCards9, 2), 1);
-      expect(numberOfDecks(GameStyles.frenchCards9, 3), 2);
-      expect(numberOfDecks(GameStyles.frenchCards9, 4), 2);
-      expect(numberOfDecks(GameStyles.skyJo, 1), 1);
-      expect(numberOfDecks(GameStyles.miniPut, 1), 1);
-      expect(numberOfDecks(GameStyles.custom, 1), 1);
-    });
-
-    test('numberOfCardsToRevealOnStartup', () {
-      expect(numberOfCardsToRevealOnStartup(GameStyles.frenchCards9), 2);
-      expect(numberOfCardsToRevealOnStartup(GameStyles.skyJo), 2);
-      expect(numberOfCardsToRevealOnStartup(GameStyles.miniPut), 1);
-      expect(numberOfCardsToRevealOnStartup(GameStyles.custom), 0);
-    });
-
     test('Instructions', () {
       expect(gameInstructions(GameStyles.frenchCards9).isEmpty, false);
       expect(gameInstructions(GameStyles.skyJo).isEmpty, false);

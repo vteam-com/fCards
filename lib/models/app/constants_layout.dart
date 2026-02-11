@@ -1,5 +1,3 @@
-// ignore: fcheck_magic_numbers
-
 /// Game layout and sizing constants.
 class ConstLayout {
   const ConstLayout();
@@ -35,6 +33,7 @@ class ConstLayout {
   static const double iconXL = 89.0; // Extra Large
 
   // Stroke widths (S/M/L approach)
+  static const double strokeXXS = 0.5; // Thin stroke
   static const double strokeXS = 1.0; // Extra Small
   static const double strokeS = 2.0; // Small
   static const double strokeM = 3.0; // Medium
@@ -164,10 +163,30 @@ class ConstLayout {
   /// Card center offset Y (55).
   static const double cardCenterOffsetY = 55.0;
 
-  static const int selectedRoomBackgroundAlpha = 128;
+  static const int alphaL = 144;
+  static const int alphaM = 89;
+  static const int alphaH = 55;
+  static const int alphaFull = 255;
+
   static const int dateCharacterLeftSpacePadding = 2;
   static const int negativeNumberMaxLength = 2;
 
   static const int joinGameStepCount = 3;
   static const double joinGamePlayerListMaxWidth = 377.0;
+
+  // Button dimensions
+  // [NOTE] These values (44, 200) are legacy exceptions to the Fibonacci rule
+  // maintained for platform-standard touch targets and layout consistency.
+  static const double buttonHeight = 44.0;
+  static const double buttonWidth = 200.0;
+
+  // Scale factors
+  static const double scaleSmall = 0.89;
+  static const double scaleTiny = 0.55;
+
+  // Markdown text scale
+  static const double markdownTextScale = 1.2;
+
+  // Animation angles
+  static const double wiggleAngle = 0.05;
 }

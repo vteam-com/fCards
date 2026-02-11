@@ -1,5 +1,6 @@
 // ignore_for_file: deprecated_member_use
-// ignore: fcheck_magic_numbers
+
+import 'package:cards/models/app/constants_layout.dart';
 import 'package:cards/widgets/buttons/my_button.dart';
 
 /// A custom circular glass-like button with blur and ripple effects.
@@ -18,7 +19,7 @@ class MyButtonRound extends MyButton {
     super.key,
     required super.onTap,
     required super.child,
-    double size = 44,
+    double size = ConstLayout.buttonHeight,
     super.padding,
   }) : super(width: size, height: size, isRound: true);
 }

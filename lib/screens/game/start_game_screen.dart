@@ -355,6 +355,8 @@ class StartScreenState extends State<StartScreen> {
     final List<GameHistory> history = await getGameHistory(roomName);
     logger.d(history.join('|'));
 
+    final config = getGameStyleConfig(_selectedGameStyle, _playerNames.length);
+
     final GameModel newGame = GameModel(
       version: appVersion,
       gameStyle: _selectedGameStyle,
@@ -362,9 +364,9 @@ class StartScreenState extends State<StartScreen> {
       roomHistory: history,
       loginUserName: _controllerName.text.toUpperCase(),
       names: _playerNames.toList(),
-      cardsToDeal: numberOfCards(_selectedGameStyle),
+      cardsToDeal: config.cardsToDeal,
       deck: DeckModel(
-        numberOfDecks: numberOfDecks(_selectedGameStyle, _playerNames.length),
+        numberOfDecks: config.decks,
         gameStyle: _selectedGameStyle,
       ),
       isNewGame: true,

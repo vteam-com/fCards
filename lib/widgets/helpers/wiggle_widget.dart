@@ -1,6 +1,6 @@
-// ignore: fcheck_magic_numbers
 import 'dart:math';
 import 'package:cards/models/app/constants_animation.dart';
+import 'package:cards/models/app/constants_layout.dart';
 import 'package:flutter/material.dart';
 
 /// Whether the [WiggleWidget] should wiggle or not.
@@ -44,8 +44,8 @@ class WiggleWidgetState extends State<WiggleWidget>
 
     // Define the wiggle animation with a slight rotation angle
     _wiggleAnimation = Tween<double>(
-      begin: -0.05,
-      end: 0.05,
+      begin: -ConstLayout.wiggleAngle,
+      end: ConstLayout.wiggleAngle,
     ).animate(CurvedAnimation(parent: _controller!, curve: Curves.easeInOut));
   }
 

@@ -325,7 +325,8 @@ class GameModel with ChangeNotifier {
 
     deck.shuffle();
 
-    int cardsToReveal = numberOfCardsToRevealOnStartup(gameStyle);
+    final config = getGameStyleConfig(gameStyle, players.length);
+    int cardsToReveal = config.cardsToReveal;
 
     // Deal cards to each players and reveal the initial cards (cardsToReveal = 1 or 2).
     for (var player in players) {

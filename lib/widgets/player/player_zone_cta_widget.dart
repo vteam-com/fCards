@@ -1,5 +1,4 @@
-// ignore: fcheck_magic_numbers
-
+import 'package:cards/models/app/constants_layout.dart';
 import 'package:cards/models/game/game_model.dart';
 import 'package:cards/widgets/cards/card_pile_widget.dart';
 import 'package:flutter/material.dart';
@@ -139,7 +138,7 @@ class PlayerZoneCtaWidget extends StatelessWidget {
         // left Pile
         CardPileWidget(
           cards: gameModel.deck.cardsDeckPile,
-          scale: 0.80,
+          scale: ConstLayout.scaleSmall,
           wiggleTopCard: false,
           cardsAreHidden: true,
           revealTopDeckCard: false,
@@ -191,7 +190,7 @@ class PlayerZoneCtaWidget extends StatelessWidget {
         buildMiniInstructions(true, 'Discard →\nor\n↓ swap', TextAlign.center),
         CardPileWidget(
           cards: gameModel.deck.cardsDeckDiscarded,
-          scale: 0.75,
+          scale: ConstLayout.scaleTiny,
           onDraw: () {
             // Player has discard the top deck revealed card
             // they now have to turn over one of their hidden card
@@ -220,8 +219,10 @@ Widget buildMiniInstructions(
   TextAlign align,
 ) {
   final TextStyle style = TextStyle(
-    fontSize: 18,
-    color: Colors.white.withAlpha(isActivePlayer ? 255 : 140),
+    fontSize: ConstLayout.textS,
+    color: Colors.white.withAlpha(
+      isActivePlayer ? ConstLayout.alphaFull : ConstLayout.alphaL,
+    ),
   );
 
   return Text(text, textAlign: align, style: style);

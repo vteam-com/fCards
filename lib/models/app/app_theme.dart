@@ -1,4 +1,3 @@
-// ignore: fcheck_magic_numbers
 import 'package:cards/models/app/constants_layout.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +11,7 @@ class AppTheme {
 
   static final onSurface = colorScheme.onSurface;
   static final surfaceBackground = colorScheme.surface;
-  static final onSurfaceHint = onSurface.withAlpha(100);
+  static final onSurfaceHint = onSurface.withAlpha(ConstLayout.alphaH);
 
   static ThemeData get theme {
     final baseTheme = ThemeData.dark();
@@ -100,17 +99,17 @@ class AppTheme {
       hintColor: onSurfaceHint,
       textSelectionTheme: TextSelectionThemeData(
         cursorColor: colorScheme.secondary,
-        selectionColor: colorScheme.secondary.withAlpha(150),
+        selectionColor: colorScheme.secondary.withAlpha(ConstLayout.alphaM),
         selectionHandleColor: colorScheme.secondary,
       ),
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
-        fillColor: onSurface.withAlpha(100),
+        fillColor: onSurface.withAlpha(ConstLayout.alphaH),
         hintStyle: TextStyle(color: onSurfaceHint),
         labelStyle: TextStyle(color: onSurface),
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(
-            color: colorScheme.primary.withAlpha(100),
+            color: colorScheme.primary.withAlpha(ConstLayout.alphaM),
             width: ConstLayout.strokeXS,
           ),
         ),
@@ -136,7 +135,7 @@ class AppTheme {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(ConstLayout.radiusM),
             side: BorderSide(
-              color: colorScheme.primary.withAlpha(100),
+              color: colorScheme.primary.withAlpha(ConstLayout.alphaH),
               width: ConstLayout.strokeXS,
             ),
           ),

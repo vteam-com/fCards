@@ -3,7 +3,6 @@ import 'package:cards/models/app/constants_layout.dart';
 import 'package:cards/models/game/backend_model.dart';
 import 'package:cards/models/game/game_history.dart';
 import 'package:cards/models/game/game_model.dart';
-import 'package:cards/screens/game/game_style.dart';
 import 'package:cards/models/game/game_styles.dart';
 import 'package:cards/screens/game/game_screen.dart';
 import 'package:cards/widgets/buttons/my_button_rectangle.dart';
@@ -393,6 +392,11 @@ class JoinGameScreenState extends State<JoinGameScreen> {
   Future<void> _startGame(BuildContext context) async {
     final List<GameHistory> history = await getGameHistory(_selectedRoom);
 
+    final config = getGameStyleConfig(
+      GameStyles.frenchCards9,
+      _playerNames.length,
+    );
+
     final gameModel = GameModel(
       version: appVersion,
       gameStyle: GameStyles.frenchCards9, // Default, could make configurable
@@ -400,12 +404,9 @@ class JoinGameScreenState extends State<JoinGameScreen> {
       roomHistory: history,
       loginUserName: _playerName,
       names: _playerNames.toList(),
-      cardsToDeal: numberOfCards(GameStyles.frenchCards9),
+      cardsToDeal: config.cardsToDeal,
       deck: DeckModel(
-        numberOfDecks: numberOfDecks(
-          GameStyles.frenchCards9,
-          _playerNames.length,
-        ),
+        numberOfDecks: config.decks,
         gameStyle: GameStyles.frenchCards9,
       ),
       isNewGame: true,

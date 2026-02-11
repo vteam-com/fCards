@@ -179,9 +179,7 @@ class _RoomsWidgetState extends State<RoomsWidget> {
             borderRadius: BorderRadius.circular(ConstLayout.radiusS),
           ),
           backgroundColor: isSelected
-              ? colorScheme.primaryContainer.withAlpha(
-                  ConstLayout.selectedRoomBackgroundAlpha,
-                )
+              ? colorScheme.primaryContainer.withAlpha(ConstLayout.alphaM)
               : colorScheme.surface.withAlpha(0),
         ),
         child: Align(

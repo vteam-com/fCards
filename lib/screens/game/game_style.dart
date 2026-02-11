@@ -1,9 +1,10 @@
-// ignore: fcheck_magic_numbers
 import 'package:cards/utils/logger.dart';
+import 'package:cards/models/app/constants_layout.dart';
 import 'package:cards/models/card/card_dimensions.dart';
 import 'package:cards/models/card/card_model_french.dart';
 import 'package:cards/models/game/game_model.dart';
 import 'package:cards/models/game/game_styles.dart';
+import 'package:cards/screens/game/game_style_constants.dart';
 import 'package:cards/widgets/cards/card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
@@ -34,7 +35,9 @@ class GameStyle extends StatelessWidget {
         Expanded(
           child: Markdown(
             selectable: true,
-            styleSheet: MarkdownStyleSheet(textScaler: TextScaler.linear(1.2)),
+            styleSheet: MarkdownStyleSheet(
+              textScaler: TextScaler.linear(ConstLayout.markdownTextScale),
+            ),
             data: gameInstructions(style),
             onTapLink: (_ /* text */, href, _ /* title */) async {
               if (href != null) {
@@ -54,8 +57,22 @@ class GameStyle extends StatelessWidget {
   /// special cards and standard ranked cards.
   List<CardModel> getAllFrenchCards() {
     List<CardModel> cards = [];
-    cards.add(CardModel(suit: '*', rank: '§', value: -2, isRevealed: false));
-    cards.add(CardModel(suit: '*', rank: '§', value: -2, isRevealed: true));
+    cards.add(
+      CardModel(
+        suit: '*',
+        rank: '§',
+        value: GameStyleConstants.skyJoSpecialValue,
+        isRevealed: false,
+      ),
+    );
+    cards.add(
+      CardModel(
+        suit: '*',
+        rank: '§',
+        value: GameStyleConstants.skyJoSpecialValue,
+        isRevealed: true,
+      ),
+    );
     int suit = 0;
     for (String rank in CardModelFrench.ranks) {
       cards.add(
@@ -82,7 +99,11 @@ class GameStyle extends StatelessWidget {
     List<CardModel> cards = [];
     cards.add(CardModel(suit: '', rank: '1', value: 1, isRevealed: false));
 
-    for (int rank = -2; rank <= 12; rank++) {
+    for (
+      int rank = GameStyleConstants.skyJoRankMin;
+      rank <= GameStyleConstants.skyJoRankMax;
+      rank++
+    ) {
       cards.add(
         CardModel(
           suit: '',
@@ -112,13 +133,15 @@ class GameStyle extends StatelessWidget {
         cards = getAllFrenchCards(); // Similar to French Cards for simplicity
     }
     return Wrap(
-      spacing: 8.0,
-      runSpacing: 8.0,
+      spacing: ConstLayout.paddingM,
+      runSpacing: ConstLayout.paddingM,
       children: cards
           .map(
             (card) => SizedBox(
-              width: CardDimensions.width / 3,
-              height: CardDimensions.height / 3,
+              width:
+                  CardDimensions.width / GameStyleConstants.cardDisplayDivisor,
+              height:
+                  CardDimensions.height / GameStyleConstants.cardDisplayDivisor,
               child: CardWidget(card: card),
             ),
           )
@@ -139,40 +162,6 @@ GameStyles intToGameStyles(final int gameStyleIndex) {
       'Invalid gameStyleIndex: $gameStyleIndex fall back to ${GameStyles.frenchCards9}',
     );
     return GameStyles.frenchCards9;
-  }
-}
-
-/// Returns the number of cards for a given game style.
-///
-/// Takes a [GameStyles] parameter and returns the number of cards
-/// required for that game variant.
-int numberOfCards(GameStyles style) {
-  switch (style) {
-    case GameStyles.frenchCards9:
-      return 9;
-    case GameStyles.skyJo:
-      return 12;
-    case GameStyles.miniPut:
-      return 4;
-    case GameStyles.custom:
-      return 9;
-  }
-}
-
-/// Returns the number of decks required for a given game style and number of players.
-///
-/// Takes a [GameStyles] parameter and [numberOfPlayers] to calculate
-/// how many card decks are needed for the game.
-int numberOfDecks(GameStyles style, int numberOfPlayers) {
-  switch (style) {
-    case GameStyles.frenchCards9:
-      return (numberOfPlayers + 1) ~/ 2;
-    case GameStyles.skyJo:
-      return 1;
-    case GameStyles.miniPut:
-      return 1;
-    case GameStyles.custom:
-      return 1;
   }
 }
 

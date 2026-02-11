@@ -1,7 +1,6 @@
-// ignore_for_file: deprecated_member_use
-// ignore: fcheck_magic_numbers
 import 'dart:ui';
 import 'package:cards/models/app/constants_animation.dart';
+import 'package:cards/models/app/constants_layout.dart';
 import 'package:flutter/material.dart';
 
 /// A base widget for glass-like buttons with blur and ripple effects.
@@ -42,7 +41,9 @@ class MyButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final shape = isRound ? BoxShape.circle : BoxShape.rectangle;
-    final radius = isRound ? null : BorderRadius.circular(borderRadius ?? 13);
+    final radius = isRound
+        ? null
+        : BorderRadius.circular(borderRadius ?? ConstLayout.radiusM);
 
     return Padding(
       padding: padding,
@@ -80,33 +81,31 @@ class MyButton extends StatelessWidget {
                         0,
                         73,
                         16,
-                      ).withOpacity(ConstAnimation.blackOverlayOpacity),
+                      ).withAlpha(ConstLayout.alphaM),
                       const Color.fromARGB(
                         255,
                         8,
                         47,
                         1,
-                      ).withOpacity(ConstAnimation.blackBackgroundOpacity),
+                      ).withAlpha(ConstLayout.alphaM),
                     ],
                   ),
                   border: Border.all(
-                    color: Colors.white.withOpacity(
-                      ConstAnimation.borderOpacity,
-                    ),
-                    width: 0.5,
+                    color: Colors.white.withAlpha(ConstLayout.alphaL),
+                    width: ConstLayout.strokeXXS,
                   ),
                   boxShadow: [
                     BoxShadow(
-                      blurRadius: 10,
+                      blurRadius: ConstLayout.radiusM,
                       spreadRadius: 0,
                       offset: const Offset(0, 4),
-                      color: Colors.black.withOpacity(0.8),
+                      color: Colors.black.withAlpha(ConstLayout.alphaL),
                     ),
                     BoxShadow(
-                      blurRadius: 6,
+                      blurRadius: ConstLayout.radiusS,
                       spreadRadius: 0,
                       offset: const Offset(-2, -2),
-                      color: Colors.white.withOpacity(0.3),
+                      color: Colors.white.withAlpha(ConstLayout.alphaL),
                     ),
                   ],
                 ),
@@ -115,12 +114,8 @@ class MyButton extends StatelessWidget {
                   child: InkWell(
                     enableFeedback: onTap != null,
                     onTap: onTap,
-                    splashColor: Colors.white.withOpacity(
-                      ConstAnimation.whiteOverlayOpacity,
-                    ),
-                    highlightColor: Colors.white.withOpacity(
-                      ConstAnimation.whiteHighlightOpacity,
-                    ),
+                    splashColor: Colors.white.withAlpha(ConstLayout.alphaL),
+                    highlightColor: Colors.white.withAlpha(ConstLayout.alphaL),
                     borderRadius: radius,
                     customBorder: isRound ? const CircleBorder() : null,
                     child: Center(child: child),

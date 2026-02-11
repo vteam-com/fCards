@@ -1,4 +1,3 @@
-// ignore: fcheck_magic_numbers
 import 'dart:math';
 
 import 'package:cards/models/card/card_model.dart';
@@ -10,6 +9,24 @@ export 'package:cards/models/card/card_model.dart';
 /// with specified columns and rows. It provides various operations for
 /// manipulating and querying the cards in the hand.
 class HandModel {
+  /// Grid checking indices for 2x2 layout (rows and columns)
+  static const List<List<int>> _checkingIndices2x2 = [
+    [0, 1], // Row 1
+    [2, 3], // Row 2
+    [0, 2], // Column 1
+    [1, 3], // Column 2
+  ];
+
+  /// Grid checking indices for 3x3 layout (rows and columns)
+  static const List<List<int>> _checkingIndices3x3 = [
+    [0, 1, 2], // Row 1
+    [3, 4, 5], // Row 2
+    [6, 7, 8], // Row 3
+    [0, 3, 6], // Column 1
+    [1, 4, 7], // Column 2
+    [2, 5, 8], // Column 3
+  ];
+
   /// Creates a new [HandModel] with the specified dimensions and initial cards.
   ///
   /// The [columns] and [rows] parameters define the grid layout of the hand.
@@ -180,27 +197,10 @@ class HandModel {
   int getSumOfCardsForGolf() {
     int score = 0;
 
-    List<List<int>> checkingIndices;
-
-    if (_list.length == CardModel.golfGrid2x2Size) {
-      // 2x2
-      checkingIndices = [
-        [0, 1],
-        [2, 3],
-        [0, 2],
-        [1, 3],
-      ];
-    } else {
-      // 3x3
-      checkingIndices = [
-        [0, 1, 2],
-        [3, 4, 5],
-        [6, 7, 8],
-        [0, 3, 6],
-        [1, 4, 7],
-        [2, 5, 8],
-      ];
-    }
+    final List<List<int>> checkingIndices =
+        _list.length == CardModel.golfGrid2x2Size
+        ? _checkingIndices2x2 // 2x2
+        : _checkingIndices3x3; // 3x3
 
     for (final List<int> indices in checkingIndices) {
       markIfSameRankForGolf(indices);
@@ -233,12 +233,18 @@ class HandModel {
     if (!allCardsValid) {
       return;
     }
+    const cardInxexFirst = 0;
+    const cardInxexSecond = 1;
+    const cardInxexThird = 2;
 
     // Check if all cards have matching ranks
     final bool haveSameRank = indices.length == CardModel.twoCardMatchSize
-        ? _list[indices[0]].rank == _list[indices[1]].rank
-        : _list[indices[0]].rank == _list[indices[1]].rank &&
-              _list[indices[1]].rank == _list[indices[2]].rank;
+        ? _list[indices[cardInxexFirst]].rank ==
+              _list[indices[cardInxexSecond]].rank
+        : _list[indices[cardInxexFirst]].rank ==
+                  _list[indices[cardInxexSecond]].rank &&
+              _list[indices[cardInxexSecond]].rank ==
+                  _list[indices[cardInxexThird]].rank;
 
     if (haveSameRank) {
       // Mark matching cards as part of set if not special rank
