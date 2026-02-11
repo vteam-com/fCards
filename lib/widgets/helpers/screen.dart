@@ -190,7 +190,7 @@ class _ScreenState extends State<Screen> {
   Widget _buildAvatar(User user) {
     if (user.isAnonymous) {
       return CircleAvatar(
-        radius: ConstLayout.circleAvatarRadius,
+        radius: ConstLayout.radiusXL,
         backgroundColor: Theme.of(context).colorScheme.surface,
         foregroundColor: Theme.of(context).colorScheme.onSurface,
         child: const Icon(Icons.person_outline),
@@ -200,7 +200,7 @@ class _ScreenState extends State<Screen> {
     final photoUrl = user.photoURL;
     if (photoUrl != null && photoUrl.isNotEmpty) {
       return CircleAvatar(
-        radius: ConstLayout.circleAvatarRadius,
+        radius: ConstLayout.radiusXL,
         backgroundImage: NetworkImage(photoUrl),
         backgroundColor: Theme.of(context).colorScheme.surface,
       );
@@ -211,7 +211,7 @@ class _ScreenState extends State<Screen> {
         : (user.email ?? 'U');
 
     return CircleAvatar(
-      radius: ConstLayout.circleAvatarRadius,
+      radius: ConstLayout.radiusXL,
       backgroundColor: Theme.of(context).colorScheme.primary,
       foregroundColor: Theme.of(context).colorScheme.onPrimary,
       child: Text(fallbackText.characters.first.toUpperCase()),
@@ -224,9 +224,7 @@ class _ScreenState extends State<Screen> {
       width: ConstLayout.waitingWidgetSize,
       height: ConstLayout.waitingWidgetSize,
       child: Center(
-        child: CupertinoActivityIndicator(
-          radius: ConstLayout.loadingIndicatorRadius,
-        ),
+        child: CupertinoActivityIndicator(radius: ConstLayout.sizeXL),
       ),
     );
   }

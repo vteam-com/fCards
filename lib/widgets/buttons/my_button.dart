@@ -42,7 +42,7 @@ class MyButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final shape = isRound ? BoxShape.circle : BoxShape.rectangle;
-    final radius = isRound ? null : BorderRadius.circular(borderRadius ?? 12);
+    final radius = isRound ? null : BorderRadius.circular(borderRadius ?? 13);
 
     return Padding(
       padding: padding,

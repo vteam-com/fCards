@@ -180,8 +180,8 @@ class GameScreenState extends State<GameScreen> {
   /// Builds a horizontally wrapping layout of player zones.
   Widget _buildPlayersWrapLayout() {
     return Wrap(
-      spacing: ConstLayout.playerZoneSpacing,
-      runSpacing: ConstLayout.playerZoneSpacing,
+      spacing: ConstLayout.sizeXL,
+      runSpacing: ConstLayout.sizeXL,
       children: List.generate(widget.gameModel.numPlayers, (index) {
         return PlayerZoneWidget(
           key: _playerKeys[index],
@@ -264,10 +264,7 @@ class GameScreenState extends State<GameScreen> {
   Widget _layoutForDesktop() {
     return Center(
       child: Padding(
-        padding: const EdgeInsets.only(
-          top: ConstLayout.desktopTopPadding,
-          bottom: 0.0,
-        ),
+        padding: const EdgeInsets.only(top: ConstLayout.paddingXL, bottom: 0.0),
         child: SingleChildScrollView(
           controller: _scrollController,
           child: _buildPlayersWrapLayout(),
@@ -284,7 +281,7 @@ class GameScreenState extends State<GameScreen> {
         mainAxisAlignment: MainAxisAlignment.start,
         children: List.generate(widget.gameModel.numPlayers, (index) {
           return Padding(
-            padding: const EdgeInsets.all(ConstLayout.phonePlayerZonePadding),
+            padding: const EdgeInsets.all(ConstLayout.paddingM),
             child: PlayerZoneWidget(
               key: _playerKeys[index],
               gameModel: widget.gameModel,

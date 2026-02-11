@@ -122,7 +122,7 @@ class _MainMenuState extends State<MainMenu> {
               if (!isSignedIn)
                 MyButtonRectangle(
                   width: double.infinity,
-                  height: 48, // Standard height or from constants
+                  height: ConstLayout.sizeXL,
                   onTap: _isAuthWorking ? null : _handleGoogleSignIn,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -154,7 +154,7 @@ class _MainMenuState extends State<MainMenu> {
               else
                 MyButtonRectangle(
                   width: double.infinity,
-                  height: 48,
+                  height: ConstLayout.sizeXXL,
                   onTap: _isAuthWorking ? null : _handleSignOut,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,

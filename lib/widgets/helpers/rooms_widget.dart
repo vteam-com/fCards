@@ -163,7 +163,7 @@ class _RoomsWidgetState extends State<RoomsWidget> {
         vertical: ConstLayout.sizeXS,
       ),
       leading: SizedBox(
-        width: ConstLayout.roomItemLeadingWidth,
+        width: ConstLayout.sizeXL,
         child: isSelected
             ? Icon(Icons.check, color: colorScheme.tertiary)
             : null,

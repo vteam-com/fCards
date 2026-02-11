@@ -41,6 +41,9 @@ class PlayerHeaderConstants {
   /// Spacing between wrap children
   static const double wrapSpacing = 16.0;
 
+  /// Height for input field and buttons (44 -> 55)
+  static const double inputHeight = 55.0;
+
   /// Border radius for dialogs
   static const double dialogBorderRadius = 16.0;
 
@@ -259,7 +262,7 @@ class _PlayerHeaderState extends State<PlayerHeader> {
                 ),
                 MyButtonRectangle(
                   width: double.infinity,
-                  height: 48,
+                  height: PlayerHeaderConstants.inputHeight,
                   onTap: () {
                     if (controller.text.isNotEmpty) {
                       widget.onNameChanged(controller.text);
@@ -281,13 +284,15 @@ class _PlayerHeaderState extends State<PlayerHeader> {
                   children: [
                     MyButtonRectangle(
                       width: null, // Allow dynamic width
-                      height: 44,
+                      height: PlayerHeaderConstants.inputHeight,
                       onTap: () {
                         Navigator.of(context).pop();
                         widget.onPlayerAdded?.call();
                       },
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: ConstLayout.sizeM,
+                        ),
                         child: Text(
                           'Add another player',
                           style: TextStyle(
@@ -299,13 +304,15 @@ class _PlayerHeaderState extends State<PlayerHeader> {
                     ),
                     MyButtonRectangle(
                       width: null, // Allow dynamic width
-                      height: 44,
+                      height: PlayerHeaderConstants.inputHeight,
                       onTap: () {
                         Navigator.of(context).pop();
                         _showRemoveConfirmationDialog();
                       },
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: ConstLayout.sizeM,
+                        ),
                         child: Text(
                           'Remove this player',
                           style: TextStyle(

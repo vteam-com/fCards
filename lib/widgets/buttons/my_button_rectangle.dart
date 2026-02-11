@@ -22,7 +22,7 @@ class MyButtonRectangle extends MyButton {
     required super.child,
     super.height = 44,
     super.width = 200,
-    super.borderRadius = 12,
+    super.borderRadius = 13,
     super.padding,
   });
 }

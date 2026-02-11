@@ -239,7 +239,7 @@ class JoinGameScreenState extends State<JoinGameScreen> {
           Container(
             margin: const EdgeInsets.symmetric(horizontal: ConstLayout.sizeXS),
             child: CircleAvatar(
-              radius: ConstLayout.circleAvatarRadius,
+              radius: ConstLayout.radiusXL,
               backgroundColor: i <= _currentStep
                   ? colorScheme.primary
                   : colorScheme.onSurface,

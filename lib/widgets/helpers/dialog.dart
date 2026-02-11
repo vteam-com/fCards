@@ -41,8 +41,8 @@ void myDialog({
   if (buttons.isEmpty) {
     buttons = [
       MyButtonRectangle(
-        width: 100, // Reasonable width for a dialog button
-        height: 44,
+        width: ConstLayout.dialogButtonWidth,
+        height: ConstLayout.dialogButtonHeight,
         onTap: () {
           Navigator.of(context).pop();
         },

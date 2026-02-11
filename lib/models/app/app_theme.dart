@@ -111,13 +111,13 @@ class AppTheme {
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(
             color: colorScheme.primary.withAlpha(100),
-            width: ConstLayout.enabledBorderWidth,
+            width: ConstLayout.strokeXS,
           ),
         ),
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(
             color: colorScheme.secondary,
-            width: ConstLayout.focusedBorderWidth,
+            width: ConstLayout.strokeM,
           ),
         ),
         contentPadding: const EdgeInsets.symmetric(
@@ -130,14 +130,14 @@ class AppTheme {
           backgroundColor: surfaceBackground,
           foregroundColor: onSurface,
           padding: const EdgeInsets.symmetric(
-            horizontal: ConstLayout.buttonHorizontalPadding,
-            vertical: ConstLayout.buttonVerticalPadding,
+            horizontal: ConstLayout.paddingXL,
+            vertical: ConstLayout.paddingL,
           ),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(ConstLayout.borderRadius),
+            borderRadius: BorderRadius.circular(ConstLayout.radiusM),
             side: BorderSide(
               color: colorScheme.primary.withAlpha(100),
-              width: ConstLayout.enabledBorderWidth,
+              width: ConstLayout.strokeXS,
             ),
           ),
         ),
@@ -146,11 +146,11 @@ class AppTheme {
         style: TextButton.styleFrom(
           foregroundColor: onSurface,
           padding: const EdgeInsets.symmetric(
-            horizontal: ConstLayout.buttonHorizontalPadding,
-            vertical: ConstLayout.buttonVerticalPadding,
+            horizontal: ConstLayout.paddingXL,
+            vertical: ConstLayout.paddingL,
           ),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(ConstLayout.borderRadius),
+            borderRadius: BorderRadius.circular(ConstLayout.radiusM),
           ),
         ),
       ),

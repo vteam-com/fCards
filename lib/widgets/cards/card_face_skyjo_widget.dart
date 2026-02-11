@@ -90,7 +90,7 @@ class CardFaceSkyjoWidget extends CardFaceFrenchWidget {
               ).copyWith(
                 foreground: Paint()
                   ..style = PaintingStyle.stroke
-                  ..strokeWidth = ConstLayout.strokeWidth6
+                  ..strokeWidth = ConstLayout.strokeL
                   ..color = Colors.white,
               ),
         ),

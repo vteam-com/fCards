@@ -262,7 +262,7 @@ class StartScreenState extends State<StartScreen> {
         }
       },
       width: double.infinity,
-      height: 48,
+      height: ConstLayout.sizeXXL,
       child: Text(
         label,
         style: TextStyle(

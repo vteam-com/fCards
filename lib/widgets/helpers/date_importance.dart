@@ -35,7 +35,7 @@ class DateTimeWidget extends StatelessWidget {
 
   Widget _buildText(final num value, double fontSize) {
     return MyText(
-      value.toString().padLeft(ConstLayout.datePaddingLength, '0'),
+      value.toString().padLeft(ConstLayout.dateCharacterLeftSpacePadding, '0'),
       fontSize: fontSize,
       bold: true,
     );
