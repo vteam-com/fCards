@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.10.5
+
+- Fix button colors for consistent UI styling
+
 ## 1.10.4
 
 - Fix bug where game would not end
