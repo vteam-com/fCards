@@ -154,30 +154,35 @@ A Flutter-based multiplayer card game application featuring multiple game modes 
 lib/
 ├── main.dart                 # App entry point and routing
 ├── models/                   # Data models and business logic
-│   ├── app_theme.dart       # App theming and styling
-│   ├── card_model.dart      # Card representation
-│   ├── game_model.dart      # Game state management
-│   ├── golf_score_model.dart # Score keeper data model
-│   ├── player_model.dart    # Player information
-│   └── constants.dart       # App-wide constants
+│   ├── app/                 # App-level services and configuration
+│   │   ├── app_theme.dart       # App theming and styling
+│   │   ├── auth_service.dart     # Firebase authentication
+│   │   ├── constants_layout.dart # Sizing and layout constants
+│   │   ├── constants_animation.dart # Animation/Visual constants
+│   │   └── constants_card_value.dart # Card scoring and values
+│   ├── card/                # Card-related logic
+│   ├── game/                # Game state and backend logic
+│   └── player/              # Player data models
 ├── screens/                  # UI screens
 │   ├── main_menu.dart       # Main navigation menu
-│   ├── game/                # Game-related screens
+│   ├── game/                # Game-related screens and constants
 │   └── keepscore/           # Score keeper screens
 ├── widgets/                  # Reusable UI components
-│   ├── cards/              # Card-related widgets
+│   ├── buttons/            # Glassmorphic button system (MyButton)
+│   ├── cards/              # Card display components
 │   ├── player/             # Player interface components
-│   └── input_keyboard.dart # Custom keyboard widget
-└── utils/                   # Utility functions
+│   └── helpers/             # Generic helpers (Dialog, Keyboard, Screen)
+└── utils/                   # Shared utility functions (Logger)
 ```
 
 ### Key Components
 
-- **Firebase Integration**: Real-time multiplayer functionality
-- **Offline Support**: Play without internet connection
-- **Custom Keyboard**: Optimized input for score entry
-- **Responsive Design**: Adapts to different screen sizes
-- **State Management**: Robust game state handling
+- **Firebase Integration**: Real-time multiplayer functionality via `backend_model.dart`.
+- **Glassmorphic UI**: High-fidelity "Casino Table Top" theme using custom `MyButton` widgets.
+- **Fibonacci Design System**: All layout values are snapped to the Fibonacci sequence for visual harmony.
+- **Custom Keyboard**: Optimized numeric input for game scoring.
+- **Responsive Design**: Intelligent layout switching for Phone, Tablet, and Desktop breakpoints.
+- **State Management**: Mixed approach using `setState` for UI and `StreamBuilder` for real-time data.
 
 ## Deployment
 
@@ -210,11 +215,11 @@ Due to the open-source nature of this project, sensitive configuration files are
 
 **Required GitHub Secrets:**
 
-| Secret Name | Purpose | Content |
-|-------------|---------|---------|
-| `FIREBASE_JSON` | Firebase Hosting configuration | Base64-encoded `firebase.json` |
-| `FIREBASE_OPTIONS_FILE` | Firebase project credentials | Base64-encoded `firebase_options.dart` |
-| `FIREBASE_SERVICE_ACCOUNT_*PROJECT_NAME*` | Firebase deployment permissions | Service account JSON key |
+| Secret Name                               | Purpose                         | Content                                |
+| ----------------------------------------- | ------------------------------- | -------------------------------------- |
+| `FIREBASE_JSON`                           | Firebase Hosting configuration  | Base64-encoded `firebase.json`         |
+| `FIREBASE_OPTIONS_FILE`                   | Firebase project credentials    | Base64-encoded `firebase_options.dart` |
+| `FIREBASE_SERVICE_ACCOUNT_*PROJECT_NAME*` | Firebase deployment permissions | Service account JSON key               |
 
 **Important Note for Forks:**
 This repository is open-source and intended for community contributions. If you fork this project:
@@ -380,7 +385,7 @@ To enable multiplayer functionality:
 ## Technology Stack
 
 - **Flutter**: Cross-platform UI framework
-- **Dart 3.9.2**: Programming language
+- **Dart 3.10.8**: Programming language
 - **Firebase**: Real-time database and authentication
 - **Firebase Auth**: Anonymous user authentication
 - **Shared Preferences**: Local data persistence

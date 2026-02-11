@@ -37,6 +37,7 @@ digraph "" {
   "/lib/models/game/game_styles.dart" [label="game_styles"];
   "/lib/models/game/game_history.dart" [label="game_history"];
   "/lib/models/game/golf_score_model.dart" [label="golf_score_model"];
+  "/lib/models/game/game_constants.dart" [label="game_constants"];
   "/lib/models/game/backend_model.dart" [label="backend_model"];
   "/lib/models/game/deck_model.dart" [label="deck_model"];
   "/lib/models/player/player_status.dart" [label="player_status"];
@@ -138,6 +139,7 @@ digraph "" {
           "/lib/models/game/game_styles.dart";
           "/lib/models/game/game_history.dart";
           "/lib/models/game/golf_score_model.dart";
+          "/lib/models/game/game_constants.dart";
           "/lib/models/game/backend_model.dart";
           "/lib/models/game/deck_model.dart";
         }
@@ -245,6 +247,7 @@ digraph "" {
   "/lib/models/game/game_model.dart" -> "/lib/models/game/deck_model.dart" [style=dashed];
   "/lib/models/game/game_model.dart" -> "/lib/models/player/player_model.dart" [style=dashed];
   "/lib/models/game/game_styles.dart" -> "/lib/models/card/card_model.dart";
+  "/lib/models/game/game_styles.dart" -> "/lib/models/game/game_constants.dart";
   "/lib/models/game/backend_model.dart" -> "/lib/utils/logger.dart";
   "/lib/models/game/backend_model.dart" -> "/lib/models/app/auth_service.dart";
   "/lib/models/game/backend_model.dart" -> "/lib/models/app/firebase_options.dart";
@@ -264,7 +267,6 @@ digraph "" {
   "/lib/screens/game/join_game_screen.dart" -> "/lib/models/game/backend_model.dart";
   "/lib/screens/game/join_game_screen.dart" -> "/lib/models/game/game_history.dart";
   "/lib/screens/game/join_game_screen.dart" -> "/lib/models/game/game_model.dart";
-  "/lib/screens/game/join_game_screen.dart" -> "/lib/screens/game/game_style.dart";
   "/lib/screens/game/join_game_screen.dart" -> "/lib/models/game/game_styles.dart";
   "/lib/screens/game/join_game_screen.dart" -> "/lib/screens/game/game_screen.dart";
   "/lib/screens/game/join_game_screen.dart" -> "/lib/widgets/buttons/my_button_rectangle.dart";
@@ -279,10 +281,12 @@ digraph "" {
   "/lib/screens/game/game_over_dialog.dart" -> "/lib/models/game/game_model.dart";
   "/lib/screens/game/game_over_dialog.dart" -> "/lib/widgets/helpers/dialog.dart";
   "/lib/screens/game/game_style.dart" -> "/lib/utils/logger.dart";
+  "/lib/screens/game/game_style.dart" -> "/lib/models/app/constants_layout.dart";
   "/lib/screens/game/game_style.dart" -> "/lib/models/card/card_dimensions.dart";
   "/lib/screens/game/game_style.dart" -> "/lib/models/card/card_model_french.dart";
   "/lib/screens/game/game_style.dart" -> "/lib/models/game/game_model.dart";
   "/lib/screens/game/game_style.dart" -> "/lib/models/game/game_styles.dart";
+  "/lib/screens/game/game_style.dart" -> "/lib/models/game/game_constants.dart";
   "/lib/screens/game/game_style.dart" -> "/lib/widgets/cards/card_widget.dart";
   "/lib/screens/game/game_screen.dart" -> "/lib/models/app/constants_layout.dart";
   "/lib/screens/game/game_screen.dart" -> "/lib/models/game/backend_model.dart";
@@ -292,6 +296,7 @@ digraph "" {
   "/lib/screens/game/game_screen.dart" -> "/lib/widgets/player/player_zone_widget.dart";
   "/lib/screens/game/start_game_screen.dart" -> "/lib/models/app/constants_layout.dart";
   "/lib/screens/game/start_game_screen.dart" -> "/lib/utils/logger.dart";
+  "/lib/screens/game/start_game_screen.dart" -> "/lib/widgets/buttons/my_button_rectangle.dart";
   "/lib/screens/game/start_game_screen.dart" -> "/lib/widgets/helpers/edit_box.dart";
   "/lib/screens/game/start_game_screen.dart" -> "/lib/models/game/backend_model.dart";
   "/lib/screens/game/start_game_screen.dart" -> "/lib/models/game/game_history.dart";
@@ -308,6 +313,7 @@ digraph "" {
   "/lib/screens/welcome/main_menu.dart" -> "/lib/models/app/auth_service.dart";
   "/lib/screens/welcome/main_menu.dart" -> "/lib/models/game/backend_model.dart";
   "/lib/screens/welcome/main_menu.dart" -> "/lib/utils/logger.dart";
+  "/lib/screens/welcome/main_menu.dart" -> "/lib/widgets/buttons/my_button_rectangle.dart";
   "/lib/screens/welcome/main_menu.dart" -> "/lib/widgets/helpers/screen.dart";
   "/lib/screens/keepscore/golf_score_screen.dart" -> "/lib/models/app/app_theme.dart";
   "/lib/screens/keepscore/golf_score_screen.dart" -> "/lib/models/app/constants_layout.dart";
@@ -326,7 +332,10 @@ digraph "" {
   "/lib/main.dart" -> "/lib/models/app/app_theme.dart";
   "/lib/main.dart" -> "/lib/utils/logger.dart";
   "/lib/widgets/buttons/my_button.dart" -> "/lib/models/app/constants_animation.dart";
+  "/lib/widgets/buttons/my_button.dart" -> "/lib/models/app/constants_layout.dart";
+  "/lib/widgets/buttons/my_button_round.dart" -> "/lib/models/app/constants_layout.dart";
   "/lib/widgets/buttons/my_button_round.dart" -> "/lib/widgets/buttons/my_button.dart";
+  "/lib/widgets/buttons/my_button_rectangle.dart" -> "/lib/models/app/constants_layout.dart";
   "/lib/widgets/buttons/my_button_rectangle.dart" -> "/lib/widgets/buttons/my_button.dart";
   "/lib/widgets/cards/card_pile_widget.dart" -> "/lib/models/app/constants_layout.dart";
   "/lib/widgets/cards/card_pile_widget.dart" -> "/lib/models/card/card_dimensions.dart";
@@ -352,7 +361,9 @@ digraph "" {
   "/lib/widgets/helpers/date_importance.dart" -> "/lib/models/app/constants_layout.dart";
   "/lib/widgets/helpers/date_importance.dart" -> "/lib/widgets/helpers/my_text.dart";
   "/lib/widgets/helpers/dialog.dart" -> "/lib/models/app/constants_layout.dart";
+  "/lib/widgets/helpers/dialog.dart" -> "/lib/widgets/buttons/my_button_rectangle.dart";
   "/lib/widgets/helpers/wiggle_widget.dart" -> "/lib/models/app/constants_animation.dart";
+  "/lib/widgets/helpers/wiggle_widget.dart" -> "/lib/models/app/constants_layout.dart";
   "/lib/widgets/helpers/rooms_widget.dart" -> "/lib/models/app/app_theme.dart";
   "/lib/widgets/helpers/rooms_widget.dart" -> "/lib/models/app/constants_layout.dart";
   "/lib/widgets/helpers/rooms_widget.dart" -> "/lib/widgets/helpers/edit_box.dart";
@@ -360,6 +371,7 @@ digraph "" {
   "/lib/widgets/helpers/edit_box.dart" -> "/lib/models/app/constants_layout.dart";
   "/lib/widgets/helpers/screen.dart" -> "/lib/models/app/constants_layout.dart";
   "/lib/widgets/helpers/screen.dart" -> "/lib/utils/logger.dart";
+  "/lib/widgets/player/player_zone_cta_widget.dart" -> "/lib/models/app/constants_layout.dart";
   "/lib/widgets/player/player_zone_cta_widget.dart" -> "/lib/models/game/game_model.dart";
   "/lib/widgets/player/player_zone_cta_widget.dart" -> "/lib/widgets/cards/card_pile_widget.dart";
   "/lib/widgets/player/status_picker.dart" -> "/lib/models/app/constants_layout.dart";
@@ -381,5 +393,6 @@ digraph "" {
   "/lib/widgets/player/player_zone_widget.dart" -> "/lib/widgets/player/player_header_widget.dart";
   "/lib/widgets/player/player_zone_widget.dart" -> "/lib/widgets/player/player_zone_cta_widget.dart";
   "/lib/widgets/player/player_header.dart" -> "/lib/models/app/constants_layout.dart";
+  "/lib/widgets/player/player_header.dart" -> "/lib/widgets/buttons/my_button_rectangle.dart";
   "/lib/widgets/player/player_header.dart" -> "/lib/widgets/helpers/edit_box.dart";
 }

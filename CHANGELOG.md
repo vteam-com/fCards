@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## 1.10.4
+
+- Fix bug where game would not end
+- fCheck clean
+  - Remove code duplication
+  - Refactor themed MyButton to use shared base widget
+  - Standardize button style across app (Main Menu, Dialogs, Player Header)
+  - All numbers are now Fibonacci numbers
+
 ## 1.10.3
 
 - Fix dead code and unused parameters flagged by fCheck 0.9.1
