@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.10.6
+
+- Animated background
+
 ## 1.10.5
 
 - Fix button colors for consistent UI styling

@@ -1144,6 +1144,11 @@ constants_layout.dart</title>
 ⬇
 edit_box.dart</title>
       </path>
+      <path d="M1585 1660 C 1624 2255,2336 2255, 2375 2850" fill="none" class="line">
+        <title>screen.dart
+⬇
+constants_animation.dart</title>
+      </path>
       <path d="M1585 1660 C 1624 2255,1736 2255, 1775 2850" fill="none" class="line">
         <title>screen.dart
 ⬇
@@ -1702,11 +1707,12 @@ card_face_french_widget.dart</title>
             <g id='Counters_screen.dart'>
               <g>
                 <circle cx="1585" cy="1660" r="10" fill="green"/>
-                <text x="1585" y="1660" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">2</text>
+                <text x="1585" y="1660" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">3</text>
                 <title>screen.dart
 ⬇
-1 /lib/models/app/constants_layout.dart
-2 /lib/utils/logger.dart</title>
+1 /lib/models/app/constants_animation.dart
+2 /lib/models/app/constants_layout.dart
+3 /lib/utils/logger.dart</title>
               </g>
               <g>
                 <circle cx="1325" cy="1620" r="10" fill="blue"/>
@@ -2181,8 +2187,9 @@ auth_service.dart</title>
             <g id='Counters_constants_animation.dart'>
               <g>
                 <circle cx="2375" cy="2850" r="10" fill="blue"/>
-                <text x="2375" y="2850" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">1</text>
-                <title>1 /lib/widgets/helpers/wiggle_widget.dart
+                <text x="2375" y="2850" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">2</text>
+                <title>1 /lib/widgets/helpers/screen.dart
+2 /lib/widgets/helpers/wiggle_widget.dart
 ⬇
 constants_animation.dart</title>
               </g>
@@ -2513,7 +2520,7 @@ backend_json_data.dart</title>
         </g>
         <g id='Labels_widgets'>
           <text class="folderName" x="1280" y="840">widgets</text>
-          <text x="1280" y="2050" fill='black' font-size="75%">4 folders, 21 files, 25 incoming, 38 outgoing, path: ...//lib/</text>
+          <text x="1280" y="2050" fill='black' font-size="75%">4 folders, 21 files, 25 incoming, 39 outgoing, path: ...//lib/</text>
           <g id='Labels_player'>
             <text class="folderName" x="1747.5" y="875">player</text>
             <text x="1747.5" y="1165" fill='black' font-size="75%">6 files, 4 incoming, 21 outgoing, path: ...//lib/widgets/</text>
@@ -2554,7 +2561,7 @@ backend_json_data.dart</title>
           </g>
           <g id='Labels_helpers'>
             <text class="folderName" x="1297.5" y="1575">helpers</text>
-            <text x="1297.5" y="1785" fill='black' font-size="75%">8 files, 22 incoming, 13 outgoing, path: ...//lib/widgets/</text>
+            <text x="1297.5" y="1785" fill='black' font-size="75%">8 files, 22 incoming, 14 outgoing, path: ...//lib/widgets/</text>
             <g id='Labels_screen.dart'>
               <text class="nodeName" x="1455" y="1640" font-size="120%">screen.dart</text>
             </g>
@@ -2596,7 +2603,7 @@ backend_json_data.dart</title>
         </g>
         <g id='Labels_models'>
           <text class="folderName" x="1580" y="2070">models</text>
-          <text x="1580" y="3200" fill='black' font-size="75%">4 folders, 20 files, 92 incoming, 2 outgoing, path: ...//lib/</text>
+          <text x="1580" y="3200" fill='black' font-size="75%">4 folders, 20 files, 93 incoming, 2 outgoing, path: ...//lib/</text>
           <g id='Labels_game'>
             <text class="folderName" x="1747.5" y="2105">game</text>
             <text x="1747.5" y="2475" fill='black' font-size="75%">7 files, 34 incoming, 10 outgoing, path: ...//lib/models/</text>
@@ -2634,7 +2641,7 @@ backend_json_data.dart</title>
           </g>
           <g id='Labels_app'>
             <text class="folderName" x="1597.5" y="2725">app</text>
-            <text x="1597.5" y="2935" fill='black' font-size="75%">7 files, 44 incoming, path: ...//lib/models/</text>
+            <text x="1597.5" y="2935" fill='black' font-size="75%">7 files, 45 incoming, path: ...//lib/models/</text>
             <g id='Labels_app_theme.dart'>
               <text class="nodeName" x="1755" y="2790" font-size="120%">app_theme.dart</text>
             </g>

@@ -1,5 +1,7 @@
-import 'package:cards/models/app/constants_layout.dart';
+import 'dart:math' as math;
 
+import 'package:cards/models/app/constants_layout.dart';
+import 'package:cards/models/app/constants_animation.dart';
 import 'package:cards/utils/logger.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -78,13 +80,27 @@ class Screen extends StatefulWidget {
   State<Screen> createState() => _ScreenState();
 }
 
-class _ScreenState extends State<Screen> {
+class _ScreenState extends State<Screen> with SingleTickerProviderStateMixin {
+  late final AnimationController _ambientAnimationController;
+
   String _version = '';
 
   @override
   void initState() {
     super.initState();
+    _ambientAnimationController = AnimationController(
+      vsync: this,
+      duration: const Duration(
+        milliseconds: ConstAnimation.tableTopAmbientDuration,
+      ),
+    )..repeat();
     _getAppVersion();
+  }
+
+  @override
+  void dispose() {
+    _ambientAnimationController.dispose();
+    super.dispose();
   }
 
   @override
@@ -171,18 +187,53 @@ class _ScreenState extends State<Screen> {
       ),
       body: Stack(
         children: [
-          DecoratedBox(
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('assets/images/table_top.png'),
-                fit: BoxFit.cover,
+          const Positioned.fill(
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/images/table_top.png'),
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
-            child: SizedBox.expand(
-              child: widget.isWaiting ? _displayWaiting() : widget.child,
-            ),
+          ),
+          Positioned.fill(child: _buildTableTopAmbientOverlay()),
+          SizedBox.expand(
+            child: widget.isWaiting ? _displayWaiting() : widget.child,
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _buildAmbientCircle({
+    required Alignment alignment,
+    required double diameter,
+  }) {
+    return Align(
+      alignment: alignment,
+      child: SizedBox(
+        width: diameter,
+        height: diameter,
+        child: DecoratedBox(
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            gradient: RadialGradient(
+              colors: [
+                Colors.white.withAlpha(
+                  ConstAnimation.tableTopAmbientCircleAlpha,
+                ),
+                Colors.white.withAlpha(
+                  ConstAnimation.tableTopAmbientCircleAlpha,
+                ),
+                Colors.transparent,
+                Colors.transparent,
+              ],
+              center: Alignment.center,
+              radius: ConstAnimation.tableTopAmbientCircleRadius,
+            ),
+          ),
+        ),
       ),
     );
   }
@@ -218,6 +269,53 @@ class _ScreenState extends State<Screen> {
     );
   }
 
+  Widget _buildTableTopAmbientOverlay() {
+    return IgnorePointer(
+      child: AnimatedBuilder(
+        animation: _ambientAnimationController,
+        builder: (BuildContext _, Widget? _) {
+          final double progress = _ambientAnimationController.value;
+          final double shortestSide = MediaQuery.sizeOf(context).shortestSide;
+          final double circleSizeHuge =
+              shortestSide * (ConstLayout.sizeL / ConstLayout.sizeM);
+
+          return Stack(
+            children: [
+              _buildAmbientCircle(
+                alignment: _orbitAlignment(
+                  progress: progress,
+                  phaseX: ConstLayout.sizeS / ConstLayout.sizeM,
+                  phaseY: ConstLayout.sizeXS / ConstLayout.sizeS,
+                  amplitudeX: ConstLayout.scaleSmall,
+                  amplitudeY: ConstLayout.scaleTiny,
+                ),
+                diameter:
+                    circleSizeHuge /
+                    ConstAnimation.tableTopPrimaryCircleDivisor,
+              ),
+              _buildAmbientCircle(
+                alignment: _orbitAlignment(
+                  progress: progress,
+                  phaseX:
+                      (ConstLayout.sizeS / ConstLayout.sizeM) /
+                      ConstAnimation.tableTopSecondaryCircleDivisor,
+                  phaseY:
+                      (ConstLayout.sizeXS / ConstLayout.sizeS) /
+                      ConstAnimation.tableTopSecondaryCircleDivisor,
+                  amplitudeX: ConstLayout.scaleSmall,
+                  amplitudeY: ConstLayout.scaleTiny,
+                ),
+                diameter:
+                    circleSizeHuge /
+                    ConstAnimation.tableTopSecondaryCircleDivisor,
+              ),
+            ],
+          );
+        },
+      ),
+    );
+  }
+
   Widget _displayWaiting() {
     /// Builds a loading indicator widget
     return SizedBox(
@@ -246,5 +344,18 @@ class _ScreenState extends State<Screen> {
         });
       }
     }
+  }
+
+  Alignment _orbitAlignment({
+    required double progress,
+    required double phaseX,
+    required double phaseY,
+    required double amplitudeX,
+    required double amplitudeY,
+  }) {
+    final double fullTurn = math.pi * ConstLayout.strokeS;
+    final double x = math.sin((progress + phaseX) * fullTurn) * amplitudeX;
+    final double y = math.cos((progress + phaseY) * fullTurn) * amplitudeY;
+    return Alignment(x, y);
   }
 }

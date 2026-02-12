@@ -311,7 +311,7 @@
   <title>/Users/jp/src/github/vteam/fCards/lib/models/game/game_styles.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/card/card_model.dart</title>
 </g>
 <g>
-  <path d="M 2510.0 198.0 C 2560.0 198.0, 2566.0 172.0, 2616.0 172.0" class="edge"/>
+  <path d="M 2510.0 198.0 C 2560.0 198.0, 2566.0 242.0, 2616.0 242.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/models/game/game_styles.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/game/game_constants.dart</title>
 </g>
 <g>
@@ -467,7 +467,7 @@
   <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/game_style.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/game/game_styles.dart</title>
 </g>
 <g>
-  <path d="M 910.0 338.0 C 960.0 338.0, 2566.0 172.0, 2616.0 172.0" class="edge"/>
+  <path d="M 910.0 338.0 C 960.0 338.0, 2566.0 242.0, 2616.0 242.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/game_style.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/game/game_constants.dart</title>
 </g>
 <g>
@@ -767,7 +767,7 @@
   <title>/Users/jp/src/github/vteam/fCards/lib/widgets/helpers/dialog.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/buttons/my_button_rectangle.dart</title>
 </g>
 <g>
-  <path d="M 2510.0 898.0 C 2560.0 898.0, 2566.0 242.0, 2616.0 242.0" class="edge"/>
+  <path d="M 2510.0 898.0 C 2560.0 898.0, 2566.0 172.0, 2616.0 172.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/widgets/helpers/wiggle_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_animation.dart</title>
 </g>
 <g>
@@ -797,6 +797,10 @@
 <g>
   <path d="M 1230.0 128.0 C 1280.0 128.0, 2886.0 102.0, 2936.0 102.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/widgets/helpers/screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
+</g>
+<g>
+  <path d="M 1230.0 128.0 C 1280.0 128.0, 2566.0 172.0, 2616.0 172.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/helpers/screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_animation.dart</title>
 </g>
 <g>
   <path d="M 1230.0 128.0 C 1280.0 128.0, 2246.0 102.0, 2296.0 102.0" class="edge"/>
@@ -1034,8 +1038,9 @@
 4. start_game_screen.dart
 5. welcome_screen.dart</title></g><g class="outgoingBadge">
   <path d="M 1236.0,128.0 L 1224.0,121.0 Q 1221.0,121.0 1221.0,124.0 L 1221.0,132.0 Q 1221.0,135.0 1224.0,135.0 Z" fill="#10b981"/>
-  <text x="1225.0" y="131.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. constants_layout.dart
-2. logger.dart</title></g><text x="1120.0" y="115.0" class="textNormal">screen.dart</text>
+  <text x="1225.0" y="131.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">3</text><title>1. constants_animation.dart
+2. constants_layout.dart
+3. logger.dart</title></g><text x="1120.0" y="115.0" class="textNormal">screen.dart</text>
 <g class="incomingBadge">
   <path d="M 1022.0,172.0 L 1010.0,165.0 Q 1007.0,165.0 1007.0,168.0 L 1007.0,176.0 Q 1007.0,179.0 1010.0,179.0 Z" fill="#3b82f6"/>
   <text x="1011.0" y="175.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">4</text><title>1. join_game_screen.dart
@@ -1285,11 +1290,12 @@
 4. my_text.dart</title></g><text x="2720.0" y="115.0" class="textSmall">card_face_french_widget.dart</text>
 <g class="incomingBadge">
   <path d="M 2622.0,172.0 L 2610.0,165.0 Q 2607.0,165.0 2607.0,168.0 L 2607.0,176.0 Q 2607.0,179.0 2610.0,179.0 Z" fill="#3b82f6"/>
-  <text x="2611.0" y="175.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. game_style.dart
-2. game_styles.dart</title></g><text x="2720.0" y="185.0" class="textNormal">game_constants.dart</text>
+  <text x="2611.0" y="175.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. screen.dart
+2. wiggle_widget.dart</title></g><text x="2720.0" y="185.0" class="textNormal">constants_animation.dart</text>
 <g class="incomingBadge">
   <path d="M 2622.0,242.0 L 2610.0,235.0 Q 2607.0,235.0 2607.0,238.0 L 2607.0,246.0 Q 2607.0,249.0 2610.0,249.0 Z" fill="#3b82f6"/>
-  <text x="2611.0" y="245.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. wiggle_widget.dart</title></g><text x="2720.0" y="255.0" class="textNormal">constants_animation.dart</text>
+  <text x="2611.0" y="245.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. game_style.dart
+2. game_styles.dart</title></g><text x="2720.0" y="255.0" class="textNormal">game_constants.dart</text>
 <g class="incomingBadge">
   <path d="M 2942.0,102.0 L 2930.0,95.0 Q 2927.0,95.0 2927.0,98.0 L 2927.0,106.0 Q 2927.0,109.0 2930.0,109.0 Z" fill="#3b82f6"/>
   <text x="2931.0" y="105.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">28</text><title>1. app_theme.dart

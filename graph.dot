@@ -369,6 +369,7 @@ digraph "" {
   "/lib/widgets/helpers/edit_box.dart" -> "/lib/models/app/app_theme.dart";
   "/lib/widgets/helpers/edit_box.dart" -> "/lib/models/app/constants_layout.dart";
   "/lib/widgets/helpers/screen.dart" -> "/lib/models/app/constants_layout.dart";
+  "/lib/widgets/helpers/screen.dart" -> "/lib/models/app/constants_animation.dart";
   "/lib/widgets/helpers/screen.dart" -> "/lib/utils/logger.dart";
   "/lib/widgets/player/player_zone_cta_widget.dart" -> "/lib/models/app/constants_layout.dart";
   "/lib/widgets/player/player_zone_cta_widget.dart" -> "/lib/models/game/game_model.dart";

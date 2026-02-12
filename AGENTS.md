@@ -15,8 +15,7 @@ The visual identity of this app relies heavily on a classic casino table top car
   - **Preferred Widgets**:
     - `MyButtonRectangle`: Standard button for most actions.
     - `MyButtonRound`: Circular buttons (e.g., for icons).
-  - **Styling API**:
-    - Black overlay opacity: `ConstAnimation.blackOverlayOpacity`
+  - **Styling API**:    
     - White border opacity: `ConstAnimation.borderOpacity`
     - Blur sigma: `ConstAnimation.blurSigma`
 
