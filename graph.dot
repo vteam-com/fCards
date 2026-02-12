@@ -47,7 +47,7 @@ digraph "" {
   "/lib/screens/game/game_style.dart" [label="game_style"];
   "/lib/screens/game/game_screen.dart" [label="game_screen"];
   "/lib/screens/game/start_game_screen.dart" [label="start_game_screen"];
-  "/lib/screens/welcome/main_menu.dart" [label="main_menu"];
+  "/lib/screens/welcome/welcome_screen.dart" [label="welcome_screen"];
   "/lib/screens/keepscore/golf_score_screen.dart" [label="golf_score_screen"];
   "/lib/main.dart" [label="main"];
   "/lib/widgets/buttons/my_button.dart" [label="my_button"];
@@ -161,7 +161,7 @@ digraph "" {
         }
         subgraph "cluster~/lib/screens/welcome" {
           label="welcome";
-          "/lib/screens/welcome/main_menu.dart";
+          "/lib/screens/welcome/welcome_screen.dart";
         }
         subgraph "cluster~/lib/screens/keepscore" {
           label="keepscore";
@@ -308,13 +308,13 @@ digraph "" {
   "/lib/screens/game/start_game_screen.dart" -> "/lib/widgets/player/players_in_room_widget.dart";
   "/lib/screens/game/start_game_screen.dart" -> "/lib/widgets/helpers/rooms_widget.dart";
   "/lib/screens/game/start_game_screen.dart" -> "/lib/utils/browser_utils.dart";
-  "/lib/screens/welcome/main_menu.dart" -> "/lib/models/app/app_theme.dart";
-  "/lib/screens/welcome/main_menu.dart" -> "/lib/models/app/constants_layout.dart";
-  "/lib/screens/welcome/main_menu.dart" -> "/lib/models/app/auth_service.dart";
-  "/lib/screens/welcome/main_menu.dart" -> "/lib/models/game/backend_model.dart";
-  "/lib/screens/welcome/main_menu.dart" -> "/lib/utils/logger.dart";
-  "/lib/screens/welcome/main_menu.dart" -> "/lib/widgets/buttons/my_button_rectangle.dart";
-  "/lib/screens/welcome/main_menu.dart" -> "/lib/widgets/helpers/screen.dart";
+  "/lib/screens/welcome/welcome_screen.dart" -> "/lib/models/app/app_theme.dart";
+  "/lib/screens/welcome/welcome_screen.dart" -> "/lib/models/app/constants_layout.dart";
+  "/lib/screens/welcome/welcome_screen.dart" -> "/lib/models/app/auth_service.dart";
+  "/lib/screens/welcome/welcome_screen.dart" -> "/lib/models/game/backend_model.dart";
+  "/lib/screens/welcome/welcome_screen.dart" -> "/lib/utils/logger.dart";
+  "/lib/screens/welcome/welcome_screen.dart" -> "/lib/widgets/buttons/my_button_rectangle.dart";
+  "/lib/screens/welcome/welcome_screen.dart" -> "/lib/widgets/helpers/screen.dart";
   "/lib/screens/keepscore/golf_score_screen.dart" -> "/lib/models/app/app_theme.dart";
   "/lib/screens/keepscore/golf_score_screen.dart" -> "/lib/models/app/constants_layout.dart";
   "/lib/screens/keepscore/golf_score_screen.dart" -> "/lib/models/game/golf_score_model.dart";
@@ -328,7 +328,7 @@ digraph "" {
   "/lib/main.dart" -> "/lib/screens/game/join_game_screen.dart";
   "/lib/main.dart" -> "/lib/screens/game/start_game_screen.dart";
   "/lib/main.dart" -> "/lib/screens/keepscore/golf_score_screen.dart";
-  "/lib/main.dart" -> "/lib/screens/welcome/main_menu.dart";
+  "/lib/main.dart" -> "/lib/screens/welcome/welcome_screen.dart";
   "/lib/main.dart" -> "/lib/models/app/app_theme.dart";
   "/lib/main.dart" -> "/lib/utils/logger.dart";
   "/lib/widgets/buttons/my_button.dart" -> "/lib/models/app/constants_layout.dart";

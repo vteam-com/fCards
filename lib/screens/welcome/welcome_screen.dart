@@ -10,15 +10,15 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 /// Welcome screen that provides options to start new game, join existing game, or keep scores.
-class MainMenu extends StatefulWidget {
+class WelcomeScreen extends StatefulWidget {
   ///
-  const MainMenu({super.key});
+  const WelcomeScreen({super.key});
 
   @override
-  State<MainMenu> createState() => _MainMenuState();
+  State<WelcomeScreen> createState() => _WelcomeScreenState();
 }
 
-class _MainMenuState extends State<MainMenu> {
+class _WelcomeScreenState extends State<WelcomeScreen> {
   bool _isAuthWorking = false;
 
   @override

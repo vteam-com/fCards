@@ -778,31 +778,31 @@
 </g>
 <g>
   <path d="M 600.0 614.0 H 978.0 Q 984.0 614.0 984.0 620.0 V 2387.0 Q 984.0 2393.0 978.0 2393.0 H 596.0" class="edgeVertical"/>
-  <title>screens/welcome/main_menu.dart ▶ models/app/app_theme.dart</title>
+  <title>screens/welcome/welcome_screen.dart ▶ models/app/app_theme.dart</title>
 </g>
 <g>
   <path d="M 600.0 614.0 H 982.0 Q 988.0 614.0 988.0 620.0 V 2547.0 Q 988.0 2553.0 982.0 2553.0 H 596.0" class="edgeVertical"/>
-  <title>screens/welcome/main_menu.dart ▶ models/app/constants_layout.dart</title>
+  <title>screens/welcome/welcome_screen.dart ▶ models/app/constants_layout.dart</title>
 </g>
 <g>
   <path d="M 600.0 614.0 H 986.0 Q 992.0 614.0 992.0 620.0 V 2483.0 Q 992.0 2489.0 986.0 2489.0 H 596.0" class="edgeVertical"/>
-  <title>screens/welcome/main_menu.dart ▶ models/app/auth_service.dart</title>
+  <title>screens/welcome/welcome_screen.dart ▶ models/app/auth_service.dart</title>
 </g>
 <g>
   <path d="M 600.0 614.0 H 990.0 Q 996.0 614.0 996.0 620.0 V 2137.0 Q 996.0 2143.0 990.0 2143.0 H 596.0" class="edgeVertical"/>
-  <title>screens/welcome/main_menu.dart ▶ models/game/backend_model.dart</title>
+  <title>screens/welcome/welcome_screen.dart ▶ models/game/backend_model.dart</title>
 </g>
 <g>
   <path d="M 600.0 614.0 H 994.0 Q 1000.0 614.0 1000.0 620.0 V 3185.0 Q 1000.0 3191.0 994.0 3191.0 H 620.0" class="edgeVertical"/>
-  <title>screens/welcome/main_menu.dart ▶ utils/logger.dart</title>
+  <title>screens/welcome/welcome_screen.dart ▶ utils/logger.dart</title>
 </g>
 <g>
   <path d="M 600.0 614.0 H 998.0 Q 1004.0 614.0 1004.0 620.0 V 1819.0 Q 1004.0 1825.0 998.0 1825.0 H 596.0" class="edgeVertical"/>
-  <title>screens/welcome/main_menu.dart ▶ widgets/buttons/my_button_rectangle.dart</title>
+  <title>screens/welcome/welcome_screen.dart ▶ widgets/buttons/my_button_rectangle.dart</title>
 </g>
 <g>
   <path d="M 600.0 614.0 H 1002.0 Q 1008.0 614.0 1008.0 620.0 V 1633.0 Q 1008.0 1639.0 1002.0 1639.0 H 596.0" class="edgeVertical"/>
-  <title>screens/welcome/main_menu.dart ▶ widgets/helpers/screen.dart</title>
+  <title>screens/welcome/welcome_screen.dart ▶ widgets/helpers/screen.dart</title>
 </g>
 <g>
   <path d="M 600.0 736.0 H 1006.0 Q 1012.0 736.0 1012.0 742.0 V 2387.0 Q 1012.0 2393.0 1006.0 2393.0 H 596.0" class="edgeVertical"/>
@@ -858,7 +858,7 @@
 </g>
 <g>
   <path d="M 624.0 190.0 H 1058.0 Q 1064.0 190.0 1064.0 196.0 V 597.0 Q 1064.0 603.0 1058.0 603.0 H 596.0" class="edgeVertical"/>
-  <title>main.dart ▶ screens/welcome/main_menu.dart</title>
+  <title>main.dart ▶ screens/welcome/welcome_screen.dart</title>
 </g>
 <g>
   <path d="M 624.0 190.0 H 1062.0 Q 1068.0 190.0 1068.0 196.0 V 2387.0 Q 1068.0 2393.0 1062.0 2393.0 H 596.0" class="edgeVertical"/>
@@ -1129,7 +1129,7 @@
 5. screens/game/join_game_screen.dart
 6. screens/game/start_game_screen.dart
 7. screens/keepscore/golf_score_screen.dart
-8. screens/welcome/main_menu.dart
+8. screens/welcome/welcome_screen.dart
 9. utils/logger.dart</title></g><text x="454.0" y="184.0" text-anchor="middle" dominant-baseline="middle" class="textNormal">main.dart</text>
 <g class="incomingBadge">
   <path d="M 614.0,3095.0 L 626.0,3088.0 Q 629.0,3088.0 629.0,3091.0 L 629.0,3099.0 Q 629.0,3102.0 626.0,3102.0 Z" fill="#3b82f6"/>
@@ -1151,7 +1151,7 @@
 4. screens/game/game_style.dart
 5. screens/game/join_game_screen.dart
 6. screens/game/start_game_screen.dart
-7. screens/welcome/main_menu.dart
+7. screens/welcome/welcome_screen.dart
 8. widgets/helpers/screen.dart</title></g><text x="454.0" y="3196.0" text-anchor="middle" dominant-baseline="middle" class="textNormal">logger.dart</text>
 <g class="incomingBadge">
   <path d="M 590.0,2829.0 L 602.0,2822.0 Q 605.0,2822.0 605.0,2825.0 L 605.0,2833.0 Q 605.0,2836.0 602.0,2836.0 Z" fill="#3b82f6"/>
@@ -1181,7 +1181,7 @@
   <path d="M 590.0,2393.0 L 602.0,2386.0 Q 605.0,2386.0 605.0,2389.0 L 605.0,2397.0 Q 605.0,2400.0 602.0,2400.0 Z" fill="#3b82f6"/>
   <text x="601.0" y="2396.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">6</text><title>1. main.dart
 2. screens/keepscore/golf_score_screen.dart
-3. screens/welcome/main_menu.dart
+3. screens/welcome/welcome_screen.dart
 4. widgets/helpers/edit_box.dart
 5. widgets/helpers/rooms_widget.dart
 6. widgets/player/players_in_room_widget.dart</title></g><g class="outgoingBadge">
@@ -1198,7 +1198,7 @@
   <path d="M 590.0,2489.0 L 602.0,2482.0 Q 605.0,2482.0 605.0,2485.0 L 605.0,2493.0 Q 605.0,2496.0 602.0,2496.0 Z" fill="#3b82f6"/>
   <text x="601.0" y="2492.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">3</text><title>1. main.dart
 2. models/game/backend_model.dart
-3. screens/welcome/main_menu.dart</title></g><text x="474.0" y="2494.0" text-anchor="middle" dominant-baseline="middle" class="textNormal">auth_service.dart</text>
+3. screens/welcome/welcome_screen.dart</title></g><text x="474.0" y="2494.0" text-anchor="middle" dominant-baseline="middle" class="textNormal">auth_service.dart</text>
 <g class="incomingBadge">
   <path d="M 590.0,2521.0 L 602.0,2514.0 Q 605.0,2514.0 605.0,2517.0 L 605.0,2525.0 Q 605.0,2528.0 602.0,2528.0 Z" fill="#3b82f6"/>
   <text x="601.0" y="2524.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">4</text><title>1. models/game/deck_model.dart
@@ -1214,7 +1214,7 @@
 5. screens/game/join_game_screen.dart
 6. screens/game/start_game_screen.dart
 7. screens/keepscore/golf_score_screen.dart
-8. screens/welcome/main_menu.dart
+8. screens/welcome/welcome_screen.dart
 9. widgets/buttons/my_button.dart
 10. widgets/buttons/my_button_rectangle.dart
 11. widgets/buttons/my_button_round.dart
@@ -1267,7 +1267,7 @@
 4. screens/game/game_screen.dart
 5. screens/game/join_game_screen.dart
 6. screens/game/start_game_screen.dart
-7. screens/welcome/main_menu.dart</title></g><g class="outgoingBadge">
+7. screens/welcome/welcome_screen.dart</title></g><g class="outgoingBadge">
   <path d="M 606.0,2154.0 L 594.0,2147.0 Q 591.0,2147.0 591.0,2150.0 L 591.0,2158.0 Q 591.0,2161.0 594.0,2161.0 Z" fill="#10b981"/>
   <text x="595.0" y="2157.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">4</text><title>1. models/app/auth_service.dart
 2. models/app/firebase_options.dart
@@ -1384,7 +1384,7 @@
 4. models/game/backend_model.dart
 5. utils/logger.dart
 6. widgets/buttons/my_button_rectangle.dart
-7. widgets/helpers/screen.dart</title></g><text x="474.0" y="608.0" text-anchor="middle" dominant-baseline="middle" class="textNormal">main_menu.dart</text>
+7. widgets/helpers/screen.dart</title></g><text x="474.0" y="608.0" text-anchor="middle" dominant-baseline="middle" class="textNormal">welcome_screen.dart</text>
 <g class="incomingBadge">
   <path d="M 590.0,725.0 L 602.0,718.0 Q 605.0,718.0 605.0,721.0 L 605.0,729.0 Q 605.0,732.0 602.0,732.0 Z" fill="#3b82f6"/>
   <text x="601.0" y="728.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. main.dart</title></g><g class="outgoingBadge">
@@ -1407,7 +1407,7 @@
   <path d="M 590.0,1825.0 L 602.0,1818.0 Q 605.0,1818.0 605.0,1821.0 L 605.0,1829.0 Q 605.0,1832.0 602.0,1832.0 Z" fill="#3b82f6"/>
   <text x="601.0" y="1828.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">5</text><title>1. screens/game/join_game_screen.dart
 2. screens/game/start_game_screen.dart
-3. screens/welcome/main_menu.dart
+3. screens/welcome/welcome_screen.dart
 4. widgets/helpers/dialog.dart
 5. widgets/player/player_header.dart</title></g><g class="outgoingBadge">
   <path d="M 606.0,1836.0 L 594.0,1829.0 Q 591.0,1829.0 591.0,1832.0 L 591.0,1840.0 Q 591.0,1843.0 594.0,1843.0 Z" fill="#10b981"/>
@@ -1467,7 +1467,7 @@
 2. screens/game/join_game_screen.dart
 3. screens/game/start_game_screen.dart
 4. screens/keepscore/golf_score_screen.dart
-5. screens/welcome/main_menu.dart</title></g><g class="outgoingBadge">
+5. screens/welcome/welcome_screen.dart</title></g><g class="outgoingBadge">
   <path d="M 606.0,1650.0 L 594.0,1643.0 Q 591.0,1643.0 591.0,1646.0 L 591.0,1654.0 Q 591.0,1657.0 594.0,1657.0 Z" fill="#10b981"/>
   <text x="595.0" y="1653.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. models/app/constants_layout.dart
 2. utils/logger.dart</title></g><text x="474.0" y="1644.0" text-anchor="middle" dominant-baseline="middle" class="textNormal">screen.dart</text>
@@ -1570,7 +1570,7 @@
 <g class="folderTitleLayer">
 <text x="442.0" y="105.0" class="layerTitle" text-anchor="middle">
   <tspan x="442.0" dy="0">fCards</tspan>
-  <tspan x="442.0" dy="16.0">cards v1.10.4</tspan>
+  <tspan x="442.0" dy="16.0">cards v1.10.5</tspan>
 </text>
 <text x="462.0" y="157.0" class="layerTitle">  ...</text>
 <text x="462.0" y="3073.0" class="layerTitle">  utils</text>

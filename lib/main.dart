@@ -4,7 +4,7 @@ import 'package:cards/models/app/firebase_options.dart';
 import 'package:cards/screens/game/join_game_screen.dart';
 import 'package:cards/screens/game/start_game_screen.dart';
 import 'package:cards/screens/keepscore/golf_score_screen.dart';
-import 'package:cards/screens/welcome/main_menu.dart';
+import 'package:cards/screens/welcome/welcome_screen.dart';
 import 'package:cards/models/app/app_theme.dart';
 import 'package:cards/utils/logger.dart';
 
@@ -55,7 +55,7 @@ class MyApp extends StatelessWidget {
       theme: AppTheme.theme,
       initialRoute: '/',
       routes: {
-        '/': (BuildContext _) => const MainMenu(),
+        '/': (BuildContext _) => const WelcomeScreen(),
         '/game': (BuildContext _) => const StartScreen(joinMode: false),
         '/join': (BuildContext _) => const JoinGameScreen(),
         '/score': (BuildContext _) => const GolfScoreScreen(),
