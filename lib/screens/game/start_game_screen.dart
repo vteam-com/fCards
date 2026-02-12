@@ -13,7 +13,7 @@ import 'package:cards/screens/game/game_screen.dart';
 
 import 'package:cards/widgets/helpers/screen.dart';
 import 'package:cards/widgets/player/players_in_room_widget.dart';
-import 'package:cards/widgets/helpers/rooms_widget.dart';
+import 'package:cards/widgets/helpers/table_widget.dart';
 import 'package:cards/utils/browser_utils.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -144,7 +144,7 @@ class StartScreenState extends State<StartScreen> {
                   Row(
                     children: [
                       EditBox(
-                        label: 'Room',
+                        label: 'Table',
                         controller: _controllerRoom,
                         onSubmitted: () {
                           _controllerRoom.text = _controllerRoom.text
@@ -169,7 +169,7 @@ class StartScreenState extends State<StartScreen> {
                     ],
                   ),
                   if (_isExpandedRooms)
-                    RoomsWidget(
+                    TableWidget(
                       roomId: roomName,
                       rooms: _listOfRooms,
                       onSelected: (String room) {

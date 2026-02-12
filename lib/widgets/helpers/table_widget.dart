@@ -5,11 +5,11 @@ import 'package:flutter/material.dart';
 
 /// A widget that displays a list of rooms, allowing the user to select a room and optionally remove a room.
 /// Includes a search box to filter rooms by name.
-class RoomsWidget extends StatefulWidget {
-  /// Constructs a [RoomsWidget] with the given parameters.
+class TableWidget extends StatefulWidget {
+  /// Constructs a [TableWidget] with the given parameters.
   ///
   /// The [roomId], [rooms], [onSelected], and [onRemoveRoom] parameters are required.
-  const RoomsWidget({
+  const TableWidget({
     super.key,
     required this.roomId,
     required this.rooms,
@@ -33,10 +33,10 @@ class RoomsWidget extends StatefulWidget {
   final List<String> rooms;
 
   @override
-  State<RoomsWidget> createState() => _RoomsWidgetState();
+  State<TableWidget> createState() => _TableWidgetState();
 }
 
-class _RoomsWidgetState extends State<RoomsWidget> {
+class _TableWidgetState extends State<TableWidget> {
   late TextEditingController _searchController;
 
   late String _searchText;
@@ -117,7 +117,7 @@ class _RoomsWidgetState extends State<RoomsWidget> {
             Padding(
               padding: const EdgeInsets.all(ConstLayout.sizeM),
               child: Text(
-                'No rooms found matching "$_searchText"',
+                'No tables found matching "$_searchText"',
                 style: TextStyle(
                   color: AppTheme.onSurfaceHint,
                   fontSize: ConstLayout.textS,
@@ -142,7 +142,7 @@ class _RoomsWidgetState extends State<RoomsWidget> {
           ),
           const SizedBox(height: ConstLayout.sizeM),
           Text(
-            _searchText.isEmpty ? 'No rooms available' : 'No matching rooms',
+            _searchText.isEmpty ? 'No tables available' : 'No matching tables',
             style: TextStyle(
               color: AppTheme.onSurfaceHint,
               fontSize: ConstLayout.textM,

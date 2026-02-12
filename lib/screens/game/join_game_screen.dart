@@ -8,7 +8,7 @@ import 'package:cards/screens/game/game_screen.dart';
 import 'package:cards/widgets/buttons/my_button_rectangle.dart';
 import 'package:cards/widgets/helpers/screen.dart';
 import 'package:cards/widgets/player/players_in_room_widget.dart';
-import 'package:cards/widgets/helpers/rooms_widget.dart';
+import 'package:cards/widgets/helpers/table_widget.dart';
 import 'package:cards/widgets/helpers/edit_box.dart';
 import 'package:cards/utils/logger.dart';
 import 'package:flutter/material.dart';
@@ -135,7 +135,7 @@ class JoinGameScreenState extends State<JoinGameScreen> {
       spacing: ConstLayout.sizeL,
       children: [
         Text(
-          'Joining Room: $_selectedRoom',
+          'Joining Table: $_selectedRoom',
           style: TextStyle(
             fontSize: ConstLayout.textL,
             fontWeight: FontWeight.bold,
@@ -158,7 +158,7 @@ class JoinGameScreenState extends State<JoinGameScreen> {
           rightSideChild: const SizedBox.shrink(),
         ),
 
-        MyButtonRectangle(onTap: _joinGame, child: const Text('Join Room')),
+        MyButtonRectangle(onTap: _joinGame, child: const Text('Join Table')),
 
         if (_playerName.isNotEmpty)
           Text(
@@ -187,7 +187,7 @@ class JoinGameScreenState extends State<JoinGameScreen> {
       spacing: ConstLayout.sizeM,
       children: [
         Text(
-          'Select a Room to Join',
+          'Select a Table to Join',
           style: TextStyle(
             fontSize: ConstLayout.textL,
             fontWeight: FontWeight.bold,
@@ -197,12 +197,12 @@ class JoinGameScreenState extends State<JoinGameScreen> {
         ),
         const SizedBox(height: ConstLayout.sizeS),
         Text(
-          'Use the search box to quickly find a room',
+          'Use the search box to quickly find a table',
           style: TextStyle(fontSize: ConstLayout.textS),
           textAlign: TextAlign.center,
         ),
         const SizedBox(height: ConstLayout.sizeM),
-        RoomsWidget(
+        TableWidget(
           roomId: _selectedRoom.isEmpty ? 'SELECT_ROOM' : _selectedRoom,
           rooms: _listOfRooms,
           onSelected: (String room) {
@@ -262,7 +262,7 @@ class JoinGameScreenState extends State<JoinGameScreen> {
       spacing: ConstLayout.sizeM,
       children: [
         Text(
-          'Room: $_selectedRoom',
+          'Table: $_selectedRoom',
           style: TextStyle(
             fontSize: ConstLayout.textM,
             fontWeight: FontWeight.bold,
@@ -293,7 +293,7 @@ class JoinGameScreenState extends State<JoinGameScreen> {
           )
         else
           Text(
-            'Ready to play! ${_playerNames.length} players in room.',
+            'Ready to play! ${_playerNames.length} players at table.',
             style: TextStyle(
               fontSize: ConstLayout.textS,
               color: Theme.of(context).colorScheme.tertiary,

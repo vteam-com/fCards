@@ -78,7 +78,7 @@ class PlayerHeaderWidget extends StatelessWidget {
     myDialog(
       context: context,
       title:
-          '${player.name} won ${listOfWinsForThisPlayer.length} times in the ${gameModel.roomName} room',
+          '${player.name} won ${listOfWinsForThisPlayer.length} times at table ${gameModel.roomName}',
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: listOfWinsForThisPlayer
