@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1540" viewBox="0 0 1800 1540" role="img" aria-labelledby="title desc">
+  <title id="title">VTeam Cards Onboarding Flow</title>
+  <desc id="desc">Flowchart describing Start New Game and Join Existing Game onboarding logic.</desc>
+
+  <defs>
+    <style>
+      .bg { fill: #0c2a1a; }
+      .node { fill: #1b4f33; stroke: #dceadf; stroke-width: 2; rx: 14; ry: 14; }
+      .decision { fill: #3b6f52; stroke: #dceadf; stroke-width: 2; }
+      .text { fill: #f4fff7; font-family: Arial, sans-serif; font-size: 24px; font-weight: 700; }
+      .small { fill: #f4fff7; font-family: Arial, sans-serif; font-size: 20px; }
+      .label { fill: #f0f8f3; font-family: Arial, sans-serif; font-size: 20px; font-weight: 700; }
+      .arrow { stroke: #f4fff7; stroke-width: 3; fill: none; }
+      .title { fill: #f4fff7; font-family: Arial, sans-serif; font-size: 34px; font-weight: 700; }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#f4fff7" />
+    </marker>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1800" height="1540" />
+  <text class="title" x="900" y="48" text-anchor="middle">VTeam Cards User Onboarding Flow</text>
+
+  <rect class="node" x="640" y="80" width="520" height="90" />
+  <text class="text" x="900" y="135" text-anchor="middle">Welcome Screen (/)</text>
+
+  <polygon class="decision" points="900,220 1070,290 900,360 730,290" />
+  <text class="text" x="900" y="288" text-anchor="middle">User choice?</text>
+
+  <rect class="node" x="220" y="420" width="360" height="90" />
+  <text class="text" x="400" y="476" text-anchor="middle">Start a New Game</text>
+
+  <rect class="node" x="1220" y="420" width="360" height="90" />
+  <text class="text" x="1400" y="476" text-anchor="middle">Join Existing Game</text>
+
+  <rect class="node" x="220" y="560" width="360" height="90" />
+  <text class="text" x="400" y="607" text-anchor="middle">Select Game Type</text>
+  <text class="small" x="400" y="635" text-anchor="middle">Golf 9, MiniPut 4, Skylo</text>
+
+  <polygon class="decision" points="400,700 570,770 400,840 230,770" />
+  <text class="small" x="400" y="760" text-anchor="middle">Select room</text>
+  <text class="small" x="400" y="788" text-anchor="middle">or create new?</text>
+
+  <rect class="node" x="180" y="900" width="440" height="110" />
+  <text class="text" x="400" y="952" text-anchor="middle">Create Flow</text>
+  <text class="small" x="400" y="982" text-anchor="middle">Ask table name first</text>
+
+  <rect class="node" x="960" y="620" width="520" height="110" />
+  <text class="text" x="1220" y="676" text-anchor="middle">Join Game Wizard</text>
+  <text class="small" x="1220" y="706" text-anchor="middle">Select/confirm table, enter name, join</text>
+
+  <polygon class="decision" points="900,900 1070,970 900,1040 730,970" />
+  <text class="small" x="900" y="960" text-anchor="middle">Table already</text>
+  <text class="small" x="900" y="988" text-anchor="middle">exists?</text>
+
+  <rect class="node" x="1180" y="1080" width="440" height="110" />
+  <text class="text" x="1400" y="1130" text-anchor="middle">Show Existing Players</text>
+  <text class="small" x="1400" y="1160" text-anchor="middle">Hint: user can join instead</text>
+
+  <rect class="node" x="620" y="1080" width="440" height="110" />
+  <text class="text" x="840" y="1130" text-anchor="middle">Enter Name + Join Table</text>
+  <text class="small" x="840" y="1160" text-anchor="middle">Invite others if needed</text>
+
+  <polygon class="decision" points="900,1240 1070,1310 900,1380 730,1310" />
+  <text class="small" x="900" y="1300" text-anchor="middle">Players</text>
+  <text class="small" x="900" y="1328" text-anchor="middle">>= minimum?</text>
+
+  <rect class="node" x="760" y="1420" width="280" height="90" />
+  <text class="text" x="900" y="1476" text-anchor="middle">Start Game</text>
+
+  <!-- Main arrows -->
+  <path class="arrow" marker-end="url(#arrowhead)" d="M900 170 L900 215" />
+
+  <path class="arrow" marker-end="url(#arrowhead)" d="M760 318 L500 418" />
+  <text class="label" x="560" y="360">Start</text>
+
+  <path class="arrow" marker-end="url(#arrowhead)" d="M1040 318 L1300 418" />
+  <text class="label" x="1230" y="360">Join</text>
+
+  <path class="arrow" marker-end="url(#arrowhead)" d="M400 510 L400 555" />
+  <path class="arrow" marker-end="url(#arrowhead)" d="M400 650 L400 695" />
+
+  <path class="arrow" marker-end="url(#arrowhead)" d="M560 770 L955 680" />
+  <text class="label" x="690" y="735">Existing room</text>
+
+  <path class="arrow" marker-end="url(#arrowhead)" d="M400 840 L400 895" />
+  <text class="label" x="300" y="872">Create new</text>
+
+  <path class="arrow" marker-end="url(#arrowhead)" d="M1400 510 L1240 615" />
+
+  <path class="arrow" marker-end="url(#arrowhead)" d="M620 955 L730 970" />
+
+  <path class="arrow" marker-end="url(#arrowhead)" d="M900 1040 L840 1075" />
+  <text class="label" x="790" y="1065">No</text>
+
+  <path class="arrow" marker-end="url(#arrowhead)" d="M1070 970 L1180 1080" />
+  <text class="label" x="1115" y="1040">Yes</text>
+
+  <path class="arrow" marker-end="url(#arrowhead)" d="M1180 1135 L1065 1135" />
+
+  <path class="arrow" marker-end="url(#arrowhead)" d="M840 1190 L840 1248" />
+  <path class="arrow" marker-end="url(#arrowhead)" d="M1220 730 C1220 880 980 880 920 1240" />
+
+  <path class="arrow" marker-end="url(#arrowhead)" d="M900 1380 L900 1415" />
+  <text class="label" x="938" y="1405">Yes</text>
+
+  <path class="arrow" marker-end="url(#arrowhead)" d="M730 1310 C620 1310 620 760 960 680" />
+  <text class="label" x="640" y="1040">No, wait/invite</text>
+</svg>

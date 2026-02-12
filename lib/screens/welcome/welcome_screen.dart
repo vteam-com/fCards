@@ -52,7 +52,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 MenuButton(
                   label: 'Start a New Game',
                   icon: Icons.play_circle_fill,
-                  onPressed: () => Navigator.pushNamed(context, '/game'),
+                  onPressed: () => Navigator.pushNamed(context, '/start'),
                 ),
                 SizedBox(height: ConstLayout.sizeM),
                 MenuButton(

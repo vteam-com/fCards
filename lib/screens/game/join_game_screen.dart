@@ -10,14 +10,27 @@ import 'package:cards/widgets/helpers/screen.dart';
 import 'package:cards/widgets/player/players_in_room_widget.dart';
 import 'package:cards/widgets/helpers/table_widget.dart';
 import 'package:cards/widgets/helpers/edit_box.dart';
+import 'package:cards/widgets/helpers/step_indicator.dart';
 import 'package:cards/utils/logger.dart';
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
+const String _selectRoomPlaceholder = 'SELECT_ROOM';
+
 /// Step-by-step screen for joining an existing game.
 class JoinGameScreen extends StatefulWidget {
   ///
-  const JoinGameScreen({super.key});
+  const JoinGameScreen({
+    super.key,
+    this.initialRoom,
+    this.gameStyle = GameStyles.frenchCards9,
+  });
+
+  /// Game style to use when launching the game from the join wizard.
+  final GameStyles gameStyle;
+
+  /// Optional room preselected before entering the join wizard.
+  final String? initialRoom;
 
   @override
   JoinGameScreenState createState() => JoinGameScreenState();
@@ -27,8 +40,6 @@ class JoinGameScreen extends StatefulWidget {
 class JoinGameScreenState extends State<JoinGameScreen> {
   final TextEditingController _controllerName = TextEditingController();
 
-  final TextEditingController _controllerRoom = TextEditingController();
-
   int _currentStep = 0;
 
   late List<String> _listOfRooms;
@@ -37,7 +48,11 @@ class JoinGameScreenState extends State<JoinGameScreen> {
 
   late Set<String> _playerNames;
 
+  late String _preparedRoom;
+
   bool _roomsFetched = false;
+
+  late GameStyles _selectedGameStyle;
 
   late String _selectedRoom;
 
@@ -51,10 +66,13 @@ class JoinGameScreenState extends State<JoinGameScreen> {
   @override
   void initState() {
     super.initState();
-    _selectedRoom = '';
+    _selectedGameStyle = widget.gameStyle;
+    _selectedRoom = widget.initialRoom?.trim().toUpperCase() ?? '';
     _playerName = '';
     _playerNames = {};
+    _preparedRoom = '';
     _listOfRooms = [];
+    _currentStep = _selectedRoom.isNotEmpty ? 1 : 0;
     _getAppVersion();
     // Don't fetch rooms immediately - wait until user chooses to join
   }
@@ -62,7 +80,6 @@ class JoinGameScreenState extends State<JoinGameScreen> {
   @override
   void dispose() {
     _streamSubscription?.cancel();
-    _controllerRoom.dispose();
     _controllerName.dispose();
     super.dispose();
   }
@@ -73,10 +90,13 @@ class JoinGameScreenState extends State<JoinGameScreen> {
       isWaiting: false,
       title: 'Join Game',
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(ConstLayout.sizeM),
         child: Column(
           children: [
-            _buildStepIndicator(),
+            StepIndicator(
+              currentStep: _currentStep,
+              stepCount: ConstLayout.joinGameStepCount,
+            ),
             Expanded(
               child: Center(
                 child: SingleChildScrollView(child: _buildStepContent()),
@@ -99,23 +119,26 @@ class JoinGameScreenState extends State<JoinGameScreen> {
                   )
                 else
                   const SizedBox.shrink(),
-                MyButtonRectangle(
-                  onTap: _canProceed
-                      ? () {
-                          if (_currentStep <
-                              ConstLayout.joinGameStepCount - 1) {
-                            setState(() => _currentStep++);
-                          } else {
-                            _startGame(context);
+                if (!_isSingleCtaStep)
+                  MyButtonRectangle(
+                    onTap: _canProceed
+                        ? () {
+                            if (_currentStep <
+                                ConstLayout.joinGameStepCount - 1) {
+                              setState(() => _currentStep++);
+                            } else {
+                              _startGame(context);
+                            }
                           }
-                        }
-                      : null,
-                  child: Text(
-                    _currentStep < ConstLayout.joinGameStepCount - 1
-                        ? 'Next'
-                        : 'Start Game',
-                  ),
-                ),
+                        : null,
+                    child: Text(
+                      _currentStep < ConstLayout.joinGameStepCount - 1
+                          ? 'Next'
+                          : 'Start Game',
+                    ),
+                  )
+                else
+                  const SizedBox.shrink(),
               ],
             ),
           ],
@@ -126,9 +149,7 @@ class JoinGameScreenState extends State<JoinGameScreen> {
 
   Widget _buildNameEntryStep() {
     final colorScheme = Theme.of(context).colorScheme;
-    if (_selectedRoom.isNotEmpty && !_waitingOnFirstBackendData) {
-      _prepareForRoom(_selectedRoom);
-    }
+    _prepareForSelectedRoomIfNeeded();
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -153,12 +174,15 @@ class JoinGameScreenState extends State<JoinGameScreen> {
         EditBox(
           label: 'Your Name',
           controller: _controllerName,
-          onSubmitted: _joinGame,
+          onSubmitted: _joinGameAndContinue,
           errorStatus: '',
           rightSideChild: const SizedBox.shrink(),
         ),
 
-        MyButtonRectangle(onTap: _joinGame, child: const Text('Join Table')),
+        MyButtonRectangle(
+          onTap: _joinGameAndContinue,
+          child: const Text('Join Table'),
+        ),
 
         if (_playerName.isNotEmpty)
           Text(
@@ -203,11 +227,14 @@ class JoinGameScreenState extends State<JoinGameScreen> {
         ),
         const SizedBox(height: ConstLayout.sizeM),
         TableWidget(
-          roomId: _selectedRoom.isEmpty ? 'SELECT_ROOM' : _selectedRoom,
+          roomId: _selectedRoom.isEmpty
+              ? _selectRoomPlaceholder
+              : _selectedRoom,
           rooms: _listOfRooms,
           onSelected: (String room) {
             setState(() {
               _selectedRoom = room;
+              _preparedRoom = '';
             });
           },
           onRemoveRoom: null, // No remove for join mode
@@ -227,32 +254,6 @@ class JoinGameScreenState extends State<JoinGameScreen> {
       default:
         return const SizedBox();
     }
-  }
-
-  Widget _buildStepIndicator() {
-    final colorScheme = Theme.of(context).colorScheme;
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        for (int i = 0; i < ConstLayout.joinGameStepCount; i++)
-          Container(
-            margin: const EdgeInsets.symmetric(horizontal: ConstLayout.sizeXS),
-            child: CircleAvatar(
-              radius: ConstLayout.radiusXL,
-              backgroundColor: i <= _currentStep
-                  ? colorScheme.primary
-                  : colorScheme.onSurface,
-              child: Text(
-                '${i + 1}',
-                style: TextStyle(
-                  color: colorScheme.onPrimary,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ),
-      ],
-    );
   }
 
   Widget _buildWaitingStep() {
@@ -343,6 +344,8 @@ class JoinGameScreenState extends State<JoinGameScreen> {
     });
   }
 
+  bool get _isSingleCtaStep => _currentStep == 1;
+
   void _joinGame() {
     final name = _controllerName.text.trim().toUpperCase();
     if (name.isNotEmpty) {
@@ -354,8 +357,23 @@ class JoinGameScreenState extends State<JoinGameScreen> {
     }
   }
 
+  void _joinGameAndContinue() {
+    _joinGame();
+    if (_playerName.isEmpty) {
+      return;
+    }
+
+    if (_currentStep < ConstLayout.joinGameStepCount - 1) {
+      setState(() {
+        _currentStep++;
+      });
+    }
+  }
+
   void _prepareForRoom(String roomId) {
-    _waitingOnFirstBackendData = true;
+    setState(() {
+      _waitingOnFirstBackendData = true;
+    });
     _streamSubscription?.cancel();
 
     useFirebase().then((_) async {
@@ -381,6 +399,20 @@ class JoinGameScreenState extends State<JoinGameScreen> {
     });
   }
 
+  void _prepareForSelectedRoomIfNeeded() {
+    if (_selectedRoom.isEmpty || _preparedRoom == _selectedRoom) {
+      return;
+    }
+
+    _preparedRoom = _selectedRoom;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted || _selectedRoom.isEmpty) {
+        return;
+      }
+      _prepareForRoom(_selectedRoom);
+    });
+  }
+
   void _removePlayer(String nameToRemove) {
     _playerNames.remove(nameToRemove);
     setPlayersInRoom(_selectedRoom, _playerNames);
@@ -392,14 +424,11 @@ class JoinGameScreenState extends State<JoinGameScreen> {
   Future<void> _startGame(BuildContext context) async {
     final List<GameHistory> history = await getGameHistory(_selectedRoom);
 
-    final config = getGameStyleConfig(
-      GameStyles.frenchCards9,
-      _playerNames.length,
-    );
+    final config = getGameStyleConfig(_selectedGameStyle, _playerNames.length);
 
     final gameModel = GameModel(
       version: appVersion,
-      gameStyle: GameStyles.frenchCards9, // Default, could make configurable
+      gameStyle: _selectedGameStyle,
       roomName: _selectedRoom,
       roomHistory: history,
       loginUserName: _playerName,
@@ -407,7 +436,7 @@ class JoinGameScreenState extends State<JoinGameScreen> {
       cardsToDeal: config.cardsToDeal,
       deck: DeckModel(
         numberOfDecks: config.decks,
-        gameStyle: GameStyles.frenchCards9,
+        gameStyle: _selectedGameStyle,
       ),
       isNewGame: true,
     );

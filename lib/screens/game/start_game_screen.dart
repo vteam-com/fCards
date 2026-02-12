@@ -10,6 +10,7 @@ import 'package:cards/models/game/game_model.dart';
 import 'package:cards/screens/game/game_style.dart';
 import 'package:cards/models/game/game_styles.dart';
 import 'package:cards/screens/game/game_screen.dart';
+import 'package:cards/screens/game/join_game_screen.dart';
 
 import 'package:cards/widgets/helpers/screen.dart';
 import 'package:cards/widgets/player/players_in_room_widget.dart';
@@ -46,7 +47,18 @@ class StartScreen extends StatefulWidget {
   /// Creates a [StartScreen] widget.
   ///
   /// [joinMode] when true, pre-expands the rooms dropdown and focuses on joining.
-  const StartScreen({super.key, this.joinMode = false});
+  const StartScreen({
+    super.key,
+    this.joinMode = false,
+    this.initialGameStyle,
+    this.createRoomFlow = false,
+  });
+
+  /// Enables create-room-first behavior (ask for table name first).
+  final bool createRoomFlow;
+
+  /// Optional game style that preselects the create-room flow mode.
+  final GameStyles? initialGameStyle;
 
   /// Whether this screen is opened in join mode.
   final bool joinMode;
@@ -87,6 +99,9 @@ class StartScreenState extends State<StartScreen> {
   /// A set of player names currently in the room.
   Set<String> _playerNames = {};
 
+  /// Debounces room lookup while typing a room name.
+  Timer? _roomLookupDebounce;
+
   /// The currently selected game style.
   GameStyles _selectedGameStyle = GameStyles.frenchCards9;
 
@@ -104,7 +119,12 @@ class StartScreenState extends State<StartScreen> {
   @override
   void initState() {
     super.initState();
+    _selectedGameStyle = widget.initialGameStyle ?? GameStyles.frenchCards9;
     _isExpandedRooms = widget.joinMode;
+    if (widget.createRoomFlow) {
+      _controllerRoom.clear();
+      _waitingOnFirstBackendData = false;
+    }
     _processUrlArguments();
     _getAppVersion();
   }
@@ -113,6 +133,7 @@ class StartScreenState extends State<StartScreen> {
   void dispose() {
     // Cancel the Firebase subscription to prevent memory leaks.
     _streamSubscription?.cancel();
+    _roomLookupDebounce?.cancel();
     _controllerRoom.dispose();
     _controllerName.dispose();
     super.dispose();
@@ -120,6 +141,13 @@ class StartScreenState extends State<StartScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final bool isAwaitingTableName = widget.createRoomFlow && roomName.isEmpty;
+    final bool doesTableAlreadyExist = _playerNames.isNotEmpty;
+    final bool showJoinShortcut =
+        !isAwaitingTableName &&
+        widget.createRoomFlow &&
+        doesTableAlreadyExist &&
+        roomName.isNotEmpty;
     return Screen(
       isWaiting: _waitingOnFirstBackendData,
       title: 'Card Games',
@@ -138,8 +166,21 @@ class StartScreenState extends State<StartScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  _gameMode(),
-                  IntrinsicHeight(child: _gameInstructionsWidget()),
+                  if (!widget.createRoomFlow) _gameMode(),
+                  if (!widget.createRoomFlow)
+                    IntrinsicHeight(child: _gameInstructionsWidget()),
+                  if (widget.createRoomFlow)
+                    Padding(
+                      padding: const EdgeInsets.all(ConstLayout.sizeS),
+                      child: Text(
+                        'Create a table.\nIf it already exists, you can join it.',
+                        style: TextStyle(
+                          fontSize: ConstLayout.textS,
+                          color: Theme.of(context).colorScheme.tertiary,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
                   const SizedBox(height: ConstLayout.sizeM),
                   Row(
                     children: [
@@ -149,32 +190,43 @@ class StartScreenState extends State<StartScreen> {
                         onSubmitted: () {
                           _controllerRoom.text = _controllerRoom.text
                               .toUpperCase();
-                          prepareBackEndForRoom(roomName);
+                          if (roomName.isNotEmpty) {
+                            prepareBackEndForRoom(roomName);
+                          }
+                        },
+                        onChanged: (String _ /* tableName */) {
+                          _onRoomNameChanged();
                         },
                         errorStatus: _errorTextRoom,
-                        rightSideChild: IconButton(
-                          onPressed: () {
-                            setState(() {
-                              _isExpandedRooms = !_isExpandedRooms;
-                            });
-                          },
-                          icon: Icon(
-                            _isExpandedRooms
-                                ? Icons.expand_less
-                                : Icons.expand_more,
-                            color: Theme.of(context).colorScheme.onSurface,
-                          ),
-                        ),
+                        rightSideChild: widget.createRoomFlow
+                            ? const SizedBox.shrink()
+                            : IconButton(
+                                onPressed: () {
+                                  setState(() {
+                                    _isExpandedRooms = !_isExpandedRooms;
+                                  });
+                                },
+                                icon: Icon(
+                                  _isExpandedRooms
+                                      ? Icons.expand_less
+                                      : Icons.expand_more,
+                                  color: Theme.of(
+                                    context,
+                                  ).colorScheme.onSurface,
+                                ),
+                              ),
                       ),
                     ],
                   ),
-                  if (_isExpandedRooms)
+                  if (!widget.createRoomFlow && _isExpandedRooms)
                     TableWidget(
                       roomId: roomName,
                       rooms: _listOfRooms,
                       onSelected: (String room) {
                         _controllerRoom.text = room;
-                        prepareBackEndForRoom(roomName);
+                        if (roomName.isNotEmpty) {
+                          prepareBackEndForRoom(roomName);
+                        }
                         setState(() {
                           // we can now close the drop down
                           _isExpandedRooms = false;
@@ -184,48 +236,96 @@ class StartScreenState extends State<StartScreen> {
                           ? (String _ /* room */) {}
                           : null,
                     ),
-                  const SizedBox(height: ConstLayout.sizeXS),
-                  SizedBox(
-                    width: ConstLayout.startGameScreenMaxWidth,
-                    child: PlayersInRoomWidget(
-                      activePlayerName: _playerName,
-                      playerNames: _playerNames.toList(),
-                      onPlayerSelected: (String name) {
-                        setState(() {
-                          _controllerName.text = name;
-                        });
-                      },
-                      onRemovePlayer: removePlayer,
-                    ),
-                  ),
-                  const SizedBox(height: ConstLayout.sizeS),
-                  Padding(
-                    padding: const EdgeInsets.all(ConstLayout.sizeS),
-                    child: Text('Who Are You?\nSelect above ⬆ or join below ⬇'),
-                  ),
-                  const SizedBox(height: ConstLayout.sizeS),
-                  EditBox(
-                    label: 'Join',
-                    controller: _controllerName,
-                    onSubmitted: () {
-                      _controllerName.text = _controllerName.text.toUpperCase();
-                      joinGame(_controllerName.text);
-                    },
-                    errorStatus: _errorTextName,
-                    rightSideChild: IconButton(
-                      onPressed: () {
-                        setState(() {
-                          joinGame(_controllerName.text);
-                        });
-                      },
-                      icon: Icon(
-                        Icons.add,
-                        color: Theme.of(context).colorScheme.onSurface,
+                  if (isAwaitingTableName)
+                    Padding(
+                      padding: const EdgeInsets.all(ConstLayout.sizeS),
+                      child: Text(
+                        'Enter a table name to check if it already exists.',
+                        style: TextStyle(
+                          fontSize: ConstLayout.textS,
+                          color: Theme.of(context).colorScheme.tertiary,
+                        ),
+                        textAlign: TextAlign.center,
                       ),
                     ),
-                  ),
+                  const SizedBox(height: ConstLayout.sizeXS),
+                  if (!isAwaitingTableName)
+                    SizedBox(
+                      width: ConstLayout.startGameScreenMaxWidth,
+                      child: PlayersInRoomWidget(
+                        activePlayerName: _playerName,
+                        playerNames: _playerNames.toList(),
+                        onPlayerSelected: (String name) {
+                          setState(() {
+                            _controllerName.text = name;
+                          });
+                        },
+                        onRemovePlayer: removePlayer,
+                      ),
+                    ),
+                  if (!isAwaitingTableName &&
+                      widget.createRoomFlow &&
+                      doesTableAlreadyExist)
+                    Padding(
+                      padding: const EdgeInsets.all(ConstLayout.sizeS),
+                      child: Text(
+                        'This table already has players. You can join it instead of creating a new table.',
+                        style: TextStyle(
+                          fontSize: ConstLayout.textS,
+                          color: Theme.of(context).colorScheme.tertiary,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  if (showJoinShortcut)
+                    MyButtonRectangle(
+                      width: double.infinity,
+                      onTap: _openJoinWizardForCurrentTable,
+                      child: Text(
+                        'Join This Table',
+                        style: TextStyle(
+                          fontSize: ConstLayout.textS,
+                          fontWeight: FontWeight.bold,
+                          color: Theme.of(
+                            context,
+                          ).colorScheme.onPrimaryContainer,
+                        ),
+                      ),
+                    ),
+                  const SizedBox(height: ConstLayout.sizeS),
+                  if (!isAwaitingTableName)
+                    Padding(
+                      padding: const EdgeInsets.all(ConstLayout.sizeS),
+                      child: Text(
+                        'Who Are You?\nSelect above ⬆ or join below ⬇',
+                      ),
+                    ),
+                  if (!isAwaitingTableName)
+                    const SizedBox(height: ConstLayout.sizeS),
+                  if (!isAwaitingTableName)
+                    EditBox(
+                      label: 'Join',
+                      controller: _controllerName,
+                      onSubmitted: () {
+                        _controllerName.text = _controllerName.text
+                            .toUpperCase();
+                        joinGame(_controllerName.text);
+                      },
+                      errorStatus: _errorTextName,
+                      rightSideChild: IconButton(
+                        onPressed: () {
+                          setState(() {
+                            joinGame(_controllerName.text);
+                          });
+                        },
+                        icon: Icon(
+                          Icons.add,
+                          color: Theme.of(context).colorScheme.onSurface,
+                        ),
+                      ),
+                    ),
                   const SizedBox(height: ConstLayout.sizeM),
-                  actionButton(),
+                  if (!isAwaitingTableName) actionButton(),
                   const SizedBox(height: ConstLayout.sizeM),
                 ],
               ),
@@ -298,6 +398,14 @@ class StartScreenState extends State<StartScreen> {
   /// the given [roomId]. It fetches the initial list of players in the room
   /// and sets up a stream to listen for real-time updates.
   void prepareBackEndForRoom(final String roomId) {
+    if (roomId.trim().isEmpty) {
+      setState(() {
+        _playerNames = {};
+        _waitingOnFirstBackendData = false;
+      });
+      return;
+    }
+
     if (isRunningOffLine) {
       _waitingOnFirstBackendData = false;
       return;
@@ -469,6 +577,47 @@ class StartScreenState extends State<StartScreen> {
         );
   }
 
+  /// Handles room-name changes and auto-loads existing players in create flow.
+  void _onRoomNameChanged() {
+    if (!widget.createRoomFlow) {
+      return;
+    }
+
+    _roomLookupDebounce?.cancel();
+
+    if (roomName.isEmpty) {
+      setState(() {
+        _playerNames = {};
+        _waitingOnFirstBackendData = false;
+      });
+      return;
+    }
+
+    _roomLookupDebounce = Timer(
+      const Duration(milliseconds: ConstLayout.animationDuration300),
+      () {
+        prepareBackEndForRoom(roomName);
+      },
+    );
+  }
+
+  /// Opens the join wizard for the currently entered table.
+  void _openJoinWizardForCurrentTable() {
+    if (roomName.isEmpty) {
+      return;
+    }
+
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (BuildContext _) => JoinGameScreen(
+          initialRoom: roomName,
+          gameStyle: _selectedGameStyle,
+        ),
+      ),
+    );
+  }
+
   /// The trimmed player name entered by the user.
   String get _playerName => _controllerName.text.trim();
 
@@ -481,9 +630,15 @@ class StartScreenState extends State<StartScreen> {
     if (isRunningOffLine) {
       // For offline testing, use predefined values.
       // Example: '?room=BANANA&players=BOB,SUE,JOHN'
-      _playerNames = {'BOB', 'SUE', 'JOHN'};
-      _controllerRoom.text = 'BANANA';
-      _controllerName.text = 'BOB';
+      if (widget.createRoomFlow) {
+        _playerNames = {};
+        _controllerRoom.text = '';
+        _controllerName.text = '';
+      } else {
+        _playerNames = {'BOB', 'SUE', 'JOHN'};
+        _controllerRoom.text = 'BANANA';
+        _controllerName.text = 'BOB';
+      }
       return;
     }
 
@@ -493,7 +648,7 @@ class StartScreenState extends State<StartScreen> {
     // Set the game mode from the 'mode' query parameter.
     final gameModeUrl = uri.queryParameters['mode'] ?? '';
     _selectedGameStyle = intToGameStyles(
-      int.tryParse(gameModeUrl) ?? GameStyles.frenchCards9.index,
+      int.tryParse(gameModeUrl) ?? _selectedGameStyle.index,
     );
 
     // Set the room name from the 'room' query parameter.
@@ -525,8 +680,12 @@ class StartScreenState extends State<StartScreen> {
       });
     }
 
-    // Initialize the backend connection for the room.
-    prepareBackEndForRoom(roomName);
+    // Initialize the backend connection only when a room has been specified.
+    if (roomName.isNotEmpty) {
+      prepareBackEndForRoom(roomName);
+    } else {
+      _waitingOnFirstBackendData = false;
+    }
   }
 
   /// Updates the browser's URL without reloading the page.

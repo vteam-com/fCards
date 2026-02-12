@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.10.7
+- Move to Wizard onboarding
+
 ## 1.10.6
 
 - Animated background
