@@ -147,6 +147,7 @@ class JoinGameScreenState extends State<JoinGameScreen> {
     );
   }
 
+  /// Builds the step where the player enters a name before joining the room.
   Widget _buildNameEntryStep() {
     final colorScheme = Theme.of(context).colorScheme;
     _prepareForSelectedRoomIfNeeded();
@@ -196,6 +197,7 @@ class JoinGameScreenState extends State<JoinGameScreen> {
     );
   }
 
+  /// Builds the room selection step with searchable available tables.
   Widget _buildRoomSelectionStep() {
     final colorScheme = Theme.of(context).colorScheme;
     // Fetch rooms if not already done
@@ -243,6 +245,7 @@ class JoinGameScreenState extends State<JoinGameScreen> {
     );
   }
 
+  /// Returns the widget content for the currently active wizard step.
   Widget _buildStepContent() {
     switch (_currentStep) {
       case 0:
@@ -256,6 +259,7 @@ class JoinGameScreenState extends State<JoinGameScreen> {
     }
   }
 
+  /// Builds the waiting step that shows current players before game start.
   Widget _buildWaitingStep() {
     final colorScheme = Theme.of(context).colorScheme;
     return Column(
@@ -304,6 +308,7 @@ class JoinGameScreenState extends State<JoinGameScreen> {
     );
   }
 
+  /// Indicates whether the current step has enough data to move forward.
   bool get _canProceed {
     switch (_currentStep) {
       case 0:
@@ -317,6 +322,7 @@ class JoinGameScreenState extends State<JoinGameScreen> {
     }
   }
 
+  /// Loads all joinable rooms from backend (or demo data when offline).
   Future<void> _fetchAllRooms() async {
     if (isRunningOffLine) {
       _listOfRooms = ['BANANA', 'KIWI', 'APPLE']; // Demo rooms
@@ -346,6 +352,7 @@ class JoinGameScreenState extends State<JoinGameScreen> {
 
   bool get _isSingleCtaStep => _currentStep == 1;
 
+  /// Adds the typed player name to the selected room and local state.
   void _joinGame() {
     final name = _controllerName.text.trim().toUpperCase();
     if (name.isNotEmpty) {
@@ -357,6 +364,7 @@ class JoinGameScreenState extends State<JoinGameScreen> {
     }
   }
 
+  /// Joins the room, then advances to the waiting step when possible.
   void _joinGameAndContinue() {
     _joinGame();
     if (_playerName.isEmpty) {
@@ -370,6 +378,7 @@ class JoinGameScreenState extends State<JoinGameScreen> {
     }
   }
 
+  /// Subscribes to room updates and initializes invitee state for [roomId].
   void _prepareForRoom(String roomId) {
     setState(() {
       _waitingOnFirstBackendData = true;
@@ -399,6 +408,7 @@ class JoinGameScreenState extends State<JoinGameScreen> {
     });
   }
 
+  /// Prepares backend listeners once when a new room selection is made.
   void _prepareForSelectedRoomIfNeeded() {
     if (_selectedRoom.isEmpty || _preparedRoom == _selectedRoom) {
       return;
@@ -413,6 +423,7 @@ class JoinGameScreenState extends State<JoinGameScreen> {
     });
   }
 
+  /// Removes a player from the room and syncs the backend invitee list.
   void _removePlayer(String nameToRemove) {
     _playerNames.remove(nameToRemove);
     setPlayersInRoom(_selectedRoom, _playerNames);
@@ -421,6 +432,7 @@ class JoinGameScreenState extends State<JoinGameScreen> {
     }
   }
 
+  /// Builds a new [GameModel] from selected room settings and navigates.
   Future<void> _startGame(BuildContext context) async {
     final List<GameHistory> history = await getGameHistory(_selectedRoom);
 

@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.10.8
+- Add DartDoc comments across core game, player, helper, and auth components
+- Update `fcheck` tooling to `0.9.10` and enable full issue listing in `tool/check.sh`
+
 ## 1.10.7
 - Move to Wizard onboarding
 

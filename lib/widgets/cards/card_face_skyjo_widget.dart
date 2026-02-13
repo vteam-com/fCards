@@ -62,6 +62,7 @@ class CardFaceSkyjoWidget extends CardFaceFrenchWidget {
     );
   }
 
+  /// Builds the small corner rank label used on both card corners.
   Widget _buildSmallText() {
     return Stack(
       children: [
@@ -76,6 +77,7 @@ class CardFaceSkyjoWidget extends CardFaceFrenchWidget {
     );
   }
 
+  /// Builds the large center value text with outline styling.
   Widget _buildMainText() {
     return Stack(
       children: [

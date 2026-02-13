@@ -199,6 +199,7 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
     });
   }
 
+  /// Builds controls for adding/removing rounds and current round count.
   Widget _buildAddOrRemoveRow(
     final BuildContext _,
     final GolfScoreModel scoreModel,
@@ -266,6 +267,7 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
     );
   }
 
+  /// Builds the player header row with rank, score, and player actions.
   Widget _buildPlayersHeader(
     final GolfScoreModel scoreModel,
     final dynamic ranks,
@@ -306,6 +308,7 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
     );
   }
 
+  /// Builds the round-by-round score grid with selectable score cells.
   Widget _buildRounds(
     final BuildContext _,
     final dynamic scoreModel,
@@ -408,6 +411,7 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
     });
   }
 
+  /// Returns a score color based on leaderboard rank and player count.
   Color _getScoreColor(ColorScheme colorScheme, int rank, int numberOfPlayers) {
     if (rank == 1) {
       return colorScheme.primary;
@@ -418,6 +422,7 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
     }
   }
 
+  /// Handles physical keyboard input and routes supported keys to score edits.
   void _handleKeyEvent(RawKeyEvent event) async {
     if (_selectedCell == null) {
       return;
@@ -448,6 +453,7 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
     }
   }
 
+  /// Applies a keypad action to the currently selected score cell.
   void _handleKeyPress(String key, GolfScoreModel model) {
     if (_selectedCell == null) {
       return;

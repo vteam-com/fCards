@@ -75,6 +75,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     );
   }
 
+  /// Builds account status and sign-in/sign-out actions for the welcome screen.
   Widget _authSection() {
     if (isRunningOffLine) {
       return const SizedBox.shrink();
@@ -178,6 +179,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     );
   }
 
+  /// Redirects web users when URL query parameters target game deep links.
   void _checkForUrlParameters() {
     if (!kIsWeb) {
       return; // Only check on web
@@ -209,6 +211,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     }, 'Sign out failed.');
   }
 
+  /// Runs an auth action with busy-state handling and user-facing errors.
   Future<void> _performAuthAction(
     Future<void> Function() action,
     String defaultErrorMessage,
@@ -232,6 +235,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     }
   }
 
+  /// Logs an auth error and shows it as a snackbar message.
   void _showAuthError(String message) {
     logger.e('Auth error: $message');
     if (!mounted) {

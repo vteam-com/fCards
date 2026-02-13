@@ -25,6 +25,8 @@ bool _backendReady = isRunningOffLine;
 /// initialized, and `false` otherwise. It is used to determine the availability
 /// of the backend functionality in the app.
 bool get backendReady => _backendReady;
+
+/// Updates whether the backend has completed initialization.
 set backendReady(bool value) {
   _backendReady = value;
 }

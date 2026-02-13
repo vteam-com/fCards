@@ -69,6 +69,7 @@ class InputKeyboard extends StatelessWidget {
     );
   }
 
+  /// Builds a single on-screen keypad button.
   Widget _buildButton(String text) {
     return Padding(
       padding: const EdgeInsets.all(ConstLayout.sizeS),

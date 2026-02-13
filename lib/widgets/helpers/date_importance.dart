@@ -33,6 +33,7 @@ class DateTimeWidget extends StatelessWidget {
     );
   }
 
+  /// Builds a zero-padded numeric segment for the date/time display.
   Widget _buildText(final num value, double fontSize) {
     return MyText(
       value.toString().padLeft(ConstLayout.dateCharacterLeftSpacePadding, '0'),

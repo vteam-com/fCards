@@ -206,6 +206,7 @@ class _ScreenState extends State<Screen> with SingleTickerProviderStateMixin {
     );
   }
 
+  /// Builds one animated radial glow element for the tabletop ambiance.
   Widget _buildAmbientCircle({
     required Alignment alignment,
     required double diameter,
@@ -238,6 +239,7 @@ class _ScreenState extends State<Screen> with SingleTickerProviderStateMixin {
     );
   }
 
+  /// Builds an avatar for authenticated users with guest and fallback handling.
   Widget _buildAvatar(User user) {
     if (user.isAnonymous) {
       return CircleAvatar(
@@ -269,6 +271,7 @@ class _ScreenState extends State<Screen> with SingleTickerProviderStateMixin {
     );
   }
 
+  /// Builds the moving ambient light overlay shown over the tabletop texture.
   Widget _buildTableTopAmbientOverlay() {
     return IgnorePointer(
       child: AnimatedBuilder(
@@ -316,8 +319,8 @@ class _ScreenState extends State<Screen> with SingleTickerProviderStateMixin {
     );
   }
 
+  /// Builds the waiting-state loading indicator used by [Screen].
   Widget _displayWaiting() {
-    /// Builds a loading indicator widget
     return SizedBox(
       width: ConstLayout.waitingWidgetSize,
       height: ConstLayout.waitingWidgetSize,
@@ -346,6 +349,7 @@ class _ScreenState extends State<Screen> with SingleTickerProviderStateMixin {
     }
   }
 
+  /// Computes orbital alignment coordinates for ambient overlay animations.
   Alignment _orbitAlignment({
     required double progress,
     required double phaseX,

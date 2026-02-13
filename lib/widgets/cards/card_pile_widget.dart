@@ -56,6 +56,7 @@ class CardPileWidget extends StatelessWidget {
     );
   }
 
+  /// Builds the stacked unplayed deck with optional top-card reveal/drag.
   Widget _buildPileUnplayedCards() {
     double cardStackOffset = ConstLayout.cardStackOffsetLarge;
     if (cards.length > ConstLayout.cardStackThreshold) {

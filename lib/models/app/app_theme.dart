@@ -1,6 +1,7 @@
 import 'package:cards/models/app/constants_layout.dart';
 import 'package:flutter/material.dart';
 
+/// Centralized app theme configuration and shared theme colors.
 class AppTheme {
   static const seedColor = Color.fromARGB(255, 25, 111, 31);
   static const panelInputZone = Color.fromARGB(200, 0, 59, 0);
@@ -13,6 +14,7 @@ class AppTheme {
   static final surfaceBackground = colorScheme.surface;
   static final onSurfaceHint = onSurface.withAlpha(ConstLayout.alphaH);
 
+  /// Builds the themed `ThemeData` used across the app.
   static ThemeData get theme {
     final baseTheme = ThemeData.dark();
     final colorScheme = ColorScheme.fromSeed(

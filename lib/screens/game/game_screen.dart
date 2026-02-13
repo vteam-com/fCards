@@ -202,6 +202,7 @@ class GameScreenState extends State<GameScreen> {
     );
   }
 
+  /// Converts a Firebase snapshot payload into the in-memory game model.
   void _dataSnapshotToGameModel(final DataSnapshot snapshot) {
     if (!snapshot.exists) {
       return;
@@ -247,6 +248,7 @@ class GameScreenState extends State<GameScreen> {
     }
   }
 
+  /// Applies decoded game JSON to [widget.gameModel] and refreshes local UI.
   void _jsonToGameModel(Map<String, dynamic> mapData) {
     widget.gameModel.fromJson(mapData);
     setState(() {

@@ -8,6 +8,7 @@ import 'package:cards/widgets/player/player_header_widget.dart';
 import 'package:cards/widgets/player/player_zone_cta_widget.dart';
 import 'package:flutter/material.dart';
 
+/// Renders a complete player area with header, actions, and hand cards.
 class PlayerZoneWidget extends StatelessWidget {
   /// Constructs a [PlayerZoneWidget] with the provided parameters.
   ///
@@ -79,6 +80,7 @@ class PlayerZoneWidget extends StatelessWidget {
     );
   }
 
+  /// Builds the zone body with header, CTA row, and hand grid.
   Widget _buildContent(final BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -119,6 +121,7 @@ class PlayerZoneWidget extends StatelessWidget {
     );
   }
 
+  /// Builds a tappable card widget for a single hand position.
   Widget _buildPlayerCardButton(
     BuildContext context,
     GameModel gameModel,
@@ -155,6 +158,7 @@ class PlayerZoneWidget extends StatelessWidget {
     );
   }
 
+  /// Builds the player's hand as columns based on the active game layout.
   Widget _buildPlayerHand(
     BuildContext context,
     GameModel gameModel,
@@ -178,6 +182,7 @@ class PlayerZoneWidget extends StatelessWidget {
     return Row(children: [...row]);
   }
 
+  /// Builds the outer border that reflects active, finished, and winner states.
   Widget _containerBorder(double width, double height) {
     Color color = Colors.transparent;
     if (gameModel.gameState == GameStates.gameOver) {

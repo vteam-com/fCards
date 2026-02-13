@@ -178,6 +178,7 @@ class _PlayerHeaderState extends State<PlayerHeader> {
     );
   }
 
+  /// Builds the rank badge for first, last, or middle leaderboard positions.
   Widget _buildWiningPosition(int rank, int numberOfPlayers) {
     if (rank == 1) {
       return Text('👑', style: TextStyle(fontWeight: FontWeight.w900));
@@ -206,6 +207,7 @@ class _PlayerHeaderState extends State<PlayerHeader> {
     }
   }
 
+  /// Returns a score color based on player rank.
   Color _getScoreColor(int rank, int numberOfPlayers) {
     if (rank == 1) {
       return Colors.green.shade300;
@@ -216,6 +218,7 @@ class _PlayerHeaderState extends State<PlayerHeader> {
     }
   }
 
+  /// Shows the dialog used to rename, add, or remove a player.
   void _showEditPlayerDialog() {
     final controller = TextEditingController(text: widget.playerName);
     controller.selection = TextSelection(
@@ -346,6 +349,7 @@ class _PlayerHeaderState extends State<PlayerHeader> {
     );
   }
 
+  /// Shows a confirmation dialog before removing the current player.
   void _showRemoveConfirmationDialog() {
     final colorScheme = Theme.of(context).colorScheme;
     showDialog(

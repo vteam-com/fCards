@@ -130,6 +130,7 @@ class _TableWidgetState extends State<TableWidget> {
     );
   }
 
+  /// Builds the empty-state message for missing or unmatched rooms.
   Widget _buildEmptyState(ColorScheme _) {
     return Center(
       child: Column(
@@ -153,6 +154,7 @@ class _TableWidgetState extends State<TableWidget> {
     );
   }
 
+  /// Builds a selectable room row with optional remove action.
   Widget _buildRoomItem(String roomName) {
     final isSelected = roomName == widget.roomId;
     final colorScheme = Theme.of(context).colorScheme;
@@ -207,6 +209,7 @@ class _TableWidgetState extends State<TableWidget> {
     );
   }
 
+  /// Filters rooms by the current search text.
   List<String> _getFilteredRooms() {
     if (_searchText.isEmpty) {
       return widget.rooms;

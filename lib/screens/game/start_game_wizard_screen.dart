@@ -107,6 +107,7 @@ class _StartGameWizardScreenState extends State<StartGameWizardScreen> {
     );
   }
 
+  /// Builds navigation actions for the current wizard step.
   Widget _buildActions() {
     if (_currentStep == 0) {
       return Align(
@@ -135,6 +136,7 @@ class _StartGameWizardScreenState extends State<StartGameWizardScreen> {
     );
   }
 
+  /// Builds a selectable game style card with a compact layout preview.
   Widget _buildGameStyleOption({
     required int columns,
     required GameStyles style,
@@ -198,6 +200,7 @@ class _StartGameWizardScreenState extends State<StartGameWizardScreen> {
     );
   }
 
+  /// Builds the first wizard step where a game style is selected.
   Widget _buildGameTypeStep() {
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
 
@@ -228,6 +231,7 @@ class _StartGameWizardScreenState extends State<StartGameWizardScreen> {
     );
   }
 
+  /// Builds a single miniature card used in style preview grids.
   Widget _buildMiniCard({required Color cardBorder, required Color cardFill}) {
     return Container(
       width: _miniCardWidth,
@@ -240,6 +244,7 @@ class _StartGameWizardScreenState extends State<StartGameWizardScreen> {
     );
   }
 
+  /// Builds a mini grid preview that mirrors the selected card layout.
   Widget _buildMiniLayoutPreview({
     required int columns,
     required bool isSelected,
@@ -273,6 +278,7 @@ class _StartGameWizardScreenState extends State<StartGameWizardScreen> {
     );
   }
 
+  /// Builds the room-selection step for creating or joining a table.
   Widget _buildRoomStep() {
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
 
@@ -352,6 +358,7 @@ class _StartGameWizardScreenState extends State<StartGameWizardScreen> {
     );
   }
 
+  /// Returns the active wizard step content.
   Widget _buildStepContent() {
     switch (_currentStep) {
       case 0:
@@ -363,6 +370,7 @@ class _StartGameWizardScreenState extends State<StartGameWizardScreen> {
     }
   }
 
+  /// Loads available rooms from backend and updates loading state.
   Future<void> _fetchAllRooms() async {
     if (isRunningOffLine) {
       setState(() {
@@ -396,6 +404,7 @@ class _StartGameWizardScreenState extends State<StartGameWizardScreen> {
     }
   }
 
+  /// Navigates to the create-room flow using the selected game style.
   void _navigateToCreateNewGame() {
     Navigator.pushReplacement(
       context,
@@ -409,6 +418,7 @@ class _StartGameWizardScreenState extends State<StartGameWizardScreen> {
     );
   }
 
+  /// Navigates to join flow for an existing room and current game style.
   void _navigateToJoinExistingRoom(String room) {
     Navigator.pushReplacement(
       context,
@@ -419,6 +429,7 @@ class _StartGameWizardScreenState extends State<StartGameWizardScreen> {
     );
   }
 
+  /// Advances from the game-style step to the room step.
   void _onNextPressed() {
     if (_currentStep == 0) {
       setState(() {

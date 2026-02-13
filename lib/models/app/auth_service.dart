@@ -2,16 +2,20 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
+/// Authentication helper for guest mode and Google sign-in flows.
 class AuthService {
   static final FirebaseAuth _auth = FirebaseAuth.instance;
   static final GoogleSignIn _googleSignIn = GoogleSignIn(
     scopes: ['email', 'profile'],
   );
 
+  /// Emits auth updates whenever Firebase user state changes.
   static Stream<User?> authStateChanges() => _auth.authStateChanges();
 
+  /// Returns the currently signed-in Firebase user, if available.
   static User? get currentUser => _auth.currentUser;
 
+  /// Ensures there is at least an anonymous authenticated user session.
   static Future<void> ensureSignedIn() async {
     if (_auth.currentUser != null) {
       return;
@@ -20,6 +24,7 @@ class AuthService {
     await _auth.signInAnonymously();
   }
 
+  /// Signs in with Google and links anonymous users when possible.
   static Future<UserCredential> signInWithGoogle() async {
     if (kIsWeb) {
       final provider = GoogleAuthProvider();
@@ -60,6 +65,7 @@ class AuthService {
     return _auth.signInWithCredential(credential);
   }
 
+  /// Signs out from Firebase and clears native Google session state.
   static Future<void> signOut() async {
     try {
       await _auth.signOut();
