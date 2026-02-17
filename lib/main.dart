@@ -1,6 +1,7 @@
 import 'package:cards/models/game/backend_model.dart';
 import 'package:cards/models/app/auth_service.dart';
 import 'package:cards/models/app/firebase_options.dart';
+import 'package:cards/models/app/locale_controller.dart';
 import 'package:cards/screens/game/join_game_screen.dart';
 import 'package:cards/screens/game/start_game_screen.dart';
 import 'package:cards/screens/game/start_game_wizard_screen.dart';
@@ -11,6 +12,8 @@ import 'package:cards/utils/logger.dart';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:cards/gen/l10n/app_localizations.dart';
 import 'package:the_splash/the_splash.dart';
 
 /// The entry point of the application.
@@ -51,18 +54,33 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Cards',
-      theme: AppTheme.theme,
-      initialRoute: '/',
-      routes: {
-        '/': (BuildContext _) => const WelcomeScreen(),
-        '/start': (BuildContext _) => const StartGameWizardScreen(),
-        '/game': (BuildContext _) => const StartScreen(joinMode: false),
-        '/join': (BuildContext _) => const JoinGameScreen(),
-        '/score': (BuildContext _) => const GolfScoreScreen(),
+    return ValueListenableBuilder<Locale?>(
+      valueListenable: LocaleController.locale,
+      builder: (BuildContext _, Locale? locale, Widget? _) {
+        return MaterialApp(
+          locale: locale,
+          onGenerateTitle: (BuildContext context) {
+            return AppLocalizations.of(context).cardsTitle;
+          },
+          theme: AppTheme.theme,
+          localizationsDelegates: const <LocalizationsDelegate<dynamic>>[
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: AppLocalizations.supportedLocales,
+          initialRoute: '/',
+          routes: {
+            '/': (BuildContext _) => const WelcomeScreen(),
+            '/start': (BuildContext _) => const StartGameWizardScreen(),
+            '/game': (BuildContext _) => const StartScreen(joinMode: false),
+            '/join': (BuildContext _) => const JoinGameScreen(),
+            '/score': (BuildContext _) => const GolfScoreScreen(),
+          },
+          debugShowCheckedModeBanner: false,
+        );
       },
-      debugShowCheckedModeBanner: false,
     );
   }
 }

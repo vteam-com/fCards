@@ -1,5 +1,6 @@
 import 'package:cards/models/app/constants_layout.dart';
 import 'package:cards/widgets/buttons/my_button_rectangle.dart';
+import 'package:cards/gen/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 /// Displays a custom dialog with a title, content, and optional buttons.
@@ -39,6 +40,7 @@ void myDialog({
   List<Widget> buttons = const [],
 }) {
   if (buttons.isEmpty) {
+    final AppLocalizations localizations = AppLocalizations.of(context);
     buttons = [
       MyButtonRectangle(
         width: ConstLayout.dialogButtonWidth,
@@ -47,7 +49,7 @@ void myDialog({
           Navigator.of(context).pop();
         },
         child: Text(
-          'Ok',
+          localizations.confirm, // Use "Confirm" as default OK button
           style: TextStyle(
             fontWeight: FontWeight.bold,
             color: Theme.of(context).colorScheme.onPrimaryContainer,

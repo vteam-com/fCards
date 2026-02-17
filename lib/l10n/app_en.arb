@@ -1,0 +1,168 @@
+{
+  "appTitle": "VTeam Cards",
+  "cardsTitle": "Cards",
+  "welcomeTitle": "VTeam Cards",
+  "startNewGame": "Start a New Game",
+  "joinExistingGame": "Join an Existing Game",
+  "scoreKeeper": "Score Keeper",
+  "account": "Account",
+  "signedIn": "Signed in",
+  "playingAsGuest": "Playing as Guest",
+  "notSignedIn": "Not signed in",
+  "signingIn": "Signing in...",
+  "signInWithGoogle": "Sign in with Google",
+  "signingOut": "Signing out...",
+  "signOut": "Sign out",
+  "googleSignInFailed": "Google sign-in failed.",
+  "signOutFailed": "Sign out failed.",
+
+  "startGameWizardTitle": "Start Game",
+  "joinGameTitle": "Join Game",
+  "cardGamesTitle": "Card Games",
+
+  "next": "Next",
+  "back": "Back",
+  "startGame": "Start Game",
+
+  "whatTypeOfGame": "What type of game?",
+  "pickTableOrCreate": "Pick a table or create a new one",
+  "tapExistingTable": "Tap an existing table to continue",
+  "noExistingTables": "No existing tables found. Create a new one to continue.",
+  "createNewTable": "Create New Table",
+
+  "createTableHelp": "Create a table.\nIf it already exists, you can join it.",
+  "table": "Table",
+  "enterTableName": "Enter a table name to check if it already exists.",
+  "thisTableAlreadyHasPlayers": "This table already has players. You can join it instead of creating a new table.",
+  "joinThisTable": "Join This Table",
+  "whoAreYou": "Who Are You?\nSelect above ⬆ or join below ⬇",
+  "join": "Join",
+  "pleaseEnterYourName": "Please enter your name above ⬆",
+  "waitingForPlayers": "Waiting for players to join",
+  "joinGame": "Join Game",
+  "gameRules": "Game Rules",
+
+  "selectTableToJoin": "Select a Table to Join",
+  "useSearchBox": "Use the search box to quickly find a table",
+  "joiningTable": "Joining Table: {table}",
+  "@joiningTable": {
+    "placeholders": {
+      "table": {
+        "type": "String"
+      }
+    }
+  },
+  "enterYourName": "Enter Your Name",
+  "yourName": "Your Name",
+  "joinTable": "Join Table",
+  "welcomePlayer": "Welcome, {player}!",
+  "@welcomePlayer": {
+    "placeholders": {
+      "player": {
+        "type": "String"
+      }
+    }
+  },
+  "readyToPlayPlayersAtTable": "Ready to play! {count} players at table.",
+  "@readyToPlayPlayersAtTable": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "waitingForMorePlayers": "Waiting for more players to join...",
+  "tableLabel": "Table: {table}",
+  "@tableLabel": {
+    "placeholders": {
+      "table": {
+        "type": "String"
+      }
+    }
+  },
+
+  "gameOver": "Game Over",
+  "players": "Players",
+  "gamesWon": "Games Won",
+  "thisGame": "This Game",
+  "playAgain": "Play Again",
+  "exit": "Exit",
+
+  "golfScoreKeeper": "9 Cards Golf Scorekeeper",
+  "deleteLastRow": "Delete Last Row",
+  "confirmDeleteRound": "Are you sure you want to delete round {round}?",
+  "@confirmDeleteRound": {
+    "placeholders": {
+      "round": {
+        "type": "int"
+      }
+    }
+  },
+  "cancel": "Cancel",
+  "confirm": "Confirm",
+  "newGame": "New Game",
+  "confirmNewGame": "Are you sure you want to start a new game? All scores will be lost.",
+  "rounds": "{count} Rounds",
+  "@rounds": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "errorLoadingScores": "Error loading scores: {error}",
+  "@errorLoadingScores": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+
+  "golf9Cards": "9 Cards",
+  "skyJo": "SkyJo",
+  "miniPut": "MiniPut",
+  "golf9CardsFull": "Golf 9 Cards",
+  "miniPutFull": "MiniPut 4 Cards",
+  "skyLo": "Skylo",
+
+  "columnsByRows": "{columns} x {rows}",
+  "@columnsByRows": {
+    "placeholders": {
+      "columns": {
+        "type": "int"
+      },
+      "rows": {
+        "type": "int"
+      }
+    }
+  },
+  "noTablesFoundMatching": "No tables found matching \"{searchText}\"",
+  "@noTablesFoundMatching": {
+    "placeholders": {
+      "searchText": {
+        "type": "String"
+      }
+    }
+  },
+  "starting": "Starting",
+  "gameOverTitle": "GAME OVER",
+  "selectAStatus": "Select a status",
+  "last": "LAST",
+  "done": "Done",
+  "addAnotherPlayer": "Add another player",
+  "removeThisPlayer": "Remove this player",
+  "removePlayer": "Remove Player",
+  "removePlayerConfirmation": "Are you sure you want to remove \"{playerName}\"?",
+  "@removePlayerConfirmation": {
+    "placeholders": {
+      "playerName": {
+        "type": "String"
+      }
+    }
+  },
+  "cancel": "Cancel",
+  "remove": "Remove",
+  "noTablesAvailable": "No tables available",
+  "noMatchingTables": "No matching tables"
+}

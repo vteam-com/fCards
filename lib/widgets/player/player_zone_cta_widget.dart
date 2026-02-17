@@ -1,6 +1,7 @@
 import 'package:cards/models/app/constants_layout.dart';
 import 'package:cards/models/game/game_model.dart';
 import 'package:cards/widgets/cards/card_pile_widget.dart';
+import 'package:cards/gen/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 ///
@@ -28,11 +29,12 @@ class PlayerZoneCtaWidget extends StatelessWidget {
 
   ///
   Widget buildContent(BuildContext context) {
+    final AppLocalizations localizations = AppLocalizations.of(context);
     if (player.isActivePlayer) {
       switch (gameModel.gameState) {
         //
         case GameStates.notStarted:
-          return Text('Starting');
+          return Text(localizations.starting);
 
         /// Player has to choose to Reveal the Top Deck card or Take the Discarded Card
         /// if chose to reveal deck card >>> [swapWithAnyCardsInHandOrDiscard]
@@ -57,7 +59,7 @@ class PlayerZoneCtaWidget extends StatelessWidget {
 
         //
         case GameStates.gameOver:
-          return Text('GAME OVER');
+          return Text(localizations.gameOverTitle);
       }
     } else {
       return buildWaitingForTurnContent();

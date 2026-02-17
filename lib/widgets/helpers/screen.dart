@@ -2,13 +2,16 @@ import 'dart:math' as math;
 
 import 'package:cards/models/app/constants_layout.dart';
 import 'package:cards/models/app/constants_animation.dart';
+import 'package:cards/models/app/locale_controller.dart';
 import 'package:cards/utils/logger.dart';
+import 'package:cards/widgets/buttons/my_button_rectangle.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:cards/gen/l10n/app_localizations.dart';
 
 /// Defines breakpoint constants for responsive design
 class ResponsiveBreakpoints {
@@ -122,6 +125,9 @@ class _ScreenState extends State<Screen> with SingleTickerProviderStateMixin {
             child: Text(_version),
             onPressed: () async {
               if (context.mounted) {
+                final AppLocalizations localizations = AppLocalizations.of(
+                  context,
+                );
                 Navigator.push(
                   context,
                   PageRouteBuilder(
@@ -131,7 +137,7 @@ class _ScreenState extends State<Screen> with SingleTickerProviderStateMixin {
                           Animation<double> _,
                           Animation<double> _,
                         ) => LicensePage(
-                          applicationName: 'VTeam Cards',
+                          applicationName: localizations.appTitle,
                           applicationVersion: _version,
                         ),
                   ),
@@ -242,20 +248,26 @@ class _ScreenState extends State<Screen> with SingleTickerProviderStateMixin {
   /// Builds an avatar for authenticated users with guest and fallback handling.
   Widget _buildAvatar(User user) {
     if (user.isAnonymous) {
-      return CircleAvatar(
-        radius: ConstLayout.radiusXL,
-        backgroundColor: Theme.of(context).colorScheme.surface,
-        foregroundColor: Theme.of(context).colorScheme.onSurface,
-        child: const Icon(Icons.person_outline),
+      return GestureDetector(
+        onTap: () => _showLanguagePicker(),
+        child: CircleAvatar(
+          radius: ConstLayout.radiusXL,
+          backgroundColor: Theme.of(context).colorScheme.surface,
+          foregroundColor: Theme.of(context).colorScheme.onSurface,
+          child: const Icon(Icons.person_outline),
+        ),
       );
     }
 
     final photoUrl = user.photoURL;
     if (photoUrl != null && photoUrl.isNotEmpty) {
-      return CircleAvatar(
-        radius: ConstLayout.radiusXL,
-        backgroundImage: NetworkImage(photoUrl),
-        backgroundColor: Theme.of(context).colorScheme.surface,
+      return GestureDetector(
+        onTap: () => _showLanguagePicker(),
+        child: CircleAvatar(
+          radius: ConstLayout.radiusXL,
+          backgroundImage: NetworkImage(photoUrl),
+          backgroundColor: Theme.of(context).colorScheme.surface,
+        ),
       );
     }
 
@@ -263,11 +275,14 @@ class _ScreenState extends State<Screen> with SingleTickerProviderStateMixin {
         ? user.displayName!
         : (user.email ?? 'U');
 
-    return CircleAvatar(
-      radius: ConstLayout.radiusXL,
-      backgroundColor: Theme.of(context).colorScheme.primary,
-      foregroundColor: Theme.of(context).colorScheme.onPrimary,
-      child: Text(fallbackText.characters.first.toUpperCase()),
+    return GestureDetector(
+      onTap: () => _showLanguagePicker(),
+      child: CircleAvatar(
+        radius: ConstLayout.radiusXL,
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        foregroundColor: Theme.of(context).colorScheme.onPrimary,
+        child: Text(fallbackText.characters.first.toUpperCase()),
+      ),
     );
   }
 
@@ -361,5 +376,66 @@ class _ScreenState extends State<Screen> with SingleTickerProviderStateMixin {
     final double x = math.sin((progress + phaseX) * fullTurn) * amplitudeX;
     final double y = math.cos((progress + phaseY) * fullTurn) * amplitudeY;
     return Alignment(x, y);
+  }
+
+  /// Opens language selection anchored from the avatar interaction.
+  Future<void> _showLanguagePicker() async {
+    final List<Locale> supportedLocales = AppLocalizations.supportedLocales;
+    final Locale englishLocale = supportedLocales.firstWhere(
+      (Locale locale) => locale.languageCode == 'en',
+      orElse: () => supportedLocales.first,
+    );
+    final Locale frenchLocale = supportedLocales.firstWhere(
+      (Locale locale) => locale.languageCode == 'fr',
+      orElse: () => supportedLocales.last,
+    );
+    final String currentLanguageCode = Localizations.localeOf(
+      context,
+    ).languageCode;
+    final bool isEnglish = currentLanguageCode == englishLocale.languageCode;
+    final bool isFrench = currentLanguageCode == frenchLocale.languageCode;
+
+    await showDialog<void>(
+      context: context,
+      builder: (BuildContext dialogContext) {
+        return AlertDialog(
+          content: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              MyButtonRectangle(
+                width: ConstLayout.dialogButtonWidth,
+                height: ConstLayout.dialogButtonHeight,
+                onTap: () {
+                  LocaleController.setLanguageCode(englishLocale.languageCode);
+                  Navigator.of(dialogContext).pop();
+                },
+                child: Text(
+                  englishLocale.languageCode.toUpperCase(),
+                  style: TextStyle(
+                    fontSize: ConstLayout.textS,
+                    fontWeight: isEnglish ? FontWeight.bold : FontWeight.normal,
+                  ),
+                ),
+              ),
+              MyButtonRectangle(
+                width: ConstLayout.dialogButtonWidth,
+                height: ConstLayout.dialogButtonHeight,
+                onTap: () {
+                  LocaleController.setLanguageCode(frenchLocale.languageCode);
+                  Navigator.of(dialogContext).pop();
+                },
+                child: Text(
+                  frenchLocale.languageCode.toUpperCase(),
+                  style: TextStyle(
+                    fontSize: ConstLayout.textS,
+                    fontWeight: isFrench ? FontWeight.bold : FontWeight.normal,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
   }
 }

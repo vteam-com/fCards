@@ -1,0 +1,168 @@
+{
+  "appTitle": "VTeam Cards",
+  "cardsTitle": "Cards",
+  "welcomeTitle": "VTeam Cards",
+  "startNewGame": "Démarrer une nouvelle partie",
+  "joinExistingGame": "Rejoindre une partie",
+  "scoreKeeper": "Carnet de scores",
+  "account": "Compte",
+  "signedIn": "Connecté",
+  "playingAsGuest": "Jouer en invité",
+  "notSignedIn": "Non connecté",
+  "signingIn": "Connexion...",
+  "signInWithGoogle": "Se connecter avec Google",
+  "signingOut": "Déconnexion...",
+  "signOut": "Se déconnecter",
+  "googleSignInFailed": "Échec de la connexion Google.",
+  "signOutFailed": "Échec de la déconnexion.",
+
+  "startGameWizardTitle": "Démarrer",
+  "joinGameTitle": "Rejoindre",
+  "cardGamesTitle": "Jeux de cartes",
+
+  "next": "Suivant",
+  "back": "Retour",
+  "startGame": "Démarrer la partie",
+
+  "whatTypeOfGame": "Quel type de jeu ?",
+  "pickTableOrCreate": "Choisissez une table ou créez-en une",
+  "tapExistingTable": "Touchez une table existante pour continuer",
+  "noExistingTables": "Aucune table trouvée. Créez-en une pour continuer.",
+  "createNewTable": "Créer une table",
+
+  "createTableHelp": "Créez une table.\nSi elle existe déjà, vous pourrez la rejoindre.",
+  "table": "Table",
+  "enterTableName": "Entrez un nom de table pour vérifier si elle existe.",
+  "thisTableAlreadyHasPlayers": "Cette table a déjà des joueurs. Vous pouvez la rejoindre au lieu d'en créer une nouvelle.",
+  "joinThisTable": "Rejoindre cette table",
+  "whoAreYou": "Qui êtes-vous ?\nSélectionnez ci-dessus ⬆ ou rejoignez ci-dessous ⬇",
+  "join": "Rejoindre",
+  "pleaseEnterYourName": "Veuillez saisir votre nom ci-dessus ⬆",
+  "waitingForPlayers": "En attente de joueurs",
+  "joinGame": "Rejoindre la partie",
+  "gameRules": "Règles du jeu",
+
+  "selectTableToJoin": "Sélectionnez une table",
+  "useSearchBox": "Utilisez la recherche pour trouver rapidement une table",
+  "joiningTable": "Table : {table}",
+  "@joiningTable": {
+    "placeholders": {
+      "table": {
+        "type": "String"
+      }
+    }
+  },
+  "enterYourName": "Entrez votre nom",
+  "yourName": "Votre nom",
+  "joinTable": "Rejoindre la table",
+  "welcomePlayer": "Bienvenue, {player} !",
+  "@welcomePlayer": {
+    "placeholders": {
+      "player": {
+        "type": "String"
+      }
+    }
+  },
+  "readyToPlayPlayersAtTable": "Prêt à jouer ! {count} joueurs à la table.",
+  "@readyToPlayPlayersAtTable": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "waitingForMorePlayers": "En attente d'autres joueurs...",
+  "tableLabel": "Table : {table}",
+  "@tableLabel": {
+    "placeholders": {
+      "table": {
+        "type": "String"
+      }
+    }
+  },
+
+  "gameOver": "Fin de partie",
+  "players": "Joueurs",
+  "gamesWon": "Parties gagnées",
+  "thisGame": "Cette partie",
+  "playAgain": "Rejouer",
+  "exit": "Quitter",
+
+  "golfScoreKeeper": "Carnet de scores 9 Cartes Golf",
+  "deleteLastRow": "Supprimer la dernière ligne",
+  "confirmDeleteRound": "Êtes-vous sûr de vouloir supprimer le tour {round} ?",
+  "@confirmDeleteRound": {
+    "placeholders": {
+      "round": {
+        "type": "int"
+      }
+    }
+  },
+  "cancel": "Annuler",
+  "confirm": "Confirmer",
+  "newGame": "Nouvelle partie",
+  "confirmNewGame": "Êtes-vous sûr de vouloir commencer une nouvelle partie ? Tous les scores seront perdus.",
+  "rounds": "{count} Tours",
+  "@rounds": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "errorLoadingScores": "Erreur lors du chargement des scores : {error}",
+  "@errorLoadingScores": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+
+  "golf9Cards": "9 Cartes",
+  "skyJo": "SkyJo",
+  "miniPut": "MiniPut",
+  "golf9CardsFull": "Golf 9 Cartes",
+  "miniPutFull": "MiniPut 4 Cartes",
+  "skyLo": "Skylo",
+
+  "columnsByRows": "{columns} x {rows}",
+  "@columnsByRows": {
+    "placeholders": {
+      "columns": {
+        "type": "int"
+      },
+      "rows": {
+        "type": "int"
+      }
+    }
+  },
+  "noTablesFoundMatching": "Aucune table trouvée pour \"{searchText}\"",
+  "@noTablesFoundMatching": {
+    "placeholders": {
+      "searchText": {
+        "type": "String"
+      }
+    }
+  },
+  "starting": "Démarrage",
+  "gameOverTitle": "FIN DE PARTIE",
+  "selectAStatus": "Sélectionnez un statut",
+  "last": "DERNIER",
+  "done": "Valider",
+  "addAnotherPlayer": "Ajouter un autre joueur",
+  "removeThisPlayer": "Supprimer ce joueur",
+  "removePlayer": "Supprimer le joueur",
+  "removePlayerConfirmation": "Êtes-vous sûr de vouloir supprimer \"{playerName}\" ?",
+  "@removePlayerConfirmation": {
+    "placeholders": {
+      "playerName": {
+        "type": "String"
+      }
+    }
+  },
+  "cancel": "Annuler",
+  "remove": "Supprimer",
+  "noTablesAvailable": "Aucune table disponible",
+  "noMatchingTables": "Aucune table correspondante"
+}

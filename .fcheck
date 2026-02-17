@@ -1,11 +1,9 @@
 input:
   exclude:
     - "**/firebase_options.example.dart"
+    - "**/gen/**"
 
 analyzers:
-  default: on
-  disabled:
-    - hardcoded_strings
   options:
     duplicate_code:
       similarity_threshold: 0.90 # 0.0 to 1.0

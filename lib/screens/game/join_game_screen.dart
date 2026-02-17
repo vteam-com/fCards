@@ -12,6 +12,7 @@ import 'package:cards/widgets/helpers/table_widget.dart';
 import 'package:cards/widgets/helpers/edit_box.dart';
 import 'package:cards/widgets/helpers/step_indicator.dart';
 import 'package:cards/utils/logger.dart';
+import 'package:cards/gen/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
@@ -86,9 +87,10 @@ class JoinGameScreenState extends State<JoinGameScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final AppLocalizations localizations = AppLocalizations.of(context);
     return Screen(
       isWaiting: false,
-      title: 'Join Game',
+      title: localizations.joinGameTitle,
       child: Padding(
         padding: const EdgeInsets.all(ConstLayout.sizeM),
         child: Column(
@@ -113,7 +115,7 @@ class JoinGameScreenState extends State<JoinGameScreen> {
                       spacing: ConstLayout.sizeM,
                       children: [
                         const Icon(Icons.arrow_back),
-                        const Text('Back'),
+                        Text(localizations.back),
                       ],
                     ),
                   )
@@ -133,8 +135,8 @@ class JoinGameScreenState extends State<JoinGameScreen> {
                         : null,
                     child: Text(
                       _currentStep < ConstLayout.joinGameStepCount - 1
-                          ? 'Next'
-                          : 'Start Game',
+                          ? localizations.next
+                          : localizations.startGame,
                     ),
                   )
                 else
@@ -149,6 +151,7 @@ class JoinGameScreenState extends State<JoinGameScreen> {
 
   /// Builds the step where the player enters a name before joining the room.
   Widget _buildNameEntryStep() {
+    final AppLocalizations localizations = AppLocalizations.of(context);
     final colorScheme = Theme.of(context).colorScheme;
     _prepareForSelectedRoomIfNeeded();
 
@@ -157,7 +160,7 @@ class JoinGameScreenState extends State<JoinGameScreen> {
       spacing: ConstLayout.sizeL,
       children: [
         Text(
-          'Joining Table: $_selectedRoom',
+          localizations.joiningTable(_selectedRoom),
           style: TextStyle(
             fontSize: ConstLayout.textL,
             fontWeight: FontWeight.bold,
@@ -165,7 +168,7 @@ class JoinGameScreenState extends State<JoinGameScreen> {
           textAlign: TextAlign.center,
         ),
         Text(
-          'Enter Your Name',
+          localizations.enterYourName,
           style: TextStyle(
             fontSize: ConstLayout.textS,
             color: colorScheme.onSurface,
@@ -173,7 +176,7 @@ class JoinGameScreenState extends State<JoinGameScreen> {
         ),
 
         EditBox(
-          label: 'Your Name',
+          label: localizations.yourName,
           controller: _controllerName,
           onSubmitted: _joinGameAndContinue,
           errorStatus: '',
@@ -182,12 +185,12 @@ class JoinGameScreenState extends State<JoinGameScreen> {
 
         MyButtonRectangle(
           onTap: _joinGameAndContinue,
-          child: const Text('Join Table'),
+          child: Text(localizations.joinTable),
         ),
 
         if (_playerName.isNotEmpty)
           Text(
-            'Welcome, $_playerName!',
+            localizations.welcomePlayer(_playerName),
             style: TextStyle(
               fontSize: ConstLayout.textM,
               color: colorScheme.secondary,
@@ -199,6 +202,7 @@ class JoinGameScreenState extends State<JoinGameScreen> {
 
   /// Builds the room selection step with searchable available tables.
   Widget _buildRoomSelectionStep() {
+    final AppLocalizations localizations = AppLocalizations.of(context);
     final colorScheme = Theme.of(context).colorScheme;
     // Fetch rooms if not already done
     if (!_roomsFetched) {
@@ -213,7 +217,7 @@ class JoinGameScreenState extends State<JoinGameScreen> {
       spacing: ConstLayout.sizeM,
       children: [
         Text(
-          'Select a Table to Join',
+          localizations.selectTableToJoin,
           style: TextStyle(
             fontSize: ConstLayout.textL,
             fontWeight: FontWeight.bold,
@@ -223,7 +227,7 @@ class JoinGameScreenState extends State<JoinGameScreen> {
         ),
         const SizedBox(height: ConstLayout.sizeS),
         Text(
-          'Use the search box to quickly find a table',
+          localizations.useSearchBox,
           style: TextStyle(fontSize: ConstLayout.textS),
           textAlign: TextAlign.center,
         ),
@@ -261,13 +265,14 @@ class JoinGameScreenState extends State<JoinGameScreen> {
 
   /// Builds the waiting step that shows current players before game start.
   Widget _buildWaitingStep() {
+    final AppLocalizations localizations = AppLocalizations.of(context);
     final colorScheme = Theme.of(context).colorScheme;
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       spacing: ConstLayout.sizeM,
       children: [
         Text(
-          'Table: $_selectedRoom',
+          localizations.tableLabel(_selectedRoom),
           style: TextStyle(
             fontSize: ConstLayout.textM,
             fontWeight: FontWeight.bold,
@@ -293,12 +298,12 @@ class JoinGameScreenState extends State<JoinGameScreen> {
 
         if (_playerNames.length < CardModel.minPlayersToStartGame)
           Text(
-            'Waiting for more players to join...',
+            localizations.waitingForMorePlayers,
             style: TextStyle(fontSize: ConstLayout.textS),
           )
         else
           Text(
-            'Ready to play! ${_playerNames.length} players at table.',
+            localizations.readyToPlayPlayersAtTable(_playerNames.length),
             style: TextStyle(
               fontSize: ConstLayout.textS,
               color: Theme.of(context).colorScheme.tertiary,

@@ -1,6 +1,7 @@
 import 'package:cards/models/app/app_theme.dart';
 import 'package:cards/models/app/constants_layout.dart';
 import 'package:cards/widgets/helpers/edit_box.dart';
+import 'package:cards/gen/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 /// A widget that displays a list of rooms, allowing the user to select a room and optionally remove a room.
@@ -56,6 +57,7 @@ class _TableWidgetState extends State<TableWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final AppLocalizations localizations = AppLocalizations.of(context);
     final filteredRooms = _getFilteredRooms();
 
     final colorScheme = Theme.of(context).colorScheme;
@@ -102,7 +104,7 @@ class _TableWidgetState extends State<TableWidget> {
           // Room List
           Expanded(
             child: filteredRooms.isEmpty
-                ? _buildEmptyState(colorScheme)
+                ? _buildEmptyState(colorScheme, localizations)
                 : ListView.builder(
                     itemCount: filteredRooms.length,
                     itemBuilder: (BuildContext _, int index) {
@@ -117,7 +119,7 @@ class _TableWidgetState extends State<TableWidget> {
             Padding(
               padding: const EdgeInsets.all(ConstLayout.sizeM),
               child: Text(
-                'No tables found matching "$_searchText"',
+                localizations.noTablesFoundMatching(_searchText),
                 style: TextStyle(
                   color: AppTheme.onSurfaceHint,
                   fontSize: ConstLayout.textS,
@@ -131,7 +133,7 @@ class _TableWidgetState extends State<TableWidget> {
   }
 
   /// Builds the empty-state message for missing or unmatched rooms.
-  Widget _buildEmptyState(ColorScheme _) {
+  Widget _buildEmptyState(ColorScheme _, AppLocalizations localizations) {
     return Center(
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -143,7 +145,9 @@ class _TableWidgetState extends State<TableWidget> {
           ),
           const SizedBox(height: ConstLayout.sizeM),
           Text(
-            _searchText.isEmpty ? 'No tables available' : 'No matching tables',
+            _searchText.isEmpty
+                ? localizations.noTablesAvailable
+                : localizations.noMatchingTables,
             style: TextStyle(
               color: AppTheme.onSurfaceHint,
               fontSize: ConstLayout.textM,

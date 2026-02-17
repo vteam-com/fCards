@@ -3,6 +3,7 @@ import 'package:cards/widgets/helpers/my_text.dart';
 import 'package:cards/models/game/backend_model.dart';
 import 'package:cards/models/game/game_model.dart';
 import 'package:cards/widgets/helpers/dialog.dart';
+import 'package:cards/gen/l10n/app_localizations.dart';
 
 import 'package:flutter/material.dart';
 
@@ -31,17 +32,20 @@ void showGameOverDialog(
   gameModel.roomHistory.clear();
   gameModel.roomHistory.addAll(await getGameHistory(gameModel.roomName));
 
-  Widget columnHeaders() {
+  Widget columnHeaders(AppLocalizations localizations) {
     return SizedBox(
       width: ConstLayout.gameOverDialogWidth,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Expanded(child: Text('Players')),
+          Expanded(child: Text(localizations.players)),
           Expanded(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [Text('Games Won'), Text('This Game')],
+              children: [
+                Text(localizations.gamesWon),
+                Text(localizations.thisGame),
+              ],
             ),
           ),
         ],
@@ -83,27 +87,28 @@ void showGameOverDialog(
   }
 
   if (context.mounted) {
+    final AppLocalizations localizations = AppLocalizations.of(context);
     myDialog(
       context: context,
-      title: 'Game Over',
+      title: localizations.gameOver,
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          columnHeaders(),
+          columnHeaders(localizations),
           Divider(),
           ...gameModel.players.map((player) => playerStats(player)),
         ],
       ),
       buttons: <Widget>[
         ElevatedButton(
-          child: const Text('Play Again'),
+          child: Text(localizations.playAgain),
           onPressed: () {
             Navigator.of(context).pop();
             gameModel.initializeGame();
           },
         ),
         ElevatedButton(
-          child: const Text('Exit'),
+          child: Text(localizations.exit),
           onPressed: () {
             Navigator.of(context).pop();
           },

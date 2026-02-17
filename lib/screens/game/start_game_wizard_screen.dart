@@ -9,6 +9,7 @@ import 'package:cards/widgets/buttons/my_button_rectangle.dart';
 import 'package:cards/widgets/helpers/screen.dart';
 import 'package:cards/widgets/helpers/step_indicator.dart';
 import 'package:cards/widgets/helpers/table_widget.dart';
+import 'package:cards/gen/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 const int _wizardStepCount = 2;
@@ -20,19 +21,19 @@ const double _miniCardSpacing = ConstLayout.sizeXS;
 const List<_GameTypeOption> _gameTypeOptions = <_GameTypeOption>[
   _GameTypeOption(
     style: GameStyles.frenchCards9,
-    label: 'Golf 9 Cards',
+    labelKey: 'golf9CardsFull',
     columns: CardModel.standardColumns,
     rows: CardModel.standardRows,
   ),
   _GameTypeOption(
     style: GameStyles.miniPut,
-    label: 'MiniPut 4 Cards',
+    labelKey: 'miniPutFull',
     columns: CardModel.miniPutColumns,
     rows: CardModel.miniPutRows,
   ),
   _GameTypeOption(
     style: GameStyles.skyJo,
-    label: 'Skylo',
+    labelKey: 'skyLo',
     columns: CardModel.skyjoColumns,
     rows: CardModel.skyjoRows,
   ),
@@ -41,13 +42,13 @@ const List<_GameTypeOption> _gameTypeOptions = <_GameTypeOption>[
 class _GameTypeOption {
   const _GameTypeOption({
     required this.columns,
-    required this.label,
+    required this.labelKey,
     required this.rows,
     required this.style,
   });
 
   final int columns;
-  final String label;
+  final String labelKey;
   final int rows;
   final GameStyles style;
 }
@@ -84,9 +85,10 @@ class _StartGameWizardScreenState extends State<StartGameWizardScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final AppLocalizations localizations = AppLocalizations.of(context);
     return Screen(
       isWaiting: false,
-      title: 'Start Game',
+      title: localizations.startGameWizardTitle,
       child: Padding(
         padding: const EdgeInsets.all(ConstLayout.sizeM),
         child: Column(
@@ -109,12 +111,13 @@ class _StartGameWizardScreenState extends State<StartGameWizardScreen> {
 
   /// Builds navigation actions for the current wizard step.
   Widget _buildActions() {
+    final AppLocalizations localizations = AppLocalizations.of(context);
     if (_currentStep == 0) {
       return Align(
         alignment: Alignment.centerRight,
         child: MyButtonRectangle(
           onTap: _onNextPressed,
-          child: const Text('Next'),
+          child: Text(localizations.next),
         ),
       );
     }
@@ -130,7 +133,7 @@ class _StartGameWizardScreenState extends State<StartGameWizardScreen> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           spacing: ConstLayout.sizeM,
-          children: [const Icon(Icons.arrow_back), const Text('Back')],
+          children: [const Icon(Icons.arrow_back), Text(localizations.back)],
         ),
       ),
     );
@@ -143,6 +146,7 @@ class _StartGameWizardScreenState extends State<StartGameWizardScreen> {
     required int rows,
     required String label,
   }) {
+    final AppLocalizations localizations = AppLocalizations.of(context);
     final bool isSelected = _selectedGameStyle == style;
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
 
@@ -179,7 +183,7 @@ class _StartGameWizardScreenState extends State<StartGameWizardScreen> {
                     ),
                   ),
                   Text(
-                    '$columns x $rows',
+                    localizations.columnsByRows(columns, rows),
                     style: TextStyle(
                       fontSize: ConstLayout.textXS,
                       color: colorScheme.onSurface,
@@ -202,6 +206,7 @@ class _StartGameWizardScreenState extends State<StartGameWizardScreen> {
 
   /// Builds the first wizard step where a game style is selected.
   Widget _buildGameTypeStep() {
+    final AppLocalizations localizations = AppLocalizations.of(context);
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
 
     return ConstrainedBox(
@@ -211,7 +216,7 @@ class _StartGameWizardScreenState extends State<StartGameWizardScreen> {
         spacing: ConstLayout.sizeM,
         children: [
           Text(
-            'What type of game?',
+            localizations.whatTypeOfGame,
             style: TextStyle(
               fontSize: ConstLayout.textL,
               fontWeight: FontWeight.bold,
@@ -224,7 +229,7 @@ class _StartGameWizardScreenState extends State<StartGameWizardScreen> {
               columns: option.columns,
               style: option.style,
               rows: option.rows,
-              label: option.label,
+              label: _getLocalizedLabel(option.labelKey, localizations),
             ),
         ],
       ),
@@ -280,6 +285,7 @@ class _StartGameWizardScreenState extends State<StartGameWizardScreen> {
 
   /// Builds the room-selection step for creating or joining a table.
   Widget _buildRoomStep() {
+    final AppLocalizations localizations = AppLocalizations.of(context);
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
 
     if (!_roomsFetched) {
@@ -296,7 +302,7 @@ class _StartGameWizardScreenState extends State<StartGameWizardScreen> {
         spacing: ConstLayout.sizeM,
         children: [
           Text(
-            'Pick a table or create a new one',
+            localizations.pickTableOrCreate,
             style: TextStyle(
               fontSize: ConstLayout.textM,
               fontWeight: FontWeight.bold,
@@ -305,7 +311,7 @@ class _StartGameWizardScreenState extends State<StartGameWizardScreen> {
             textAlign: TextAlign.center,
           ),
           Text(
-            'Tap an existing table to continue',
+            localizations.tapExistingTable,
             style: TextStyle(
               fontSize: ConstLayout.textS,
               color: colorScheme.onSurface,
@@ -325,7 +331,7 @@ class _StartGameWizardScreenState extends State<StartGameWizardScreen> {
             )
           else
             Text(
-              'No existing tables found. Create a new one to continue.',
+              localizations.noExistingTables,
               style: TextStyle(
                 fontSize: ConstLayout.textS,
                 color: colorScheme.onSurface,
@@ -343,7 +349,7 @@ class _StartGameWizardScreenState extends State<StartGameWizardScreen> {
               children: [
                 const Icon(Icons.add_circle_outline),
                 Text(
-                  'Create New Table',
+                  localizations.createNewTable,
                   style: TextStyle(
                     fontSize: ConstLayout.textS,
                     fontWeight: FontWeight.bold,
@@ -401,6 +407,20 @@ class _StartGameWizardScreenState extends State<StartGameWizardScreen> {
           _isLoadingRooms = false;
         });
       }
+    }
+  }
+
+  /// Gets the localized label for a game type option.
+  String _getLocalizedLabel(String labelKey, AppLocalizations localizations) {
+    switch (labelKey) {
+      case 'golf9CardsFull':
+        return localizations.golf9CardsFull;
+      case 'miniPutFull':
+        return localizations.miniPutFull;
+      case 'skyLo':
+        return localizations.skyLo;
+      default:
+        return labelKey;
     }
   }
 

@@ -1,6 +1,7 @@
 import 'package:cards/models/app/constants_layout.dart';
 import 'package:cards/widgets/helpers/my_text.dart';
 import 'package:cards/models/player/player_status.dart';
+import 'package:cards/gen/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 ///
@@ -30,9 +31,10 @@ class _StatusPickerState extends State<StatusPicker> {
 
   @override
   Widget build(BuildContext context) {
+    final AppLocalizations localizations = AppLocalizations.of(context);
     return DropdownButton<PlayerStatus>(
       value: selectedStatus,
-      hint: const Text('Select a status'),
+      hint: Text(localizations.selectAStatus),
       onChanged: (PlayerStatus? newValue) {
         setState(() {
           selectedStatus = newValue!;

@@ -5,6 +5,7 @@ import 'package:cards/models/game/backend_model.dart';
 import 'package:cards/utils/logger.dart';
 import 'package:cards/widgets/buttons/my_button_rectangle.dart';
 import 'package:cards/widgets/helpers/screen.dart';
+import 'package:cards/gen/l10n/app_localizations.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -32,8 +33,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final AppLocalizations localizations = AppLocalizations.of(context);
     return Screen(
-      title: 'VTeam Cards',
+      title: localizations.welcomeTitle,
       isWaiting: false,
       child: Center(
         child: ConstrainedBox(
@@ -50,19 +52,19 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 _authSection(),
                 const Spacer(),
                 MenuButton(
-                  label: 'Start a New Game',
+                  label: localizations.startNewGame,
                   icon: Icons.play_circle_fill,
                   onPressed: () => Navigator.pushNamed(context, '/start'),
                 ),
                 SizedBox(height: ConstLayout.sizeM),
                 MenuButton(
-                  label: 'Join an Existing Game',
+                  label: localizations.joinExistingGame,
                   icon: Icons.group_add,
                   onPressed: () => Navigator.pushNamed(context, '/join'),
                 ),
                 SizedBox(height: ConstLayout.sizeM),
                 MenuButton(
-                  label: 'Score Keeper',
+                  label: localizations.scoreKeeper,
                   icon: Icons.scoreboard,
                   onPressed: () => Navigator.pushNamed(context, '/score'),
                 ),
@@ -81,6 +83,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
       return const SizedBox.shrink();
     }
 
+    final AppLocalizations localizations = AppLocalizations.of(context);
     final colorScheme = Theme.of(context).colorScheme;
     return StreamBuilder<User?>(
       stream: AuthService.authStateChanges(),
@@ -89,8 +92,10 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
         final bool isAnonymous = user?.isAnonymous ?? false;
         final bool isSignedIn = user != null && !isAnonymous;
         final String status = isSignedIn
-            ? (user.email ?? user.displayName ?? 'Signed in')
-            : (isAnonymous ? 'Playing as Guest' : 'Not signed in');
+            ? (user.email ?? user.displayName ?? localizations.signedIn)
+            : (isAnonymous
+                  ? localizations.playingAsGuest
+                  : localizations.notSignedIn);
 
         return Container(
           width: double.infinity,
@@ -106,7 +111,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           child: Column(
             children: [
               Text(
-                'Account',
+                localizations.account,
                 style: TextStyle(
                   fontSize: ConstLayout.textS,
                   fontWeight: FontWeight.bold,
@@ -142,8 +147,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       SizedBox(width: ConstLayout.sizeS),
                       Text(
                         _isAuthWorking
-                            ? 'Signing in...'
-                            : 'Sign in with Google',
+                            ? localizations.signingIn
+                            : localizations.signInWithGoogle,
                         style: TextStyle(
                           color: colorScheme.onPrimaryContainer,
                           fontWeight: FontWeight.bold,
@@ -163,7 +168,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       const Icon(Icons.logout),
                       SizedBox(width: ConstLayout.sizeS),
                       Text(
-                        _isAuthWorking ? 'Signing out...' : 'Sign out',
+                        _isAuthWorking
+                            ? localizations.signingOut
+                            : localizations.signOut,
                         style: TextStyle(
                           color: colorScheme.onPrimaryContainer,
                           fontWeight: FontWeight.bold,
@@ -200,7 +207,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   Future<void> _handleGoogleSignIn() async {
     await _performAuthAction(
       AuthService.signInWithGoogle,
-      'Google sign-in failed.',
+      AppLocalizations.of(context).googleSignInFailed,
     );
   }
 
@@ -208,7 +215,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     await _performAuthAction(() async {
       await AuthService.signOut();
       await AuthService.ensureSignedIn();
-    }, 'Sign out failed.');
+    }, AppLocalizations.of(context).signOutFailed);
   }
 
   /// Runs an auth action with busy-state handling and user-facing errors.

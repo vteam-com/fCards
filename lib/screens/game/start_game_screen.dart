@@ -16,6 +16,7 @@ import 'package:cards/widgets/helpers/screen.dart';
 import 'package:cards/widgets/player/players_in_room_widget.dart';
 import 'package:cards/widgets/helpers/table_widget.dart';
 import 'package:cards/utils/browser_utils.dart';
+import 'package:cards/gen/l10n/app_localizations.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -141,6 +142,7 @@ class StartScreenState extends State<StartScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final AppLocalizations localizations = AppLocalizations.of(context);
     final bool isAwaitingTableName = widget.createRoomFlow && roomName.isEmpty;
     final bool doesTableAlreadyExist = _playerNames.isNotEmpty;
     final bool showJoinShortcut =
@@ -150,7 +152,7 @@ class StartScreenState extends State<StartScreen> {
         roomName.isNotEmpty;
     return Screen(
       isWaiting: _waitingOnFirstBackendData,
-      title: 'Card Games',
+      title: localizations.cardGamesTitle,
       getLinkToShare: () {
         return _getUrlToGame();
       },
@@ -173,7 +175,7 @@ class StartScreenState extends State<StartScreen> {
                     Padding(
                       padding: const EdgeInsets.all(ConstLayout.sizeS),
                       child: Text(
-                        'Create a table.\nIf it already exists, you can join it.',
+                        localizations.createTableHelp,
                         style: TextStyle(
                           fontSize: ConstLayout.textS,
                           color: Theme.of(context).colorScheme.tertiary,
@@ -185,7 +187,7 @@ class StartScreenState extends State<StartScreen> {
                   Row(
                     children: [
                       EditBox(
-                        label: 'Table',
+                        label: localizations.table,
                         controller: _controllerRoom,
                         onSubmitted: () {
                           _controllerRoom.text = _controllerRoom.text
@@ -240,7 +242,7 @@ class StartScreenState extends State<StartScreen> {
                     Padding(
                       padding: const EdgeInsets.all(ConstLayout.sizeS),
                       child: Text(
-                        'Enter a table name to check if it already exists.',
+                        localizations.enterTableName,
                         style: TextStyle(
                           fontSize: ConstLayout.textS,
                           color: Theme.of(context).colorScheme.tertiary,
@@ -269,7 +271,7 @@ class StartScreenState extends State<StartScreen> {
                     Padding(
                       padding: const EdgeInsets.all(ConstLayout.sizeS),
                       child: Text(
-                        'This table already has players. You can join it instead of creating a new table.',
+                        localizations.thisTableAlreadyHasPlayers,
                         style: TextStyle(
                           fontSize: ConstLayout.textS,
                           color: Theme.of(context).colorScheme.tertiary,
@@ -282,7 +284,7 @@ class StartScreenState extends State<StartScreen> {
                       width: double.infinity,
                       onTap: _openJoinWizardForCurrentTable,
                       child: Text(
-                        'Join This Table',
+                        localizations.joinThisTable,
                         style: TextStyle(
                           fontSize: ConstLayout.textS,
                           fontWeight: FontWeight.bold,
@@ -296,15 +298,13 @@ class StartScreenState extends State<StartScreen> {
                   if (!isAwaitingTableName)
                     Padding(
                       padding: const EdgeInsets.all(ConstLayout.sizeS),
-                      child: Text(
-                        'Who Are You?\nSelect above ⬆ or join below ⬇',
-                      ),
+                      child: Text(localizations.whoAreYou),
                     ),
                   if (!isAwaitingTableName)
                     const SizedBox(height: ConstLayout.sizeS),
                   if (!isAwaitingTableName)
                     EditBox(
-                      label: 'Join',
+                      label: localizations.join,
                       controller: _controllerName,
                       onSubmitted: () {
                         _controllerName.text = _controllerName.text
@@ -341,16 +341,17 @@ class StartScreenState extends State<StartScreen> {
   /// The button's label and action change based on whether the current player
   /// has already joined the game and whether there are enough players to start.
   Widget actionButton() {
+    final AppLocalizations localizations = AppLocalizations.of(context);
     if (_playerName.isEmpty) {
-      return const Text('Please enter your name above ⬆');
+      return Text(localizations.pleaseEnterYourName);
     }
     bool isPartOfTheList = _playerNames.contains(_playerName.toUpperCase());
 
     String label = isPartOfTheList
         ? (_playerNames.length > 1
-              ? 'Start Game'
-              : 'Waiting for players to join')
-        : 'Join Game';
+              ? localizations.startGame
+              : localizations.waitingForPlayers)
+        : localizations.joinGame;
     return MyButtonRectangle(
       onTap: () {
         if (isPartOfTheList) {
@@ -497,6 +498,7 @@ class StartScreenState extends State<StartScreen> {
   /// A widget that displays the game instructions in an expandable tile.
   Widget _gameInstructionsWidget() {
     final colorScheme = Theme.of(context).colorScheme;
+    final AppLocalizations localizations = AppLocalizations.of(context);
     return ExpansionTile(
       initiallyExpanded: _isExpandedRules,
       onExpansionChanged: (bool expanded) {
@@ -505,7 +507,7 @@ class StartScreenState extends State<StartScreen> {
         });
       },
       title: Text(
-        'Game Rules',
+        localizations.gameRules,
         style: TextStyle(
           fontSize: ConstLayout.textM,
           color: colorScheme.primaryContainer,
@@ -525,21 +527,22 @@ class StartScreenState extends State<StartScreen> {
 
   /// A widget for selecting the game mode.
   Widget _gameMode() {
+    final AppLocalizations localizations = AppLocalizations.of(context);
     return Padding(
       padding: const EdgeInsets.all(ConstLayout.sizeS),
       child: SegmentedButton<GameStyles>(
         segments: [
           ButtonSegment<GameStyles>(
             value: GameStyles.frenchCards9,
-            label: Text('9 Cards'),
+            label: Text(localizations.golf9Cards),
           ),
           ButtonSegment<GameStyles>(
             value: GameStyles.skyJo,
-            label: Text('SkyJo'),
+            label: Text(localizations.skyJo),
           ),
           ButtonSegment<GameStyles>(
             value: GameStyles.miniPut,
-            label: Text('MiniPut'),
+            label: Text(localizations.miniPut),
           ),
         ],
         selected: {_selectedGameStyle},

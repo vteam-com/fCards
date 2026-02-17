@@ -240,7 +240,7 @@
           </g>
         </g>
         <g id='Node_models'>
-          <rect x="1574" y="2224" width="1262" height="1142" rx="2" ry="2" class="nodeFolder"/>
+          <rect x="1424" y="2224" width="1562" height="1142" rx="2" ry="2" class="nodeFolder"/>
           <g id='Node_game'>
             <rect x="1741.5" y="2259" width="927" height="382" rx="2" ry="2" class="nodeFolder"/>
             <g id='Node_game_model.dart'>
@@ -275,18 +275,21 @@
             </g>
           </g>
           <g id='Node_app'>
-            <rect x="1591.5" y="2879" width="1227" height="222" rx="2" ry="2" class="nodeFolder"/>
+            <rect x="1441.5" y="2879" width="1527" height="222" rx="2" ry="2" class="nodeFolder"/>
             <g id='Node_app_theme.dart'>
-              <rect x="1609" y="2914" width="292" height="72" rx="8" ry="8" class="nodeFile"/>
+              <rect x="1459" y="2914" width="292" height="72" rx="8" ry="8" class="nodeFile"/>
             </g>
             <g id='Node_constants_card_value.dart'>
-              <rect x="1909" y="2914" width="292" height="72" rx="8" ry="8" class="nodeFile"/>
+              <rect x="1759" y="2914" width="292" height="72" rx="8" ry="8" class="nodeFile"/>
             </g>
             <g id='Node_firebase_options.dart'>
-              <rect x="2209" y="2914" width="292" height="72" rx="8" ry="8" class="nodeFile"/>
+              <rect x="2059" y="2914" width="292" height="72" rx="8" ry="8" class="nodeFile"/>
+            </g>
+            <g id='Node_locale_controller.dart'>
+              <rect x="2359" y="2914" width="292" height="72" rx="8" ry="8" class="nodeFile"/>
             </g>
             <g id='Node_firebase_options.example.dart'>
-              <rect x="2509" y="2914" width="292" height="72" rx="8" ry="8" class="nodeFileOrphan"/>
+              <rect x="2659" y="2914" width="292" height="72" rx="8" ry="8" class="nodeFileOrphan"/>
             </g>
             <g id='Node_constants_layout.dart'>
               <rect x="1759" y="2994" width="292" height="72" rx="8" ry="8" class="nodeFile"/>
@@ -395,7 +398,7 @@
       </g>
     </g>
     <g id='Edges'>
-      <path d="M1885 2970 C 1895 2990,1765 2990, 1775 3010" fill="none" class="line">
+      <path d="M1735 2970 C 1745 2990,1765 2990, 1775 3010" fill="none" class="line">
         <title>app_theme.dart
 ⬇
 constants_layout.dart</title>
@@ -410,7 +413,7 @@ backend_json_data.dart</title>
 ⬇
 backend_model.dart</title>
       </path>
-      <path d="M632.5 165 C 724.5 1547,2133 1548, 2225 2930" fill="none" class="line">
+      <path d="M632.5 165 C 724.5 1547,1983 1548, 2075 2930" fill="none" class="line">
         <title>backend_model_test.dart
 ⬇
 firebase_options.dart</title>
@@ -420,7 +423,7 @@ firebase_options.dart</title>
 ⬇
 auth_service.dart</title>
       </path>
-      <path d="M2185 2430 C 2201 2680,2209 2680, 2225 2930" fill="none" class="line">
+      <path d="M2185 2430 C 2201 2680,2059 2680, 2075 2930" fill="none" class="line">
         <title>backend_model.dart
 ⬇
 firebase_options.dart</title>
@@ -440,7 +443,7 @@ logger.dart</title>
 ⬇
 card_model.dart</title>
       </path>
-      <path d="M2335 1670 C 2377 2300,1883 2300, 1925 2930" fill="none" class="line">
+      <path d="M2335 1670 C 2377 2300,1733 2300, 1775 2930" fill="none" class="line">
         <title>card_face_french_widget.dart
 ⬇
 constants_card_value.dart</title>
@@ -465,7 +468,7 @@ card_face_french_widget.dart</title>
 ⬇
 card_model.dart</title>
       </path>
-      <path d="M2335 1590 C 2379 2260,1881 2260, 1925 2930" fill="none" class="line">
+      <path d="M2335 1590 C 2379 2260,1731 2260, 1775 2930" fill="none" class="line">
         <title>card_face_skyjo_widget.dart
 ⬇
 constants_card_value.dart</title>
@@ -585,7 +588,7 @@ card_model_french.dart</title>
 ⬇
 card_model.dart</title>
       </path>
-      <path d="M2485 2430 C 2501 2680,1909 2680, 1925 2930" fill="none" class="line">
+      <path d="M2485 2430 C 2501 2680,1759 2680, 1775 2930" fill="none" class="line">
         <title>deck_model.dart
 ⬇
 constants_card_value.dart</title>
@@ -605,7 +608,7 @@ constants_layout.dart</title>
 ⬇
 my_button_rectangle.dart</title>
       </path>
-      <path d="M2485 1900 C 2519 2415,1591 2415, 1625 2930" fill="none" class="line">
+      <path d="M2485 1900 C 2519 2415,1441 2415, 1475 2930" fill="none" class="line">
         <title>edit_box.dart
 ⬇
 app_theme.dart</title>
@@ -820,7 +823,7 @@ player_model.dart</title>
 ⬇
 golf_score_model.dart</title>
       </path>
-      <path d="M2485 580 C 2563 1755,1547 1755, 1625 2930" fill="none" class="line">
+      <path d="M2485 580 C 2563 1755,1397 1755, 1475 2930" fill="none" class="line">
         <title>golf_score_screen.dart
 ⬇
 app_theme.dart</title>
@@ -940,7 +943,7 @@ step_indicator.dart</title>
 ⬇
 table_widget.dart</title>
       </path>
-      <path d="M2335 430 C 2418 1680,1542 1680, 1625 2930" fill="none" class="line">
+      <path d="M2335 430 C 2418 1680,1392 1680, 1475 2930" fill="none" class="line">
         <title>main.dart
 ⬇
 app_theme.dart</title>
@@ -955,7 +958,7 @@ auth_service.dart</title>
 ⬇
 backend_model.dart</title>
       </path>
-      <path d="M2335 430 C 2418 1680,2142 1680, 2225 2930" fill="none" class="line">
+      <path d="M2335 430 C 2418 1680,1992 1680, 2075 2930" fill="none" class="line">
         <title>main.dart
 ⬇
 firebase_options.dart</title>
@@ -969,6 +972,11 @@ golf_score_screen.dart</title>
         <title>main.dart
 ⬇
 join_game_screen.dart</title>
+      </path>
+      <path d="M2335 430 C 2418 1680,2292 1680, 2375 2930" fill="none" class="line">
+        <title>main.dart
+⬇
+locale_controller.dart</title>
       </path>
       <path d="M2335 430 C 2434 1927,1526 1928, 1625 3425" fill="none" class="line">
         <title>main.dart
@@ -1015,7 +1023,7 @@ my_button.dart</title>
 ⬇
 constants_layout.dart</title>
       </path>
-      <path d="M2185 1200 C 2242 2065,1868 2065, 1925 2930" fill="none" class="line">
+      <path d="M2185 1200 C 2242 2065,1718 2065, 1775 2930" fill="none" class="line">
         <title>player_header_widget.dart
 ⬇
 constants_card_value.dart</title>
@@ -1130,7 +1138,7 @@ player_header_widget.dart</title>
 ⬇
 player_zone_cta_widget.dart</title>
       </path>
-      <path d="M2335 1120 C 2395 2025,1565 2025, 1625 2930" fill="none" class="line">
+      <path d="M2335 1120 C 2395 2025,1415 2025, 1475 2930" fill="none" class="line">
         <title>players_in_room_widget.dart
 ⬇
 app_theme.dart</title>
@@ -1155,10 +1163,20 @@ constants_animation.dart</title>
 ⬇
 constants_layout.dart</title>
       </path>
+      <path d="M1435 1820 C 1472 2375,2338 2375, 2375 2930" fill="none" class="line">
+        <title>screen.dart
+⬇
+locale_controller.dart</title>
+      </path>
       <path d="M1435 1820 C 1488 2622,1572 2623, 1625 3425" fill="none" class="line">
         <title>screen.dart
 ⬇
 logger.dart</title>
+      </path>
+      <path d="M1435 1820 C 1445 1915,1915 1915, 1925 2010" fill="none" class="line">
+        <title>screen.dart
+⬇
+my_button_rectangle.dart</title>
       </path>
       <path d="M1232.5 165 C 1303.5 1237,2004 1238, 2075 2310" fill="none" class="line">
         <title>skyjo_game_model_test.dart
@@ -1325,7 +1343,7 @@ player_status.dart</title>
 ⬇
 constants_layout.dart</title>
       </path>
-      <path d="M1735 1820 C 1772 2375,1588 2375, 1625 2930" fill="none" class="line">
+      <path d="M1735 1820 C 1772 2375,1438 2375, 1475 2930" fill="none" class="line">
         <title>table_widget.dart
 ⬇
 app_theme.dart</title>
@@ -1340,7 +1358,7 @@ constants_layout.dart</title>
 ⬇
 edit_box.dart</title>
       </path>
-      <path d="M2820 580 C 2898 1755,1547 1755, 1625 2930" fill="none" class="line">
+      <path d="M2820 580 C 2898 1755,1397 1755, 1475 2930" fill="none" class="line">
         <title>welcome_screen.dart
 ⬇
 app_theme.dart</title>
@@ -1391,19 +1409,20 @@ constants_layout.dart</title>
         <g id='Counters_main.dart'>
           <g>
             <circle cx="2335" cy="430" r="10" fill="green"/>
-            <text x="2335" y="430" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">10</text>
+            <text x="2335" y="430" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">11</text>
             <title>main.dart
 ⬇
 1 /lib/models/app/app_theme.dart
 2 /lib/models/app/auth_service.dart
 3 /lib/models/app/firebase_options.dart
-4 /lib/models/game/backend_model.dart
-5 /lib/screens/game/join_game_screen.dart
-6 /lib/screens/game/start_game_screen.dart
-7 /lib/screens/game/start_game_wizard_screen.dart
-8 /lib/screens/keepscore/golf_score_screen.dart
-9 /lib/screens/welcome/welcome_screen.dart
-10 /lib/utils/logger.dart</title>
+4 /lib/models/app/locale_controller.dart
+5 /lib/models/game/backend_model.dart
+6 /lib/screens/game/join_game_screen.dart
+7 /lib/screens/game/start_game_screen.dart
+8 /lib/screens/game/start_game_wizard_screen.dart
+9 /lib/screens/keepscore/golf_score_screen.dart
+10 /lib/screens/welcome/welcome_screen.dart
+11 /lib/utils/logger.dart</title>
           </g>
         </g>
         <g id='Counters_screens'>
@@ -1820,12 +1839,14 @@ card_face_french_widget.dart</title>
             <g id='Counters_screen.dart'>
               <g>
                 <circle cx="1435" cy="1820" r="10" fill="green"/>
-                <text x="1435" y="1820" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">3</text>
+                <text x="1435" y="1820" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">5</text>
                 <title>screen.dart
 ⬇
 1 /lib/models/app/constants_animation.dart
 2 /lib/models/app/constants_layout.dart
-3 /lib/utils/logger.dart</title>
+3 /lib/models/app/locale_controller.dart
+4 /lib/utils/logger.dart
+5 /lib/widgets/buttons/my_button_rectangle.dart</title>
               </g>
               <g>
                 <circle cx="1175" cy="1780" r="10" fill="blue"/>
@@ -1995,13 +2016,14 @@ edit_box.dart</title>
               </g>
               <g>
                 <circle cx="1925" cy="2010" r="10" fill="blue"/>
-                <text x="1925" y="2010" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">6</text>
+                <text x="1925" y="2010" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">7</text>
                 <title>1 /lib/screens/game/join_game_screen.dart
 2 /lib/screens/game/start_game_screen.dart
 3 /lib/screens/game/start_game_wizard_screen.dart
 4 /lib/screens/welcome/welcome_screen.dart
 5 /lib/widgets/helpers/dialog.dart
-6 /lib/widgets/player/player_header.dart
+6 /lib/widgets/helpers/screen.dart
+7 /lib/widgets/player/player_header.dart
 ⬇
 my_button_rectangle.dart</title>
               </g>
@@ -2228,15 +2250,15 @@ player_status.dart</title>
           <g id='Counters_app'>
             <g id='Counters_app_theme.dart'>
               <g>
-                <circle cx="1885" cy="2970" r="10" fill="green"/>
-                <text x="1885" y="2970" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">1</text>
+                <circle cx="1735" cy="2970" r="10" fill="green"/>
+                <text x="1735" y="2970" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">1</text>
                 <title>app_theme.dart
 ⬇
 1 /lib/models/app/constants_layout.dart</title>
               </g>
               <g>
-                <circle cx="1625" cy="2930" r="10" fill="blue"/>
-                <text x="1625" y="2930" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">6</text>
+                <circle cx="1475" cy="2930" r="10" fill="blue"/>
+                <text x="1475" y="2930" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">6</text>
                 <title>1 /lib/main.dart
 2 /lib/screens/keepscore/golf_score_screen.dart
 3 /lib/screens/welcome/welcome_screen.dart
@@ -2249,8 +2271,8 @@ app_theme.dart</title>
             </g>
             <g id='Counters_constants_card_value.dart'>
               <g>
-                <circle cx="1925" cy="2930" r="10" fill="blue"/>
-                <text x="1925" y="2930" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">4</text>
+                <circle cx="1775" cy="2930" r="10" fill="blue"/>
+                <text x="1775" y="2930" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">4</text>
                 <title>1 /lib/models/game/deck_model.dart
 2 /lib/widgets/cards/card_face_french_widget.dart
 3 /lib/widgets/cards/card_face_skyjo_widget.dart
@@ -2261,13 +2283,23 @@ constants_card_value.dart</title>
             </g>
             <g id='Counters_firebase_options.dart'>
               <g>
-                <circle cx="2225" cy="2930" r="10" fill="blue"/>
-                <text x="2225" y="2930" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">3</text>
+                <circle cx="2075" cy="2930" r="10" fill="blue"/>
+                <text x="2075" y="2930" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">3</text>
                 <title>1 /lib/main.dart
 2 /lib/models/game/backend_model.dart
 3 /test/models/backend_model_test.dart
 ⬇
 firebase_options.dart</title>
+              </g>
+            </g>
+            <g id='Counters_locale_controller.dart'>
+              <g>
+                <circle cx="2375" cy="2930" r="10" fill="blue"/>
+                <text x="2375" y="2930" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">2</text>
+                <title>1 /lib/main.dart
+2 /lib/widgets/helpers/screen.dart
+⬇
+locale_controller.dart</title>
               </g>
             </g>
             <g id='Counters_firebase_options.example.dart'>
@@ -2613,10 +2645,10 @@ backend_json_data.dart</title>
     <g id='Labels_'>
       <text class="folderName" x="10" y="10">
       </text>
-      <text x="10" y="3580" fill='black' font-size="75%">21 folders, 71 files</text>
+      <text x="10" y="3580" fill='black' font-size="75%">21 folders, 72 files</text>
       <g id='Labels_lib'>
         <text class="folderName" x="1112.5" y="345">lib</text>
-        <text x="1112.5" y="3545" fill='black' font-size="75%">15 folders, 55 files, 27 incoming, path: ...///</text>
+        <text x="1112.5" y="3545" fill='black' font-size="75%">15 folders, 56 files, 27 incoming, path: ...///</text>
         <g id='Labels_main.dart'>
           <text class="nodeName" x="2205" y="410" font-size="120%">main.dart</text>
         </g>
@@ -2662,7 +2694,7 @@ backend_json_data.dart</title>
         </g>
         <g id='Labels_widgets'>
           <text class="folderName" x="1130" y="1000">widgets</text>
-          <text x="1130" y="2210" fill='black' font-size="75%">4 folders, 22 files, 30 incoming, 40 outgoing, path: ...//lib/</text>
+          <text x="1130" y="2210" fill='black' font-size="75%">4 folders, 22 files, 30 incoming, 41 outgoing, path: ...//lib/</text>
           <g id='Labels_player'>
             <text class="folderName" x="1747.5" y="1035">player</text>
             <text x="1747.5" y="1325" fill='black' font-size="75%">6 files, 4 incoming, 21 outgoing, path: ...//lib/widgets/</text>
@@ -2703,7 +2735,7 @@ backend_json_data.dart</title>
           </g>
           <g id='Labels_helpers'>
             <text class="folderName" x="1147.5" y="1735">helpers</text>
-            <text x="1147.5" y="1945" fill='black' font-size="75%">9 files, 26 incoming, 15 outgoing, path: ...//lib/widgets/</text>
+            <text x="1147.5" y="1945" fill='black' font-size="75%">9 files, 26 incoming, 17 outgoing, path: ...//lib/widgets/</text>
             <g id='Labels_screen.dart'>
               <text class="nodeName" x="1305" y="1800" font-size="120%">screen.dart</text>
             </g>
@@ -2734,7 +2766,7 @@ backend_json_data.dart</title>
           </g>
           <g id='Labels_buttons'>
             <text class="folderName" x="1897.5" y="1965">buttons</text>
-            <text x="1897.5" y="2175" fill='black' font-size="75%">3 files, 8 incoming, 3 outgoing, path: ...//lib/widgets/</text>
+            <text x="1897.5" y="2175" fill='black' font-size="75%">3 files, 9 incoming, 3 outgoing, path: ...//lib/widgets/</text>
             <g id='Labels_my_button_rectangle.dart'>
               <text class="nodeName" x="2055" y="2030" font-size="120%">my_button_rectangle.dart</text>
             </g>
@@ -2747,8 +2779,8 @@ backend_json_data.dart</title>
           </g>
         </g>
         <g id='Labels_models'>
-          <text class="folderName" x="1580" y="2230">models</text>
-          <text x="1580" y="3360" fill='black' font-size="75%">4 folders, 20 files, 98 incoming, 2 outgoing, path: ...//lib/</text>
+          <text class="folderName" x="1430" y="2230">models</text>
+          <text x="1430" y="3360" fill='black' font-size="75%">4 folders, 21 files, 100 incoming, 2 outgoing, path: ...//lib/</text>
           <g id='Labels_game'>
             <text class="folderName" x="1747.5" y="2265">game</text>
             <text x="1747.5" y="2635" fill='black' font-size="75%">7 files, 36 incoming, 10 outgoing, path: ...//lib/models/</text>
@@ -2785,19 +2817,22 @@ backend_json_data.dart</title>
             </g>
           </g>
           <g id='Labels_app'>
-            <text class="folderName" x="1597.5" y="2885">app</text>
-            <text x="1597.5" y="3095" fill='black' font-size="75%">7 files, 47 incoming, path: ...//lib/models/</text>
+            <text class="folderName" x="1447.5" y="2885">app</text>
+            <text x="1447.5" y="3095" fill='black' font-size="75%">8 files, 49 incoming, path: ...//lib/models/</text>
             <g id='Labels_app_theme.dart'>
-              <text class="nodeName" x="1755" y="2950" font-size="120%">app_theme.dart</text>
+              <text class="nodeName" x="1605" y="2950" font-size="120%">app_theme.dart</text>
             </g>
             <g id='Labels_constants_card_value.dart'>
-              <text class="nodeName" x="2055" y="2950" font-size="120%">constants_card_value.dart</text>
+              <text class="nodeName" x="1905" y="2950" font-size="120%">constants_card_value.dart</text>
             </g>
             <g id='Labels_firebase_options.dart'>
-              <text class="nodeName" x="2355" y="2950" font-size="120%">firebase_options.dart</text>
+              <text class="nodeName" x="2205" y="2950" font-size="120%">firebase_options.dart</text>
+            </g>
+            <g id='Labels_locale_controller.dart'>
+              <text class="nodeName" x="2505" y="2950" font-size="120%">locale_controller.dart</text>
             </g>
             <g id='Labels_firebase_options.example.dart'>
-              <text class="nodeName" x="2655" y="2950" font-size="90%">firebase_options.example.dart</text>
+              <text class="nodeName" x="2805" y="2950" font-size="90%">firebase_options.example.dart</text>
             </g>
             <g id='Labels_constants_layout.dart'>
               <text class="nodeName" x="1905" y="3030" font-size="120%">constants_layout.dart</text>

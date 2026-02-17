@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 1.11.0
+- Localize hardcoded strings across the app:
+  - Start game wizard screen: grid dimensions display
+  - Table widget: empty state and search messages
+  - Player zone CTA: game state messages
+  - Status picker: status selection prompt
+  - Player header: rank badges and player management dialogs
+
 ## 1.10.8
 - Add DartDoc comments across core game, player, helper, and auth components
 - Update `fcheck` tooling to `0.9.10` and enable full issue listing in `tool/check.sh`

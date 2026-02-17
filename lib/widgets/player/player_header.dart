@@ -2,6 +2,7 @@ import 'package:cards/models/app/constants_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:cards/widgets/buttons/my_button_rectangle.dart';
 import 'package:cards/widgets/helpers/edit_box.dart';
+import 'package:cards/gen/l10n/app_localizations.dart';
 
 /// Constants for player header widget dimensions and styling
 class PlayerHeaderConstants {
@@ -180,13 +181,14 @@ class _PlayerHeaderState extends State<PlayerHeader> {
 
   /// Builds the rank badge for first, last, or middle leaderboard positions.
   Widget _buildWiningPosition(int rank, int numberOfPlayers) {
+    final AppLocalizations localizations = AppLocalizations.of(context);
     if (rank == 1) {
       return Text('👑', style: TextStyle(fontWeight: FontWeight.w900));
     } else if (rank == numberOfPlayers) {
       return Opacity(
         opacity: PlayerHeaderConstants.lastPlaceOpacity,
         child: Text(
-          'LAST',
+          localizations.last,
           style: TextStyle(
             fontWeight: FontWeight.w900,
             fontSize: PlayerHeaderConstants.rankFontSize,
@@ -227,6 +229,7 @@ class _PlayerHeaderState extends State<PlayerHeader> {
     );
     final focusNode = FocusNode();
     final colorScheme = Theme.of(context).colorScheme;
+    final AppLocalizations localizations = AppLocalizations.of(context);
     showDialog(
       context: context,
       builder: (context) {
@@ -273,7 +276,7 @@ class _PlayerHeaderState extends State<PlayerHeader> {
                     Navigator.of(context).pop();
                   },
                   child: Text(
-                    'Done',
+                    localizations.done,
                     style: TextStyle(
                       color: colorScheme.onPrimaryContainer,
                       fontWeight: FontWeight.bold,
@@ -297,7 +300,7 @@ class _PlayerHeaderState extends State<PlayerHeader> {
                           horizontal: ConstLayout.sizeM,
                         ),
                         child: Text(
-                          'Add another player',
+                          localizations.addAnotherPlayer,
                           style: TextStyle(
                             color: colorScheme.onSurface,
                             fontWeight: FontWeight.bold,
@@ -317,7 +320,7 @@ class _PlayerHeaderState extends State<PlayerHeader> {
                           horizontal: ConstLayout.sizeM,
                         ),
                         child: Text(
-                          'Remove this player',
+                          localizations.removeThisPlayer,
                           style: TextStyle(
                             color: colorScheme.error,
                             fontWeight: FontWeight.bold,
@@ -352,6 +355,7 @@ class _PlayerHeaderState extends State<PlayerHeader> {
   /// Shows a confirmation dialog before removing the current player.
   void _showRemoveConfirmationDialog() {
     final colorScheme = Theme.of(context).colorScheme;
+    final AppLocalizations localizations = AppLocalizations.of(context);
     showDialog(
       context: context,
       builder: (context) {
@@ -365,21 +369,21 @@ class _PlayerHeaderState extends State<PlayerHeader> {
               width: PlayerHeaderConstants.dialogBorderWidth,
             ),
           ),
-          title: const Text('Remove Player'),
+          title: Text(localizations.removePlayer),
           content: Text(
-            'Are you sure you want to remove "${widget.playerName}"?',
+            localizations.removePlayerConfirmation(widget.playerName),
           ),
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
-              child: const Text('Cancel'),
+              child: Text(localizations.cancel),
             ),
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
                 widget.onPlayerRemoved();
               },
-              child: const Text('Remove'),
+              child: Text(localizations.remove),
             ),
           ],
         );

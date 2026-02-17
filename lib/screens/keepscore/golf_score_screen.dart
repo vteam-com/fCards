@@ -7,6 +7,7 @@ import 'package:cards/widgets/buttons/my_button_round.dart';
 import 'package:cards/widgets/helpers/screen.dart';
 import 'package:cards/widgets/helpers/input_keyboard.dart';
 import 'package:cards/widgets/player/player_header.dart';
+import 'package:cards/gen/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -57,18 +58,23 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final AppLocalizations localizations = AppLocalizations.of(context);
     return FutureBuilder<GolfScoreModel>(
       future: _scoreModelFuture,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting ||
             snapshot.hasError) {
           return Screen(
-            title: '9 Cards Golf Scorekeeper',
+            title: localizations.golfScoreKeeper,
             isWaiting: true,
             child: Center(
               child: snapshot.connectionState == ConnectionState.waiting
                   ? CircularProgressIndicator()
-                  : Text('Error loading scores: ${snapshot.error}'),
+                  : Text(
+                      localizations.errorLoadingScores(
+                        snapshot.error.toString(),
+                      ),
+                    ),
             ),
           );
         }
@@ -78,7 +84,7 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
         final colorScheme = Theme.of(context).colorScheme;
 
         return Screen(
-          title: '9 Cards Golf Scorekeeper',
+          title: localizations.golfScoreKeeper,
           isWaiting: false,
           onRefresh: () => confirmNewGame(scoreModel),
           child: RawKeyboardListener(
@@ -139,19 +145,20 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
 
   /// Shows a confirmation dialog before deleting a round.
   Future<void> confirmDeleteRound(int i, GolfScoreModel model) async {
+    final AppLocalizations localizations = AppLocalizations.of(context);
     final bool? confirmed = await showDialog<bool>(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: const Text('Delete Last Row'),
-        content: Text('Are you sure you want to delete round ${i + 1}?'),
+        title: Text(localizations.deleteLastRow),
+        content: Text(localizations.confirmDeleteRound(i + 1)),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(ctx).pop(false),
-            child: const Text('Cancel'),
+            child: Text(localizations.cancel),
           ),
           TextButton(
             onPressed: () => Navigator.of(ctx).pop(true),
-            child: const Text('Confirm'),
+            child: Text(localizations.confirm),
           ),
         ],
       ),
@@ -166,21 +173,20 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
 
   /// Shows a confirmation dialog before deleting a round.
   Future<void> confirmNewGame(GolfScoreModel model) async {
+    final AppLocalizations localizations = AppLocalizations.of(context);
     final bool? confirmed = await showDialog<bool>(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: const Text('New Game'),
-        content: const Text(
-          'Are you sure you want to start a new game? All scores will be lost?',
-        ),
+        title: Text(localizations.newGame),
+        content: Text(localizations.confirmNewGame),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(ctx).pop(false),
-            child: const Text('Cancel'),
+            child: Text(localizations.cancel),
           ),
           TextButton(
             onPressed: () => Navigator.of(ctx).pop(true),
-            child: const Text('Confirm'),
+            child: Text(localizations.confirm),
           ),
         ],
       ),
@@ -201,10 +207,11 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
 
   /// Builds controls for adding/removing rounds and current round count.
   Widget _buildAddOrRemoveRow(
-    final BuildContext _,
+    final BuildContext context,
     final GolfScoreModel scoreModel,
     final ColorScheme _ /* colorScheme*/,
   ) {
+    final AppLocalizations localizations = AppLocalizations.of(context);
     return IntrinsicWidth(
       child: Container(
         margin: EdgeInsets.all(ConstLayout.sizeS),
@@ -238,7 +245,7 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
               child: Icon(Icons.add),
             ),
             Text(
-              '${scoreModel.scores.length} Rounds',
+              localizations.rounds(scoreModel.scores.length),
               style: TextStyle(fontSize: ConstLayout.textS),
             ),
             if (scoreModel.scores.length > 1)
