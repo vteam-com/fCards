@@ -153,11 +153,6 @@ class HandModel {
     return '$columns X $rows [ ${_list.join('| ')} ]';
   }
 
-  /// Returns a list of all revealed cards in the hand.
-  List<CardModel> get revealedCards {
-    return _list.where((card) => card.isRevealed).toList();
-  }
-
   /// Calculates the sum of card values for the SkyJo game variant.
   ///
   /// Only considers revealed cards when calculating the sum.

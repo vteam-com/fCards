@@ -74,17 +74,6 @@ void main() {
       expect(scoreModel.scores[0], equals([0, 0, 0]));
     });
 
-    test('should clear players and scores', () {
-      scoreModel.clearPlayers();
-
-      expect(scoreModel.playerNames.isEmpty, isTrue);
-      expect(scoreModel.scores.length, equals(1));
-      expect(
-        scoreModel.scores[0],
-        equals([0, 0, 0]),
-      ); // After clearPlayers, addRound is called
-    });
-
     test('should remove round at specific index', () {
       scoreModel.addRound();
       scoreModel.updateScore(0, 0, 10);
@@ -148,16 +137,6 @@ void main() {
       );
       expect(scoreModel.scores[0], equals([0, 0, 0, 0]));
       expect(scoreModel.scores[1], equals([0, 0, 0, 0]));
-    });
-
-    test('should check if last round is empty', () {
-      expect(
-        scoreModel.isLastRoundEmpty(),
-        false,
-      ); // Always returns false per implementation
-
-      scoreModel.updateScore(0, 0, 10);
-      expect(scoreModel.isLastRoundEmpty(), false);
     });
 
     test('should calculate player ranks correctly', () {

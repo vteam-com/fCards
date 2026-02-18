@@ -71,15 +71,6 @@ class PlayerZoneWidget extends StatelessWidget {
     );
   }
 
-  ///
-  LinearGradient activeBorder() {
-    return LinearGradient(
-      begin: Alignment.topLeft,
-      end: Alignment.bottomRight,
-      colors: [Colors.yellow.shade200, Colors.yellow.shade700],
-    );
-  }
-
   /// Builds the zone body with header, CTA row, and hand grid.
   Widget _buildContent(final BuildContext context) {
     return Column(

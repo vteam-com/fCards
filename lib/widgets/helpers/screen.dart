@@ -25,22 +25,6 @@ class ResponsiveBreakpoints {
   static const double desktop = ConstLayout.breakpointDesktop;
 }
 
-/// Extension on BuildContext to easily check device type based on screen width
-extension DeviceType on BuildContext {
-  /// Returns true if screen width is less than phone breakpoint
-  bool get isPhone =>
-      MediaQuery.of(this).size.width < ResponsiveBreakpoints.phone;
-
-  /// Returns true if screen width is between phone and tablet breakpoints
-  bool get isTablet =>
-      MediaQuery.of(this).size.width >= ResponsiveBreakpoints.phone &&
-      MediaQuery.of(this).size.width < ResponsiveBreakpoints.tablet;
-
-  /// Returns true if screen width is greater than desktop breakpoint
-  bool get isDesktop =>
-      MediaQuery.of(this).size.width >= ResponsiveBreakpoints.desktop;
-}
-
 /// A scaffold widget that provides a common screen layout with app bar and background
 class Screen extends StatefulWidget {
   /// Creates a Screen widget

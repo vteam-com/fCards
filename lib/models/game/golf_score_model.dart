@@ -64,13 +64,6 @@ class GolfScoreModel {
     _save();
   }
 
-  /// Clears all scores and player names from the model.
-  void clearPlayers() {
-    clearScores();
-    playerNames.clear();
-    _save();
-  }
-
   /// Removes a round at the specified index.
   ///
   /// [roundIndex] The index of the round to remove.
@@ -104,17 +97,6 @@ class GolfScoreModel {
     if (index != -1) {
       removePlayerAt(index);
     }
-  }
-
-  /// Checks if the last round is empty (all scores are 0).
-  bool isLastRoundEmpty() {
-    if (scores.isEmpty) {
-      return true;
-    }
-    // We can automated adding new row if needed
-    // final lastRound = scores.last;
-    // return lastRound.every((score) => score == 0);
-    return false;
   }
 
   /// Adds a new player to the game.

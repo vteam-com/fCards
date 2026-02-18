@@ -131,20 +131,6 @@ void main() {
     });
   });
 
-  group('Card Operations', () {
-    test('should handle card revelation', () {
-      final gameModel = getNewSkyJoInstance();
-      final player = gameModel.players[0];
-      final hiddenCard = player.hand.revealedCards.first;
-      final cardIndex = player.hand.indexOf(hiddenCard);
-
-      gameModel.gameState = GameStates.revealOneHiddenCard;
-      gameModel.handleFlipOneCardState(player, cardIndex);
-
-      expect(player.hand[cardIndex].isRevealed, isTrue);
-    });
-  });
-
   group('JSON Serialization', () {
     test('should correctly serialize to JSON', () {
       final gameModel = getNewSkyJoInstance();

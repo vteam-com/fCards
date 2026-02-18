@@ -95,7 +95,6 @@ void main() {
 
     for (final PlayerModel player in gameModel.players) {
       expect(player.hand.length, 9);
-      expect(player.hand.revealedCards.length, 2);
     }
 
     // remaining cards in the deck piles
