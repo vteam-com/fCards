@@ -13,7 +13,20 @@ class MyButton extends StatelessWidget {
     this.borderRadius,
     this.padding = EdgeInsets.zero,
     this.isRound = false,
+    this.isAction = false,
   });
+
+  /// Creates a [MyButton] with a more transparent background for primary actions.
+  const MyButton.action({
+    super.key,
+    required this.onTap,
+    required this.child,
+    this.width,
+    this.height,
+    this.borderRadius = ConstLayout.radiusL,
+    this.padding = EdgeInsets.zero,
+    this.isRound = false,
+  }) : isAction = true;
 
   /// The corner radius of the button (ignored if [isRound] is true).
   final double? borderRadius;
@@ -23,6 +36,9 @@ class MyButton extends StatelessWidget {
 
   /// The height of the button.
   final double? height;
+
+  /// Whether this button should use the action style (more transparent).
+  final bool isAction;
 
   /// Whether the button should be perfectly round (circular).
   final bool isRound;
@@ -42,6 +58,15 @@ class MyButton extends StatelessWidget {
     final radius = isRound
         ? null
         : BorderRadius.circular(borderRadius ?? ConstLayout.radiusM);
+
+    final Color baseTopColor = const Color.fromARGB(255, 40, 80, 40);
+    final Color baseBottomColor = const Color.fromARGB(255, 10, 20, 10);
+    final Color topColor = isAction
+        ? const Color.fromARGB(100, 5, 10, 5)
+        : baseTopColor;
+    final Color bottomColor = isAction
+        ? const Color.fromARGB(100, 0, 0, 0)
+        : baseBottomColor.withAlpha(ConstLayout.alphaL);
 
     return Padding(
       padding: padding,
@@ -63,20 +88,7 @@ class MyButton extends StatelessWidget {
                   gradient: LinearGradient(
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
-                    colors: [
-                      const Color.fromARGB(
-                        255,
-                        40,
-                        80,
-                        40,
-                      ), //.withAlpha(ConstLayout.alphaM),
-                      const Color.fromARGB(
-                        255,
-                        10,
-                        20,
-                        10,
-                      ).withAlpha(ConstLayout.alphaL),
-                    ],
+                    colors: [topColor, bottomColor],
                   ),
                   border: Border.all(
                     color: Colors.white.withAlpha(ConstLayout.alphaM),

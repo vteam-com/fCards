@@ -9,6 +9,7 @@ import 'package:cards/widgets/buttons/my_button_rectangle.dart';
 import 'package:cards/widgets/helpers/screen.dart';
 import 'package:cards/widgets/helpers/step_indicator.dart';
 import 'package:cards/widgets/helpers/table_widget.dart';
+import 'package:cards/widgets/helpers/wizard_footer.dart';
 import 'package:cards/gen/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
@@ -113,29 +114,25 @@ class _StartGameWizardScreenState extends State<StartGameWizardScreen> {
   Widget _buildActions() {
     final AppLocalizations localizations = AppLocalizations.of(context);
     if (_currentStep == 0) {
-      return Align(
-        alignment: Alignment.centerRight,
-        child: MyButtonRectangle(
-          onTap: _onNextPressed,
-          child: Text(localizations.next),
-        ),
+      return WizardFooter(
+        backLabel: localizations.back,
+        onBack: null,
+        primaryLabel: localizations.next,
+        isPrimaryEnabled: true,
+        onForward: _onNextPressed,
       );
     }
 
-    return Align(
-      alignment: Alignment.centerLeft,
-      child: MyButtonRectangle(
-        onTap: () {
-          setState(() {
-            _currentStep--;
-          });
-        },
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          spacing: ConstLayout.sizeM,
-          children: [const Icon(Icons.arrow_back), Text(localizations.back)],
-        ),
-      ),
+    return WizardFooter(
+      backLabel: localizations.back,
+      onBack: () {
+        setState(() {
+          _currentStep--;
+        });
+      },
+      primaryLabel: localizations.next,
+      isPrimaryEnabled: false,
+      onForward: null,
     );
   }
 

@@ -118,7 +118,7 @@
     <g id='Node_'>
       <rect x="4" y="4" width="4402" height="3582" rx="2" ry="2" class="nodeFolder"/>
       <g id='Node_lib'>
-        <rect x="1106.5" y="339" width="2197" height="3212" rx="2" ry="2" class="nodeFolder"/>
+        <rect x="956.5" y="339" width="2497" height="3212" rx="2" ry="2" class="nodeFolder"/>
         <g id='Node_main.dart'>
           <rect x="2059" y="374" width="292" height="72" rx="8" ry="8" class="nodeFile"/>
         </g>
@@ -159,7 +159,7 @@
           </g>
         </g>
         <g id='Node_widgets'>
-          <rect x="1124" y="994" width="2162" height="1222" rx="2" ry="2" class="nodeFolder"/>
+          <rect x="974" y="994" width="2462" height="1222" rx="2" ry="2" class="nodeFolder"/>
           <g id='Node_player'>
             <rect x="1741.5" y="1029" width="927" height="302" rx="2" ry="2" class="nodeFolder"/>
             <g id='Node_player_zone_widget.dart'>
@@ -197,27 +197,30 @@
             </g>
           </g>
           <g id='Node_helpers'>
-            <rect x="1141.5" y="1729" width="2127" height="222" rx="2" ry="2" class="nodeFolder"/>
+            <rect x="991.5" y="1729" width="2427" height="222" rx="2" ry="2" class="nodeFolder"/>
             <g id='Node_screen.dart'>
-              <rect x="1159" y="1764" width="292" height="72" rx="8" ry="8" class="nodeFile"/>
+              <rect x="1009" y="1764" width="292" height="72" rx="8" ry="8" class="nodeFile"/>
             </g>
             <g id='Node_table_widget.dart'>
-              <rect x="1459" y="1764" width="292" height="72" rx="8" ry="8" class="nodeFile"/>
+              <rect x="1309" y="1764" width="292" height="72" rx="8" ry="8" class="nodeFile"/>
             </g>
             <g id='Node_dialog.dart'>
-              <rect x="1759" y="1764" width="292" height="72" rx="8" ry="8" class="nodeFile"/>
+              <rect x="1609" y="1764" width="292" height="72" rx="8" ry="8" class="nodeFile"/>
             </g>
             <g id='Node_input_keyboard.dart'>
-              <rect x="2059" y="1764" width="292" height="72" rx="8" ry="8" class="nodeFile"/>
+              <rect x="1909" y="1764" width="292" height="72" rx="8" ry="8" class="nodeFile"/>
+            </g>
+            <g id='Node_wizard_footer.dart'>
+              <rect x="2209" y="1764" width="292" height="72" rx="8" ry="8" class="nodeFile"/>
             </g>
             <g id='Node_date_importance.dart'>
-              <rect x="2359" y="1764" width="292" height="72" rx="8" ry="8" class="nodeFile"/>
+              <rect x="2509" y="1764" width="292" height="72" rx="8" ry="8" class="nodeFile"/>
             </g>
             <g id='Node_step_indicator.dart'>
-              <rect x="2659" y="1764" width="292" height="72" rx="8" ry="8" class="nodeFile"/>
+              <rect x="2809" y="1764" width="292" height="72" rx="8" ry="8" class="nodeFile"/>
             </g>
             <g id='Node_wiggle_widget.dart'>
-              <rect x="2959" y="1764" width="292" height="72" rx="8" ry="8" class="nodeFile"/>
+              <rect x="3109" y="1764" width="292" height="72" rx="8" ry="8" class="nodeFile"/>
             </g>
             <g id='Node_my_text.dart'>
               <rect x="1909" y="1844" width="292" height="72" rx="8" ry="8" class="nodeFile"/>
@@ -553,17 +556,17 @@ card_model.dart</title>
 ⬇
 constants_layout.dart</title>
       </path>
-      <path d="M2335 1510 C 2345 1645,2965 1645, 2975 1780" fill="none" class="line">
+      <path d="M2335 1510 C 2345 1645,3115 1645, 3125 1780" fill="none" class="line">
         <title>card_widget.dart
 ⬇
 wiggle_widget.dart</title>
       </path>
-      <path d="M2635 1820 C 2674 2415,1736 2415, 1775 3010" fill="none" class="line">
+      <path d="M2785 1820 C 2824 2415,1736 2415, 1775 3010" fill="none" class="line">
         <title>date_importance.dart
 ⬇
 constants_layout.dart</title>
       </path>
-      <path d="M2635 1820 C 2645 1840,1915 1840, 1925 1860" fill="none" class="line">
+      <path d="M2785 1820 C 2795 1840,1915 1840, 1925 1860" fill="none" class="line">
         <title>date_importance.dart
 ⬇
 my_text.dart</title>
@@ -598,12 +601,12 @@ constants_card_value.dart</title>
 ⬇
 game_styles.dart</title>
       </path>
-      <path d="M2035 1820 C 2074 2415,1736 2415, 1775 3010" fill="none" class="line">
+      <path d="M1885 1820 C 1924 2415,1736 2415, 1775 3010" fill="none" class="line">
         <title>dialog.dart
 ⬇
 constants_layout.dart</title>
       </path>
-      <path d="M2035 1820 C 2045 1915,1915 1915, 1925 2010" fill="none" class="line">
+      <path d="M1885 1820 C 1895 1915,1915 1915, 1925 2010" fill="none" class="line">
         <title>dialog.dart
 ⬇
 my_button_rectangle.dart</title>
@@ -688,7 +691,7 @@ backend_model.dart</title>
 ⬇
 constants_layout.dart</title>
       </path>
-      <path d="M2000 900 C 2029 1340,1746 1340, 1775 1780" fill="none" class="line">
+      <path d="M2000 900 C 2029 1340,1596 1340, 1625 1780" fill="none" class="line">
         <title>game_over_dialog.dart
 ⬇
 dialog.dart</title>
@@ -728,7 +731,7 @@ game_over_dialog.dart</title>
 ⬇
 player_zone_widget.dart</title>
       </path>
-      <path d="M2000 820 C 2032 1300,1143 1300, 1175 1780" fill="none" class="line">
+      <path d="M2000 820 C 2032 1300,993 1300, 1025 1780" fill="none" class="line">
         <title>game_screen.dart
 ⬇
 screen.dart</title>
@@ -838,7 +841,7 @@ constants_layout.dart</title>
 ⬇
 golf_score_model.dart</title>
       </path>
-      <path d="M2485 580 C 2525 1180,2035 1180, 2075 1780" fill="none" class="line">
+      <path d="M2485 580 C 2525 1180,1885 1180, 1925 1780" fill="none" class="line">
         <title>golf_score_screen.dart
 ⬇
 input_keyboard.dart</title>
@@ -853,7 +856,7 @@ my_button_round.dart</title>
 ⬇
 player_header.dart</title>
       </path>
-      <path d="M2485 580 C 2525 1180,1135 1180, 1175 1780" fill="none" class="line">
+      <path d="M2485 580 C 2525 1180,985 1180, 1025 1780" fill="none" class="line">
         <title>golf_score_screen.dart
 ⬇
 screen.dart</title>
@@ -863,17 +866,17 @@ screen.dart</title>
 ⬇
 card_model.dart</title>
       </path>
-      <path d="M4337.5 165 C 4390.5 972,2022 973, 2075 1780" fill="none" class="line">
+      <path d="M4337.5 165 C 4390.5 972,1872 973, 1925 1780" fill="none" class="line">
         <title>input_keyboard_test.dart
 ⬇
 input_keyboard.dart</title>
       </path>
-      <path d="M2335 1820 C 2374 2415,1736 2415, 1775 3010" fill="none" class="line">
+      <path d="M2185 1820 C 2224 2415,1736 2415, 1775 3010" fill="none" class="line">
         <title>input_keyboard.dart
 ⬇
 constants_layout.dart</title>
       </path>
-      <path d="M2335 1820 C 2345 1915,2215 1915, 2225 2010" fill="none" class="line">
+      <path d="M2185 1820 C 2195 1915,2215 1915, 2225 2010" fill="none" class="line">
         <title>input_keyboard.dart
 ⬇
 my_button_round.dart</title>
@@ -928,20 +931,25 @@ my_button_rectangle.dart</title>
 ⬇
 players_in_room_widget.dart</title>
       </path>
-      <path d="M1850 740 C 1884 1260,1141 1260, 1175 1780" fill="none" class="line">
+      <path d="M1850 740 C 1884 1260,991 1260, 1025 1780" fill="none" class="line">
         <title>join_game_screen.dart
 ⬇
 screen.dart</title>
       </path>
-      <path d="M1850 740 C 1884 1260,2641 1260, 2675 1780" fill="none" class="line">
+      <path d="M1850 740 C 1884 1260,2791 1260, 2825 1780" fill="none" class="line">
         <title>join_game_screen.dart
 ⬇
 step_indicator.dart</title>
       </path>
-      <path d="M1850 740 C 1884 1260,1441 1260, 1475 1780" fill="none" class="line">
+      <path d="M1850 740 C 1884 1260,1291 1260, 1325 1780" fill="none" class="line">
         <title>join_game_screen.dart
 ⬇
 table_widget.dart</title>
+      </path>
+      <path d="M1850 740 C 1884 1260,2191 1260, 2225 1780" fill="none" class="line">
+        <title>join_game_screen.dart
+⬇
+wizard_footer.dart</title>
       </path>
       <path d="M2335 430 C 2418 1680,1392 1680, 1475 2930" fill="none" class="line">
         <title>main.dart
@@ -1033,12 +1041,12 @@ constants_card_value.dart</title>
 ⬇
 constants_layout.dart</title>
       </path>
-      <path d="M2185 1200 C 2204 1490,2356 1490, 2375 1780" fill="none" class="line">
+      <path d="M2185 1200 C 2204 1490,2506 1490, 2525 1780" fill="none" class="line">
         <title>player_header_widget.dart
 ⬇
 date_importance.dart</title>
       </path>
-      <path d="M2185 1200 C 2204 1490,1756 1490, 1775 1780" fill="none" class="line">
+      <path d="M2185 1200 C 2204 1490,1606 1490, 1625 1780" fill="none" class="line">
         <title>player_header_widget.dart
 ⬇
 dialog.dart</title>
@@ -1153,27 +1161,27 @@ constants_layout.dart</title>
 ⬇
 my_text.dart</title>
       </path>
-      <path d="M1435 1820 C 1474 2415,2336 2415, 2375 3010" fill="none" class="line">
+      <path d="M1285 1820 C 1324 2415,2336 2415, 2375 3010" fill="none" class="line">
         <title>screen.dart
 ⬇
 constants_animation.dart</title>
       </path>
-      <path d="M1435 1820 C 1474 2415,1736 2415, 1775 3010" fill="none" class="line">
+      <path d="M1285 1820 C 1324 2415,1736 2415, 1775 3010" fill="none" class="line">
         <title>screen.dart
 ⬇
 constants_layout.dart</title>
       </path>
-      <path d="M1435 1820 C 1472 2375,2338 2375, 2375 2930" fill="none" class="line">
+      <path d="M1285 1820 C 1322 2375,2338 2375, 2375 2930" fill="none" class="line">
         <title>screen.dart
 ⬇
 locale_controller.dart</title>
       </path>
-      <path d="M1435 1820 C 1488 2622,1572 2623, 1625 3425" fill="none" class="line">
+      <path d="M1285 1820 C 1338 2622,1572 2623, 1625 3425" fill="none" class="line">
         <title>screen.dart
 ⬇
 logger.dart</title>
       </path>
-      <path d="M1435 1820 C 1445 1915,1915 1915, 1925 2010" fill="none" class="line">
+      <path d="M1285 1820 C 1295 1915,1915 1915, 1925 2010" fill="none" class="line">
         <title>screen.dart
 ⬇
 my_button_rectangle.dart</title>
@@ -1258,12 +1266,12 @@ my_button_rectangle.dart</title>
 ⬇
 players_in_room_widget.dart</title>
       </path>
-      <path d="M2000 660 C 2037 1220,1138 1220, 1175 1780" fill="none" class="line">
+      <path d="M2000 660 C 2037 1220,988 1220, 1025 1780" fill="none" class="line">
         <title>start_game_screen.dart
 ⬇
 screen.dart</title>
       </path>
-      <path d="M2000 660 C 2037 1220,1438 1220, 1475 1780" fill="none" class="line">
+      <path d="M2000 660 C 2037 1220,1288 1220, 1325 1780" fill="none" class="line">
         <title>start_game_screen.dart
 ⬇
 table_widget.dart</title>
@@ -1303,7 +1311,7 @@ logger.dart</title>
 ⬇
 my_button_rectangle.dart</title>
       </path>
-      <path d="M2000 580 C 2040 1180,1135 1180, 1175 1780" fill="none" class="line">
+      <path d="M2000 580 C 2040 1180,985 1180, 1025 1780" fill="none" class="line">
         <title>start_game_wizard_screen.dart
 ⬇
 screen.dart</title>
@@ -1313,15 +1321,20 @@ screen.dart</title>
 ⬇
 start_game_screen.dart</title>
       </path>
-      <path d="M2000 580 C 2040 1180,2635 1180, 2675 1780" fill="none" class="line">
+      <path d="M2000 580 C 2040 1180,2785 1180, 2825 1780" fill="none" class="line">
         <title>start_game_wizard_screen.dart
 ⬇
 step_indicator.dart</title>
       </path>
-      <path d="M2000 580 C 2040 1180,1435 1180, 1475 1780" fill="none" class="line">
+      <path d="M2000 580 C 2040 1180,1285 1180, 1325 1780" fill="none" class="line">
         <title>start_game_wizard_screen.dart
 ⬇
 table_widget.dart</title>
+      </path>
+      <path d="M2000 580 C 2040 1180,2185 1180, 2225 1780" fill="none" class="line">
+        <title>start_game_wizard_screen.dart
+⬇
+wizard_footer.dart</title>
       </path>
       <path d="M2335 1280 C 2392 2145,1718 2145, 1775 3010" fill="none" class="line">
         <title>status_picker.dart
@@ -1338,22 +1351,22 @@ my_text.dart</title>
 ⬇
 player_status.dart</title>
       </path>
-      <path d="M2935 1820 C 2974 2415,1736 2415, 1775 3010" fill="none" class="line">
+      <path d="M3085 1820 C 3124 2415,1736 2415, 1775 3010" fill="none" class="line">
         <title>step_indicator.dart
 ⬇
 constants_layout.dart</title>
       </path>
-      <path d="M1735 1820 C 1772 2375,1438 2375, 1475 2930" fill="none" class="line">
+      <path d="M1585 1820 C 1622 2375,1438 2375, 1475 2930" fill="none" class="line">
         <title>table_widget.dart
 ⬇
 app_theme.dart</title>
       </path>
-      <path d="M1735 1820 C 1774 2415,1736 2415, 1775 3010" fill="none" class="line">
+      <path d="M1585 1820 C 1624 2415,1736 2415, 1775 3010" fill="none" class="line">
         <title>table_widget.dart
 ⬇
 constants_layout.dart</title>
       </path>
-      <path d="M1735 1820 C 1745 1840,2215 1840, 2225 1860" fill="none" class="line">
+      <path d="M1585 1820 C 1595 1840,2215 1840, 2225 1860" fill="none" class="line">
         <title>table_widget.dart
 ⬇
 edit_box.dart</title>
@@ -1388,20 +1401,30 @@ logger.dart</title>
 ⬇
 my_button_rectangle.dart</title>
       </path>
-      <path d="M2820 580 C 2860 1180,1135 1180, 1175 1780" fill="none" class="line">
+      <path d="M2820 580 C 2860 1180,985 1180, 1025 1780" fill="none" class="line">
         <title>welcome_screen.dart
 ⬇
 screen.dart</title>
       </path>
-      <path d="M3235 1820 C 3274 2415,2336 2415, 2375 3010" fill="none" class="line">
+      <path d="M3385 1820 C 3424 2415,2336 2415, 2375 3010" fill="none" class="line">
         <title>wiggle_widget.dart
 ⬇
 constants_animation.dart</title>
       </path>
-      <path d="M3235 1820 C 3274 2415,1736 2415, 1775 3010" fill="none" class="line">
+      <path d="M3385 1820 C 3424 2415,1736 2415, 1775 3010" fill="none" class="line">
         <title>wiggle_widget.dart
 ⬇
 constants_layout.dart</title>
+      </path>
+      <path d="M2485 1820 C 2524 2415,1736 2415, 1775 3010" fill="none" class="line">
+        <title>wizard_footer.dart
+⬇
+constants_layout.dart</title>
+      </path>
+      <path d="M2485 1820 C 2495 1915,1915 1915, 1925 2010" fill="none" class="line">
+        <title>wizard_footer.dart
+⬇
+my_button_rectangle.dart</title>
       </path>
     </g>
     <g id='Counters_'>
@@ -1430,7 +1453,7 @@ constants_layout.dart</title>
             <g id='Counters_start_game_wizard_screen.dart'>
               <g>
                 <circle cx="2000" cy="580" r="10" fill="green"/>
-                <text x="2000" y="580" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">11</text>
+                <text x="2000" y="580" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">12</text>
                 <title>start_game_wizard_screen.dart
 ⬇
 1 /lib/models/app/constants_layout.dart
@@ -1443,7 +1466,8 @@ constants_layout.dart</title>
 8 /lib/widgets/buttons/my_button_rectangle.dart
 9 /lib/widgets/helpers/screen.dart
 10 /lib/widgets/helpers/step_indicator.dart
-11 /lib/widgets/helpers/table_widget.dart</title>
+11 /lib/widgets/helpers/table_widget.dart
+12 /lib/widgets/helpers/wizard_footer.dart</title>
               </g>
               <g>
                 <circle cx="1740" cy="540" r="10" fill="blue"/>
@@ -1487,7 +1511,7 @@ start_game_screen.dart</title>
             <g id='Counters_join_game_screen.dart'>
               <g>
                 <circle cx="1850" cy="740" r="10" fill="green"/>
-                <text x="1850" y="740" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">13</text>
+                <text x="1850" y="740" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">14</text>
                 <title>join_game_screen.dart
 ⬇
 1 /lib/models/app/constants_layout.dart
@@ -1502,7 +1526,8 @@ start_game_screen.dart</title>
 10 /lib/widgets/helpers/screen.dart
 11 /lib/widgets/helpers/step_indicator.dart
 12 /lib/widgets/helpers/table_widget.dart
-13 /lib/widgets/player/players_in_room_widget.dart</title>
+13 /lib/widgets/helpers/wizard_footer.dart
+14 /lib/widgets/player/players_in_room_widget.dart</title>
               </g>
               <g>
                 <circle cx="1590" cy="700" r="10" fill="blue"/>
@@ -1838,8 +1863,8 @@ card_face_french_widget.dart</title>
           <g id='Counters_helpers'>
             <g id='Counters_screen.dart'>
               <g>
-                <circle cx="1435" cy="1820" r="10" fill="green"/>
-                <text x="1435" y="1820" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">5</text>
+                <circle cx="1285" cy="1820" r="10" fill="green"/>
+                <text x="1285" y="1820" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">5</text>
                 <title>screen.dart
 ⬇
 1 /lib/models/app/constants_animation.dart
@@ -1849,8 +1874,8 @@ card_face_french_widget.dart</title>
 5 /lib/widgets/buttons/my_button_rectangle.dart</title>
               </g>
               <g>
-                <circle cx="1175" cy="1780" r="10" fill="blue"/>
-                <text x="1175" y="1780" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">6</text>
+                <circle cx="1025" cy="1780" r="10" fill="blue"/>
+                <text x="1025" y="1780" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">6</text>
                 <title>1 /lib/screens/game/game_screen.dart
 2 /lib/screens/game/join_game_screen.dart
 3 /lib/screens/game/start_game_screen.dart
@@ -1863,8 +1888,8 @@ screen.dart</title>
             </g>
             <g id='Counters_table_widget.dart'>
               <g>
-                <circle cx="1735" cy="1820" r="10" fill="green"/>
-                <text x="1735" y="1820" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">3</text>
+                <circle cx="1585" cy="1820" r="10" fill="green"/>
+                <text x="1585" y="1820" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">3</text>
                 <title>table_widget.dart
 ⬇
 1 /lib/models/app/app_theme.dart
@@ -1872,8 +1897,8 @@ screen.dart</title>
 3 /lib/widgets/helpers/edit_box.dart</title>
               </g>
               <g>
-                <circle cx="1475" cy="1780" r="10" fill="blue"/>
-                <text x="1475" y="1780" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">3</text>
+                <circle cx="1325" cy="1780" r="10" fill="blue"/>
+                <text x="1325" y="1780" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">3</text>
                 <title>1 /lib/screens/game/join_game_screen.dart
 2 /lib/screens/game/start_game_screen.dart
 3 /lib/screens/game/start_game_wizard_screen.dart
@@ -1883,16 +1908,16 @@ table_widget.dart</title>
             </g>
             <g id='Counters_dialog.dart'>
               <g>
-                <circle cx="2035" cy="1820" r="10" fill="green"/>
-                <text x="2035" y="1820" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">2</text>
+                <circle cx="1885" cy="1820" r="10" fill="green"/>
+                <text x="1885" y="1820" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">2</text>
                 <title>dialog.dart
 ⬇
 1 /lib/models/app/constants_layout.dart
 2 /lib/widgets/buttons/my_button_rectangle.dart</title>
               </g>
               <g>
-                <circle cx="1775" cy="1780" r="10" fill="blue"/>
-                <text x="1775" y="1780" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">2</text>
+                <circle cx="1625" cy="1780" r="10" fill="blue"/>
+                <text x="1625" y="1780" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">2</text>
                 <title>1 /lib/screens/game/game_over_dialog.dart
 2 /lib/widgets/player/player_header_widget.dart
 ⬇
@@ -1901,34 +1926,52 @@ dialog.dart</title>
             </g>
             <g id='Counters_input_keyboard.dart'>
               <g>
-                <circle cx="2335" cy="1820" r="10" fill="green"/>
-                <text x="2335" y="1820" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">2</text>
+                <circle cx="2185" cy="1820" r="10" fill="green"/>
+                <text x="2185" y="1820" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">2</text>
                 <title>input_keyboard.dart
 ⬇
 1 /lib/models/app/constants_layout.dart
 2 /lib/widgets/buttons/my_button_round.dart</title>
               </g>
               <g>
-                <circle cx="2075" cy="1780" r="10" fill="blue"/>
-                <text x="2075" y="1780" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">2</text>
+                <circle cx="1925" cy="1780" r="10" fill="blue"/>
+                <text x="1925" y="1780" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">2</text>
                 <title>1 /lib/screens/keepscore/golf_score_screen.dart
 2 /test/keepscore/input_keyboard_test.dart
 ⬇
 input_keyboard.dart</title>
               </g>
             </g>
+            <g id='Counters_wizard_footer.dart'>
+              <g>
+                <circle cx="2485" cy="1820" r="10" fill="green"/>
+                <text x="2485" y="1820" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">2</text>
+                <title>wizard_footer.dart
+⬇
+1 /lib/models/app/constants_layout.dart
+2 /lib/widgets/buttons/my_button_rectangle.dart</title>
+              </g>
+              <g>
+                <circle cx="2225" cy="1780" r="10" fill="blue"/>
+                <text x="2225" y="1780" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">2</text>
+                <title>1 /lib/screens/game/join_game_screen.dart
+2 /lib/screens/game/start_game_wizard_screen.dart
+⬇
+wizard_footer.dart</title>
+              </g>
+            </g>
             <g id='Counters_date_importance.dart'>
               <g>
-                <circle cx="2635" cy="1820" r="10" fill="green"/>
-                <text x="2635" y="1820" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">2</text>
+                <circle cx="2785" cy="1820" r="10" fill="green"/>
+                <text x="2785" y="1820" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">2</text>
                 <title>date_importance.dart
 ⬇
 1 /lib/models/app/constants_layout.dart
 2 /lib/widgets/helpers/my_text.dart</title>
               </g>
               <g>
-                <circle cx="2375" cy="1780" r="10" fill="blue"/>
-                <text x="2375" y="1780" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">1</text>
+                <circle cx="2525" cy="1780" r="10" fill="blue"/>
+                <text x="2525" y="1780" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">1</text>
                 <title>1 /lib/widgets/player/player_header_widget.dart
 ⬇
 date_importance.dart</title>
@@ -1936,15 +1979,15 @@ date_importance.dart</title>
             </g>
             <g id='Counters_step_indicator.dart'>
               <g>
-                <circle cx="2935" cy="1820" r="10" fill="green"/>
-                <text x="2935" y="1820" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">1</text>
+                <circle cx="3085" cy="1820" r="10" fill="green"/>
+                <text x="3085" y="1820" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">1</text>
                 <title>step_indicator.dart
 ⬇
 1 /lib/models/app/constants_layout.dart</title>
               </g>
               <g>
-                <circle cx="2675" cy="1780" r="10" fill="blue"/>
-                <text x="2675" y="1780" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">2</text>
+                <circle cx="2825" cy="1780" r="10" fill="blue"/>
+                <text x="2825" y="1780" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">2</text>
                 <title>1 /lib/screens/game/join_game_screen.dart
 2 /lib/screens/game/start_game_wizard_screen.dart
 ⬇
@@ -1953,16 +1996,16 @@ step_indicator.dart</title>
             </g>
             <g id='Counters_wiggle_widget.dart'>
               <g>
-                <circle cx="3235" cy="1820" r="10" fill="green"/>
-                <text x="3235" y="1820" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">2</text>
+                <circle cx="3385" cy="1820" r="10" fill="green"/>
+                <text x="3385" y="1820" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">2</text>
                 <title>wiggle_widget.dart
 ⬇
 1 /lib/models/app/constants_animation.dart
 2 /lib/models/app/constants_layout.dart</title>
               </g>
               <g>
-                <circle cx="2975" cy="1780" r="10" fill="blue"/>
-                <text x="2975" y="1780" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">1</text>
+                <circle cx="3125" cy="1780" r="10" fill="blue"/>
+                <text x="3125" y="1780" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">1</text>
                 <title>1 /lib/widgets/cards/card_widget.dart
 ⬇
 wiggle_widget.dart</title>
@@ -2016,14 +2059,15 @@ edit_box.dart</title>
               </g>
               <g>
                 <circle cx="1925" cy="2010" r="10" fill="blue"/>
-                <text x="1925" y="2010" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">7</text>
+                <text x="1925" y="2010" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">8</text>
                 <title>1 /lib/screens/game/join_game_screen.dart
 2 /lib/screens/game/start_game_screen.dart
 3 /lib/screens/game/start_game_wizard_screen.dart
 4 /lib/screens/welcome/welcome_screen.dart
 5 /lib/widgets/helpers/dialog.dart
 6 /lib/widgets/helpers/screen.dart
-7 /lib/widgets/player/player_header.dart
+7 /lib/widgets/helpers/wizard_footer.dart
+8 /lib/widgets/player/player_header.dart
 ⬇
 my_button_rectangle.dart</title>
               </g>
@@ -2307,7 +2351,7 @@ locale_controller.dart</title>
             <g id='Counters_constants_layout.dart'>
               <g>
                 <circle cx="1775" cy="3010" r="10" fill="blue"/>
-                <text x="1775" y="3010" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">30</text>
+                <text x="1775" y="3010" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">31</text>
                 <title>1 /lib/models/app/app_theme.dart
 2 /lib/screens/game/game_over_dialog.dart
 3 /lib/screens/game/game_screen.dart
@@ -2332,12 +2376,13 @@ locale_controller.dart</title>
 22 /lib/widgets/helpers/step_indicator.dart
 23 /lib/widgets/helpers/table_widget.dart
 24 /lib/widgets/helpers/wiggle_widget.dart
-25 /lib/widgets/player/player_header.dart
-26 /lib/widgets/player/player_header_widget.dart
-27 /lib/widgets/player/player_zone_cta_widget.dart
-28 /lib/widgets/player/player_zone_widget.dart
-29 /lib/widgets/player/players_in_room_widget.dart
-30 /lib/widgets/player/status_picker.dart
+25 /lib/widgets/helpers/wizard_footer.dart
+26 /lib/widgets/player/player_header.dart
+27 /lib/widgets/player/player_header_widget.dart
+28 /lib/widgets/player/player_zone_cta_widget.dart
+29 /lib/widgets/player/player_zone_widget.dart
+30 /lib/widgets/player/players_in_room_widget.dart
+31 /lib/widgets/player/status_picker.dart
 ⬇
 constants_layout.dart</title>
               </g>
@@ -2645,19 +2690,19 @@ backend_json_data.dart</title>
     <g id='Labels_'>
       <text class="folderName" x="10" y="10">
       </text>
-      <text x="10" y="3580" fill='black' font-size="75%">21 folders, 72 files</text>
+      <text x="10" y="3580" fill='black' font-size="75%">21 folders, 73 files</text>
       <g id='Labels_lib'>
-        <text class="folderName" x="1112.5" y="345">lib</text>
-        <text x="1112.5" y="3545" fill='black' font-size="75%">15 folders, 56 files, 27 incoming, path: ...///</text>
+        <text class="folderName" x="962.5" y="345">lib</text>
+        <text x="962.5" y="3545" fill='black' font-size="75%">15 folders, 57 files, 27 incoming, path: ...///</text>
         <g id='Labels_main.dart'>
           <text class="nodeName" x="2205" y="410" font-size="120%">main.dart</text>
         </g>
         <g id='Labels_screens'>
           <text class="folderName" x="1545" y="460">screens</text>
-          <text x="1545" y="980" fill='black' font-size="75%">3 folders, 8 files, 6 incoming, 65 outgoing, path: ...//lib/</text>
+          <text x="1545" y="980" fill='black' font-size="75%">3 folders, 8 files, 6 incoming, 67 outgoing, path: ...//lib/</text>
           <g id='Labels_game'>
             <text class="folderName" x="1562.5" y="495">game</text>
-            <text x="1562.5" y="945" fill='black' font-size="75%">6 files, 4 incoming, 51 outgoing, path: ...//lib/screens/</text>
+            <text x="1562.5" y="945" fill='black' font-size="75%">6 files, 4 incoming, 53 outgoing, path: ...//lib/screens/</text>
             <g id='Labels_start_game_wizard_screen.dart'>
               <text class="nodeName" x="1870" y="560" font-size="90%">start_game_wizard_screen.dart</text>
             </g>
@@ -2693,8 +2738,8 @@ backend_json_data.dart</title>
           </g>
         </g>
         <g id='Labels_widgets'>
-          <text class="folderName" x="1130" y="1000">widgets</text>
-          <text x="1130" y="2210" fill='black' font-size="75%">4 folders, 22 files, 30 incoming, 41 outgoing, path: ...//lib/</text>
+          <text class="folderName" x="980" y="1000">widgets</text>
+          <text x="980" y="2210" fill='black' font-size="75%">4 folders, 23 files, 32 incoming, 42 outgoing, path: ...//lib/</text>
           <g id='Labels_player'>
             <text class="folderName" x="1747.5" y="1035">player</text>
             <text x="1747.5" y="1325" fill='black' font-size="75%">6 files, 4 incoming, 21 outgoing, path: ...//lib/widgets/</text>
@@ -2734,28 +2779,31 @@ backend_json_data.dart</title>
             </g>
           </g>
           <g id='Labels_helpers'>
-            <text class="folderName" x="1147.5" y="1735">helpers</text>
-            <text x="1147.5" y="1945" fill='black' font-size="75%">9 files, 26 incoming, 17 outgoing, path: ...//lib/widgets/</text>
+            <text class="folderName" x="997.5" y="1735">helpers</text>
+            <text x="997.5" y="1945" fill='black' font-size="75%">10 files, 28 incoming, 19 outgoing, path: ...//lib/widgets/</text>
             <g id='Labels_screen.dart'>
-              <text class="nodeName" x="1305" y="1800" font-size="120%">screen.dart</text>
+              <text class="nodeName" x="1155" y="1800" font-size="120%">screen.dart</text>
             </g>
             <g id='Labels_table_widget.dart'>
-              <text class="nodeName" x="1605" y="1800" font-size="120%">table_widget.dart</text>
+              <text class="nodeName" x="1455" y="1800" font-size="120%">table_widget.dart</text>
             </g>
             <g id='Labels_dialog.dart'>
-              <text class="nodeName" x="1905" y="1800" font-size="120%">dialog.dart</text>
+              <text class="nodeName" x="1755" y="1800" font-size="120%">dialog.dart</text>
             </g>
             <g id='Labels_input_keyboard.dart'>
-              <text class="nodeName" x="2205" y="1800" font-size="120%">input_keyboard.dart</text>
+              <text class="nodeName" x="2055" y="1800" font-size="120%">input_keyboard.dart</text>
+            </g>
+            <g id='Labels_wizard_footer.dart'>
+              <text class="nodeName" x="2355" y="1800" font-size="120%">wizard_footer.dart</text>
             </g>
             <g id='Labels_date_importance.dart'>
-              <text class="nodeName" x="2505" y="1800" font-size="120%">date_importance.dart</text>
+              <text class="nodeName" x="2655" y="1800" font-size="120%">date_importance.dart</text>
             </g>
             <g id='Labels_step_indicator.dart'>
-              <text class="nodeName" x="2805" y="1800" font-size="120%">step_indicator.dart</text>
+              <text class="nodeName" x="2955" y="1800" font-size="120%">step_indicator.dart</text>
             </g>
             <g id='Labels_wiggle_widget.dart'>
-              <text class="nodeName" x="3105" y="1800" font-size="120%">wiggle_widget.dart</text>
+              <text class="nodeName" x="3255" y="1800" font-size="120%">wiggle_widget.dart</text>
             </g>
             <g id='Labels_my_text.dart'>
               <text class="nodeName" x="2055" y="1880" font-size="120%">my_text.dart</text>
@@ -2766,7 +2814,7 @@ backend_json_data.dart</title>
           </g>
           <g id='Labels_buttons'>
             <text class="folderName" x="1897.5" y="1965">buttons</text>
-            <text x="1897.5" y="2175" fill='black' font-size="75%">3 files, 9 incoming, 3 outgoing, path: ...//lib/widgets/</text>
+            <text x="1897.5" y="2175" fill='black' font-size="75%">3 files, 10 incoming, 3 outgoing, path: ...//lib/widgets/</text>
             <g id='Labels_my_button_rectangle.dart'>
               <text class="nodeName" x="2055" y="2030" font-size="120%">my_button_rectangle.dart</text>
             </g>
@@ -2780,7 +2828,7 @@ backend_json_data.dart</title>
         </g>
         <g id='Labels_models'>
           <text class="folderName" x="1430" y="2230">models</text>
-          <text x="1430" y="3360" fill='black' font-size="75%">4 folders, 21 files, 100 incoming, 2 outgoing, path: ...//lib/</text>
+          <text x="1430" y="3360" fill='black' font-size="75%">4 folders, 21 files, 101 incoming, 2 outgoing, path: ...//lib/</text>
           <g id='Labels_game'>
             <text class="folderName" x="1747.5" y="2265">game</text>
             <text x="1747.5" y="2635" fill='black' font-size="75%">7 files, 36 incoming, 10 outgoing, path: ...//lib/models/</text>
@@ -2818,7 +2866,7 @@ backend_json_data.dart</title>
           </g>
           <g id='Labels_app'>
             <text class="folderName" x="1447.5" y="2885">app</text>
-            <text x="1447.5" y="3095" fill='black' font-size="75%">8 files, 49 incoming, path: ...//lib/models/</text>
+            <text x="1447.5" y="3095" fill='black' font-size="75%">8 files, 50 incoming, path: ...//lib/models/</text>
             <g id='Labels_app_theme.dart'>
               <text class="nodeName" x="1605" y="2950" font-size="120%">app_theme.dart</text>
             </g>

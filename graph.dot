@@ -69,6 +69,7 @@ digraph "" {
   "/lib/widgets/helpers/table_widget.dart" [label="table_widget"];
   "/lib/widgets/helpers/edit_box.dart" [label="edit_box"];
   "/lib/widgets/helpers/step_indicator.dart" [label="step_indicator"];
+  "/lib/widgets/helpers/wizard_footer.dart" [label="wizard_footer"];
   "/lib/widgets/helpers/screen.dart" [label="screen"];
   "/lib/widgets/helpers/my_text.dart" [label="my_text"];
   "/lib/widgets/player/player_zone_cta_widget.dart" [label="player_zone_cta_widget"];
@@ -209,6 +210,7 @@ digraph "" {
           "/lib/widgets/helpers/table_widget.dart";
           "/lib/widgets/helpers/edit_box.dart";
           "/lib/widgets/helpers/step_indicator.dart";
+          "/lib/widgets/helpers/wizard_footer.dart";
           "/lib/widgets/helpers/screen.dart";
           "/lib/widgets/helpers/my_text.dart";
         }
@@ -297,6 +299,7 @@ digraph "" {
   "/lib/screens/game/join_game_screen.dart" -> "/lib/widgets/helpers/table_widget.dart";
   "/lib/screens/game/join_game_screen.dart" -> "/lib/widgets/helpers/edit_box.dart";
   "/lib/screens/game/join_game_screen.dart" -> "/lib/widgets/helpers/step_indicator.dart";
+  "/lib/screens/game/join_game_screen.dart" -> "/lib/widgets/helpers/wizard_footer.dart";
   "/lib/screens/game/join_game_screen.dart" -> "/lib/utils/logger.dart";
   "/lib/screens/game/join_game_screen.dart" -> "/lib/gen/l10n/app_localizations.dart";
   "/lib/screens/game/game_over_dialog.dart" -> "/lib/models/app/constants_layout.dart";
@@ -330,6 +333,7 @@ digraph "" {
   "/lib/screens/game/start_game_wizard_screen.dart" -> "/lib/widgets/helpers/screen.dart";
   "/lib/screens/game/start_game_wizard_screen.dart" -> "/lib/widgets/helpers/step_indicator.dart";
   "/lib/screens/game/start_game_wizard_screen.dart" -> "/lib/widgets/helpers/table_widget.dart";
+  "/lib/screens/game/start_game_wizard_screen.dart" -> "/lib/widgets/helpers/wizard_footer.dart";
   "/lib/screens/game/start_game_wizard_screen.dart" -> "/lib/gen/l10n/app_localizations.dart";
   "/lib/screens/game/start_game_screen.dart" -> "/lib/models/app/constants_layout.dart";
   "/lib/screens/game/start_game_screen.dart" -> "/lib/utils/logger.dart";
@@ -415,6 +419,8 @@ digraph "" {
   "/lib/widgets/helpers/edit_box.dart" -> "/lib/models/app/app_theme.dart";
   "/lib/widgets/helpers/edit_box.dart" -> "/lib/models/app/constants_layout.dart";
   "/lib/widgets/helpers/step_indicator.dart" -> "/lib/models/app/constants_layout.dart";
+  "/lib/widgets/helpers/wizard_footer.dart" -> "/lib/models/app/constants_layout.dart";
+  "/lib/widgets/helpers/wizard_footer.dart" -> "/lib/widgets/buttons/my_button_rectangle.dart";
   "/lib/widgets/helpers/screen.dart" -> "/lib/models/app/constants_layout.dart";
   "/lib/widgets/helpers/screen.dart" -> "/lib/models/app/constants_animation.dart";
   "/lib/widgets/helpers/screen.dart" -> "/lib/models/app/locale_controller.dart";

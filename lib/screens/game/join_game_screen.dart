@@ -11,6 +11,7 @@ import 'package:cards/widgets/player/players_in_room_widget.dart';
 import 'package:cards/widgets/helpers/table_widget.dart';
 import 'package:cards/widgets/helpers/edit_box.dart';
 import 'package:cards/widgets/helpers/step_indicator.dart';
+import 'package:cards/widgets/helpers/wizard_footer.dart';
 import 'package:cards/utils/logger.dart';
 import 'package:cards/gen/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
@@ -104,44 +105,24 @@ class JoinGameScreenState extends State<JoinGameScreen> {
                 child: SingleChildScrollView(child: _buildStepContent()),
               ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                if (_currentStep > 0)
-                  MyButtonRectangle(
-                    onTap: () => setState(() => _currentStep--),
-                    child: Row(
-                      mainAxisAlignment: .center,
-                      spacing: ConstLayout.sizeM,
-                      children: [
-                        const Icon(Icons.arrow_back),
-                        Text(localizations.back),
-                      ],
-                    ),
-                  )
-                else
-                  const SizedBox.shrink(),
-                if (!_isSingleCtaStep)
-                  MyButtonRectangle(
-                    onTap: _canProceed
-                        ? () {
-                            if (_currentStep <
-                                ConstLayout.joinGameStepCount - 1) {
-                              setState(() => _currentStep++);
-                            } else {
-                              _startGame(context);
-                            }
-                          }
-                        : null,
-                    child: Text(
-                      _currentStep < ConstLayout.joinGameStepCount - 1
-                          ? localizations.next
-                          : localizations.startGame,
-                    ),
-                  )
-                else
-                  const SizedBox.shrink(),
-              ],
+            WizardFooter(
+              backLabel: localizations.back,
+              onBack: _currentStep > 0
+                  ? () => setState(() => _currentStep--)
+                  : null,
+              primaryLabel: _currentStep < ConstLayout.joinGameStepCount - 1
+                  ? localizations.next
+                  : localizations.startGame,
+              isPrimaryEnabled: _canProceed,
+              onForward: !_isSingleCtaStep
+                  ? () {
+                      if (_currentStep < ConstLayout.joinGameStepCount - 1) {
+                        setState(() => _currentStep++);
+                      } else {
+                        _startGame(context);
+                      }
+                    }
+                  : null,
             ),
           ],
         ),

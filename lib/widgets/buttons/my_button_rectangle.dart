@@ -2,6 +2,7 @@
 
 import 'package:cards/models/app/constants_layout.dart';
 import 'package:cards/widgets/buttons/my_button.dart';
+import 'package:flutter/material.dart';
 
 /// A custom rounded rectangular glass-like button with blur and ripple effects.
 ///
@@ -26,4 +27,14 @@ class MyButtonRectangle extends MyButton {
     super.borderRadius = ConstLayout.radiusM,
     super.padding,
   });
+
+  const MyButtonRectangle.action({
+    super.key,
+    required super.onTap,
+    required super.child,
+    double super.height = ConstLayout.buttonHeight,
+    double super.width = ConstLayout.buttonWidth,
+    double super.borderRadius = ConstLayout.radiusL,
+    super.padding = EdgeInsets.zero,
+  }) : super.action();
 }
