@@ -1,6 +1,6 @@
+import 'package:cards/gen/l10n/app_localizations.dart';
 import 'package:cards/models/app/constants_layout.dart';
 import 'package:cards/widgets/buttons/my_button_rectangle.dart';
-import 'package:cards/gen/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 /// Displays a custom dialog with a title, content, and optional buttons.

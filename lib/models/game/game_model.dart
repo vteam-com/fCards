@@ -3,10 +3,8 @@
 
 import 'package:cards/models/game/backend_model.dart';
 import 'package:cards/models/game/deck_model.dart';
-
 import 'package:cards/models/game/game_history.dart';
 import 'package:cards/models/game/game_styles.dart';
-
 import 'package:cards/models/player/player_model.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/foundation.dart';

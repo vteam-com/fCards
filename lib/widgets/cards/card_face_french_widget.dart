@@ -1,8 +1,7 @@
 import 'package:cards/models/app/constants_card_value.dart';
 import 'package:cards/models/app/constants_layout.dart';
-import 'package:cards/widgets/helpers/my_text.dart';
 import 'package:cards/models/card/card_model.dart';
-
+import 'package:cards/widgets/helpers/my_text.dart';
 import 'package:flutter/material.dart';
 
 /// A widget that displays a playing card's face or back.

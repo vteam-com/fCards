@@ -1,7 +1,7 @@
+import 'package:cards/gen/l10n/app_localizations.dart';
 import 'package:cards/models/app/constants_layout.dart';
 import 'package:cards/models/game/game_model.dart';
 import 'package:cards/widgets/cards/card_pile_widget.dart';
-import 'package:cards/gen/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 ///

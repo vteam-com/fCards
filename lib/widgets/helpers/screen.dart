@@ -1,17 +1,17 @@
 import 'dart:math' as math;
 
-import 'package:cards/models/app/constants_layout.dart';
+import 'package:cards/gen/l10n/app_localizations.dart';
 import 'package:cards/models/app/constants_animation.dart';
+import 'package:cards/models/app/constants_layout.dart';
 import 'package:cards/models/app/locale_controller.dart';
 import 'package:cards/utils/logger.dart';
 import 'package:cards/widgets/buttons/my_button_rectangle.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:cards/gen/l10n/app_localizations.dart';
 
 /// Defines breakpoint constants for responsive design
 class ResponsiveBreakpoints {

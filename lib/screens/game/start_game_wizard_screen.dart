@@ -1,3 +1,4 @@
+import 'package:cards/gen/l10n/app_localizations.dart';
 import 'package:cards/models/app/constants_layout.dart';
 import 'package:cards/models/card/card_model.dart';
 import 'package:cards/models/game/backend_model.dart';
@@ -10,7 +11,6 @@ import 'package:cards/widgets/helpers/screen.dart';
 import 'package:cards/widgets/helpers/step_indicator.dart';
 import 'package:cards/widgets/helpers/table_widget.dart';
 import 'package:cards/widgets/helpers/wizard_footer.dart';
-import 'package:cards/gen/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 const int _wizardStepCount = 2;

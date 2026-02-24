@@ -1,8 +1,8 @@
+import 'package:cards/gen/l10n/app_localizations.dart';
 import 'package:cards/models/app/constants_layout.dart';
-import 'package:flutter/material.dart';
 import 'package:cards/widgets/buttons/my_button_rectangle.dart';
 import 'package:cards/widgets/helpers/edit_box.dart';
-import 'package:cards/gen/l10n/app_localizations.dart';
+import 'package:flutter/material.dart';
 
 /// Constants for player header widget dimensions and styling
 class PlayerHeaderConstants {
