@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.11.1
+- UI: Remove the progress numbering steps
+
 ## 1.11.0
 - Localize hardcoded strings across the app:
   - Start game wizard screen: grid dimensions display

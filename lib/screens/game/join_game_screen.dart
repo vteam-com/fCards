@@ -11,7 +11,6 @@ import 'package:cards/utils/logger.dart';
 import 'package:cards/widgets/buttons/my_button_rectangle.dart';
 import 'package:cards/widgets/helpers/edit_box.dart';
 import 'package:cards/widgets/helpers/screen.dart';
-import 'package:cards/widgets/helpers/step_indicator.dart';
 import 'package:cards/widgets/helpers/table_widget.dart';
 import 'package:cards/widgets/helpers/wizard_footer.dart';
 import 'package:cards/widgets/player/players_in_room_widget.dart';
@@ -97,10 +96,6 @@ class JoinGameScreenState extends State<JoinGameScreen> {
         padding: const EdgeInsets.all(ConstLayout.sizeM),
         child: Column(
           children: [
-            StepIndicator(
-              currentStep: _currentStep,
-              stepCount: ConstLayout.joinGameStepCount,
-            ),
             Expanded(
               child: Center(
                 child: SingleChildScrollView(child: _buildStepContent()),

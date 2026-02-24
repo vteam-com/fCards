@@ -8,12 +8,10 @@ import 'package:cards/screens/game/start_game_screen.dart';
 import 'package:cards/utils/logger.dart';
 import 'package:cards/widgets/buttons/my_button_rectangle.dart';
 import 'package:cards/widgets/helpers/screen.dart';
-import 'package:cards/widgets/helpers/step_indicator.dart';
 import 'package:cards/widgets/helpers/table_widget.dart';
 import 'package:cards/widgets/helpers/wizard_footer.dart';
 import 'package:flutter/material.dart';
 
-const int _wizardStepCount = 2;
 const int _wizardLastStep = 1;
 const String _roomSelectionPlaceholder = 'SELECT_ROOM';
 const double _miniCardWidth = ConstLayout.sizeM;
@@ -94,10 +92,6 @@ class _StartGameWizardScreenState extends State<StartGameWizardScreen> {
         padding: const EdgeInsets.all(ConstLayout.sizeM),
         child: Column(
           children: [
-            StepIndicator(
-              currentStep: _currentStep,
-              stepCount: _wizardStepCount,
-            ),
             Expanded(
               child: Center(
                 child: SingleChildScrollView(child: _buildStepContent()),
