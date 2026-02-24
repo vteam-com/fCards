@@ -51,3 +51,5 @@ macos/Runner/GoogleService-Info.plist
 ios/Runner/GoogleService-Info.plist
 android/app/google-services.json
 coverage/html
+graph.dot
+graph.dot

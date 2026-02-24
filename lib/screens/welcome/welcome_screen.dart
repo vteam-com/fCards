@@ -1,11 +1,11 @@
+import 'package:cards/gen/l10n/app_localizations.dart';
 import 'package:cards/models/app/app_theme.dart';
-import 'package:cards/models/app/constants_layout.dart';
 import 'package:cards/models/app/auth_service.dart';
+import 'package:cards/models/app/constants_layout.dart';
 import 'package:cards/models/game/backend_model.dart';
 import 'package:cards/utils/logger.dart';
 import 'package:cards/widgets/buttons/my_button_rectangle.dart';
 import 'package:cards/widgets/helpers/screen.dart';
-import 'package:cards/gen/l10n/app_localizations.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';

@@ -1,19 +1,20 @@
 import 'dart:async';
+
+import 'package:cards/gen/l10n/app_localizations.dart';
 import 'package:cards/models/app/constants_layout.dart';
 import 'package:cards/models/game/backend_model.dart';
 import 'package:cards/models/game/game_history.dart';
 import 'package:cards/models/game/game_model.dart';
 import 'package:cards/models/game/game_styles.dart';
 import 'package:cards/screens/game/game_screen.dart';
-import 'package:cards/widgets/buttons/my_button_rectangle.dart';
-import 'package:cards/widgets/helpers/screen.dart';
-import 'package:cards/widgets/player/players_in_room_widget.dart';
-import 'package:cards/widgets/helpers/table_widget.dart';
-import 'package:cards/widgets/helpers/edit_box.dart';
-import 'package:cards/widgets/helpers/step_indicator.dart';
-import 'package:cards/widgets/helpers/wizard_footer.dart';
 import 'package:cards/utils/logger.dart';
-import 'package:cards/gen/l10n/app_localizations.dart';
+import 'package:cards/widgets/buttons/my_button_rectangle.dart';
+import 'package:cards/widgets/helpers/edit_box.dart';
+import 'package:cards/widgets/helpers/screen.dart';
+import 'package:cards/widgets/helpers/step_indicator.dart';
+import 'package:cards/widgets/helpers/table_widget.dart';
+import 'package:cards/widgets/helpers/wizard_footer.dart';
+import 'package:cards/widgets/player/players_in_room_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 

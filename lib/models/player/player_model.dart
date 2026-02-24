@@ -1,6 +1,6 @@
-import 'package:cards/utils/logger.dart';
 import 'package:cards/models/card/hand_model.dart';
 import 'package:cards/models/player/player_status.dart';
+import 'package:cards/utils/logger.dart';
 
 export 'package:cards/models/card/card_model.dart';
 export 'package:cards/models/card/hand_model.dart';

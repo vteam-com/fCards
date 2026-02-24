@@ -1,9 +1,9 @@
 import 'package:cards/models/app/constants_card_value.dart';
 import 'package:cards/models/app/constants_layout.dart';
-import 'package:cards/widgets/helpers/my_text.dart';
 import 'package:cards/models/game/game_model.dart';
 import 'package:cards/widgets/helpers/date_importance.dart';
 import 'package:cards/widgets/helpers/dialog.dart';
+import 'package:cards/widgets/helpers/my_text.dart';
 import 'package:cards/widgets/player/status_picker.dart';
 import 'package:flutter/material.dart';
 

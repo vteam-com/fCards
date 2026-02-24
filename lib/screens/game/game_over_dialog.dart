@@ -1,10 +1,9 @@
+import 'package:cards/gen/l10n/app_localizations.dart';
 import 'package:cards/models/app/constants_layout.dart';
-import 'package:cards/widgets/helpers/my_text.dart';
 import 'package:cards/models/game/backend_model.dart';
 import 'package:cards/models/game/game_model.dart';
 import 'package:cards/widgets/helpers/dialog.dart';
-import 'package:cards/gen/l10n/app_localizations.dart';
-
+import 'package:cards/widgets/helpers/my_text.dart';
 import 'package:flutter/material.dart';
 
 /// Displays a game over dialog with the final game results and options to play again or exit.

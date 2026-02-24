@@ -1,10 +1,10 @@
-import 'package:cards/utils/logger.dart';
 import 'package:cards/models/app/constants_layout.dart';
 import 'package:cards/models/card/card_dimensions.dart';
 import 'package:cards/models/card/card_model_french.dart';
+import 'package:cards/models/game/game_constants.dart';
 import 'package:cards/models/game/game_model.dart';
 import 'package:cards/models/game/game_styles.dart';
-import 'package:cards/models/game/game_constants.dart';
+import 'package:cards/utils/logger.dart';
 import 'package:cards/widgets/cards/card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';

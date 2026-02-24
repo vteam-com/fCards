@@ -1,19 +1,18 @@
-import 'package:cards/models/game/backend_model.dart';
+import 'package:cards/gen/l10n/app_localizations.dart';
+import 'package:cards/models/app/app_theme.dart';
 import 'package:cards/models/app/auth_service.dart';
 import 'package:cards/models/app/firebase_options.dart';
 import 'package:cards/models/app/locale_controller.dart';
+import 'package:cards/models/game/backend_model.dart';
 import 'package:cards/screens/game/join_game_screen.dart';
 import 'package:cards/screens/game/start_game_screen.dart';
 import 'package:cards/screens/game/start_game_wizard_screen.dart';
 import 'package:cards/screens/keepscore/golf_score_screen.dart';
 import 'package:cards/screens/welcome/welcome_screen.dart';
-import 'package:cards/models/app/app_theme.dart';
 import 'package:cards/utils/logger.dart';
-
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:cards/gen/l10n/app_localizations.dart';
 import 'package:the_splash/the_splash.dart';
 
 /// The entry point of the application.

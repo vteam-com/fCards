@@ -1,7 +1,7 @@
+import 'package:cards/gen/l10n/app_localizations.dart';
 import 'package:cards/models/app/app_theme.dart';
 import 'package:cards/models/app/constants_layout.dart';
 import 'package:cards/widgets/helpers/edit_box.dart';
-import 'package:cards/gen/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 /// A widget that displays a list of rooms, allowing the user to select a room and optionally remove a room.

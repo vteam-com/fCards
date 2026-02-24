@@ -1,10 +1,10 @@
 import 'dart:async';
 import 'dart:core';
 
-import 'package:cards/utils/logger.dart';
 import 'package:cards/models/app/auth_service.dart';
 import 'package:cards/models/app/firebase_options.dart';
 import 'package:cards/models/game/game_history.dart';
+import 'package:cards/utils/logger.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';

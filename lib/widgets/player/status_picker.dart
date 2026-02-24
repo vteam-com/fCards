@@ -1,7 +1,7 @@
-import 'package:cards/models/app/constants_layout.dart';
-import 'package:cards/widgets/helpers/my_text.dart';
-import 'package:cards/models/player/player_status.dart';
 import 'package:cards/gen/l10n/app_localizations.dart';
+import 'package:cards/models/app/constants_layout.dart';
+import 'package:cards/models/player/player_status.dart';
+import 'package:cards/widgets/helpers/my_text.dart';
 import 'package:flutter/material.dart';
 
 ///
