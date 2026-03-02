@@ -93,7 +93,7 @@ class JoinGameScreenState extends State<JoinGameScreen> {
       isWaiting: false,
       title: localizations.joinGameTitle,
       child: Padding(
-        padding: const EdgeInsets.all(ConstLayout.sizeM),
+        padding: const EdgeInsets.all(ConstLayout.paddingM),
         child: Column(
           children: [
             Expanded(

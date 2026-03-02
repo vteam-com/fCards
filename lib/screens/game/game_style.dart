@@ -133,8 +133,8 @@ class GameStyle extends StatelessWidget {
         cards = getAllFrenchCards(); // Similar to French Cards for simplicity
     }
     return Wrap(
-      spacing: ConstLayout.paddingM,
-      runSpacing: ConstLayout.paddingM,
+      spacing: ConstLayout.sizeM,
+      runSpacing: ConstLayout.sizeM,
       children: cards
           .map(
             (card) => SizedBox(

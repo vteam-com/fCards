@@ -1,3 +1,4 @@
+import 'package:cards/models/app/app_theme.dart';
 import 'package:cards/models/app/constants_layout.dart';
 import 'package:flutter/material.dart';
 
@@ -59,13 +60,13 @@ class MyButton extends StatelessWidget {
         ? null
         : BorderRadius.circular(borderRadius ?? ConstLayout.radiusM);
 
-    final Color baseTopColor = const Color.fromARGB(255, 40, 80, 40);
-    final Color baseBottomColor = const Color.fromARGB(255, 10, 20, 10);
+    final Color baseTopColor = AppTheme.buttonGradientTop;
+    final Color baseBottomColor = AppTheme.buttonGradientBottom;
     final Color topColor = isAction
-        ? const Color.fromARGB(100, 5, 10, 5)
+        ? AppTheme.buttonActionGradientTop
         : baseTopColor;
     final Color bottomColor = isAction
-        ? const Color.fromARGB(100, 0, 0, 0)
+        ? AppTheme.buttonActionGradientBottom
         : baseBottomColor.withAlpha(ConstLayout.alphaL);
 
     return Padding(

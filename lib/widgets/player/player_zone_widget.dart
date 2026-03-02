@@ -64,7 +64,7 @@ class PlayerZoneWidget extends StatelessWidget {
             borderRadius: BorderRadius.circular(ConstLayout.radiusM),
             // No shadow.
           ),
-          padding: EdgeInsets.all(ConstLayout.sizeS.toDouble()),
+          padding: EdgeInsets.all(ConstLayout.paddingS),
           child: _buildContent(context),
         ),
       ],

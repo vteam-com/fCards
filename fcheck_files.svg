@@ -38,6 +38,14 @@
     <stop offset="0%" stop-color="#28a745"/>
     <stop offset="100%" stop-color="#007bff"/>
   </linearGradient>
+  <linearGradient id="warningNodeGradient" x1="20%" y1="0%" x2="80%" y2="100%">
+    <stop offset="0%" stop-color="#fff6e8" stop-opacity="0.95"/>
+    <stop offset="100%" stop-color="#f2a23a" stop-opacity="0.45"/>
+  </linearGradient>
+  <linearGradient id="errorNodeGradient" x1="20%" y1="0%" x2="80%" y2="100%">
+    <stop offset="0%" stop-color="#fdeeed" stop-opacity="0.95"/>
+    <stop offset="100%" stop-color="#e05545" stop-opacity="0.5"/>
+  </linearGradient>
 </defs>
 <style>  
   .layerBackground { 
@@ -92,6 +100,20 @@
   .fileNode:hover {     
     fill: PaleGoldenRod;
     transition: all 0.1s ease-in-out; 
+  }
+
+  .fileNodeWarning,
+  .layerBackgroundWarning,
+  .layerBackgroundVirtualFolderWarning {
+    fill: url(#warningNodeGradient);
+    fill-opacity: 0.68;
+  }
+
+  .fileNodeError,
+  .layerBackgroundError,
+  .layerBackgroundVirtualFolderError {
+    fill: url(#errorNodeGradient);
+    fill-opacity: 0.72;
   }
 
   .textNormal,
@@ -236,10 +258,9 @@
 <rect x="1650.0" y="160.0" width="220" height="50" class="fileNode"><title>File: /Users/jp/src/github/vteam/fCards/lib/widgets/helpers/edit_box.dart</title></rect>
 <rect x="1650.0" y="230.0" width="220" height="50" class="fileNode"><title>File: /Users/jp/src/github/vteam/fCards/lib/screens/game/game_over_dialog.dart</title></rect>
 <rect x="1650.0" y="300.0" width="220" height="50" class="fileNode"><title>File: /Users/jp/src/github/vteam/fCards/lib/widgets/player/player_zone_widget.dart</title></rect>
-<rect x="1970.0" y="90.0" width="220" height="50" class="fileNode"><title>File: /Users/jp/src/github/vteam/fCards/lib/models/app/app_theme.dart</title></rect>
-<rect x="1970.0" y="160.0" width="220" height="50" class="fileNode"><title>File: /Users/jp/src/github/vteam/fCards/lib/models/app/locale_controller.dart</title></rect>
-<rect x="1970.0" y="230.0" width="220" height="50" class="fileNode"><title>File: /Users/jp/src/github/vteam/fCards/lib/widgets/player/player_header_widget.dart</title></rect>
-<rect x="1970.0" y="300.0" width="220" height="50" class="fileNode"><title>File: /Users/jp/src/github/vteam/fCards/lib/widgets/player/player_zone_cta_widget.dart</title></rect>
+<rect x="1970.0" y="90.0" width="220" height="50" class="fileNode"><title>File: /Users/jp/src/github/vteam/fCards/lib/models/app/locale_controller.dart</title></rect>
+<rect x="1970.0" y="160.0" width="220" height="50" class="fileNode"><title>File: /Users/jp/src/github/vteam/fCards/lib/widgets/player/player_header_widget.dart</title></rect>
+<rect x="1970.0" y="230.0" width="220" height="50" class="fileNode"><title>File: /Users/jp/src/github/vteam/fCards/lib/widgets/player/player_zone_cta_widget.dart</title></rect>
 <rect x="2290.0" y="90.0" width="220" height="50" class="fileNode"><title>File: /Users/jp/src/github/vteam/fCards/lib/models/game/game_model.dart</title></rect>
 <rect x="2290.0" y="160.0" width="220" height="50" class="fileNode"><title>File: /Users/jp/src/github/vteam/fCards/lib/widgets/helpers/dialog.dart</title></rect>
 <rect x="2290.0" y="230.0" width="220" height="50" class="fileNode"><title>File: /Users/jp/src/github/vteam/fCards/lib/widgets/cards/card_pile_widget.dart</title></rect>
@@ -262,9 +283,10 @@
 <rect x="2930.0" y="720.0" width="220" height="50" class="fileNode"><title>File: /Users/jp/src/github/vteam/fCards/lib/models/app/firebase_options.dart</title></rect>
 <rect x="2930.0" y="790.0" width="220" height="50" class="fileNode"><title>File: /Users/jp/src/github/vteam/fCards/lib/widgets/cards/card_face_skyjo_widget.dart</title></rect>
 <rect x="2930.0" y="860.0" width="220" height="50" class="fileNode"><title>File: /Users/jp/src/github/vteam/fCards/lib/widgets/helpers/wiggle_widget.dart</title></rect>
-<rect x="3250.0" y="90.0" width="220" height="50" class="fileNode"><title>File: /Users/jp/src/github/vteam/fCards/lib/widgets/cards/card_face_french_widget.dart</title></rect>
-<rect x="3250.0" y="160.0" width="220" height="50" class="fileNode"><title>File: /Users/jp/src/github/vteam/fCards/lib/models/app/constants_animation.dart</title></rect>
-<rect x="3250.0" y="230.0" width="220" height="50" class="fileNode"><title>File: /Users/jp/src/github/vteam/fCards/lib/models/game/game_constants.dart</title></rect>
+<rect x="3250.0" y="90.0" width="220" height="50" class="fileNode"><title>File: /Users/jp/src/github/vteam/fCards/lib/models/app/app_theme.dart</title></rect>
+<rect x="3250.0" y="160.0" width="220" height="50" class="fileNode"><title>File: /Users/jp/src/github/vteam/fCards/lib/widgets/cards/card_face_french_widget.dart</title></rect>
+<rect x="3250.0" y="230.0" width="220" height="50" class="fileNode"><title>File: /Users/jp/src/github/vteam/fCards/lib/models/app/constants_animation.dart</title></rect>
+<rect x="3250.0" y="300.0" width="220" height="50" class="fileNode"><title>File: /Users/jp/src/github/vteam/fCards/lib/models/game/game_constants.dart</title></rect>
 <rect x="3570.0" y="90.0" width="220" height="50" class="fileNode"><title>File: /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title></rect>
 <rect x="3570.0" y="160.0" width="220" height="50" class="fileNode"><title>File: /Users/jp/src/github/vteam/fCards/lib/models/card/card_model.dart</title></rect>
 <rect x="3570.0" y="230.0" width="220" height="50" class="fileNode"><title>File: /Users/jp/src/github/vteam/fCards/lib/widgets/helpers/my_text.dart</title></rect>
@@ -286,7 +308,7 @@
   <title>/Users/jp/src/github/vteam/fCards/lib/models/card/hand_model.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/card/card_model.dart</title>
 </g>
 <g>
-  <path d="M 2190.0 128.0 C 2240.0 128.0, 3526.0 102.0, 3576.0 102.0" class="edge"/>
+  <path d="M 3470.0 128.0 C 3520.0 128.0, 3526.0 102.0, 3576.0 102.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/models/app/app_theme.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
 </g>
 <g>
@@ -322,7 +344,7 @@
   <title>/Users/jp/src/github/vteam/fCards/lib/models/game/game_styles.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/card/card_model.dart</title>
 </g>
 <g>
-  <path d="M 3150.0 198.0 C 3200.0 198.0, 3206.0 242.0, 3256.0 242.0" class="edge"/>
+  <path d="M 3150.0 198.0 C 3200.0 198.0, 3206.0 312.0, 3256.0 312.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/models/game/game_styles.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/game/game_constants.dart</title>
 </g>
 <g>
@@ -470,7 +492,7 @@
   <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/game_style.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/card/card_model_french.dart</title>
 </g>
 <g>
-  <path d="M 1230.0 268.0 C 1280.0 268.0, 3206.0 242.0, 3256.0 242.0" class="edge"/>
+  <path d="M 1230.0 268.0 C 1280.0 268.0, 3206.0 312.0, 3256.0 312.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/game_style.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/game/game_constants.dart</title>
 </g>
 <g>
@@ -618,7 +640,7 @@
   <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/start_game_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/player/players_in_room_widget.dart</title>
 </g>
 <g>
-  <path d="M 590.0 268.0 C 640.0 268.0, 1926.0 102.0, 1976.0 102.0" class="edge"/>
+  <path d="M 590.0 268.0 C 640.0 268.0, 3206.0 102.0, 3256.0 102.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/screens/welcome/welcome_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/app_theme.dart</title>
 </g>
 <g>
@@ -646,7 +668,7 @@
   <title>/Users/jp/src/github/vteam/fCards/lib/screens/welcome/welcome_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/helpers/screen.dart</title>
 </g>
 <g>
-  <path d="M 590.0 198.0 C 640.0 198.0, 1926.0 102.0, 1976.0 102.0" class="edge"/>
+  <path d="M 590.0 198.0 C 640.0 198.0, 3206.0 102.0, 3256.0 102.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/screens/keepscore/golf_score_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/app_theme.dart</title>
 </g>
 <g>
@@ -674,7 +696,7 @@
   <title>/Users/jp/src/github/vteam/fCards/lib/screens/keepscore/golf_score_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/player/player_header.dart</title>
 </g>
 <g>
-  <path d="M 270.0 128.0 C 320.0 128.0, 1926.0 102.0, 1976.0 102.0" class="edge"/>
+  <path d="M 270.0 128.0 C 320.0 128.0, 3206.0 102.0, 3256.0 102.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/main.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/app_theme.dart</title>
 </g>
 <g>
@@ -686,7 +708,7 @@
   <title>/Users/jp/src/github/vteam/fCards/lib/main.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/firebase_options.dart</title>
 </g>
 <g>
-  <path d="M 270.0 128.0 C 320.0 128.0, 1926.0 172.0, 1976.0 172.0" class="edge"/>
+  <path d="M 270.0 128.0 C 320.0 128.0, 1926.0 102.0, 1976.0 102.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/main.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/locale_controller.dart</title>
 </g>
 <g>
@@ -716,6 +738,10 @@
 <g>
   <path d="M 270.0 128.0 C 320.0 128.0, 2886.0 102.0, 2936.0 102.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/main.dart ▶ /Users/jp/src/github/vteam/fCards/lib/utils/logger.dart</title>
+</g>
+<g>
+  <path d="M 3150.0 618.0 C 3200.0 618.0, 3206.0 102.0, 3256.0 102.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/buttons/my_button.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/app_theme.dart</title>
 </g>
 <g>
   <path d="M 3150.0 618.0 C 3200.0 618.0, 3526.0 102.0, 3576.0 102.0" class="edge"/>
@@ -766,7 +792,7 @@
   <title>/Users/jp/src/github/vteam/fCards/lib/widgets/cards/card_face_skyjo_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/card/card_model.dart</title>
 </g>
 <g>
-  <path d="M 3150.0 828.0 C 3200.0 828.0, 3206.0 102.0, 3256.0 102.0" class="edge"/>
+  <path d="M 3150.0 828.0 C 3200.0 828.0, 3206.0 172.0, 3256.0 172.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/widgets/cards/card_face_skyjo_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/cards/card_face_french_widget.dart</title>
 </g>
 <g>
@@ -786,7 +812,7 @@
   <title>/Users/jp/src/github/vteam/fCards/lib/widgets/cards/card_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/card/card_model.dart</title>
 </g>
 <g>
-  <path d="M 2830.0 268.0 C 2880.0 268.0, 3206.0 102.0, 3256.0 102.0" class="edge"/>
+  <path d="M 2830.0 268.0 C 2880.0 268.0, 3206.0 172.0, 3256.0 172.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/widgets/cards/card_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/cards/card_face_french_widget.dart</title>
 </g>
 <g>
@@ -798,19 +824,19 @@
   <title>/Users/jp/src/github/vteam/fCards/lib/widgets/cards/card_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/helpers/wiggle_widget.dart</title>
 </g>
 <g>
-  <path d="M 3470.0 128.0 C 3520.0 128.0, 3526.0 312.0, 3576.0 312.0" class="edge"/>
+  <path d="M 3470.0 198.0 C 3520.0 198.0, 3526.0 312.0, 3576.0 312.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/widgets/cards/card_face_french_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_card_value.dart</title>
 </g>
 <g>
-  <path d="M 3470.0 128.0 C 3520.0 128.0, 3526.0 102.0, 3576.0 102.0" class="edge"/>
+  <path d="M 3470.0 198.0 C 3520.0 198.0, 3526.0 102.0, 3576.0 102.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/widgets/cards/card_face_french_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
 </g>
 <g>
-  <path d="M 3470.0 128.0 C 3520.0 128.0, 3526.0 172.0, 3576.0 172.0" class="edge"/>
+  <path d="M 3470.0 198.0 C 3520.0 198.0, 3526.0 172.0, 3576.0 172.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/widgets/cards/card_face_french_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/card/card_model.dart</title>
 </g>
 <g>
-  <path d="M 3470.0 128.0 C 3520.0 128.0, 3526.0 242.0, 3576.0 242.0" class="edge"/>
+  <path d="M 3470.0 198.0 C 3520.0 198.0, 3526.0 242.0, 3576.0 242.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/widgets/cards/card_face_french_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/helpers/my_text.dart</title>
 </g>
 <g>
@@ -838,7 +864,7 @@
   <title>/Users/jp/src/github/vteam/fCards/lib/widgets/helpers/dialog.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/buttons/my_button_rectangle.dart</title>
 </g>
 <g>
-  <path d="M 3150.0 898.0 C 3200.0 898.0, 3206.0 172.0, 3256.0 172.0" class="edge"/>
+  <path d="M 3150.0 898.0 C 3200.0 898.0, 3206.0 242.0, 3256.0 242.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/widgets/helpers/wiggle_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_animation.dart</title>
 </g>
 <g>
@@ -846,7 +872,7 @@
   <title>/Users/jp/src/github/vteam/fCards/lib/widgets/helpers/wiggle_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
 </g>
 <g>
-  <path d="M 1550.0 128.0 C 1600.0 128.0, 1926.0 102.0, 1976.0 102.0" class="edge"/>
+  <path d="M 1550.0 128.0 C 1600.0 128.0, 3206.0 102.0, 3256.0 102.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/widgets/helpers/table_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/app_theme.dart</title>
 </g>
 <g>
@@ -858,7 +884,7 @@
   <title>/Users/jp/src/github/vteam/fCards/lib/widgets/helpers/table_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/helpers/edit_box.dart</title>
 </g>
 <g>
-  <path d="M 1870.0 198.0 C 1920.0 198.0, 1926.0 102.0, 1976.0 102.0" class="edge"/>
+  <path d="M 1870.0 198.0 C 1920.0 198.0, 3206.0 102.0, 3256.0 102.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/widgets/helpers/edit_box.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/app_theme.dart</title>
 </g>
 <g>
@@ -874,7 +900,7 @@
   <title>/Users/jp/src/github/vteam/fCards/lib/widgets/helpers/wizard_footer.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/buttons/my_button_rectangle.dart</title>
 </g>
 <g>
-  <path d="M 1870.0 128.0 C 1920.0 128.0, 3206.0 172.0, 3256.0 172.0" class="edge"/>
+  <path d="M 1870.0 128.0 C 1920.0 128.0, 3206.0 242.0, 3256.0 242.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/widgets/helpers/screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_animation.dart</title>
 </g>
 <g>
@@ -882,7 +908,7 @@
   <title>/Users/jp/src/github/vteam/fCards/lib/widgets/helpers/screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
 </g>
 <g>
-  <path d="M 1870.0 128.0 C 1920.0 128.0, 1926.0 172.0, 1976.0 172.0" class="edge"/>
+  <path d="M 1870.0 128.0 C 1920.0 128.0, 1926.0 102.0, 1976.0 102.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/widgets/helpers/screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/locale_controller.dart</title>
 </g>
 <g>
@@ -894,15 +920,15 @@
   <title>/Users/jp/src/github/vteam/fCards/lib/widgets/helpers/screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/buttons/my_button_rectangle.dart</title>
 </g>
 <g>
-  <path d="M 2190.0 338.0 C 2240.0 338.0, 3526.0 102.0, 3576.0 102.0" class="edge"/>
+  <path d="M 2190.0 268.0 C 2240.0 268.0, 3526.0 102.0, 3576.0 102.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/widgets/player/player_zone_cta_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
 </g>
 <g>
-  <path d="M 2190.0 338.0 C 2240.0 338.0, 2246.0 102.0, 2296.0 102.0" class="edge"/>
+  <path d="M 2190.0 268.0 C 2240.0 268.0, 2246.0 102.0, 2296.0 102.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/widgets/player/player_zone_cta_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/game/game_model.dart</title>
 </g>
 <g>
-  <path d="M 2190.0 338.0 C 2240.0 338.0, 2246.0 242.0, 2296.0 242.0" class="edge"/>
+  <path d="M 2190.0 268.0 C 2240.0 268.0, 2246.0 242.0, 2296.0 242.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/widgets/player/player_zone_cta_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/cards/card_pile_widget.dart</title>
 </g>
 <g>
@@ -918,35 +944,35 @@
   <title>/Users/jp/src/github/vteam/fCards/lib/widgets/player/status_picker.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/helpers/my_text.dart</title>
 </g>
 <g>
-  <path d="M 2190.0 268.0 C 2240.0 268.0, 3526.0 312.0, 3576.0 312.0" class="edge"/>
+  <path d="M 2190.0 198.0 C 2240.0 198.0, 3526.0 312.0, 3576.0 312.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/widgets/player/player_header_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_card_value.dart</title>
 </g>
 <g>
-  <path d="M 2190.0 268.0 C 2240.0 268.0, 3526.0 102.0, 3576.0 102.0" class="edge"/>
+  <path d="M 2190.0 198.0 C 2240.0 198.0, 3526.0 102.0, 3576.0 102.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/widgets/player/player_header_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
 </g>
 <g>
-  <path d="M 2190.0 268.0 C 2240.0 268.0, 2246.0 102.0, 2296.0 102.0" class="edge"/>
+  <path d="M 2190.0 198.0 C 2240.0 198.0, 2246.0 102.0, 2296.0 102.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/widgets/player/player_header_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/game/game_model.dart</title>
 </g>
 <g>
-  <path d="M 2190.0 268.0 C 2240.0 268.0, 2246.0 382.0, 2296.0 382.0" class="edge"/>
+  <path d="M 2190.0 198.0 C 2240.0 198.0, 2246.0 382.0, 2296.0 382.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/widgets/player/player_header_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/helpers/date_importance.dart</title>
 </g>
 <g>
-  <path d="M 2190.0 268.0 C 2240.0 268.0, 2246.0 172.0, 2296.0 172.0" class="edge"/>
+  <path d="M 2190.0 198.0 C 2240.0 198.0, 2246.0 172.0, 2296.0 172.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/widgets/player/player_header_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/helpers/dialog.dart</title>
 </g>
 <g>
-  <path d="M 2190.0 268.0 C 2240.0 268.0, 3526.0 242.0, 3576.0 242.0" class="edge"/>
+  <path d="M 2190.0 198.0 C 2240.0 198.0, 3526.0 242.0, 3576.0 242.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/widgets/player/player_header_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/helpers/my_text.dart</title>
 </g>
 <g>
-  <path d="M 2190.0 268.0 C 2240.0 268.0, 2246.0 312.0, 2296.0 312.0" class="edge"/>
+  <path d="M 2190.0 198.0 C 2240.0 198.0, 2246.0 312.0, 2296.0 312.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/widgets/player/player_header_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/player/status_picker.dart</title>
 </g>
 <g>
-  <path d="M 1550.0 268.0 C 1600.0 268.0, 1926.0 102.0, 1976.0 102.0" class="edge"/>
+  <path d="M 1550.0 268.0 C 1600.0 268.0, 3206.0 102.0, 3256.0 102.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/widgets/player/players_in_room_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/app_theme.dart</title>
 </g>
 <g>
@@ -970,11 +996,11 @@
   <title>/Users/jp/src/github/vteam/fCards/lib/widgets/player/player_zone_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/cards/card_widget.dart</title>
 </g>
 <g>
-  <path d="M 1870.0 338.0 C 1920.0 338.0, 1926.0 242.0, 1976.0 242.0" class="edge"/>
+  <path d="M 1870.0 338.0 C 1920.0 338.0, 1926.0 172.0, 1976.0 172.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/widgets/player/player_zone_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/player/player_header_widget.dart</title>
 </g>
 <g>
-  <path d="M 1870.0 338.0 C 1920.0 338.0, 1926.0 312.0, 1976.0 312.0" class="edge"/>
+  <path d="M 1870.0 338.0 C 1920.0 338.0, 1926.0 242.0, 1976.0 242.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/widgets/player/player_zone_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/player/player_zone_cta_widget.dart</title>
 </g>
 <g>
@@ -1203,36 +1229,26 @@
 5. player_zone_cta_widget.dart</title></g><text x="1760.0" y="325.0" class="textNormal">player_zone_widget.dart</text>
 <g class="badge incomingBadge">
   <path d="M 1982.0,102.0 L 1970.0,95.0 Q 1967.0,95.0 1967.0,98.0 L 1967.0,106.0 Q 1967.0,109.0 1970.0,109.0 Z" fill="#3b82f6"/>
-  <text x="1971.68" y="103.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">6</text><title>1. edit_box.dart
-2. golf_score_screen.dart
-3. main.dart
-4. players_in_room_widget.dart
-5. table_widget.dart
-6. welcome_screen.dart</title></g><g class="badge outgoingBadge">
-  <path d="M 2196.0,128.0 L 2184.0,121.0 Q 2181.0,121.0 2181.0,124.0 L 2181.0,132.0 Q 2181.0,135.0 2184.0,135.0 Z" fill="#10b981"/>
-  <text x="2185.68" y="129.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. constants_layout.dart</title></g><text x="2080.0" y="115.0" class="textNormal">app_theme.dart</text>
+  <text x="1971.68" y="103.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. main.dart
+2. screen.dart</title></g><text x="2080.0" y="115.0" class="textNormal">locale_controller.dart</text>
 <g class="badge incomingBadge">
   <path d="M 1982.0,172.0 L 1970.0,165.0 Q 1967.0,165.0 1967.0,168.0 L 1967.0,176.0 Q 1967.0,179.0 1970.0,179.0 Z" fill="#3b82f6"/>
-  <text x="1971.68" y="173.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. main.dart
-2. screen.dart</title></g><text x="2080.0" y="185.0" class="textNormal">locale_controller.dart</text>
-<g class="badge incomingBadge">
-  <path d="M 1982.0,242.0 L 1970.0,235.0 Q 1967.0,235.0 1967.0,238.0 L 1967.0,246.0 Q 1967.0,249.0 1970.0,249.0 Z" fill="#3b82f6"/>
-  <text x="1971.68" y="243.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. player_zone_widget.dart</title></g><g class="badge outgoingBadge">
-  <path d="M 2196.0,268.0 L 2184.0,261.0 Q 2181.0,261.0 2181.0,264.0 L 2181.0,272.0 Q 2181.0,275.0 2184.0,275.0 Z" fill="#10b981"/>
-  <text x="2185.68" y="269.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">7</text><title>1. constants_card_value.dart
+  <text x="1971.68" y="173.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. player_zone_widget.dart</title></g><g class="badge outgoingBadge">
+  <path d="M 2196.0,198.0 L 2184.0,191.0 Q 2181.0,191.0 2181.0,194.0 L 2181.0,202.0 Q 2181.0,205.0 2184.0,205.0 Z" fill="#10b981"/>
+  <text x="2185.68" y="199.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">7</text><title>1. constants_card_value.dart
 2. constants_layout.dart
 3. date_importance.dart
 4. dialog.dart
 5. game_model.dart
 6. my_text.dart
-7. status_picker.dart</title></g><text x="2080.0" y="255.0" class="textSmall">player_header_widget.dart</text>
+7. status_picker.dart</title></g><text x="2080.0" y="185.0" class="textSmall">player_header_widget.dart</text>
 <g class="badge incomingBadge">
-  <path d="M 1982.0,312.0 L 1970.0,305.0 Q 1967.0,305.0 1967.0,308.0 L 1967.0,316.0 Q 1967.0,319.0 1970.0,319.0 Z" fill="#3b82f6"/>
-  <text x="1971.68" y="313.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. player_zone_widget.dart</title></g><g class="badge outgoingBadge">
-  <path d="M 2196.0,338.0 L 2184.0,331.0 Q 2181.0,331.0 2181.0,334.0 L 2181.0,342.0 Q 2181.0,345.0 2184.0,345.0 Z" fill="#10b981"/>
-  <text x="2185.68" y="339.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">3</text><title>1. card_pile_widget.dart
+  <path d="M 1982.0,242.0 L 1970.0,235.0 Q 1967.0,235.0 1967.0,238.0 L 1967.0,246.0 Q 1967.0,249.0 1970.0,249.0 Z" fill="#3b82f6"/>
+  <text x="1971.68" y="243.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. player_zone_widget.dart</title></g><g class="badge outgoingBadge">
+  <path d="M 2196.0,268.0 L 2184.0,261.0 Q 2181.0,261.0 2181.0,264.0 L 2181.0,272.0 Q 2181.0,275.0 2184.0,275.0 Z" fill="#10b981"/>
+  <text x="2185.68" y="269.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">3</text><title>1. card_pile_widget.dart
 2. constants_layout.dart
-3. game_model.dart</title></g><text x="2080.0" y="325.0" class="textSmall">player_zone_cta_widget.dart</text>
+3. game_model.dart</title></g><text x="2080.0" y="255.0" class="textSmall">player_zone_cta_widget.dart</text>
 <g class="badge incomingBadge">
   <path d="M 2302.0,102.0 L 2290.0,95.0 Q 2287.0,95.0 2287.0,98.0 L 2287.0,106.0 Q 2287.0,109.0 2290.0,109.0 Z" fill="#3b82f6"/>
   <text x="2291.68" y="103.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">8</text><title>1. game_over_dialog.dart
@@ -1385,7 +1401,8 @@
   <text x="2931.68" y="593.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. my_button_rectangle.dart
 2. my_button_round.dart</title></g><g class="badge outgoingBadge">
   <path d="M 3156.0,618.0 L 3144.0,611.0 Q 3141.0,611.0 3141.0,614.0 L 3141.0,622.0 Q 3141.0,625.0 3144.0,625.0 Z" fill="#10b981"/>
-  <text x="3145.68" y="619.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. constants_layout.dart</title></g><text x="3040.0" y="605.0" class="textNormal">my_button.dart</text>
+  <text x="3145.68" y="619.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. app_theme.dart
+2. constants_layout.dart</title></g><text x="3040.0" y="605.0" class="textNormal">my_button.dart</text>
 <g class="badge incomingBadge">
   <path d="M 2942.0,662.0 L 2930.0,655.0 Q 2927.0,655.0 2927.0,658.0 L 2927.0,666.0 Q 2927.0,669.0 2930.0,669.0 Z" fill="#3b82f6"/>
   <text x="2931.68" y="663.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. deck_model.dart
@@ -1411,21 +1428,32 @@
 2. constants_layout.dart</title></g><text x="3040.0" y="885.0" class="textNormal">wiggle_widget.dart</text>
 <g class="badge incomingBadge">
   <path d="M 3262.0,102.0 L 3250.0,95.0 Q 3247.0,95.0 3247.0,98.0 L 3247.0,106.0 Q 3247.0,109.0 3250.0,109.0 Z" fill="#3b82f6"/>
-  <text x="3251.68" y="103.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. card_face_skyjo_widget.dart
-2. card_widget.dart</title></g><g class="badge outgoingBadge">
+  <text x="3251.68" y="103.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">7</text><title>1. edit_box.dart
+2. golf_score_screen.dart
+3. main.dart
+4. my_button.dart
+5. players_in_room_widget.dart
+6. table_widget.dart
+7. welcome_screen.dart</title></g><g class="badge outgoingBadge">
   <path d="M 3476.0,128.0 L 3464.0,121.0 Q 3461.0,121.0 3461.0,124.0 L 3461.0,132.0 Q 3461.0,135.0 3464.0,135.0 Z" fill="#10b981"/>
-  <text x="3465.68" y="129.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">4</text><title>1. card_model.dart
-2. constants_card_value.dart
-3. constants_layout.dart
-4. my_text.dart</title></g><text x="3360.0" y="115.0" class="textSmall">card_face_french_widget.dart</text>
+  <text x="3465.68" y="129.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. constants_layout.dart</title></g><text x="3360.0" y="115.0" class="textNormal">app_theme.dart</text>
 <g class="badge incomingBadge">
   <path d="M 3262.0,172.0 L 3250.0,165.0 Q 3247.0,165.0 3247.0,168.0 L 3247.0,176.0 Q 3247.0,179.0 3250.0,179.0 Z" fill="#3b82f6"/>
-  <text x="3251.68" y="173.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. screen.dart
-2. wiggle_widget.dart</title></g><text x="3360.0" y="185.0" class="textNormal">constants_animation.dart</text>
+  <text x="3251.68" y="173.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. card_face_skyjo_widget.dart
+2. card_widget.dart</title></g><g class="badge outgoingBadge">
+  <path d="M 3476.0,198.0 L 3464.0,191.0 Q 3461.0,191.0 3461.0,194.0 L 3461.0,202.0 Q 3461.0,205.0 3464.0,205.0 Z" fill="#10b981"/>
+  <text x="3465.68" y="199.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">4</text><title>1. card_model.dart
+2. constants_card_value.dart
+3. constants_layout.dart
+4. my_text.dart</title></g><text x="3360.0" y="185.0" class="textSmall">card_face_french_widget.dart</text>
 <g class="badge incomingBadge">
   <path d="M 3262.0,242.0 L 3250.0,235.0 Q 3247.0,235.0 3247.0,238.0 L 3247.0,246.0 Q 3247.0,249.0 3250.0,249.0 Z" fill="#3b82f6"/>
-  <text x="3251.68" y="243.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. game_style.dart
-2. game_styles.dart</title></g><text x="3360.0" y="255.0" class="textNormal">game_constants.dart</text>
+  <text x="3251.68" y="243.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. screen.dart
+2. wiggle_widget.dart</title></g><text x="3360.0" y="255.0" class="textNormal">constants_animation.dart</text>
+<g class="badge incomingBadge">
+  <path d="M 3262.0,312.0 L 3250.0,305.0 Q 3247.0,305.0 3247.0,308.0 L 3247.0,316.0 Q 3247.0,319.0 3250.0,319.0 Z" fill="#3b82f6"/>
+  <text x="3251.68" y="313.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. game_style.dart
+2. game_styles.dart</title></g><text x="3360.0" y="325.0" class="textNormal">game_constants.dart</text>
 <g class="badge incomingBadge">
   <path d="M 3584.0,102.0 L 3568.0,94.4 Q 3565.0,94.4 3565.0,97.4 L 3565.0,106.6 Q 3565.0,109.6 3568.0,109.6 Z" fill="#3b82f6"/>
   <text x="3570.72" y="103.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold" textLength="10.120000000000001" lengthAdjust="spacingAndGlyphs">30</text><title>1. app_theme.dart

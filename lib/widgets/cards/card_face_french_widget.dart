@@ -36,7 +36,7 @@ class CardFaceFrenchWidget extends StatelessWidget {
   /// Render the front of the card
   Widget buildFaceUp() {
     return Padding(
-      padding: const EdgeInsets.all(4.0),
+      padding: const EdgeInsets.all(ConstLayout.paddingS),
       child: Stack(
         children: [
           Column(children: [buildRank(), const Spacer(), buildValue()]),
@@ -280,7 +280,7 @@ class CardFaceFrenchWidget extends StatelessWidget {
   Widget figureCards(final String text) {
     return Center(
       child: Padding(
-        padding: const EdgeInsets.only(top: 30.0),
+        padding: const EdgeInsets.only(top: ConstCardValue.cardOffset30),
         child: Text(
           text,
           textAlign: TextAlign.center,

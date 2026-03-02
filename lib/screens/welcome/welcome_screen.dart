@@ -43,7 +43,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             maxWidth: ConstLayout.mainMenuMaxWidth,
           ),
           child: Padding(
-            padding: const EdgeInsets.all(ConstLayout.sizeM),
+            padding: const EdgeInsets.all(ConstLayout.paddingM),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -99,7 +99,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
 
         return Container(
           width: double.infinity,
-          padding: const EdgeInsets.all(ConstLayout.sizeM),
+          padding: const EdgeInsets.all(ConstLayout.paddingM),
           decoration: BoxDecoration(
             color: AppTheme.panelInputZone,
             borderRadius: BorderRadius.circular(ConstLayout.radiusM),

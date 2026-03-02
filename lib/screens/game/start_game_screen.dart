@@ -158,7 +158,7 @@ class StartScreenState extends State<StartScreen> {
       child: SingleChildScrollView(
         child: Center(
           child: Padding(
-            padding: const EdgeInsets.all(ConstLayout.sizeM),
+            padding: const EdgeInsets.all(ConstLayout.paddingM),
             child: ConstrainedBox(
               constraints: const BoxConstraints(
                 maxWidth: ConstLayout.startGameScreenMaxWidth,
@@ -172,7 +172,7 @@ class StartScreenState extends State<StartScreen> {
                     IntrinsicHeight(child: _gameInstructionsWidget()),
                   if (widget.createRoomFlow)
                     Padding(
-                      padding: const EdgeInsets.all(ConstLayout.sizeS),
+                      padding: const EdgeInsets.all(ConstLayout.paddingS),
                       child: Text(
                         localizations.createTableHelp,
                         style: TextStyle(
@@ -239,7 +239,7 @@ class StartScreenState extends State<StartScreen> {
                     ),
                   if (isAwaitingTableName)
                     Padding(
-                      padding: const EdgeInsets.all(ConstLayout.sizeS),
+                      padding: const EdgeInsets.all(ConstLayout.paddingS),
                       child: Text(
                         localizations.enterTableName,
                         style: TextStyle(
@@ -268,7 +268,7 @@ class StartScreenState extends State<StartScreen> {
                       widget.createRoomFlow &&
                       doesTableAlreadyExist)
                     Padding(
-                      padding: const EdgeInsets.all(ConstLayout.sizeS),
+                      padding: const EdgeInsets.all(ConstLayout.paddingS),
                       child: Text(
                         localizations.thisTableAlreadyHasPlayers,
                         style: TextStyle(
@@ -296,7 +296,7 @@ class StartScreenState extends State<StartScreen> {
                   const SizedBox(height: ConstLayout.sizeS),
                   if (!isAwaitingTableName)
                     Padding(
-                      padding: const EdgeInsets.all(ConstLayout.sizeS),
+                      padding: const EdgeInsets.all(ConstLayout.paddingS),
                       child: Text(localizations.whoAreYou),
                     ),
                   if (!isAwaitingTableName)
@@ -516,7 +516,7 @@ class StartScreenState extends State<StartScreen> {
         SizedBox(
           height: ConstLayout.gameStyleWidgetHeight,
           child: Padding(
-            padding: const EdgeInsets.all(ConstLayout.sizeS),
+            padding: const EdgeInsets.all(ConstLayout.paddingS),
             child: GameStyle(style: _selectedGameStyle),
           ),
         ),
@@ -528,7 +528,7 @@ class StartScreenState extends State<StartScreen> {
   Widget _gameMode() {
     final AppLocalizations localizations = AppLocalizations.of(context);
     return Padding(
-      padding: const EdgeInsets.all(ConstLayout.sizeS),
+      padding: const EdgeInsets.all(ConstLayout.paddingS),
       child: SegmentedButton<GameStyles>(
         segments: [
           ButtonSegment<GameStyles>(

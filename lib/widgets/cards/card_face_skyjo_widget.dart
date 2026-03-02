@@ -24,7 +24,7 @@ class CardFaceSkyjoWidget extends CardFaceFrenchWidget {
   @override
   Widget buildFaceUp() {
     return Padding(
-      padding: const EdgeInsets.all(4.0),
+      padding: const EdgeInsets.all(ConstLayout.paddingS),
       child: Stack(
         children: [
           Container(

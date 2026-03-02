@@ -5,6 +5,10 @@ import 'package:flutter/material.dart';
 class AppTheme {
   static const seedColor = Color.fromARGB(255, 25, 111, 31);
   static const panelInputZone = Color.fromARGB(200, 0, 59, 0);
+  static const buttonGradientTop = Color.fromARGB(255, 40, 80, 40);
+  static const buttonGradientBottom = Color.fromARGB(255, 10, 20, 10);
+  static const buttonActionGradientTop = Color.fromARGB(100, 5, 10, 5);
+  static const buttonActionGradientBottom = Color.fromARGB(100, 0, 0, 0);
   static final colorScheme = ColorScheme.fromSeed(
     seedColor: seedColor,
     brightness: Brightness.dark,

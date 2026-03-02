@@ -52,7 +52,7 @@ class EditBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: ConstLayout.startGameScreenMaxWidth,
-      padding: const EdgeInsets.all(ConstLayout.sizeM),
+      padding: const EdgeInsets.all(ConstLayout.paddingM),
       decoration: BoxDecoration(
         color: AppTheme.panelInputZone,
         borderRadius: BorderRadius.circular(ConstLayout.radiusM),
@@ -89,7 +89,7 @@ class EditBox extends StatelessWidget {
               },
               style: const TextStyle(
                 color: Colors.yellow,
-                fontSize: 21.0, // ConstLayout.textL
+                fontSize: ConstLayout.textM,
                 fontWeight: FontWeight.bold,
               ),
               decoration: InputDecoration(

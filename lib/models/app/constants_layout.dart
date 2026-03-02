@@ -100,6 +100,9 @@ class ConstLayout {
   /// Main menu spacer height (21.0).
   static const double mainMenuSpacerHeight = 21.0;
 
+  /// Maximum height for room table list container (500.0).
+  static const double roomTableListMaxHeight = 500.0;
+
   /// Golf column width (89.0).
   static const double golfColumnWidth = 89.0;
 
