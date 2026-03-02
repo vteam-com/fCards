@@ -708,6 +708,16 @@ my_text.dart</title>
 ⬇
 backend_model.dart</title>
       </path>
+      <path d="M2000 820 C 2080 2030,2145 2030, 2225 3240" fill="none" class="line">
+        <title>game_screen.dart
+⬇
+card_dimensions.dart</title>
+      </path>
+      <path d="M2000 820 C 2021 1145,2054 1145, 2075 1470" fill="none" class="line">
+        <title>game_screen.dart
+⬇
+card_widget.dart</title>
+      </path>
       <path d="M2000 820 C 2073 1915,1702 1915, 1775 3010" fill="none" class="line">
         <title>game_screen.dart
 ⬇
@@ -1551,15 +1561,17 @@ game_style.dart</title>
             <g id='Counters_game_screen.dart'>
               <g>
                 <circle cx="2000" cy="820" r="10" fill="green"/>
-                <text x="2000" y="820" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">6</text>
+                <text x="2000" y="820" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">8</text>
                 <title>game_screen.dart
 ⬇
 1 /lib/models/app/constants_layout.dart
-2 /lib/models/game/backend_model.dart
-3 /lib/models/game/game_model.dart
-4 /lib/screens/game/game_over_dialog.dart
-5 /lib/widgets/helpers/screen.dart
-6 /lib/widgets/player/player_zone_widget.dart</title>
+2 /lib/models/card/card_dimensions.dart
+3 /lib/models/game/backend_model.dart
+4 /lib/models/game/game_model.dart
+5 /lib/screens/game/game_over_dialog.dart
+6 /lib/widgets/cards/card_widget.dart
+7 /lib/widgets/helpers/screen.dart
+8 /lib/widgets/player/player_zone_widget.dart</title>
               </g>
               <g>
                 <circle cx="1740" cy="780" r="10" fill="blue"/>
@@ -1794,12 +1806,13 @@ card_pile_widget.dart</title>
               </g>
               <g>
                 <circle cx="2075" cy="1470" r="10" fill="blue"/>
-                <text x="2075" y="1470" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">5</text>
-                <title>1 /lib/screens/game/game_style.dart
-2 /lib/widgets/cards/card_pile_widget.dart
-3 /lib/widgets/player/player_zone_widget.dart
-4 /test/models/game_style_test.dart
-5 /test/widgets/cards/card_widget_test.dart
+                <text x="2075" y="1470" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">6</text>
+                <title>1 /lib/screens/game/game_screen.dart
+2 /lib/screens/game/game_style.dart
+3 /lib/widgets/cards/card_pile_widget.dart
+4 /lib/widgets/player/player_zone_widget.dart
+5 /test/models/game_style_test.dart
+6 /test/widgets/cards/card_widget_test.dart
 ⬇
 card_widget.dart</title>
               </g>
@@ -2435,10 +2448,11 @@ card_model.dart</title>
             <g id='Counters_card_dimensions.dart'>
               <g>
                 <circle cx="2225" cy="3240" r="10" fill="blue"/>
-                <text x="2225" y="3240" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">3</text>
-                <title>1 /lib/screens/game/game_style.dart
-2 /lib/widgets/cards/card_pile_widget.dart
-3 /lib/widgets/cards/card_widget.dart
+                <text x="2225" y="3240" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">4</text>
+                <title>1 /lib/screens/game/game_screen.dart
+2 /lib/screens/game/game_style.dart
+3 /lib/widgets/cards/card_pile_widget.dart
+4 /lib/widgets/cards/card_widget.dart
 ⬇
 card_dimensions.dart</title>
               </g>
@@ -2668,10 +2682,10 @@ backend_json_data.dart</title>
         </g>
         <g id='Labels_screens'>
           <text class="folderName" x="1545" y="460">screens</text>
-          <text x="1545" y="980" fill='black' font-size="75%">3 folders, 8 files, 6 incoming, 65 outgoing, path: ...//lib/</text>
+          <text x="1545" y="980" fill='black' font-size="75%">3 folders, 8 files, 6 incoming, 67 outgoing, path: ...//lib/</text>
           <g id='Labels_game'>
             <text class="folderName" x="1562.5" y="495">game</text>
-            <text x="1562.5" y="945" fill='black' font-size="75%">6 files, 4 incoming, 51 outgoing, path: ...//lib/screens/</text>
+            <text x="1562.5" y="945" fill='black' font-size="75%">6 files, 4 incoming, 53 outgoing, path: ...//lib/screens/</text>
             <g id='Labels_start_game_wizard_screen.dart'>
               <text class="nodeName" x="1870" y="560" font-size="90%">start_game_wizard_screen.dart</text>
             </g>
@@ -2708,7 +2722,7 @@ backend_json_data.dart</title>
         </g>
         <g id='Labels_widgets'>
           <text class="folderName" x="1130" y="1000">widgets</text>
-          <text x="1130" y="2210" fill='black' font-size="75%">4 folders, 22 files, 30 incoming, 42 outgoing, path: ...//lib/</text>
+          <text x="1130" y="2210" fill='black' font-size="75%">4 folders, 22 files, 31 incoming, 42 outgoing, path: ...//lib/</text>
           <g id='Labels_player'>
             <text class="folderName" x="1747.5" y="1035">player</text>
             <text x="1747.5" y="1325" fill='black' font-size="75%">6 files, 4 incoming, 21 outgoing, path: ...//lib/widgets/</text>
@@ -2733,7 +2747,7 @@ backend_json_data.dart</title>
           </g>
           <g id='Labels_cards'>
             <text class="folderName" x="2047.5" y="1345">cards</text>
-            <text x="2047.5" y="1715" fill='black' font-size="75%">4 files, 6 incoming, 15 outgoing, path: ...//lib/widgets/</text>
+            <text x="2047.5" y="1715" fill='black' font-size="75%">4 files, 7 incoming, 15 outgoing, path: ...//lib/widgets/</text>
             <g id='Labels_card_pile_widget.dart'>
               <text class="nodeName" x="2205" y="1410" font-size="120%">card_pile_widget.dart</text>
             </g>
@@ -2794,7 +2808,7 @@ backend_json_data.dart</title>
         </g>
         <g id='Labels_models'>
           <text class="folderName" x="1430" y="2230">models</text>
-          <text x="1430" y="3360" fill='black' font-size="75%">4 folders, 21 files, 101 incoming, 2 outgoing, path: ...//lib/</text>
+          <text x="1430" y="3360" fill='black' font-size="75%">4 folders, 21 files, 102 incoming, 2 outgoing, path: ...//lib/</text>
           <g id='Labels_game'>
             <text class="folderName" x="1747.5" y="2265">game</text>
             <text x="1747.5" y="2635" fill='black' font-size="75%">7 files, 36 incoming, 10 outgoing, path: ...//lib/models/</text>
@@ -2860,7 +2874,7 @@ backend_json_data.dart</title>
           </g>
           <g id='Labels_card'>
             <text class="folderName" x="1897.5" y="3115">card</text>
-            <text x="1897.5" y="3325" fill='black' font-size="75%">4 files, 22 incoming, path: ...//lib/models/</text>
+            <text x="1897.5" y="3325" fill='black' font-size="75%">4 files, 23 incoming, path: ...//lib/models/</text>
             <g id='Labels_card_model_french.dart'>
               <text class="nodeName" x="2055" y="3180" font-size="120%">card_model_french.dart</text>
             </g>

@@ -138,12 +138,25 @@ class PlayerZoneWidget extends StatelessWidget {
 
     return GestureDetector(
       onTap: () {
-        gameModel.revealCard(context, player, gridIndex);
+        final RenderBox? box = context.findRenderObject() as RenderBox?;
+        final Offset swapOrigin =
+            box?.localToGlobal(box.size.center(Offset.zero)) ?? Offset.zero;
+        gameModel.revealCard(
+          context,
+          player,
+          gridIndex,
+          swapOrigin: swapOrigin,
+        );
       },
       child: CardWidget(
         card: card,
-        onDropped: (cardSource, cardTarget) {
-          gameModel.onDropCardOnCard(context, cardSource, cardTarget);
+        onDropped: (cardSource, cardTarget, targetCenter) {
+          gameModel.onDropCardOnCard(
+            context,
+            cardSource,
+            cardTarget,
+            swapOrigin: targetCenter,
+          );
         },
       ),
     );

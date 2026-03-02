@@ -24,14 +24,18 @@ class CardWidget extends StatelessWidget {
   final CardModel card;
 
   ///
-  final Function(CardModel source, CardModel target)? onDropped;
+  final Function(CardModel source, CardModel target, Offset targetCenter)?
+  onDropped;
 
   @override
   Widget build(BuildContext context) {
     return DragTarget<CardModel>(
       onAcceptWithDetails: (DragTargetDetails<CardModel> data) {
         // DROPPED DROP CARD
-        onDropped?.call(data.data, card);
+        final RenderBox? box = context.findRenderObject() as RenderBox?;
+        final Offset targetCenter =
+            box?.localToGlobal(box.size.center(Offset.zero)) ?? Offset.zero;
+        onDropped?.call(data.data, card, targetCenter);
       },
       onWillAcceptWithDetails: (_) => card.isSelectable && onDropped != null,
       builder: (BuildContext _, List<CardModel?> candidateData, List _) {

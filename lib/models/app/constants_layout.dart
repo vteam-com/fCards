@@ -82,6 +82,9 @@ class ConstLayout {
   /// Animation duration for scroll to active player
   static const int scrollAnimationDuration = 500;
 
+  /// Animation duration for discarded swap card flight/flip feedback (987ms).
+  static const int swapCardFlightAnimationDuration = 1000;
+
   /// Maximum width for the start game screen content (377.0)
   static const double startGameScreenMaxWidth = 377.0;
 

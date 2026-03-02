@@ -191,7 +191,7 @@ void main() {
                     value: 1,
                     isRevealed: true,
                   )..isSelectable = true,
-                  onDropped: (s, t) => dropped = true,
+                  onDropped: (s, t, origin) => dropped = true,
                 ),
                 CardWidget(
                   card: CardModel(
@@ -200,7 +200,7 @@ void main() {
                     value: 2,
                     isRevealed: true,
                   )..isSelectable = true,
-                  onDropped: (s, t) => dropped = true,
+                  onDropped: (s, t, origin) => dropped = true,
                 ),
               ],
             ),
