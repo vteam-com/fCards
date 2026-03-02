@@ -96,7 +96,7 @@ class PlayerZoneCtaWidget extends StatelessWidget {
         if (GameStates.swapTopDeckCardWithAnyCardsInHandOrDiscard !=
             gameModel.gameState)
           buildMiniInstructions(true, 'Draw\na card\nhere\n→', TextAlign.left),
-        const SizedBox(width: 10),
+        const SizedBox(width: ConstLayout.sizeM),
         CardPileWidget(
           cards: gameModel.deck.cardsDeckPile,
           scale: 1.00,
@@ -123,7 +123,7 @@ class PlayerZoneCtaWidget extends StatelessWidget {
           onDraw: () =>
               gameModel.selectTopCardOfDeck(context, fromDiscardPile: true),
         ),
-        const SizedBox(width: 10),
+        const SizedBox(width: ConstLayout.sizeM),
         buildMiniInstructions(true, '\nor\nhere\n←', TextAlign.right),
       ],
     );

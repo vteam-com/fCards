@@ -221,7 +221,7 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
             Radius.circular(ConstLayout.radiusXL),
           ),
         ),
-        padding: EdgeInsets.all(ConstLayout.sizeS),
+        padding: EdgeInsets.all(ConstLayout.paddingS),
         /* was 10, using 8 for consistency? Or should add 10? Using sizeS for now if close enough or add 10 */
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -280,7 +280,7 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
     final dynamic ranks,
   ) {
     return Padding(
-      padding: const EdgeInsets.only(top: 8.0),
+      padding: const EdgeInsets.only(top: ConstLayout.paddingM),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         spacing: columnGap,

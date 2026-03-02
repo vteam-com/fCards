@@ -152,7 +152,7 @@ class _ScreenState extends State<Screen> with SingleTickerProviderStateMixin {
           /// RIGHT SIDE TEXT (User Name)
           if (widget.rightText.isNotEmpty)
             Padding(
-              padding: const EdgeInsets.all(ConstLayout.sizeS),
+              padding: const EdgeInsets.all(ConstLayout.paddingS),
               child: Text(
                 widget.rightText,
                 style: TextStyle(

@@ -28,7 +28,7 @@ class InputKeyboard extends StatelessWidget {
             Radius.circular(ConstLayout.radiusXL),
           ),
         ),
-        padding: EdgeInsets.all(ConstLayout.sizeS),
+        padding: EdgeInsets.all(ConstLayout.paddingS),
         child: Column(
           children: [
             Row(
@@ -72,7 +72,7 @@ class InputKeyboard extends StatelessWidget {
   /// Builds a single on-screen keypad button.
   Widget _buildButton(String text) {
     return Padding(
-      padding: const EdgeInsets.all(ConstLayout.sizeS),
+      padding: const EdgeInsets.all(ConstLayout.paddingS),
       child: MyButtonRound(
         size: ConstLayout.iconL,
         onTap: () => onKeyPressed(text),

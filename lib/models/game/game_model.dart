@@ -14,6 +14,8 @@ import 'package:flutter/material.dart';
 export 'package:cards/models/game/deck_model.dart';
 export 'package:cards/models/player/player_model.dart';
 
+const int _turnNotificationDurationSeconds = 2;
+
 /// Represents a game model that manages the state and logic of a game.
 /// This class extends `ChangeNotifier` to allow for state changes to be
 /// observed by other parts of the application.
@@ -539,7 +541,10 @@ class GameModel with ChangeNotifier {
   /// Displays a snackbar message indicating that a card is unavailable.
   void notifyCardUnavailable(BuildContext context, String message) {
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(message), duration: const Duration(seconds: 2)),
+      SnackBar(
+        content: Text(message),
+        duration: const Duration(seconds: _turnNotificationDurationSeconds),
+      ),
     );
   }
 
@@ -739,7 +744,10 @@ class GameModel with ChangeNotifier {
 /// @param message The message to be displayed in the snack bar.
 void showTurnNotification(BuildContext context, String message) {
   ScaffoldMessenger.of(context).showSnackBar(
-    SnackBar(content: Text(message), duration: const Duration(seconds: 2)),
+    SnackBar(
+      content: Text(message),
+      duration: const Duration(seconds: _turnNotificationDurationSeconds),
+    ),
   );
 }
 

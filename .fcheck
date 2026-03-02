@@ -1,11 +1,4 @@
 input:
   exclude:
     - "**/firebase_options.example.dart"
-    - "**/gen/**"
-
-analyzers:
-  options:
-    duplicate_code:
-      similarity_threshold: 0.90 # 0.0 to 1.0
-      min_tokens: 20
-      min_non_empty_lines: 8
+    - "**/gen/l10n/app_localizations.dart"

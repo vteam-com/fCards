@@ -64,7 +64,9 @@ class _TableWidgetState extends State<TableWidget> {
     final surface = colorScheme.surface;
 
     return Container(
-      constraints: const BoxConstraints(maxHeight: 500),
+      constraints: const BoxConstraints(
+        maxHeight: ConstLayout.roomTableListMaxHeight,
+      ),
       decoration: BoxDecoration(
         color: surface,
         borderRadius: BorderRadius.all(Radius.circular(ConstLayout.radiusM)),
@@ -74,7 +76,7 @@ class _TableWidgetState extends State<TableWidget> {
         children: [
           // Search Box
           Padding(
-            padding: const EdgeInsets.all(ConstLayout.sizeM),
+            padding: const EdgeInsets.all(ConstLayout.paddingM),
             child: EditBox(
               controller: _searchController,
               onSubmitted: () {
@@ -117,7 +119,7 @@ class _TableWidgetState extends State<TableWidget> {
           // Search hint
           if (_searchText.isNotEmpty && filteredRooms.isEmpty)
             Padding(
-              padding: const EdgeInsets.all(ConstLayout.sizeM),
+              padding: const EdgeInsets.all(ConstLayout.paddingM),
               child: Text(
                 localizations.noTablesFoundMatching(_searchText),
                 style: TextStyle(

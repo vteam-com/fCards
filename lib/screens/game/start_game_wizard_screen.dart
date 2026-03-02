@@ -89,7 +89,7 @@ class _StartGameWizardScreenState extends State<StartGameWizardScreen> {
       isWaiting: false,
       title: localizations.startGameWizardTitle,
       child: Padding(
-        padding: const EdgeInsets.all(ConstLayout.sizeM),
+        padding: const EdgeInsets.all(ConstLayout.paddingM),
         child: Column(
           children: [
             Expanded(
@@ -150,7 +150,7 @@ class _StartGameWizardScreenState extends State<StartGameWizardScreen> {
         });
       },
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: ConstLayout.sizeM),
+        padding: const EdgeInsets.symmetric(horizontal: ConstLayout.paddingM),
         child: Row(
           children: [
             Icon(

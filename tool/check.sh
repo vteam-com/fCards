@@ -51,7 +51,7 @@ tool/graph.sh | sed 's/^/    /'
 
 # Install the pinned version into the isolated cache, then run it.
 # Note: `dart pub cache exec` doesn't exist on all Dart SDK versions; `pub global run` does.
-FCHECK_PINNED_VERSION="1.0.0"
+FCHECK_PINNED_VERSION="1.0.5"
 FCHECK_LATEST_VERSION="$(curl -fsSL https://pub.dev/api/packages/fcheck 2>/dev/null | python3 -c 'import json,sys
 data=json.load(sys.stdin)
 print(data.get("latest", {}).get("version", ""))
