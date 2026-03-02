@@ -33,7 +33,8 @@ class CardPileWidget extends StatelessWidget {
   final bool isDropTarget;
 
   ///
-  final Function(CardModel source, CardModel target)? onDragDropped;
+  final Function(CardModel source, CardModel target, Offset targetCenter)?
+  onDragDropped;
 
   ///
   final VoidCallback? onDraw;

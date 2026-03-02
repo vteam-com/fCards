@@ -186,8 +186,13 @@ class PlayerZoneCtaWidget extends StatelessWidget {
           revealTopDeckCard: true,
           isDragSource: true,
           isDropTarget: false,
-          onDragDropped: (cardSource, cardTarget) =>
-              gameModel.onDropCardOnCard(context, cardSource, cardTarget),
+          onDragDropped: (cardSource, cardTarget, targetCenter) =>
+              gameModel.onDropCardOnCard(
+                context,
+                cardSource,
+                cardTarget,
+                swapOrigin: targetCenter,
+              ),
         ),
         buildMiniInstructions(true, 'Discard →\nor\n↓ swap', TextAlign.center),
         CardPileWidget(
@@ -206,8 +211,13 @@ class PlayerZoneCtaWidget extends StatelessWidget {
           revealTopDeckCard: true,
           isDragSource: false,
           isDropTarget: true,
-          onDragDropped: (cardSource, cardTarget) =>
-              gameModel.onDropCardOnCard(context, cardSource, cardTarget),
+          onDragDropped: (cardSource, cardTarget, targetCenter) =>
+              gameModel.onDropCardOnCard(
+                context,
+                cardSource,
+                cardTarget,
+                swapOrigin: targetCenter,
+              ),
         ),
       ],
     );

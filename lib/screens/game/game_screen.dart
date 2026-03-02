@@ -1,10 +1,14 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:math';
+import 'dart:ui';
 
 import 'package:cards/models/app/constants_layout.dart';
+import 'package:cards/models/card/card_dimensions.dart';
 import 'package:cards/models/game/backend_model.dart';
 import 'package:cards/models/game/game_model.dart';
 import 'package:cards/screens/game/game_over_dialog.dart';
+import 'package:cards/widgets/cards/card_widget.dart';
 import 'package:cards/widgets/helpers/screen.dart';
 import 'package:cards/widgets/player/player_zone_widget.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -71,13 +75,18 @@ class GameScreen extends StatefulWidget {
 /// )
 /// ```  /// Stream subscription for listening to changes in the Firebase database.
 class GameScreenState extends State<GameScreen> {
+  ({CardModel discardedCard, Offset? origin, bool wasHidden})?
+  _activeSwapAnimationEvent;
+  int _lastHandledSwapAnimationEventId = 0;
+
   /// List of GlobalKeys for each player widget, used for scrolling.
   List<GlobalKey> _playerKeys = [];
 
   /// Scroll controller for managing the scrolling behavior of the player list.
   late ScrollController _scrollController;
-
   late StreamSubscription _streamSubscription;
+  Timer? _swapAnimationCleanupTimer;
+  int _swapAnimationRunId = 0;
 
   /// Flag indicating whether the initial game data has been loaded and processed.
   /// Set to [isRunningOffLine] initially since offline mode doesn't need to wait for data loading.
@@ -86,19 +95,13 @@ class GameScreenState extends State<GameScreen> {
 
   /// Flag indicating whether the layout is for a phone-sized screen.
   bool phoneLayout = false;
-
   @override
   void initState() {
     super.initState();
     _createGlobalKeyForPlayers();
+    widget.gameModel.addListener(_onGameModelUpdated);
     if (isRunningOffLine) {
       _getFirebaseData();
-      widget.gameModel.addListener(() {
-        // Update the UI when the game model changes
-        setState(() {
-          // Update the UI
-        });
-      });
     } else {
       _initializeFirebaseListener();
     }
@@ -111,7 +114,11 @@ class GameScreenState extends State<GameScreen> {
   @override
   void dispose() {
     _scrollController.dispose();
-    _streamSubscription.cancel();
+    _swapAnimationCleanupTimer?.cancel();
+    widget.gameModel.removeListener(_onGameModelUpdated);
+    if (!isRunningOffLine) {
+      _streamSubscription.cancel();
+    }
     super.dispose();
   }
 
@@ -138,7 +145,7 @@ class GameScreenState extends State<GameScreen> {
       getLinkToShare: () {
         return widget.gameModel.getLinkToGame();
       },
-      child: _adaptiveLayout(width),
+      child: _buildLayoutWithSwapAnimation(_adaptiveLayout(width)),
     );
   }
 
@@ -175,6 +182,93 @@ class GameScreenState extends State<GameScreen> {
     // PHONE
     phoneLayout = true;
     return _layoutForPhone();
+  }
+
+  /// Builds the floating discarded card and applies a flip effect during
+  /// the upward flight animation.
+  Widget _buildDiscardedCardFlip(
+    CardModel card,
+    double animationValue,
+    bool _,
+  ) {
+    final bool showFront = animationValue >= ConstLayout.scaleSmall;
+    final CardModel displayCard = CardModel(
+      suit: card.suit,
+      rank: card.rank,
+      value: card.value,
+      partOfSet: card.partOfSet,
+      isRevealed: showFront,
+    );
+    final double rotationY = pi * (1.0 - animationValue);
+    return Transform(
+      alignment: Alignment.center,
+      transform: Matrix4.identity()..rotateY(rotationY),
+      child: Opacity(
+        opacity: max(
+          ConstLayout.strokeXXS,
+          1.0 - (animationValue / ConstLayout.strokeS),
+        ),
+        child: CardWidget(card: displayCard),
+      ),
+    );
+  }
+
+  /// Wraps the regular game layout with a transient overlay that animates the
+  /// swapped-out hidden card vertically toward the top area of the screen.
+  Widget _buildLayoutWithSwapAnimation(final Widget layout) {
+    return Stack(
+      children: [
+        layout,
+        if (_activeSwapAnimationEvent != null)
+          Positioned.fill(
+            child: IgnorePointer(
+              child: TweenAnimationBuilder<double>(
+                key: ValueKey<int>(_swapAnimationRunId),
+                tween: Tween<double>(begin: 0.0, end: 1.0),
+                duration: const Duration(
+                  milliseconds: ConstLayout.swapCardFlightAnimationDuration,
+                ),
+                curve: Curves.easeOutCubic,
+                builder: (BuildContext _, double animationValue, Widget? _) {
+                  final double viewportHeight = MediaQuery.of(
+                    context,
+                  ).size.height;
+                  final double viewportWidth = MediaQuery.of(
+                    context,
+                  ).size.width;
+                  final Offset? origin = _activeSwapAnimationEvent!.origin;
+                  final double endTop = ConstLayout.sizeL;
+                  final double startTop =
+                      (origin?.dy ?? (viewportHeight - ConstLayout.sizeXXL)) -
+                      (CardDimensions.height / ConstLayout.strokeS);
+                  final double left =
+                      ((origin?.dx ?? (viewportWidth / ConstLayout.strokeS)) -
+                              (CardDimensions.width / ConstLayout.strokeS))
+                          .clamp(
+                            0.0,
+                            max(0.0, viewportWidth - CardDimensions.width),
+                          );
+                  final double top =
+                      lerpDouble(startTop, endTop, animationValue) ?? endTop;
+                  return Stack(
+                    children: [
+                      Positioned(
+                        top: top,
+                        left: left,
+                        child: _buildDiscardedCardFlip(
+                          _activeSwapAnimationEvent!.discardedCard,
+                          animationValue,
+                          _activeSwapAnimationEvent!.wasHidden,
+                        ),
+                      ),
+                    ],
+                  );
+                },
+              ),
+            ),
+          ),
+      ],
+    );
   }
 
   /// Builds a horizontally wrapping layout of player zones.
@@ -296,6 +390,40 @@ class GameScreenState extends State<GameScreen> {
         }),
       ),
     );
+  }
+
+  /// Updates local UI and triggers the discarded-card overlay animation when a
+  /// new swap animation event is emitted by the game model.
+  void _onGameModelUpdated() {
+    if (!mounted) {
+      return;
+    }
+
+    final int eventId = widget.gameModel.swapAnimationEventId;
+    if (eventId > _lastHandledSwapAnimationEventId &&
+        widget.gameModel.lastSwapAnimationEvent != null) {
+      _lastHandledSwapAnimationEventId = eventId;
+      _swapAnimationRunId += CardModel.nextPlayerIncrement;
+      _activeSwapAnimationEvent = widget.gameModel.lastSwapAnimationEvent;
+      _swapAnimationCleanupTimer?.cancel();
+      _swapAnimationCleanupTimer = Timer(
+        const Duration(
+          milliseconds: ConstLayout.swapCardFlightAnimationDuration,
+        ),
+        () {
+          if (!mounted) {
+            return;
+          }
+          setState(() {
+            _activeSwapAnimationEvent = null;
+          });
+        },
+      );
+    }
+
+    setState(() {
+      // Rebuild on model changes and animation event updates.
+    });
   }
 
   /// Refreshes the game state by fetching the latest data from Firebase.

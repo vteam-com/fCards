@@ -96,6 +96,20 @@ class GameModel with ChangeNotifier {
   /// The current state of the game.
   GameStates get gameState => _gameState;
 
+  /// Monotonic id for discarded-card swap animation events.
+  int _swapAnimationEventId = 0;
+
+  /// Snapshot of the latest discarded-card swap animation payload.
+  ({CardModel discardedCard, Offset? origin, bool wasHidden})?
+  _lastSwapAnimationEvent;
+
+  /// The latest swap animation event id.
+  int get swapAnimationEventId => _swapAnimationEventId;
+
+  /// The latest swap animation payload.
+  ({CardModel discardedCard, Offset? origin, bool wasHidden})?
+  get lastSwapAnimationEvent => _lastSwapAnimationEvent;
+
   /// Adds a new player to the game.
   ///
   /// The player is added to the [players] list. The player's properties are set based on the [gameStyle]:
@@ -396,9 +410,14 @@ class GameModel with ChangeNotifier {
   /// [cardTarget] The target card that the source card was dropped on.
   void onDropCardOnCard(
     final BuildContext context,
-    final CardModel _, //cardSource,
-    final CardModel cardTarget,
-  ) {
+    final CardModel cardSource,
+    final CardModel cardTarget, {
+    Offset? swapOrigin,
+  }) {
+    if (identical(cardSource, cardTarget)) {
+      return;
+    }
+
     switch (gameState) {
       case GameStates.swapTopDeckCardWithAnyCardsInHandOrDiscard:
         if (cardTarget == deck.cardsDeckDiscarded.last) {
@@ -408,7 +427,11 @@ class GameModel with ChangeNotifier {
           gameState = GameStates.revealOneHiddenCard;
           return;
         } else {
-          swapDragCardOnPlayersTargetCard(context, cardTarget);
+          swapDragCardOnPlayersTargetCard(
+            context,
+            cardTarget,
+            swapOrigin: swapOrigin,
+          );
         }
       case GameStates.swapDiscardedCardWithAnyCardsInHand:
         if (cardTarget == deck.cardsDeckDiscarded.last) {
@@ -416,7 +439,11 @@ class GameModel with ChangeNotifier {
           // do nothing
           return;
         } else {
-          swapDragCardOnPlayersTargetCard(context, cardTarget);
+          swapDragCardOnPlayersTargetCard(
+            context,
+            cardTarget,
+            swapOrigin: swapOrigin,
+          );
         }
       default:
         // Do nothing or handle other states if necessary
@@ -432,13 +459,18 @@ class GameModel with ChangeNotifier {
   /// [cardTarget] The target card that the drag card was dropped on.
   void swapDragCardOnPlayersTargetCard(
     BuildContext context,
-    CardModel cardTarget,
-  ) {
+    CardModel cardTarget, {
+    Offset? swapOrigin,
+  }) {
     // Find the index of the target card in the player's hand
     final int targetIndex = players[playerIdPlaying].hand.indexOf(cardTarget);
 
     if (targetIndex != -1) {
-      swapCardWithTopPile(players[playerIdPlaying], targetIndex);
+      swapCardWithTopPile(
+        players[playerIdPlaying],
+        targetIndex,
+        swapOrigin: swapOrigin,
+      );
       moveToNextPlayer(context); // Assuming context is available
       // Optionally add a state update notification here
       notifyListeners();
@@ -449,24 +481,50 @@ class GameModel with ChangeNotifier {
   ///
   /// [playerIndex] is the index of the player whose hand is being modified.
   /// [cardIndex] is the index of the card in the player's hand to swap.
-  void swapCardWithTopPile(final PlayerModel player, final int cardIndex) {
-    if (player.hand.validIndex(cardIndex)) {
-      // do the swap
-      CardModel cardToSwapFromPlayer = player.hand[cardIndex];
-
-      // replace players card in their 3x3 with the selected card
-      if (gameState == GameStates.swapDiscardedCardWithAnyCardsInHand) {
-        player.hand[cardIndex] = deck.cardsDeckDiscarded.removeLast();
-      } else {
-        player.hand[cardIndex] = deck.cardsDeckPile.removeLast();
-      }
-
-      // ensure this card is revealed
-      player.hand[cardIndex].isRevealed = true;
-
-      // add players old card to to discard pile
-      deck.cardsDeckDiscarded.add(cardToSwapFromPlayer);
+  ({int discardedValue, int drawnValue})? swapCardWithTopPile(
+    final PlayerModel player,
+    final int cardIndex, {
+    Offset? swapOrigin,
+  }) {
+    if (!player.hand.validIndex(cardIndex)) {
+      return null;
     }
+
+    // do the swap
+    final CardModel cardToSwapFromPlayer = player.hand[cardIndex];
+    final bool wasHidden = !cardToSwapFromPlayer.isRevealed;
+
+    // replace players card in their 3x3 with the selected card
+    final CardModel drawnCard;
+    if (gameState == GameStates.swapDiscardedCardWithAnyCardsInHand) {
+      drawnCard = deck.cardsDeckDiscarded.removeLast();
+      player.hand[cardIndex] = drawnCard;
+    } else {
+      drawnCard = deck.cardsDeckPile.removeLast();
+      player.hand[cardIndex] = drawnCard;
+    }
+
+    // ensure this card is revealed
+    player.hand[cardIndex].isRevealed = true;
+
+    // add players old card to to discard pile
+    deck.cardsDeckDiscarded.add(cardToSwapFromPlayer);
+    _lastSwapAnimationEvent = (
+      discardedCard: CardModel(
+        suit: cardToSwapFromPlayer.suit,
+        rank: cardToSwapFromPlayer.rank,
+        value: cardToSwapFromPlayer.value,
+        partOfSet: cardToSwapFromPlayer.partOfSet,
+        isRevealed: false,
+      ),
+      origin: swapOrigin,
+      wasHidden: wasHidden,
+    );
+    _swapAnimationEventId += CardModel.nextPlayerIncrement;
+    return (
+      drawnValue: drawnCard.value,
+      discardedValue: cardToSwapFromPlayer.value,
+    );
   }
 
   /// Reveals all remaining cards for the specified player.
@@ -485,8 +543,9 @@ class GameModel with ChangeNotifier {
   void revealCard(
     BuildContext context,
     final PlayerModel player,
-    int cardIndex,
-  ) {
+    int cardIndex, {
+    Offset? swapOrigin,
+  }) {
     if (player.isActivePlayer == false) {
       notifyCardUnavailable(context, 'Wait your turn!');
       return;
@@ -498,12 +557,13 @@ class GameModel with ChangeNotifier {
       wasSwapped = true;
     }
 
-    if (handleFlipAndSwapState(player, cardIndex)) {
+    if (handleFlipAndSwapState(player, cardIndex, swapOrigin: swapOrigin)) {
       wasSwapped = true;
     }
 
     if (wasSwapped) {
       moveToNextPlayer(context);
+      notifyListeners();
 
       if (isFinalTurn) {
         if (areAllCardsFromHandsRevealed()) {
@@ -528,10 +588,14 @@ class GameModel with ChangeNotifier {
   }
 
   /// Handles the logic for flipping and swapping a card during the 'flipAndSwap' game state.
-  bool handleFlipAndSwapState(final PlayerModel player, final int cardIndex) {
+  bool handleFlipAndSwapState(
+    final PlayerModel player,
+    final int cardIndex, {
+    Offset? swapOrigin,
+  }) {
     if (gameState == GameStates.swapTopDeckCardWithAnyCardsInHandOrDiscard ||
         gameState == GameStates.swapDiscardedCardWithAnyCardsInHand) {
-      swapCardWithTopPile(player, cardIndex);
+      swapCardWithTopPile(player, cardIndex, swapOrigin: swapOrigin);
 
       return true;
     }
@@ -743,7 +807,14 @@ class GameModel with ChangeNotifier {
 /// @param context The [BuildContext] used to access the [ScaffoldMessenger].
 /// @param message The message to be displayed in the snack bar.
 void showTurnNotification(BuildContext context, String message) {
-  ScaffoldMessenger.of(context).showSnackBar(
+  final ScaffoldMessengerState? scaffoldMessenger = ScaffoldMessenger.maybeOf(
+    context,
+  );
+  if (scaffoldMessenger == null) {
+    return;
+  }
+
+  scaffoldMessenger.showSnackBar(
     SnackBar(
       content: Text(message),
       duration: const Duration(seconds: _turnNotificationDurationSeconds),
