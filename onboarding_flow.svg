@@ -35,7 +35,7 @@
 
   <rect class="node" x="220" y="560" width="360" height="90" />
   <text class="text" x="400" y="607" text-anchor="middle">Select Game Type</text>
-  <text class="small" x="400" y="635" text-anchor="middle">Golf 9, MiniPut 4, Skylo</text>
+  <text class="small" x="400" y="635" text-anchor="middle">Golf 9, MiniPut 4, Skyjo</text>
 
   <polygon class="decision" points="400,700 570,770 400,840 230,770" />
   <text class="small" x="400" y="760" text-anchor="middle">Select room</text>

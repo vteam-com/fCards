@@ -1,13 +1,16 @@
 # Implementation Plan
 
 ## Goal
+
 Make "Start a New Game" behave like a wizard:
-1. Choose game type (`Golf 9 Cards`, `MiniPut 4 Cards`, `Skylo`)
+
+1. Choose game type (`Golf 9 Cards`, `MiniPut 4 Cards`, `Skyjo`)
 2. Choose an existing room or create a new room
 3. If existing room selected, continue in the existing "Join an Existing Game" wizard
 4. If creating a room, continue in the existing create/invite flow
 
 ## Steps
+
 1. Add a new `StartGameWizardScreen` with two steps: game type and room decision.
 2. Route the main menu "Start a New Game" button to the new wizard.
 3. Extend `JoinGameScreen` to accept:
