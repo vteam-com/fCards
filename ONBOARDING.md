@@ -21,7 +21,7 @@ Users land on the **Welcome Screen** (`/`) and pick one of these:
 2. User chooses game type:
    - Golf 9 Cards
    - MiniPut 4 Cards
-   - Skylo
+   - Skyjo
 3. User chooses one of:
    - Select an existing table (room)
    - Create new table

@@ -234,7 +234,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get miniPutFull => 'MiniPut 4 Cartes';
 
   @override
-  String get skyLo => 'Skylo';
+  String get skyLo => 'Skyjo';
 
   @override
   String columnsByRows(int columns, int rows) {

@@ -1,9 +1,15 @@
 # CHANGELOG
 
+## 1.11.2
+
+- Fix typo in game type selection (Skylo → Skyjo)
+
 ## 1.11.1
+
 - UI: Remove the progress numbering steps
 
 ## 1.11.0
+
 - Localize hardcoded strings across the app:
   - Start game wizard screen: grid dimensions display
   - Table widget: empty state and search messages
@@ -12,10 +18,12 @@
   - Player header: rank badges and player management dialogs
 
 ## 1.10.8
+
 - Add DartDoc comments across core game, player, helper, and auth components
 - Update `fcheck` tooling to `0.9.10` and enable full issue listing in `tool/check.sh`
 
 ## 1.10.7
+
 - Move to Wizard onboarding
 
 ## 1.10.6

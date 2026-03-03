@@ -509,7 +509,7 @@ abstract class AppLocalizations {
   /// No description provided for @skyLo.
   ///
   /// In en, this message translates to:
-  /// **'Skylo'**
+  /// **'Skyjo'**
   String get skyLo;
 
   /// No description provided for @columnsByRows.
