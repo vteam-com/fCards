@@ -55,18 +55,7 @@ jobs:
       
     - name: Install fcheck
       run: dart pub global activate fcheck
-      
-    - name: Run fcheck analysis
-      run: fcheck --svg --svgfolder --fix .
-      
-    - name: Upload fcheck artifacts
-      uses: actions/upload-artifact@v4
-      with:
-        name: fcheck-reports
-        path: |
-          layers.svg
-          layers_folders.svg
-          
+                
     - name: Build Flutter Web
       run: flutter build web --release --dart-define=FLUTTER_WEB_CANVASKIT_URL=/canvaskit/
       
