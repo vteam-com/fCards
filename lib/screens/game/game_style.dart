@@ -1,3 +1,5 @@
+import 'package:cards/gen/l10n/app_localizations.dart';
+import 'package:cards/gen/l10n/app_localizations_en.dart';
 import 'package:cards/models/app/constants_layout.dart';
 import 'package:cards/models/card/card_dimensions.dart';
 import 'package:cards/models/card/card_model_french.dart';
@@ -30,6 +32,9 @@ class GameStyle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final AppLocalizations localizations =
+        Localizations.of<AppLocalizations>(context, AppLocalizations) ??
+        AppLocalizationsEn();
     return Column(
       children: [
         Expanded(
@@ -38,7 +43,7 @@ class GameStyle extends StatelessWidget {
             styleSheet: MarkdownStyleSheet(
               textScaler: TextScaler.linear(ConstLayout.markdownTextScale),
             ),
-            data: gameInstructions(style),
+            data: gameInstructions(style, localizations),
             onTapLink: (_ /* text */, href, _ /* title */) async {
               if (href != null) {
                 await launchUrlString(href);
@@ -167,41 +172,16 @@ GameStyles intToGameStyles(final int gameStyleIndex) {
 ///
 /// Takes a [GameStyles] parameter and returns a formatted string containing
 /// the rules and instructions for that game variant.
-String gameInstructions(GameStyles style) {
+String gameInstructions(GameStyles style, AppLocalizations localizations) {
   switch (style) {
     case GameStyles.frenchCards9:
-      return '- Aim for the lowest score.'
-          '\n- Choose a card from either the Deck or Discard pile.'
-          '\n- Swap the chosen card with a card in your 3x3 grid, or discard it and flip over one of your face-down cards.'
-          '\n- Three cards of the same rank in a row or column score zero.'
-          '\n- The first player to reveal all nine cards challenges others, claiming the lowest score.'
-          '\n- If someone else has an equal or lower score, the challenger doubles their points!'
-          '\n- Players are eliminated after busting 100 points.'
-          '\n'
-          '\n'
-          'Learn more [Wikipedia](https://en.wikipedia.org/wiki/Golf_(card_game))';
+      return localizations.instructionsFrenchCards9;
     case GameStyles.skyJo:
-      return '- Aim for the lowest score.'
-          '\n- Choose a card from either the Deck or Discard pile.'
-          '\n- Swap the chosen card with a card in your 4x3 grid, or discard it and flip over one of your face-down cards.'
-          '\n- When 3 cards of the same rank are lined up in a column they are moved to the discard pile.'
-          '\n- The first player to reveal all their cards challenges others, claiming the lowest score.'
-          '\n'
-          '\n'
-          'Learn more [SkyJo](https://www.geekyhobbies.com/how-to-play-skyjo-card-game-rules-and-instructions/)';
+      return localizations.instructionsSkyJo;
     case GameStyles.miniPut:
-      return '- Aim for the lowest score.'
-          '\n- Choose a card from either the Deck or Discard pile.'
-          '\n- Swap the chosen card with a card in your 2x2 grid, or discard it and flip over one of your face-down cards.'
-          '\n- Three cards of the same rank in a row or column score zero.'
-          '\n- The first player to reveal all nine cards challenges others, claiming the lowest score.'
-          '\n- If someone else has an equal or lower score, the challenger doubles their points!'
-          '\n- Players are eliminated after busting 100 points.'
-          '\n'
-          '\n'
-          'Learn more [Wikipedia](https://en.wikipedia.org/wiki/Golf_(card_game))';
+      return localizations.instructionsMiniPut;
 
     case GameStyles.custom:
-      return 'Custom rules';
+      return localizations.instructionsCustom;
   }
 }

@@ -410,6 +410,12 @@ abstract class AppLocalizations {
   /// **'This Game'**
   String get thisGame;
 
+  /// No description provided for @cardCountTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'{count}\\ncards'**
+  String cardCountTooltip(int count);
+
   /// No description provided for @playAgain.
   ///
   /// In en, this message translates to:
@@ -541,6 +547,180 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Select a status'**
   String get selectAStatus;
+
+  /// No description provided for @noOne.
+  ///
+  /// In en, this message translates to:
+  /// **'No one'**
+  String get noOne;
+
+  /// No description provided for @notYourTurn.
+  ///
+  /// In en, this message translates to:
+  /// **'It\'s not your turn!'**
+  String get notYourTurn;
+
+  /// No description provided for @noCardsAvailableToDraw.
+  ///
+  /// In en, this message translates to:
+  /// **'No cards available to draw!'**
+  String get noCardsAvailableToDraw;
+
+  /// No description provided for @waitYourTurn.
+  ///
+  /// In en, this message translates to:
+  /// **'Wait your turn!'**
+  String get waitYourTurn;
+
+  /// No description provided for @notAllowed.
+  ///
+  /// In en, this message translates to:
+  /// **'Not allowed!'**
+  String get notAllowed;
+
+  /// No description provided for @itsYourTurn.
+  ///
+  /// In en, this message translates to:
+  /// **'It\'s your turn {player}'**
+  String itsYourTurn(String player);
+
+  /// No description provided for @itsPlayersTurn.
+  ///
+  /// In en, this message translates to:
+  /// **'It\'s {player}\'s turn'**
+  String itsPlayersTurn(String player);
+
+  /// No description provided for @finalRoundYouHaveToBeat.
+  ///
+  /// In en, this message translates to:
+  /// **'Final Round. {turnText}. You have to beat {attacker}'**
+  String finalRoundYouHaveToBeat(String turnText, String attacker);
+
+  /// No description provided for @youAreDone.
+  ///
+  /// In en, this message translates to:
+  /// **'You are done.'**
+  String get youAreDone;
+
+  /// No description provided for @waitForYourTurnSmiley.
+  ///
+  /// In en, this message translates to:
+  /// **'Wait for your turn :)'**
+  String get waitForYourTurnSmiley;
+
+  /// No description provided for @flipOpenOneHiddenCard.
+  ///
+  /// In en, this message translates to:
+  /// **'↓ Flip open one of your hidden cards ↓'**
+  String get flipOpenOneHiddenCard;
+
+  /// No description provided for @drawCardHere.
+  ///
+  /// In en, this message translates to:
+  /// **'Draw\na card\nhere\n→'**
+  String get drawCardHere;
+
+  /// No description provided for @orHereLeft.
+  ///
+  /// In en, this message translates to:
+  /// **'\nor\nhere\n←'**
+  String get orHereLeft;
+
+  /// No description provided for @swapThisWith.
+  ///
+  /// In en, this message translates to:
+  /// **'swap this →\n\nwith ↓'**
+  String get swapThisWith;
+
+  /// No description provided for @discardOrSwap.
+  ///
+  /// In en, this message translates to:
+  /// **'Discard →\nor\n↓ swap'**
+  String get discardOrSwap;
+
+  /// No description provided for @statusFeelingGood.
+  ///
+  /// In en, this message translates to:
+  /// **'Feeling Good!'**
+  String get statusFeelingGood;
+
+  /// No description provided for @statusBrb.
+  ///
+  /// In en, this message translates to:
+  /// **'BRB'**
+  String get statusBrb;
+
+  /// No description provided for @statusThinking.
+  ///
+  /// In en, this message translates to:
+  /// **'Thinking...'**
+  String get statusThinking;
+
+  /// No description provided for @statusVoila.
+  ///
+  /// In en, this message translates to:
+  /// **'Voila!'**
+  String get statusVoila;
+
+  /// No description provided for @statusOhNo.
+  ///
+  /// In en, this message translates to:
+  /// **'Oh NO!'**
+  String get statusOhNo;
+
+  /// No description provided for @playerNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Player {number}'**
+  String playerNumber(int number);
+
+  /// No description provided for @nameForPlayerNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Name for Player #{number}'**
+  String nameForPlayerNumber(int number);
+
+  /// No description provided for @playerName.
+  ///
+  /// In en, this message translates to:
+  /// **'Player Name'**
+  String get playerName;
+
+  /// No description provided for @youIndicator.
+  ///
+  /// In en, this message translates to:
+  /// **'YOU>'**
+  String get youIndicator;
+
+  /// No description provided for @playerWonTimesAtTable.
+  ///
+  /// In en, this message translates to:
+  /// **'{player} won {count} times at table {table}'**
+  String playerWonTimesAtTable(String player, int count, String table);
+
+  /// No description provided for @instructionsFrenchCards9.
+  ///
+  /// In en, this message translates to:
+  /// **'- Aim for the lowest score.\n- Choose a card from either the Deck or Discard pile.\n- Swap the chosen card with a card in your 3x3 grid, or discard it and flip over one of your face-down cards.\n- Three cards of the same rank in a row or column score zero.\n- The first player to reveal all nine cards challenges others, claiming the lowest score.\n- If someone else has an equal or lower score, the challenger doubles their points!\n- Players are eliminated after busting 100 points.\n\n\nLearn more [Wikipedia](https://en.wikipedia.org/wiki/Golf_(card_game))'**
+  String get instructionsFrenchCards9;
+
+  /// No description provided for @instructionsSkyJo.
+  ///
+  /// In en, this message translates to:
+  /// **'- Aim for the lowest score.\n- Choose a card from either the Deck or Discard pile.\n- Swap the chosen card with a card in your 4x3 grid, or discard it and flip over one of your face-down cards.\n- When 3 cards of the same rank are lined up in a column they are moved to the discard pile.\n- The first player to reveal all their cards challenges others, claiming the lowest score.\n\n\nLearn more [SkyJo](https://www.geekyhobbies.com/how-to-play-skyjo-card-game-rules-and-instructions/)'**
+  String get instructionsSkyJo;
+
+  /// No description provided for @instructionsMiniPut.
+  ///
+  /// In en, this message translates to:
+  /// **'- Aim for the lowest score.\n- Choose a card from either the Deck or Discard pile.\n- Swap the chosen card with a card in your 2x2 grid, or discard it and flip over one of your face-down cards.\n- Three cards of the same rank in a row or column score zero.\n- The first player to reveal all nine cards challenges others, claiming the lowest score.\n- If someone else has an equal or lower score, the challenger doubles their points!\n- Players are eliminated after busting 100 points.\n\n\nLearn more [Wikipedia](https://en.wikipedia.org/wiki/Golf_(card_game))'**
+  String get instructionsMiniPut;
+
+  /// No description provided for @instructionsCustom.
+  ///
+  /// In en, this message translates to:
+  /// **'Custom rules'**
+  String get instructionsCustom;
 
   /// No description provided for @last.
   ///

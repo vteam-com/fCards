@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:math';
 import 'dart:ui';
 
+import 'package:cards/gen/l10n/app_localizations.dart';
 import 'package:cards/models/app/constants_layout.dart';
 import 'package:cards/models/card/card_dimensions.dart';
 import 'package:cards/models/game/backend_model.dart';
@@ -12,7 +13,7 @@ import 'package:cards/widgets/cards/card_widget.dart';
 import 'package:cards/widgets/helpers/screen.dart';
 import 'package:cards/widgets/player/player_zone_widget.dart';
 import 'package:firebase_database/firebase_database.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 /// Widget for the main game screen.
 ///
@@ -135,10 +136,16 @@ class GameScreenState extends State<GameScreen> {
   @override
   Widget build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;
+    final AppLocalizations localizations = AppLocalizations.of(context);
 
     return Screen(
       isWaiting: !isReady,
-      title: widget.gameModel.getGameStateAsString(),
+      title: widget.gameModel.getGameStateAsStringLocalized(
+        localizations.noOne,
+        localizations.itsYourTurn,
+        localizations.itsPlayersTurn,
+        localizations.finalRoundYouHaveToBeat,
+      ),
       rightText:
           '${widget.gameModel.roomName} [ ${widget.gameModel.loginUserName} ]',
       onRefresh: _onRefresh,

@@ -1,3 +1,4 @@
+import 'package:cards/gen/l10n/app_localizations.dart';
 import 'package:cards/models/app/app_theme.dart';
 import 'package:cards/models/app/constants_layout.dart';
 import 'package:cards/widgets/helpers/my_text.dart';
@@ -36,6 +37,7 @@ class PlayersInRoomWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
+    final AppLocalizations localizations = AppLocalizations.of(context);
 
     return Container(
       constraints: BoxConstraints(
@@ -65,7 +67,9 @@ class PlayersInRoomWidget extends StatelessWidget {
                     leading: SizedBox(
                       width: ConstLayout.sizeXL,
                       child: MyText(
-                        nameToDisplay == activePlayerName ? 'YOU>' : '',
+                        nameToDisplay == activePlayerName
+                            ? localizations.youIndicator
+                            : '',
                         fontSize: ConstLayout.textS,
                       ),
                     ),

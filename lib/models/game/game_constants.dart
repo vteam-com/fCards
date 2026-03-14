@@ -36,4 +36,6 @@ class GameConstants {
   /// Utility to calculate the required number of card decks for a session.
   static int calculateDecks(int numberOfPlayers) =>
       (numberOfPlayers + 1) ~/ deckCalculationDivider;
+
+  static String playerNumberPrefix = 'Player';
 }

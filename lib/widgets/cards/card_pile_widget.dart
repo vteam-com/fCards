@@ -1,3 +1,5 @@
+import 'package:cards/gen/l10n/app_localizations.dart';
+import 'package:cards/gen/l10n/app_localizations_en.dart';
 import 'package:cards/models/app/constants_layout.dart';
 import 'package:cards/models/card/card_dimensions.dart';
 import 'package:cards/models/card/card_model.dart';
@@ -52,18 +54,24 @@ class CardPileWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return FittedBox(
       fit: BoxFit.scaleDown,
-      child: Transform.scale(scale: scale, child: _buildPileUnplayedCards()),
+      child: Transform.scale(
+        scale: scale,
+        child: _buildPileUnplayedCards(context),
+      ),
     );
   }
 
   /// Builds the stacked unplayed deck with optional top-card reveal/drag.
-  Widget _buildPileUnplayedCards() {
+  Widget _buildPileUnplayedCards(final BuildContext context) {
+    final AppLocalizations localizations =
+        Localizations.of<AppLocalizations>(context, AppLocalizations) ??
+        AppLocalizationsEn();
     double cardStackOffset = ConstLayout.cardStackOffsetLarge;
     if (cards.length > ConstLayout.cardStackThreshold) {
       cardStackOffset = ConstLayout.cardStackOffsetSmall;
     }
     return Tooltip(
-      message: '${cards.length}\ncards',
+      message: localizations.cardCountTooltip(cards.length),
       child: SizedBox(
         height: CardDimensions.height * ConstLayout.cardHeightScale,
         width: CardDimensions.width * ConstLayout.cardWidthScale,

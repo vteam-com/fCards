@@ -85,6 +85,14 @@
   "players": "Players",
   "gamesWon": "Games Won",
   "thisGame": "This Game",
+  "cardCountTooltip": "{count}\\ncards",
+  "@cardCountTooltip": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "playAgain": "Play Again",
   "exit": "Exit",
 
@@ -148,6 +156,92 @@
   "starting": "Starting",
   "gameOverTitle": "GAME OVER",
   "selectAStatus": "Select a status",
+  "noOne": "No one",
+  "notYourTurn": "It's not your turn!",
+  "noCardsAvailableToDraw": "No cards available to draw!",
+  "waitYourTurn": "Wait your turn!",
+  "notAllowed": "Not allowed!",
+
+  "itsYourTurn": "It's your turn {player}",
+  "@itsYourTurn": {
+    "placeholders": {
+      "player": {
+        "type": "String"
+      }
+    }
+  },
+  "itsPlayersTurn": "It's {player}'s turn",
+  "@itsPlayersTurn": {
+    "placeholders": {
+      "player": {
+        "type": "String"
+      }
+    }
+  },
+  "finalRoundYouHaveToBeat": "Final Round. {turnText}. You have to beat {attacker}",
+  "@finalRoundYouHaveToBeat": {
+    "placeholders": {
+      "turnText": {
+        "type": "String"
+      },
+      "attacker": {
+        "type": "String"
+      }
+    }
+  },
+
+  "youAreDone": "You are done.",
+  "waitForYourTurnSmiley": "Wait for your turn :)",
+  "flipOpenOneHiddenCard": "↓ Flip open one of your hidden cards ↓",
+  "drawCardHere": "Draw\na card\nhere\n→",
+  "orHereLeft": "\nor\nhere\n←",
+  "swapThisWith": "swap this →\n\nwith ↓",
+  "discardOrSwap": "Discard →\nor\n↓ swap",
+
+  "statusFeelingGood": "Feeling Good!",
+  "statusBrb": "BRB",
+  "statusThinking": "Thinking...",
+  "statusVoila": "Voila!",
+  "statusOhNo": "Oh NO!",
+
+  "playerNumber": "Player {number}",
+  "@playerNumber": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+
+  "nameForPlayerNumber": "Name for Player #{number}",
+  "@nameForPlayerNumber": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "playerName": "Player Name",
+  "youIndicator": "YOU>",
+  "playerWonTimesAtTable": "{player} won {count} times at table {table}",
+  "@playerWonTimesAtTable": {
+    "placeholders": {
+      "player": {
+        "type": "String"
+      },
+      "count": {
+        "type": "int"
+      },
+      "table": {
+        "type": "String"
+      }
+    }
+  },
+
+  "instructionsFrenchCards9": "- Aim for the lowest score.\n- Choose a card from either the Deck or Discard pile.\n- Swap the chosen card with a card in your 3x3 grid, or discard it and flip over one of your face-down cards.\n- Three cards of the same rank in a row or column score zero.\n- The first player to reveal all nine cards challenges others, claiming the lowest score.\n- If someone else has an equal or lower score, the challenger doubles their points!\n- Players are eliminated after busting 100 points.\n\n\nLearn more [Wikipedia](https://en.wikipedia.org/wiki/Golf_(card_game))",
+  "instructionsSkyJo": "- Aim for the lowest score.\n- Choose a card from either the Deck or Discard pile.\n- Swap the chosen card with a card in your 4x3 grid, or discard it and flip over one of your face-down cards.\n- When 3 cards of the same rank are lined up in a column they are moved to the discard pile.\n- The first player to reveal all their cards challenges others, claiming the lowest score.\n\n\nLearn more [SkyJo](https://www.geekyhobbies.com/how-to-play-skyjo-card-game-rules-and-instructions/)",
+  "instructionsMiniPut": "- Aim for the lowest score.\n- Choose a card from either the Deck or Discard pile.\n- Swap the chosen card with a card in your 2x2 grid, or discard it and flip over one of your face-down cards.\n- Three cards of the same rank in a row or column score zero.\n- The first player to reveal all nine cards challenges others, claiming the lowest score.\n- If someone else has an equal or lower score, the challenger doubles their points!\n- Players are eliminated after busting 100 points.\n\n\nLearn more [Wikipedia](https://en.wikipedia.org/wiki/Golf_(card_game))",
+  "instructionsCustom": "Custom rules",
   "last": "LAST",
   "done": "Done",
   "addAnotherPlayer": "Add another player",

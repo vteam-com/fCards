@@ -13,7 +13,7 @@ class AppTheme {
     seedColor: seedColor,
     brightness: Brightness.dark,
   );
-
+  static String fontFamily = 'GameFont';
   static final onSurface = colorScheme.onSurface;
   static final surfaceBackground = colorScheme.surface;
   static final onSurfaceHint = onSurface.withAlpha(ConstLayout.alphaH);
@@ -91,7 +91,7 @@ class AppTheme {
           ),
         )
         .apply(
-          fontFamily: 'GameFont',
+          fontFamily: fontFamily,
           bodyColor: onSurface,
           displayColor: onSurface,
         );

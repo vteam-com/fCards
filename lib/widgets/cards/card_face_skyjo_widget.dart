@@ -7,6 +7,8 @@ import 'package:cards/widgets/cards/card_face_french_widget.dart';
 import 'package:cards/widgets/helpers/my_text.dart';
 import 'package:flutter/material.dart';
 
+const String _skyjoCardFontFamily = 'Comic Sans MS';
+
 /// A widget that displays a playing card's face or back.
 ///
 /// The [CardFaceSkyjoWidget] is responsible for rendering a playing card based on the provided [CardModel].
@@ -85,7 +87,7 @@ class CardFaceSkyjoWidget extends CardFaceFrenchWidget {
           card.value.toString(),
           style:
               TextStyle(
-                fontFamily: 'Comic Sans MS',
+                fontFamily: _skyjoCardFontFamily,
                 fontSize: ConstLayout.textXL,
                 color: Colors.white,
                 decoration: TextDecoration.none,
@@ -99,7 +101,7 @@ class CardFaceSkyjoWidget extends CardFaceFrenchWidget {
         Text(
           card.value.toString(),
           style: TextStyle(
-            fontFamily: 'Comic Sans MS',
+            fontFamily: _skyjoCardFontFamily,
             fontSize: ConstLayout.textXL,
             color: Colors.black,
             decoration: TextDecoration.none,

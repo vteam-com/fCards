@@ -9,6 +9,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 
+const String _firebaseRoomsNode = 'rooms';
+const List<String> _offlineDemoPlayerNames = ['BOB', 'SUE', 'JOHN', 'MARY'];
+
 /// Indicates whether the app is running offline or not.
 ///
 /// This flag is used to determine the behavior of the app's backend functionality.
@@ -79,11 +82,11 @@ Future<void> useFirebase() async {
 /// @return A Future that completes with a list of player names in the room.
 Future<List<String>> getPlayersInRoom(final String roomId) async {
   if (isRunningOffLine) {
-    return ['BOB', 'SUE', 'JOHN', 'MARY'];
+    return _offlineDemoPlayerNames;
   }
 
   final DataSnapshot dataSnapshot = await FirebaseDatabase.instance
-      .ref('rooms/$roomId/invitees')
+      .ref('$_firebaseRoomsNode/$roomId/invitees')
       .get();
 
   final List? players = dataSnapshot.value as List?;
@@ -110,7 +113,7 @@ void setPlayersInRoom(final String room, final Set<String> playersNames) {
 
   useFirebase().then((_) {
     FirebaseDatabase.instance
-        .ref('rooms/$room/invitees')
+        .ref('$_firebaseRoomsNode/$room/invitees')
         .set(playersNames.toList());
   });
 }
@@ -223,7 +226,7 @@ List<String> getInviteesFromDataSnapshot(
 
     // Safely access and update the player list from the Firebase snapshot.
     if (data != null && data is Map) {
-      final rooms = data['rooms'] as Map?;
+      final rooms = data[_firebaseRoomsNode] as Map?;
       if (rooms != null) {
         final room = rooms[roomId] as Map?;
         if (room != null) {
@@ -251,7 +254,7 @@ Future<List<String>> getAllRooms() async {
   }
 
   final DataSnapshot dataSnapshot = await FirebaseDatabase.instance
-      .ref('rooms')
+      .ref(_firebaseRoomsNode)
       .get();
   final List<String> rooms = [];
 

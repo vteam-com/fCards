@@ -1,4 +1,6 @@
 #!/bin/sh
+set -euo pipefail
+
 FIREBASE_OPTIONS_FILE="lib/models/app/firebase_options.dart"
 
 echo --- Firebase config
@@ -22,18 +24,20 @@ EOF
 fi
 
 echo --- Pub Get
-flutter pub get > /dev/null || { echo "Pub get failed"; exit 1; }
+flutter pub get > /dev/null
+
 echo --- Pub Upgrade
 flutter pub upgrade > /dev/null
+
 echo --- Pub Outdated
 flutter pub outdated
 
 echo --- Format sources
-dart format . | sed 's/^/    /'
-dart fix --apply | sed 's/^/    /'
+dart format . 2>&1 | sed 's/^/    /'
+dart fix --apply 2>&1 | sed 's/^/    /'
 
 echo --- Analyze
-flutter analyze lib test --no-pub | sed 's/^/    /'
+flutter analyze lib test --no-pub 2>&1 | sed 's/^/    /'
 
 echo --- Test
 echo "    Running tests..."
@@ -46,16 +50,22 @@ mkdir -p "$PWD/.dart_tool/fcheck_pub_cache"
 export PUB_CACHE="$PWD/.dart_tool/fcheck_pub_cache"
 
 echo --- Graph Dependencies
-tool/graph.sh | sed 's/^/    /'
+if [ -x tool/graph.sh ]; then
+  tool/graph.sh 2>&1 | sed 's/^/    /'
+else
+  echo "    graph.sh missing or not executable"
+fi
 
-
-# Install the pinned version into the isolated cache, then run it.
-# Note: `dart pub cache exec` doesn't exist on all Dart SDK versions; `pub global run` does.
-FCHECK_PINNED_VERSION="1.0.5"
-FCHECK_LATEST_VERSION="$(curl -fsSL https://pub.dev/api/packages/fcheck 2>/dev/null | python3 -c 'import json,sys
-data=json.load(sys.stdin)
-print(data.get("latest", {}).get("version", ""))
-' 2>/dev/null)"
+FCHECK_PINNED_VERSION="1.0.9"
+FCHECK_LATEST_VERSION="$(
+  curl -fsSL https://pub.dev/api/packages/fcheck 2>/dev/null |
+  python3 -c 'import json,sys
+try:
+    data=json.load(sys.stdin)
+    print(data.get("latest", {}).get("version", ""))
+except Exception:
+    print("")'
+)"
 
 if [ -n "$FCHECK_LATEST_VERSION" ] && [ "$FCHECK_LATEST_VERSION" != "$FCHECK_PINNED_VERSION" ]; then
   BANNER_COLOR='\033[1;97;41m'
@@ -71,6 +81,4 @@ else
 fi
 
 dart pub global activate fcheck "$FCHECK_PINNED_VERSION" > /dev/null
-
 dart pub global run fcheck --svg --fix --list full .
-

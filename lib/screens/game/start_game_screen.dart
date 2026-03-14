@@ -78,7 +78,7 @@ class StartScreenState extends State<StartScreen> {
 
   /// Controller for the room name text field.
   final TextEditingController _controllerRoom = TextEditingController(
-    text: 'KIWI', // Default room name
+    text: _offlineDemoDefaultRoomName, // Default room name
   );
 
   /// Error text for the player name input field. Currently unused.
@@ -95,6 +95,16 @@ class StartScreenState extends State<StartScreen> {
 
   /// A list of all available rooms.
   List<String> _listOfRooms = [];
+  static const String _offlineDemoDefaultRoomName = 'KIWI';
+  static const String _offlineDemoPlayerBob = 'BOB';
+  static const String _offlineDemoPlayerJohn = 'JOHN';
+  static const String _offlineDemoPlayerSue = 'SUE';
+  static const Set<String> _offlineDemoPlayers = {
+    _offlineDemoPlayerBob,
+    _offlineDemoPlayerSue,
+    _offlineDemoPlayerJohn,
+  };
+  static const String _offlineDemoRoomName = 'BANANA';
 
   /// A set of player names currently in the room.
   Set<String> _playerNames = {};
@@ -115,7 +125,6 @@ class StartScreenState extends State<StartScreen> {
 
   /// The current version of the app.
   String appVersion = '?.?.?';
-
   @override
   void initState() {
     super.initState();
@@ -637,9 +646,9 @@ class StartScreenState extends State<StartScreen> {
         _controllerRoom.text = '';
         _controllerName.text = '';
       } else {
-        _playerNames = {'BOB', 'SUE', 'JOHN'};
-        _controllerRoom.text = 'BANANA';
-        _controllerName.text = 'BOB';
+        _playerNames = _offlineDemoPlayers;
+        _controllerRoom.text = _offlineDemoRoomName;
+        _controllerName.text = _offlineDemoPlayerBob;
       }
       return;
     }
@@ -697,8 +706,9 @@ class StartScreenState extends State<StartScreen> {
   /// page refresh.
   void _updateUrlWithoutReload() {
     if (kIsWeb) {
+      final AppLocalizations localizations = AppLocalizations.of(context);
       // Push the new state to the browser's history.
-      pushHistoryState('vteam cards $roomName', _getUrlToGame());
+      pushHistoryState('${localizations.appTitle} $roomName', _getUrlToGame());
     }
   }
 }

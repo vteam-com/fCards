@@ -177,6 +177,11 @@ class AppLocalizationsEn extends AppLocalizations {
   String get thisGame => 'This Game';
 
   @override
+  String cardCountTooltip(int count) {
+    return '$count\\ncards';
+  }
+
+  @override
   String get playAgain => 'Play Again';
 
   @override
@@ -252,6 +257,108 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get selectAStatus => 'Select a status';
+
+  @override
+  String get noOne => 'No one';
+
+  @override
+  String get notYourTurn => 'It\'s not your turn!';
+
+  @override
+  String get noCardsAvailableToDraw => 'No cards available to draw!';
+
+  @override
+  String get waitYourTurn => 'Wait your turn!';
+
+  @override
+  String get notAllowed => 'Not allowed!';
+
+  @override
+  String itsYourTurn(String player) {
+    return 'It\'s your turn $player';
+  }
+
+  @override
+  String itsPlayersTurn(String player) {
+    return 'It\'s $player\'s turn';
+  }
+
+  @override
+  String finalRoundYouHaveToBeat(String turnText, String attacker) {
+    return 'Final Round. $turnText. You have to beat $attacker';
+  }
+
+  @override
+  String get youAreDone => 'You are done.';
+
+  @override
+  String get waitForYourTurnSmiley => 'Wait for your turn :)';
+
+  @override
+  String get flipOpenOneHiddenCard => '↓ Flip open one of your hidden cards ↓';
+
+  @override
+  String get drawCardHere => 'Draw\na card\nhere\n→';
+
+  @override
+  String get orHereLeft => '\nor\nhere\n←';
+
+  @override
+  String get swapThisWith => 'swap this →\n\nwith ↓';
+
+  @override
+  String get discardOrSwap => 'Discard →\nor\n↓ swap';
+
+  @override
+  String get statusFeelingGood => 'Feeling Good!';
+
+  @override
+  String get statusBrb => 'BRB';
+
+  @override
+  String get statusThinking => 'Thinking...';
+
+  @override
+  String get statusVoila => 'Voila!';
+
+  @override
+  String get statusOhNo => 'Oh NO!';
+
+  @override
+  String playerNumber(int number) {
+    return 'Player $number';
+  }
+
+  @override
+  String nameForPlayerNumber(int number) {
+    return 'Name for Player #$number';
+  }
+
+  @override
+  String get playerName => 'Player Name';
+
+  @override
+  String get youIndicator => 'YOU>';
+
+  @override
+  String playerWonTimesAtTable(String player, int count, String table) {
+    return '$player won $count times at table $table';
+  }
+
+  @override
+  String get instructionsFrenchCards9 =>
+      '- Aim for the lowest score.\n- Choose a card from either the Deck or Discard pile.\n- Swap the chosen card with a card in your 3x3 grid, or discard it and flip over one of your face-down cards.\n- Three cards of the same rank in a row or column score zero.\n- The first player to reveal all nine cards challenges others, claiming the lowest score.\n- If someone else has an equal or lower score, the challenger doubles their points!\n- Players are eliminated after busting 100 points.\n\n\nLearn more [Wikipedia](https://en.wikipedia.org/wiki/Golf_(card_game))';
+
+  @override
+  String get instructionsSkyJo =>
+      '- Aim for the lowest score.\n- Choose a card from either the Deck or Discard pile.\n- Swap the chosen card with a card in your 4x3 grid, or discard it and flip over one of your face-down cards.\n- When 3 cards of the same rank are lined up in a column they are moved to the discard pile.\n- The first player to reveal all their cards challenges others, claiming the lowest score.\n\n\nLearn more [SkyJo](https://www.geekyhobbies.com/how-to-play-skyjo-card-game-rules-and-instructions/)';
+
+  @override
+  String get instructionsMiniPut =>
+      '- Aim for the lowest score.\n- Choose a card from either the Deck or Discard pile.\n- Swap the chosen card with a card in your 2x2 grid, or discard it and flip over one of your face-down cards.\n- Three cards of the same rank in a row or column score zero.\n- The first player to reveal all nine cards challenges others, claiming the lowest score.\n- If someone else has an equal or lower score, the challenger doubles their points!\n- Players are eliminated after busting 100 points.\n\n\nLearn more [Wikipedia](https://en.wikipedia.org/wiki/Golf_(card_game))';
+
+  @override
+  String get instructionsCustom => 'Custom rules';
 
   @override
   String get last => 'LAST';

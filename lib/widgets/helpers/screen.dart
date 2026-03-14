@@ -255,9 +255,9 @@ class _ScreenState extends State<Screen> with SingleTickerProviderStateMixin {
       );
     }
 
-    final fallbackText = user.displayName?.trim().isNotEmpty == true
-        ? user.displayName!
-        : (user.email ?? 'U');
+    final fallbackText = user.displayName?.trim().isEmpty == true
+        ? (user.email ?? '🤔')
+        : user.displayName!;
 
     return GestureDetector(
       onTap: () => _showLanguagePicker(),

@@ -2,6 +2,9 @@ import 'dart:convert';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
+const String _prefsKeyPlayerNames = 'playerNames';
+const String _prefsKeyScores = 'scores';
+
 // ignore: sort_constructors_first
 /// Represents the score data for a 9 Cards Golf game.
 class GolfScoreModel {
@@ -150,15 +153,15 @@ class GolfScoreModel {
   ///
   Future<void> _save() async {
     final prefs = await SharedPreferences.getInstance();
-    prefs.setString('playerNames', jsonEncode(playerNames));
-    prefs.setString('scores', jsonEncode(scores));
+    prefs.setString(_prefsKeyPlayerNames, jsonEncode(playerNames));
+    prefs.setString(_prefsKeyScores, jsonEncode(scores));
   }
 
   ///
   static Future<GolfScoreModel> load() async {
     final prefs = await SharedPreferences.getInstance();
-    final playerNamesJson = prefs.getString('playerNames');
-    final scoresJson = prefs.getString('scores');
+    final playerNamesJson = prefs.getString(_prefsKeyPlayerNames);
+    final scoresJson = prefs.getString(_prefsKeyScores);
 
     if (playerNamesJson != null && scoresJson != null) {
       try {

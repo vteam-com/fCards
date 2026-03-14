@@ -4,6 +4,11 @@ import 'package:cards/models/card/card_model.dart';
 import 'package:cards/widgets/helpers/my_text.dart';
 import 'package:flutter/material.dart';
 
+const String _frenchCardRankKing = 'K';
+const String _frenchCardRankQueen = 'Q';
+const String _frenchCardRankJack = 'J';
+const String _frenchCardJokerLabel = 'Joker';
+
 /// A widget that displays a playing card's face or back.
 ///
 /// The [CardFaceFrenchWidget] is responsible for rendering a playing card based on the provided [CardModel].
@@ -54,16 +59,16 @@ class CardFaceFrenchWidget extends StatelessWidget {
         return FittedBox(
           fit: BoxFit.scaleDown,
           child: MyText(
-            'Joker',
+            _frenchCardJokerLabel,
             fontSize: ConstLayout.textL,
             align: TextAlign.center,
             bold: true,
             color: color,
           ),
         );
-      case 'K':
-      case 'Q':
-      case 'J':
+      case _frenchCardRankKing:
+      case _frenchCardRankQueen:
+      case _frenchCardRankJack:
         return Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
