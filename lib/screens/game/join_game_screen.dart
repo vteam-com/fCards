@@ -41,30 +41,20 @@ class JoinGameScreen extends StatefulWidget {
 ///
 class JoinGameScreenState extends State<JoinGameScreen> {
   final TextEditingController _controllerName = TextEditingController();
-
   int _currentStep = 0;
-
   late List<String> _listOfRooms;
-
+  static const List<String> _offlineDemoRooms = ['BANANA', 'KIWI', 'APPLE'];
   late String _playerName;
-
   late Set<String> _playerNames;
-
   late String _preparedRoom;
-
   bool _roomsFetched = false;
-
   late GameStyles _selectedGameStyle;
-
   late String _selectedRoom;
-
   StreamSubscription? _streamSubscription;
-
   bool _waitingOnFirstBackendData = false;
 
   ///
   late String appVersion;
-
   @override
   void initState() {
     super.initState();
@@ -307,7 +297,7 @@ class JoinGameScreenState extends State<JoinGameScreen> {
   /// Loads all joinable rooms from backend (or demo data when offline).
   Future<void> _fetchAllRooms() async {
     if (isRunningOffLine) {
-      _listOfRooms = ['BANANA', 'KIWI', 'APPLE']; // Demo rooms
+      _listOfRooms = _offlineDemoRooms; // Demo rooms
       setState(() {});
       return;
     }

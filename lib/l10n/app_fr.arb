@@ -85,6 +85,14 @@
   "players": "Joueurs",
   "gamesWon": "Parties gagnées",
   "thisGame": "Cette partie",
+  "cardCountTooltip": "{count}\\ncartes",
+  "@cardCountTooltip": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "playAgain": "Rejouer",
   "exit": "Quitter",
 
@@ -148,6 +156,92 @@
   "starting": "Démarrage",
   "gameOverTitle": "FIN DE PARTIE",
   "selectAStatus": "Sélectionnez un statut",
+  "noOne": "Personne",
+  "notYourTurn": "Ce n'est pas votre tour !",
+  "noCardsAvailableToDraw": "Aucune carte disponible à piocher !",
+  "waitYourTurn": "Attendez votre tour !",
+  "notAllowed": "Action non autorisée !",
+
+  "itsYourTurn": "C'est à vous, {player}",
+  "@itsYourTurn": {
+    "placeholders": {
+      "player": {
+        "type": "String"
+      }
+    }
+  },
+  "itsPlayersTurn": "C'est au tour de {player}",
+  "@itsPlayersTurn": {
+    "placeholders": {
+      "player": {
+        "type": "String"
+      }
+    }
+  },
+  "finalRoundYouHaveToBeat": "Dernier tour. {turnText}. Vous devez battre {attacker}",
+  "@finalRoundYouHaveToBeat": {
+    "placeholders": {
+      "turnText": {
+        "type": "String"
+      },
+      "attacker": {
+        "type": "String"
+      }
+    }
+  },
+
+  "youAreDone": "Vous avez terminé.",
+  "waitForYourTurnSmiley": "Attendez votre tour :)",
+  "flipOpenOneHiddenCard": "↓ Retournez une de vos cartes cachées ↓",
+  "drawCardHere": "Piochez\nune carte\nici\n→",
+  "orHereLeft": "\nou\nici\n←",
+  "swapThisWith": "échanger ceci →\n\navec ↓",
+  "discardOrSwap": "Défausser →\nou\n↓ échanger",
+
+  "statusFeelingGood": "Ça va !",
+  "statusBrb": "Reviens vite",
+  "statusThinking": "Je réfléchis...",
+  "statusVoila": "Voilà !",
+  "statusOhNo": "Oh non !",
+
+  "playerNumber": "Joueur {number}",
+  "@playerNumber": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+
+  "nameForPlayerNumber": "Nom du joueur n°{number}",
+  "@nameForPlayerNumber": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "playerName": "Nom du joueur",
+  "youIndicator": "VOUS>",
+  "playerWonTimesAtTable": "{player} a gagné {count} fois à la table {table}",
+  "@playerWonTimesAtTable": {
+    "placeholders": {
+      "player": {
+        "type": "String"
+      },
+      "count": {
+        "type": "int"
+      },
+      "table": {
+        "type": "String"
+      }
+    }
+  },
+
+  "instructionsFrenchCards9": "- Visez le score le plus bas.\n- Choisissez une carte depuis le paquet ou la défausse.\n- Échangez la carte choisie avec une carte de votre grille 3x3, ou défaussez-la et retournez une de vos cartes cachées.\n- Trois cartes de même rang sur une ligne ou une colonne valent zéro.\n- Le premier joueur à révéler ses neuf cartes défie les autres et revendique le meilleur score.\n- Si quelqu'un obtient un score égal ou inférieur, le challenger double ses points !\n- Les joueurs sont éliminés après 100 points.\n\n\nEn savoir plus [Wikipedia](https://en.wikipedia.org/wiki/Golf_(card_game))",
+  "instructionsSkyJo": "- Visez le score le plus bas.\n- Choisissez une carte depuis le paquet ou la défausse.\n- Échangez la carte choisie avec une carte de votre grille 4x3, ou défaussez-la et retournez une de vos cartes cachées.\n- Quand 3 cartes de même rang sont alignées dans une colonne, elles sont déplacées vers la défausse.\n- Le premier joueur à révéler toutes ses cartes défie les autres et revendique le meilleur score.\n\n\nEn savoir plus [SkyJo](https://www.geekyhobbies.com/how-to-play-skyjo-card-game-rules-and-instructions/)",
+  "instructionsMiniPut": "- Visez le score le plus bas.\n- Choisissez une carte depuis le paquet ou la défausse.\n- Échangez la carte choisie avec une carte de votre grille 2x2, ou défaussez-la et retournez une de vos cartes cachées.\n- Trois cartes de même rang sur une ligne ou une colonne valent zéro.\n- Le premier joueur à révéler ses cartes défie les autres et revendique le meilleur score.\n- Si quelqu'un obtient un score égal ou inférieur, le challenger double ses points !\n- Les joueurs sont éliminés après 100 points.\n\n\nEn savoir plus [Wikipedia](https://en.wikipedia.org/wiki/Golf_(card_game))",
+  "instructionsCustom": "Règles personnalisées",
   "last": "DERNIER",
   "done": "Valider",
   "addAnotherPlayer": "Ajouter un autre joueur",

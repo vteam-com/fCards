@@ -1,7 +1,17 @@
-/// This class represents the current status of a player in a game. It stores two
-/// fields: an emoji and a phrase. The emoji is used to display a visual
-/// representation of the player's status, while the phrase provides a brief
-/// description of their state.
+import 'package:cards/gen/l10n/app_localizations_en.dart';
+
+final AppLocalizationsEn _fallbackLocalizations = AppLocalizationsEn();
+
+const String playerStatusKeyFeelingGood = 'feelingGood';
+const String playerStatusKeyBrb = 'brb';
+const String playerStatusKeyThinking = 'thinking';
+const String playerStatusKeyVoila = 'voila';
+const String playerStatusKeyOhNo = 'ohNo';
+
+/// Player status metadata persisted with a player.
+///
+/// Uses a stable [key] for localization while still carrying a [phrase] for
+/// backward compatibility.
 class PlayerStatus {
   /// Creates a new [PlayerStatus] instance.
   ///
@@ -14,17 +24,46 @@ class PlayerStatus {
   ///   Defaults to an empty string if not provided.
   ///
   /// Returns a new [PlayerStatus] instance with the specified emoji and phrase.
-  PlayerStatus({this.emoji = '', this.phrase = ''});
+  PlayerStatus({this.emoji = '', this.key = '', this.phrase = ''});
 
   /// This constructor creates a new `PlayerStatus` instance from a JSON object.
   /// It expects the JSON object to have two fields: 'emoji' and 'phrase'. The
   /// value of these fields is used to initialize the corresponding fields in
   /// the newly created `PlayerStatus` instance.
   factory PlayerStatus.fromJson(Map<String, dynamic>? json) {
+    final String emoji = json?['emoji'] ?? '';
+    final String key = json?['key'] ?? '';
+    final String phrase = json?['phrase'] ?? '';
+
+    if (key.isNotEmpty) {
+      return PlayerStatus(emoji: emoji, key: key, phrase: phrase);
+    }
+
     return PlayerStatus(
-      emoji: json?['emoji'] ?? '',
-      phrase: json?['phrase'] ?? '',
+      emoji: emoji,
+      key: keyFromLegacyPhrase(phrase),
+      phrase: phrase,
     );
+  }
+
+  /// Converts a legacy, previously persisted phrase into a stable status key.
+  static String keyFromLegacyPhrase(String phrase) {
+    if (phrase == _fallbackLocalizations.statusFeelingGood) {
+      return playerStatusKeyFeelingGood;
+    }
+    if (phrase == _fallbackLocalizations.statusBrb) {
+      return playerStatusKeyBrb;
+    }
+    if (phrase == _fallbackLocalizations.statusThinking) {
+      return playerStatusKeyThinking;
+    }
+    if (phrase == _fallbackLocalizations.statusVoila) {
+      return playerStatusKeyVoila;
+    }
+    if (phrase == _fallbackLocalizations.statusOhNo) {
+      return playerStatusKeyOhNo;
+    }
+    return '';
   }
 
   /// The emoji representing the player's status.
@@ -32,6 +71,11 @@ class PlayerStatus {
   /// This field stores a [String] that contains an emoji character
   /// used to visually represent the player's current status.
   final String emoji;
+
+  /// Stable status key used for localization.
+  ///
+  /// This should be persisted instead of a localized phrase.
+  final String key;
 
   /// A brief phrase describing the player's status.
   ///
@@ -48,17 +92,37 @@ class PlayerStatus {
   /// A [Map] with two key-value pairs:
   /// - 'emoji': The [String] value of the [emoji] field.
   /// - 'phrase': The [String] value of the [phrase] field.
-  Map toJson() => {'emoji': emoji, 'phrase': phrase};
+  Map toJson() => {'emoji': emoji, 'key': key, 'phrase': phrase};
 }
 
 /// Standard status to choose from
 final List<PlayerStatus> playersStatuses = [
-  PlayerStatus(emoji: '', phrase: ''),
-  PlayerStatus(emoji: '😊', phrase: 'Feeling Good!'),
-  PlayerStatus(emoji: '🤢', phrase: 'BRB'),
-  PlayerStatus(emoji: '🤔', phrase: 'Thinking...'),
-  PlayerStatus(emoji: '😙', phrase: 'Voila!'),
-  PlayerStatus(emoji: '😱', phrase: 'Oh NO!'),
+  PlayerStatus(emoji: '', key: '', phrase: ''),
+  PlayerStatus(
+    emoji: '😊',
+    key: playerStatusKeyFeelingGood,
+    phrase: _fallbackLocalizations.statusFeelingGood,
+  ),
+  PlayerStatus(
+    emoji: '🤢',
+    key: playerStatusKeyBrb,
+    phrase: _fallbackLocalizations.statusBrb,
+  ),
+  PlayerStatus(
+    emoji: '🤔',
+    key: playerStatusKeyThinking,
+    phrase: _fallbackLocalizations.statusThinking,
+  ),
+  PlayerStatus(
+    emoji: '😙',
+    key: playerStatusKeyVoila,
+    phrase: _fallbackLocalizations.statusVoila,
+  ),
+  PlayerStatus(
+    emoji: '😱',
+    key: playerStatusKeyOhNo,
+    phrase: _fallbackLocalizations.statusOhNo,
+  ),
 ];
 
 /// Finds a matching [PlayerStatus] instance from the [playersStatuses] list.
@@ -74,8 +138,11 @@ final List<PlayerStatus> playersStatuses = [
 /// - The matching [PlayerStatus] instance if found
 /// - A new empty [PlayerStatus] instance if no match is found
 PlayerStatus findMatchingPlayerStatusInstance(String emoji, String phrase) {
+  final String legacyKey = PlayerStatus.keyFromLegacyPhrase(phrase);
   for (final PlayerStatus status in playersStatuses) {
-    if (status.emoji == emoji && status.phrase == phrase) {
+    final bool isPhraseMatch = status.phrase == phrase;
+    final bool isKeyMatch = legacyKey.isNotEmpty && status.key == legacyKey;
+    if (status.emoji == emoji && (isPhraseMatch || isKeyMatch)) {
       return status;
     }
   }

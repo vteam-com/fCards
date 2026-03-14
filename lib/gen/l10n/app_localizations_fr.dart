@@ -179,6 +179,11 @@ class AppLocalizationsFr extends AppLocalizations {
   String get thisGame => 'Cette partie';
 
   @override
+  String cardCountTooltip(int count) {
+    return '$count\\ncartes';
+  }
+
+  @override
   String get playAgain => 'Rejouer';
 
   @override
@@ -254,6 +259,108 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get selectAStatus => 'Sélectionnez un statut';
+
+  @override
+  String get noOne => 'Personne';
+
+  @override
+  String get notYourTurn => 'Ce n\'est pas votre tour !';
+
+  @override
+  String get noCardsAvailableToDraw => 'Aucune carte disponible à piocher !';
+
+  @override
+  String get waitYourTurn => 'Attendez votre tour !';
+
+  @override
+  String get notAllowed => 'Action non autorisée !';
+
+  @override
+  String itsYourTurn(String player) {
+    return 'C\'est à vous, $player';
+  }
+
+  @override
+  String itsPlayersTurn(String player) {
+    return 'C\'est au tour de $player';
+  }
+
+  @override
+  String finalRoundYouHaveToBeat(String turnText, String attacker) {
+    return 'Dernier tour. $turnText. Vous devez battre $attacker';
+  }
+
+  @override
+  String get youAreDone => 'Vous avez terminé.';
+
+  @override
+  String get waitForYourTurnSmiley => 'Attendez votre tour :)';
+
+  @override
+  String get flipOpenOneHiddenCard => '↓ Retournez une de vos cartes cachées ↓';
+
+  @override
+  String get drawCardHere => 'Piochez\nune carte\nici\n→';
+
+  @override
+  String get orHereLeft => '\nou\nici\n←';
+
+  @override
+  String get swapThisWith => 'échanger ceci →\n\navec ↓';
+
+  @override
+  String get discardOrSwap => 'Défausser →\nou\n↓ échanger';
+
+  @override
+  String get statusFeelingGood => 'Ça va !';
+
+  @override
+  String get statusBrb => 'Reviens vite';
+
+  @override
+  String get statusThinking => 'Je réfléchis...';
+
+  @override
+  String get statusVoila => 'Voilà !';
+
+  @override
+  String get statusOhNo => 'Oh non !';
+
+  @override
+  String playerNumber(int number) {
+    return 'Joueur $number';
+  }
+
+  @override
+  String nameForPlayerNumber(int number) {
+    return 'Nom du joueur n°$number';
+  }
+
+  @override
+  String get playerName => 'Nom du joueur';
+
+  @override
+  String get youIndicator => 'VOUS>';
+
+  @override
+  String playerWonTimesAtTable(String player, int count, String table) {
+    return '$player a gagné $count fois à la table $table';
+  }
+
+  @override
+  String get instructionsFrenchCards9 =>
+      '- Visez le score le plus bas.\n- Choisissez une carte depuis le paquet ou la défausse.\n- Échangez la carte choisie avec une carte de votre grille 3x3, ou défaussez-la et retournez une de vos cartes cachées.\n- Trois cartes de même rang sur une ligne ou une colonne valent zéro.\n- Le premier joueur à révéler ses neuf cartes défie les autres et revendique le meilleur score.\n- Si quelqu\'un obtient un score égal ou inférieur, le challenger double ses points !\n- Les joueurs sont éliminés après 100 points.\n\n\nEn savoir plus [Wikipedia](https://en.wikipedia.org/wiki/Golf_(card_game))';
+
+  @override
+  String get instructionsSkyJo =>
+      '- Visez le score le plus bas.\n- Choisissez une carte depuis le paquet ou la défausse.\n- Échangez la carte choisie avec une carte de votre grille 4x3, ou défaussez-la et retournez une de vos cartes cachées.\n- Quand 3 cartes de même rang sont alignées dans une colonne, elles sont déplacées vers la défausse.\n- Le premier joueur à révéler toutes ses cartes défie les autres et revendique le meilleur score.\n\n\nEn savoir plus [SkyJo](https://www.geekyhobbies.com/how-to-play-skyjo-card-game-rules-and-instructions/)';
+
+  @override
+  String get instructionsMiniPut =>
+      '- Visez le score le plus bas.\n- Choisissez une carte depuis le paquet ou la défausse.\n- Échangez la carte choisie avec une carte de votre grille 2x2, ou défaussez-la et retournez une de vos cartes cachées.\n- Trois cartes de même rang sur une ligne ou une colonne valent zéro.\n- Le premier joueur à révéler ses cartes défie les autres et revendique le meilleur score.\n- Si quelqu\'un obtient un score égal ou inférieur, le challenger double ses points !\n- Les joueurs sont éliminés après 100 points.\n\n\nEn savoir plus [Wikipedia](https://en.wikipedia.org/wiki/Golf_(card_game))';
+
+  @override
+  String get instructionsCustom => 'Règles personnalisées';
 
   @override
   String get last => 'DERNIER';

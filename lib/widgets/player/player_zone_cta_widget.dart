@@ -55,31 +55,35 @@ class PlayerZoneCtaWidget extends StatelessWidget {
 
         // after this it goes to next player >>> [pickCardFromEitherPiles]
         case GameStates.revealOneHiddenCard:
-          return ctaFlipOneOfYourHiddenCards();
+          return ctaFlipOneOfYourHiddenCards(context);
 
         //
         case GameStates.gameOver:
           return Text(localizations.gameOverTitle);
       }
     } else {
-      return buildWaitingForTurnContent();
+      return buildWaitingForTurnContent(context);
     }
   }
 
   ///
-  Widget buildWaitingForTurnContent() {
+  Widget buildWaitingForTurnContent(BuildContext context) {
+    final AppLocalizations localizations = AppLocalizations.of(context);
     return buildMiniInstructions(
       player.isActivePlayer,
-      player.areAllCardsRevealed() ? 'You are done.' : 'Wait for your turn :)',
+      player.areAllCardsRevealed()
+          ? localizations.youAreDone
+          : localizations.waitForYourTurnSmiley,
       TextAlign.center,
     );
   }
 
   ///
-  Widget ctaFlipOneOfYourHiddenCards() {
+  Widget ctaFlipOneOfYourHiddenCards(BuildContext context) {
+    final AppLocalizations localizations = AppLocalizations.of(context);
     return buildMiniInstructions(
       true,
-      '↓ Flip open one of your hidden cards ↓',
+      localizations.flipOpenOneHiddenCard,
       TextAlign.center,
     );
   }
@@ -89,13 +93,18 @@ class PlayerZoneCtaWidget extends StatelessWidget {
   ///  here ->                     <-
   ///
   Widget ctaPickCardFromPiles(final BuildContext context) {
+    final AppLocalizations localizations = AppLocalizations.of(context);
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       mainAxisSize: MainAxisSize.max,
       children: [
         if (GameStates.swapTopDeckCardWithAnyCardsInHandOrDiscard !=
             gameModel.gameState)
-          buildMiniInstructions(true, 'Draw\na card\nhere\n→', TextAlign.left),
+          buildMiniInstructions(
+            true,
+            localizations.drawCardHere,
+            TextAlign.left,
+          ),
         const SizedBox(width: ConstLayout.sizeM),
         CardPileWidget(
           cards: gameModel.deck.cardsDeckPile,
@@ -108,8 +117,12 @@ class PlayerZoneCtaWidget extends StatelessWidget {
           isDragSource: false,
           isDropTarget: false,
           onDragDropped: null,
-          onDraw: () =>
-              gameModel.selectTopCardOfDeck(context, fromDiscardPile: false),
+          onDraw: () => gameModel.selectTopCardOfDeck(
+            context,
+            fromDiscardPile: false,
+            notYourTurnMessage: localizations.notYourTurn,
+            noCardsAvailableMessage: localizations.noCardsAvailableToDraw,
+          ),
         ),
         CardPileWidget(
           cards: gameModel.deck.cardsDeckDiscarded,
@@ -120,11 +133,15 @@ class PlayerZoneCtaWidget extends StatelessWidget {
           isDragSource: false,
           isDropTarget: false,
           onDragDropped: null,
-          onDraw: () =>
-              gameModel.selectTopCardOfDeck(context, fromDiscardPile: true),
+          onDraw: () => gameModel.selectTopCardOfDeck(
+            context,
+            fromDiscardPile: true,
+            notYourTurnMessage: localizations.notYourTurn,
+            noCardsAvailableMessage: localizations.noCardsAvailableToDraw,
+          ),
         ),
         const SizedBox(width: ConstLayout.sizeM),
-        buildMiniInstructions(true, '\nor\nhere\n←', TextAlign.right),
+        buildMiniInstructions(true, localizations.orHereLeft, TextAlign.right),
       ],
     );
   }
@@ -133,6 +150,7 @@ class PlayerZoneCtaWidget extends StatelessWidget {
   /// [DECK] (instructions)[DISCARD]<<Active
   ///
   Widget ctaSwapDiscardedCardWithAnyCardsInHand(BuildContext context) {
+    final AppLocalizations localizations = AppLocalizations.of(context);
     gameModel.deck.cardsDeckDiscarded.last.isSelectable = false;
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -150,7 +168,11 @@ class PlayerZoneCtaWidget extends StatelessWidget {
         ),
 
         // Let them know what to do
-        buildMiniInstructions(true, 'swap this →\n\nwith ↓', TextAlign.center),
+        buildMiniInstructions(
+          true,
+          localizations.swapThisWith,
+          TextAlign.center,
+        ),
 
         // Right Discarded pile
         CardPileWidget(
@@ -162,8 +184,12 @@ class PlayerZoneCtaWidget extends StatelessWidget {
           isDragSource: true,
           isDropTarget: false,
           onDragDropped: null,
-          onDraw: () =>
-              gameModel.selectTopCardOfDeck(context, fromDiscardPile: true),
+          onDraw: () => gameModel.selectTopCardOfDeck(
+            context,
+            fromDiscardPile: true,
+            notYourTurnMessage: localizations.notYourTurn,
+            noCardsAvailableMessage: localizations.noCardsAvailableToDraw,
+          ),
         ),
       ],
     );
@@ -175,6 +201,7 @@ class PlayerZoneCtaWidget extends StatelessWidget {
   Widget ctaSwapTopDeckCardWithAnyCardsInHandOrDiscard(
     final BuildContext context,
   ) {
+    final AppLocalizations localizations = AppLocalizations.of(context);
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
@@ -194,7 +221,11 @@ class PlayerZoneCtaWidget extends StatelessWidget {
                 swapOrigin: targetCenter,
               ),
         ),
-        buildMiniInstructions(true, 'Discard →\nor\n↓ swap', TextAlign.center),
+        buildMiniInstructions(
+          true,
+          localizations.discardOrSwap,
+          TextAlign.center,
+        ),
         CardPileWidget(
           cards: gameModel.deck.cardsDeckDiscarded,
           scale: ConstLayout.scaleTiny,

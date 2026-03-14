@@ -2,11 +2,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
+const String googleSignInFieldEmail = 'email';
+const String googleSignInFieldProfile = 'profile';
+
 /// Authentication helper for guest mode and Google sign-in flows.
 class AuthService {
   static final FirebaseAuth _auth = FirebaseAuth.instance;
   static final GoogleSignIn _googleSignIn = GoogleSignIn(
-    scopes: ['email', 'profile'],
+    scopes: [googleSignInFieldEmail, googleSignInFieldProfile],
   );
 
   /// Emits auth updates whenever Firebase user state changes.
@@ -28,8 +31,8 @@ class AuthService {
   static Future<UserCredential> signInWithGoogle() async {
     if (kIsWeb) {
       final provider = GoogleAuthProvider();
-      provider.addScope('email');
-      provider.addScope('profile');
+      provider.addScope(googleSignInFieldEmail);
+      provider.addScope(googleSignInFieldProfile);
       provider.setCustomParameters({'prompt': 'select_account'});
       return _auth.signInWithPopup(provider);
     }

@@ -1,5 +1,6 @@
 import 'package:cards/screens/game/game_style.dart';
 import 'package:cards/models/game/game_styles.dart';
+import 'package:cards/gen/l10n/app_localizations_en.dart';
 import 'package:cards/widgets/cards/card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
@@ -38,10 +39,17 @@ void main() {
     });
 
     test('Instructions', () {
-      expect(gameInstructions(GameStyles.frenchCards9).isEmpty, false);
-      expect(gameInstructions(GameStyles.skyJo).isEmpty, false);
-      expect(gameInstructions(GameStyles.miniPut).isEmpty, false);
-      expect(gameInstructions(GameStyles.custom).isEmpty, false);
+      final AppLocalizationsEn localizations = AppLocalizationsEn();
+      expect(
+        gameInstructions(GameStyles.frenchCards9, localizations).isEmpty,
+        false,
+      );
+      expect(gameInstructions(GameStyles.skyJo, localizations).isEmpty, false);
+      expect(
+        gameInstructions(GameStyles.miniPut, localizations).isEmpty,
+        false,
+      );
+      expect(gameInstructions(GameStyles.custom, localizations).isEmpty, false);
     });
 
     test('from Json', () {

@@ -44,6 +44,7 @@ class _StatusPickerState extends State<StatusPicker> {
         }
       },
       items: playersStatuses.map((status) {
+        final String label = _statusLabel(localizations, status);
         return DropdownMenuItem<PlayerStatus>(
           value: status,
           onTap: () {
@@ -64,7 +65,7 @@ class _StatusPickerState extends State<StatusPicker> {
               ),
 
               MyText(
-                status.phrase,
+                label,
                 fontSize: ConstLayout.sizeM,
                 color: Colors.yellow,
                 bold: true,
@@ -74,5 +75,23 @@ class _StatusPickerState extends State<StatusPicker> {
         );
       }).toList(),
     );
+  }
+
+  /// Returns the localized label for a [PlayerStatus] entry.
+  String _statusLabel(AppLocalizations localizations, PlayerStatus status) {
+    switch (status.key) {
+      case playerStatusKeyFeelingGood:
+        return localizations.statusFeelingGood;
+      case playerStatusKeyBrb:
+        return localizations.statusBrb;
+      case playerStatusKeyThinking:
+        return localizations.statusThinking;
+      case playerStatusKeyVoila:
+        return localizations.statusVoila;
+      case playerStatusKeyOhNo:
+        return localizations.statusOhNo;
+    }
+
+    return status.phrase;
   }
 }

@@ -66,15 +66,11 @@ class StartGameWizardScreen extends StatefulWidget {
 
 class _StartGameWizardScreenState extends State<StartGameWizardScreen> {
   int _currentStep = 0;
-
   bool _isLoadingRooms = false;
-
   late List<String> _listOfRooms;
-
+  static const List<String> _offlineDemoRooms = ['BANANA', 'KIWI', 'APPLE'];
   bool _roomsFetched = false;
-
   late GameStyles _selectedGameStyle;
-
   @override
   void initState() {
     super.initState();
@@ -371,7 +367,7 @@ class _StartGameWizardScreenState extends State<StartGameWizardScreen> {
   Future<void> _fetchAllRooms() async {
     if (isRunningOffLine) {
       setState(() {
-        _listOfRooms = ['BANANA', 'KIWI', 'APPLE'];
+        _listOfRooms = _offlineDemoRooms;
       });
       return;
     }

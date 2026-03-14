@@ -252,15 +252,15 @@ class _PlayerHeaderState extends State<PlayerHeader> {
             ),
             title: Text(
               widget.playerIndex != null
-                  ? 'Name for Player #${widget.playerIndex! + 1}'
-                  : 'Player Name',
+                  ? localizations.nameForPlayerNumber(widget.playerIndex! + 1)
+                  : localizations.playerName,
             ),
             content: Column(
               mainAxisSize: MainAxisSize.min,
               spacing: PlayerHeaderConstants.dialogContentSpacing,
               children: [
                 EditBox(
-                  label: 'Player Name',
+                  label: localizations.playerName,
                   controller: controller,
                   onSubmitted: () {},
                   errorStatus: '',

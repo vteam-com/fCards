@@ -1,3 +1,4 @@
+import 'package:cards/gen/l10n/app_localizations.dart';
 import 'package:cards/models/app/constants_card_value.dart';
 import 'package:cards/models/app/constants_layout.dart';
 import 'package:cards/models/game/game_model.dart';
@@ -75,10 +76,14 @@ class PlayerHeaderWidget extends StatelessWidget {
     final BuildContext context,
     final List<DateTime> listOfWinsForThisPlayer,
   ) {
+    final AppLocalizations localizations = AppLocalizations.of(context);
     myDialog(
       context: context,
-      title:
-          '${player.name} won ${listOfWinsForThisPlayer.length} times at table ${gameModel.roomName}',
+      title: localizations.playerWonTimesAtTable(
+        player.name,
+        listOfWinsForThisPlayer.length,
+        gameModel.roomName,
+      ),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: listOfWinsForThisPlayer

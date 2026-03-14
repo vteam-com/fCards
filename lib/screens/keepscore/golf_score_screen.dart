@@ -3,6 +3,7 @@
 import 'package:cards/gen/l10n/app_localizations.dart';
 import 'package:cards/models/app/app_theme.dart';
 import 'package:cards/models/app/constants_layout.dart';
+import 'package:cards/models/game/game_constants.dart';
 import 'package:cards/models/game/golf_score_model.dart';
 import 'package:cards/widgets/buttons/my_button_round.dart';
 import 'package:cards/widgets/helpers/input_keyboard.dart';
@@ -201,7 +202,9 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
 
   void _addPlayer(GolfScoreModel model) {
     setState(() {
-      model.addPlayer('Player${model.playerNames.length + 1}');
+      model.addPlayer(
+        '${GameConstants.playerNumberPrefix}${model.playerNames.length + 1}',
+      );
     });
   }
 

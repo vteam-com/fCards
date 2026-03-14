@@ -1,6 +1,7 @@
 // fcheck - ignore magic numbers
 // Imports
 
+import 'package:cards/gen/l10n/app_localizations_en.dart';
 import 'package:cards/models/game/backend_model.dart';
 import 'package:cards/models/game/deck_model.dart';
 import 'package:cards/models/game/game_history.dart';
@@ -15,6 +16,9 @@ export 'package:cards/models/game/deck_model.dart';
 export 'package:cards/models/player/player_model.dart';
 
 const int _turnNotificationDurationSeconds = 2;
+const String _preferenceStorageSectionRooms = 'rooms';
+
+final AppLocalizationsEn _fallbackLocalizations = AppLocalizationsEn();
 
 /// Represents a game model that manages the state and logic of a game.
 /// This class extends `ChangeNotifier` to allow for state changes to be
@@ -159,7 +163,7 @@ class GameModel with ChangeNotifier {
     if (backendReady) {
       if (isRunningOffLine == false) {
         final refPlayers = FirebaseDatabase.instance.ref().child(
-          'rooms/$roomName',
+          '$_preferenceStorageSectionRooms/$roomName',
         );
         refPlayers.set(toJson());
       }
@@ -314,13 +318,13 @@ class GameModel with ChangeNotifier {
 
   @override
   String toString() {
-    return '${deck.cardsDeckPile.last} ${deck.cardsDeckDiscarded.last}';
+    return '${getGameStateAsString()} ${deck.cardsDeckPile.last} ${deck.cardsDeckDiscarded.last}';
   }
 
   /// Returns the name of the player at the given index.
   String getPlayerName(final int index) {
     if (index < 0 || index >= players.length) {
-      return 'No one';
+      return _fallbackLocalizations.noOne;
     }
     return players[index].name;
   }
@@ -386,9 +390,16 @@ class GameModel with ChangeNotifier {
   void selectTopCardOfDeck(
     BuildContext context, {
     required bool fromDiscardPile,
+    String? notYourTurnMessage,
+    String? noCardsAvailableMessage,
   }) {
+    final String resolvedNotYourTurnMessage =
+        notYourTurnMessage ?? _fallbackLocalizations.notYourTurn;
+    final String resolvedNoCardsAvailableMessage =
+        noCardsAvailableMessage ??
+        _fallbackLocalizations.noCardsAvailableToDraw;
     if (gameState != GameStates.pickCardFromEitherPiles) {
-      showTurnNotification(context, "It's not your turn!");
+      showTurnNotification(context, resolvedNotYourTurnMessage);
       return;
     }
 
@@ -397,7 +408,7 @@ class GameModel with ChangeNotifier {
     } else if (!fromDiscardPile && deck.cardsDeckPile.isNotEmpty) {
       gameState = GameStates.swapTopDeckCardWithAnyCardsInHandOrDiscard;
     } else {
-      showTurnNotification(context, 'No cards available to draw!');
+      showTurnNotification(context, resolvedNoCardsAvailableMessage);
     }
   }
 
@@ -545,9 +556,15 @@ class GameModel with ChangeNotifier {
     final PlayerModel player,
     int cardIndex, {
     Offset? swapOrigin,
+    String? waitYourTurnMessage,
+    String? notAllowedMessage,
   }) {
+    final String resolvedWaitYourTurnMessage =
+        waitYourTurnMessage ?? _fallbackLocalizations.waitYourTurn;
+    final String resolvedNotAllowedMessage =
+        notAllowedMessage ?? _fallbackLocalizations.notAllowed;
     if (player.isActivePlayer == false) {
-      notifyCardUnavailable(context, 'Wait your turn!');
+      notifyCardUnavailable(context, resolvedWaitYourTurnMessage);
       return;
     }
 
@@ -571,7 +588,7 @@ class GameModel with ChangeNotifier {
         }
       }
     } else {
-      notifyCardUnavailable(context, 'Not allowed!');
+      notifyCardUnavailable(context, resolvedNotAllowedMessage);
     }
   }
 
@@ -734,20 +751,54 @@ class GameModel with ChangeNotifier {
 
   /// Returns a string representing the current game state, including the current player's name
   /// and the attacker's name if it's the final turn.
-  String getGameStateAsString() {
-    String playersName = getPlayerName(playerIdPlaying);
-    String playerAttackerName = getPlayerName(playerIdAttacking);
+  String getGameStateAsStringLocalized(
+    String noOneLabel,
+    String Function(String) itsYourTurnLabel,
+    String Function(String) itsPlayersTurnLabel,
+    String Function(String, String) finalRoundLabel,
+  ) {
+    final String englishNoOne = _fallbackLocalizations.noOne;
+    final String playersName = getPlayerName(playerIdPlaying);
+    final String playerAttackerName = getPlayerName(playerIdAttacking);
 
-    String inputText = playersName == loginUserName
-        ? 'It\'s your turn $playersName'
-        : 'It\'s $playersName\'s turn';
+    final String resolvedPlayerName = playersName == englishNoOne
+        ? noOneLabel
+        : playersName;
+    final String resolvedAttackerName = playerAttackerName == englishNoOne
+        ? noOneLabel
+        : playerAttackerName;
+
+    final String turnText = resolvedPlayerName == loginUserName
+        ? itsYourTurnLabel(resolvedPlayerName)
+        : itsPlayersTurnLabel(resolvedPlayerName);
 
     if (isFinalTurn) {
-      inputText =
-          'Final Round. $inputText. You have to beat $playerAttackerName';
+      return finalRoundLabel(turnText, resolvedAttackerName);
     }
 
-    return inputText;
+    return turnText;
+  }
+
+  /// Returns the game state string in English.
+  ///
+  /// This is kept for backward compatibility and tests; UI should prefer
+  /// [getGameStateAsStringLocalized].
+  String getGameStateAsString() {
+    final String playersName = getPlayerName(playerIdPlaying);
+    final String playerAttackerName = getPlayerName(playerIdAttacking);
+
+    final String turnText = playersName == loginUserName
+        ? _fallbackLocalizations.itsYourTurn(playersName)
+        : _fallbackLocalizations.itsPlayersTurn(playersName);
+
+    if (isFinalTurn) {
+      return _fallbackLocalizations.finalRoundYouHaveToBeat(
+        turnText,
+        playerAttackerName,
+      );
+    }
+
+    return turnText;
   }
 
   /// Generates a link URI for the game based on the provided input parameters.
