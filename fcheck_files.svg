@@ -556,6 +556,10 @@
   <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/start_game_wizard_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/game/backend_model.dart</title>
 </g>
 <g>
+  <path d="M 590.0 128.0 C 640.0 128.0, 3206.0 172.0, 3256.0 172.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/start_game_wizard_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/game/game_constants.dart</title>
+</g>
+<g>
   <path d="M 590.0 128.0 C 640.0 128.0, 2886.0 172.0, 2936.0 172.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/start_game_wizard_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/game/game_styles.dart</title>
 </g>
@@ -1044,17 +1048,18 @@
   <path d="M 382.0,102.0 L 370.0,95.0 Q 367.0,95.0 367.0,98.0 L 367.0,106.0 Q 367.0,109.0 370.0,109.0 Z" fill="#3b82f6"/>
   <text x="371.68" y="103.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. main.dart</title></g><g class="badge outgoingBadge">
   <path d="M 598.0,128.0 L 582.0,120.4 Q 579.0,120.4 579.0,123.4 L 579.0,132.6 Q 579.0,135.6 582.0,135.6 Z" fill="#10b981"/>
-  <text x="584.72" y="129.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold" textLength="10.120000000000001" lengthAdjust="spacingAndGlyphs">11</text><title>1. backend_model.dart
+  <text x="584.72" y="129.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold" textLength="10.120000000000001" lengthAdjust="spacingAndGlyphs">12</text><title>1. backend_model.dart
 2. card_model.dart
 3. constants_layout.dart
-4. game_styles.dart
-5. join_game_screen.dart
-6. logger.dart
-7. my_button_rectangle.dart
-8. screen.dart
-9. start_game_screen.dart
-10. table_widget.dart
-11. wizard_footer.dart</title></g><text x="480.0" y="115.0" class="textSmall">start_game_wizard_screen.dart</text>
+4. game_constants.dart
+5. game_styles.dart
+6. join_game_screen.dart
+7. logger.dart
+8. my_button_rectangle.dart
+9. screen.dart
+10. start_game_screen.dart
+11. table_widget.dart
+12. wizard_footer.dart</title></g><text x="480.0" y="115.0" class="textSmall">start_game_wizard_screen.dart</text>
 <g class="badge incomingBadge">
   <path d="M 382.0,172.0 L 370.0,165.0 Q 367.0,165.0 367.0,168.0 L 367.0,176.0 Q 367.0,179.0 370.0,179.0 Z" fill="#3b82f6"/>
   <text x="371.68" y="173.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. main.dart</title></g><g class="badge outgoingBadge">
@@ -1456,9 +1461,10 @@
   <text x="3465.68" y="129.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. constants_layout.dart</title></g><text x="3360.0" y="115.0" class="textNormal">app_theme.dart</text>
 <g class="badge incomingBadge">
   <path d="M 3262.0,172.0 L 3250.0,165.0 Q 3247.0,165.0 3247.0,168.0 L 3247.0,176.0 Q 3247.0,179.0 3250.0,179.0 Z" fill="#3b82f6"/>
-  <text x="3251.68" y="173.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">3</text><title>1. game_style.dart
+  <text x="3251.68" y="173.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">4</text><title>1. game_style.dart
 2. game_styles.dart
-3. golf_score_screen.dart</title></g><text x="3360.0" y="185.0" class="textNormal">game_constants.dart</text>
+3. golf_score_screen.dart
+4. start_game_wizard_screen.dart</title></g><text x="3360.0" y="185.0" class="textNormal">game_constants.dart</text>
 <g class="badge incomingBadge">
   <path d="M 3262.0,242.0 L 3250.0,235.0 Q 3247.0,235.0 3247.0,238.0 L 3247.0,246.0 Q 3247.0,249.0 3250.0,249.0 Z" fill="#3b82f6"/>
   <text x="3251.68" y="243.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. card_face_skyjo_widget.dart

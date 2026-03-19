@@ -10,20 +10,20 @@ class MockBuildContext extends Mock implements BuildContext {}
 void main() {
   late MockBuildContext mockContext; // Instance of the mock
 
-  late GameModel gameModelSkyJo;
+  late GameModel gameModelSkyjo;
   late GameModel gameModelFrench9Cards;
   late GameModel gameModelMiniPut;
   List<String> playersNames = ['Player 1', 'Player 2'];
   setUp(() {
     mockContext = MockBuildContext();
-    gameModelSkyJo = GameModel(
-      gameStyle: GameStyles.skyJo,
+    gameModelSkyjo = GameModel(
+      gameStyle: GameStyles.skyjo,
       roomName: 'testRoom',
       roomHistory: [],
       loginUserName: playersNames.first,
       names: playersNames,
       cardsToDeal: 9,
-      deck: DeckModel(numberOfDecks: 1, gameStyle: GameStyles.skyJo),
+      deck: DeckModel(numberOfDecks: 1, gameStyle: GameStyles.skyjo),
       isNewGame: true,
     );
 
@@ -54,19 +54,19 @@ void main() {
     test('drawCard from discard pile updates game state', () {
       // On start up 18 cards were distributed to the players, and the first card of the deck is flipped in the discarded pile.
       expect(
-        gameModelSkyJo.deck.cardsDeckDiscarded.length,
+        gameModelSkyjo.deck.cardsDeckDiscarded.length,
         1,
         reason: 'Discard pile should have 1 card in it',
       );
 
       // Set the state enable select a card from either pile
-      gameModelSkyJo.gameState = GameStates.pickCardFromEitherPiles;
+      gameModelSkyjo.gameState = GameStates.pickCardFromEitherPiles;
 
       // Action user picked the top card of the discarded pile
-      gameModelSkyJo.selectTopCardOfDeck(mockContext, fromDiscardPile: true);
+      gameModelSkyjo.selectTopCardOfDeck(mockContext, fromDiscardPile: true);
 
       expect(
-        gameModelSkyJo.gameState,
+        gameModelSkyjo.gameState,
         GameStates.swapDiscardedCardWithAnyCardsInHand,
         reason: 'State should have changed to flipAndSwap',
       );

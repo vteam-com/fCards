@@ -1,7 +1,6 @@
 {
   "appTitle": "VTeam Cards",
-  "cardsTitle": "Cards",
-  "welcomeTitle": "VTeam Cards",
+  "cardsTitle": "Cards",  
   "startNewGame": "Démarrer une nouvelle partie",
   "joinExistingGame": "Rejoindre une partie",
   "scoreKeeper": "Carnet de scores",
@@ -32,6 +31,9 @@
 
   "createTableHelp": "Créez une table.\nSi elle existe déjà, vous pourrez la rejoindre.",
   "table": "Table",
+  "@table": {
+    "description": "reviewed"
+  },
   "enterTableName": "Entrez un nom de table pour vérifier si elle existe.",
   "thisTableAlreadyHasPlayers": "Cette table a déjà des joueurs. Vous pouvez la rejoindre au lieu d'en créer une nouvelle.",
   "joinThisTable": "Rejoindre cette table",
@@ -85,7 +87,7 @@
   "players": "Joueurs",
   "gamesWon": "Parties gagnées",
   "thisGame": "Cette partie",
-  "cardCountTooltip": "{count}\\ncartes",
+  "cardCountTooltip": "{count}\ncartes",
   "@cardCountTooltip": {
     "placeholders": {
       "count": {
@@ -128,14 +130,14 @@
   },
 
   "golf9Cards": "9 Cartes",
-  "skyJo": "SkyJo",
+  "skyjo": "Skyjo",
   "miniPut": "MiniPut",
   "golf9CardsFull": "Golf 9 Cartes",
   "miniPutFull": "MiniPut 4 Cartes",
-  "skyLo": "Skyjo",
 
   "columnsByRows": "{columns} x {rows}",
   "@columnsByRows": {
+    "description": "reviewed",
     "placeholders": {
       "columns": {
         "type": "int"
@@ -145,6 +147,7 @@
       }
     }
   },
+
   "noTablesFoundMatching": "Aucune table trouvée pour \"{searchText}\"",
   "@noTablesFoundMatching": {
     "placeholders": {
@@ -203,16 +206,6 @@
   "statusThinking": "Je réfléchis...",
   "statusVoila": "Voilà !",
   "statusOhNo": "Oh non !",
-
-  "playerNumber": "Joueur {number}",
-  "@playerNumber": {
-    "placeholders": {
-      "number": {
-        "type": "int"
-      }
-    }
-  },
-
   "nameForPlayerNumber": "Nom du joueur n°{number}",
   "@nameForPlayerNumber": {
     "placeholders": {
@@ -239,7 +232,7 @@
   },
 
   "instructionsFrenchCards9": "- Visez le score le plus bas.\n- Choisissez une carte depuis le paquet ou la défausse.\n- Échangez la carte choisie avec une carte de votre grille 3x3, ou défaussez-la et retournez une de vos cartes cachées.\n- Trois cartes de même rang sur une ligne ou une colonne valent zéro.\n- Le premier joueur à révéler ses neuf cartes défie les autres et revendique le meilleur score.\n- Si quelqu'un obtient un score égal ou inférieur, le challenger double ses points !\n- Les joueurs sont éliminés après 100 points.\n\n\nEn savoir plus [Wikipedia](https://en.wikipedia.org/wiki/Golf_(card_game))",
-  "instructionsSkyJo": "- Visez le score le plus bas.\n- Choisissez une carte depuis le paquet ou la défausse.\n- Échangez la carte choisie avec une carte de votre grille 4x3, ou défaussez-la et retournez une de vos cartes cachées.\n- Quand 3 cartes de même rang sont alignées dans une colonne, elles sont déplacées vers la défausse.\n- Le premier joueur à révéler toutes ses cartes défie les autres et revendique le meilleur score.\n\n\nEn savoir plus [SkyJo](https://www.geekyhobbies.com/how-to-play-skyjo-card-game-rules-and-instructions/)",
+  "instructionsSkyjo": "- Visez le score le plus bas.\n- Choisissez une carte depuis le paquet ou la défausse.\n- Échangez la carte choisie avec une carte de votre grille 4x3, ou défaussez-la et retournez une de vos cartes cachées.\n- Quand 3 cartes de même rang sont alignées dans une colonne, elles sont déplacées vers la défausse.\n- Le premier joueur à révéler toutes ses cartes défie les autres et revendique le meilleur score.\n\n\nEn savoir plus [Skyjo](https://www.geekyhobbies.com/how-to-play-skyjo-card-game-rules-and-instructions/)",
   "instructionsMiniPut": "- Visez le score le plus bas.\n- Choisissez une carte depuis le paquet ou la défausse.\n- Échangez la carte choisie avec une carte de votre grille 2x2, ou défaussez-la et retournez une de vos cartes cachées.\n- Trois cartes de même rang sur une ligne ou une colonne valent zéro.\n- Le premier joueur à révéler ses cartes défie les autres et revendique le meilleur score.\n- Si quelqu'un obtient un score égal ou inférieur, le challenger double ses points !\n- Les joueurs sont éliminés après 100 points.\n\n\nEn savoir plus [Wikipedia](https://en.wikipedia.org/wiki/Golf_(card_game))",
   "instructionsCustom": "Règles personnalisées",
   "last": "DERNIER",
@@ -255,7 +248,6 @@
       }
     }
   },
-  "cancel": "Annuler",
   "remove": "Supprimer",
   "noTablesAvailable": "Aucune table disponible",
   "noMatchingTables": "Aucune table correspondante"

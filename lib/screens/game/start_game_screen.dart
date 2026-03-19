@@ -545,8 +545,8 @@ class StartScreenState extends State<StartScreen> {
             label: Text(localizations.golf9Cards),
           ),
           ButtonSegment<GameStyles>(
-            value: GameStyles.skyJo,
-            label: Text(localizations.skyJo),
+            value: GameStyles.skyjo,
+            label: Text(localizations.skyjo),
           ),
           ButtonSegment<GameStyles>(
             value: GameStyles.miniPut,

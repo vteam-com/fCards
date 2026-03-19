@@ -49,36 +49,5 @@ echo --- fCheck
 mkdir -p "$PWD/.dart_tool/fcheck_pub_cache"
 export PUB_CACHE="$PWD/.dart_tool/fcheck_pub_cache"
 
-echo --- Graph Dependencies
-if [ -x tool/graph.sh ]; then
-  tool/graph.sh 2>&1 | sed 's/^/    /'
-else
-  echo "    graph.sh missing or not executable"
-fi
-
-FCHECK_PINNED_VERSION="1.0.9"
-FCHECK_LATEST_VERSION="$(
-  curl -fsSL https://pub.dev/api/packages/fcheck 2>/dev/null |
-  python3 -c 'import json,sys
-try:
-    data=json.load(sys.stdin)
-    print(data.get("latest", {}).get("version", ""))
-except Exception:
-    print("")'
-)"
-
-if [ -n "$FCHECK_LATEST_VERSION" ] && [ "$FCHECK_LATEST_VERSION" != "$FCHECK_PINNED_VERSION" ]; then
-  BANNER_COLOR='\033[1;97;41m'
-  BANNER_RESET='\033[0m'
-  echo "${BANNER_COLOR}!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!${BANNER_RESET}"
-  echo "${BANNER_COLOR}!!${BANNER_RESET}  FCHECK UPDATE AVAILABLE: $FCHECK_PINNED_VERSION -> $FCHECK_LATEST_VERSION"
-  echo "${BANNER_COLOR}!!${BANNER_RESET}  Consider bumping FCHECK_PINNED_VERSION in tool/check.sh to keep tooling current."
-  echo "${BANNER_COLOR}!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!${BANNER_RESET}"
-elif [ -n "$FCHECK_LATEST_VERSION" ]; then
-  echo "    fcheck is up to date: $FCHECK_PINNED_VERSION"
-else
-  echo "    fcheck latest version check skipped (no network or pub.dev unavailable)"
-fi
-
-dart pub global activate fcheck "$FCHECK_PINNED_VERSION" > /dev/null
+dart pub global activate fcheck "1.1.0" > /dev/null
 dart pub global run fcheck --svg --fix --list full .

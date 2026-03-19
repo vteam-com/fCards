@@ -10,7 +10,7 @@ void main() {
         name: 'Test Player',
         columns: 3,
         rows: 3,
-        skyJoLogic: false,
+        skyjoLogic: false,
       );
     });
 
@@ -107,7 +107,7 @@ void main() {
         json: json,
         columns: 3,
         rows: 3,
-        skyJoLogic: false,
+        skyjoLogic: false,
       );
 
       expect(playerFromJson.name, 'Test Player');

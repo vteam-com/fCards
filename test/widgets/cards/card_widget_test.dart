@@ -138,7 +138,7 @@ void main() {
       }
     });
 
-    testWidgets('renders SkyJo', (WidgetTester tester) async {
+    testWidgets('renders Skyjo', (WidgetTester tester) async {
       final ranks = [
         '-2',
         '-1',
@@ -162,7 +162,7 @@ void main() {
             home: Scaffold(
               body: CardWidget(
                 card: CardModel(
-                  suit: '', // SkyJo has no suit
+                  suit: '', // Skyjo has no suit
                   rank: rank,
                   value: int.tryParse(rank) ?? 0,
                   isRevealed: true,

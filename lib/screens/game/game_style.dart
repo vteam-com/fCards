@@ -66,7 +66,7 @@ class GameStyle extends StatelessWidget {
       CardModel(
         suit: '*',
         rank: '§',
-        value: GameConstants.skyJoSpecialValue,
+        value: GameConstants.skyjoSpecialValue,
         isRevealed: false,
       ),
     );
@@ -74,7 +74,7 @@ class GameStyle extends StatelessWidget {
       CardModel(
         suit: '*',
         rank: '§',
-        value: GameConstants.skyJoSpecialValue,
+        value: GameConstants.skyjoSpecialValue,
         isRevealed: true,
       ),
     );
@@ -96,17 +96,17 @@ class GameStyle extends StatelessWidget {
     return cards;
   }
 
-  /// Retrieves all SkyJo Cards based on the game rules.
+  /// Retrieves all Skyjo Cards based on the game rules.
   ///
-  /// Returns a [List<CardModel>] containing all SkyJo cards with values
+  /// Returns a [List<CardModel>] containing all Skyjo cards with values
   /// ranging from -2 to 12.
-  List<CardModel> getAllSkyJoCards() {
+  List<CardModel> getAllSkyjoCards() {
     List<CardModel> cards = [];
     cards.add(CardModel(suit: '', rank: '1', value: 1, isRevealed: false));
 
     for (
-      int rank = GameConstants.skyJoRankMin;
-      rank <= GameConstants.skyJoRankMax;
+      int rank = GameConstants.skyjoRankMin;
+      rank <= GameConstants.skyjoRankMax;
       rank++
     ) {
       cards.add(
@@ -130,8 +130,8 @@ class GameStyle extends StatelessWidget {
     switch (style) {
       case GameStyles.frenchCards9:
         cards = getAllFrenchCards();
-      case GameStyles.skyJo:
-        cards = getAllSkyJoCards();
+      case GameStyles.skyjo:
+        cards = getAllSkyjoCards();
       case GameStyles.miniPut:
         cards = getAllFrenchCards(); // Similar to French Cards for simplicity
       case GameStyles.custom:
@@ -176,8 +176,8 @@ String gameInstructions(GameStyles style, AppLocalizations localizations) {
   switch (style) {
     case GameStyles.frenchCards9:
       return localizations.instructionsFrenchCards9;
-    case GameStyles.skyJo:
-      return localizations.instructionsSkyJo;
+    case GameStyles.skyjo:
+      return localizations.instructionsSkyjo;
     case GameStyles.miniPut:
       return localizations.instructionsMiniPut;
 

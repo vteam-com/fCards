@@ -1,5 +1,18 @@
 # CHANGELOG
 
+## 1.11.5
+
+- fCheck 1.1.0
+- No longer generating the "graph.svg"
+
+## 1.11.4
+
+- fCheck 1.0.9
+
+## 1.11.3
+
+- Animated reveal of swapped card
+  
 ## 1.11.2
 
 - Fix typo in game type selection (Skylo → Skyjo)
@@ -147,7 +160,7 @@
 
 ## 1.1.0
 
-- Add SkyJo (Gilles)
+- Add Skyjo (Gilles)
 
 ## 1.2.0
 

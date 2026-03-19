@@ -1,7 +1,12 @@
 {
   "appTitle": "VTeam Cards",
+  "@appTitle": {
+    "description": "DO NOT TRANSLATE. This is the official brand name."
+  },
   "cardsTitle": "Cards",
-  "welcomeTitle": "VTeam Cards",
+  "@cardsTitle": {
+    "description": "DO NOT TRANSLATE."
+  },  
   "startNewGame": "Start a New Game",
   "joinExistingGame": "Join an Existing Game",
   "scoreKeeper": "Score Keeper",
@@ -128,13 +133,27 @@
   },
 
   "golf9Cards": "9 Cards",
-  "skyJo": "SkyJo",
+  "skyjo": "Skyjo",
+  "@skyjo": {
+    "description": "DO NOT TRANSLATE. This is the official brand name."
+  },
+ 
+  "@appTitle": {
+    "description": "DO NOT TRANSLATE. This is the official brand name."
+  },
+
   "miniPut": "MiniPut",
+  "@miniPut": {
+    "description": "DO NOT TRANSLATE. This is the official brand name."
+  },
+
   "golf9CardsFull": "Golf 9 Cards",
   "miniPutFull": "MiniPut 4 Cards",
-  "skyLo": "Skyjo",
 
   "columnsByRows": "{columns} x {rows}",
+  "@miniPut": {
+    "description": "DO NOT TRANSLATE."
+  },
   "@columnsByRows": {
     "placeholders": {
       "columns": {
@@ -203,16 +222,7 @@
   "statusThinking": "Thinking...",
   "statusVoila": "Voila!",
   "statusOhNo": "Oh NO!",
-
-  "playerNumber": "Player {number}",
-  "@playerNumber": {
-    "placeholders": {
-      "number": {
-        "type": "int"
-      }
-    }
-  },
-
+  
   "nameForPlayerNumber": "Name for Player #{number}",
   "@nameForPlayerNumber": {
     "placeholders": {
@@ -239,7 +249,7 @@
   },
 
   "instructionsFrenchCards9": "- Aim for the lowest score.\n- Choose a card from either the Deck or Discard pile.\n- Swap the chosen card with a card in your 3x3 grid, or discard it and flip over one of your face-down cards.\n- Three cards of the same rank in a row or column score zero.\n- The first player to reveal all nine cards challenges others, claiming the lowest score.\n- If someone else has an equal or lower score, the challenger doubles their points!\n- Players are eliminated after busting 100 points.\n\n\nLearn more [Wikipedia](https://en.wikipedia.org/wiki/Golf_(card_game))",
-  "instructionsSkyJo": "- Aim for the lowest score.\n- Choose a card from either the Deck or Discard pile.\n- Swap the chosen card with a card in your 4x3 grid, or discard it and flip over one of your face-down cards.\n- When 3 cards of the same rank are lined up in a column they are moved to the discard pile.\n- The first player to reveal all their cards challenges others, claiming the lowest score.\n\n\nLearn more [SkyJo](https://www.geekyhobbies.com/how-to-play-skyjo-card-game-rules-and-instructions/)",
+  "instructionsSkyjo": "- Aim for the lowest score.\n- Choose a card from either the Deck or Discard pile.\n- Swap the chosen card with a card in your 4x3 grid, or discard it and flip over one of your face-down cards.\n- When 3 cards of the same rank are lined up in a column they are moved to the discard pile.\n- The first player to reveal all their cards challenges others, claiming the lowest score.\n\n\nLearn more [Skyjo](https://www.geekyhobbies.com/how-to-play-skyjo-card-game-rules-and-instructions/)",
   "instructionsMiniPut": "- Aim for the lowest score.\n- Choose a card from either the Deck or Discard pile.\n- Swap the chosen card with a card in your 2x2 grid, or discard it and flip over one of your face-down cards.\n- Three cards of the same rank in a row or column score zero.\n- The first player to reveal all nine cards challenges others, claiming the lowest score.\n- If someone else has an equal or lower score, the challenger doubles their points!\n- Players are eliminated after busting 100 points.\n\n\nLearn more [Wikipedia](https://en.wikipedia.org/wiki/Golf_(card_game))",
   "instructionsCustom": "Custom rules",
   "last": "LAST",
@@ -255,7 +265,6 @@
       }
     }
   },
-  "cancel": "Cancel",
   "remove": "Remove",
   "noTablesAvailable": "No tables available",
   "noMatchingTables": "No matching tables"

@@ -35,7 +35,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   Widget build(BuildContext context) {
     final AppLocalizations localizations = AppLocalizations.of(context);
     return Screen(
-      title: localizations.welcomeTitle,
+      title: localizations.appTitle,
       isWaiting: false,
       child: Center(
         child: ConstrainedBox(

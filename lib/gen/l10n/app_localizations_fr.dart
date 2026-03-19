@@ -15,9 +15,6 @@ class AppLocalizationsFr extends AppLocalizations {
   String get cardsTitle => 'Cards';
 
   @override
-  String get welcomeTitle => 'VTeam Cards';
-
-  @override
   String get startNewGame => 'Démarrer une nouvelle partie';
 
   @override
@@ -180,7 +177,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String cardCountTooltip(int count) {
-    return '$count\\ncartes';
+    return '$count\ncartes';
   }
 
   @override
@@ -227,7 +224,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get golf9Cards => '9 Cartes';
 
   @override
-  String get skyJo => 'SkyJo';
+  String get skyjo => 'Skyjo';
 
   @override
   String get miniPut => 'MiniPut';
@@ -237,9 +234,6 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get miniPutFull => 'MiniPut 4 Cartes';
-
-  @override
-  String get skyLo => 'Skyjo';
 
   @override
   String columnsByRows(int columns, int rows) {
@@ -327,11 +321,6 @@ class AppLocalizationsFr extends AppLocalizations {
   String get statusOhNo => 'Oh non !';
 
   @override
-  String playerNumber(int number) {
-    return 'Joueur $number';
-  }
-
-  @override
   String nameForPlayerNumber(int number) {
     return 'Nom du joueur n°$number';
   }
@@ -352,8 +341,8 @@ class AppLocalizationsFr extends AppLocalizations {
       '- Visez le score le plus bas.\n- Choisissez une carte depuis le paquet ou la défausse.\n- Échangez la carte choisie avec une carte de votre grille 3x3, ou défaussez-la et retournez une de vos cartes cachées.\n- Trois cartes de même rang sur une ligne ou une colonne valent zéro.\n- Le premier joueur à révéler ses neuf cartes défie les autres et revendique le meilleur score.\n- Si quelqu\'un obtient un score égal ou inférieur, le challenger double ses points !\n- Les joueurs sont éliminés après 100 points.\n\n\nEn savoir plus [Wikipedia](https://en.wikipedia.org/wiki/Golf_(card_game))';
 
   @override
-  String get instructionsSkyJo =>
-      '- Visez le score le plus bas.\n- Choisissez une carte depuis le paquet ou la défausse.\n- Échangez la carte choisie avec une carte de votre grille 4x3, ou défaussez-la et retournez une de vos cartes cachées.\n- Quand 3 cartes de même rang sont alignées dans une colonne, elles sont déplacées vers la défausse.\n- Le premier joueur à révéler toutes ses cartes défie les autres et revendique le meilleur score.\n\n\nEn savoir plus [SkyJo](https://www.geekyhobbies.com/how-to-play-skyjo-card-game-rules-and-instructions/)';
+  String get instructionsSkyjo =>
+      '- Visez le score le plus bas.\n- Choisissez une carte depuis le paquet ou la défausse.\n- Échangez la carte choisie avec une carte de votre grille 4x3, ou défaussez-la et retournez une de vos cartes cachées.\n- Quand 3 cartes de même rang sont alignées dans une colonne, elles sont déplacées vers la défausse.\n- Le premier joueur à révéler toutes ses cartes défie les autres et revendique le meilleur score.\n\n\nEn savoir plus [Skyjo](https://www.geekyhobbies.com/how-to-play-skyjo-card-game-rules-and-instructions/)';
 
   @override
   String get instructionsMiniPut =>
