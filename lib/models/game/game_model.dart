@@ -117,18 +117,18 @@ class GameModel with ChangeNotifier {
   /// Adds a new player to the game.
   ///
   /// The player is added to the [players] list. The player's properties are set based on the [gameStyle]:
-  /// - If [gameStyle] is [GameStyles.skyJo], the player has 4 columns and 3 rows, and [skyJoLogic] is set to `true`.
-  /// - Otherwise, the player has 3 columns and 3 rows, and [skyJoLogic] is set to `false`.
+  /// - If [gameStyle] is [GameStyles.skyjo], the player has 4 columns and 3 rows, and [skyjoLogic] is set to `true`.
+  /// - Otherwise, the player has 3 columns and 3 rows, and [skyjoLogic] is set to `false`.
   ///
   /// @param name The name of the new player.
   void addPlayer(String name) {
-    if (gameStyle == GameStyles.skyJo) {
+    if (gameStyle == GameStyles.skyjo) {
       players.add(
         PlayerModel(
           name: name,
           columns: CardModel.skyjoColumns,
           rows: CardModel.skyjoRows,
-          skyJoLogic: true,
+          skyjoLogic: true,
         ),
       );
     } else {
@@ -137,7 +137,7 @@ class GameModel with ChangeNotifier {
           name: name,
           columns: CardModel.standardColumns,
           rows: CardModel.standardRows,
-          skyJoLogic: false,
+          skyjoLogic: false,
         ),
       );
     }
@@ -225,33 +225,33 @@ class GameModel with ChangeNotifier {
   /// If the [gameStyle] is [GameStyles.custom], the player is created with 0 columns and 0 rows, and sky-jo logic disabled.
   PlayerModel loadPlayer(Map<String, dynamic> json) {
     switch (gameStyle) {
-      case GameStyles.skyJo:
+      case GameStyles.skyjo:
         return PlayerModel.fromJson(
           json: json,
           columns: CardModel.skyjoColumns,
           rows: CardModel.skyjoRows,
-          skyJoLogic: true,
+          skyjoLogic: true,
         );
       case GameStyles.frenchCards9:
         return PlayerModel.fromJson(
           json: json,
           columns: CardModel.standardColumns,
           rows: CardModel.standardRows,
-          skyJoLogic: false,
+          skyjoLogic: false,
         );
       case GameStyles.miniPut:
         return PlayerModel.fromJson(
           json: json,
           columns: CardModel.miniPutColumns,
           rows: CardModel.miniPutRows,
-          skyJoLogic: false,
+          skyjoLogic: false,
         );
       case GameStyles.custom:
         return PlayerModel.fromJson(
           json: json,
           columns: 0,
           rows: 0,
-          skyJoLogic: false,
+          skyjoLogic: false,
         );
     }
   }
@@ -648,7 +648,7 @@ class GameModel with ChangeNotifier {
   ///
   /// **Different Game Styles Use Different Scoring Approaches:**
   ///
-  /// 🎯 **SkyJo (Active Evaluation)**:
+  /// 🎯 **Skyjo (Active Evaluation)**:
   /// - Removes completed card sets from the player's hand during gameplay
   /// - Cards that form sets (3 of same rank) are discarded and removed from play
   /// - Hand physical composition changes during the game
@@ -659,24 +659,24 @@ class GameModel with ChangeNotifier {
   /// - Scoring logic resides in `HandModel.getSumOfCardsForGolf()`
   /// - Called when displaying scores, not during active play
   ///
-  /// Currently only SkyJo uses active evaluation. Other game styles use
+  /// Currently only Skyjo uses active evaluation. Other game styles use
   /// passive scoring through the HandModel's scoring methods.
   void evaluateHand() {
-    if (gameStyle == GameStyles.skyJo) {
-      // SkyJo actively modifies the hand by removing completed sets
-      evaluateHandSkyJo();
+    if (gameStyle == GameStyles.skyjo) {
+      // Skyjo actively modifies the hand by removing completed sets
+      evaluateHandSkyjo();
     }
     // Golf-style games (French Cards, MiniPut) don't need hand evaluation
     // They use passive scoring via HandModel.getSumOfCardsForGolf()
     // which calculates scores without modifying the hand
   }
 
-  /// Evaluates the player's hand in the 'skyJo' game style.
+  /// Evaluates the player's hand in the 'Skyjo' game style.
   /// This method checks the player's hand for sets of three cards with the same rank,
   /// and removes those sets from the hand, adding them to the discarded pile.
   /// The method reduces the index after removing cards to ensure the loop iterates
   /// correctly over the remaining cards in the hand.
-  void evaluateHandSkyJo() {
+  void evaluateHandSkyjo() {
     var player = players[playerIdPlaying];
 
     for (

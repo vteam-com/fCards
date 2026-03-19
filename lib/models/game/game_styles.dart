@@ -5,8 +5,8 @@ enum GameStyles {
   /// Classic French cards with a 9x9 grid and special rules.
   frenchCards9,
 
-  /// SkyJo card game style with specific rules.
-  skyJo,
+  /// Skyjo card game style with specific rules.
+  skyjo,
 
   /// Mini Putt card game style with a smaller grid.
   miniPut,
@@ -45,10 +45,10 @@ GameStyleConfig getGameStyleConfig(GameStyles style, int numberOfPlayers) {
         cardsToDeal: GameConstants.standardCardCount,
         decks: GameConstants.calculateDecks(numberOfPlayers),
       );
-    case GameStyles.skyJo:
+    case GameStyles.skyjo:
       return GameStyleConfig(
         cardsToReveal: CardModel.skyjoRevealCount,
-        cardsToDeal: GameConstants.skyJoCardCount,
+        cardsToDeal: GameConstants.skyjoCardCount,
         decks: 1,
       );
     case GameStyles.miniPut:
@@ -75,7 +75,7 @@ int numberOfDecks(GameStyles style, int numberOfPlayers) {
   switch (style) {
     case GameStyles.frenchCards9:
       return GameConstants.calculateDecks(numberOfPlayers);
-    case GameStyles.skyJo:
+    case GameStyles.skyjo:
       return 1;
     case GameStyles.miniPut:
       return 1;

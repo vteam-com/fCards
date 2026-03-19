@@ -17,7 +17,7 @@ A Flutter-based multiplayer card game application featuring multiple game modes 
   - 2x2 card grid layout
   - Simplified version of Golf game
 
-- **SkyJo Game**
+- **Skyjo Game**
   - 2 to 8 players
   - 4x3 card grid layout (12 cards)
   - Custom card deck with unique scoring
@@ -51,7 +51,7 @@ A Flutter-based multiplayer card game application featuring multiple game modes 
 
 ## Game Mechanics & Scoring Systems
 
-### 🎯 Active Evaluation (SkyJo)
+### 🎯 Active Evaluation (Skyjo)
 
 - Cards are physically removed from players' hands during gameplay
 - When a player forms sets of 3 cards with the same rank, those cards are discarded
@@ -89,7 +89,7 @@ A Flutter-based multiplayer card game application featuring multiple game modes 
 - Simplified version of Golf game
 - 1 card revealed at startup
 
-#### SkyJo
+#### Skyjo
 
 - 4x3 grid (12 cards per player)
 - 3-of-a-kind sets are discarded during play

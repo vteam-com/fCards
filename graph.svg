@@ -1303,6 +1303,11 @@ card_model.dart</title>
 ⬇
 constants_layout.dart</title>
       </path>
+      <path d="M2000 580 C 2065 1565,2010 1565, 2075 2550" fill="none" class="line">
+        <title>start_game_wizard_screen.dart
+⬇
+game_constants.dart</title>
+      </path>
       <path d="M2000 580 C 2063 1525,2012 1525, 2075 2470" fill="none" class="line">
         <title>start_game_wizard_screen.dart
 ⬇
@@ -1455,20 +1460,21 @@ my_button_rectangle.dart</title>
             <g id='Counters_start_game_wizard_screen.dart'>
               <g>
                 <circle cx="2000" cy="580" r="10" fill="green"/>
-                <text x="2000" y="580" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">11</text>
+                <text x="2000" y="580" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">12</text>
                 <title>start_game_wizard_screen.dart
 ⬇
 1 /lib/models/app/constants_layout.dart
 2 /lib/models/card/card_model.dart
 3 /lib/models/game/backend_model.dart
-4 /lib/models/game/game_styles.dart
-5 /lib/screens/game/join_game_screen.dart
-6 /lib/screens/game/start_game_screen.dart
-7 /lib/utils/logger.dart
-8 /lib/widgets/buttons/my_button_rectangle.dart
-9 /lib/widgets/helpers/screen.dart
-10 /lib/widgets/helpers/table_widget.dart
-11 /lib/widgets/helpers/wizard_footer.dart</title>
+4 /lib/models/game/game_constants.dart
+5 /lib/models/game/game_styles.dart
+6 /lib/screens/game/join_game_screen.dart
+7 /lib/screens/game/start_game_screen.dart
+8 /lib/utils/logger.dart
+9 /lib/widgets/buttons/my_button_rectangle.dart
+10 /lib/widgets/helpers/screen.dart
+11 /lib/widgets/helpers/table_widget.dart
+12 /lib/widgets/helpers/wizard_footer.dart</title>
               </g>
               <g>
                 <circle cx="1740" cy="540" r="10" fill="blue"/>
@@ -2224,10 +2230,11 @@ game_history.dart</title>
             <g id='Counters_game_constants.dart'>
               <g>
                 <circle cx="2075" cy="2550" r="10" fill="blue"/>
-                <text x="2075" y="2550" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">3</text>
+                <text x="2075" y="2550" fill="white" font-size="10" text-anchor="middle" dominant-baseline="central">4</text>
                 <title>1 /lib/models/game/game_styles.dart
 2 /lib/screens/game/game_style.dart
-3 /lib/screens/keepscore/golf_score_screen.dart
+3 /lib/screens/game/start_game_wizard_screen.dart
+4 /lib/screens/keepscore/golf_score_screen.dart
 ⬇
 game_constants.dart</title>
               </g>
@@ -2689,10 +2696,10 @@ backend_json_data.dart</title>
         </g>
         <g id='Labels_screens'>
           <text class="folderName" x="1545" y="460">screens</text>
-          <text x="1545" y="980" fill='black' font-size="75%">3 folders, 8 files, 6 incoming, 68 outgoing, path: ...//lib/</text>
+          <text x="1545" y="980" fill='black' font-size="75%">3 folders, 8 files, 6 incoming, 69 outgoing, path: ...//lib/</text>
           <g id='Labels_game'>
             <text class="folderName" x="1562.5" y="495">game</text>
-            <text x="1562.5" y="945" fill='black' font-size="75%">6 files, 4 incoming, 53 outgoing, path: ...//lib/screens/</text>
+            <text x="1562.5" y="945" fill='black' font-size="75%">6 files, 4 incoming, 54 outgoing, path: ...//lib/screens/</text>
             <g id='Labels_start_game_wizard_screen.dart'>
               <text class="nodeName" x="1870" y="560" font-size="90%">start_game_wizard_screen.dart</text>
             </g>
@@ -2815,10 +2822,10 @@ backend_json_data.dart</title>
         </g>
         <g id='Labels_models'>
           <text class="folderName" x="1430" y="2230">models</text>
-          <text x="1430" y="3360" fill='black' font-size="75%">4 folders, 21 files, 103 incoming, 2 outgoing, path: ...//lib/</text>
+          <text x="1430" y="3360" fill='black' font-size="75%">4 folders, 21 files, 104 incoming, 2 outgoing, path: ...//lib/</text>
           <g id='Labels_game'>
             <text class="folderName" x="1747.5" y="2265">game</text>
-            <text x="1747.5" y="2635" fill='black' font-size="75%">7 files, 37 incoming, 10 outgoing, path: ...//lib/models/</text>
+            <text x="1747.5" y="2635" fill='black' font-size="75%">7 files, 38 incoming, 10 outgoing, path: ...//lib/models/</text>
             <g id='Labels_game_model.dart'>
               <text class="nodeName" x="2205" y="2330" font-size="120%">game_model.dart</text>
             </g>

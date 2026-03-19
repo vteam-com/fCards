@@ -1,7 +1,7 @@
 /// Standardized card values and display offsets.
 ///
 /// This class maintains the canonical scoring values for different card ranks
-/// across various game modes (SkyJo, Golf, etc.).
+/// across various game modes (Skyjo, Golf, etc.).
 class ConstCardValue {
   const ConstCardValue();
 
@@ -21,20 +21,20 @@ class ConstCardValue {
   static const int cardValueJack = 11;
   static const int cardValueQueen = 12;
 
-  // SkyJo Specifics
-  /// Minimum possible card value in SkyJo (-2).
+  // Skyjo Specifics
+  /// Minimum possible card value in Skyjo (-2).
   static const int skyjoMinValue = -2;
 
-  /// Maximum possible card value in SkyJo (12).
+  /// Maximum possible card value in Skyjo (12).
   static const int skyjoMaxValue = 12;
 
-  /// Number of '0' cards in a SkyJo deck.
+  /// Number of '0' cards in a Skyjo deck.
   static const int skyjoZeroCardCount = 15;
 
-  /// Number of '-2' cards in a SkyJo deck.
+  /// Number of '-2' cards in a Skyjo deck.
   static const int skyjoNegativeTwoCardCount = 5;
 
-  /// Standard count for other numbered cards in a SkyJo deck.
+  /// Standard count for other numbered cards in a Skyjo deck.
   static const int skyjoOtherCardCount = 10;
 
   /// Threshold for AI/Logic level 5.

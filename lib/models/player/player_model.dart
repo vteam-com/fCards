@@ -15,7 +15,7 @@ export 'package:cards/models/player/player_status.dart';
 /// - [name]: The name of the player.
 /// - [columns]: The number of columns in the player's hand grid.
 /// - [rows]: The number of rows in the player's hand grid.
-/// - [skyJoLogic]: A flag indicating whether SkyJo game logic should be used.
+/// - [skyjoLogic]: A flag indicating whether Skyjo game logic should be used.
 class PlayerModel {
   ///
   /// Creates a `PlayerModel` with the given name.
@@ -24,7 +24,7 @@ class PlayerModel {
     required this.name,
     required this.columns,
     required this.rows,
-    required this.skyJoLogic,
+    required this.skyjoLogic,
   }) {
     clear();
   }
@@ -49,14 +49,14 @@ class PlayerModel {
     required final Map<String, dynamic> json,
     required final int columns,
     required final int rows,
-    required final bool skyJoLogic,
+    required final bool skyjoLogic,
   }) {
     // Create a new PlayerModel instance with the parsed data.
     final PlayerModel instance = PlayerModel(
       name: json['name'] as String,
       columns: columns,
       rows: rows,
-      skyJoLogic: skyJoLogic,
+      skyjoLogic: skyjoLogic,
     );
 
     // Status
@@ -101,10 +101,10 @@ class PlayerModel {
   /// The number of rows in the player's hand grid.
   final int rows;
 
-  /// A flag indicating whether SkyJo game logic should be used.
+  /// A flag indicating whether Skyjo game logic should be used.
   ///
-  /// If true, SkyJo scoring rules are applied. If false, standard rules are used.
-  final bool skyJoLogic;
+  /// If true, Skyjo scoring rules are applied. If false, standard rules are used.
+  final bool skyjoLogic;
 
   /// The current status of the player in the game.
   ///
@@ -126,14 +126,14 @@ class PlayerModel {
   /// Calculates and returns the sum of revealed cards in the player's hand.
   ///
   /// The calculation method depends on the game logic:
-  /// - If [skyJoLogic] is true, it uses SkyJo scoring rules.
-  /// - If [skyJoLogic] is false, it uses Golf scoring rules.
+  /// - If [skyjoLogic] is true, it uses Skyjo scoring rules.
+  /// - If [skyjoLogic] is false, it uses Golf scoring rules.
   ///
   /// Returns:
   ///   An integer representing the sum of revealed cards.
   int get sumOfRevealedCards {
-    if (skyJoLogic) {
-      return hand.getSumOfCardsInHandSkyJo();
+    if (skyjoLogic) {
+      return hand.getSumOfCardsInHandSkyjo();
     } else {
       return hand.getSumOfCardsForGolf();
     }

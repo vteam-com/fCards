@@ -153,11 +153,11 @@ class HandModel {
     return '$columns X $rows [ ${_list.join('| ')} ]';
   }
 
-  /// Calculates the sum of card values for the SkyJo game variant.
+  /// Calculates the sum of card values for the Skyjo game variant.
   ///
   /// Only considers revealed cards when calculating the sum.
   /// Returns the total score based on the values of revealed cards.
-  int getSumOfCardsInHandSkyJo() {
+  int getSumOfCardsInHandSkyjo() {
     int score = 0;
     for (final CardModel card in _list) {
       if (card.isRevealed) {
@@ -171,7 +171,7 @@ class HandModel {
   /// Calculates the sum of card values for the Golf game variant and related games.
   ///
   /// **Golf-Style Scoring Logic (PASSED SCORING)**:
-  /// Unlike SkyJo which modifies hands during play, Golf games calculate scores
+  /// Unlike Skyjo which modifies hands during play, Golf games calculate scores
   /// passively based on the final revealed card layout after all play is complete.
   ///
   /// **Scoring Rules:**

@@ -16,13 +16,13 @@ void main() {
       random = Random();
 
       gameModel = GameModel(
-        gameStyle: GameStyles.skyJo,
+        gameStyle: GameStyles.skyjo,
         roomName: 'testRoom',
         roomHistory: [],
         loginUserName: 'Player 1',
         names: ['Player 1', 'Player 2'],
         cardsToDeal: 12,
-        deck: DeckModel(numberOfDecks: 1, gameStyle: GameStyles.skyJo),
+        deck: DeckModel(numberOfDecks: 1, gameStyle: GameStyles.skyjo),
         isNewGame: true,
       );
     });

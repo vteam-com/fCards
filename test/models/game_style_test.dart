@@ -14,26 +14,26 @@ void main() {
 
     test('contains expected values', () {
       expect(GameStyles.values, contains(GameStyles.frenchCards9));
-      expect(GameStyles.values, contains(GameStyles.skyJo));
+      expect(GameStyles.values, contains(GameStyles.skyjo));
       expect(GameStyles.values, contains(GameStyles.miniPut));
       expect(GameStyles.values, contains(GameStyles.custom));
     });
 
     test('values are in expected order', () {
       expect(GameStyles.values[0], equals(GameStyles.frenchCards9));
-      expect(GameStyles.values[1], equals(GameStyles.skyJo));
+      expect(GameStyles.values[1], equals(GameStyles.skyjo));
       expect(GameStyles.values[2], equals(GameStyles.miniPut));
       expect(GameStyles.values[3], equals(GameStyles.custom));
     });
 
     test('can compare enum values', () {
       expect(GameStyles.frenchCards9 == GameStyles.frenchCards9, isTrue);
-      expect(GameStyles.frenchCards9 == GameStyles.skyJo, isFalse);
+      expect(GameStyles.frenchCards9 == GameStyles.skyjo, isFalse);
     });
 
     test('can convert to string', () {
       expect(GameStyles.frenchCards9.toString(), contains('frenchCards9'));
-      expect(GameStyles.skyJo.toString(), contains('skyJo'));
+      expect(GameStyles.skyjo.toString(), contains('skyjo'));
       expect(GameStyles.miniPut.toString(), contains('miniPut'));
       expect(GameStyles.custom.toString(), contains('custom'));
     });
@@ -44,7 +44,7 @@ void main() {
         gameInstructions(GameStyles.frenchCards9, localizations).isEmpty,
         false,
       );
-      expect(gameInstructions(GameStyles.skyJo, localizations).isEmpty, false);
+      expect(gameInstructions(GameStyles.skyjo, localizations).isEmpty, false);
       expect(
         gameInstructions(GameStyles.miniPut, localizations).isEmpty,
         false,
@@ -55,7 +55,7 @@ void main() {
     test('from Json', () {
       expect(intToGameStyles(-1), GameStyles.frenchCards9);
       expect(intToGameStyles(0), GameStyles.frenchCards9);
-      expect(intToGameStyles(1), GameStyles.skyJo);
+      expect(intToGameStyles(1), GameStyles.skyjo);
       expect(intToGameStyles(2), GameStyles.miniPut);
       expect(intToGameStyles(3), GameStyles.custom);
       expect(intToGameStyles(99), GameStyles.frenchCards9);
@@ -75,9 +75,9 @@ void main() {
     // Verify cards are displayed
     expect(find.byType(CardWidget), findsWidgets);
   });
-  testWidgets('GameStyle SkyJo widget test', (WidgetTester tester) async {
+  testWidgets('GameStyle Skyjo widget test', (WidgetTester tester) async {
     await tester.pumpWidget(
-      MaterialApp(home: GameStyle(style: GameStyles.skyJo)),
+      MaterialApp(home: GameStyle(style: GameStyles.skyjo)),
     );
 
     // Verify Markdown widget is present

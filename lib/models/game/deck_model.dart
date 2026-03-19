@@ -81,10 +81,10 @@ class DeckModel {
 
   /// Adds cards to the deck based on the game style.
   ///
-  /// If the game style is `skyJo`, it adds cards with values from -2 to 12.
+  /// If the game style is `skyjo`, it adds cards with values from -2 to 12.
   /// Otherwise, it calls `addCardsToDeckGolf()` to add cards for a standard French-suited deck.
   void addCardsToDeck() {
-    if (gameStyle == GameStyles.skyJo) {
+    if (gameStyle == GameStyles.skyjo) {
       for (
         int i = ConstCardValue.skyjoMinValue;
         i <= ConstCardValue.skyjoMaxValue;

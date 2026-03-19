@@ -1,17 +1,60 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1540" viewBox="0 0 1800 1540" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1540" viewBox="0 0 1800 1540" role="img"
+  aria-labelledby="title desc">
   <title id="title">VTeam Cards Onboarding Flow</title>
   <desc id="desc">Flowchart describing Start New Game and Join Existing Game onboarding logic.</desc>
 
   <defs>
     <style>
-      .bg { fill: #0c2a1a; }
-      .node { fill: #1b4f33; stroke: #dceadf; stroke-width: 2; rx: 14; ry: 14; }
-      .decision { fill: #3b6f52; stroke: #dceadf; stroke-width: 2; }
-      .text { fill: #f4fff7; font-family: Arial, sans-serif; font-size: 24px; font-weight: 700; }
-      .small { fill: #f4fff7; font-family: Arial, sans-serif; font-size: 20px; }
-      .label { fill: #f0f8f3; font-family: Arial, sans-serif; font-size: 20px; font-weight: 700; }
-      .arrow { stroke: #f4fff7; stroke-width: 3; fill: none; }
-      .title { fill: #f4fff7; font-family: Arial, sans-serif; font-size: 34px; font-weight: 700; }
+      .bg {
+        fill: #0c2a1a;
+      }
+
+      .node {
+        fill: #1b4f33;
+        stroke: #dceadf;
+        stroke-width: 2;
+        rx: 14;
+        ry: 14;
+      }
+
+      .decision {
+        fill: #3b6f52;
+        stroke: #dceadf;
+        stroke-width: 2;
+      }
+
+      .text {
+        fill: #f4fff7;
+        font-family: Arial, sans-serif;
+        font-size: 24px;
+        font-weight: 700;
+      }
+
+      .small {
+        fill: #f4fff7;
+        font-family: Arial, sans-serif;
+        font-size: 20px;
+      }
+
+      .label {
+        fill: #f0f8f3;
+        font-family: Arial, sans-serif;
+        font-size: 20px;
+        font-weight: 700;
+      }
+
+      .arrow {
+        stroke: #f4fff7;
+        stroke-width: 3;
+        fill: none;
+      }
+
+      .title {
+        fill: #f4fff7;
+        font-family: Arial, sans-serif;
+        font-size: 34px;
+        font-weight: 700;
+      }
     </style>
     <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
       <polygon points="0 0, 10 3.5, 0 7" fill="#f4fff7" />

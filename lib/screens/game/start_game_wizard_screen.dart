@@ -2,6 +2,7 @@ import 'package:cards/gen/l10n/app_localizations.dart';
 import 'package:cards/models/app/constants_layout.dart';
 import 'package:cards/models/card/card_model.dart';
 import 'package:cards/models/game/backend_model.dart';
+import 'package:cards/models/game/game_constants.dart';
 import 'package:cards/models/game/game_styles.dart';
 import 'package:cards/screens/game/join_game_screen.dart';
 import 'package:cards/screens/game/start_game_screen.dart';
@@ -31,8 +32,8 @@ const List<_GameTypeOption> _gameTypeOptions = <_GameTypeOption>[
     rows: CardModel.miniPutRows,
   ),
   _GameTypeOption(
-    style: GameStyles.skyJo,
-    labelKey: 'skyLo',
+    style: GameStyles.skyjo,
+    labelKey: 'Skyjo',
     columns: CardModel.skyjoColumns,
     rows: CardModel.skyjoRows,
   ),
@@ -397,15 +398,15 @@ class _StartGameWizardScreenState extends State<StartGameWizardScreen> {
     }
   }
 
-  /// Gets the localized label for a game type option.
+  /// Gets localized label for a game type option.
   String _getLocalizedLabel(String labelKey, AppLocalizations localizations) {
     switch (labelKey) {
       case 'golf9CardsFull':
         return localizations.golf9CardsFull;
       case 'miniPutFull':
         return localizations.miniPutFull;
-      case 'skyLo':
-        return localizations.skyLo;
+      case GameConstants.gameStyleLabelKeySkyjo:
+        return localizations.skyjo;
       default:
         return labelKey;
     }
