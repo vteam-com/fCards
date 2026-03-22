@@ -49,5 +49,5 @@ echo --- fCheck
 mkdir -p "$PWD/.dart_tool/fcheck_pub_cache"
 export PUB_CACHE="$PWD/.dart_tool/fcheck_pub_cache"
 
-dart pub global activate fcheck "1.1.0" > /dev/null
+dart pub global activate fcheck "1.1.1" > /dev/null
 dart pub global run fcheck --svg --fix --list full .

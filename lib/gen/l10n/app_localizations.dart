@@ -98,119 +98,23 @@ abstract class AppLocalizations {
     Locale('fr'),
   ];
 
-  /// DO NOT TRANSLATE. This is the official brand name.
-  ///
-  /// In en, this message translates to:
-  /// **'VTeam Cards'**
-  String get appTitle;
-
-  /// DO NOT TRANSLATE.
-  ///
-  /// In en, this message translates to:
-  /// **'Cards'**
-  String get cardsTitle;
-
-  /// No description provided for @startNewGame.
-  ///
-  /// In en, this message translates to:
-  /// **'Start a New Game'**
-  String get startNewGame;
-
-  /// No description provided for @joinExistingGame.
-  ///
-  /// In en, this message translates to:
-  /// **'Join an Existing Game'**
-  String get joinExistingGame;
-
-  /// No description provided for @scoreKeeper.
-  ///
-  /// In en, this message translates to:
-  /// **'Score Keeper'**
-  String get scoreKeeper;
-
   /// No description provided for @account.
   ///
   /// In en, this message translates to:
   /// **'Account'**
   String get account;
 
-  /// No description provided for @signedIn.
+  /// No description provided for @addAnotherPlayer.
   ///
   /// In en, this message translates to:
-  /// **'Signed in'**
-  String get signedIn;
+  /// **'Add another player'**
+  String get addAnotherPlayer;
 
-  /// No description provided for @playingAsGuest.
+  /// DO NOT TRANSLATE. This is the official brand name.
   ///
   /// In en, this message translates to:
-  /// **'Playing as Guest'**
-  String get playingAsGuest;
-
-  /// No description provided for @notSignedIn.
-  ///
-  /// In en, this message translates to:
-  /// **'Not signed in'**
-  String get notSignedIn;
-
-  /// No description provided for @signingIn.
-  ///
-  /// In en, this message translates to:
-  /// **'Signing in...'**
-  String get signingIn;
-
-  /// No description provided for @signInWithGoogle.
-  ///
-  /// In en, this message translates to:
-  /// **'Sign in with Google'**
-  String get signInWithGoogle;
-
-  /// No description provided for @signingOut.
-  ///
-  /// In en, this message translates to:
-  /// **'Signing out...'**
-  String get signingOut;
-
-  /// No description provided for @signOut.
-  ///
-  /// In en, this message translates to:
-  /// **'Sign out'**
-  String get signOut;
-
-  /// No description provided for @googleSignInFailed.
-  ///
-  /// In en, this message translates to:
-  /// **'Google sign-in failed.'**
-  String get googleSignInFailed;
-
-  /// No description provided for @signOutFailed.
-  ///
-  /// In en, this message translates to:
-  /// **'Sign out failed.'**
-  String get signOutFailed;
-
-  /// No description provided for @startGameWizardTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Start Game'**
-  String get startGameWizardTitle;
-
-  /// No description provided for @joinGameTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Join Game'**
-  String get joinGameTitle;
-
-  /// No description provided for @cardGamesTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Card Games'**
-  String get cardGamesTitle;
-
-  /// No description provided for @next.
-  ///
-  /// In en, this message translates to:
-  /// **'Next'**
-  String get next;
+  /// **'VTeam Cards'**
+  String get appTitle;
 
   /// No description provided for @back.
   ///
@@ -218,35 +122,53 @@ abstract class AppLocalizations {
   /// **'Back'**
   String get back;
 
-  /// No description provided for @startGame.
+  /// No description provided for @cancel.
   ///
   /// In en, this message translates to:
-  /// **'Start Game'**
-  String get startGame;
+  /// **'Cancel'**
+  String get cancel;
 
-  /// No description provided for @whatTypeOfGame.
+  /// No description provided for @cardCountTooltip.
   ///
   /// In en, this message translates to:
-  /// **'What type of game?'**
-  String get whatTypeOfGame;
+  /// **'{count}\\ncards'**
+  String cardCountTooltip(int count);
 
-  /// No description provided for @pickTableOrCreate.
+  /// No description provided for @cardGamesTitle.
   ///
   /// In en, this message translates to:
-  /// **'Pick a table or create a new one'**
-  String get pickTableOrCreate;
+  /// **'Card Games'**
+  String get cardGamesTitle;
 
-  /// No description provided for @tapExistingTable.
+  /// DO NOT TRANSLATE.
   ///
   /// In en, this message translates to:
-  /// **'Tap an existing table to continue'**
-  String get tapExistingTable;
+  /// **'Cards'**
+  String get cardsTitle;
 
-  /// No description provided for @noExistingTables.
+  /// No description provided for @columnsByRows.
   ///
   /// In en, this message translates to:
-  /// **'No existing tables found. Create a new one to continue.'**
-  String get noExistingTables;
+  /// **'{columns} x {rows}'**
+  String columnsByRows(int columns, int rows);
+
+  /// No description provided for @confirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm'**
+  String get confirm;
+
+  /// No description provided for @confirmDeleteRound.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete round {round}?'**
+  String confirmDeleteRound(int round);
+
+  /// No description provided for @confirmNewGame.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to start a new game? All scores will be lost.'**
+  String get confirmNewGame;
 
   /// No description provided for @createNewTable.
   ///
@@ -260,365 +182,11 @@ abstract class AppLocalizations {
   /// **'Create a table.\nIf it already exists, you can join it.'**
   String get createTableHelp;
 
-  /// No description provided for @table.
-  ///
-  /// In en, this message translates to:
-  /// **'Table'**
-  String get table;
-
-  /// No description provided for @enterTableName.
-  ///
-  /// In en, this message translates to:
-  /// **'Enter a table name to check if it already exists.'**
-  String get enterTableName;
-
-  /// No description provided for @thisTableAlreadyHasPlayers.
-  ///
-  /// In en, this message translates to:
-  /// **'This table already has players. You can join it instead of creating a new table.'**
-  String get thisTableAlreadyHasPlayers;
-
-  /// No description provided for @joinThisTable.
-  ///
-  /// In en, this message translates to:
-  /// **'Join This Table'**
-  String get joinThisTable;
-
-  /// No description provided for @whoAreYou.
-  ///
-  /// In en, this message translates to:
-  /// **'Who Are You?\nSelect above ⬆ or join below ⬇'**
-  String get whoAreYou;
-
-  /// No description provided for @join.
-  ///
-  /// In en, this message translates to:
-  /// **'Join'**
-  String get join;
-
-  /// No description provided for @pleaseEnterYourName.
-  ///
-  /// In en, this message translates to:
-  /// **'Please enter your name above ⬆'**
-  String get pleaseEnterYourName;
-
-  /// No description provided for @waitingForPlayers.
-  ///
-  /// In en, this message translates to:
-  /// **'Waiting for players to join'**
-  String get waitingForPlayers;
-
-  /// No description provided for @joinGame.
-  ///
-  /// In en, this message translates to:
-  /// **'Join Game'**
-  String get joinGame;
-
-  /// No description provided for @gameRules.
-  ///
-  /// In en, this message translates to:
-  /// **'Game Rules'**
-  String get gameRules;
-
-  /// No description provided for @selectTableToJoin.
-  ///
-  /// In en, this message translates to:
-  /// **'Select a Table to Join'**
-  String get selectTableToJoin;
-
-  /// No description provided for @useSearchBox.
-  ///
-  /// In en, this message translates to:
-  /// **'Use the search box to quickly find a table'**
-  String get useSearchBox;
-
-  /// No description provided for @joiningTable.
-  ///
-  /// In en, this message translates to:
-  /// **'Joining Table: {table}'**
-  String joiningTable(String table);
-
-  /// No description provided for @enterYourName.
-  ///
-  /// In en, this message translates to:
-  /// **'Enter Your Name'**
-  String get enterYourName;
-
-  /// No description provided for @yourName.
-  ///
-  /// In en, this message translates to:
-  /// **'Your Name'**
-  String get yourName;
-
-  /// No description provided for @joinTable.
-  ///
-  /// In en, this message translates to:
-  /// **'Join Table'**
-  String get joinTable;
-
-  /// No description provided for @welcomePlayer.
-  ///
-  /// In en, this message translates to:
-  /// **'Welcome, {player}!'**
-  String welcomePlayer(String player);
-
-  /// No description provided for @readyToPlayPlayersAtTable.
-  ///
-  /// In en, this message translates to:
-  /// **'Ready to play! {count} players at table.'**
-  String readyToPlayPlayersAtTable(int count);
-
-  /// No description provided for @waitingForMorePlayers.
-  ///
-  /// In en, this message translates to:
-  /// **'Waiting for more players to join...'**
-  String get waitingForMorePlayers;
-
-  /// No description provided for @tableLabel.
-  ///
-  /// In en, this message translates to:
-  /// **'Table: {table}'**
-  String tableLabel(String table);
-
-  /// No description provided for @gameOver.
-  ///
-  /// In en, this message translates to:
-  /// **'Game Over'**
-  String get gameOver;
-
-  /// No description provided for @players.
-  ///
-  /// In en, this message translates to:
-  /// **'Players'**
-  String get players;
-
-  /// No description provided for @gamesWon.
-  ///
-  /// In en, this message translates to:
-  /// **'Games Won'**
-  String get gamesWon;
-
-  /// No description provided for @thisGame.
-  ///
-  /// In en, this message translates to:
-  /// **'This Game'**
-  String get thisGame;
-
-  /// No description provided for @cardCountTooltip.
-  ///
-  /// In en, this message translates to:
-  /// **'{count}\\ncards'**
-  String cardCountTooltip(int count);
-
-  /// No description provided for @playAgain.
-  ///
-  /// In en, this message translates to:
-  /// **'Play Again'**
-  String get playAgain;
-
-  /// No description provided for @exit.
-  ///
-  /// In en, this message translates to:
-  /// **'Exit'**
-  String get exit;
-
-  /// No description provided for @golfScoreKeeper.
-  ///
-  /// In en, this message translates to:
-  /// **'9 Cards Golf Scorekeeper'**
-  String get golfScoreKeeper;
-
   /// No description provided for @deleteLastRow.
   ///
   /// In en, this message translates to:
   /// **'Delete Last Row'**
   String get deleteLastRow;
-
-  /// No description provided for @confirmDeleteRound.
-  ///
-  /// In en, this message translates to:
-  /// **'Are you sure you want to delete round {round}?'**
-  String confirmDeleteRound(int round);
-
-  /// No description provided for @cancel.
-  ///
-  /// In en, this message translates to:
-  /// **'Cancel'**
-  String get cancel;
-
-  /// No description provided for @confirm.
-  ///
-  /// In en, this message translates to:
-  /// **'Confirm'**
-  String get confirm;
-
-  /// No description provided for @newGame.
-  ///
-  /// In en, this message translates to:
-  /// **'New Game'**
-  String get newGame;
-
-  /// No description provided for @confirmNewGame.
-  ///
-  /// In en, this message translates to:
-  /// **'Are you sure you want to start a new game? All scores will be lost.'**
-  String get confirmNewGame;
-
-  /// No description provided for @rounds.
-  ///
-  /// In en, this message translates to:
-  /// **'{count} Rounds'**
-  String rounds(int count);
-
-  /// No description provided for @errorLoadingScores.
-  ///
-  /// In en, this message translates to:
-  /// **'Error loading scores: {error}'**
-  String errorLoadingScores(String error);
-
-  /// No description provided for @golf9Cards.
-  ///
-  /// In en, this message translates to:
-  /// **'9 Cards'**
-  String get golf9Cards;
-
-  /// DO NOT TRANSLATE. This is the official brand name.
-  ///
-  /// In en, this message translates to:
-  /// **'Skyjo'**
-  String get skyjo;
-
-  /// DO NOT TRANSLATE.
-  ///
-  /// In en, this message translates to:
-  /// **'MiniPut'**
-  String get miniPut;
-
-  /// No description provided for @golf9CardsFull.
-  ///
-  /// In en, this message translates to:
-  /// **'Golf 9 Cards'**
-  String get golf9CardsFull;
-
-  /// No description provided for @miniPutFull.
-  ///
-  /// In en, this message translates to:
-  /// **'MiniPut 4 Cards'**
-  String get miniPutFull;
-
-  /// No description provided for @columnsByRows.
-  ///
-  /// In en, this message translates to:
-  /// **'{columns} x {rows}'**
-  String columnsByRows(int columns, int rows);
-
-  /// No description provided for @noTablesFoundMatching.
-  ///
-  /// In en, this message translates to:
-  /// **'No tables found matching \"{searchText}\"'**
-  String noTablesFoundMatching(String searchText);
-
-  /// No description provided for @starting.
-  ///
-  /// In en, this message translates to:
-  /// **'Starting'**
-  String get starting;
-
-  /// No description provided for @gameOverTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'GAME OVER'**
-  String get gameOverTitle;
-
-  /// No description provided for @selectAStatus.
-  ///
-  /// In en, this message translates to:
-  /// **'Select a status'**
-  String get selectAStatus;
-
-  /// No description provided for @noOne.
-  ///
-  /// In en, this message translates to:
-  /// **'No one'**
-  String get noOne;
-
-  /// No description provided for @notYourTurn.
-  ///
-  /// In en, this message translates to:
-  /// **'It\'s not your turn!'**
-  String get notYourTurn;
-
-  /// No description provided for @noCardsAvailableToDraw.
-  ///
-  /// In en, this message translates to:
-  /// **'No cards available to draw!'**
-  String get noCardsAvailableToDraw;
-
-  /// No description provided for @waitYourTurn.
-  ///
-  /// In en, this message translates to:
-  /// **'Wait your turn!'**
-  String get waitYourTurn;
-
-  /// No description provided for @notAllowed.
-  ///
-  /// In en, this message translates to:
-  /// **'Not allowed!'**
-  String get notAllowed;
-
-  /// No description provided for @itsYourTurn.
-  ///
-  /// In en, this message translates to:
-  /// **'It\'s your turn {player}'**
-  String itsYourTurn(String player);
-
-  /// No description provided for @itsPlayersTurn.
-  ///
-  /// In en, this message translates to:
-  /// **'It\'s {player}\'s turn'**
-  String itsPlayersTurn(String player);
-
-  /// No description provided for @finalRoundYouHaveToBeat.
-  ///
-  /// In en, this message translates to:
-  /// **'Final Round. {turnText}. You have to beat {attacker}'**
-  String finalRoundYouHaveToBeat(String turnText, String attacker);
-
-  /// No description provided for @youAreDone.
-  ///
-  /// In en, this message translates to:
-  /// **'You are done.'**
-  String get youAreDone;
-
-  /// No description provided for @waitForYourTurnSmiley.
-  ///
-  /// In en, this message translates to:
-  /// **'Wait for your turn :)'**
-  String get waitForYourTurnSmiley;
-
-  /// No description provided for @flipOpenOneHiddenCard.
-  ///
-  /// In en, this message translates to:
-  /// **'↓ Flip open one of your hidden cards ↓'**
-  String get flipOpenOneHiddenCard;
-
-  /// No description provided for @drawCardHere.
-  ///
-  /// In en, this message translates to:
-  /// **'Draw\na card\nhere\n→'**
-  String get drawCardHere;
-
-  /// No description provided for @orHereLeft.
-  ///
-  /// In en, this message translates to:
-  /// **'\nor\nhere\n←'**
-  String get orHereLeft;
-
-  /// No description provided for @swapThisWith.
-  ///
-  /// In en, this message translates to:
-  /// **'swap this →\n\nwith ↓'**
-  String get swapThisWith;
 
   /// No description provided for @discardOrSwap.
   ///
@@ -626,77 +194,101 @@ abstract class AppLocalizations {
   /// **'Discard →\nor\n↓ swap'**
   String get discardOrSwap;
 
-  /// No description provided for @statusFeelingGood.
+  /// No description provided for @done.
   ///
   /// In en, this message translates to:
-  /// **'Feeling Good!'**
-  String get statusFeelingGood;
+  /// **'Done'**
+  String get done;
 
-  /// No description provided for @statusBrb.
+  /// No description provided for @drawCardHere.
   ///
   /// In en, this message translates to:
-  /// **'BRB'**
-  String get statusBrb;
+  /// **'Draw\na card\nhere\n→'**
+  String get drawCardHere;
 
-  /// No description provided for @statusThinking.
+  /// No description provided for @enterTableName.
   ///
   /// In en, this message translates to:
-  /// **'Thinking...'**
-  String get statusThinking;
+  /// **'Enter a table name to check if it already exists.'**
+  String get enterTableName;
 
-  /// No description provided for @statusVoila.
+  /// No description provided for @enterYourName.
   ///
   /// In en, this message translates to:
-  /// **'Voila!'**
-  String get statusVoila;
+  /// **'Enter Your Name'**
+  String get enterYourName;
 
-  /// No description provided for @statusOhNo.
+  /// No description provided for @errorLoadingScores.
   ///
   /// In en, this message translates to:
-  /// **'Oh NO!'**
-  String get statusOhNo;
+  /// **'Error loading scores: {error}'**
+  String errorLoadingScores(String error);
 
-  /// No description provided for @nameForPlayerNumber.
+  /// No description provided for @exit.
   ///
   /// In en, this message translates to:
-  /// **'Name for Player #{number}'**
-  String nameForPlayerNumber(int number);
+  /// **'Exit'**
+  String get exit;
 
-  /// No description provided for @playerName.
+  /// No description provided for @finalRoundYouHaveToBeat.
   ///
   /// In en, this message translates to:
-  /// **'Player Name'**
-  String get playerName;
+  /// **'Final Round. {turnText}. You have to beat {attacker}'**
+  String finalRoundYouHaveToBeat(String turnText, String attacker);
 
-  /// No description provided for @youIndicator.
+  /// No description provided for @flipOpenOneHiddenCard.
   ///
   /// In en, this message translates to:
-  /// **'YOU>'**
-  String get youIndicator;
+  /// **'↓ Flip open one of your hidden cards ↓'**
+  String get flipOpenOneHiddenCard;
 
-  /// No description provided for @playerWonTimesAtTable.
+  /// No description provided for @gameOver.
   ///
   /// In en, this message translates to:
-  /// **'{player} won {count} times at table {table}'**
-  String playerWonTimesAtTable(String player, int count, String table);
+  /// **'Game Over'**
+  String get gameOver;
 
-  /// No description provided for @instructionsFrenchCards9.
+  /// No description provided for @gameOverTitle.
   ///
   /// In en, this message translates to:
-  /// **'- Aim for the lowest score.\n- Choose a card from either the Deck or Discard pile.\n- Swap the chosen card with a card in your 3x3 grid, or discard it and flip over one of your face-down cards.\n- Three cards of the same rank in a row or column score zero.\n- The first player to reveal all nine cards challenges others, claiming the lowest score.\n- If someone else has an equal or lower score, the challenger doubles their points!\n- Players are eliminated after busting 100 points.\n\n\nLearn more [Wikipedia](https://en.wikipedia.org/wiki/Golf_(card_game))'**
-  String get instructionsFrenchCards9;
+  /// **'GAME OVER'**
+  String get gameOverTitle;
 
-  /// No description provided for @instructionsSkyjo.
+  /// No description provided for @gameRules.
   ///
   /// In en, this message translates to:
-  /// **'- Aim for the lowest score.\n- Choose a card from either the Deck or Discard pile.\n- Swap the chosen card with a card in your 4x3 grid, or discard it and flip over one of your face-down cards.\n- When 3 cards of the same rank are lined up in a column they are moved to the discard pile.\n- The first player to reveal all their cards challenges others, claiming the lowest score.\n\n\nLearn more [Skyjo](https://www.geekyhobbies.com/how-to-play-skyjo-card-game-rules-and-instructions/)'**
-  String get instructionsSkyjo;
+  /// **'Game Rules'**
+  String get gameRules;
 
-  /// No description provided for @instructionsMiniPut.
+  /// No description provided for @gamesWon.
   ///
   /// In en, this message translates to:
-  /// **'- Aim for the lowest score.\n- Choose a card from either the Deck or Discard pile.\n- Swap the chosen card with a card in your 2x2 grid, or discard it and flip over one of your face-down cards.\n- Three cards of the same rank in a row or column score zero.\n- The first player to reveal all nine cards challenges others, claiming the lowest score.\n- If someone else has an equal or lower score, the challenger doubles their points!\n- Players are eliminated after busting 100 points.\n\n\nLearn more [Wikipedia](https://en.wikipedia.org/wiki/Golf_(card_game))'**
-  String get instructionsMiniPut;
+  /// **'Games Won'**
+  String get gamesWon;
+
+  /// No description provided for @golf9Cards.
+  ///
+  /// In en, this message translates to:
+  /// **'9 Cards'**
+  String get golf9Cards;
+
+  /// No description provided for @golf9CardsFull.
+  ///
+  /// In en, this message translates to:
+  /// **'Golf 9 Cards'**
+  String get golf9CardsFull;
+
+  /// No description provided for @golfScoreKeeper.
+  ///
+  /// In en, this message translates to:
+  /// **'9 Cards Golf Scorekeeper'**
+  String get golfScoreKeeper;
+
+  /// No description provided for @googleSignInFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Google sign-in failed.'**
+  String get googleSignInFailed;
 
   /// No description provided for @instructionsCustom.
   ///
@@ -704,29 +296,227 @@ abstract class AppLocalizations {
   /// **'Custom rules'**
   String get instructionsCustom;
 
+  /// No description provided for @instructionsFrenchCards9.
+  ///
+  /// In en, this message translates to:
+  /// **'- Aim for the lowest score.\n- Choose a card from either the Deck or Discard pile.\n- Swap the chosen card with a card in your 3x3 grid, or discard it and flip over one of your face-down cards.\n- Three cards of the same rank in a row or column score zero.\n- The first player to reveal all nine cards challenges others, claiming the lowest score.\n- If someone else has an equal or lower score, the challenger doubles their points!\n- Players are eliminated after busting 100 points.\n\n\nLearn more [Wikipedia](https://en.wikipedia.org/wiki/Golf_(card_game))'**
+  String get instructionsFrenchCards9;
+
+  /// No description provided for @instructionsMiniPut.
+  ///
+  /// In en, this message translates to:
+  /// **'- Aim for the lowest score.\n- Choose a card from either the Deck or Discard pile.\n- Swap the chosen card with a card in your 2x2 grid, or discard it and flip over one of your face-down cards.\n- Three cards of the same rank in a row or column score zero.\n- The first player to reveal all nine cards challenges others, claiming the lowest score.\n- If someone else has an equal or lower score, the challenger doubles their points!\n- Players are eliminated after busting 100 points.\n\n\nLearn more [Wikipedia](https://en.wikipedia.org/wiki/Golf_(card_game))'**
+  String get instructionsMiniPut;
+
+  /// No description provided for @instructionsSkyjo.
+  ///
+  /// In en, this message translates to:
+  /// **'- Aim for the lowest score.\n- Choose a card from either the Deck or Discard pile.\n- Swap the chosen card with a card in your 4x3 grid, or discard it and flip over one of your face-down cards.\n- When 3 cards of the same rank are lined up in a column they are moved to the discard pile.\n- The first player to reveal all their cards challenges others, claiming the lowest score.\n\n\nLearn more [Skyjo](https://www.geekyhobbies.com/how-to-play-skyjo-card-game-rules-and-instructions/)'**
+  String get instructionsSkyjo;
+
+  /// No description provided for @itsPlayersTurn.
+  ///
+  /// In en, this message translates to:
+  /// **'It\'s {player}\'s turn'**
+  String itsPlayersTurn(String player);
+
+  /// No description provided for @itsYourTurn.
+  ///
+  /// In en, this message translates to:
+  /// **'It\'s your turn {player}'**
+  String itsYourTurn(String player);
+
+  /// No description provided for @join.
+  ///
+  /// In en, this message translates to:
+  /// **'Join'**
+  String get join;
+
+  /// No description provided for @joinExistingGame.
+  ///
+  /// In en, this message translates to:
+  /// **'Join an Existing Game'**
+  String get joinExistingGame;
+
+  /// No description provided for @joinGame.
+  ///
+  /// In en, this message translates to:
+  /// **'Join Game'**
+  String get joinGame;
+
+  /// No description provided for @joinGameTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Join Game'**
+  String get joinGameTitle;
+
+  /// No description provided for @joiningTable.
+  ///
+  /// In en, this message translates to:
+  /// **'Joining Table: {table}'**
+  String joiningTable(String table);
+
+  /// No description provided for @joinTable.
+  ///
+  /// In en, this message translates to:
+  /// **'Join Table'**
+  String get joinTable;
+
+  /// No description provided for @joinThisTable.
+  ///
+  /// In en, this message translates to:
+  /// **'Join This Table'**
+  String get joinThisTable;
+
   /// No description provided for @last.
   ///
   /// In en, this message translates to:
   /// **'LAST'**
   String get last;
 
-  /// No description provided for @done.
+  /// DO NOT TRANSLATE.
   ///
   /// In en, this message translates to:
-  /// **'Done'**
-  String get done;
+  /// **'MiniPut'**
+  String get miniPut;
 
-  /// No description provided for @addAnotherPlayer.
+  /// No description provided for @miniPutFull.
   ///
   /// In en, this message translates to:
-  /// **'Add another player'**
-  String get addAnotherPlayer;
+  /// **'MiniPut 4 Cards'**
+  String get miniPutFull;
 
-  /// No description provided for @removeThisPlayer.
+  /// No description provided for @nameForPlayerNumber.
   ///
   /// In en, this message translates to:
-  /// **'Remove this player'**
-  String get removeThisPlayer;
+  /// **'Name for Player #{number}'**
+  String nameForPlayerNumber(int number);
+
+  /// No description provided for @newGame.
+  ///
+  /// In en, this message translates to:
+  /// **'New Game'**
+  String get newGame;
+
+  /// No description provided for @next.
+  ///
+  /// In en, this message translates to:
+  /// **'Next'**
+  String get next;
+
+  /// No description provided for @noCardsAvailableToDraw.
+  ///
+  /// In en, this message translates to:
+  /// **'No cards available to draw!'**
+  String get noCardsAvailableToDraw;
+
+  /// No description provided for @noExistingTables.
+  ///
+  /// In en, this message translates to:
+  /// **'No existing tables found. Create a new one to continue.'**
+  String get noExistingTables;
+
+  /// No description provided for @noMatchingTables.
+  ///
+  /// In en, this message translates to:
+  /// **'No matching tables'**
+  String get noMatchingTables;
+
+  /// No description provided for @noOne.
+  ///
+  /// In en, this message translates to:
+  /// **'No one'**
+  String get noOne;
+
+  /// No description provided for @noTablesAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'No tables available'**
+  String get noTablesAvailable;
+
+  /// No description provided for @noTablesFoundMatching.
+  ///
+  /// In en, this message translates to:
+  /// **'No tables found matching \"{searchText}\"'**
+  String noTablesFoundMatching(String searchText);
+
+  /// No description provided for @notAllowed.
+  ///
+  /// In en, this message translates to:
+  /// **'Not allowed!'**
+  String get notAllowed;
+
+  /// No description provided for @notSignedIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Not signed in'**
+  String get notSignedIn;
+
+  /// No description provided for @notYourTurn.
+  ///
+  /// In en, this message translates to:
+  /// **'It\'s not your turn!'**
+  String get notYourTurn;
+
+  /// No description provided for @orHereLeft.
+  ///
+  /// In en, this message translates to:
+  /// **'\nor\nhere\n←'**
+  String get orHereLeft;
+
+  /// No description provided for @pickTableOrCreate.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick a table or create a new one'**
+  String get pickTableOrCreate;
+
+  /// No description provided for @playAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'Play Again'**
+  String get playAgain;
+
+  /// No description provided for @playerName.
+  ///
+  /// In en, this message translates to:
+  /// **'Player Name'**
+  String get playerName;
+
+  /// No description provided for @players.
+  ///
+  /// In en, this message translates to:
+  /// **'Players'**
+  String get players;
+
+  /// No description provided for @playerWonTimesAtTable.
+  ///
+  /// In en, this message translates to:
+  /// **'{player} won {count} times at table {table}'**
+  String playerWonTimesAtTable(String player, int count, String table);
+
+  /// No description provided for @playingAsGuest.
+  ///
+  /// In en, this message translates to:
+  /// **'Playing as Guest'**
+  String get playingAsGuest;
+
+  /// No description provided for @pleaseEnterYourName.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your name above ⬆'**
+  String get pleaseEnterYourName;
+
+  /// No description provided for @readyToPlayPlayersAtTable.
+  ///
+  /// In en, this message translates to:
+  /// **'Ready to play! {count} players at table.'**
+  String readyToPlayPlayersAtTable(int count);
+
+  /// No description provided for @remove.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove'**
+  String get remove;
 
   /// No description provided for @removePlayer.
   ///
@@ -740,23 +530,233 @@ abstract class AppLocalizations {
   /// **'Are you sure you want to remove \"{playerName}\"?'**
   String removePlayerConfirmation(String playerName);
 
-  /// No description provided for @remove.
+  /// No description provided for @removeThisPlayer.
   ///
   /// In en, this message translates to:
-  /// **'Remove'**
-  String get remove;
+  /// **'Remove this player'**
+  String get removeThisPlayer;
 
-  /// No description provided for @noTablesAvailable.
+  /// No description provided for @rounds.
   ///
   /// In en, this message translates to:
-  /// **'No tables available'**
-  String get noTablesAvailable;
+  /// **'{count} Rounds'**
+  String rounds(int count);
 
-  /// No description provided for @noMatchingTables.
+  /// No description provided for @scoreKeeper.
   ///
   /// In en, this message translates to:
-  /// **'No matching tables'**
-  String get noMatchingTables;
+  /// **'Score Keeper'**
+  String get scoreKeeper;
+
+  /// No description provided for @selectAStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'Select a status'**
+  String get selectAStatus;
+
+  /// No description provided for @selectTableToJoin.
+  ///
+  /// In en, this message translates to:
+  /// **'Select a Table to Join'**
+  String get selectTableToJoin;
+
+  /// No description provided for @signedIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Signed in'**
+  String get signedIn;
+
+  /// No description provided for @signingIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Signing in...'**
+  String get signingIn;
+
+  /// No description provided for @signingOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Signing out...'**
+  String get signingOut;
+
+  /// No description provided for @signInWithGoogle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in with Google'**
+  String get signInWithGoogle;
+
+  /// No description provided for @signOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign out'**
+  String get signOut;
+
+  /// No description provided for @signOutFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign out failed.'**
+  String get signOutFailed;
+
+  /// DO NOT TRANSLATE. This is the official brand name.
+  ///
+  /// In en, this message translates to:
+  /// **'Skyjo'**
+  String get skyjo;
+
+  /// No description provided for @startGame.
+  ///
+  /// In en, this message translates to:
+  /// **'Start Game'**
+  String get startGame;
+
+  /// No description provided for @startGameWizardTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Start Game'**
+  String get startGameWizardTitle;
+
+  /// No description provided for @starting.
+  ///
+  /// In en, this message translates to:
+  /// **'Starting'**
+  String get starting;
+
+  /// No description provided for @startNewGame.
+  ///
+  /// In en, this message translates to:
+  /// **'Start a New Game'**
+  String get startNewGame;
+
+  /// No description provided for @statusBrb.
+  ///
+  /// In en, this message translates to:
+  /// **'BRB'**
+  String get statusBrb;
+
+  /// No description provided for @statusFeelingGood.
+  ///
+  /// In en, this message translates to:
+  /// **'Feeling Good!'**
+  String get statusFeelingGood;
+
+  /// No description provided for @statusOhNo.
+  ///
+  /// In en, this message translates to:
+  /// **'Oh NO!'**
+  String get statusOhNo;
+
+  /// No description provided for @statusThinking.
+  ///
+  /// In en, this message translates to:
+  /// **'Thinking...'**
+  String get statusThinking;
+
+  /// No description provided for @statusVoila.
+  ///
+  /// In en, this message translates to:
+  /// **'Voila!'**
+  String get statusVoila;
+
+  /// No description provided for @swapThisWith.
+  ///
+  /// In en, this message translates to:
+  /// **'swap this →\n\nwith ↓'**
+  String get swapThisWith;
+
+  /// No description provided for @table.
+  ///
+  /// In en, this message translates to:
+  /// **'Table'**
+  String get table;
+
+  /// No description provided for @tableLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Table: {table}'**
+  String tableLabel(String table);
+
+  /// No description provided for @tapExistingTable.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap an existing table to continue'**
+  String get tapExistingTable;
+
+  /// No description provided for @thisGame.
+  ///
+  /// In en, this message translates to:
+  /// **'This Game'**
+  String get thisGame;
+
+  /// No description provided for @thisTableAlreadyHasPlayers.
+  ///
+  /// In en, this message translates to:
+  /// **'This table already has players. You can join it instead of creating a new table.'**
+  String get thisTableAlreadyHasPlayers;
+
+  /// No description provided for @useSearchBox.
+  ///
+  /// In en, this message translates to:
+  /// **'Use the search box to quickly find a table'**
+  String get useSearchBox;
+
+  /// No description provided for @waitForYourTurnSmiley.
+  ///
+  /// In en, this message translates to:
+  /// **'Wait for your turn :)'**
+  String get waitForYourTurnSmiley;
+
+  /// No description provided for @waitingForMorePlayers.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting for more players to join...'**
+  String get waitingForMorePlayers;
+
+  /// No description provided for @waitingForPlayers.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting for players to join'**
+  String get waitingForPlayers;
+
+  /// No description provided for @waitYourTurn.
+  ///
+  /// In en, this message translates to:
+  /// **'Wait your turn!'**
+  String get waitYourTurn;
+
+  /// No description provided for @welcomePlayer.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome, {player}!'**
+  String welcomePlayer(String player);
+
+  /// No description provided for @whatTypeOfGame.
+  ///
+  /// In en, this message translates to:
+  /// **'What type of game?'**
+  String get whatTypeOfGame;
+
+  /// No description provided for @whoAreYou.
+  ///
+  /// In en, this message translates to:
+  /// **'Who Are You?\nSelect above ⬆ or join below ⬇'**
+  String get whoAreYou;
+
+  /// No description provided for @youAreDone.
+  ///
+  /// In en, this message translates to:
+  /// **'You are done.'**
+  String get youAreDone;
+
+  /// No description provided for @youIndicator.
+  ///
+  /// In en, this message translates to:
+  /// **'YOU>'**
+  String get youIndicator;
+
+  /// No description provided for @yourName.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Name'**
+  String get yourName;
 }
 
 class _AppLocalizationsDelegate
