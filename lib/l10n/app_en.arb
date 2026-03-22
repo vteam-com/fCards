@@ -1,95 +1,12 @@
 {
+  "account": "Account",
+  "addAnotherPlayer": "Add another player",
   "appTitle": "VTeam Cards",
   "@appTitle": {
     "description": "DO NOT TRANSLATE. This is the official brand name."
   },
-  "cardsTitle": "Cards",
-  "@cardsTitle": {
-    "description": "DO NOT TRANSLATE."
-  },  
-  "startNewGame": "Start a New Game",
-  "joinExistingGame": "Join an Existing Game",
-  "scoreKeeper": "Score Keeper",
-  "account": "Account",
-  "signedIn": "Signed in",
-  "playingAsGuest": "Playing as Guest",
-  "notSignedIn": "Not signed in",
-  "signingIn": "Signing in...",
-  "signInWithGoogle": "Sign in with Google",
-  "signingOut": "Signing out...",
-  "signOut": "Sign out",
-  "googleSignInFailed": "Google sign-in failed.",
-  "signOutFailed": "Sign out failed.",
-
-  "startGameWizardTitle": "Start Game",
-  "joinGameTitle": "Join Game",
-  "cardGamesTitle": "Card Games",
-
-  "next": "Next",
   "back": "Back",
-  "startGame": "Start Game",
-
-  "whatTypeOfGame": "What type of game?",
-  "pickTableOrCreate": "Pick a table or create a new one",
-  "tapExistingTable": "Tap an existing table to continue",
-  "noExistingTables": "No existing tables found. Create a new one to continue.",
-  "createNewTable": "Create New Table",
-
-  "createTableHelp": "Create a table.\nIf it already exists, you can join it.",
-  "table": "Table",
-  "enterTableName": "Enter a table name to check if it already exists.",
-  "thisTableAlreadyHasPlayers": "This table already has players. You can join it instead of creating a new table.",
-  "joinThisTable": "Join This Table",
-  "whoAreYou": "Who Are You?\nSelect above ⬆ or join below ⬇",
-  "join": "Join",
-  "pleaseEnterYourName": "Please enter your name above ⬆",
-  "waitingForPlayers": "Waiting for players to join",
-  "joinGame": "Join Game",
-  "gameRules": "Game Rules",
-
-  "selectTableToJoin": "Select a Table to Join",
-  "useSearchBox": "Use the search box to quickly find a table",
-  "joiningTable": "Joining Table: {table}",
-  "@joiningTable": {
-    "placeholders": {
-      "table": {
-        "type": "String"
-      }
-    }
-  },
-  "enterYourName": "Enter Your Name",
-  "yourName": "Your Name",
-  "joinTable": "Join Table",
-  "welcomePlayer": "Welcome, {player}!",
-  "@welcomePlayer": {
-    "placeholders": {
-      "player": {
-        "type": "String"
-      }
-    }
-  },
-  "readyToPlayPlayersAtTable": "Ready to play! {count} players at table.",
-  "@readyToPlayPlayersAtTable": {
-    "placeholders": {
-      "count": {
-        "type": "int"
-      }
-    }
-  },
-  "waitingForMorePlayers": "Waiting for more players to join...",
-  "tableLabel": "Table: {table}",
-  "@tableLabel": {
-    "placeholders": {
-      "table": {
-        "type": "String"
-      }
-    }
-  },
-
-  "gameOver": "Game Over",
-  "players": "Players",
-  "gamesWon": "Games Won",
-  "thisGame": "This Game",
+  "cancel": "Cancel",
   "cardCountTooltip": "{count}\\ncards",
   "@cardCountTooltip": {
     "placeholders": {
@@ -98,62 +15,12 @@
       }
     }
   },
-  "playAgain": "Play Again",
-  "exit": "Exit",
-
-  "golfScoreKeeper": "9 Cards Golf Scorekeeper",
-  "deleteLastRow": "Delete Last Row",
-  "confirmDeleteRound": "Are you sure you want to delete round {round}?",
-  "@confirmDeleteRound": {
-    "placeholders": {
-      "round": {
-        "type": "int"
-      }
-    }
-  },
-  "cancel": "Cancel",
-  "confirm": "Confirm",
-  "newGame": "New Game",
-  "confirmNewGame": "Are you sure you want to start a new game? All scores will be lost.",
-  "rounds": "{count} Rounds",
-  "@rounds": {
-    "placeholders": {
-      "count": {
-        "type": "int"
-      }
-    }
-  },
-  "errorLoadingScores": "Error loading scores: {error}",
-  "@errorLoadingScores": {
-    "placeholders": {
-      "error": {
-        "type": "String"
-      }
-    }
-  },
-
-  "golf9Cards": "9 Cards",
-  "skyjo": "Skyjo",
-  "@skyjo": {
-    "description": "DO NOT TRANSLATE. This is the official brand name."
-  },
- 
-  "@appTitle": {
-    "description": "DO NOT TRANSLATE. This is the official brand name."
-  },
-
-  "miniPut": "MiniPut",
-  "@miniPut": {
-    "description": "DO NOT TRANSLATE. This is the official brand name."
-  },
-
-  "golf9CardsFull": "Golf 9 Cards",
-  "miniPutFull": "MiniPut 4 Cards",
-
-  "columnsByRows": "{columns} x {rows}",
-  "@miniPut": {
+  "cardGamesTitle": "Card Games",
+  "cardsTitle": "Cards",
+  "@cardsTitle": {
     "description": "DO NOT TRANSLATE."
   },
+  "columnsByRows": "{columns} x {rows}",
   "@columnsByRows": {
     "placeholders": {
       "columns": {
@@ -164,39 +31,33 @@
       }
     }
   },
-  "noTablesFoundMatching": "No tables found matching \"{searchText}\"",
-  "@noTablesFoundMatching": {
+  "confirm": "Confirm",
+  "confirmDeleteRound": "Are you sure you want to delete round {round}?",
+  "@confirmDeleteRound": {
     "placeholders": {
-      "searchText": {
+      "round": {
+        "type": "int"
+      }
+    }
+  },
+  "confirmNewGame": "Are you sure you want to start a new game? All scores will be lost.",
+  "createNewTable": "Create New Table",
+  "createTableHelp": "Create a table.\nIf it already exists, you can join it.",
+  "deleteLastRow": "Delete Last Row",
+  "discardOrSwap": "Discard →\nor\n↓ swap",
+  "done": "Done",
+  "drawCardHere": "Draw\na card\nhere\n→",
+  "enterTableName": "Enter a table name to check if it already exists.",
+  "enterYourName": "Enter Your Name",
+  "errorLoadingScores": "Error loading scores: {error}",
+  "@errorLoadingScores": {
+    "placeholders": {
+      "error": {
         "type": "String"
       }
     }
   },
-  "starting": "Starting",
-  "gameOverTitle": "GAME OVER",
-  "selectAStatus": "Select a status",
-  "noOne": "No one",
-  "notYourTurn": "It's not your turn!",
-  "noCardsAvailableToDraw": "No cards available to draw!",
-  "waitYourTurn": "Wait your turn!",
-  "notAllowed": "Not allowed!",
-
-  "itsYourTurn": "It's your turn {player}",
-  "@itsYourTurn": {
-    "placeholders": {
-      "player": {
-        "type": "String"
-      }
-    }
-  },
-  "itsPlayersTurn": "It's {player}'s turn",
-  "@itsPlayersTurn": {
-    "placeholders": {
-      "player": {
-        "type": "String"
-      }
-    }
-  },
+  "exit": "Exit",
   "finalRoundYouHaveToBeat": "Final Round. {turnText}. You have to beat {attacker}",
   "@finalRoundYouHaveToBeat": {
     "placeholders": {
@@ -208,21 +69,55 @@
       }
     }
   },
-
-  "youAreDone": "You are done.",
-  "waitForYourTurnSmiley": "Wait for your turn :)",
   "flipOpenOneHiddenCard": "↓ Flip open one of your hidden cards ↓",
-  "drawCardHere": "Draw\na card\nhere\n→",
-  "orHereLeft": "\nor\nhere\n←",
-  "swapThisWith": "swap this →\n\nwith ↓",
-  "discardOrSwap": "Discard →\nor\n↓ swap",
-
-  "statusFeelingGood": "Feeling Good!",
-  "statusBrb": "BRB",
-  "statusThinking": "Thinking...",
-  "statusVoila": "Voila!",
-  "statusOhNo": "Oh NO!",
-  
+  "gameOver": "Game Over",
+  "gameOverTitle": "GAME OVER",
+  "gameRules": "Game Rules",
+  "gamesWon": "Games Won",
+  "golf9Cards": "9 Cards",
+  "golf9CardsFull": "Golf 9 Cards",
+  "golfScoreKeeper": "9 Cards Golf Scorekeeper",
+  "googleSignInFailed": "Google sign-in failed.",
+  "instructionsCustom": "Custom rules",
+  "instructionsFrenchCards9": "- Aim for the lowest score.\n- Choose a card from either the Deck or Discard pile.\n- Swap the chosen card with a card in your 3x3 grid, or discard it and flip over one of your face-down cards.\n- Three cards of the same rank in a row or column score zero.\n- The first player to reveal all nine cards challenges others, claiming the lowest score.\n- If someone else has an equal or lower score, the challenger doubles their points!\n- Players are eliminated after busting 100 points.\n\n\nLearn more [Wikipedia](https://en.wikipedia.org/wiki/Golf_(card_game))",
+  "instructionsMiniPut": "- Aim for the lowest score.\n- Choose a card from either the Deck or Discard pile.\n- Swap the chosen card with a card in your 2x2 grid, or discard it and flip over one of your face-down cards.\n- Three cards of the same rank in a row or column score zero.\n- The first player to reveal all nine cards challenges others, claiming the lowest score.\n- If someone else has an equal or lower score, the challenger doubles their points!\n- Players are eliminated after busting 100 points.\n\n\nLearn more [Wikipedia](https://en.wikipedia.org/wiki/Golf_(card_game))",
+  "instructionsSkyjo": "- Aim for the lowest score.\n- Choose a card from either the Deck or Discard pile.\n- Swap the chosen card with a card in your 4x3 grid, or discard it and flip over one of your face-down cards.\n- When 3 cards of the same rank are lined up in a column they are moved to the discard pile.\n- The first player to reveal all their cards challenges others, claiming the lowest score.\n\n\nLearn more [Skyjo](https://www.geekyhobbies.com/how-to-play-skyjo-card-game-rules-and-instructions/)",
+  "itsPlayersTurn": "It's {player}'s turn",
+  "@itsPlayersTurn": {
+    "placeholders": {
+      "player": {
+        "type": "String"
+      }
+    }
+  },
+  "itsYourTurn": "It's your turn {player}",
+  "@itsYourTurn": {
+    "placeholders": {
+      "player": {
+        "type": "String"
+      }
+    }
+  },
+  "join": "Join",
+  "joinExistingGame": "Join an Existing Game",
+  "joinGame": "Join Game",
+  "joinGameTitle": "Join Game",
+  "joiningTable": "Joining Table: {table}",
+  "@joiningTable": {
+    "placeholders": {
+      "table": {
+        "type": "String"
+      }
+    }
+  },
+  "joinTable": "Join Table",
+  "joinThisTable": "Join This Table",
+  "last": "LAST",
+  "miniPut": "MiniPut",
+  "@miniPut": {
+    "description": "DO NOT TRANSLATE."
+  },
+  "miniPutFull": "MiniPut 4 Cards",
   "nameForPlayerNumber": "Name for Player #{number}",
   "@nameForPlayerNumber": {
     "placeholders": {
@@ -231,8 +126,29 @@
       }
     }
   },
+  "newGame": "New Game",
+  "next": "Next",
+  "noCardsAvailableToDraw": "No cards available to draw!",
+  "noExistingTables": "No existing tables found. Create a new one to continue.",
+  "noMatchingTables": "No matching tables",
+  "noOne": "No one",
+  "noTablesAvailable": "No tables available",
+  "noTablesFoundMatching": "No tables found matching \"{searchText}\"",
+  "@noTablesFoundMatching": {
+    "placeholders": {
+      "searchText": {
+        "type": "String"
+      }
+    }
+  },
+  "notAllowed": "Not allowed!",
+  "notSignedIn": "Not signed in",
+  "notYourTurn": "It's not your turn!",
+  "orHereLeft": "\nor\nhere\n←",
+  "pickTableOrCreate": "Pick a table or create a new one",
+  "playAgain": "Play Again",
   "playerName": "Player Name",
-  "youIndicator": "YOU>",
+  "players": "Players",
   "playerWonTimesAtTable": "{player} won {count} times at table {table}",
   "@playerWonTimesAtTable": {
     "placeholders": {
@@ -247,15 +163,17 @@
       }
     }
   },
-
-  "instructionsFrenchCards9": "- Aim for the lowest score.\n- Choose a card from either the Deck or Discard pile.\n- Swap the chosen card with a card in your 3x3 grid, or discard it and flip over one of your face-down cards.\n- Three cards of the same rank in a row or column score zero.\n- The first player to reveal all nine cards challenges others, claiming the lowest score.\n- If someone else has an equal or lower score, the challenger doubles their points!\n- Players are eliminated after busting 100 points.\n\n\nLearn more [Wikipedia](https://en.wikipedia.org/wiki/Golf_(card_game))",
-  "instructionsSkyjo": "- Aim for the lowest score.\n- Choose a card from either the Deck or Discard pile.\n- Swap the chosen card with a card in your 4x3 grid, or discard it and flip over one of your face-down cards.\n- When 3 cards of the same rank are lined up in a column they are moved to the discard pile.\n- The first player to reveal all their cards challenges others, claiming the lowest score.\n\n\nLearn more [Skyjo](https://www.geekyhobbies.com/how-to-play-skyjo-card-game-rules-and-instructions/)",
-  "instructionsMiniPut": "- Aim for the lowest score.\n- Choose a card from either the Deck or Discard pile.\n- Swap the chosen card with a card in your 2x2 grid, or discard it and flip over one of your face-down cards.\n- Three cards of the same rank in a row or column score zero.\n- The first player to reveal all nine cards challenges others, claiming the lowest score.\n- If someone else has an equal or lower score, the challenger doubles their points!\n- Players are eliminated after busting 100 points.\n\n\nLearn more [Wikipedia](https://en.wikipedia.org/wiki/Golf_(card_game))",
-  "instructionsCustom": "Custom rules",
-  "last": "LAST",
-  "done": "Done",
-  "addAnotherPlayer": "Add another player",
-  "removeThisPlayer": "Remove this player",
+  "playingAsGuest": "Playing as Guest",
+  "pleaseEnterYourName": "Please enter your name above ⬆",
+  "readyToPlayPlayersAtTable": "Ready to play! {count} players at table.",
+  "@readyToPlayPlayersAtTable": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "remove": "Remove",
   "removePlayer": "Remove Player",
   "removePlayerConfirmation": "Are you sure you want to remove \"{playerName}\"?",
   "@removePlayerConfirmation": {
@@ -265,7 +183,66 @@
       }
     }
   },
-  "remove": "Remove",
-  "noTablesAvailable": "No tables available",
-  "noMatchingTables": "No matching tables"
+  "removeThisPlayer": "Remove this player",
+  "rounds": "{count} Rounds",
+  "@rounds": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "scoreKeeper": "Score Keeper",
+  "selectAStatus": "Select a status",
+  "selectTableToJoin": "Select a Table to Join",
+  "signedIn": "Signed in",
+  "signingIn": "Signing in...",
+  "signingOut": "Signing out...",
+  "signInWithGoogle": "Sign in with Google",
+  "signOut": "Sign out",
+  "signOutFailed": "Sign out failed.",
+  "skyjo": "Skyjo",
+  "@skyjo": {
+    "description": "DO NOT TRANSLATE. This is the official brand name."
+  },
+  "startGame": "Start Game",
+  "startGameWizardTitle": "Start Game",
+  "starting": "Starting",
+  "startNewGame": "Start a New Game",
+  "statusBrb": "BRB",
+  "statusFeelingGood": "Feeling Good!",
+  "statusOhNo": "Oh NO!",
+  "statusThinking": "Thinking...",
+  "statusVoila": "Voila!",
+  "swapThisWith": "swap this →\n\nwith ↓",
+  "table": "Table",
+  "tableLabel": "Table: {table}",
+  "@tableLabel": {
+    "placeholders": {
+      "table": {
+        "type": "String"
+      }
+    }
+  },
+  "tapExistingTable": "Tap an existing table to continue",
+  "thisGame": "This Game",
+  "thisTableAlreadyHasPlayers": "This table already has players. You can join it instead of creating a new table.",
+  "useSearchBox": "Use the search box to quickly find a table",
+  "waitForYourTurnSmiley": "Wait for your turn :)",
+  "waitingForMorePlayers": "Waiting for more players to join...",
+  "waitingForPlayers": "Waiting for players to join",
+  "waitYourTurn": "Wait your turn!",
+  "welcomePlayer": "Welcome, {player}!",
+  "@welcomePlayer": {
+    "placeholders": {
+      "player": {
+        "type": "String"
+      }
+    }
+  },
+  "whatTypeOfGame": "What type of game?",
+  "whoAreYou": "Who Are You?\nSelect above ⬆ or join below ⬇",
+  "youAreDone": "You are done.",
+  "youIndicator": "YOU>",
+  "yourName": "Your Name"
 }
