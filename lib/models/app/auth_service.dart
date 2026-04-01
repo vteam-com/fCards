@@ -8,9 +8,7 @@ const String googleSignInFieldProfile = 'profile';
 /// Authentication helper for guest mode and Google sign-in flows.
 class AuthService {
   static final FirebaseAuth _auth = FirebaseAuth.instance;
-  static final GoogleSignIn _googleSignIn = GoogleSignIn(
-    scopes: [googleSignInFieldEmail, googleSignInFieldProfile],
-  );
+  static bool _initialized = false;
 
   /// Emits auth updates whenever Firebase user state changes.
   static Stream<User?> authStateChanges() => _auth.authStateChanges();
@@ -27,6 +25,12 @@ class AuthService {
     await _auth.signInAnonymously();
   }
 
+  static Future<void> _ensureInitialized() async {
+    if (_initialized) return;
+    await GoogleSignIn.instance.initialize();
+    _initialized = true;
+  }
+
   /// Signs in with Google and links anonymous users when possible.
   static Future<UserCredential> signInWithGoogle() async {
     if (kIsWeb) {
@@ -37,17 +41,32 @@ class AuthService {
       return _auth.signInWithPopup(provider);
     }
 
-    final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
-    if (googleUser == null) {
-      throw FirebaseAuthException(
-        code: 'sign_in_canceled',
-        message: 'Google sign-in was canceled by the user.',
+    await _ensureInitialized();
+
+    final GoogleSignInAccount googleUser;
+    try {
+      googleUser = await GoogleSignIn.instance.authenticate(
+        scopeHint: [googleSignInFieldEmail, googleSignInFieldProfile],
       );
+    } on GoogleSignInException catch (error) {
+      if (error.code == GoogleSignInExceptionCode.canceled ||
+          error.code == GoogleSignInExceptionCode.interrupted) {
+        throw FirebaseAuthException(
+          code: 'sign_in_canceled',
+          message: 'Google sign-in was canceled by the user.',
+        );
+      }
+      rethrow;
     }
 
-    final googleAuth = await googleUser.authentication;
+    final googleAuth = googleUser.authentication;
+    final authz = await googleUser.authorizationClient.authorizationForScopes([
+      googleSignInFieldEmail,
+      googleSignInFieldProfile,
+    ]);
+
     final credential = GoogleAuthProvider.credential(
-      accessToken: googleAuth.accessToken,
+      accessToken: authz?.accessToken,
       idToken: googleAuth.idToken,
     );
 
@@ -74,7 +93,8 @@ class AuthService {
       await _auth.signOut();
     } finally {
       if (!kIsWeb) {
-        await _googleSignIn.signOut();
+        await _ensureInitialized();
+        await GoogleSignIn.instance.signOut();
       }
     }
   }
