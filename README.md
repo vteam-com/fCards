@@ -385,7 +385,7 @@ To enable multiplayer functionality:
 ## Technology Stack
 
 - **Flutter**: Cross-platform UI framework
-- **Dart 3.10.8**: Programming language
+- **Dart 3.11.1+**: Programming language
 - **Firebase**: Real-time database and authentication
 - **Firebase Auth**: Anonymous user authentication
 - **Shared Preferences**: Local data persistence
