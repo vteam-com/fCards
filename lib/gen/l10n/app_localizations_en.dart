@@ -55,10 +55,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get createNewTable => 'Create New Table';
 
   @override
-  String get createTableHelp =>
-      'Create a table.\nIf it already exists, you can join it.';
-
-  @override
   String get deleteLastRow => 'Delete Last Row';
 
   @override
@@ -71,8 +67,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get drawCardHere => 'Draw\na card\nhere\n→';
 
   @override
-  String get enterTableName =>
-      'Enter a table name to check if it already exists.';
+  String get enterTableName => 'Enter name of the new table.';
 
   @override
   String get enterYourName => 'Enter Your Name';
@@ -341,7 +336,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get thisTableAlreadyHasPlayers =>
-      'This table already has players. You can join it instead of creating a new table.';
+      'This table already exists. Join this table or enter a different name.';
 
   @override
   String get useSearchBox => 'Use the search box to quickly find a table';

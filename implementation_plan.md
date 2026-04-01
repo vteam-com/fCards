@@ -2,20 +2,17 @@
 
 ## Goal
 
-Make "Start a New Game" behave like a wizard:
+Repair the "Create New Table" UX so the flow is responsive and predictable:
 
-1. Choose game type (`Golf 9 Cards`, `MiniPut 4 Cards`, `Skyjo`)
-2. Choose an existing room or create a new room
-3. If existing room selected, continue in the existing "Join an Existing Game" wizard
-4. If creating a room, continue in the existing create/invite flow
+1. Enter table name
+2. Detect whether the table already exists
+3. Either continue with create flow or offer a clear join shortcut
+4. Reflect create/join actions immediately in UI
 
 ## Steps
 
-1. Add a new `StartGameWizardScreen` with two steps: game type and room decision.
-2. Route the main menu "Start a New Game" button to the new wizard.
-3. Extend `JoinGameScreen` to accept:
-   - preselected room
-   - selected game style
-   and start from the name step when room is preselected.
-4. Extend `StartScreen` to accept initial game style so create-flow keeps the selected mode.
-5. Run project checks (`./tool/check.sh`) and fix any issues.
+1. Audit `StartScreen` create-room state transitions and identify stale state paths.
+2. Add deterministic room-lookup state so existing-player checks only apply to the currently typed table.
+3. Make create/join/remove actions update local UI immediately (without waiting for backend stream).
+4. Harden room lookup with safe async guards to avoid stuck loading or stale callbacks.
+5. Run `./tool/check.sh` and fix any issues.

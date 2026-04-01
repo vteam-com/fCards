@@ -8,7 +8,7 @@ import 'package:cards/models/game/game_model.dart';
 import 'package:cards/models/game/game_styles.dart';
 import 'package:cards/screens/game/game_screen.dart';
 import 'package:cards/screens/game/game_style.dart';
-import 'package:cards/screens/game/join_game_screen.dart';
+import 'package:cards/screens/game/table_name_flow_helpers.dart';
 import 'package:cards/utils/browser_utils.dart';
 import 'package:cards/utils/logger.dart';
 import 'package:cards/widgets/buttons/my_button_rectangle.dart';
@@ -52,16 +52,24 @@ class StartScreen extends StatefulWidget {
     this.joinMode = false,
     this.initialGameStyle,
     this.createRoomFlow = false,
+    this.skipCreateTableNameStep = false,
+    this.initialCreateRoomName,
   });
 
   /// Enables create-room-first behavior (ask for table name first).
   final bool createRoomFlow;
+
+  /// Optional prevalidated table name for create flow.
+  final String? initialCreateRoomName;
 
   /// Optional game style that preselects the create-room flow mode.
   final GameStyles? initialGameStyle;
 
   /// Whether this screen is opened in join mode.
   final bool joinMode;
+
+  /// When true, skips create table-name step and opens player setup directly.
+  final bool skipCreateTableNameStep;
 
   @override
   StartScreenState createState() => StartScreenState();
@@ -73,6 +81,9 @@ class StartScreen extends StatefulWidget {
 /// input, interacting with the backend service (Firebase), and updating the UI
 /// in response to state changes.
 class StartScreenState extends State<StartScreen> {
+  /// The last table name that was checked for existence.
+  String _checkedCreateTableName = '';
+
   /// Controller for the player name text field.
   final TextEditingController _controllerName = TextEditingController();
 
@@ -81,11 +92,20 @@ class StartScreenState extends State<StartScreen> {
     text: _offlineDemoDefaultRoomName, // Default room name
   );
 
+  /// Whether the currently checked table name already exists.
+  bool _doesCreateTableNameExist = false;
+
   /// Error text for the player name input field. Currently unused.
   final String _errorTextName = '';
 
   /// Error text for the room name input field. Currently unused.
   final String _errorTextRoom = '';
+
+  /// Whether a create-flow table-name availability check is in progress.
+  bool _isCheckingCreateTableName = false;
+
+  /// Whether the create flow has passed the table-name-only step.
+  bool _isCreateTableStepComplete = false;
 
   /// A flag indicating whether the list of rooms is expanded.
   bool _isExpandedRooms = false;
@@ -130,9 +150,20 @@ class StartScreenState extends State<StartScreen> {
     super.initState();
     _selectedGameStyle = widget.initialGameStyle ?? GameStyles.frenchCards9;
     _isExpandedRooms = widget.joinMode;
+    _isCreateTableStepComplete = !widget.createRoomFlow;
     if (widget.createRoomFlow) {
-      _controllerRoom.clear();
       _waitingOnFirstBackendData = false;
+      final String prefilledCreateRoomName =
+          (widget.initialCreateRoomName ?? '').trim().toUpperCase();
+      final bool hasPrefilledCreateRoom =
+          widget.skipCreateTableNameStep && prefilledCreateRoomName.isNotEmpty;
+      if (hasPrefilledCreateRoom) {
+        _controllerRoom.text = prefilledCreateRoomName;
+        _isCreateTableStepComplete = true;
+        _checkedCreateTableName = prefilledCreateRoomName;
+      } else {
+        _controllerRoom.clear();
+      }
     }
     _processUrlArguments();
     _getAppVersion();
@@ -151,13 +182,22 @@ class StartScreenState extends State<StartScreen> {
   @override
   Widget build(BuildContext context) {
     final AppLocalizations localizations = AppLocalizations.of(context);
-    final bool isAwaitingTableName = widget.createRoomFlow && roomName.isEmpty;
-    final bool doesTableAlreadyExist = _playerNames.isNotEmpty;
+    final bool isCreateTableNameStep =
+        widget.createRoomFlow && !_isCreateTableStepComplete;
+    final bool isCreateTableNameCheckReady =
+        roomName.isNotEmpty &&
+        _checkedCreateTableName == roomName &&
+        !_isCheckingCreateTableName;
     final bool showJoinShortcut =
-        !isAwaitingTableName &&
-        widget.createRoomFlow &&
-        doesTableAlreadyExist &&
-        roomName.isNotEmpty;
+        isCreateTableNameStep &&
+        isCreateTableNameCheckReady &&
+        _doesCreateTableNameExist;
+    final bool canContinueToPlayerSetup =
+        isCreateTableNameStep &&
+        isCreateTableNameCheckReady &&
+        !_doesCreateTableNameExist;
+    final bool showPlayerInputFields =
+        !widget.createRoomFlow || _isCreateTableStepComplete;
     return Screen(
       isWaiting: _waitingOnFirstBackendData,
       title: localizations.cardGamesTitle,
@@ -179,11 +219,11 @@ class StartScreenState extends State<StartScreen> {
                   if (!widget.createRoomFlow) _gameMode(),
                   if (!widget.createRoomFlow)
                     IntrinsicHeight(child: _gameInstructionsWidget()),
-                  if (widget.createRoomFlow)
+                  if (isCreateTableNameStep)
                     Padding(
                       padding: const EdgeInsets.all(ConstLayout.paddingS),
                       child: Text(
-                        localizations.createTableHelp,
+                        localizations.enterTableName,
                         style: TextStyle(
                           fontSize: ConstLayout.textS,
                           color: Theme.of(context).colorScheme.tertiary,
@@ -192,42 +232,62 @@ class StartScreenState extends State<StartScreen> {
                       ),
                     ),
                   const SizedBox(height: ConstLayout.sizeM),
-                  Row(
-                    children: [
-                      EditBox(
-                        label: localizations.table,
-                        controller: _controllerRoom,
-                        onSubmitted: () {
-                          _controllerRoom.text = _controllerRoom.text
-                              .toUpperCase();
-                          if (roomName.isNotEmpty) {
+                  if (!widget.createRoomFlow || isCreateTableNameStep)
+                    Row(
+                      children: [
+                        EditBox(
+                          label: localizations.table,
+                          controller: _controllerRoom,
+                          onSubmitted: () {
+                            _controllerRoom.text = _controllerRoom.text
+                                .toUpperCase();
+                            if (roomName.isEmpty) {
+                              return;
+                            }
+
+                            if (isCreateTableNameStep) {
+                              _lookupCreateTableName(roomName);
+                              return;
+                            }
+
                             prepareBackEndForRoom(roomName);
-                          }
-                        },
-                        onChanged: (String _ /* tableName */) {
-                          _onRoomNameChanged();
-                        },
-                        errorStatus: _errorTextRoom,
-                        rightSideChild: widget.createRoomFlow
-                            ? const SizedBox.shrink()
-                            : IconButton(
-                                onPressed: () {
-                                  setState(() {
-                                    _isExpandedRooms = !_isExpandedRooms;
-                                  });
-                                },
-                                icon: Icon(
-                                  _isExpandedRooms
-                                      ? Icons.expand_less
-                                      : Icons.expand_more,
-                                  color: Theme.of(
-                                    context,
-                                  ).colorScheme.onSurface,
+                          },
+                          onChanged: (String _ /* tableName */) {
+                            _onRoomNameChanged();
+                          },
+                          errorStatus: _errorTextRoom,
+                          rightSideChild: widget.createRoomFlow
+                              ? const SizedBox.shrink()
+                              : IconButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      _isExpandedRooms = !_isExpandedRooms;
+                                    });
+                                  },
+                                  icon: Icon(
+                                    _isExpandedRooms
+                                        ? Icons.expand_less
+                                        : Icons.expand_more,
+                                    color: Theme.of(
+                                      context,
+                                    ).colorScheme.onSurface,
+                                  ),
                                 ),
-                              ),
+                        ),
+                      ],
+                    ),
+                  if (widget.createRoomFlow && !isCreateTableNameStep)
+                    Padding(
+                      padding: const EdgeInsets.all(ConstLayout.paddingS),
+                      child: Text(
+                        localizations.tableLabel(roomName),
+                        style: TextStyle(
+                          fontSize: ConstLayout.textM,
+                          color: Theme.of(context).colorScheme.secondary,
+                        ),
+                        textAlign: TextAlign.center,
                       ),
-                    ],
-                  ),
+                    ),
                   if (!widget.createRoomFlow && _isExpandedRooms)
                     TableWidget(
                       roomId: roomName,
@@ -246,20 +306,19 @@ class StartScreenState extends State<StartScreen> {
                           ? (String _ /* room */) {}
                           : null,
                     ),
-                  if (isAwaitingTableName)
-                    Padding(
-                      padding: const EdgeInsets.all(ConstLayout.paddingS),
-                      child: Text(
-                        localizations.enterTableName,
-                        style: TextStyle(
-                          fontSize: ConstLayout.textS,
-                          color: Theme.of(context).colorScheme.tertiary,
-                        ),
-                        textAlign: TextAlign.center,
+                  if (isCreateTableNameStep &&
+                      roomName.isNotEmpty &&
+                      _isCheckingCreateTableName)
+                    const Padding(
+                      padding: EdgeInsets.all(ConstLayout.paddingS),
+                      child: SizedBox(
+                        width: ConstLayout.sizeXXL,
+                        height: ConstLayout.sizeXXL,
+                        child: CircularProgressIndicator(),
                       ),
                     ),
                   const SizedBox(height: ConstLayout.sizeXS),
-                  if (!isAwaitingTableName)
+                  if (showPlayerInputFields)
                     SizedBox(
                       width: ConstLayout.startGameScreenMaxWidth,
                       child: PlayersInRoomWidget(
@@ -273,9 +332,7 @@ class StartScreenState extends State<StartScreen> {
                         onRemovePlayer: removePlayer,
                       ),
                     ),
-                  if (!isAwaitingTableName &&
-                      widget.createRoomFlow &&
-                      doesTableAlreadyExist)
+                  if (showJoinShortcut)
                     Padding(
                       padding: const EdgeInsets.all(ConstLayout.paddingS),
                       child: Text(
@@ -290,7 +347,13 @@ class StartScreenState extends State<StartScreen> {
                   if (showJoinShortcut)
                     MyButtonRectangle(
                       width: double.infinity,
-                      onTap: _openJoinWizardForCurrentTable,
+                      onTap: () {
+                        openJoinFlowForTable(
+                          context: context,
+                          tableName: roomName,
+                          gameStyle: _selectedGameStyle,
+                        );
+                      },
                       child: Text(
                         localizations.joinThisTable,
                         style: TextStyle(
@@ -302,15 +365,44 @@ class StartScreenState extends State<StartScreen> {
                         ),
                       ),
                     ),
+                  if (showJoinShortcut)
+                    Padding(
+                      padding: const EdgeInsets.all(ConstLayout.paddingS),
+                      child: Text(
+                        localizations.enterTableName,
+                        style: TextStyle(
+                          fontSize: ConstLayout.textS,
+                          color: Theme.of(context).colorScheme.tertiary,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  if (isCreateTableNameStep)
+                    MyButtonRectangle(
+                      width: double.infinity,
+                      onTap: canContinueToPlayerSetup
+                          ? _continueCreateWithNewTableName
+                          : null,
+                      child: Text(
+                        localizations.next,
+                        style: TextStyle(
+                          fontSize: ConstLayout.textM,
+                          fontWeight: FontWeight.bold,
+                          color: Theme.of(
+                            context,
+                          ).colorScheme.onPrimaryContainer,
+                        ),
+                      ),
+                    ),
                   const SizedBox(height: ConstLayout.sizeS),
-                  if (!isAwaitingTableName)
+                  if (showPlayerInputFields)
                     Padding(
                       padding: const EdgeInsets.all(ConstLayout.paddingS),
                       child: Text(localizations.whoAreYou),
                     ),
-                  if (!isAwaitingTableName)
+                  if (showPlayerInputFields)
                     const SizedBox(height: ConstLayout.sizeS),
-                  if (!isAwaitingTableName)
+                  if (showPlayerInputFields)
                     EditBox(
                       label: localizations.join,
                       controller: _controllerName,
@@ -322,9 +414,7 @@ class StartScreenState extends State<StartScreen> {
                       errorStatus: _errorTextName,
                       rightSideChild: IconButton(
                         onPressed: () {
-                          setState(() {
-                            joinGame(_controllerName.text);
-                          });
+                          joinGame(_controllerName.text);
                         },
                         icon: Icon(
                           Icons.add,
@@ -333,7 +423,7 @@ class StartScreenState extends State<StartScreen> {
                       ),
                     ),
                   const SizedBox(height: ConstLayout.sizeM),
-                  if (!isAwaitingTableName) actionButton(),
+                  if (showPlayerInputFields) actionButton(),
                   const SizedBox(height: ConstLayout.sizeM),
                 ],
               ),
@@ -350,16 +440,32 @@ class StartScreenState extends State<StartScreen> {
   /// has already joined the game and whether there are enough players to start.
   Widget actionButton() {
     final AppLocalizations localizations = AppLocalizations.of(context);
+
     if (_playerName.isEmpty) {
-      return Text(localizations.pleaseEnterYourName);
+      return MyButtonRectangle(
+        onTap: () {}, // Disabled action
+        width: double.infinity,
+        height: ConstLayout.sizeXXL,
+        child: Text(
+          localizations.pleaseEnterYourName,
+          style: TextStyle(
+            fontSize: ConstLayout.textM,
+            fontWeight: FontWeight.bold,
+            color: Theme.of(context).colorScheme.onSurface,
+          ),
+        ),
+      );
     }
+
     bool isPartOfTheList = _playerNames.contains(_playerName.toUpperCase());
 
     String label = isPartOfTheList
         ? (_playerNames.length > 1
               ? localizations.startGame
               : localizations.waitingForPlayers)
-        : localizations.joinGame;
+        : (widget.createRoomFlow
+              ? localizations.createNewTable
+              : localizations.joinGame);
     return MyButtonRectangle(
       onTap: () {
         if (isPartOfTheList) {
@@ -389,16 +495,27 @@ class StartScreenState extends State<StartScreen> {
   /// adds them to the list of players for the current room. It then updates the
   /// backend with the new list of players.
   void joinGame(final String nameOrNamesToAdd) {
-    if (nameOrNamesToAdd.trim().isNotEmpty) {
-      final List<String> names = nameOrNamesToAdd.toUpperCase().split(',');
-
-      for (final String name in names) {
-        _playerNames.add(name.trim());
-      }
-
-      setPlayersInRoom(roomName, _playerNames);
-      _controllerName.text = names.first;
+    if (roomName.isEmpty) {
+      return;
     }
+
+    final List<String> names = nameOrNamesToAdd
+        .toUpperCase()
+        .split(',')
+        .map((String name) => name.trim())
+        .where((String name) => name.isNotEmpty)
+        .toList();
+
+    if (names.isEmpty) {
+      return;
+    }
+
+    setState(() {
+      _playerNames.addAll(names);
+      _controllerName.text = names.first;
+    });
+
+    setPlayersInRoom(roomName, _playerNames);
   }
 
   /// Prepares the backend for the specified room.
@@ -407,7 +524,8 @@ class StartScreenState extends State<StartScreen> {
   /// the given [roomId]. It fetches the initial list of players in the room
   /// and sets up a stream to listen for real-time updates.
   void prepareBackEndForRoom(final String roomId) {
-    if (roomId.trim().isEmpty) {
+    final String normalizedRoomId = roomId.trim().toUpperCase();
+    if (normalizedRoomId.isEmpty) {
       setState(() {
         _playerNames = {};
         _waitingOnFirstBackendData = false;
@@ -416,36 +534,64 @@ class StartScreenState extends State<StartScreen> {
     }
 
     if (isRunningOffLine) {
-      _waitingOnFirstBackendData = false;
+      setState(() {
+        _waitingOnFirstBackendData = false;
+      });
       return;
     }
 
-    _waitingOnFirstBackendData = true;
+    setState(() {
+      _waitingOnFirstBackendData = true;
+      if (widget.createRoomFlow) {
+        _playerNames = {};
+      }
+    });
 
     // Cancel any existing subscription.
     _streamSubscription?.cancel();
 
     // Fetch the initial data from Firebase.
-    useFirebase().then((_) async {
-      final List<String> invitees = await getPlayersInRoom(roomId);
-
-      setState(() {
-        _playerNames = Set.from(invitees);
-        _waitingOnFirstBackendData = false;
-
-        // Listen for updates to the list of invitees.
-        _streamSubscription = onBackendInviteesUpdated(roomId, (
-          invitees,
-        ) async {
-          final List<String> listOfRooms = await getAllRooms();
+    useFirebase()
+        .then((_) async {
+          final List<String> invitees = await getPlayersInRoom(
+            normalizedRoomId,
+          );
+          if (!mounted || roomName != normalizedRoomId) {
+            return;
+          }
 
           setState(() {
-            _listOfRooms = listOfRooms;
             _playerNames = Set.from(invitees);
+            _waitingOnFirstBackendData = false;
+
+            // Listen for updates to the list of invitees.
+            _streamSubscription = onBackendInviteesUpdated(normalizedRoomId, (
+              invitees,
+            ) async {
+              final List<String> listOfRooms = await getAllRooms();
+              if (!mounted || roomName != normalizedRoomId) {
+                return;
+              }
+
+              setState(() {
+                _listOfRooms = listOfRooms;
+                _playerNames = Set.from(invitees);
+              });
+            });
+          });
+        })
+        .catchError((Object error) {
+          logger.e(
+            'Error preparing backend for room $normalizedRoomId: $error',
+          );
+          if (!mounted || roomName != normalizedRoomId) {
+            return;
+          }
+          setState(() {
+            _playerNames = {};
+            _waitingOnFirstBackendData = false;
           });
         });
-      });
-    });
   }
 
   /// Removes a player from the current room.
@@ -453,8 +599,14 @@ class StartScreenState extends State<StartScreen> {
   /// This method removes the specified player from the list of players and
   /// updates the backend to reflect the change.
   void removePlayer(final String nameToRemove) {
+    if (!_playerNames.contains(nameToRemove)) {
+      return;
+    }
+
     // Remove the player's name from the list of players.
-    _playerNames.remove(nameToRemove);
+    setState(() {
+      _playerNames.remove(nameToRemove);
+    });
 
     // Push the updated list of players to the backend.
     setPlayersInRoom(roomName, _playerNames);
@@ -501,6 +653,25 @@ class StartScreenState extends State<StartScreen> {
         ),
       );
     }
+  }
+
+  /// Proceeds from table-name validation to player setup for a unique new table.
+  void _continueCreateWithNewTableName() {
+    final bool isUniqueTableName =
+        roomName.isNotEmpty &&
+        _checkedCreateTableName == roomName &&
+        !_doesCreateTableNameExist &&
+        !_isCheckingCreateTableName;
+    if (!isUniqueTableName) {
+      return;
+    }
+
+    setState(() {
+      _isCreateTableStepComplete = true;
+      _waitingOnFirstBackendData = false;
+    });
+
+    prepareBackEndForRoom(roomName);
   }
 
   /// A widget that displays the game instructions in an expandable tile.
@@ -588,44 +759,83 @@ class StartScreenState extends State<StartScreen> {
         );
   }
 
-  /// Handles room-name changes and auto-loads existing players in create flow.
+  /// Validates whether [tableName] already exists so create flow can enforce uniqueness.
+  Future<void> _lookupCreateTableName(String tableName) async {
+    final String normalizedTableName = tableName.trim().toUpperCase();
+    if (normalizedTableName.isEmpty) {
+      return;
+    }
+
+    if (isRunningOffLine) {
+      if (!mounted || roomName != normalizedTableName) return;
+
+      setState(() {
+        _checkedCreateTableName = normalizedTableName;
+        _doesCreateTableNameExist = false;
+        _isCheckingCreateTableName = false;
+      });
+      return;
+    }
+
+    try {
+      final TableNameLookupResult lookup = await lookupTableNameAvailability(
+        normalizedTableName,
+      );
+
+      if (!mounted || roomName != normalizedTableName) return;
+
+      setState(() {
+        _listOfRooms = lookup.rooms;
+        _checkedCreateTableName = normalizedTableName;
+        _doesCreateTableNameExist = lookup.exists;
+        _isCheckingCreateTableName = false;
+      });
+    } catch (error) {
+      logger.e(
+        'Error checking create-table name availability for $normalizedTableName: $error',
+      );
+      if (!mounted || roomName != normalizedTableName) return;
+      setState(() {
+        _checkedCreateTableName = normalizedTableName;
+        _doesCreateTableNameExist = false;
+        _isCheckingCreateTableName = false;
+      });
+    }
+  }
+
+  /// Handles room-name changes and validates uniqueness in create flow.
   void _onRoomNameChanged() {
-    if (!widget.createRoomFlow) {
+    if (!widget.createRoomFlow || _isCreateTableStepComplete) {
       return;
     }
 
     _roomLookupDebounce?.cancel();
+    _streamSubscription?.cancel();
 
     if (roomName.isEmpty) {
       setState(() {
         _playerNames = {};
+        _checkedCreateTableName = '';
+        _doesCreateTableNameExist = false;
+        _isCheckingCreateTableName = false;
         _waitingOnFirstBackendData = false;
       });
       return;
     }
 
+    setState(() {
+      _playerNames = {};
+      _checkedCreateTableName = roomName;
+      _doesCreateTableNameExist = false;
+      _isCheckingCreateTableName = true;
+      _waitingOnFirstBackendData = false;
+    });
+
     _roomLookupDebounce = Timer(
       const Duration(milliseconds: ConstLayout.animationDuration300),
       () {
-        prepareBackEndForRoom(roomName);
+        _lookupCreateTableName(roomName);
       },
-    );
-  }
-
-  /// Opens the join wizard for the currently entered table.
-  void _openJoinWizardForCurrentTable() {
-    if (roomName.isEmpty) {
-      return;
-    }
-
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(
-        builder: (BuildContext _) => JoinGameScreen(
-          initialRoom: roomName,
-          gameStyle: _selectedGameStyle,
-        ),
-      ),
     );
   }
 
@@ -642,10 +852,24 @@ class StartScreenState extends State<StartScreen> {
       // For offline testing, use predefined values.
       // Example: '?room=BANANA&players=BOB,SUE,JOHN'
       if (widget.createRoomFlow) {
+        final String prefilledCreateRoomName =
+            (widget.initialCreateRoomName ?? '').trim().toUpperCase();
+        final bool hasPrefilledCreateRoom =
+            widget.skipCreateTableNameStep &&
+            prefilledCreateRoomName.isNotEmpty;
+        _isCreateTableStepComplete = hasPrefilledCreateRoom;
+        _isCheckingCreateTableName = false;
+        _doesCreateTableNameExist = false;
+        _checkedCreateTableName = hasPrefilledCreateRoom
+            ? prefilledCreateRoomName
+            : '';
         _playerNames = {};
-        _controllerRoom.text = '';
+        _controllerRoom.text = hasPrefilledCreateRoom
+            ? prefilledCreateRoomName
+            : '';
         _controllerName.text = '';
       } else {
+        _isCreateTableStepComplete = true;
         _playerNames = _offlineDemoPlayers;
         _controllerRoom.text = _offlineDemoRoomName;
         _controllerName.text = _offlineDemoPlayerBob;
@@ -693,7 +917,11 @@ class StartScreenState extends State<StartScreen> {
 
     // Initialize the backend connection only when a room has been specified.
     if (roomName.isNotEmpty) {
-      prepareBackEndForRoom(roomName);
+      if (widget.createRoomFlow && !_isCreateTableStepComplete) {
+        _onRoomNameChanged();
+      } else {
+        prepareBackEndForRoom(roomName);
+      }
     } else {
       _waitingOnFirstBackendData = false;
     }
