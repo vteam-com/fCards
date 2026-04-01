@@ -1,5 +1,22 @@
 # CHANGELOG
 
+## 1.11.7
+
+- Refactor start flow after game type selection to offer:
+  - Join Existing Table
+  - Create New Table
+- Add dedicated "Create New Table" name-entry screen with:
+  - uniqueness check before continue
+  - disabled continue until a new table name is provided
+  - join shortcut when table already exists
+- Improve create-table flow copy in English and French
+- Update user scenarios documentation for the new onboarding/create-table UX
+- Update packages
+- fCheck 1.1.2
+
+## 1.11.6
+- fCheck 1.1.1
+
 ## 1.11.5
 
 - fCheck 1.1.0
