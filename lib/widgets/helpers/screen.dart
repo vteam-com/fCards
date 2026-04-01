@@ -188,8 +188,10 @@ class _ScreenState extends State<Screen> with SingleTickerProviderStateMixin {
             ),
           ),
           Positioned.fill(child: _buildTableTopAmbientOverlay()),
-          SizedBox.expand(
-            child: widget.isWaiting ? _displayWaiting() : widget.child,
+          SafeArea(
+            child: SizedBox.expand(
+              child: widget.isWaiting ? _displayWaiting() : widget.child,
+            ),
           ),
         ],
       ),
