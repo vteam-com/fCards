@@ -176,12 +176,6 @@ abstract class AppLocalizations {
   /// **'Create New Table'**
   String get createNewTable;
 
-  /// No description provided for @createTableHelp.
-  ///
-  /// In en, this message translates to:
-  /// **'Create a table.\nIf it already exists, you can join it.'**
-  String get createTableHelp;
-
   /// No description provided for @deleteLastRow.
   ///
   /// In en, this message translates to:
@@ -209,7 +203,7 @@ abstract class AppLocalizations {
   /// No description provided for @enterTableName.
   ///
   /// In en, this message translates to:
-  /// **'Enter a table name to check if it already exists.'**
+  /// **'Enter name of the new table.'**
   String get enterTableName;
 
   /// No description provided for @enterYourName.
@@ -689,7 +683,7 @@ abstract class AppLocalizations {
   /// No description provided for @thisTableAlreadyHasPlayers.
   ///
   /// In en, this message translates to:
-  /// **'This table already has players. You can join it instead of creating a new table.'**
+  /// **'This table already exists. Join this table or enter a different name.'**
   String get thisTableAlreadyHasPlayers;
 
   /// No description provided for @useSearchBox.

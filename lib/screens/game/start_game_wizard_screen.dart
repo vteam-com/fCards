@@ -4,8 +4,8 @@ import 'package:cards/models/card/card_model.dart';
 import 'package:cards/models/game/backend_model.dart';
 import 'package:cards/models/game/game_constants.dart';
 import 'package:cards/models/game/game_styles.dart';
+import 'package:cards/screens/game/create_table_name_screen.dart';
 import 'package:cards/screens/game/join_game_screen.dart';
-import 'package:cards/screens/game/start_game_screen.dart';
 import 'package:cards/utils/logger.dart';
 import 'package:cards/widgets/buttons/my_button_rectangle.dart';
 import 'package:cards/widgets/helpers/screen.dart';
@@ -13,7 +13,9 @@ import 'package:cards/widgets/helpers/table_widget.dart';
 import 'package:cards/widgets/helpers/wizard_footer.dart';
 import 'package:flutter/material.dart';
 
-const int _wizardLastStep = 1;
+const int _wizardGameTypeStep = 0;
+const int _wizardChoosePathStep = 1;
+const int _wizardJoinExistingTableStep = 2;
 const String _roomSelectionPlaceholder = 'SELECT_ROOM';
 const double _miniCardWidth = ConstLayout.sizeM;
 const double _miniCardHeight = ConstLayout.sizeL;
@@ -56,7 +58,8 @@ class _GameTypeOption {
 /// Step-by-step entry flow for starting a game.
 ///
 /// Step 1: Select game type.
-/// Step 2: Select an existing room or create a new room.
+/// Step 2: Choose to join an existing table or create a new table.
+/// Step 3: If joining, select an existing table.
 class StartGameWizardScreen extends StatefulWidget {
   ///
   const StartGameWizardScreen({super.key});
@@ -104,7 +107,7 @@ class _StartGameWizardScreenState extends State<StartGameWizardScreen> {
   /// Builds navigation actions for the current wizard step.
   Widget _buildActions() {
     final AppLocalizations localizations = AppLocalizations.of(context);
-    if (_currentStep == 0) {
+    if (_currentStep == _wizardGameTypeStep) {
       return WizardFooter(
         backLabel: localizations.back,
         onBack: null,
@@ -124,6 +127,75 @@ class _StartGameWizardScreenState extends State<StartGameWizardScreen> {
       primaryLabel: localizations.next,
       isPrimaryEnabled: false,
       onForward: null,
+    );
+  }
+
+  /// Builds a decision screen where users choose join-vs-create.
+  Widget _buildChoosePathStep() {
+    final AppLocalizations localizations = AppLocalizations.of(context);
+    final ColorScheme colorScheme = Theme.of(context).colorScheme;
+
+    return ConstrainedBox(
+      constraints: const BoxConstraints(maxWidth: ConstLayout.mainMenuMaxWidth),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        spacing: ConstLayout.sizeL,
+        children: [
+          Text(
+            localizations.pickTableOrCreate,
+            style: TextStyle(
+              fontSize: ConstLayout.textM,
+              fontWeight: FontWeight.bold,
+              color: colorScheme.onSurface,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          MyButtonRectangle(
+            width: double.infinity,
+            height: ConstLayout.mainMenuButtonHeight,
+            onTap: () {
+              setState(() {
+                _currentStep = _wizardJoinExistingTableStep;
+              });
+            },
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              spacing: ConstLayout.sizeS,
+              children: [
+                const Icon(Icons.group_add),
+                Text(
+                  localizations.joinExistingGame,
+                  style: TextStyle(
+                    fontSize: ConstLayout.textS,
+                    fontWeight: FontWeight.bold,
+                    color: colorScheme.onPrimaryContainer,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          MyButtonRectangle(
+            width: double.infinity,
+            height: ConstLayout.mainMenuButtonHeight,
+            onTap: _navigateToCreateNewGame,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              spacing: ConstLayout.sizeS,
+              children: [
+                const Icon(Icons.add_circle_outline),
+                Text(
+                  localizations.createNewTable,
+                  style: TextStyle(
+                    fontSize: ConstLayout.textS,
+                    fontWeight: FontWeight.bold,
+                    color: colorScheme.onPrimaryContainer,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 
@@ -224,6 +296,66 @@ class _StartGameWizardScreenState extends State<StartGameWizardScreen> {
     );
   }
 
+  /// Builds the table-selection step for users joining an existing table.
+  Widget _buildJoinExistingTableStep() {
+    final AppLocalizations localizations = AppLocalizations.of(context);
+    final ColorScheme colorScheme = Theme.of(context).colorScheme;
+
+    if (!_roomsFetched) {
+      _roomsFetched = true;
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        _fetchAllRooms();
+      });
+    }
+
+    return ConstrainedBox(
+      constraints: const BoxConstraints(maxWidth: ConstLayout.mainMenuMaxWidth),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        spacing: ConstLayout.sizeM,
+        children: [
+          Text(
+            localizations.selectTableToJoin,
+            style: TextStyle(
+              fontSize: ConstLayout.textM,
+              fontWeight: FontWeight.bold,
+              color: colorScheme.onSurface,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          Text(
+            localizations.tapExistingTable,
+            style: TextStyle(
+              fontSize: ConstLayout.textS,
+              color: colorScheme.onSurface,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          if (_isLoadingRooms)
+            const CircularProgressIndicator()
+          else if (_listOfRooms.isNotEmpty)
+            TableWidget(
+              roomId: _roomSelectionPlaceholder,
+              rooms: _listOfRooms,
+              onSelected: (String room) {
+                _navigateToJoinExistingRoom(room);
+              },
+              onRemoveRoom: null,
+            )
+          else
+            Text(
+              localizations.noExistingTables,
+              style: TextStyle(
+                fontSize: ConstLayout.textS,
+                color: colorScheme.onSurface,
+              ),
+              textAlign: TextAlign.center,
+            ),
+        ],
+      ),
+    );
+  }
+
   /// Builds a single miniature card used in style preview grids.
   Widget _buildMiniCard({required Color cardBorder, required Color cardFill}) {
     return Container(
@@ -271,94 +403,15 @@ class _StartGameWizardScreenState extends State<StartGameWizardScreen> {
     );
   }
 
-  /// Builds the room-selection step for creating or joining a table.
-  Widget _buildRoomStep() {
-    final AppLocalizations localizations = AppLocalizations.of(context);
-    final ColorScheme colorScheme = Theme.of(context).colorScheme;
-
-    if (!_roomsFetched) {
-      _roomsFetched = true;
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        _fetchAllRooms();
-      });
-    }
-
-    return ConstrainedBox(
-      constraints: const BoxConstraints(maxWidth: ConstLayout.mainMenuMaxWidth),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        spacing: ConstLayout.sizeM,
-        children: [
-          Text(
-            localizations.pickTableOrCreate,
-            style: TextStyle(
-              fontSize: ConstLayout.textM,
-              fontWeight: FontWeight.bold,
-              color: colorScheme.onSurface,
-            ),
-            textAlign: TextAlign.center,
-          ),
-          Text(
-            localizations.tapExistingTable,
-            style: TextStyle(
-              fontSize: ConstLayout.textS,
-              color: colorScheme.onSurface,
-            ),
-            textAlign: TextAlign.center,
-          ),
-          if (_isLoadingRooms)
-            const CircularProgressIndicator()
-          else if (_listOfRooms.isNotEmpty)
-            TableWidget(
-              roomId: _roomSelectionPlaceholder,
-              rooms: _listOfRooms,
-              onSelected: (String room) {
-                _navigateToJoinExistingRoom(room);
-              },
-              onRemoveRoom: null,
-            )
-          else
-            Text(
-              localizations.noExistingTables,
-              style: TextStyle(
-                fontSize: ConstLayout.textS,
-                color: colorScheme.onSurface,
-              ),
-              textAlign: TextAlign.center,
-            ),
-          MyButtonRectangle(
-            width: double.infinity,
-            onTap: () {
-              _navigateToCreateNewGame();
-            },
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              spacing: ConstLayout.sizeS,
-              children: [
-                const Icon(Icons.add_circle_outline),
-                Text(
-                  localizations.createNewTable,
-                  style: TextStyle(
-                    fontSize: ConstLayout.textS,
-                    fontWeight: FontWeight.bold,
-                    color: colorScheme.onPrimaryContainer,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
   /// Returns the active wizard step content.
   Widget _buildStepContent() {
     switch (_currentStep) {
-      case 0:
+      case _wizardGameTypeStep:
         return _buildGameTypeStep();
-      case _wizardLastStep:
-        return _buildRoomStep();
+      case _wizardChoosePathStep:
+        return _buildChoosePathStep();
+      case _wizardJoinExistingTableStep:
+        return _buildJoinExistingTableStep();
       default:
         return const SizedBox.shrink();
     }
@@ -417,11 +470,8 @@ class _StartGameWizardScreenState extends State<StartGameWizardScreen> {
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
-        builder: (BuildContext _) => StartScreen(
-          joinMode: false,
-          initialGameStyle: _selectedGameStyle,
-          createRoomFlow: true,
-        ),
+        builder: (BuildContext _) =>
+            CreateTableNameScreen(gameStyle: _selectedGameStyle),
       ),
     );
   }
@@ -437,11 +487,11 @@ class _StartGameWizardScreenState extends State<StartGameWizardScreen> {
     );
   }
 
-  /// Advances from the game-style step to the room step.
+  /// Advances from the game-style step to the join-vs-create decision step.
   void _onNextPressed() {
-    if (_currentStep == 0) {
+    if (_currentStep == _wizardGameTypeStep) {
       setState(() {
-        _currentStep = _wizardLastStep;
+        _currentStep = _wizardChoosePathStep;
       });
     }
   }
