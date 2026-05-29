@@ -97,6 +97,7 @@ class _TableWidgetState extends State<TableWidget> {
                 color: AppTheme.onSurfaceHint,
                 size: ConstLayout.iconM,
               ),
+              showKeyboard: false,
             ),
           ),
 

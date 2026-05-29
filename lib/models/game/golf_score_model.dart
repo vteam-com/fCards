@@ -173,14 +173,10 @@ class GolfScoreModel {
         return GolfScoreModel(playerNames: playerNames, scores: scores);
       } catch (_) {
         // Handle corrupted JSON data by returning default model
-        return GolfScoreModel(
-          playerNames: ['Player1', 'Player2', 'Player3', 'Player4'],
-        );
+        return GolfScoreModel(playerNames: ['P1', 'P2', 'P3']);
       }
     } else {
-      return GolfScoreModel(
-        playerNames: ['Player1', 'Player2', 'Player3', 'Player4'],
-      );
+      return GolfScoreModel(playerNames: ['P1', 'P2', 'P3']);
     }
   }
 }

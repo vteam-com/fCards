@@ -2,6 +2,7 @@ import 'package:cards/gen/l10n/app_localizations.dart';
 import 'package:cards/models/app/constants_layout.dart';
 import 'package:cards/models/game/backend_model.dart';
 import 'package:cards/models/game/game_model.dart';
+import 'package:cards/widgets/buttons/my_button_rectangle.dart';
 import 'package:cards/widgets/helpers/dialog.dart';
 import 'package:cards/widgets/helpers/my_text.dart';
 import 'package:flutter/material.dart';
@@ -99,18 +100,22 @@ void showGameOverDialog(
         ],
       ),
       buttons: <Widget>[
-        ElevatedButton(
-          child: Text(localizations.playAgain),
-          onPressed: () {
+        MyButtonRectangle.primary(
+          width: ConstLayout.dialogButtonWidth,
+          height: ConstLayout.dialogButtonHeight,
+          onTap: () {
             Navigator.of(context).pop();
             gameModel.initializeGame();
           },
+          child: Text(localizations.playAgain),
         ),
-        ElevatedButton(
-          child: Text(localizations.exit),
-          onPressed: () {
+        MyButtonRectangle.secondary(
+          width: ConstLayout.dialogButtonWidth,
+          height: ConstLayout.dialogButtonHeight,
+          onTap: () {
             Navigator.of(context).pop();
           },
+          child: Text(localizations.exit),
         ),
       ],
     );

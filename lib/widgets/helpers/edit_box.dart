@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 ///
 /// This widget can include a label, a text field, and a trailing widget (e.g., an
 /// icon button). It is used for both the room name and player name input fields.
-/// When focused it shows the [InputKeyboard.alpha] virtual keyboard below.
+/// Displays the [InputKeyboard.alpha] virtual keyboard below when [showKeyboard] is true.
 class EditBox extends StatefulWidget {
   /// Creates an [EditBox] widget.
   ///
@@ -27,6 +27,7 @@ class EditBox extends StatefulWidget {
     required this.rightSideChild,
     this.prefixIcon,
     this.onChanged,
+    this.showKeyboard = true,
   });
 
   /// The text editing controller for the text field.
@@ -50,29 +51,31 @@ class EditBox extends StatefulWidget {
   /// The widget to display on the right side of the input field.
   final Widget? rightSideChild;
 
+  /// Whether to show the virtual alpha keyboard below the input field.
+  ///
+  /// Defaults to `true`. Set to `false` for contexts where a native keyboard
+  /// or no keyboard is preferred (e.g., search boxes in constrained layouts).
+  final bool showKeyboard;
+
   @override
   State<EditBox> createState() => _EditBoxState();
 }
 
 class _EditBoxState extends State<EditBox> {
-late final FocusNode _focusNode;
-bool _showKeyboard = false;
-@override
+  late final FocusNode _focusNode;
+  @override
   void initState() {
     super.initState();
     _focusNode = FocusNode();
-    _focusNode.addListener(() {
-      setState(() {
-        _showKeyboard = _focusNode.hasFocus;
-      });
-    });
   }
-@override
+
+  @override
   void dispose() {
     _focusNode.dispose();
     super.dispose();
   }
-@override
+
+  @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -112,7 +115,7 @@ bool _showKeyboard = false;
                       ),
                       composing: TextRange.empty,
                     );
-                    widget.onChanged?.call(text);
+                    widget.onChanged?.call(uppercaseText);
                   },
                   style: const TextStyle(
                     color: Colors.yellow,
@@ -122,8 +125,12 @@ bool _showKeyboard = false;
                   decoration: InputDecoration(
                     prefixIcon: widget.prefixIcon,
                     border: InputBorder.none,
-                    isDense: true,
-                    contentPadding: EdgeInsets.zero,
+                    enabledBorder: InputBorder.none,
+                    focusedBorder: InputBorder.none,
+                    contentPadding: const EdgeInsets.symmetric(
+                      horizontal: ConstLayout.paddingS,
+                      vertical: ConstLayout.paddingXS,
+                    ),
                   ),
                 ),
               ),
@@ -131,14 +138,17 @@ bool _showKeyboard = false;
             ],
           ),
         ),
-        if (_showKeyboard) InputKeyboard.alpha(onKeyPressed: _handleVirtualKey),
+        if (widget.showKeyboard)
+          InputKeyboard.alpha(onKeyPressed: _handleVirtualKey),
       ],
     );
   }
-/// Handles a key press from the virtual [InputKeyboard.alpha].
+
+  /// Handles a key press from the virtual [InputKeyboard.alpha].
   ///
   /// Appends letters and spaces to the controller, or removes the last
-  /// character when [keyBackspace] is pressed. Fires [EditBox.onChanged].
+  /// character when [keyBackspace] is pressed. Fires [EditBox.onChanged]
+  /// and retains focus on the text field.
   void _handleVirtualKey(String key) {
     final String current = widget.controller.text;
     final String updated;
@@ -149,11 +159,14 @@ bool _showKeyboard = false;
     } else {
       updated = current + key;
     }
+    final String uppercased = updated.toUpperCase();
     widget.controller.value = widget.controller.value.copyWith(
-      text: updated,
-      selection: TextSelection.collapsed(offset: updated.length),
+      text: uppercased,
+      selection: TextSelection.collapsed(offset: uppercased.length),
       composing: TextRange.empty,
     );
-    widget.onChanged?.call(updated);
+    widget.onChanged?.call(uppercased);
+    // Keep focus on the text field so the keyboard stays visible
+    _focusNode.requestFocus();
   }
 }

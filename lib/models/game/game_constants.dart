@@ -37,7 +37,7 @@ class GameConstants {
   static int calculateDecks(int numberOfPlayers) =>
       (numberOfPlayers + 1) ~/ deckCalculationDivider;
 
-  static String playerNumberPrefix = 'Player';
+  static String playerNumberPrefix = 'P';
 
   // Game Style Label Keys
   /// Key for the Skyjo game style label.

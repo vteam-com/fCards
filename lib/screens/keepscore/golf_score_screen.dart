@@ -5,6 +5,7 @@ import 'package:cards/models/app/app_theme.dart';
 import 'package:cards/models/app/constants_layout.dart';
 import 'package:cards/models/game/game_constants.dart';
 import 'package:cards/models/game/golf_score_model.dart';
+import 'package:cards/widgets/buttons/my_button_rectangle.dart';
 import 'package:cards/widgets/buttons/my_button_round.dart';
 import 'package:cards/widgets/helpers/input_keyboard.dart';
 import 'package:cards/widgets/helpers/screen.dart';
@@ -153,12 +154,16 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
         title: Text(localizations.deleteLastRow),
         content: Text(localizations.confirmDeleteRound(i + 1)),
         actions: [
-          TextButton(
-            onPressed: () => Navigator.of(ctx).pop(false),
+          MyButtonRectangle.secondary(
+            width: ConstLayout.dialogButtonWidth,
+            height: ConstLayout.dialogButtonHeight,
+            onTap: () => Navigator.of(ctx).pop(false),
             child: Text(localizations.cancel),
           ),
-          TextButton(
-            onPressed: () => Navigator.of(ctx).pop(true),
+          MyButtonRectangle.danger(
+            width: ConstLayout.dialogButtonWidth,
+            height: ConstLayout.dialogButtonHeight,
+            onTap: () => Navigator.of(ctx).pop(true),
             child: Text(localizations.confirm),
           ),
         ],
@@ -181,12 +186,16 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
         title: Text(localizations.newGame),
         content: Text(localizations.confirmNewGame),
         actions: [
-          TextButton(
-            onPressed: () => Navigator.of(ctx).pop(false),
+          MyButtonRectangle.secondary(
+            width: ConstLayout.dialogButtonWidth,
+            height: ConstLayout.dialogButtonHeight,
+            onTap: () => Navigator.of(ctx).pop(false),
             child: Text(localizations.cancel),
           ),
-          TextButton(
-            onPressed: () => Navigator.of(ctx).pop(true),
+          MyButtonRectangle.danger(
+            width: ConstLayout.dialogButtonWidth,
+            height: ConstLayout.dialogButtonHeight,
+            onTap: () => Navigator.of(ctx).pop(true),
             child: Text(localizations.confirm),
           ),
         ],

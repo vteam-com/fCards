@@ -203,12 +203,9 @@ void main() {
         SharedPreferences.setMockInitialValues({});
         final loadedModel = await GolfScoreModel.load();
 
-        expect(
-          loadedModel.playerNames,
-          equals(['Player1', 'Player2', 'Player3', 'Player4']),
-        );
+        expect(loadedModel.playerNames, equals(['P1', 'P2', 'P3']));
         expect(loadedModel.scores.length, equals(1));
-        expect(loadedModel.scores[0], equals([0, 0, 0, 0]));
+        expect(loadedModel.scores[0], equals([0, 0, 0]));
       });
 
       test('should handle corrupted saved data gracefully', () async {
@@ -220,12 +217,9 @@ void main() {
 
         final loadedModel = await GolfScoreModel.load();
 
-        expect(
-          loadedModel.playerNames,
-          equals(['Player1', 'Player2', 'Player3', 'Player4']),
-        );
+        expect(loadedModel.playerNames, equals(['P1', 'P2', 'P3']));
         expect(loadedModel.scores.length, equals(1));
-        expect(loadedModel.scores[0], equals([0, 0, 0, 0]));
+        expect(loadedModel.scores[0], equals([0, 0, 0]));
       });
     });
 

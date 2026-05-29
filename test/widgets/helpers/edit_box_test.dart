@@ -31,21 +31,10 @@ void main() {
       );
     }
 
-    testWidgets('hides virtual keyboard when not focused', (
+    testWidgets('always displays virtual keyboard', (
       WidgetTester tester,
     ) async {
       await tester.pumpWidget(buildSubject());
-      expect(find.byType(InputKeyboard), findsNothing);
-    });
-
-    testWidgets('shows virtual keyboard when field is focused', (
-      WidgetTester tester,
-    ) async {
-      await tester.pumpWidget(buildSubject());
-
-      await tester.tap(find.byType(TextField));
-      await tester.pump();
-
       expect(find.byType(InputKeyboard), findsOneWidget);
     });
 
