@@ -61,9 +61,6 @@ class AppLocalizationsFr extends AppLocalizations {
   String get discardOrSwap => 'Défausser →\nou\n↓ échanger';
 
   @override
-  String get done => 'Valider';
-
-  @override
   String get drawCardHere => 'Piochez\nune carte\nici\n→';
 
   @override
@@ -168,11 +165,6 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get miniPutFull => 'MiniPut 4 Cartes';
-
-  @override
-  String nameForPlayerNumber(int number) {
-    return 'Nom du joueur n°$number';
-  }
 
   @override
   String get newGame => 'Nouvelle partie';
