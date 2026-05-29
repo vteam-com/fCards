@@ -266,7 +266,7 @@ class _PlayerHeaderState extends State<PlayerHeader> {
                   errorStatus: '',
                   rightSideChild: null,
                 ),
-                MyButtonRectangle(
+                MyButtonRectangle.primary(
                   width: double.infinity,
                   height: PlayerHeaderConstants.inputHeight,
                   onTap: () {
@@ -277,10 +277,7 @@ class _PlayerHeaderState extends State<PlayerHeader> {
                   },
                   child: Text(
                     localizations.done,
-                    style: TextStyle(
-                      color: colorScheme.onPrimaryContainer,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),
                 Divider(color: colorScheme.primary),
@@ -288,7 +285,7 @@ class _PlayerHeaderState extends State<PlayerHeader> {
                   spacing: PlayerHeaderConstants.wrapSpacing,
                   runSpacing: PlayerHeaderConstants.wrapSpacing,
                   children: [
-                    MyButtonRectangle(
+                    MyButtonRectangle.secondary(
                       width: null, // Allow dynamic width
                       height: PlayerHeaderConstants.inputHeight,
                       onTap: () {
@@ -301,14 +298,11 @@ class _PlayerHeaderState extends State<PlayerHeader> {
                         ),
                         child: Text(
                           localizations.addAnotherPlayer,
-                          style: TextStyle(
-                            color: colorScheme.onSurface,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          style: const TextStyle(fontWeight: FontWeight.bold),
                         ),
                       ),
                     ),
-                    MyButtonRectangle(
+                    MyButtonRectangle.danger(
                       width: null, // Allow dynamic width
                       height: PlayerHeaderConstants.inputHeight,
                       onTap: () {
@@ -321,10 +315,7 @@ class _PlayerHeaderState extends State<PlayerHeader> {
                         ),
                         child: Text(
                           localizations.removeThisPlayer,
-                          style: TextStyle(
-                            color: colorScheme.error,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          style: const TextStyle(fontWeight: FontWeight.bold),
                         ),
                       ),
                     ),
@@ -374,12 +365,16 @@ class _PlayerHeaderState extends State<PlayerHeader> {
             localizations.removePlayerConfirmation(widget.playerName),
           ),
           actions: [
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(),
+            MyButtonRectangle.secondary(
+              width: ConstLayout.dialogButtonWidth,
+              height: ConstLayout.dialogButtonHeight,
+              onTap: () => Navigator.of(context).pop(),
               child: Text(localizations.cancel),
             ),
-            TextButton(
-              onPressed: () {
+            MyButtonRectangle.danger(
+              width: ConstLayout.dialogButtonWidth,
+              height: ConstLayout.dialogButtonHeight,
+              onTap: () {
                 Navigator.of(context).pop();
                 widget.onPlayerRemoved();
               },
