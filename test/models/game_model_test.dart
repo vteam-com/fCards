@@ -89,11 +89,19 @@ void main() {
   });
 
   test('MiniPut', () {
-    final gameModel3 = getNewInstanceFrenchMiniPut();
-    gameModel3.players.first.hand.revealAllCards();
     // note that there is a chance that all reveal cards adds up to zero
-    final int count = gameModel3.players.first.hand.getSumOfCardsForGolf();
-    expect(count > 0, true);
+    // so retry until we get a non-zero hand (high probability succeeds quickly)
+    for (int attempt = 0; attempt < 10; attempt++) {
+      final gameModel3 = getNewInstanceFrenchMiniPut();
+      gameModel3.players.first.hand.revealAllCards();
+      final int count = gameModel3.players.first.hand.getSumOfCardsForGolf();
+      if (count > 0) {
+        expect(count > 0, true);
+        return;
+      }
+    }
+    // If we reach here, all 10 attempts failed - this is extremely unlikely
+    fail('Unable to generate a non-zero hand after 10 attempts');
   });
 
   group('Game State Management', () {
