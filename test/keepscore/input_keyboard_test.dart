@@ -211,5 +211,156 @@ void main() {
         expect(currentInput, '-12');
       });
     });
+
+    group('Alpha Keyboard', () {
+      testWidgets('should display all letter keys A–Z', (
+        WidgetTester tester,
+      ) async {
+        await tester.pumpWidget(
+          MaterialApp(
+            home: Scaffold(
+              body: SingleChildScrollView(
+                child: InputKeyboard.alpha(onKeyPressed: mockOnKeyPressed),
+              ),
+            ),
+          ),
+        );
+
+        for (final letter in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')) {
+          expect(find.text(letter), findsOneWidget);
+        }
+      });
+
+      testWidgets('should display SPACE and backspace keys', (
+        WidgetTester tester,
+      ) async {
+        await tester.pumpWidget(
+          MaterialApp(
+            home: Scaffold(
+              body: SingleChildScrollView(
+                child: InputKeyboard.alpha(onKeyPressed: mockOnKeyPressed),
+              ),
+            ),
+          ),
+        );
+
+        expect(find.text('SPACE'), findsOneWidget);
+        expect(find.text(keyBackspace), findsOneWidget);
+      });
+
+      testWidgets('should not display numeric-only keys', (
+        WidgetTester tester,
+      ) async {
+        await tester.pumpWidget(
+          MaterialApp(
+            home: Scaffold(
+              body: SingleChildScrollView(
+                child: InputKeyboard.alpha(onKeyPressed: mockOnKeyPressed),
+              ),
+            ),
+          ),
+        );
+
+        expect(find.text(keyChangeSign), findsNothing);
+        expect(find.text('0'), findsNothing);
+      });
+
+      testWidgets('should emit letter when key is tapped', (
+        WidgetTester tester,
+      ) async {
+        await tester.pumpWidget(
+          MaterialApp(
+            home: Scaffold(
+              body: SingleChildScrollView(
+                child: InputKeyboard.alpha(onKeyPressed: mockOnKeyPressed),
+              ),
+            ),
+          ),
+        );
+
+        await tester.tap(find.text('H'));
+        await tester.pump();
+
+        expect(capturedKeys, ['H']);
+      });
+
+      testWidgets('should emit keySpace when SPACE is tapped', (
+        WidgetTester tester,
+      ) async {
+        await tester.pumpWidget(
+          MaterialApp(
+            home: Scaffold(
+              body: SingleChildScrollView(
+                child: InputKeyboard.alpha(onKeyPressed: mockOnKeyPressed),
+              ),
+            ),
+          ),
+        );
+
+        await tester.tap(find.text('SPACE'));
+        await tester.pump();
+
+        expect(capturedKeys, [keySpace]);
+      });
+
+      testWidgets('should emit keyBackspace when backspace is tapped', (
+        WidgetTester tester,
+      ) async {
+        await tester.pumpWidget(
+          MaterialApp(
+            home: Scaffold(
+              body: SingleChildScrollView(
+                child: InputKeyboard.alpha(onKeyPressed: mockOnKeyPressed),
+              ),
+            ),
+          ),
+        );
+
+        await tester.tap(find.text(keyBackspace));
+        await tester.pump();
+
+        expect(capturedKeys, [keyBackspace]);
+      });
+
+      testWidgets('should handle name entry scenario', (
+        WidgetTester tester,
+      ) async {
+        String name = '';
+
+        nameInputHandler(String key) {
+          if (key == keyBackspace) {
+            if (name.isNotEmpty) {
+              name = name.substring(0, name.length - 1);
+            }
+          } else if (key == keySpace) {
+            name += ' ';
+          } else {
+            name += key;
+          }
+        }
+
+        await tester.pumpWidget(
+          MaterialApp(
+            home: Scaffold(
+              body: SingleChildScrollView(
+                child: InputKeyboard.alpha(onKeyPressed: nameInputHandler),
+              ),
+            ),
+          ),
+        );
+
+        await tester.tap(find.text('J'));
+        await tester.pump();
+        await tester.tap(find.text('P'));
+        await tester.pump();
+
+        expect(name, 'JP');
+
+        await tester.tap(find.text(keyBackspace));
+        await tester.pump();
+
+        expect(name, 'J');
+      });
+    });
   });
 }

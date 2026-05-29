@@ -250,11 +250,6 @@ class _PlayerHeaderState extends State<PlayerHeader> {
                 width: PlayerHeaderConstants.dialogBorderWidth,
               ),
             ),
-            title: Text(
-              widget.playerIndex != null
-                  ? localizations.nameForPlayerNumber(widget.playerIndex! + 1)
-                  : localizations.playerName,
-            ),
             content: Column(
               mainAxisSize: MainAxisSize.min,
               spacing: PlayerHeaderConstants.dialogContentSpacing,
@@ -266,21 +261,6 @@ class _PlayerHeaderState extends State<PlayerHeader> {
                   errorStatus: '',
                   rightSideChild: null,
                 ),
-                MyButtonRectangle.primary(
-                  width: double.infinity,
-                  height: PlayerHeaderConstants.inputHeight,
-                  onTap: () {
-                    if (controller.text.isNotEmpty) {
-                      widget.onNameChanged(controller.text);
-                    }
-                    Navigator.of(context).pop();
-                  },
-                  child: Text(
-                    localizations.done,
-                    style: const TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                ),
-                Divider(color: colorScheme.primary),
                 Wrap(
                   spacing: PlayerHeaderConstants.wrapSpacing,
                   runSpacing: PlayerHeaderConstants.wrapSpacing,

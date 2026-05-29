@@ -410,7 +410,7 @@
 </g>
 <g>
   <path d="M 280.0 1374.0 H 229.0 Q 223.0 1374.0 223.0 1380.0 V 3122.0 Q 223.0 3128.0 229.0 3128.0 H 460.0" class="edgeVertical"/>
-  <title>the_splash -> flutter_native_splash v2.4.7</title>
+  <title>the_splash -> flutter_native_splash v2.4.8</title>
 </g>
 <g>
   <path d="M 280.0 494.0 H 226.0 Q 220.0 494.0 220.0 500.0 V 2290.0 Q 220.0 2296.0 226.0 2296.0 H 460.0" class="edgeVertical"/>
@@ -1559,7 +1559,7 @@
 <g class="platformBadge platformBadge--ios"><title>iOS</title><rect x="593.5" y="3125.0" width="13.0" height="13.0" rx="6.5" ry="6.5" fill="#111827" stroke="#0f172a" stroke-width="0.6"/><text x="600.0" y="3132.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">I</text></g>
 <g class="platformBadge platformBadge--web"><title>Browser</title><rect x="610.5" y="3125.0" width="13.0" height="13.0" rx="6.5" ry="6.5" fill="#0891b2" stroke="#0e7490" stroke-width="0.6"/><text x="617.0" y="3132.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">B</text></g>
 <text x="468.0" y="3120.0" class="packageLabelDerivedName packageLabelCaption" text-anchor="start">flutter_native_splash</text>
-<text x="732.0" y="3120.0" class="packageLabelDerivedVersion" text-anchor="end">^2.4.7</text>
+<text x="732.0" y="3120.0" class="packageLabelDerivedVersion" text-anchor="end">^2.4.8</text>
 </g>
 <g class="badge incomingBadge">
   <path d="M 466.0,3128.0 L 454.0,3121.0 Q 451.0,3121.0 451.0,3124.0 L 451.0,3132.0 Q 451.0,3135.0 454.0,3135.0 Z" fill="#3b82f6"/>
