@@ -9,6 +9,16 @@ class AppTheme {
   static const buttonGradientBottom = Color.fromARGB(255, 10, 20, 10);
   static const buttonActionGradientTop = Color.fromARGB(100, 5, 10, 5);
   static const buttonActionGradientBottom = Color.fromARGB(100, 0, 0, 0);
+
+  // Semantic button color pairs (top, bottom)
+  static const buttonPrimaryTop = Color.fromARGB(255, 40, 80, 40);
+  static const buttonPrimaryBottom = Color.fromARGB(255, 10, 20, 10);
+  static const buttonSecondaryTop = Color.fromARGB(255, 40, 70, 100);
+  static const buttonSecondaryBottom = Color.fromARGB(255, 10, 15, 25);
+  static const buttonWarningTop = Color.fromARGB(255, 120, 80, 20);
+  static const buttonWarningBottom = Color.fromARGB(255, 40, 25, 5);
+  static const buttonDangerTop = Color.fromARGB(255, 100, 30, 30);
+  static const buttonDangerBottom = Color.fromARGB(255, 30, 10, 10);
   static final colorScheme = ColorScheme.fromSeed(
     seedColor: seedColor,
     brightness: Brightness.dark,

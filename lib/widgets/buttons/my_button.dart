@@ -15,6 +15,8 @@ class MyButton extends StatelessWidget {
     this.padding = EdgeInsets.zero,
     this.isRound = false,
     this.isAction = false,
+    this.gradientTop,
+    this.gradientBottom,
   });
 
   /// Creates a [MyButton] with a more transparent background for primary actions.
@@ -27,6 +29,8 @@ class MyButton extends StatelessWidget {
     this.borderRadius = ConstLayout.radiusL,
     this.padding = EdgeInsets.zero,
     this.isRound = false,
+    this.gradientTop,
+    this.gradientBottom,
   }) : isAction = true;
 
   /// The corner radius of the button (ignored if [isRound] is true).
@@ -34,6 +38,12 @@ class MyButton extends StatelessWidget {
 
   /// The widget displayed at the center of the button.
   final Widget child;
+
+  /// Custom gradient top color (overrides default).
+  final Color? gradientBottom;
+
+  /// Custom gradient top color (overrides default).
+  final Color? gradientTop;
 
   /// The height of the button.
   final double? height;
@@ -60,8 +70,9 @@ class MyButton extends StatelessWidget {
         ? null
         : BorderRadius.circular(borderRadius ?? ConstLayout.radiusM);
 
-    final Color baseTopColor = AppTheme.buttonGradientTop;
-    final Color baseBottomColor = AppTheme.buttonGradientBottom;
+    final Color baseTopColor = gradientTop ?? AppTheme.buttonGradientTop;
+    final Color baseBottomColor =
+        gradientBottom ?? AppTheme.buttonGradientBottom;
     final Color topColor = isAction
         ? AppTheme.buttonActionGradientTop
         : baseTopColor;

@@ -1,5 +1,6 @@
 // ignore_for_file: deprecated_member_use
 
+import 'package:cards/models/app/app_theme.dart';
 import 'package:cards/models/app/constants_layout.dart';
 import 'package:cards/widgets/buttons/my_button.dart';
 import 'package:flutter/material.dart';
@@ -37,4 +38,56 @@ class MyButtonRectangle extends MyButton {
     double super.borderRadius = ConstLayout.radiusL,
     super.padding = EdgeInsets.zero,
   }) : super.action();
+
+  /// Creates a primary semantic button (green, success-oriented).
+  const MyButtonRectangle.primary({
+    super.key,
+    required super.onTap,
+    required super.child,
+    super.height = ConstLayout.buttonHeight,
+    super.width = ConstLayout.buttonWidth,
+    super.borderRadius = ConstLayout.radiusM,
+    super.padding,
+    super.gradientTop = AppTheme.buttonPrimaryTop,
+    super.gradientBottom = AppTheme.buttonPrimaryBottom,
+  }) : super();
+
+  /// Creates a secondary semantic button (blue, neutral-oriented).
+  const MyButtonRectangle.secondary({
+    super.key,
+    required super.onTap,
+    required super.child,
+    super.height = ConstLayout.buttonHeight,
+    super.width = ConstLayout.buttonWidth,
+    super.borderRadius = ConstLayout.radiusM,
+    super.padding,
+    super.gradientTop = AppTheme.buttonSecondaryTop,
+    super.gradientBottom = AppTheme.buttonSecondaryBottom,
+  }) : super();
+
+  /// Creates a warning semantic button (orange, caution-oriented).
+  const MyButtonRectangle.warning({
+    super.key,
+    required super.onTap,
+    required super.child,
+    super.height = ConstLayout.buttonHeight,
+    super.width = ConstLayout.buttonWidth,
+    super.borderRadius = ConstLayout.radiusM,
+    super.padding,
+    super.gradientTop = AppTheme.buttonWarningTop,
+    super.gradientBottom = AppTheme.buttonWarningBottom,
+  }) : super();
+
+  /// Creates a danger semantic button (red, destructive-oriented).
+  const MyButtonRectangle.danger({
+    super.key,
+    required super.onTap,
+    required super.child,
+    super.height = ConstLayout.buttonHeight,
+    super.width = ConstLayout.buttonWidth,
+    super.borderRadius = ConstLayout.radiusM,
+    super.padding,
+    super.gradientTop = AppTheme.buttonDangerTop,
+    super.gradientBottom = AppTheme.buttonDangerBottom,
+  }) : super();
 }
