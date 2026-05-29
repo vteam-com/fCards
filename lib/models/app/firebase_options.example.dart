@@ -1,4 +1,6 @@
 // ignore: fcheck_dead_code
+// ignore: fcheck_documentation
+// ignore: fcheck_duplicate_code
 // Example Firebase options so the app builds without providing actual credentials.
 // Replace these values by running `flutterfire configure --out=lib/models/app/firebase_options.dart`.
 // ignore_for_file: type=lint

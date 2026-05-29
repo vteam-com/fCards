@@ -68,18 +68,16 @@ void main() {
           CardModel(suit: '', rank: '10', value: 10),
         );
       }
-      for (int i = 0; i < 9; i++) {
+      const List<int> deterministicRanks = <int>[1, 2, 3, 4, 5, 6, 7, 8, 9];
+      for (int i = 0; i < deterministicRanks.length; i++) {
+        final int rank = deterministicRanks[i];
         gameModel.players[0].hand.add(
-          CardModel(
-            suit: '',
-            rank: (random.nextInt(14) - 2).toString(),
-            value: i,
-          ),
+          CardModel(suit: '', rank: rank.toString(), value: rank),
         );
       }
-      // Set the 2nd player hand to be fully revealed
+      // Set the 2nd player hand to be fully revealed.
       for (int i = 0; i < 12; i++) {
-        var rank = (random.nextInt(14) - 2);
+        final int rank = i + 20;
         gameModel.players[1].hand.add(
           CardModel(
             suit: '',

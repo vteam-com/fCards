@@ -1,0 +1,19 @@
+{
+    "cSpell.words": [
+        "flutterfire",
+        "mocktail",
+        "Roboto"
+    ],
+    "files.exclude": {
+        "**/build": true
+    },
+    "search.exclude": {
+        "**/build": true
+    },
+    "files.watcherExclude": {
+        "**/build/**": true
+    },
+    "dart.analysisExcludedFolders": [
+        "build"
+    ]
+}
