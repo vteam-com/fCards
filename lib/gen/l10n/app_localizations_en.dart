@@ -61,9 +61,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get discardOrSwap => 'Discard →\nor\n↓ swap';
 
   @override
-  String get done => 'Done';
-
-  @override
   String get drawCardHere => 'Draw\na card\nhere\n→';
 
   @override
@@ -168,11 +165,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get miniPutFull => 'MiniPut 4 Cards';
-
-  @override
-  String nameForPlayerNumber(int number) {
-    return 'Name for Player #$number';
-  }
 
   @override
   String get newGame => 'New Game';

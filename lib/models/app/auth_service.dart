@@ -4,6 +4,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 const String googleSignInFieldEmail = 'email';
 const String googleSignInFieldProfile = 'profile';
+const String googleSignInPromptSelectAccount = 'select_account';
 
 /// Authentication helper for guest mode and Google sign-in flows.
 class AuthService {
@@ -25,22 +26,20 @@ class AuthService {
     await _auth.signInAnonymously();
   }
 
+  static bool get _usesGoogleSignInPluginFlow =>
+      !kIsWeb && defaultTargetPlatform == TargetPlatform.macOS;
+
   static Future<void> _ensureInitialized() async {
     if (_initialized) return;
     await GoogleSignIn.instance.initialize();
     _initialized = true;
   }
 
-  /// Signs in with Google and links anonymous users when possible.
-  static Future<UserCredential> signInWithGoogle() async {
-    if (kIsWeb) {
-      final provider = GoogleAuthProvider();
-      provider.addScope(googleSignInFieldEmail);
-      provider.addScope(googleSignInFieldProfile);
-      provider.setCustomParameters({'prompt': 'select_account'});
-      return _auth.signInWithPopup(provider);
-    }
-
+  /// Completes Google auth via `google_sign_in` and maps it to Firebase.
+  ///
+  /// This path is required on macOS because `signInWithProvider` is not
+  /// implemented by the current Firebase Auth macOS plugin.
+  static Future<UserCredential> _signInWithGooglePlugin() async {
     await _ensureInitialized();
 
     final GoogleSignInAccount googleUser;
@@ -59,23 +58,26 @@ class AuthService {
       rethrow;
     }
 
-    final googleAuth = googleUser.authentication;
-    final authz = await googleUser.authorizationClient.authorizationForScopes([
-      googleSignInFieldEmail,
-      googleSignInFieldProfile,
-    ]);
+    final GoogleSignInAuthentication googleAuth = googleUser.authentication;
+    final GoogleSignInClientAuthorization? authz = await googleUser
+        .authorizationClient
+        .authorizationForScopes([
+          googleSignInFieldEmail,
+          googleSignInFieldProfile,
+        ]);
 
-    final credential = GoogleAuthProvider.credential(
+    final AuthCredential credential = GoogleAuthProvider.credential(
       accessToken: authz?.accessToken,
       idToken: googleAuth.idToken,
     );
 
-    final user = _auth.currentUser;
+    final User? user = _auth.currentUser;
     if (user != null && user.isAnonymous) {
       try {
         return await user.linkWithCredential(credential);
       } on FirebaseAuthException catch (error) {
-        if (error.code == 'credential-already-in-use') {
+        if (error.code == 'credential-already-in-use' ||
+            error.code == 'provider-already-linked') {
           await user.delete();
           return _auth.signInWithCredential(credential);
         }
@@ -87,12 +89,45 @@ class AuthService {
     return _auth.signInWithCredential(credential);
   }
 
-  /// Signs out from Firebase and clears native Google session state.
+  /// Signs in with Google and links anonymous users when possible.
+  static Future<UserCredential> signInWithGoogle() async {
+    final provider = GoogleAuthProvider();
+    provider.addScope(googleSignInFieldEmail);
+    provider.addScope(googleSignInFieldProfile);
+    provider.setCustomParameters({'prompt': googleSignInPromptSelectAccount});
+
+    if (kIsWeb) {
+      return _auth.signInWithPopup(provider);
+    }
+
+    if (_usesGoogleSignInPluginFlow) {
+      return _signInWithGooglePlugin();
+    }
+
+    final user = _auth.currentUser;
+    if (user != null && user.isAnonymous) {
+      try {
+        return await user.linkWithProvider(provider);
+      } on FirebaseAuthException catch (error) {
+        if (error.code == 'credential-already-in-use' ||
+            error.code == 'provider-already-linked') {
+          await user.delete();
+          return _auth.signInWithProvider(provider);
+        }
+
+        rethrow;
+      }
+    }
+
+    return _auth.signInWithProvider(provider);
+  }
+
+  /// Signs out from Firebase.
   static Future<void> signOut() async {
     try {
       await _auth.signOut();
     } finally {
-      if (!kIsWeb) {
+      if (_usesGoogleSignInPluginFlow) {
         await _ensureInitialized();
         await GoogleSignIn.instance.signOut();
       }

@@ -33,9 +33,9 @@ echo --- Pub Outdated
 flutter pub outdated
 
 echo --- Format sources
-dart format . 2>&1 | sed 's/^/    /'
-dart fix --apply 2>&1 | sed 's/^/    /'
-
+dart format ./lib
+dart format ./test
+ 
 echo --- Analyze
 flutter analyze lib test --no-pub 2>&1 | sed 's/^/    /'
 
@@ -49,5 +49,8 @@ echo --- fCheck
 mkdir -p "$PWD/.dart_tool/fcheck_pub_cache"
 export PUB_CACHE="$PWD/.dart_tool/fcheck_pub_cache"
 
-dart pub global activate fcheck "1.1.2" > /dev/null
-dart pub global run fcheck --svg --fix --list full .
+dart pub global activate fcheck "1.3.2" > /dev/null
+dart pub global run fcheck --svg --fix --list full \
+  --exclude "**/app_localizations.dart" \
+  --exclude "**/firebase_options.dart" \
+  --exclude "**/firebase_options.example.dart" 
