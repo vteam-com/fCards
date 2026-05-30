@@ -1,4 +1,7 @@
-<!DOCTYPE html><html><head>
+<!DOCTYPE html>
+<html>
+
+<head>
   <!--
     If you are serving your web app in a path other than the root, change the
     href value below to reflect the base path you are serving from.
@@ -18,7 +21,7 @@
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
   <meta name="description" content="9 Card Golf.">
 
-  
+
   <!-- iOS meta tags & icons -->
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -33,13 +36,13 @@
 
   <title>cards</title>
   <link rel="manifest" href="manifest.json">
-  
+
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
-  
-  
-  
-  
-  
+
+
+
+
+
   <style id="splash-screen-style">
     html {
       height: 100%
@@ -49,7 +52,7 @@
       margin: 0;
       min-height: 100%;
       background-color: #2B5216;
-          background-size: 100% 100%;
+      background-size: 100% 100%;
     }
 
     .center {
@@ -62,19 +65,22 @@
     }
 
     .contain {
-      display:block;
-      width:100%; height:100%;
+      display: block;
+      width: 100%;
+      height: 100%;
       object-fit: contain;
     }
 
     .stretch {
-      display:block;
-      width:100%; height:100%;
+      display: block;
+      width: 100%;
+      height: 100%;
     }
 
     .cover {
-      display:block;
-      width:100%; height:100%;
+      display: block;
+      width: 100%;
+      height: 100%;
       object-fit: cover;
     }
 
@@ -101,7 +107,7 @@
     @media (prefers-color-scheme: dark) {
       body {
         background-color: #2B5216;
-          }
+      }
     }
   </style>
   <script id="splash-screen-script">
@@ -111,19 +117,127 @@
       document.body.style.background = "transparent";
     }
   </script>
+  <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.min.js"></script>
+  <script>
+    window.__fcardsOrtSession = null;
+
+    window.fcardsOrtInit = async function (modelUrl) {
+      if (!window.ort) {
+        throw new Error('onnxruntime-web failed to load');
+      }
+      window.__fcardsOrtSession = await ort.InferenceSession.create(modelUrl, {
+        executionProviders: ['wasm'],
+      });
+      return true;
+    };
+
+    window.fcardsOrtDetect = async function (
+      rgbaBytes,
+      imageWidth,
+      imageHeight,
+      inputSize,
+      confidenceThreshold,
+      labels,
+    ) {
+      const session = window.__fcardsOrtSession;
+      if (!session) {
+        return [];
+      }
+
+      const src = rgbaBytes instanceof Uint8Array ? rgbaBytes : new Uint8Array(rgbaBytes);
+      const pixelCount = inputSize * inputSize;
+      const input = new Float32Array(3 * pixelCount);
+
+      for (let y = 0; y < inputSize; y++) {
+        for (let x = 0; x < inputSize; x++) {
+          const srcX = Math.min(imageWidth - 1, Math.floor((x * imageWidth) / inputSize));
+          const srcY = Math.min(imageHeight - 1, Math.floor((y * imageHeight) / inputSize));
+          const srcIndex = (srcY * imageWidth + srcX) * 4;
+          const dstIndex = y * inputSize + x;
+          input[dstIndex] = src[srcIndex] / 255.0;
+          input[pixelCount + dstIndex] = src[srcIndex + 1] / 255.0;
+          input[(2 * pixelCount) + dstIndex] = src[srcIndex + 2] / 255.0;
+        }
+      }
+
+      const tensor = new ort.Tensor('float32', input, [1, 3, inputSize, inputSize]);
+      const inputName = session.inputNames[0];
+      const outputName = session.outputNames[0];
+      const feeds = {};
+      feeds[inputName] = tensor;
+      const results = await session.run(feeds);
+      const output = results[outputName];
+      const data = output.data;
+      const dims = output.dims;
+
+      if (!dims || dims.length !== 3) {
+        return [];
+      }
+
+      let channels;
+      let boxes;
+      let getAt;
+      if (dims[1] >= 4 + labels.length) {
+        channels = dims[1];
+        boxes = dims[2];
+        getAt = (channel, index) => data[(channel * boxes) + index];
+      } else {
+        boxes = dims[1];
+        channels = dims[2];
+        getAt = (channel, index) => data[(index * channels) + channel];
+      }
+
+      const detections = [];
+      for (let i = 0; i < boxes; i++) {
+        let maxScore = 0.0;
+        let maxClass = 0;
+        for (let c = 0; c < labels.length; c++) {
+          const score = getAt(4 + c, i);
+          if (score > maxScore) {
+            maxScore = score;
+            maxClass = c;
+          }
+        }
+        if (maxScore < confidenceThreshold) continue;
+
+        const cx = getAt(0, i);
+        const cy = getAt(1, i);
+        const bw = getAt(2, i);
+        const bh = getAt(3, i);
+
+        detections.push({
+          label: labels[maxClass] || String(maxClass),
+          confidence: maxScore,
+          left: Math.min(1.0, Math.max(0.0, cx - (bw / 2.0))),
+          top: Math.min(1.0, Math.max(0.0, cy - (bh / 2.0))),
+          width: Math.min(1.0, Math.max(0.0, bw)),
+          height: Math.min(1.0, Math.max(0.0, bh)),
+        });
+      }
+
+      detections.sort((a, b) => b.confidence - a.confidence);
+      return JSON.stringify(detections);
+    };
+  </script>
 </head>
 
 <body>
   <picture id="splash">
-      <source srcset="splash/img/light-1x.png 1x, splash/img/light-2x.png 2x, splash/img/light-3x.png 3x, splash/img/light-4x.png 4x" media="(prefers-color-scheme: light)">
-      <source srcset="splash/img/dark-1x.png 1x, splash/img/dark-2x.png 2x, splash/img/dark-3x.png 3x, splash/img/dark-4x.png 4x" media="(prefers-color-scheme: dark)">
-      <img class="center" aria-hidden="true" src="splash/img/light-1x.png" alt="">
+    <source
+      srcset="splash/img/light-1x.png 1x, splash/img/light-2x.png 2x, splash/img/light-3x.png 3x, splash/img/light-4x.png 4x"
+      media="(prefers-color-scheme: light)">
+    <source
+      srcset="splash/img/dark-1x.png 1x, splash/img/dark-2x.png 2x, splash/img/dark-3x.png 3x, splash/img/dark-4x.png 4x"
+      media="(prefers-color-scheme: dark)">
+    <img class="center" aria-hidden="true" src="splash/img/light-1x.png" alt="">
   </picture>
-  
-  
-  
-  
+
+
+
+
   <script src="flutter_bootstrap.js" async=""></script>
 
 
-</body></html>
+</body>
+
+</html>

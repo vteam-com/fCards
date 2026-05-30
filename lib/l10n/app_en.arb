@@ -155,6 +155,7 @@
   },
   "playingAsGuest": "Playing as Guest",
   "pleaseEnterYourName": "Please enter your name above ⬆",
+  "rankLabel": "Rank",
   "readyToPlayPlayersAtTable": "Ready to play! {count} players at table.",
   "@readyToPlayPlayersAtTable": {
     "placeholders": {
@@ -179,6 +180,55 @@
     "placeholders": {
       "count": {
         "type": "int"
+      }
+    }
+  },
+  "scanCameraError": "Camera error: ",
+  "scanCard": "Scan Card",
+  "scanCardTitle": "Scan Card",
+  "scanFailedDecode": "Failed to decode captured image.",
+  "scanMacosPhotoHint": "On macOS, choose a card photo from your library to scan.",
+  "scanModelError": "Could not load model: ",
+  "scanModelLoading": "Model is still loading — please wait.",
+  "scanNoCameraFound": "No camera found on this device.",
+  "scanNoCardsDetected": "No cards detected. Try again with better lighting or framing.",
+  "scanDetectedScore": "Detected score: {score}",
+  "@scanDetectedScore": {
+    "placeholders": {
+      "score": {
+        "type": "int"
+      }
+    }
+  },
+  "scanScoreAddUpCards": "Score - Add Up Cards",
+  "scanScoreNeedNineCards": "Detect at least {count} cards before scoring.",
+  "@scanScoreNeedNineCards": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "scanScoreNoPlayers": "No players available to score.",
+  "scanScoreSavedForPlayer": "Saved {player} score: {score}. Next: {nextPlayer}",
+  "@scanScoreSavedForPlayer": {
+    "placeholders": {
+      "player": {
+        "type": "String"
+      },
+      "score": {
+        "type": "int"
+      },
+      "nextPlayer": {
+        "type": "String"
+      }
+    }
+  },
+  "scanScoringPlayer": "Scoring: {player}",
+  "@scanScoringPlayer": {
+    "placeholders": {
+      "player": {
+        "type": "String"
       }
     }
   },

@@ -4,6 +4,7 @@ import 'package:cards/models/app/auth_service.dart';
 import 'package:cards/models/app/firebase_options.dart';
 import 'package:cards/models/app/locale_controller.dart';
 import 'package:cards/models/game/backend_model.dart';
+import 'package:cards/screens/game/card_scan_screen.dart';
 import 'package:cards/screens/game/join_game_screen.dart';
 import 'package:cards/screens/game/start_game_screen.dart';
 import 'package:cards/screens/game/start_game_wizard_screen.dart';
@@ -72,6 +73,7 @@ class MyApp extends StatelessWidget {
           initialRoute: '/',
           routes: {
             '/': (BuildContext _) => const WelcomeScreen(),
+            '/scan': (BuildContext _) => const CardScanScreen(),
             '/start': (BuildContext _) => const StartGameWizardScreen(),
             '/game': (BuildContext _) => const StartScreen(joinMode: false),
             '/join': (BuildContext _) => const JoinGameScreen(),

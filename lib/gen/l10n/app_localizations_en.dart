@@ -229,6 +229,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get pleaseEnterYourName => 'Please enter your name above ⬆';
 
   @override
+  String get rankLabel => 'Rank';
+
+  @override
   String readyToPlayPlayersAtTable(int count) {
     return 'Ready to play! $count players at table.';
   }
@@ -250,6 +253,61 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String rounds(int count) {
     return '$count Rounds';
+  }
+
+  @override
+  String get scanCameraError => 'Camera error: ';
+
+  @override
+  String get scanCard => 'Scan Card';
+
+  @override
+  String get scanCardTitle => 'Scan Card';
+
+  @override
+  String get scanFailedDecode => 'Failed to decode captured image.';
+
+  @override
+  String get scanMacosPhotoHint =>
+      'On macOS, choose a card photo from your library to scan.';
+
+  @override
+  String get scanModelError => 'Could not load model: ';
+
+  @override
+  String get scanModelLoading => 'Model is still loading — please wait.';
+
+  @override
+  String get scanNoCameraFound => 'No camera found on this device.';
+
+  @override
+  String get scanNoCardsDetected =>
+      'No cards detected. Try again with better lighting or framing.';
+
+  @override
+  String scanDetectedScore(int score) {
+    return 'Detected score: $score';
+  }
+
+  @override
+  String get scanScoreAddUpCards => 'Score - Add Up Cards';
+
+  @override
+  String scanScoreNeedNineCards(int count) {
+    return 'Detect at least $count cards before scoring.';
+  }
+
+  @override
+  String get scanScoreNoPlayers => 'No players available to score.';
+
+  @override
+  String scanScoreSavedForPlayer(String player, int score, String nextPlayer) {
+    return 'Saved $player score: $score. Next: $nextPlayer';
+  }
+
+  @override
+  String scanScoringPlayer(String player) {
+    return 'Scoring: $player';
   }
 
   @override
