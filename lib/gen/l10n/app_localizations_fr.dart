@@ -229,6 +229,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get pleaseEnterYourName => 'Veuillez saisir votre nom ci-dessus ⬆';
 
   @override
+  String get rankLabel => 'Valeur';
+
+  @override
   String readyToPlayPlayersAtTable(int count) {
     return 'Prêt à jouer ! $count joueurs à la table.';
   }
@@ -250,6 +253,62 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String rounds(int count) {
     return '$count Tours';
+  }
+
+  @override
+  String get scanCameraError => 'Erreur de caméra : ';
+
+  @override
+  String get scanCard => 'Scanner une carte';
+
+  @override
+  String get scanCardTitle => 'Scanner une carte';
+
+  @override
+  String get scanFailedDecode => 'Impossible de décoder l\'image capturée.';
+
+  @override
+  String get scanMacosPhotoHint =>
+      'Sur macOS, choisissez une photo de carte depuis votre photothèque pour scanner.';
+
+  @override
+  String get scanModelError => 'Impossible de charger le modèle : ';
+
+  @override
+  String get scanModelLoading =>
+      'Le modèle est en cours de chargement — veuillez patienter.';
+
+  @override
+  String get scanNoCameraFound => 'Aucune caméra trouvée sur cet appareil.';
+
+  @override
+  String get scanNoCardsDetected =>
+      'Aucune carte détectée. Réessayez avec un meilleur éclairage ou cadrage.';
+
+  @override
+  String scanDetectedScore(int score) {
+    return 'Score détecté : $score';
+  }
+
+  @override
+  String get scanScoreAddUpCards => 'Score - Additionner les cartes';
+
+  @override
+  String scanScoreNeedNineCards(int count) {
+    return 'Détectez au moins $count cartes avant de compter le score.';
+  }
+
+  @override
+  String get scanScoreNoPlayers => 'Aucun joueur disponible pour le score.';
+
+  @override
+  String scanScoreSavedForPlayer(String player, int score, String nextPlayer) {
+    return 'Score enregistré pour $player : $score. Suivant : $nextPlayer';
+  }
+
+  @override
+  String scanScoringPlayer(String player) {
+    return 'Joueur en cours : $player';
   }
 
   @override

@@ -147,6 +147,7 @@
   },
   "playingAsGuest": "Jouer en invité",
   "pleaseEnterYourName": "Veuillez saisir votre nom ci-dessus ⬆",
+  "rankLabel": "Valeur",
   "readyToPlayPlayersAtTable": "Prêt à jouer ! {count} joueurs à la table.",
   "@readyToPlayPlayersAtTable": {
     "placeholders": {
@@ -171,6 +172,55 @@
     "placeholders": {
       "count": {
         "type": "int"
+      }
+    }
+  },
+  "scanCameraError": "Erreur de caméra : ",
+  "scanCard": "Scanner une carte",
+  "scanCardTitle": "Scanner une carte",
+  "scanFailedDecode": "Impossible de décoder l'image capturée.",
+  "scanMacosPhotoHint": "Sur macOS, choisissez une photo de carte depuis votre photothèque pour scanner.",
+  "scanModelError": "Impossible de charger le modèle : ",
+  "scanModelLoading": "Le modèle est en cours de chargement — veuillez patienter.",
+  "scanNoCameraFound": "Aucune caméra trouvée sur cet appareil.",
+  "scanNoCardsDetected": "Aucune carte détectée. Réessayez avec un meilleur éclairage ou cadrage.",
+  "scanDetectedScore": "Score détecté : {score}",
+  "@scanDetectedScore": {
+    "placeholders": {
+      "score": {
+        "type": "int"
+      }
+    }
+  },
+  "scanScoreAddUpCards": "Score - Additionner les cartes",
+  "scanScoreNeedNineCards": "Détectez au moins {count} cartes avant de compter le score.",
+  "@scanScoreNeedNineCards": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "scanScoreNoPlayers": "Aucun joueur disponible pour le score.",
+  "scanScoreSavedForPlayer": "Score enregistré pour {player} : {score}. Suivant : {nextPlayer}",
+  "@scanScoreSavedForPlayer": {
+    "placeholders": {
+      "player": {
+        "type": "String"
+      },
+      "score": {
+        "type": "int"
+      },
+      "nextPlayer": {
+        "type": "String"
+      }
+    }
+  },
+  "scanScoringPlayer": "Joueur en cours : {player}",
+  "@scanScoringPlayer": {
+    "placeholders": {
+      "player": {
+        "type": "String"
       }
     }
   },

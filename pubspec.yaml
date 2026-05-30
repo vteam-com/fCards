@@ -29,6 +29,7 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   animate_do: ^5.1.0
+  camera: ^0.11.0
   firebase_auth: ^6.2.0
   firebase_core: ^4.5.0
   firebase_database: ^12.1.4
@@ -38,6 +39,8 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   flutter_markdown: ^0.7.7+1
+  image_picker: ^1.2.0
+  image: ^4.8.0
   intl: ^0.20.2
   logger: ^2.6.2
   mockito: ^5.6.3
@@ -45,6 +48,7 @@ dependencies:
   share_plus: ^13.1.0
   shared_preferences: ^2.5.4
   the_splash: ^0.3.1
+  tflite_flutter: ^0.11.0
   universal_platform: ^1.1.0
   url_launcher: ^6.3.2
   web: ^1.1.1
@@ -76,6 +80,7 @@ flutter:
     - assets/generated/
       # for read the config
     - flutter_native_splash.yaml
+    - assets/models/
 
   fonts:
     - family: Roboto

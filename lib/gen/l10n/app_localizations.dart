@@ -488,6 +488,12 @@ abstract class AppLocalizations {
   /// **'Please enter your name above ⬆'**
   String get pleaseEnterYourName;
 
+  /// No description provided for @rankLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Rank'**
+  String get rankLabel;
+
   /// No description provided for @readyToPlayPlayersAtTable.
   ///
   /// In en, this message translates to:
@@ -523,6 +529,96 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{count} Rounds'**
   String rounds(int count);
+
+  /// No description provided for @scanCameraError.
+  ///
+  /// In en, this message translates to:
+  /// **'Camera error: '**
+  String get scanCameraError;
+
+  /// No description provided for @scanCard.
+  ///
+  /// In en, this message translates to:
+  /// **'Scan Card'**
+  String get scanCard;
+
+  /// No description provided for @scanCardTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Scan Card'**
+  String get scanCardTitle;
+
+  /// No description provided for @scanFailedDecode.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to decode captured image.'**
+  String get scanFailedDecode;
+
+  /// No description provided for @scanMacosPhotoHint.
+  ///
+  /// In en, this message translates to:
+  /// **'On macOS, choose a card photo from your library to scan.'**
+  String get scanMacosPhotoHint;
+
+  /// No description provided for @scanModelError.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not load model: '**
+  String get scanModelError;
+
+  /// No description provided for @scanModelLoading.
+  ///
+  /// In en, this message translates to:
+  /// **'Model is still loading — please wait.'**
+  String get scanModelLoading;
+
+  /// No description provided for @scanNoCameraFound.
+  ///
+  /// In en, this message translates to:
+  /// **'No camera found on this device.'**
+  String get scanNoCameraFound;
+
+  /// No description provided for @scanNoCardsDetected.
+  ///
+  /// In en, this message translates to:
+  /// **'No cards detected. Try again with better lighting or framing.'**
+  String get scanNoCardsDetected;
+
+  /// No description provided for @scanDetectedScore.
+  ///
+  /// In en, this message translates to:
+  /// **'Detected score: {score}'**
+  String scanDetectedScore(int score);
+
+  /// No description provided for @scanScoreAddUpCards.
+  ///
+  /// In en, this message translates to:
+  /// **'Score - Add Up Cards'**
+  String get scanScoreAddUpCards;
+
+  /// No description provided for @scanScoreNeedNineCards.
+  ///
+  /// In en, this message translates to:
+  /// **'Detect at least {count} cards before scoring.'**
+  String scanScoreNeedNineCards(int count);
+
+  /// No description provided for @scanScoreNoPlayers.
+  ///
+  /// In en, this message translates to:
+  /// **'No players available to score.'**
+  String get scanScoreNoPlayers;
+
+  /// No description provided for @scanScoreSavedForPlayer.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved {player} score: {score}. Next: {nextPlayer}'**
+  String scanScoreSavedForPlayer(String player, int score, String nextPlayer);
+
+  /// No description provided for @scanScoringPlayer.
+  ///
+  /// In en, this message translates to:
+  /// **'Scoring: {player}'**
+  String scanScoringPlayer(String player);
 
   /// No description provided for @scoreKeeper.
   ///
