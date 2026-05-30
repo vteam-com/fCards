@@ -1,0 +1,35 @@
+description: Ultralytics YOLOv8m_tuned model trained on my_dataset_labeled/data.yaml
+author: Ultralytics
+date: '2026-05-30T09:33:11.582975'
+version: 8.4.56
+license: AGPL-3.0 License (https://ultralytics.com/license)
+docs: https://docs.ultralytics.com
+stride: 32
+task: detect
+batch: 1
+imgsz:
+- 640
+- 640
+names:
+  0: 10h
+  1: 2h
+  2: 3h
+  3: 4h
+  4: 5h
+  5: 6h
+  6: 7h
+  7: 8h
+  8: 9h
+  9: Ah
+  10: Jh
+  11: Kh
+  12: Qh
+args:
+  data: null
+  batch: 1
+  fraction: 1.0
+  half: false
+  int8: false
+  nms: false
+channels: 3
+end2end: false
