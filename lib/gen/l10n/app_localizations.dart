@@ -188,12 +188,6 @@ abstract class AppLocalizations {
   /// **'Discard →\nor\n↓ swap'**
   String get discardOrSwap;
 
-  /// No description provided for @done.
-  ///
-  /// In en, this message translates to:
-  /// **'Done'**
-  String get done;
-
   /// No description provided for @drawCardHere.
   ///
   /// In en, this message translates to:
@@ -379,12 +373,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'MiniPut 4 Cards'**
   String get miniPutFull;
-
-  /// No description provided for @nameForPlayerNumber.
-  ///
-  /// In en, this message translates to:
-  /// **'Name for Player #{number}'**
-  String nameForPlayerNumber(int number);
 
   /// No description provided for @newGame.
   ///

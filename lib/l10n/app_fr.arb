@@ -39,7 +39,6 @@
   "createNewTable": "Créer une table",
   "deleteLastRow": "Supprimer la dernière ligne",
   "discardOrSwap": "Défausser →\nou\n↓ échanger",
-  "done": "Valider",
   "drawCardHere": "Piochez\nune carte\nici\n→",
   "enterTableName": "Entrez le nom de la nouvelle table.",
   "enterYourName": "Entrez votre nom",
@@ -109,14 +108,6 @@
   "last": "DERNIER",
   "miniPut": "MiniPut",
   "miniPutFull": "MiniPut 4 Cartes",
-  "nameForPlayerNumber": "Nom du joueur n°{number}",
-  "@nameForPlayerNumber": {
-    "placeholders": {
-      "number": {
-        "type": "int"
-      }
-    }
-  },
   "newGame": "Nouvelle partie",
   "next": "Suivant",
   "noCardsAvailableToDraw": "Aucune carte disponible à piocher !",

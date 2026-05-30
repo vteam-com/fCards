@@ -44,7 +44,6 @@
   "createNewTable": "Create New Table",
   "deleteLastRow": "Delete Last Row",
   "discardOrSwap": "Discard →\nor\n↓ swap",
-  "done": "Done",
   "drawCardHere": "Draw\na card\nhere\n→",
   "enterTableName": "Enter name of the new table.",
   "enterYourName": "Enter Your Name",
@@ -117,14 +116,6 @@
     "description": "DO NOT TRANSLATE."
   },
   "miniPutFull": "MiniPut 4 Cards",
-  "nameForPlayerNumber": "Name for Player #{number}",
-  "@nameForPlayerNumber": {
-    "placeholders": {
-      "number": {
-        "type": "int"
-      }
-    }
-  },
   "newGame": "New Game",
   "next": "Next",
   "noCardsAvailableToDraw": "No cards available to draw!",

@@ -131,8 +131,13 @@ class _PlayerHeaderState extends State<PlayerHeader> {
           Text(
             widget.playerName,
             textAlign: TextAlign.center,
+            maxLines: 1,
+            softWrap: false,
             overflow: TextOverflow.fade,
-            style: TextStyle(fontSize: ConstLayout.textS),
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: ConstLayout.textM,
+            ),
           ),
 
           //
@@ -250,87 +255,61 @@ class _PlayerHeaderState extends State<PlayerHeader> {
                 width: PlayerHeaderConstants.dialogBorderWidth,
               ),
             ),
-            title: Text(
-              widget.playerIndex != null
-                  ? localizations.nameForPlayerNumber(widget.playerIndex! + 1)
-                  : localizations.playerName,
-            ),
-            content: Column(
-              mainAxisSize: MainAxisSize.min,
-              spacing: PlayerHeaderConstants.dialogContentSpacing,
-              children: [
-                EditBox(
-                  label: localizations.playerName,
-                  controller: controller,
-                  onSubmitted: () {},
-                  errorStatus: '',
-                  rightSideChild: null,
-                ),
-                MyButtonRectangle(
-                  width: double.infinity,
-                  height: PlayerHeaderConstants.inputHeight,
-                  onTap: () {
-                    if (controller.text.isNotEmpty) {
-                      widget.onNameChanged(controller.text);
-                    }
-                    Navigator.of(context).pop();
-                  },
-                  child: Text(
-                    localizations.done,
-                    style: TextStyle(
-                      color: colorScheme.onPrimaryContainer,
-                      fontWeight: FontWeight.bold,
-                    ),
+            content: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                spacing: PlayerHeaderConstants.dialogContentSpacing,
+                children: [
+                  EditBox(
+                    label: localizations.playerName,
+                    controller: controller,
+                    onSubmitted: () {},
+                    errorStatus: '',
+                    rightSideChild: null,
+                    onChanged: (_) => widget.onNameChanged(controller.text),
                   ),
-                ),
-                Divider(color: colorScheme.primary),
-                Wrap(
-                  spacing: PlayerHeaderConstants.wrapSpacing,
-                  runSpacing: PlayerHeaderConstants.wrapSpacing,
-                  children: [
-                    MyButtonRectangle(
-                      width: null, // Allow dynamic width
-                      height: PlayerHeaderConstants.inputHeight,
-                      onTap: () {
-                        Navigator.of(context).pop();
-                        widget.onPlayerAdded?.call();
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: ConstLayout.sizeM,
-                        ),
-                        child: Text(
-                          localizations.addAnotherPlayer,
-                          style: TextStyle(
-                            color: colorScheme.onSurface,
-                            fontWeight: FontWeight.bold,
+                  Wrap(
+                    spacing: PlayerHeaderConstants.wrapSpacing,
+                    runSpacing: PlayerHeaderConstants.wrapSpacing,
+                    children: [
+                      MyButtonRectangle.secondary(
+                        width: null, // Allow dynamic width
+                        height: PlayerHeaderConstants.inputHeight,
+                        onTap: () {
+                          Navigator.of(context).pop();
+                          widget.onPlayerAdded?.call();
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: ConstLayout.sizeM,
+                          ),
+                          child: Text(
+                            localizations.addAnotherPlayer,
+                            style: const TextStyle(fontWeight: FontWeight.bold),
                           ),
                         ),
                       ),
-                    ),
-                    MyButtonRectangle(
-                      width: null, // Allow dynamic width
-                      height: PlayerHeaderConstants.inputHeight,
-                      onTap: () {
-                        Navigator.of(context).pop();
-                        _showRemoveConfirmationDialog();
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: ConstLayout.sizeM,
-                        ),
-                        child: Text(
-                          localizations.removeThisPlayer,
-                          style: TextStyle(
-                            color: colorScheme.error,
-                            fontWeight: FontWeight.bold,
+                      MyButtonRectangle.danger(
+                        width: null, // Allow dynamic width
+                        height: PlayerHeaderConstants.inputHeight,
+                        onTap: () {
+                          Navigator.of(context).pop();
+                          _showRemoveConfirmationDialog();
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: ConstLayout.sizeM,
+                          ),
+                          child: Text(
+                            localizations.removeThisPlayer,
+                            style: const TextStyle(fontWeight: FontWeight.bold),
                           ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
-              ],
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         );
@@ -374,12 +353,16 @@ class _PlayerHeaderState extends State<PlayerHeader> {
             localizations.removePlayerConfirmation(widget.playerName),
           ),
           actions: [
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(),
+            MyButtonRectangle.secondary(
+              width: ConstLayout.dialogButtonWidth,
+              height: ConstLayout.dialogButtonHeight,
+              onTap: () => Navigator.of(context).pop(),
               child: Text(localizations.cancel),
             ),
-            TextButton(
-              onPressed: () {
+            MyButtonRectangle.danger(
+              width: ConstLayout.dialogButtonWidth,
+              height: ConstLayout.dialogButtonHeight,
+              onTap: () {
                 Navigator.of(context).pop();
                 widget.onPlayerRemoved();
               },
