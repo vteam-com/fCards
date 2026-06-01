@@ -1,0 +1,74 @@
+description: Ultralytics YOLOv8m_synthetic model trained on data/data.yaml
+author: Ultralytics
+date: '2026-05-30T23:08:04.263933'
+version: 8.4.56
+license: AGPL-3.0 License (https://ultralytics.com/license)
+docs: https://docs.ultralytics.com
+stride: 32
+task: detect
+batch: 1
+imgsz:
+- 640
+- 640
+names:
+  0: 10c
+  1: 10d
+  2: 10h
+  3: 10s
+  4: 2c
+  5: 2d
+  6: 2h
+  7: 2s
+  8: 3c
+  9: 3d
+  10: 3h
+  11: 3s
+  12: 4c
+  13: 4d
+  14: 4h
+  15: 4s
+  16: 5c
+  17: 5d
+  18: 5h
+  19: 5s
+  20: 6c
+  21: 6d
+  22: 6h
+  23: 6s
+  24: 7c
+  25: 7d
+  26: 7h
+  27: 7s
+  28: 8c
+  29: 8d
+  30: 8h
+  31: 8s
+  32: 9c
+  33: 9d
+  34: 9h
+  35: 9s
+  36: Ac
+  37: Ad
+  38: Ah
+  39: As
+  40: Jc
+  41: Jd
+  42: Jh
+  43: Js
+  44: Kc
+  45: Kd
+  46: Kh
+  47: Ks
+  48: Qc
+  49: Qd
+  50: Qh
+  51: Qs
+args:
+  data: null
+  batch: 1
+  fraction: 1.0
+  half: false
+  int8: false
+  nms: false
+channels: 3
+end2end: false

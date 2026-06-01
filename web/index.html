@@ -117,18 +117,38 @@
       document.body.style.background = "transparent";
     }
   </script>
-  <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web@1.20.1/dist/ort.min.js"></script>
   <script>
     window.__fcardsOrtSession = null;
 
-    window.fcardsOrtInit = async function (modelUrl) {
+    window.fcardsOrtInit = async function (modelBytes) {
       if (!window.ort) {
         throw new Error('onnxruntime-web failed to load');
       }
-      window.__fcardsOrtSession = await ort.InferenceSession.create(modelUrl, {
-        executionProviders: ['wasm'],
-      });
-      return true;
+      // Accept raw bytes (Uint8Array) from Dart's rootBundle so we never need
+      // to construct a platform-specific URL for the asset.
+      const buffer = modelBytes instanceof Uint8Array
+        ? modelBytes.buffer
+        : modelBytes;
+
+      // YOLO uses nearest-neighbour Resize which is unsupported in WebGL's
+      // packed-texture path ("resize (packed) does not support mode: nearest").
+      // This error fires at *inference* time even when pack=false is set, so
+      // we skip WebGL entirely and always use the WASM backend.
+      const providers = ['wasm'];
+
+      let lastError = null;
+      for (const provider of providers) {
+        try {
+          window.__fcardsOrtSession = await ort.InferenceSession.create(buffer, {
+            executionProviders: [provider],
+          });
+          return true;
+        } catch (e) {
+          lastError = e;
+        }
+      }
+      throw lastError;
     };
 
     window.fcardsOrtDetect = async function (
@@ -200,10 +220,11 @@
         }
         if (maxScore < confidenceThreshold) continue;
 
-        const cx = getAt(0, i);
-        const cy = getAt(1, i);
-        const bw = getAt(2, i);
-        const bh = getAt(3, i);
+        // ONNX export outputs pixel coordinates (0–inputSize); normalise to [0,1].
+        const cx = getAt(0, i) / inputSize;
+        const cy = getAt(1, i) / inputSize;
+        const bw = getAt(2, i) / inputSize;
+        const bh = getAt(3, i) / inputSize;
 
         detections.push({
           label: labels[maxClass] || String(maxClass),
@@ -217,6 +238,111 @@
 
       detections.sort((a, b) => b.confidence - a.confidence);
       return JSON.stringify(detections);
+    };
+
+    // Decodes any browser-supported image format (including HEIF/HEIC on iOS
+    // Safari) via the Canvas API, then runs ONNX inference in one shot.
+    // Returns JSON: { detections: [...], jpeg: "<base64>" }.
+    window.fcardsDetectFromImageBytes = async function (
+      imageBytes,
+      inputSize,
+      confidenceThreshold,
+      labels,
+    ) {
+      const bytes = imageBytes instanceof Uint8Array
+        ? imageBytes
+        : new Uint8Array(imageBytes);
+      const blob = new Blob([bytes]);
+      const url = URL.createObjectURL(blob);
+
+      try {
+        // Browser Image decodes any format it understands (HEIF on iOS Safari,
+        // JPEG, PNG, WebP, etc.) without the WASM memory overhead of Dart's
+        // image package.
+        const htmlImg = await new Promise((resolve, reject) => {
+          const img = new Image();
+          img.onload = () => resolve(img);
+          img.onerror = () => reject(new Error('Failed to decode image'));
+          img.src = url;
+        });
+
+        // Draw at model input size.
+        const canvas = document.createElement('canvas');
+        canvas.width = inputSize;
+        canvas.height = inputSize;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(htmlImg, 0, 0, inputSize, inputSize);
+
+        // JPEG for Flutter's Image.memory display widget.
+        const jpegBase64 = canvas.toDataURL('image/jpeg', 0.85).split(',')[1];
+
+        const session = window.__fcardsOrtSession;
+        if (!session) {
+          return JSON.stringify({ detections: [], jpeg: jpegBase64 });
+        }
+
+        // Build CHW float32 tensor from RGBA canvas pixels.
+        const rgba = ctx.getImageData(0, 0, inputSize, inputSize).data;
+        const pixelCount = inputSize * inputSize;
+        const input = new Float32Array(3 * pixelCount);
+        for (let i = 0; i < pixelCount; i++) {
+          input[i] = rgba[i * 4] / 255.0;
+          input[pixelCount + i] = rgba[i * 4 + 1] / 255.0;
+          input[2 * pixelCount + i] = rgba[i * 4 + 2] / 255.0;
+        }
+
+        const tensor = new ort.Tensor('float32', input, [1, 3, inputSize, inputSize]);
+        const feeds = {};
+        feeds[session.inputNames[0]] = tensor;
+        const results = await session.run(feeds);
+        const output = results[session.outputNames[0]];
+        const data = output.data;
+        const dims = output.dims;
+
+        if (!dims || dims.length !== 3) {
+          return JSON.stringify({ detections: [], jpeg: jpegBase64 });
+        }
+
+        let channels, boxes, getAt;
+        if (dims[1] >= 4 + labels.length) {
+          channels = dims[1];
+          boxes = dims[2];
+          getAt = (ch, idx) => data[(ch * boxes) + idx];
+        } else {
+          boxes = dims[1];
+          channels = dims[2];
+          getAt = (ch, idx) => data[(idx * channels) + ch];
+        }
+
+        const detections = [];
+        for (let i = 0; i < boxes; i++) {
+          let maxScore = 0, maxClass = 0;
+          for (let c = 0; c < labels.length; c++) {
+            const score = getAt(4 + c, i);
+            if (score > maxScore) { maxScore = score; maxClass = c; }
+          }
+          if (maxScore < confidenceThreshold) continue;
+
+          // ONNX export outputs pixel coordinates (0–inputSize); normalise to [0,1].
+          const cx = getAt(0, i) / inputSize;
+          const cy = getAt(1, i) / inputSize;
+          const bw = getAt(2, i) / inputSize;
+          const bh = getAt(3, i) / inputSize;
+          detections.push({
+            label: labels[maxClass] || String(maxClass),
+            confidence: maxScore,
+            left: Math.min(1, Math.max(0, cx - bw / 2)),
+            top: Math.min(1, Math.max(0, cy - bh / 2)),
+            width: Math.min(1, Math.max(0, bw)),
+            height: Math.min(1, Math.max(0, bh)),
+          });
+        }
+
+        detections.sort((a, b) => b.confidence - a.confidence);
+        return JSON.stringify({ detections, jpeg: jpegBase64 });
+      } finally {
+        URL.revokeObjectURL(url);
+      }
     };
   </script>
 </head>

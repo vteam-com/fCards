@@ -72,5 +72,9 @@
 		<false/>
 		<key>NSCameraUsageDescription</key>
 		<string>Camera access is needed to scan and identify playing cards.</string>
-	</dict>
+		<key>UIFileSharingEnabled</key>
+		<true/>
+		<key>LSSupportsOpeningDocumentsInPlace</key>
+		<true/>
+        </dict>
 </plist>
