@@ -235,9 +235,107 @@ class _PlayerHeaderState extends State<PlayerHeader> {
     final focusNode = FocusNode();
     final colorScheme = Theme.of(context).colorScheme;
     final AppLocalizations localizations = AppLocalizations.of(context);
+    final bool isSmallScreen =
+        MediaQuery.of(context).size.width < ConstLayout.breakpointPhone;
     showDialog(
       context: context,
       builder: (context) {
+        final editContent = Column(
+          mainAxisSize: MainAxisSize.min,
+          spacing: PlayerHeaderConstants.dialogContentSpacing,
+          children: [
+            EditBox(
+              label: localizations.playerName,
+              controller: controller,
+              onSubmitted: () {},
+              errorStatus: '',
+              rightSideChild: null,
+              onChanged: (_) => widget.onNameChanged(controller.text),
+            ),
+            Wrap(
+              spacing: PlayerHeaderConstants.wrapSpacing,
+              runSpacing: PlayerHeaderConstants.wrapSpacing,
+              children: [
+                MyButtonRectangle.secondary(
+                  width: null, // Allow dynamic width
+                  height: PlayerHeaderConstants.inputHeight,
+                  onTap: () {
+                    Navigator.of(context).pop();
+                    widget.onPlayerAdded?.call();
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: ConstLayout.sizeM,
+                    ),
+                    child: Text(
+                      localizations.addAnotherPlayer,
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ),
+                MyButtonRectangle.danger(
+                  width: null, // Allow dynamic width
+                  height: PlayerHeaderConstants.inputHeight,
+                  onTap: () {
+                    Navigator.of(context).pop();
+                    _showRemoveConfirmationDialog();
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: ConstLayout.sizeM,
+                    ),
+                    child: Text(
+                      localizations.removeThisPlayer,
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        );
+
+        final themedContent = Theme(
+          data: Theme.of(context).copyWith(
+            textSelectionTheme: TextSelectionThemeData(
+              selectionColor: colorScheme.primaryContainer,
+            ),
+          ),
+          child: editContent,
+        );
+
+        if (isSmallScreen) {
+          return Dialog.fullscreen(
+            backgroundColor: colorScheme.surface,
+            child: Scaffold(
+              resizeToAvoidBottomInset: true,
+              backgroundColor: colorScheme.surface,
+              body: SafeArea(
+                child: Padding(
+                  padding: const EdgeInsets.all(ConstLayout.paddingL),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    spacing: PlayerHeaderConstants.dialogContentSpacing,
+                    children: [
+                      themedContent,
+                      MyButtonRectangle(
+                        width: double.infinity,
+                        height: PlayerHeaderConstants.inputHeight,
+                        onTap: () => Navigator.of(context).pop(),
+                        child: Text(
+                          localizations.done,
+                          style: const TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          );
+        }
+
         return Theme(
           data: Theme.of(context).copyWith(
             textSelectionTheme: TextSelectionThemeData(
@@ -255,62 +353,7 @@ class _PlayerHeaderState extends State<PlayerHeader> {
                 width: PlayerHeaderConstants.dialogBorderWidth,
               ),
             ),
-            content: SingleChildScrollView(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                spacing: PlayerHeaderConstants.dialogContentSpacing,
-                children: [
-                  EditBox(
-                    label: localizations.playerName,
-                    controller: controller,
-                    onSubmitted: () {},
-                    errorStatus: '',
-                    rightSideChild: null,
-                    onChanged: (_) => widget.onNameChanged(controller.text),
-                  ),
-                  Wrap(
-                    spacing: PlayerHeaderConstants.wrapSpacing,
-                    runSpacing: PlayerHeaderConstants.wrapSpacing,
-                    children: [
-                      MyButtonRectangle.secondary(
-                        width: null, // Allow dynamic width
-                        height: PlayerHeaderConstants.inputHeight,
-                        onTap: () {
-                          Navigator.of(context).pop();
-                          widget.onPlayerAdded?.call();
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: ConstLayout.sizeM,
-                          ),
-                          child: Text(
-                            localizations.addAnotherPlayer,
-                            style: const TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                      ),
-                      MyButtonRectangle.danger(
-                        width: null, // Allow dynamic width
-                        height: PlayerHeaderConstants.inputHeight,
-                        onTap: () {
-                          Navigator.of(context).pop();
-                          _showRemoveConfirmationDialog();
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: ConstLayout.sizeM,
-                          ),
-                          child: Text(
-                            localizations.removeThisPlayer,
-                            style: const TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
+            content: SingleChildScrollView(child: editContent),
           ),
         );
       },

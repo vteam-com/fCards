@@ -4,6 +4,9 @@ import 'package:camera/camera.dart';
 import 'package:cards/gen/l10n/app_localizations.dart';
 import 'package:cards/models/app/card_detection.dart';
 import 'package:cards/models/app/constants_layout.dart';
+import 'package:cards/models/app/correction_sample_store.dart';
+import 'package:cards/models/app/correction_sample_store_factory.dart';
+import 'package:cards/models/app/tflite_rank_parser.dart';
 import 'package:cards/models/app/tflite_service.dart';
 import 'package:cards/widgets/buttons/my_button_rectangle.dart';
 import 'package:cards/widgets/helpers/screen.dart';
@@ -11,6 +14,8 @@ import 'package:flutter/material.dart';
 import 'package:image/image.dart' as img;
 import 'package:image_picker/image_picker.dart';
 import 'package:universal_platform/universal_platform.dart';
+
+part 'card_scan_overlay.dart';
 
 /// Screen that opens the device camera, captures a photo on demand, and
 /// runs the on-device YOLOv8 TFLite model to detect and label playing cards.
@@ -27,22 +32,39 @@ class CardScanScreen extends StatefulWidget {
 }
 
 class _CardScanScreenState extends State<CardScanScreen> {
-  static const int _expectedDetectedCards = 9;
-  static const double _nmsIouThreshold = 0.35;
-  static const int _gridDimension = 3;
-  static const double _modelImageSize = TfliteService.modelInputSize * 1.0;
-  static const double _scoreFontScale = 3.0;
-
-  CameraController? _controller;
-  List<CardDetection> _detections = [];
-  _GridInference? _gridInference;
+  CameraDescription? _activeCamera;
   Uint8List? _capturedImageBytes;
+  CameraController? _controller;
+  final CorrectionSampleStore _correctionStore = createCorrectionSampleStore();
+  static const List<int> _correctionValues = <int>[
+    TfliteService.jokerRankValue,
+    TfliteRankParser.rankValueKing,
+    TfliteRankParser.rankValueAce,
+    _minNumericCardValue,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    TfliteRankParser.rankValueJack,
+    TfliteRankParser.rankValueQueen,
+  ];
+  List<CardDetection> _detections = [];
   String? _errorMessage;
+  static const int _expectedDetectedCards = 9;
+  static const int _gridDimension = 3;
+  _GridInference? _gridInference;
+  static const double _half = 2.0;
   final ImagePicker _imagePicker = ImagePicker();
   bool _isCameraReady = false;
   bool _isScanning = false;
-
-  bool get _isShowingCapturedResult => _capturedImageBytes != null;
+  static const int _minNumericCardValue = 2;
+  static const double _modelImageSize = TfliteService.modelInputSize * 1.0;
+  static const double _nmsIouThreshold = 0.35;
+  static const double _scoreFontScale = 3.0;
   @override
   void initState() {
     super.initState();
@@ -68,8 +90,14 @@ class _CardScanScreenState extends State<CardScanScreen> {
 
   /// Selects the correct top-level body widget based on current state.
   Widget _buildBody(AppLocalizations l10n) {
+    if (_isShowingCapturedResult) {
+      return _buildCapturedResultBody(l10n);
+    }
     if (UniversalPlatform.isMacOS) {
       return _buildMacOsBody(l10n);
+    }
+    if (UniversalPlatform.isWeb) {
+      return _buildWebBody(l10n);
     }
     if (_errorMessage != null) {
       return _buildErrorView();
@@ -86,6 +114,179 @@ class _CardScanScreenState extends State<CardScanScreen> {
     );
   }
 
+  /// Shows the captured image with detection overlays on all platforms.
+  Widget _buildCapturedResultBody(AppLocalizations l10n) {
+    return Column(
+      children: [
+        Expanded(child: _buildPreviewWithOverlay()),
+        _buildScoreAndScanRow(l10n),
+        if (_gridInference != null)
+          Text(
+            l10n.scanTapToCorrect,
+            style: const TextStyle(
+              color: Colors.white70,
+              fontSize: ConstLayout.textS,
+            ),
+          ),
+        const SizedBox(height: ConstLayout.paddingL),
+      ],
+    );
+  }
+
+  /// Renders the error message centred on screen.
+  Widget _buildErrorView() {
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(ConstLayout.paddingXXL),
+        child: Text(
+          _errorMessage!,
+          style: const TextStyle(
+            color: Colors.redAccent,
+            fontSize: ConstLayout.textS,
+          ),
+          textAlign: TextAlign.center,
+        ),
+      ),
+    );
+  }
+
+  /// Shared file-picker UI used on macOS and web.
+  Widget _buildFilePickerBody(AppLocalizations l10n, String hint) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const Icon(
+          Icons.photo_library,
+          color: Colors.white,
+          size: ConstLayout.iconL,
+        ),
+        const SizedBox(height: ConstLayout.paddingM),
+        Text(
+          hint,
+          textAlign: TextAlign.center,
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: ConstLayout.textS,
+          ),
+        ),
+        if (_errorMessage != null) ...<Widget>[
+          const SizedBox(height: ConstLayout.paddingS),
+          Text(
+            _errorMessage!,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              color: Colors.redAccent,
+              fontSize: ConstLayout.textS,
+            ),
+          ),
+        ],
+        const SizedBox(height: ConstLayout.paddingM),
+        _buildScoreAndScanRow(l10n),
+      ],
+    );
+  }
+
+  /// Builds the fallback UI for macOS where `camera` is not available.
+  Widget _buildMacOsBody(AppLocalizations l10n) =>
+      _buildFilePickerBody(l10n, l10n.scanMacosPhotoHint);
+
+  /// Stacks the camera preview with the detection bounding-box overlay.
+  Widget _buildPreviewWithOverlay() {
+    final capturedImageBytes = _capturedImageBytes;
+    final overlayNumberStyle = _scoreNumberStyle(
+      context,
+      fontSize: ConstLayout.textS,
+    );
+    final cellNumberStyle = _scoreNumberStyle(
+      context,
+      fontSize: ConstLayout.textM * _scoreFontScale,
+    );
+    if (capturedImageBytes == null) {
+      final preview = CameraPreview(_controller!);
+      return Stack(
+        fit: StackFit.expand,
+        children: [
+          _shouldFlipHorizontally
+              ? Transform(
+                  alignment: Alignment.center,
+                  transform: Matrix4.diagonal3Values(-1.0, 1.0, 1.0),
+                  child: preview,
+                )
+              : preview,
+          if (_detections.isNotEmpty)
+            CustomPaint(
+              painter: _DetectionOverlayPainter(
+                detections: _detections,
+                gridInference: _gridInference,
+                overlayNumberStyle: overlayNumberStyle,
+                cellNumberStyle: cellNumberStyle,
+              ),
+            ),
+        ],
+      );
+    }
+
+    return LayoutBuilder(
+      builder: (_, constraints) {
+        final canvasSize = Size(constraints.maxWidth, constraints.maxHeight);
+        final destinationRect = _containedRect(
+          canvasSize,
+          const Size(_modelImageSize, _modelImageSize),
+        );
+
+        return GestureDetector(
+          behavior: HitTestBehavior.opaque,
+          onTapUp: (details) => _handleReviewTap(details, destinationRect),
+          child: Stack(
+            fit: StackFit.expand,
+            children: [
+              Positioned.fromRect(
+                rect: destinationRect,
+                child: Image.memory(capturedImageBytes, fit: BoxFit.fill),
+              ),
+              if (_detections.isNotEmpty)
+                CustomPaint(
+                  painter: _DetectionOverlayPainter(
+                    detections: _detections,
+                    gridInference: _gridInference,
+                    overlayNumberStyle: overlayNumberStyle,
+                    cellNumberStyle: cellNumberStyle,
+                    contentRect: destinationRect,
+                  ),
+                ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  /// SCAN button — danger style in preview, primary style in review.
+  Widget _buildScanButton(AppLocalizations l10n) {
+    final isShowingCapturedResult = _isShowingCapturedResult;
+    if (isShowingCapturedResult) {
+      return MyButtonRectangle.primary(
+        onTap: _isScanning ? null : _resetToScanMode,
+        child: const Icon(Icons.camera_alt),
+      );
+    }
+
+    return MyButtonRectangle.danger(
+      onTap: _isScanning ? null : _scan,
+      child: _isScanning
+          ? const SizedBox(
+              width: ConstLayout.iconXS,
+              height: ConstLayout.iconXS,
+              child: CircularProgressIndicator(
+                color: Colors.white,
+                strokeWidth: ConstLayout.strokeS,
+              ),
+            )
+          : Text(l10n.scanCard),
+    );
+  }
+
+  /// Builds the bottom row showing the current detected score and the SCAN/retake button.
   Widget _buildScoreAndScanRow(AppLocalizations l10n) {
     final isReviewMode = _isShowingCapturedResult;
     return Padding(
@@ -125,177 +326,11 @@ class _CardScanScreenState extends State<CardScanScreen> {
     );
   }
 
-  /// Renders the error message centred on screen.
-  Widget _buildErrorView() {
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.all(ConstLayout.paddingXXL),
-        child: Text(
-          _errorMessage!,
-          style: const TextStyle(
-            color: Colors.redAccent,
-            fontSize: ConstLayout.textS,
-          ),
-          textAlign: TextAlign.center,
-        ),
-      ),
-    );
-  }
+  /// Builds the UI for web where the camera is replaced by a file picker.
+  Widget _buildWebBody(AppLocalizations l10n) =>
+      _buildFilePickerBody(l10n, l10n.scanWebPhotoHint);
 
-  /// Builds the fallback UI for macOS where `camera` is not available.
-  Widget _buildMacOsBody(AppLocalizations l10n) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        const Icon(
-          Icons.photo_library,
-          color: Colors.white,
-          size: ConstLayout.iconL,
-        ),
-        const SizedBox(height: ConstLayout.paddingM),
-        Text(
-          l10n.scanMacosPhotoHint,
-          textAlign: TextAlign.center,
-          style: const TextStyle(
-            color: Colors.white,
-            fontSize: ConstLayout.textS,
-          ),
-        ),
-        const SizedBox(height: ConstLayout.paddingM),
-        _buildScoreAndScanRow(l10n),
-      ],
-    );
-  }
-
-  /// Stacks the camera preview with the detection bounding-box overlay.
-  Widget _buildPreviewWithOverlay() {
-    final capturedImageBytes = _capturedImageBytes;
-    final overlayNumberStyle = _scoreNumberStyle(
-      context,
-      fontSize: ConstLayout.textS,
-    );
-    final cellNumberStyle = _scoreNumberStyle(
-      context,
-      fontSize: ConstLayout.textM * _scoreFontScale,
-    );
-    if (capturedImageBytes == null) {
-      return Stack(
-        fit: StackFit.expand,
-        children: [
-          CameraPreview(_controller!),
-          if (_detections.isNotEmpty)
-            CustomPaint(
-              painter: _DetectionOverlayPainter(
-                detections: _detections,
-                gridInference: _gridInference,
-                overlayNumberStyle: overlayNumberStyle,
-                cellNumberStyle: cellNumberStyle,
-              ),
-            ),
-        ],
-      );
-    }
-
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        final canvasSize = Size(constraints.maxWidth, constraints.maxHeight);
-        final destinationRect = _containedRect(
-          canvasSize,
-          const Size(_modelImageSize, _modelImageSize),
-        );
-
-        return Stack(
-          fit: StackFit.expand,
-          children: [
-            Positioned.fromRect(
-              rect: destinationRect,
-              child: Image.memory(capturedImageBytes, fit: BoxFit.fill),
-            ),
-            if (_detections.isNotEmpty)
-              CustomPaint(
-                painter: _DetectionOverlayPainter(
-                  detections: _detections,
-                  gridInference: _gridInference,
-                  overlayNumberStyle: overlayNumberStyle,
-                  cellNumberStyle: cellNumberStyle,
-                  contentRect: destinationRect,
-                ),
-              ),
-          ],
-        );
-      },
-    );
-  }
-
-  Rect _containedRect(Size canvasSize, Size sourceSize) {
-    final fittedSizes = applyBoxFit(BoxFit.contain, sourceSize, canvasSize);
-    final destinationSize = fittedSizes.destination;
-    final dx = (canvasSize.width - destinationSize.width) / 2;
-    final dy = (canvasSize.height - destinationSize.height) / 2;
-    return Rect.fromLTWH(dx, dy, destinationSize.width, destinationSize.height);
-  }
-
-  TextStyle _scoreNumberStyle(
-    BuildContext context, {
-    required double fontSize,
-  }) {
-    final colorScheme = Theme.of(context).colorScheme;
-    final scoreFontFamily = Theme.of(context).textTheme.bodyMedium?.fontFamily;
-    return TextStyle(
-      fontFamily: scoreFontFamily,
-      fontWeight: FontWeight.bold,
-      fontSize: fontSize,
-      color: Color.alphaBlend(colorScheme.onSurface, Colors.green.shade300),
-      shadows: const <Shadow>[
-        Shadow(
-          color: Colors.white54,
-          offset: Offset(-ConstLayout.strokeXS, -ConstLayout.strokeXS),
-          blurRadius: ConstLayout.strokeS,
-        ),
-        Shadow(
-          color: Colors.black54,
-          offset: Offset(ConstLayout.strokeXS, ConstLayout.strokeXS),
-          blurRadius: ConstLayout.strokeS,
-        ),
-      ],
-    );
-  }
-
-  /// SCAN button — danger style in preview, primary style in review.
-  Widget _buildScanButton(AppLocalizations l10n) {
-    final isShowingCapturedResult = _isShowingCapturedResult;
-    if (isShowingCapturedResult) {
-      return MyButtonRectangle.primary(
-        onTap: _isScanning ? null : _resetToScanMode,
-        child: const Icon(Icons.camera_alt),
-      );
-    }
-
-    return MyButtonRectangle.danger(
-      onTap: _isScanning ? null : _scan,
-      child: _isScanning
-          ? const SizedBox(
-              width: ConstLayout.iconXS,
-              height: ConstLayout.iconXS,
-              child: CircularProgressIndicator(
-                color: Colors.white,
-                strokeWidth: ConstLayout.strokeS,
-              ),
-            )
-          : const Text('SCAN'),
-    );
-  }
-
-  /// Returns to live camera scan mode after reviewing captured score overlay.
-  void _resetToScanMode() {
-    setState(() {
-      _capturedImageBytes = null;
-      _detections = [];
-      _gridInference = null;
-      _errorMessage = null;
-    });
-  }
-
+  /// Sums the score for all 9 grid cells; undetected cells count as Joker (-2).
   int _calculateDetectedScore() {
     final gridInference = _gridInference;
     if (gridInference == null) {
@@ -309,18 +344,154 @@ class _CardScanScreenState extends State<CardScanScreen> {
     return total;
   }
 
+  Rect _containedRect(Size canvasSize, Size sourceSize) {
+    final fittedSizes = applyBoxFit(BoxFit.contain, sourceSize, canvasSize);
+    final destinationSize = fittedSizes.destination;
+    final dx = (canvasSize.width - destinationSize.width) / _half;
+    final dy = (canvasSize.height - destinationSize.height) / _half;
+    return Rect.fromLTWH(dx, dy, destinationSize.width, destinationSize.height);
+  }
+
+  /// Removes overlapping detections using non-maximum suppression (NMS).
+  List<CardDetection> _deduplicateDetections(List<CardDetection> detections) {
+    if (detections.isEmpty) {
+      return const [];
+    }
+
+    final sorted = [...detections]
+      ..sort((a, b) => b.confidence.compareTo(a.confidence));
+    final kept = <CardDetection>[];
+
+    for (final candidate in sorted) {
+      final overlapsExisting = kept.any(
+        (existing) => _iou(candidate, existing) >= _nmsIouThreshold,
+      );
+      if (!overlapsExisting) {
+        kept.add(candidate);
+      }
+    }
+
+    return kept;
+  }
+
+  /// Decodes bytes, runs model inference, and stores sorted detections.
+  Future<void> _detectFromRawBytes(
+    Uint8List rawBytes,
+    AppLocalizations l10n,
+  ) async {
+    if (UniversalPlatform.isWeb) {
+      final result = await TfliteService.instance.detectFromRawBytes(rawBytes);
+      if (result.jpegBytes.isEmpty) {
+        throw Exception(l10n.scanFailedDecode);
+      }
+      final deduplicatedDetections = _deduplicateDetections(result.detections);
+      final gridInference =
+          _inferGridFromDetections(result.detections) ??
+          _inferGridFromDetections(deduplicatedDetections);
+      if (mounted) {
+        setState(() {
+          _capturedImageBytes = result.jpegBytes;
+          _detections = deduplicatedDetections;
+          _gridInference = gridInference;
+        });
+      }
+      return;
+    }
+
+    final decoded = img.decodeImage(rawBytes);
+    if (decoded == null) {
+      throw Exception(l10n.scanFailedDecode);
+    }
+
+    var oriented = img.bakeOrientation(decoded);
+    if (_shouldFlipHorizontally) {
+      oriented = img.flipHorizontal(oriented);
+    }
+
+    final resized = img.copyResize(
+      oriented,
+      width: TfliteService.modelInputSize,
+      height: TfliteService.modelInputSize,
+    );
+    final renderBytes = Uint8List.fromList(img.encodeJpg(resized));
+
+    final rgbaBytes = resized.getBytes(order: img.ChannelOrder.rgba);
+    final detections = await TfliteService.instance.detect(
+      rgbaBytes,
+      TfliteService.modelInputSize,
+      TfliteService.modelInputSize,
+    );
+    final deduplicatedDetections = _deduplicateDetections(detections);
+    // Use the full candidate set for cell inference to maximize recall.
+    final gridInference =
+        _inferGridFromDetections(detections) ??
+        _inferGridFromDetections(deduplicatedDetections);
+
+    if (mounted) {
+      setState(() {
+        _capturedImageBytes = renderBytes;
+        _detections = deduplicatedDetections;
+        _gridInference = gridInference;
+      });
+    }
+  }
+
+  /// Returns a human-readable label for a card rank value in the correction
+  /// dropdown. Special face-card values are shown with their numeric equivalent.
+  String _formatRankLabel(int value, AppLocalizations l10n) {
+    return switch (value) {
+      TfliteRankParser.jokerRankValue => l10n.scanRankJoker,
+      TfliteRankParser.rankValueKing => l10n.scanRankKing,
+      TfliteRankParser.rankValueAce => l10n.scanRankAce,
+      TfliteRankParser.rankValueJack => l10n.scanRankJack,
+      TfliteRankParser.rankValueQueen => l10n.scanRankQueen,
+      _ => '$value',
+    };
+  }
+
+  /// Handles a tap on the review overlay: identifies the tapped grid cell and
+  /// opens the correction dialog for that cell.
+  Future<void> _handleReviewTap(TapUpDetails details, Rect contentRect) async {
+    final grid = _gridInference;
+    if (!_isShowingCapturedResult || grid == null) {
+      return;
+    }
+
+    final gridRect = Rect.fromLTWH(
+      contentRect.left + grid.left * contentRect.width,
+      contentRect.top + grid.top * contentRect.height,
+      grid.width * contentRect.width,
+      grid.height * contentRect.height,
+    );
+    final localPos = details.localPosition;
+    if (!gridRect.contains(localPos)) {
+      return;
+    }
+
+    final relativeX = (localPos.dx - gridRect.left) / gridRect.width;
+    final relativeY = (localPos.dy - gridRect.top) / gridRect.height;
+    final col = (relativeX * _gridDimension).floor().clamp(
+      0,
+      _gridDimension - 1,
+    );
+    final row = (relativeY * _gridDimension).floor().clamp(
+      0,
+      _gridDimension - 1,
+    );
+    final cellIndex = row * _gridDimension + col;
+
+    await _showCorrectionDialog(cellIndex);
+  }
+
+  /// Divides detections into a 3×3 grid and returns per-cell score values.
   _GridInference? _inferGridFromDetections(List<CardDetection> detections) {
     if (detections.isEmpty) {
       return null;
     }
 
-    final centersX = detections
-        .map((d) => d.left + (d.width / 2))
-        .toList()
+    final centersX = detections.map((d) => d.left + (d.width / _half)).toList()
       ..sort();
-    final centersY = detections
-        .map((d) => d.top + (d.height / 2))
-        .toList()
+    final centersY = detections.map((d) => d.top + (d.height / _half)).toList()
       ..sort();
 
     final gridLeft = centersX.first;
@@ -335,14 +506,17 @@ class _CardScanScreenState extends State<CardScanScreen> {
     }
 
     // Undetected cells default to Joker (-2).
-    final valuesByCell = List<int?>.filled(_expectedDetectedCards, TfliteService.jokerRankValue);
+    final valuesByCell = List<int?>.filled(
+      _expectedDetectedCards,
+      TfliteService.jokerRankValue,
+    );
     final confidenceByCell = List<double>.filled(_expectedDetectedCards, 0);
     final minTopByCell = List<double?>.filled(_expectedDetectedCards, null);
     final maxBottomByCell = List<double?>.filled(_expectedDetectedCards, null);
 
     for (final detection in detections) {
-      final cx = detection.left + (detection.width / 2);
-      final cy = detection.top + (detection.height / 2);
+      final cx = detection.left + (detection.width / _half);
+      final cy = detection.top + (detection.height / _half);
       final normalizedX = (cx - gridLeft) / gridWidth;
       final normalizedY = (cy - gridTop) / gridHeight;
 
@@ -356,13 +530,14 @@ class _CardScanScreenState extends State<CardScanScreen> {
       );
       final index = row * _gridDimension + col;
 
-          final topY = detection.top;
-          final bottomY = detection.top + detection.height;
-          final minTop = minTopByCell[index];
-          final maxBottom = maxBottomByCell[index];
-          minTopByCell[index] = minTop == null || topY < minTop ? topY : minTop;
-          maxBottomByCell[index] =
-            maxBottom == null || bottomY > maxBottom ? bottomY : maxBottom;
+      final topY = detection.top;
+      final bottomY = detection.top + detection.height;
+      final minTop = minTopByCell[index];
+      final maxBottom = maxBottomByCell[index];
+      minTopByCell[index] = minTop == null || topY < minTop ? topY : minTop;
+      maxBottomByCell[index] = maxBottom == null || bottomY > maxBottom
+          ? bottomY
+          : maxBottom;
 
       if (detection.confidence < confidenceByCell[index]) {
         continue;
@@ -403,38 +578,64 @@ class _CardScanScreenState extends State<CardScanScreen> {
     );
   }
 
-  List<CardDetection> _deduplicateDetections(List<CardDetection> detections) {
-    if (detections.isEmpty) {
-      return const [];
+  /// Discovers available cameras and initializes the preferred camera.
+  Future<void> _initCamera() async {
+    if (UniversalPlatform.isMacOS || UniversalPlatform.isWeb) {
+      setState(() => _isCameraReady = true);
+      return;
     }
+    try {
+      final cameras = await availableCameras();
+      if (!mounted) return;
+      if (cameras.isEmpty) {
+        setState(
+          () => _errorMessage = AppLocalizations.of(context).scanNoCameraFound,
+        );
+        return;
+      }
+      var selectedCamera = cameras.first;
+      for (final camera in cameras) {
+        if (camera.lensDirection == CameraLensDirection.back) {
+          selectedCamera = camera;
+          break;
+        }
+      }
 
-    final sorted = [...detections]
-      ..sort((a, b) => b.confidence.compareTo(a.confidence));
-    final kept = <CardDetection>[];
-
-    for (final candidate in sorted) {
-      final overlapsExisting = kept.any(
-        (existing) => _iou(candidate, existing) >= _nmsIouThreshold,
+      final controller = CameraController(
+        selectedCamera,
+        ResolutionPreset.high,
+        enableAudio: false,
       );
-      if (!overlapsExisting) {
-        kept.add(candidate);
+      await controller.initialize();
+      if (!mounted) {
+        await controller.dispose();
+        return;
+      }
+      setState(() {
+        _controller = controller;
+        _activeCamera = selectedCamera;
+        _isCameraReady = true;
+      });
+    } catch (e) {
+      if (mounted) {
+        setState(
+          () => _errorMessage =
+              '${AppLocalizations.of(context).scanCameraError}$e',
+        );
       }
     }
-
-    return kept;
   }
 
+  /// Computes the Intersection-over-Union ratio for two bounding boxes.
   double _iou(CardDetection a, CardDetection b) {
     final left = a.left > b.left ? a.left : b.left;
     final top = a.top > b.top ? a.top : b.top;
-    final right =
-        (a.left + a.width) < (b.left + b.width)
-            ? (a.left + a.width)
-            : (b.left + b.width);
-    final bottom =
-        (a.top + a.height) < (b.top + b.height)
-            ? (a.top + a.height)
-            : (b.top + b.height);
+    final right = (a.left + a.width) < (b.left + b.width)
+        ? (a.left + a.width)
+        : (b.left + b.width);
+    final bottom = (a.top + a.height) < (b.top + b.height)
+        ? (a.top + a.height)
+        : (b.top + b.height);
 
     final interWidth = right - left;
     final interHeight = bottom - top;
@@ -451,84 +652,7 @@ class _CardScanScreenState extends State<CardScanScreen> {
     return intersection / union;
   }
 
-  /// Decodes bytes, runs model inference, and stores sorted detections.
-  Future<void> _detectFromRawBytes(
-    Uint8List rawBytes,
-    AppLocalizations l10n,
-  ) async {
-    final decoded = img.decodeImage(rawBytes);
-    if (decoded == null) {
-      throw Exception(l10n.scanFailedDecode);
-    }
-
-    final oriented = img.bakeOrientation(decoded);
-
-    final resized = img.copyResize(
-      oriented,
-      width: TfliteService.modelInputSize,
-      height: TfliteService.modelInputSize,
-    );
-    final renderBytes = Uint8List.fromList(img.encodeJpg(resized));
-
-    final rgbaBytes = resized.getBytes(order: img.ChannelOrder.rgba);
-    final detections = await TfliteService.instance.detect(
-      rgbaBytes,
-      TfliteService.modelInputSize,
-      TfliteService.modelInputSize,
-    );
-    final deduplicatedDetections = _deduplicateDetections(detections);
-    // Use the full candidate set for cell inference to maximize recall.
-    final gridInference =
-        _inferGridFromDetections(detections) ??
-        _inferGridFromDetections(deduplicatedDetections);
-
-    if (mounted) {
-      setState(() {
-        _capturedImageBytes = renderBytes;
-        _detections = deduplicatedDetections;
-        _gridInference = gridInference;
-      });
-    }
-  }
-
-  /// Discovers available cameras and initializes the front-facing one.
-  Future<void> _initCamera() async {
-    if (UniversalPlatform.isMacOS) {
-      setState(() => _isCameraReady = true);
-      return;
-    }
-    try {
-      final cameras = await availableCameras();
-      if (!mounted) return;
-      if (cameras.isEmpty) {
-        setState(
-          () => _errorMessage = AppLocalizations.of(context).scanNoCameraFound,
-        );
-        return;
-      }
-      final controller = CameraController(
-        cameras.first,
-        ResolutionPreset.high,
-        enableAudio: false,
-      );
-      await controller.initialize();
-      if (!mounted) {
-        await controller.dispose();
-        return;
-      }
-      setState(() {
-        _controller = controller;
-        _isCameraReady = true;
-      });
-    } catch (e) {
-      if (mounted) {
-        setState(
-          () => _errorMessage =
-              '${AppLocalizations.of(context).scanCameraError}$e',
-        );
-      }
-    }
-  }
+  bool get _isShowingCapturedResult => _capturedImageBytes != null;
 
   /// Loads the TFLite model in the background; sets [_errorMessage] on failure.
   Future<void> _loadModel() async {
@@ -544,9 +668,73 @@ class _CardScanScreenState extends State<CardScanScreen> {
     }
   }
 
+  /// Returns to live camera scan mode after reviewing captured score overlay.
+  void _resetToScanMode() {
+    setState(() {
+      _capturedImageBytes = null;
+      _detections = [];
+      _gridInference = null;
+      _errorMessage = null;
+    });
+  }
+
+  /// Crops the cell image from the captured photo and writes the sample to the
+  /// [_correctionStore] for later model retraining.
+  Future<void> _saveCorrectionSample({
+    required int cellIndex,
+    required int wrongValue,
+    required int correctedValue,
+  }) async {
+    final capturedImageBytes = _capturedImageBytes;
+    final grid = _gridInference;
+    if (capturedImageBytes == null || grid == null) {
+      return;
+    }
+
+    final decoded = img.decodeImage(capturedImageBytes);
+    if (decoded == null) {
+      return;
+    }
+
+    final row = cellIndex ~/ _gridDimension;
+    final col = cellIndex % _gridDimension;
+    final cellWidthNorm = grid.width / _gridDimension;
+    final cellHeightNorm = grid.height / _gridDimension;
+
+    final leftNorm = grid.left + col * cellWidthNorm;
+    final topNorm = grid.top + row * cellHeightNorm;
+    final rightNorm = leftNorm + cellWidthNorm;
+    final bottomNorm = topNorm + cellHeightNorm;
+
+    final left = (leftNorm * decoded.width).round().clamp(0, decoded.width - 1);
+    final top = (topNorm * decoded.height).round().clamp(0, decoded.height - 1);
+    final right = (rightNorm * decoded.width).round().clamp(1, decoded.width);
+    final bottom = (bottomNorm * decoded.height).round().clamp(
+      1,
+      decoded.height,
+    );
+    final cropWidth = (right - left).clamp(1, decoded.width - left);
+    final cropHeight = (bottom - top).clamp(1, decoded.height - top);
+
+    final cropped = img.copyCrop(
+      decoded,
+      x: left,
+      y: top,
+      width: cropWidth,
+      height: cropHeight,
+    );
+
+    await _correctionStore.saveSample(
+      imageBytes: Uint8List.fromList(img.encodeJpg(cropped)),
+      wrongValue: wrongValue,
+      correctedValue: correctedValue,
+      cellIndex: cellIndex,
+    );
+  }
+
   /// Captures a still frame, runs TFLite inference, and updates [_detections].
   Future<void> _scan() async {
-    if (UniversalPlatform.isMacOS) {
+    if (UniversalPlatform.isMacOS || UniversalPlatform.isWeb) {
       await _scanFromPickedImage();
       return;
     }
@@ -605,152 +793,113 @@ class _CardScanScreenState extends State<CardScanScreen> {
       if (mounted) setState(() => _isScanning = false);
     }
   }
-}
 
-// ── Bounding box painter ───────────────────────────────────────────────────────
-
-class _DetectionOverlayPainter extends CustomPainter {
-  static const double _cellBadgeWidth = ConstLayout.iconXL;
-  static const double _fallbackCellBadgeHeight = ConstLayout.iconL;
-
-  const _DetectionOverlayPainter(
-    {
-      required this.detections,
-      required this.gridInference,
-      required this.overlayNumberStyle,
-      required this.cellNumberStyle,
-      this.contentRect,
-    }
-  );
-
-  final List<CardDetection> detections;
-  final _GridInference? gridInference;
-  final TextStyle overlayNumberStyle;
-  final TextStyle cellNumberStyle;
-  final Rect? contentRect;
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final drawRect = contentRect ?? Offset.zero & size;
-    final boxPaint = Paint()
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = ConstLayout.strokeM
-      ..color = Colors.greenAccent;
-
-    for (final d in detections) {
-      final rect = Rect.fromLTWH(
-        drawRect.left + d.left * drawRect.width,
-        drawRect.top + d.top * drawRect.height,
-        d.width * drawRect.width,
-        d.height * drawRect.height,
-      );
-
-      canvas.drawRect(rect, boxPaint);
-    }
-
-    final grid = gridInference;
-    if (grid != null) {
-      final gridLeft = drawRect.left + grid.left * drawRect.width;
-      final gridTop = drawRect.top + grid.top * drawRect.height;
-      final gridWidth = grid.width * drawRect.width;
-      final gridHeight = grid.height * drawRect.height;
-      final cellWidth = gridWidth / _CardScanScreenState._gridDimension;
-      final cellHeight = gridHeight / _CardScanScreenState._gridDimension;
-        final inferredBadgeHeight = grid.badgeHeightNormalized * size.height;
-        final cellBadgeHeight = inferredBadgeHeight > 0
-          ? inferredBadgeHeight
-          : _fallbackCellBadgeHeight;
-
-      for (int row = 0; row < _CardScanScreenState._gridDimension; row++) {
-        for (int col = 0; col < _CardScanScreenState._gridDimension; col++) {
-          final index = row * _CardScanScreenState._gridDimension + col;
-          final value = grid.valuesByCell[index];
-          final displayText = value?.toString() ?? '${TfliteService.jokerRankValue}';
-
-          final backTextPainter = TextPainter(
-            text: TextSpan(
-              text: displayText,
-              style: cellNumberStyle.copyWith(
-                color: Colors.grey.shade700,
-                shadows: const <Shadow>[],
-              ),
-            ),
-            textDirection: TextDirection.ltr,
-          )..layout();
-
-          final frontTextPainter = TextPainter(
-            text: TextSpan(
-              text: displayText,
-              style: cellNumberStyle.copyWith(
-                color: Colors.white,
-                shadows: const <Shadow>[],
-              ),
-            ),
-            textDirection: TextDirection.ltr,
-          )..layout();
-
-          final backgroundRect = RRect.fromRectAndRadius(
-            Rect.fromCenter(
-              center: Offset(
-                gridLeft + (col + 0.5) * cellWidth,
-                gridTop + (row + 0.5) * cellHeight,
-              ),
-              width: _cellBadgeWidth,
-              height: cellBadgeHeight,
-            ),
-            const Radius.circular(ConstLayout.radiusM),
-          );
-
-          final backgroundPaint = Paint()
-            ..style = PaintingStyle.fill
-            ..color = Colors.green.withValues(
-              alpha: ConstLayout.cardStackOffsetLarge,
-            );
-
-          canvas.drawRRect(backgroundRect, backgroundPaint);
-
-          final cellCenterX = gridLeft + (col + 0.5) * cellWidth;
-          final cellCenterY = gridTop + (row + 0.5) * cellHeight;
-          final textLeft = cellCenterX - (frontTextPainter.width / 2);
-          final textTop = cellCenterY - (frontTextPainter.height / 2);
-
-          backTextPainter.paint(
-            canvas,
-            Offset(
-              textLeft + ConstLayout.strokeXS,
-              textTop + ConstLayout.strokeXS,
-            ),
-          );
-
-          frontTextPainter.paint(canvas, Offset(textLeft, textTop));
-        }
-      }
-    }
+  /// Returns a bold game-font [TextStyle] with a two-layer shadow for score numbers.
+  TextStyle _scoreNumberStyle(
+    BuildContext context, {
+    required double fontSize,
+  }) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final scoreFontFamily = Theme.of(context).textTheme.bodyMedium?.fontFamily;
+    return TextStyle(
+      fontFamily: scoreFontFamily,
+      fontWeight: FontWeight.bold,
+      fontSize: fontSize,
+      color: Color.alphaBlend(colorScheme.onSurface, Colors.green.shade300),
+      shadows: const <Shadow>[
+        Shadow(
+          color: Colors.white54,
+          offset: Offset(-ConstLayout.strokeXS, -ConstLayout.strokeXS),
+          blurRadius: ConstLayout.strokeS,
+        ),
+        Shadow(
+          color: Colors.black54,
+          offset: Offset(ConstLayout.strokeXS, ConstLayout.strokeXS),
+          blurRadius: ConstLayout.strokeS,
+        ),
+      ],
+    );
   }
 
-  @override
-  bool shouldRepaint(_DetectionOverlayPainter old) =>
-      old.detections != detections ||
-      old.gridInference != gridInference ||
-      old.overlayNumberStyle != overlayNumberStyle ||
-      old.cellNumberStyle != cellNumberStyle ||
-      old.contentRect != contentRect;
-}
+  bool get _shouldFlipHorizontally =>
+      UniversalPlatform.isWeb &&
+      _activeCamera?.lensDirection == CameraLensDirection.front;
 
-class _GridInference {
-  _GridInference({
-    required this.left,
-    required this.top,
-    required this.width,
-    required this.height,
-    required this.badgeHeightNormalized,
-    required this.valuesByCell,
-  });
+  /// Presents a dropdown dialog for the user to correct the detected card value
+  /// at [cellIndex], then persists the sample for model retraining.
+  Future<void> _showCorrectionDialog(int cellIndex) async {
+    final grid = _gridInference;
+    if (grid == null) {
+      return;
+    }
+    final l10n = AppLocalizations.of(context);
+    final currentValue =
+        grid.valuesByCell[cellIndex] ?? TfliteService.jokerRankValue;
+    int selectedValue = currentValue;
 
-  final double left;
-  final double top;
-  final double width;
-  final double height;
-  final double badgeHeightNormalized;
-  final List<int?> valuesByCell;
+    final correctedValue = await showDialog<int>(
+      context: context,
+      builder: (dialogContext) {
+        return StatefulBuilder(
+          builder: (_, setDialogState) {
+            return AlertDialog(
+              title: Text(l10n.scanCorrectCardValueTitle),
+              content: DropdownButton<int>(
+                value: selectedValue,
+                isExpanded: true,
+                items: _correctionValues
+                    .map(
+                      (value) => DropdownMenuItem<int>(
+                        value: value,
+                        child: Text(_formatRankLabel(value, l10n)),
+                      ),
+                    )
+                    .toList(),
+                onChanged: (value) {
+                  if (value != null) {
+                    setDialogState(() => selectedValue = value);
+                  }
+                },
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.of(dialogContext).pop(),
+                  child: Text(l10n.cancel),
+                ),
+                TextButton(
+                  onPressed: () =>
+                      Navigator.of(dialogContext).pop(selectedValue),
+                  child: Text(l10n.save),
+                ),
+              ],
+            );
+          },
+        );
+      },
+    );
+
+    if (!mounted || correctedValue == null) {
+      return;
+    }
+    if (correctedValue == currentValue) {
+      return;
+    }
+
+    setState(() {
+      grid.valuesByCell[cellIndex] = correctedValue;
+    });
+
+    await _saveCorrectionSample(
+      cellIndex: cellIndex,
+      wrongValue: currentValue,
+      correctedValue: correctedValue,
+    );
+
+    if (!mounted) {
+      return;
+    }
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text(l10n.scanCorrectionSaved)));
+  }
 }

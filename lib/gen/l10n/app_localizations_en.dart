@@ -61,6 +61,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get discardOrSwap => 'Discard →\nor\n↓ swap';
 
   @override
+  String get done => 'Done';
+
+  @override
   String get drawCardHere => 'Draw\na card\nhere\n→';
 
   @override
@@ -229,9 +232,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get pleaseEnterYourName => 'Please enter your name above ⬆';
 
   @override
-  String get rankLabel => 'Rank';
-
-  @override
   String readyToPlayPlayersAtTable(int count) {
     return 'Ready to play! $count players at table.';
   }
@@ -256,6 +256,9 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get save => 'Save';
+
+  @override
   String get scanCameraError => 'Camera error: ';
 
   @override
@@ -263,6 +266,12 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get scanCardTitle => 'Scan Card';
+
+  @override
+  String get scanCorrectCardValueTitle => 'Correct Card Value';
+
+  @override
+  String get scanCorrectionSaved => 'Correction saved for model retraining';
 
   @override
   String get scanFailedDecode => 'Failed to decode captured image.';
@@ -281,34 +290,26 @@ class AppLocalizationsEn extends AppLocalizations {
   String get scanNoCameraFound => 'No camera found on this device.';
 
   @override
-  String get scanNoCardsDetected =>
-      'No cards detected. Try again with better lighting or framing.';
+  String get scanRankAce => 'A (1)';
 
   @override
-  String scanDetectedScore(int score) {
-    return 'Detected score: $score';
-  }
+  String get scanRankJack => 'J (11)';
 
   @override
-  String get scanScoreAddUpCards => 'Score - Add Up Cards';
+  String get scanRankJoker => 'Joker (-2)';
 
   @override
-  String scanScoreNeedNineCards(int count) {
-    return 'Detect at least $count cards before scoring.';
-  }
+  String get scanRankKing => 'K (0)';
 
   @override
-  String get scanScoreNoPlayers => 'No players available to score.';
+  String get scanRankQueen => 'Q (12)';
 
   @override
-  String scanScoreSavedForPlayer(String player, int score, String nextPlayer) {
-    return 'Saved $player score: $score. Next: $nextPlayer';
-  }
+  String get scanTapToCorrect => 'Tap a card value bubble to correct it';
 
   @override
-  String scanScoringPlayer(String player) {
-    return 'Scoring: $player';
-  }
+  String get scanWebPhotoHint =>
+      'Choose a card photo from your device to scan.';
 
   @override
   String get scoreKeeper => 'Score Keeper';

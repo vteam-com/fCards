@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:cards/models/app/card_detection.dart';
+import 'package:cards/models/app/tflite_rank_parser.dart';
 import 'package:flutter/services.dart';
 import 'package:tflite_flutter/tflite_flutter.dart';
 
@@ -22,7 +23,7 @@ class TfliteService {
   static const double confidenceThreshold = 0.2;
 
   /// Fallback threshold used only when no detection passes the primary threshold.
-  static const double relaxedConfidenceThreshold = 0.2;
+  static const double relaxedConfidenceThreshold = 0.1;
 
   /// Number of bytes per RGBA pixel.
   static const int _rgbaChannelCount = 4;
@@ -66,48 +67,8 @@ class TfliteService {
   /// YOLOv8 output row index for the normalised bounding-box height.
   static const int _yoloBhIndex = 3;
 
-  /// Card rank label for Ace.
-  static const String _rankJoker = 'joker';
-
-  /// Card rank label for Ace.
-  static const String _rankAce = 'ace';
-
-  /// Card rank label for Jack.
-  static const String _rankJack = 'jack';
-
-  /// Card rank label for Queen.
-  static const String _rankQueen = 'queen';
-
-  /// Card rank label for King.
-  static const String _rankKing = 'king';
-
-  static const String _displayJoker = 'Joker';
-  static const String _displayAce = 'Ace';
-  static const String _displayJack = 'Jack';
-  static const String _displayQueen = 'Queen';
-  static const String _displayKing = 'King';
-  static const String _shortAce = 'a';
-  static const String _shortJack = 'j';
-  static const String _shortQueen = 'q';
-  static const String _shortKing = 'k';
-
-  /// Numeric value for Joker.
-  static const int _rankValueJoker = -2;
-
   /// Public Joker score value used externally (e.g. default for undetected cells).
-  static const int jokerRankValue = _rankValueJoker;
-
-  /// Numeric value for Ace (lowest card).
-  static const int _rankValueAce = 1;
-
-  /// Numeric value for Jack.
-  static const int _rankValueJack = 11;
-
-  /// Numeric value for Queen.
-  static const int _rankValueQueen = 12;
-
-  /// Numeric value for King.
-  static const int _rankValueKing = 0;
+  static const int jokerRankValue = TfliteRankParser.jokerRankValue;
 
   Interpreter? _interpreter;
   List<String> _labels = [];
@@ -149,39 +110,63 @@ class TfliteService {
       inputShape,
     );
     final outputShape = interpreter.getOutputTensor(0).shape;
-    final numRows = outputShape[1]; // 56 for YOLOv8 (4 bbox + 52 classes)
-    final numCols = outputShape[_tensorColsDim]; // 8400 anchor boxes
+    // YOLOv8 TFLite can export in two layouts:
+    //   [1, features, anchors]  e.g. [1, 56, 8400]  — features-first
+    //   [1, anchors, features]  e.g. [1, 8400, 56]  — anchors-first
+    // Detect layout by assuming features (4 + numClasses) << anchors (8400).
+    final dim1 = outputShape[1];
+    final dim2 = outputShape[_tensorColsDim];
+    final bool featuresFirst = dim1 < dim2;
+    final int numFeatures = featuresFirst ? dim1 : dim2;
+    final int numAnchors = featuresFirst ? dim2 : dim1;
 
-    // Allocate the full [1, numRows, numCols] 3-D buffer explicitly so
-    // tflite_flutter's native copy writes into the correct nested structure.
+    // Allocate the full 3-D buffer matching the actual output shape.
     final outputBuffer = List<List<List<double>>>.generate(
       _singleBatchSize,
       (_) => List<List<double>>.generate(
-        numRows,
-        (_) => List<double>.filled(numCols, 0.0),
+        dim1,
+        (_) => List<double>.filled(dim2, 0.0),
       ),
     );
     interpreter.runForMultipleInputs([input], {0: outputBuffer});
 
-    // Flatten rows to Float32List for fast index arithmetic in the parser.
+    // Flatten and normalise to features-first layout [features, anchors]
+    // so _parseYoloOutput always sees the same index arithmetic.
     final rows = outputBuffer[0];
-    final outputFlat = Float32List(numRows * numCols);
-    for (int r = 0; r < numRows; r++) {
-      final row = rows[r];
-      for (int c = 0; c < numCols; c++) {
-        outputFlat[r * numCols + c] = row[c];
+    final outputFlat = Float32List(numFeatures * numAnchors);
+    if (featuresFirst) {
+      // Already [features, anchors] — copy straight through.
+      for (int r = 0; r < numFeatures; r++) {
+        final row = rows[r];
+        for (int c = 0; c < numAnchors; c++) {
+          outputFlat[r * numAnchors + c] = row[c];
+        }
+      }
+    } else {
+      // Transpose from [anchors, features] to [features, anchors].
+      for (int a = 0; a < numAnchors; a++) {
+        final row = rows[a];
+        for (int f = 0; f < numFeatures; f++) {
+          outputFlat[f * numAnchors + a] = row[f];
+        }
       }
     }
 
     final detections = _parseYoloOutput(
       outputFlat,
-      numCols,
+      numFeatures,
+      numAnchors,
       confidenceThreshold,
     );
     if (detections.isNotEmpty) {
       return detections;
     }
-    return _parseYoloOutput(outputFlat, numCols, relaxedConfidenceThreshold);
+    return _parseYoloOutput(
+      outputFlat,
+      numFeatures,
+      numAnchors,
+      relaxedConfidenceThreshold,
+    );
   }
 
   /// Nearest-neighbour resize + normalise to [modelInputSize]×[modelInputSize].
@@ -249,10 +234,14 @@ class TfliteService {
   /// [4+numClasses, numBoxes]) into [CardDetection] objects.
   List<CardDetection> _parseYoloOutput(
     Float32List flat,
+    int numRows,
     int numCols,
     double minConfidence,
   ) {
-    final numClasses = _labels.length;
+    final availableClasses = numRows - _bboxFeatureCount;
+    final numClasses = _labels.length < availableClasses
+        ? _labels.length
+        : availableClasses;
     final numBoxes = numCols;
     final detections = <CardDetection>[];
 
@@ -276,7 +265,9 @@ class TfliteService {
 
       detections.add(
         CardDetection(
-          label: _normalizeRankLabel(_labels[maxClass]),
+          label: _normalizeRankLabel(
+            maxClass < _labels.length ? _labels[maxClass] : '',
+          ),
           confidence: maxScore,
           left: (cx - bw / _halfDivisor).clamp(0.0, 1.0),
           top: (cy - bh / _halfDivisor).clamp(0.0, 1.0),
@@ -297,57 +288,21 @@ class TfliteService {
     _labels = [];
   }
 
-  static String _normalizeRankLabel(String label) {
-    final normalized = label.toLowerCase().trim();
-
-    if (normalized.contains(_rankJoker)) {
-      return _displayJoker;
-    }
-
-    if (normalized.contains('_of_')) {
-      final rank = normalized.split('_of_').first;
-      return _toDisplayRank(rank);
-    }
-
-    final compact = RegExp(r'^(10|[2-9]|[ajqk])[cdhs]$');
-    if (compact.hasMatch(normalized)) {
-      final rank = normalized.substring(0, normalized.length - 1);
-      return _toDisplayRank(rank);
-    }
-
-    return _toDisplayRank(normalized);
+  /// Not used on native platforms; exists only to satisfy the shared interface
+  /// called from web-guarded code paths.
+  Future<({List<CardDetection> detections, Uint8List jpegBytes})>
+  detectFromRawBytes(Uint8List rawImageBytes) async {
+    return (
+      detections: const <CardDetection>[],
+      jpegBytes: rawImageBytes.sublist(0, 0),
+    );
   }
 
-  static String _toDisplayRank(String rank) {
-    return switch (rank) {
-      '2' => '2',
-      '3' => '3',
-      '4' => '4',
-      '5' => '5',
-      '6' => '6',
-      '7' => '7',
-      '8' => '8',
-      '9' => '9',
-      '10' => '10',
-      _rankJoker => _displayJoker,
-      _shortAce || _rankAce => _displayAce,
-      _shortJack || _rankJack => _displayJack,
-      _shortQueen || _rankQueen => _displayQueen,
-      _shortKing || _rankKing => _displayKing,
-      _ => _displayJoker,
-    };
-  }
+  /// Normalizes a raw model label string to a canonical rank display name.
+  static String _normalizeRankLabel(String label) =>
+      TfliteRankParser.normalizeRankLabel(label);
 
   /// Converts a card rank label to its game score value.
-  static int? labelToRankValue(String label) {
-    final normalized = _normalizeRankLabel(label).toLowerCase().trim();
-    return switch (normalized) {
-      _rankJoker => _rankValueJoker,
-      _rankAce => _rankValueAce,
-      _rankJack => _rankValueJack,
-      _rankQueen => _rankValueQueen,
-      _rankKing => _rankValueKing,
-      _ => int.tryParse(normalized),
-    };
-  }
+  static int? labelToRankValue(String label) =>
+      TfliteRankParser.labelToRankValue(label);
 }

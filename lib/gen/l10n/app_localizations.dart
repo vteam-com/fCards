@@ -188,6 +188,12 @@ abstract class AppLocalizations {
   /// **'Discard →\nor\n↓ swap'**
   String get discardOrSwap;
 
+  /// No description provided for @done.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get done;
+
   /// No description provided for @drawCardHere.
   ///
   /// In en, this message translates to:
@@ -488,12 +494,6 @@ abstract class AppLocalizations {
   /// **'Please enter your name above ⬆'**
   String get pleaseEnterYourName;
 
-  /// No description provided for @rankLabel.
-  ///
-  /// In en, this message translates to:
-  /// **'Rank'**
-  String get rankLabel;
-
   /// No description provided for @readyToPlayPlayersAtTable.
   ///
   /// In en, this message translates to:
@@ -530,6 +530,12 @@ abstract class AppLocalizations {
   /// **'{count} Rounds'**
   String rounds(int count);
 
+  /// No description provided for @save.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get save;
+
   /// No description provided for @scanCameraError.
   ///
   /// In en, this message translates to:
@@ -547,6 +553,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Scan Card'**
   String get scanCardTitle;
+
+  /// No description provided for @scanCorrectCardValueTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Correct Card Value'**
+  String get scanCorrectCardValueTitle;
+
+  /// No description provided for @scanCorrectionSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Correction saved for model retraining'**
+  String get scanCorrectionSaved;
 
   /// No description provided for @scanFailedDecode.
   ///
@@ -578,47 +596,47 @@ abstract class AppLocalizations {
   /// **'No camera found on this device.'**
   String get scanNoCameraFound;
 
-  /// No description provided for @scanNoCardsDetected.
+  /// No description provided for @scanRankAce.
   ///
   /// In en, this message translates to:
-  /// **'No cards detected. Try again with better lighting or framing.'**
-  String get scanNoCardsDetected;
+  /// **'A (1)'**
+  String get scanRankAce;
 
-  /// No description provided for @scanDetectedScore.
+  /// No description provided for @scanRankJack.
   ///
   /// In en, this message translates to:
-  /// **'Detected score: {score}'**
-  String scanDetectedScore(int score);
+  /// **'J (11)'**
+  String get scanRankJack;
 
-  /// No description provided for @scanScoreAddUpCards.
+  /// DO NOT TRANSLATE. Joker is the universal card game term.
   ///
   /// In en, this message translates to:
-  /// **'Score - Add Up Cards'**
-  String get scanScoreAddUpCards;
+  /// **'Joker (-2)'**
+  String get scanRankJoker;
 
-  /// No description provided for @scanScoreNeedNineCards.
+  /// No description provided for @scanRankKing.
   ///
   /// In en, this message translates to:
-  /// **'Detect at least {count} cards before scoring.'**
-  String scanScoreNeedNineCards(int count);
+  /// **'K (0)'**
+  String get scanRankKing;
 
-  /// No description provided for @scanScoreNoPlayers.
+  /// No description provided for @scanRankQueen.
   ///
   /// In en, this message translates to:
-  /// **'No players available to score.'**
-  String get scanScoreNoPlayers;
+  /// **'Q (12)'**
+  String get scanRankQueen;
 
-  /// No description provided for @scanScoreSavedForPlayer.
+  /// No description provided for @scanTapToCorrect.
   ///
   /// In en, this message translates to:
-  /// **'Saved {player} score: {score}. Next: {nextPlayer}'**
-  String scanScoreSavedForPlayer(String player, int score, String nextPlayer);
+  /// **'Tap a card value bubble to correct it'**
+  String get scanTapToCorrect;
 
-  /// No description provided for @scanScoringPlayer.
+  /// No description provided for @scanWebPhotoHint.
   ///
   /// In en, this message translates to:
-  /// **'Scoring: {player}'**
-  String scanScoringPlayer(String player);
+  /// **'Choose a card photo from your device to scan.'**
+  String get scanWebPhotoHint;
 
   /// No description provided for @scoreKeeper.
   ///
