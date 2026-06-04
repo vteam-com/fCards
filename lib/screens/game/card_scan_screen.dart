@@ -9,6 +9,7 @@ import 'package:cards/models/app/correction_sample_store_factory.dart';
 import 'package:cards/models/app/tflite_rank_parser.dart';
 import 'package:cards/models/app/tflite_service.dart';
 import 'package:cards/widgets/buttons/my_button_rectangle.dart';
+import 'package:cards/widgets/buttons/my_button_round.dart';
 import 'package:cards/widgets/helpers/screen.dart';
 import 'package:flutter/material.dart';
 import 'package:image/image.dart' as img;
@@ -108,7 +109,7 @@ class _CardScanScreenState extends State<CardScanScreen> {
     return Column(
       children: [
         Expanded(child: _buildPreviewWithOverlay()),
-        _buildScoreAndScanRow(l10n),
+        _buildScoreAndScanRow(),
         const SizedBox(height: ConstLayout.paddingL),
       ],
     );
@@ -119,7 +120,7 @@ class _CardScanScreenState extends State<CardScanScreen> {
     return Column(
       children: [
         Expanded(child: _buildPreviewWithOverlay()),
-        _buildScoreAndScanRow(l10n),
+        _buildScoreAndScanRow(),
         if (_gridInference != null)
           Text(
             l10n.scanTapToCorrect,
@@ -151,7 +152,7 @@ class _CardScanScreenState extends State<CardScanScreen> {
   }
 
   /// Shared file-picker UI used on macOS and web.
-  Widget _buildFilePickerBody(AppLocalizations l10n, String hint) {
+  Widget _buildFilePickerBody(AppLocalizations _, String hint) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -181,7 +182,7 @@ class _CardScanScreenState extends State<CardScanScreen> {
           ),
         ],
         const SizedBox(height: ConstLayout.paddingM),
-        _buildScoreAndScanRow(l10n),
+        _buildScoreAndScanRow(),
       ],
     );
   }
@@ -262,7 +263,7 @@ class _CardScanScreenState extends State<CardScanScreen> {
   }
 
   /// SCAN button — danger style in preview, primary style in review.
-  Widget _buildScanButton(AppLocalizations l10n) {
+  Widget _buildScanButton() {
     final isShowingCapturedResult = _isShowingCapturedResult;
     if (isShowingCapturedResult) {
       return MyButtonRectangle.primary(
@@ -271,8 +272,9 @@ class _CardScanScreenState extends State<CardScanScreen> {
       );
     }
 
-    return MyButtonRectangle.danger(
+    return MyButtonRound(
       onTap: _isScanning ? null : _scan,
+      size: ConstLayout.buttonWidth,
       child: _isScanning
           ? const SizedBox(
               width: ConstLayout.iconXS,
@@ -282,12 +284,12 @@ class _CardScanScreenState extends State<CardScanScreen> {
                 strokeWidth: ConstLayout.strokeS,
               ),
             )
-          : Text(l10n.scanCard),
+          : Icon(Icons.camera_alt, size: ConstLayout.iconXL),
     );
   }
 
   /// Builds the bottom row showing the current detected score and the SCAN/retake button.
-  Widget _buildScoreAndScanRow(AppLocalizations l10n) {
+  Widget _buildScoreAndScanRow() {
     final isReviewMode = _isShowingCapturedResult;
     return Padding(
       padding: const EdgeInsets.symmetric(
@@ -317,7 +319,7 @@ class _CardScanScreenState extends State<CardScanScreen> {
           Expanded(
             child: Align(
               alignment: Alignment.center,
-              child: _buildScanButton(l10n),
+              child: _buildScanButton(),
             ),
           ),
           const Expanded(child: SizedBox.shrink()),
@@ -337,11 +339,51 @@ class _CardScanScreenState extends State<CardScanScreen> {
       return 0;
     }
 
+    final values = gridInference.valuesByCell;
+    final isZeroScored = gridInference.zeroScoredCells;
+
     int total = 0;
-    for (final value in gridInference.valuesByCell) {
-      total += value ?? TfliteService.jokerRankValue;
+    for (int i = 0; i < values.length; i++) {
+      if (!isZeroScored[i]) {
+        total += values[i] ?? TfliteService.jokerRankValue;
+      }
     }
     return total;
+  }
+
+  /// Returns a bitmask of cells whose values are cancelled by a matching
+  /// triplet in the same row or column. Jokers (null values) are never
+  /// cancelled.
+  static List<bool> _computeZeroScoredCells(List<int?> values, int dim) {
+    final isZeroScored = List<bool>.filled(dim * dim, false);
+
+    // Check rows
+    for (int row = 0; row < dim; row++) {
+      final i0 = row * dim;
+      final i1 = row * dim + 1;
+      final i2 = row * dim + (dim - 1);
+      final v0 = values[i0];
+      if (v0 != null && v0 == values[i1] && v0 == values[i2]) {
+        isZeroScored[i0] = true;
+        isZeroScored[i1] = true;
+        isZeroScored[i2] = true;
+      }
+    }
+
+    // Check columns
+    for (int col = 0; col < dim; col++) {
+      final i0 = col;
+      final i1 = dim + col;
+      final i2 = (dim - 1) * dim + col;
+      final v0 = values[i0];
+      if (v0 != null && v0 == values[i1] && v0 == values[i2]) {
+        isZeroScored[i0] = true;
+        isZeroScored[i1] = true;
+        isZeroScored[i2] = true;
+      }
+    }
+
+    return isZeroScored;
   }
 
   Rect _containedRect(Size canvasSize, Size sourceSize) {
@@ -575,6 +617,7 @@ class _CardScanScreenState extends State<CardScanScreen> {
       height: gridHeight,
       badgeHeightNormalized: tallestDetectedSpan,
       valuesByCell: valuesByCell,
+      zeroScoredCells: _computeZeroScoredCells(valuesByCell, _gridDimension),
     );
   }
 

@@ -262,10 +262,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get scanCameraError => 'Camera error: ';
 
   @override
-  String get scanCard => 'Scan Card';
+  String get scanCard => 'Count Cards';
 
   @override
-  String get scanCardTitle => 'Scan Card';
+  String get scanCardTitle => 'Count Cards';
 
   @override
   String get scanCorrectCardValueTitle => 'Correct Card Value';

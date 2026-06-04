@@ -478,7 +478,7 @@
 </g>
 <g>
   <path d="M 280.0 846.0 H 178.0 Q 172.0 846.0 172.0 852.0 V 4074.0 Q 172.0 4080.0 178.0 4080.0 H 460.0" class="edgeVertical"/>
-  <title>google_sign_in -> google_sign_in_android v7.2.11</title>
+  <title>google_sign_in -> google_sign_in_android v7.2.13</title>
 </g>
 <g>
   <path d="M 280.0 318.0 H 175.0 Q 169.0 318.0 169.0 324.0 V 3562.0 Q 169.0 3568.0 175.0 3568.0 H 460.0" class="edgeVertical"/>
@@ -498,7 +498,7 @@
 </g>
 <g>
   <path d="M 280.0 1022.0 H 163.0 Q 157.0 1022.0 157.0 1028.0 V 4394.0 Q 157.0 4400.0 163.0 4400.0 H 460.0" class="edgeVertical"/>
-  <title>image_picker -> image_picker_android v0.8.13+17</title>
+  <title>image_picker -> image_picker_android v0.8.13+19</title>
 </g>
 <g>
   <path d="M 280.0 846.0 H 160.0 Q 154.0 846.0 154.0 852.0 V 4266.0 Q 154.0 4272.0 160.0 4272.0 H 460.0" class="edgeVertical"/>
@@ -534,7 +534,7 @@
 </g>
 <g>
   <path d="M 280.0 230.0 H 136.0 Q 130.0 230.0 130.0 236.0 V 3946.0 Q 130.0 3952.0 136.0 3952.0 H 460.0" class="edgeVertical"/>
-  <title>camera -> flutter_plugin_android_lifecycle v2.0.34</title>
+  <title>camera -> flutter_plugin_android_lifecycle v2.0.35</title>
 </g>
 <g>
   <path d="M 280.0 1550.0 H 133.0 Q 127.0 1550.0 127.0 1556.0 V 5290.0 Q 127.0 5296.0 133.0 5296.0 H 460.0" class="edgeVertical"/>
@@ -614,7 +614,7 @@
 </g>
 <g>
   <path d="M 280.0 1638.0 H 76.0 Q 70.0 1638.0 70.0 1644.0 V 5994.0 Q 70.0 6000.0 76.0 6000.0 H 460.0" class="edgeVertical"/>
-  <title>shared_preferences -> shared_preferences_android v2.4.23</title>
+  <title>shared_preferences -> shared_preferences_android v2.4.25</title>
 </g>
 <g>
   <path d="M 280.0 1550.0 H 73.0 Q 67.0 1550.0 67.0 1556.0 V 5930.0 Q 67.0 5936.0 73.0 5936.0 H 460.0" class="edgeVertical"/>
@@ -662,7 +662,7 @@
 </g>
 <g>
   <path d="M 280.0 1990.0 H 40.0 Q 34.0 1990.0 34.0 1996.0 V 6762.0 Q 34.0 6768.0 40.0 6768.0 H 460.0" class="edgeVertical"/>
-  <title>url_launcher -> url_launcher_android v6.3.30</title>
+  <title>url_launcher -> url_launcher_android v6.3.32</title>
 </g>
 <g>
   <path d="M 280.0 406.0 H 37.0 Q 31.0 406.0 31.0 412.0 V 5226.0 Q 31.0 5232.0 37.0 5232.0 H 460.0" class="edgeVertical"/>
@@ -1793,10 +1793,10 @@
   <text x="735.68" y="3889.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. ansicolor
 2. html</title></g><g class="packageNode">
 <rect x="460.0" y="3926.0" width="280.0" height="52.0" rx="8.0" ry="8.0" fill="#f8fafc" stroke="#64748b" stroke-width="1" stroke-dasharray="4,2"/>
-<g class="packageMetadataPill"><title>Flutter &gt;=3.35.0</title><rect x="561.2" y="3965.0" width="77.6" height="9.0" rx="4.5" ry="4.5" class="packageMetadataPillShape"/><text x="600.0" y="3970" class="packageLabelMetadata" text-anchor="middle" dominant-baseline="middle">Flutter &gt;=3.35.0</text></g>
+<g class="packageMetadataPill"><title>Flutter &gt;=3.38.0</title><rect x="561.2" y="3965.0" width="77.6" height="9.0" rx="4.5" ry="4.5" class="packageMetadataPillShape"/><text x="600.0" y="3970" class="packageLabelMetadata" text-anchor="middle" dominant-baseline="middle">Flutter &gt;=3.38.0</text></g>
 <g class="platformBadge platformBadge--android"><title>Android</title><rect x="593.5" y="3949.0" width="13.0" height="13.0" rx="6.5" ry="6.5" fill="#16a34a" stroke="#15803d" stroke-width="0.6"/><text x="600.0" y="3956.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">A</text></g>
 <text x="468.0" y="3944.0" class="packageLabelDerivedName packageLabelCaption" text-anchor="start">flutter_plugin_android_lifecycle</text>
-<text x="732.0" y="3944.0" class="packageLabelDerivedVersion" text-anchor="end">^2.0.34</text>
+<text x="732.0" y="3944.0" class="packageLabelDerivedVersion" text-anchor="end">^2.0.35</text>
 </g>
 <g class="badge incomingBadge">
   <path d="M 466.0,3952.0 L 454.0,3945.0 Q 451.0,3945.0 451.0,3948.0 L 451.0,3956.0 Q 451.0,3959.0 454.0,3959.0 Z" fill="#3b82f6"/>
@@ -1810,10 +1810,10 @@
   <text x="455.68" y="4017.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. package_info_plus
 2. share_plus</title></g><g class="packageNode">
 <rect x="460.0" y="4054.0" width="280.0" height="52.0" rx="8.0" ry="8.0" fill="#f8fafc" stroke="#64748b" stroke-width="1" stroke-dasharray="4,2"/>
-<g class="packageMetadataPill"><title>Flutter &gt;=3.35.0</title><rect x="561.2" y="4093.0" width="77.6" height="9.0" rx="4.5" ry="4.5" class="packageMetadataPillShape"/><text x="600.0" y="4098" class="packageLabelMetadata" text-anchor="middle" dominant-baseline="middle">Flutter &gt;=3.35.0</text></g>
+<g class="packageMetadataPill"><title>Flutter &gt;=3.44.0</title><rect x="561.2" y="4093.0" width="77.6" height="9.0" rx="4.5" ry="4.5" class="packageMetadataPillShape"/><text x="600.0" y="4098" class="packageLabelMetadata" text-anchor="middle" dominant-baseline="middle">Flutter &gt;=3.44.0</text></g>
 <g class="platformBadge platformBadge--android"><title>Android</title><rect x="593.5" y="4077.0" width="13.0" height="13.0" rx="6.5" ry="6.5" fill="#16a34a" stroke="#15803d" stroke-width="0.6"/><text x="600.0" y="4084.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">A</text></g>
 <text x="468.0" y="4072.0" class="packageLabelDerivedName packageLabelCaption" text-anchor="start">google_sign_in_android</text>
-<text x="732.0" y="4072.0" class="packageLabelDerivedVersion" text-anchor="end">^7.2.11</text>
+<text x="732.0" y="4072.0" class="packageLabelDerivedVersion" text-anchor="end">^7.2.13</text>
 </g>
 <g class="badge incomingBadge">
   <path d="M 466.0,4080.0 L 454.0,4073.0 Q 451.0,4073.0 451.0,4076.0 L 451.0,4084.0 Q 451.0,4087.0 454.0,4087.0 Z" fill="#3b82f6"/>
@@ -1860,10 +1860,10 @@
   <text x="735.68" y="4337.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. async
 2. http_parser</title></g><g class="packageNode">
 <rect x="460.0" y="4374.0" width="280.0" height="52.0" rx="8.0" ry="8.0" fill="#f8fafc" stroke="#64748b" stroke-width="1" stroke-dasharray="4,2"/>
-<g class="packageMetadataPill"><title>Flutter &gt;=3.35.0</title><rect x="561.2" y="4413.0" width="77.6" height="9.0" rx="4.5" ry="4.5" class="packageMetadataPillShape"/><text x="600.0" y="4418" class="packageLabelMetadata" text-anchor="middle" dominant-baseline="middle">Flutter &gt;=3.35.0</text></g>
+<g class="packageMetadataPill"><title>Flutter &gt;=3.44.0</title><rect x="561.2" y="4413.0" width="77.6" height="9.0" rx="4.5" ry="4.5" class="packageMetadataPillShape"/><text x="600.0" y="4418" class="packageLabelMetadata" text-anchor="middle" dominant-baseline="middle">Flutter &gt;=3.44.0</text></g>
 <g class="platformBadge platformBadge--android"><title>Android</title><rect x="593.5" y="4397.0" width="13.0" height="13.0" rx="6.5" ry="6.5" fill="#16a34a" stroke="#15803d" stroke-width="0.6"/><text x="600.0" y="4404.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">A</text></g>
 <text x="468.0" y="4392.0" class="packageLabelDerivedName packageLabelCaption" text-anchor="start">image_picker_android</text>
-<text x="732.0" y="4392.0" class="packageLabelDerivedVersion" text-anchor="end">^0.8.13+17</text>
+<text x="732.0" y="4392.0" class="packageLabelDerivedVersion" text-anchor="end">^0.8.13+19</text>
 </g>
 <g class="badge incomingBadge">
   <path d="M 466.0,4400.0 L 454.0,4393.0 Q 451.0,4393.0 451.0,4396.0 L 451.0,4404.0 Q 451.0,4407.0 454.0,4407.0 Z" fill="#3b82f6"/>
@@ -2129,10 +2129,10 @@
   <path d="M 746.0,5936.0 L 734.0,5929.0 Q 731.0,5929.0 731.0,5932.0 L 731.0,5940.0 Q 731.0,5943.0 734.0,5943.0 Z" fill="#10b981"/>
   <text x="735.68" y="5937.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. uuid</title></g><g class="packageNode">
 <rect x="460.0" y="5974.0" width="280.0" height="52.0" rx="8.0" ry="8.0" fill="#f8fafc" stroke="#64748b" stroke-width="1" stroke-dasharray="4,2"/>
-<g class="packageMetadataPill"><title>Flutter &gt;=3.35.0</title><rect x="561.2" y="6013.0" width="77.6" height="9.0" rx="4.5" ry="4.5" class="packageMetadataPillShape"/><text x="600.0" y="6018" class="packageLabelMetadata" text-anchor="middle" dominant-baseline="middle">Flutter &gt;=3.35.0</text></g>
+<g class="packageMetadataPill"><title>Flutter &gt;=3.44.0</title><rect x="561.2" y="6013.0" width="77.6" height="9.0" rx="4.5" ry="4.5" class="packageMetadataPillShape"/><text x="600.0" y="6018" class="packageLabelMetadata" text-anchor="middle" dominant-baseline="middle">Flutter &gt;=3.44.0</text></g>
 <g class="platformBadge platformBadge--android"><title>Android</title><rect x="593.5" y="5997.0" width="13.0" height="13.0" rx="6.5" ry="6.5" fill="#16a34a" stroke="#15803d" stroke-width="0.6"/><text x="600.0" y="6004.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">A</text></g>
 <text x="468.0" y="5992.0" class="packageLabelDerivedName packageLabelCaption" text-anchor="start">shared_preferences_android</text>
-<text x="732.0" y="5992.0" class="packageLabelDerivedVersion" text-anchor="end">^2.4.23</text>
+<text x="732.0" y="5992.0" class="packageLabelDerivedVersion" text-anchor="end">^2.4.25</text>
 </g>
 <g class="badge incomingBadge">
   <path d="M 466.0,6000.0 L 454.0,5993.0 Q 451.0,5993.0 451.0,5996.0 L 451.0,6004.0 Q 451.0,6007.0 454.0,6007.0 Z" fill="#3b82f6"/>
@@ -2255,10 +2255,10 @@
   <path d="M 746.0,6704.0 L 734.0,6697.0 Q 731.0,6697.0 731.0,6700.0 L 731.0,6708.0 Q 731.0,6711.0 734.0,6711.0 Z" fill="#10b981"/>
   <text x="735.68" y="6705.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. typed_data</title></g><g class="packageNode">
 <rect x="460.0" y="6742.0" width="280.0" height="52.0" rx="8.0" ry="8.0" fill="#f8fafc" stroke="#64748b" stroke-width="1" stroke-dasharray="4,2"/>
-<g class="packageMetadataPill"><title>Flutter &gt;=3.38.0</title><rect x="561.2" y="6781.0" width="77.6" height="9.0" rx="4.5" ry="4.5" class="packageMetadataPillShape"/><text x="600.0" y="6786" class="packageLabelMetadata" text-anchor="middle" dominant-baseline="middle">Flutter &gt;=3.38.0</text></g>
+<g class="packageMetadataPill"><title>Flutter &gt;=3.44.0</title><rect x="561.2" y="6781.0" width="77.6" height="9.0" rx="4.5" ry="4.5" class="packageMetadataPillShape"/><text x="600.0" y="6786" class="packageLabelMetadata" text-anchor="middle" dominant-baseline="middle">Flutter &gt;=3.44.0</text></g>
 <g class="platformBadge platformBadge--android"><title>Android</title><rect x="593.5" y="6765.0" width="13.0" height="13.0" rx="6.5" ry="6.5" fill="#16a34a" stroke="#15803d" stroke-width="0.6"/><text x="600.0" y="6772.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">A</text></g>
 <text x="468.0" y="6760.0" class="packageLabelDerivedName packageLabelCaption" text-anchor="start">url_launcher_android</text>
-<text x="732.0" y="6760.0" class="packageLabelDerivedVersion" text-anchor="end">^6.3.30</text>
+<text x="732.0" y="6760.0" class="packageLabelDerivedVersion" text-anchor="end">^6.3.32</text>
 </g>
 <g class="badge incomingBadge">
   <path d="M 466.0,6768.0 L 454.0,6761.0 Q 451.0,6761.0 451.0,6764.0 L 451.0,6772.0 Q 451.0,6775.0 454.0,6775.0 Z" fill="#3b82f6"/>

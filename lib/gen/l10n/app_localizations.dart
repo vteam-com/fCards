@@ -545,13 +545,13 @@ abstract class AppLocalizations {
   /// No description provided for @scanCard.
   ///
   /// In en, this message translates to:
-  /// **'Scan Card'**
+  /// **'Count Cards'**
   String get scanCard;
 
   /// No description provided for @scanCardTitle.
   ///
   /// In en, this message translates to:
-  /// **'Scan Card'**
+  /// **'Count Cards'**
   String get scanCardTitle;
 
   /// No description provided for @scanCorrectCardValueTitle.

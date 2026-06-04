@@ -20,7 +20,7 @@ Define the card-scanning score flow for end-of-round play, where each player pre
 ### Scan Mode
 
 - Screen shows live camera preview.
-- Primary action button: Scan Card.
+- Primary action button: Count Cards.
 - On tap, app captures image and runs model inference.
 
 ### Review Mode
@@ -44,7 +44,7 @@ Define the card-scanning score flow for end-of-round play, where each player pre
 - Capture, detect, and render on frozen captured frame.
 - Detection overlay with bounding boxes and confidence percentages.
 - Two-button state behavior:
-  - Scan Card in live mode.
+  - Count Cards in live mode.
   - Score - Add Up Cards in review mode.
 - Score button returns UI to scanning state for next player.
 - Score button computes and saves the active player's score.
@@ -57,7 +57,7 @@ Define the card-scanning score flow for end-of-round play, where each player pre
 - `lib/screens/game/card_scan_screen.dart`
   - `_capturedImageBytes` controls Scan Mode vs Review Mode.
   - `_buildPreviewWithOverlay()` renders camera or captured image.
-  - `_buildScanButton()` switches between Scan Card and Score - Add Up Cards.
+  - `_buildScanButton()` switches between Count Cards and Score - Add Up Cards.
   - `_scoreAndAdvance()` computes score, persists it, advances player, and returns to live preview.
   - `_resetToScanMode()` clears review data and returns to live preview.
 - `lib/models/app/tflite_service_native.dart`
