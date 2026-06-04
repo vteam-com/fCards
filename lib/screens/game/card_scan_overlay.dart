@@ -105,6 +105,18 @@ class _DetectionOverlayPainter extends CustomPainter {
           );
 
           frontTextPainter.paint(canvas, Offset(textLeft, textTop));
+
+          if (grid.zeroScoredCells[index]) {
+            final slashPaint = Paint()
+              ..style = PaintingStyle.stroke
+              ..strokeWidth = ConstLayout.strokeM
+              ..color = Colors.redAccent;
+            canvas.drawLine(
+              Offset(cellCenterX - circleRadius, cellCenterY + circleRadius),
+              Offset(cellCenterX + circleRadius, cellCenterY - circleRadius),
+              slashPaint,
+            );
+          }
         }
       }
     }
@@ -127,6 +139,7 @@ class _GridInference {
     required this.height,
     required this.badgeHeightNormalized,
     required this.valuesByCell,
+    required this.zeroScoredCells,
   });
 
   final double left;
@@ -135,4 +148,5 @@ class _GridInference {
   final double height;
   final double badgeHeightNormalized;
   final List<int?> valuesByCell;
+  final List<bool> zeroScoredCells;
 }
