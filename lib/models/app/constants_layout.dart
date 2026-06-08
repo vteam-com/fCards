@@ -195,4 +195,8 @@ class ConstLayout {
 
   // Animation angles
   static const double wiggleAngle = 0.05;
+
+  // Numeric utilities
+  /// Multiplier to convert a [0, 1] fraction to a whole-number percentage.
+  static const int percentMultiplier = 100;
 }

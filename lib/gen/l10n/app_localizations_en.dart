@@ -61,6 +61,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get discardOrSwap => 'Discard →\nor\n↓ swap';
 
   @override
+  String get done => 'Done';
+
+  @override
   String get drawCardHere => 'Draw\na card\nhere\n→';
 
   @override
@@ -251,6 +254,62 @@ class AppLocalizationsEn extends AppLocalizations {
   String rounds(int count) {
     return '$count Rounds';
   }
+
+  @override
+  String get save => 'Save';
+
+  @override
+  String get scanCameraError => 'Camera error: ';
+
+  @override
+  String get scanCard => 'Count Cards';
+
+  @override
+  String get scanCardTitle => 'Count Cards';
+
+  @override
+  String get scanCorrectCardValueTitle => 'Correct Card Value';
+
+  @override
+  String get scanCorrectionSaved => 'Correction saved for model retraining';
+
+  @override
+  String get scanFailedDecode => 'Failed to decode captured image.';
+
+  @override
+  String get scanMacosPhotoHint =>
+      'On macOS, choose a card photo from your library to scan.';
+
+  @override
+  String get scanModelError => 'Could not load model: ';
+
+  @override
+  String get scanModelLoading => 'Model is still loading — please wait.';
+
+  @override
+  String get scanNoCameraFound => 'No camera found on this device.';
+
+  @override
+  String get scanRankAce => 'A (1)';
+
+  @override
+  String get scanRankJack => 'J (11)';
+
+  @override
+  String get scanRankJoker => 'Joker (-2)';
+
+  @override
+  String get scanRankKing => 'K (0)';
+
+  @override
+  String get scanRankQueen => 'Q (12)';
+
+  @override
+  String get scanTapToCorrect => 'Tap a card value bubble to correct it';
+
+  @override
+  String get scanWebPhotoHint =>
+      'Choose a card photo from your device to scan.';
 
   @override
   String get scoreKeeper => 'Score Keeper';

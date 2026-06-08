@@ -61,6 +61,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get discardOrSwap => 'Défausser →\nou\n↓ échanger';
 
   @override
+  String get done => 'Terminé';
+
+  @override
   String get drawCardHere => 'Piochez\nune carte\nici\n→';
 
   @override
@@ -251,6 +254,65 @@ class AppLocalizationsFr extends AppLocalizations {
   String rounds(int count) {
     return '$count Tours';
   }
+
+  @override
+  String get save => 'Enregistrer';
+
+  @override
+  String get scanCameraError => 'Erreur de caméra : ';
+
+  @override
+  String get scanCard => 'Scanner une carte';
+
+  @override
+  String get scanCardTitle => 'Scanner une carte';
+
+  @override
+  String get scanCorrectCardValueTitle => 'Corriger la valeur de la carte';
+
+  @override
+  String get scanCorrectionSaved =>
+      'Correction enregistrée pour le réentraînement du modèle';
+
+  @override
+  String get scanFailedDecode => 'Impossible de décoder l\'image capturée.';
+
+  @override
+  String get scanMacosPhotoHint =>
+      'Sur macOS, choisissez une photo de carte depuis votre photothèque pour scanner.';
+
+  @override
+  String get scanModelError => 'Impossible de charger le modèle : ';
+
+  @override
+  String get scanModelLoading =>
+      'Le modèle est en cours de chargement — veuillez patienter.';
+
+  @override
+  String get scanNoCameraFound => 'Aucune caméra trouvée sur cet appareil.';
+
+  @override
+  String get scanRankAce => 'As (1)';
+
+  @override
+  String get scanRankJack => 'V (11)';
+
+  @override
+  String get scanRankJoker => 'Joker (-2)';
+
+  @override
+  String get scanRankKing => 'R (0)';
+
+  @override
+  String get scanRankQueen => 'D (12)';
+
+  @override
+  String get scanTapToCorrect =>
+      'Appuyez sur une bulle de valeur de carte pour la corriger';
+
+  @override
+  String get scanWebPhotoHint =>
+      'Choisissez une photo de carte depuis votre appareil pour scanner.';
 
   @override
   String get scoreKeeper => 'Carnet de scores';

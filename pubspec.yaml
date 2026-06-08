@@ -16,7 +16,7 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
-version: 1.11.7
+version: 1.12.0
 
 environment:
   sdk: ">=3.12.0 <4.0.0"
@@ -28,23 +28,28 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
-  animate_do: ^5.1.0
-  firebase_auth: ^6.2.0
-  firebase_core: ^4.5.0
-  firebase_database: ^12.1.4
+  animate_do: 5.1.0
+  camera: 0.12.0+1
+  firebase_auth: 6.5.2
+  firebase_core: 4.10.0
+  firebase_database: 12.4.2
   flutter:
     sdk: flutter
   google_sign_in: ^7.2.0
   flutter_localizations:
     sdk: flutter
   flutter_markdown: ^0.7.7+1
+  image_picker: ^1.2.0
+  image: ^4.8.0
   intl: ^0.20.2
   logger: ^2.6.2
   mockito: ^5.6.3
   package_info_plus: ^10.1.0
+  path_provider: ^2.1.5
   share_plus: ^13.1.0
   shared_preferences: ^2.5.4
-  the_splash: ^0.3.1
+  the_splash: 0.3.1
+  tflite_flutter: 0.12.1
   universal_platform: ^1.1.0
   url_launcher: ^6.3.2
   web: ^1.1.1
@@ -76,6 +81,7 @@ flutter:
     - assets/generated/
       # for read the config
     - flutter_native_splash.yaml
+    - assets/models/
 
   fonts:
     - family: Roboto
