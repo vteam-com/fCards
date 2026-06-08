@@ -2,6 +2,7 @@ import 'dart:typed_data';
 
 import 'package:cards/models/app/card_detection.dart';
 import 'package:cards/models/app/tflite_rank_parser.dart';
+import 'package:cards/utils/logger.dart';
 import 'package:flutter/services.dart';
 import 'package:tflite_flutter/tflite_flutter.dart';
 
@@ -81,8 +82,10 @@ class TfliteService {
     String modelPath = _defaultModelPath,
     String labelsPath = _defaultLabelsPath,
   }) async {
+    logger.i('TFLite: loading model from $modelPath');
     _interpreter?.close();
     _interpreter = await Interpreter.fromAsset(modelPath);
+    logger.i('TFLite: model loaded successfully');
 
     final raw = await rootBundle.loadString(labelsPath);
     _labels = raw

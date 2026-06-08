@@ -8,6 +8,7 @@ import 'package:cards/models/app/correction_sample_store.dart';
 import 'package:cards/models/app/correction_sample_store_factory.dart';
 import 'package:cards/models/app/tflite_rank_parser.dart';
 import 'package:cards/models/app/tflite_service.dart';
+import 'package:cards/utils/logger.dart';
 import 'package:cards/widgets/buttons/my_button_rectangle.dart';
 import 'package:cards/widgets/buttons/my_button_round.dart';
 import 'package:cards/widgets/helpers/screen.dart';
@@ -61,6 +62,7 @@ class _CardScanScreenState extends State<CardScanScreen> {
   static const double _half = 2.0;
   final ImagePicker _imagePicker = ImagePicker();
   bool _isCameraReady = false;
+  bool _isModelLoading = false;
   bool _isScanning = false;
   static const int _minNumericCardValue = 2;
   static const double _modelImageSize = TfliteService.modelInputSize * 1.0;
@@ -109,7 +111,7 @@ class _CardScanScreenState extends State<CardScanScreen> {
     return Column(
       children: [
         Expanded(child: _buildPreviewWithOverlay()),
-        _buildScoreAndScanRow(),
+        _buildScoreAndScanRow(l10n),
         const SizedBox(height: ConstLayout.paddingL),
       ],
     );
@@ -120,7 +122,7 @@ class _CardScanScreenState extends State<CardScanScreen> {
     return Column(
       children: [
         Expanded(child: _buildPreviewWithOverlay()),
-        _buildScoreAndScanRow(),
+        _buildScoreAndScanRow(l10n),
         if (_gridInference != null)
           Text(
             l10n.scanTapToCorrect,
@@ -152,7 +154,7 @@ class _CardScanScreenState extends State<CardScanScreen> {
   }
 
   /// Shared file-picker UI used on macOS and web.
-  Widget _buildFilePickerBody(AppLocalizations _, String hint) {
+  Widget _buildFilePickerBody(AppLocalizations l10n, String hint) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -182,7 +184,7 @@ class _CardScanScreenState extends State<CardScanScreen> {
           ),
         ],
         const SizedBox(height: ConstLayout.paddingM),
-        _buildScoreAndScanRow(),
+        _buildScoreAndScanRow(l10n),
       ],
     );
   }
@@ -272,10 +274,13 @@ class _CardScanScreenState extends State<CardScanScreen> {
       );
     }
 
+    final isModelLoaded = TfliteService.instance.isLoaded;
+    final canScan = !_isScanning && !_isModelLoading && isModelLoaded;
+
     return MyButtonRound(
-      onTap: _isScanning ? null : _scan,
+      onTap: canScan ? _scan : null,
       size: ConstLayout.buttonWidth,
-      child: _isScanning
+      child: _isScanning || _isModelLoading
           ? const SizedBox(
               width: ConstLayout.iconXS,
               height: ConstLayout.iconXS,
@@ -284,12 +289,14 @@ class _CardScanScreenState extends State<CardScanScreen> {
                 strokeWidth: ConstLayout.strokeS,
               ),
             )
-          : Icon(Icons.camera_alt, size: ConstLayout.iconXL),
+          : canScan
+          ? const Icon(Icons.camera_alt, size: ConstLayout.iconXL)
+          : const Icon(Icons.hourglass_empty, size: ConstLayout.iconXL),
     );
   }
 
   /// Builds the bottom row showing the current detected score and the SCAN/retake button.
-  Widget _buildScoreAndScanRow() {
+  Widget _buildScoreAndScanRow(AppLocalizations _) {
     final isReviewMode = _isShowingCapturedResult;
     return Padding(
       padding: const EdgeInsets.symmetric(
@@ -699,14 +706,22 @@ class _CardScanScreenState extends State<CardScanScreen> {
 
   /// Loads the TFLite model in the background; sets [_errorMessage] on failure.
   Future<void> _loadModel() async {
+    if (mounted) {
+      setState(() => _isModelLoading = true);
+    }
     try {
       await TfliteService.instance.loadModel();
-    } catch (e) {
+    } catch (e, stack) {
+      logger.e('TFLite model load failed', e, stack);
       if (mounted) {
         setState(
           () => _errorMessage =
               '${AppLocalizations.of(context).scanModelError}$e',
         );
+      }
+    } finally {
+      if (mounted) {
+        setState(() => _isModelLoading = false);
       }
     }
   }

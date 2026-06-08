@@ -39,4 +39,28 @@ post_install do |installer|
   installer.pods_project.targets.each do |target|
     flutter_additional_macos_build_settings(target)
   end
+  
+  # Add build phase to copy TensorFlow Lite library for tflite_flutter
+  runner_target = installer.pods_project.targets.find { |t| t.name == 'Runner' }
+  if runner_target
+    # Remove existing copy script phase if present
+    runner_target.build_phases.each do |phase|
+      if phase.is_a?(Xcodeproj::Project::Object::PBXShellScriptBuildPhase) && 
+         phase.shell_script&.include?('copy_tflite_lib.sh')
+        runner_target.build_phases.delete(phase)
+      end
+    end
+    
+    # Create new copy script build phase
+    copy_script_phase = runner_target.new_shell_script_build_phase('Copy TensorFlow Lite Library')
+    copy_script_phase.shell_script = %Q("#{File.dirname(__FILE__)}/copy_tflite_lib.sh")
+    
+    # Move this phase to run before Compile Sources
+    compile_phase_index = runner_target.build_phases.find_index { |phase| 
+      phase.is_a?(Xcodeproj::Project::Object::PBXSourcesBuildPhase) 
+    }
+    if compile_phase_index
+      runner_target.build_phases.move(runner_target.build_phases.index(copy_script_phase), compile_phase_index - 1)
+    end
+  end
 end

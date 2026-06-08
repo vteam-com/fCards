@@ -28,15 +28,20 @@ void main() async {
   // Initialize Firebase for the entire app (if not offline)
   if (!isRunningOffLine) {
     try {
+      // Add a timeout for Firebase initialization (30 seconds)
+      // If it times out or fails on macOS, fall back to offline mode
       await Firebase.initializeApp(
         options: DefaultFirebaseOptions.currentPlatform,
-      );
+      ).timeout(const Duration(seconds: 30));
       await AuthService.ensureSignedIn();
       backendReady = true;
       logger.i('Firebase initialized successfully');
     } catch (e) {
       backendReady = false;
-      logger.e('Firebase initialization error', e);
+      isRunningOffLine = true;
+      logger.w(
+        'Firebase initialization failed - falling back to offline mode: $e',
+      );
     }
   }
 
