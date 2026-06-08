@@ -68,6 +68,12 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   icon: Icons.scoreboard,
                   onPressed: () => Navigator.pushNamed(context, '/score'),
                 ),
+                SizedBox(height: ConstLayout.sizeM),
+                MenuButton(
+                  label: localizations.scanCard,
+                  icon: Icons.camera_alt,
+                  onPressed: () => Navigator.pushNamed(context, '/scan'),
+                ),
                 const Spacer(),
               ],
             ),

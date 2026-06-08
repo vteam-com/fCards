@@ -1,8 +1,14 @@
 {
     "cSpell.words": [
+        "COCOAPODS",
+        "fcards",
         "flutterfire",
+        "LTWH",
         "mocktail",
-        "Roboto"
+        "ONNX",
+        "Roboto",
+        "tflite",
+        "xcconfig"
     ],
     "files.exclude": {
         "**/build": true

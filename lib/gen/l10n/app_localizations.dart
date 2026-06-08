@@ -188,6 +188,12 @@ abstract class AppLocalizations {
   /// **'Discard →\nor\n↓ swap'**
   String get discardOrSwap;
 
+  /// No description provided for @done.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get done;
+
   /// No description provided for @drawCardHere.
   ///
   /// In en, this message translates to:
@@ -523,6 +529,114 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{count} Rounds'**
   String rounds(int count);
+
+  /// No description provided for @save.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get save;
+
+  /// No description provided for @scanCameraError.
+  ///
+  /// In en, this message translates to:
+  /// **'Camera error: '**
+  String get scanCameraError;
+
+  /// No description provided for @scanCard.
+  ///
+  /// In en, this message translates to:
+  /// **'Count Cards'**
+  String get scanCard;
+
+  /// No description provided for @scanCardTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Count Cards'**
+  String get scanCardTitle;
+
+  /// No description provided for @scanCorrectCardValueTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Correct Card Value'**
+  String get scanCorrectCardValueTitle;
+
+  /// No description provided for @scanCorrectionSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Correction saved for model retraining'**
+  String get scanCorrectionSaved;
+
+  /// No description provided for @scanFailedDecode.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to decode captured image.'**
+  String get scanFailedDecode;
+
+  /// No description provided for @scanMacosPhotoHint.
+  ///
+  /// In en, this message translates to:
+  /// **'On macOS, choose a card photo from your library to scan.'**
+  String get scanMacosPhotoHint;
+
+  /// No description provided for @scanModelError.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not load model: '**
+  String get scanModelError;
+
+  /// No description provided for @scanModelLoading.
+  ///
+  /// In en, this message translates to:
+  /// **'Model is still loading — please wait.'**
+  String get scanModelLoading;
+
+  /// No description provided for @scanNoCameraFound.
+  ///
+  /// In en, this message translates to:
+  /// **'No camera found on this device.'**
+  String get scanNoCameraFound;
+
+  /// No description provided for @scanRankAce.
+  ///
+  /// In en, this message translates to:
+  /// **'A (1)'**
+  String get scanRankAce;
+
+  /// No description provided for @scanRankJack.
+  ///
+  /// In en, this message translates to:
+  /// **'J (11)'**
+  String get scanRankJack;
+
+  /// DO NOT TRANSLATE. Joker is the universal card game term.
+  ///
+  /// In en, this message translates to:
+  /// **'Joker (-2)'**
+  String get scanRankJoker;
+
+  /// No description provided for @scanRankKing.
+  ///
+  /// In en, this message translates to:
+  /// **'K (0)'**
+  String get scanRankKing;
+
+  /// No description provided for @scanRankQueen.
+  ///
+  /// In en, this message translates to:
+  /// **'Q (12)'**
+  String get scanRankQueen;
+
+  /// No description provided for @scanTapToCorrect.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap a card value bubble to correct it'**
+  String get scanTapToCorrect;
+
+  /// No description provided for @scanWebPhotoHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a card photo from your device to scan.'**
+  String get scanWebPhotoHint;
 
   /// No description provided for @scoreKeeper.
   ///

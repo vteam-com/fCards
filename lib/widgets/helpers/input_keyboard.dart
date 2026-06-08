@@ -19,11 +19,6 @@ const String keySpaceLabel = 'SPACE';
 class _InputKeyboardConstants {
   static const int codeA = 65; // Unicode / ASCII code point for 'A'
   static const int alphabetCount = 26;
-  static const int alphaRow1End = 5;
-  static const int alphaRow2End = 10;
-  static const int alphaRow3End = 15;
-  static const int alphaRow4End = 20;
-  static const int alphaRow5End = 25;
 }
 
 /// The two input modes supported by [InputKeyboard].
@@ -55,66 +50,47 @@ class InputKeyboard extends StatelessWidget {
   final Function(String) onKeyPressed;
   @override
   Widget build(BuildContext context) {
+    final decoration = BoxDecoration(
+      color: Colors.black26,
+      border: Border.all(color: Colors.black26),
+      borderRadius: const BorderRadius.all(
+        Radius.circular(ConstLayout.radiusXL),
+      ),
+    );
+    if (mode == InputKeyboardMode.alpha) {
+      // Alpha mode: no IntrinsicWidth so the Wrap can reflow on narrow screens.
+      return Container(
+        margin: EdgeInsets.all(ConstLayout.sizeS),
+        decoration: decoration,
+        padding: EdgeInsets.all(ConstLayout.paddingS),
+        child: _buildAlphaLayout(),
+      );
+    }
     return IntrinsicWidth(
       child: Container(
         margin: EdgeInsets.all(ConstLayout.sizeS),
-        decoration: BoxDecoration(
-          color: Colors.black26,
-          border: Border.all(color: Colors.black26),
-          borderRadius: const BorderRadius.all(
-            Radius.circular(ConstLayout.radiusXL),
-          ),
-        ),
+        decoration: decoration,
         padding: EdgeInsets.all(ConstLayout.paddingS),
-        child: mode == InputKeyboardMode.alpha
-            ? _buildAlphaLayout()
-            : _buildNumericLayout(),
+        child: _buildNumericLayout(),
       ),
     );
   }
 
-  /// Builds the alpha keyboard layout: rows A–Z, space bar, backspace.
+  /// Builds the alpha keyboard layout: A–Z letters, space bar, backspace.
+  ///
+  /// Uses [Wrap] so keys reflow gracefully on narrow screens without overflow.
   Widget _buildAlphaLayout() {
     // Generate A–Z from character codes to avoid hardcoded string literals.
     final letters = List<String>.generate(
       _InputKeyboardConstants.alphabetCount,
       (i) => String.fromCharCode(_InputKeyboardConstants.codeA + i),
     );
-    return Column(
+    return Wrap(
+      alignment: WrapAlignment.center,
       children: [
-        _buildRow(letters.sublist(0, _InputKeyboardConstants.alphaRow1End)),
-        _buildRow(
-          letters.sublist(
-            _InputKeyboardConstants.alphaRow1End,
-            _InputKeyboardConstants.alphaRow2End,
-          ),
-        ),
-        _buildRow(
-          letters.sublist(
-            _InputKeyboardConstants.alphaRow2End,
-            _InputKeyboardConstants.alphaRow3End,
-          ),
-        ),
-        _buildRow(
-          letters.sublist(
-            _InputKeyboardConstants.alphaRow3End,
-            _InputKeyboardConstants.alphaRow4End,
-          ),
-        ),
-        _buildRow(
-          letters.sublist(
-            _InputKeyboardConstants.alphaRow4End,
-            _InputKeyboardConstants.alphaRow5End,
-          ),
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            _buildButton(letters[_InputKeyboardConstants.alphaRow5End]),
-            _buildSpaceButton(),
-            _buildButton(keyBackspace),
-          ],
-        ),
+        ...letters.map(_buildButton),
+        _buildSpaceButton(),
+        _buildButton(keyBackspace),
       ],
     );
   }
@@ -160,14 +136,6 @@ class InputKeyboard extends StatelessWidget {
           ],
         ),
       ],
-    );
-  }
-
-  /// Builds a row of round key buttons from a list of labels.
-  Widget _buildRow(List<String> keys) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: keys.map(_buildButton).toList(),
     );
   }
 
