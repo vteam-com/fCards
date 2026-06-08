@@ -123,6 +123,50 @@ class _CardScanScreenState extends State<CardScanScreen> {
     );
   }
 
+  /// Builds the review layout for a captured image with detection overlay and tap-to-correct.
+  Widget _buildCapturedImageReview(Uint8List capturedImageBytes) {
+    final overlayNumberStyle = scoreNumberStyle(
+      context,
+      fontSize: ConstLayout.textS,
+    );
+    final cellNumberStyle = scoreNumberStyle(
+      context,
+      fontSize: ConstLayout.textM * _scoreFontScale,
+    );
+    return LayoutBuilder(
+      builder: (_, constraints) {
+        final canvasSize = Size(constraints.maxWidth, constraints.maxHeight);
+        final destinationRect = containedRect(
+          canvasSize,
+          const Size(_modelImageSize, _modelImageSize),
+        );
+        return GestureDetector(
+          behavior: HitTestBehavior.opaque,
+          onTapUp: (details) => _handleReviewTap(details, destinationRect),
+          child: Stack(
+            fit: StackFit.expand,
+            children: [
+              Positioned.fromRect(
+                rect: destinationRect,
+                child: Image.memory(capturedImageBytes, fit: BoxFit.fill),
+              ),
+              if (_detections.isNotEmpty)
+                CustomPaint(
+                  painter: _DetectionOverlayPainter(
+                    detections: _detections,
+                    gridInference: _gridInference,
+                    overlayNumberStyle: overlayNumberStyle,
+                    cellNumberStyle: cellNumberStyle,
+                    contentRect: destinationRect,
+                  ),
+                ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
   /// Shows the captured image with detection overlays on all platforms.
   Widget _buildCapturedResultBody(AppLocalizations l10n) {
     return Column(
@@ -195,13 +239,8 @@ class _CardScanScreenState extends State<CardScanScreen> {
     );
   }
 
-  /// Builds the fallback UI for macOS where `camera` is not available.
-  Widget _buildMacOsBody(AppLocalizations l10n) =>
-      _buildFilePickerBody(l10n, l10n.scanMacosPhotoHint);
-
-  /// Stacks the camera preview with the detection bounding-box overlay.
-  Widget _buildPreviewWithOverlay() {
-    final capturedImageBytes = _capturedImageBytes;
+  /// Builds the live camera preview with optional detection overlay.
+  Widget _buildLiveCameraStack() {
     final overlayNumberStyle = scoreNumberStyle(
       context,
       fontSize: ConstLayout.textS,
@@ -210,64 +249,41 @@ class _CardScanScreenState extends State<CardScanScreen> {
       context,
       fontSize: ConstLayout.textM * _scoreFontScale,
     );
-    if (capturedImageBytes == null) {
-      final preview = CameraPreview(_controller!);
-      return Stack(
-        fit: StackFit.expand,
-        children: [
-          _shouldFlipHorizontally
-              ? Transform(
-                  alignment: Alignment.center,
-                  transform: Matrix4.diagonal3Values(-1.0, 1.0, 1.0),
-                  child: preview,
-                )
-              : preview,
-          if (_detections.isNotEmpty)
-            CustomPaint(
-              painter: _DetectionOverlayPainter(
-                detections: _detections,
-                gridInference: _gridInference,
-                overlayNumberStyle: overlayNumberStyle,
-                cellNumberStyle: cellNumberStyle,
-              ),
+    final preview = CameraPreview(_controller!);
+    return Stack(
+      fit: StackFit.expand,
+      children: [
+        _shouldFlipHorizontally
+            ? Transform(
+                alignment: Alignment.center,
+                transform: Matrix4.diagonal3Values(-1.0, 1.0, 1.0),
+                child: preview,
+              )
+            : preview,
+        if (_detections.isNotEmpty)
+          CustomPaint(
+            painter: _DetectionOverlayPainter(
+              detections: _detections,
+              gridInference: _gridInference,
+              overlayNumberStyle: overlayNumberStyle,
+              cellNumberStyle: cellNumberStyle,
             ),
-        ],
-      );
-    }
-
-    return LayoutBuilder(
-      builder: (_, constraints) {
-        final canvasSize = Size(constraints.maxWidth, constraints.maxHeight);
-        final destinationRect = containedRect(
-          canvasSize,
-          const Size(_modelImageSize, _modelImageSize),
-        );
-
-        return GestureDetector(
-          behavior: HitTestBehavior.opaque,
-          onTapUp: (details) => _handleReviewTap(details, destinationRect),
-          child: Stack(
-            fit: StackFit.expand,
-            children: [
-              Positioned.fromRect(
-                rect: destinationRect,
-                child: Image.memory(capturedImageBytes, fit: BoxFit.fill),
-              ),
-              if (_detections.isNotEmpty)
-                CustomPaint(
-                  painter: _DetectionOverlayPainter(
-                    detections: _detections,
-                    gridInference: _gridInference,
-                    overlayNumberStyle: overlayNumberStyle,
-                    cellNumberStyle: cellNumberStyle,
-                    contentRect: destinationRect,
-                  ),
-                ),
-            ],
           ),
-        );
-      },
+      ],
     );
+  }
+
+  /// Builds the fallback UI for macOS where `camera` is not available.
+  Widget _buildMacOsBody(AppLocalizations l10n) =>
+      _buildFilePickerBody(l10n, l10n.scanMacosPhotoHint);
+
+  /// Stacks the camera preview with the detection bounding-box overlay.
+  Widget _buildPreviewWithOverlay() {
+    final capturedImageBytes = _capturedImageBytes;
+    if (capturedImageBytes == null) {
+      return _buildLiveCameraStack();
+    }
+    return _buildCapturedImageReview(capturedImageBytes);
   }
 
   /// SCAN button — danger style in preview, primary style in review.

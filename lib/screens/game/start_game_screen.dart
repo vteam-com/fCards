@@ -219,209 +219,19 @@ class StartScreenState extends State<StartScreen> {
                   if (!widget.createRoomFlow) _gameMode(),
                   if (!widget.createRoomFlow)
                     IntrinsicHeight(child: _gameInstructionsWidget()),
-                  if (isCreateTableNameStep)
-                    Padding(
-                      padding: const EdgeInsets.all(ConstLayout.paddingS),
-                      child: Text(
-                        localizations.enterTableName,
-                        style: TextStyle(
-                          fontSize: ConstLayout.textS,
-                          color: Theme.of(context).colorScheme.tertiary,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                  const SizedBox(height: ConstLayout.sizeM),
-                  if (!widget.createRoomFlow || isCreateTableNameStep)
-                    Row(
-                      children: [
-                        EditBox(
-                          label: localizations.table,
-                          controller: _controllerRoom,
-                          onSubmitted: () {
-                            _controllerRoom.text = _controllerRoom.text
-                                .toUpperCase();
-                            if (roomName.isEmpty) {
-                              return;
-                            }
-
-                            if (isCreateTableNameStep) {
-                              _lookupCreateTableName(roomName);
-                              return;
-                            }
-
-                            prepareBackEndForRoom(roomName);
-                          },
-                          onChanged: (String _ /* tableName */) {
-                            _onRoomNameChanged();
-                          },
-                          errorStatus: _errorTextRoom,
-                          rightSideChild: widget.createRoomFlow
-                              ? const SizedBox.shrink()
-                              : IconButton(
-                                  onPressed: () {
-                                    setState(() {
-                                      _isExpandedRooms = !_isExpandedRooms;
-                                    });
-                                  },
-                                  icon: Icon(
-                                    _isExpandedRooms
-                                        ? Icons.expand_less
-                                        : Icons.expand_more,
-                                    color: Theme.of(
-                                      context,
-                                    ).colorScheme.onSurface,
-                                  ),
-                                ),
-                        ),
-                      ],
-                    ),
-                  if (widget.createRoomFlow && !isCreateTableNameStep)
-                    Padding(
-                      padding: const EdgeInsets.all(ConstLayout.paddingS),
-                      child: Text(
-                        localizations.tableLabel(roomName),
-                        style: TextStyle(
-                          fontSize: ConstLayout.textM,
-                          color: Theme.of(context).colorScheme.secondary,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                  if (!widget.createRoomFlow && _isExpandedRooms)
-                    TableWidget(
-                      roomId: roomName,
-                      rooms: _listOfRooms,
-                      onSelected: (String room) {
-                        _controllerRoom.text = room;
-                        if (roomName.isNotEmpty) {
-                          prepareBackEndForRoom(roomName);
-                        }
-                        setState(() {
-                          // we can now close the drop down
-                          _isExpandedRooms = false;
-                        });
-                      },
-                      onRemoveRoom: _playerName == 'JP'
-                          ? (String _ /* room */) {}
-                          : null,
-                    ),
-                  if (isCreateTableNameStep &&
-                      roomName.isNotEmpty &&
-                      _isCheckingCreateTableName)
-                    const Padding(
-                      padding: EdgeInsets.all(ConstLayout.paddingS),
-                      child: SizedBox(
-                        width: ConstLayout.sizeXXL,
-                        height: ConstLayout.sizeXXL,
-                        child: CircularProgressIndicator(),
-                      ),
-                    ),
+                  _buildRoomSection(localizations, isCreateTableNameStep),
                   const SizedBox(height: ConstLayout.sizeXS),
-                  if (showPlayerInputFields)
-                    SizedBox(
-                      width: ConstLayout.startGameScreenMaxWidth,
-                      child: PlayersInRoomWidget(
-                        activePlayerName: _playerName,
-                        playerNames: _playerNames.toList(),
-                        onPlayerSelected: (String name) {
-                          setState(() {
-                            _controllerName.text = name;
-                          });
-                        },
-                        onRemovePlayer: removePlayer,
-                      ),
-                    ),
+                  if (showPlayerInputFields) _buildPlayersWidget(),
                   if (showJoinShortcut)
-                    Padding(
-                      padding: const EdgeInsets.all(ConstLayout.paddingS),
-                      child: Text(
-                        localizations.thisTableAlreadyHasPlayers,
-                        style: TextStyle(
-                          fontSize: ConstLayout.textS,
-                          color: Theme.of(context).colorScheme.tertiary,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                  if (showJoinShortcut)
-                    MyButtonRectangle(
-                      width: double.infinity,
-                      onTap: () {
-                        openJoinFlowForTable(
-                          context: context,
-                          tableName: roomName,
-                          gameStyle: _selectedGameStyle,
-                        );
-                      },
-                      child: Text(
-                        localizations.joinThisTable,
-                        style: TextStyle(
-                          fontSize: ConstLayout.textS,
-                          fontWeight: FontWeight.bold,
-                          color: Theme.of(
-                            context,
-                          ).colorScheme.onPrimaryContainer,
-                        ),
-                      ),
-                    ),
-                  if (showJoinShortcut)
-                    Padding(
-                      padding: const EdgeInsets.all(ConstLayout.paddingS),
-                      child: Text(
-                        localizations.enterTableName,
-                        style: TextStyle(
-                          fontSize: ConstLayout.textS,
-                          color: Theme.of(context).colorScheme.tertiary,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
+                    _buildJoinShortcutSection(localizations),
                   if (isCreateTableNameStep)
-                    MyButtonRectangle(
-                      width: double.infinity,
-                      onTap: canContinueToPlayerSetup
-                          ? _continueCreateWithNewTableName
-                          : null,
-                      child: Text(
-                        localizations.next,
-                        style: TextStyle(
-                          fontSize: ConstLayout.textM,
-                          fontWeight: FontWeight.bold,
-                          color: Theme.of(
-                            context,
-                          ).colorScheme.onPrimaryContainer,
-                        ),
-                      ),
+                    _buildContinueToSetupButton(
+                      localizations,
+                      canContinueToPlayerSetup,
                     ),
                   const SizedBox(height: ConstLayout.sizeS),
                   if (showPlayerInputFields)
-                    Padding(
-                      padding: const EdgeInsets.all(ConstLayout.paddingS),
-                      child: Text(localizations.whoAreYou),
-                    ),
-                  if (showPlayerInputFields)
-                    const SizedBox(height: ConstLayout.sizeS),
-                  if (showPlayerInputFields)
-                    EditBox(
-                      label: localizations.join,
-                      controller: _controllerName,
-                      onSubmitted: () {
-                        _controllerName.text = _controllerName.text
-                            .toUpperCase();
-                        joinGame(_controllerName.text);
-                      },
-                      errorStatus: _errorTextName,
-                      rightSideChild: IconButton(
-                        onPressed: () {
-                          joinGame(_controllerName.text);
-                        },
-                        icon: Icon(
-                          Icons.add,
-                          color: Theme.of(context).colorScheme.onSurface,
-                        ),
-                      ),
-                    ),
+                    _buildPlayerNameInput(localizations),
                   const SizedBox(height: ConstLayout.sizeM),
                   if (showPlayerInputFields) actionButton(),
                   const SizedBox(height: ConstLayout.sizeM),
@@ -431,6 +241,215 @@ class StartScreenState extends State<StartScreen> {
           ),
         ),
       ),
+    );
+  }
+
+  /// Builds the room name section: optional hint, input row, table label, dropdown, and spinner.
+  Widget _buildRoomSection(AppLocalizations l10n, bool isCreateTableNameStep) {
+    return Column(
+      children: [
+        if (isCreateTableNameStep)
+          Padding(
+            padding: const EdgeInsets.all(ConstLayout.paddingS),
+            child: Text(
+              l10n.enterTableName,
+              style: TextStyle(
+                fontSize: ConstLayout.textS,
+                color: Theme.of(context).colorScheme.tertiary,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ),
+        const SizedBox(height: ConstLayout.sizeM),
+        if (!widget.createRoomFlow || isCreateTableNameStep)
+          Row(
+            children: [
+              EditBox(
+                label: l10n.table,
+                controller: _controllerRoom,
+                onSubmitted: () {
+                  _controllerRoom.text = _controllerRoom.text.toUpperCase();
+                  if (roomName.isEmpty) return;
+                  if (isCreateTableNameStep) {
+                    _lookupCreateTableName(roomName);
+                    return;
+                  }
+                  prepareBackEndForRoom(roomName);
+                },
+                onChanged: (String _ /* tableName */) {
+                  _onRoomNameChanged();
+                },
+                errorStatus: _errorTextRoom,
+                rightSideChild: widget.createRoomFlow
+                    ? const SizedBox.shrink()
+                    : IconButton(
+                        onPressed: () {
+                          setState(() {
+                            _isExpandedRooms = !_isExpandedRooms;
+                          });
+                        },
+                        icon: Icon(
+                          _isExpandedRooms
+                              ? Icons.expand_less
+                              : Icons.expand_more,
+                          color: Theme.of(context).colorScheme.onSurface,
+                        ),
+                      ),
+              ),
+            ],
+          ),
+        if (widget.createRoomFlow && !isCreateTableNameStep)
+          Padding(
+            padding: const EdgeInsets.all(ConstLayout.paddingS),
+            child: Text(
+              l10n.tableLabel(roomName),
+              style: TextStyle(
+                fontSize: ConstLayout.textM,
+                color: Theme.of(context).colorScheme.secondary,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ),
+        if (!widget.createRoomFlow && _isExpandedRooms)
+          TableWidget(
+            roomId: roomName,
+            rooms: _listOfRooms,
+            onSelected: (String room) {
+              _controllerRoom.text = room;
+              if (roomName.isNotEmpty) {
+                prepareBackEndForRoom(roomName);
+              }
+              setState(() {
+                // we can now close the drop down
+                _isExpandedRooms = false;
+              });
+            },
+            onRemoveRoom: _playerName == 'JP' ? (String _ /* room */) {} : null,
+          ),
+        if (isCreateTableNameStep &&
+            roomName.isNotEmpty &&
+            _isCheckingCreateTableName)
+          const Padding(
+            padding: EdgeInsets.all(ConstLayout.paddingS),
+            child: SizedBox(
+              width: ConstLayout.sizeXXL,
+              height: ConstLayout.sizeXXL,
+              child: CircularProgressIndicator(),
+            ),
+          ),
+      ],
+    );
+  }
+
+  /// Builds the players-in-room list widget.
+  Widget _buildPlayersWidget() {
+    return SizedBox(
+      width: ConstLayout.startGameScreenMaxWidth,
+      child: PlayersInRoomWidget(
+        activePlayerName: _playerName,
+        playerNames: _playerNames.toList(),
+        onPlayerSelected: (String name) {
+          setState(() {
+            _controllerName.text = name;
+          });
+        },
+        onRemovePlayer: removePlayer,
+      ),
+    );
+  }
+
+  /// Builds the join-shortcut section shown when the entered table name already exists.
+  Widget _buildJoinShortcutSection(AppLocalizations l10n) {
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(ConstLayout.paddingS),
+          child: Text(
+            l10n.thisTableAlreadyHasPlayers,
+            style: TextStyle(
+              fontSize: ConstLayout.textS,
+              color: Theme.of(context).colorScheme.tertiary,
+            ),
+            textAlign: TextAlign.center,
+          ),
+        ),
+        MyButtonRectangle(
+          width: double.infinity,
+          onTap: () {
+            openJoinFlowForTable(
+              context: context,
+              tableName: roomName,
+              gameStyle: _selectedGameStyle,
+            );
+          },
+          child: Text(
+            l10n.joinThisTable,
+            style: TextStyle(
+              fontSize: ConstLayout.textS,
+              fontWeight: FontWeight.bold,
+              color: Theme.of(context).colorScheme.onPrimaryContainer,
+            ),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(ConstLayout.paddingS),
+          child: Text(
+            l10n.enterTableName,
+            style: TextStyle(
+              fontSize: ConstLayout.textS,
+              color: Theme.of(context).colorScheme.tertiary,
+            ),
+            textAlign: TextAlign.center,
+          ),
+        ),
+      ],
+    );
+  }
+
+  /// Builds the "Continue" button for advancing past the table-name step.
+  Widget _buildContinueToSetupButton(AppLocalizations l10n, bool canContinue) {
+    return MyButtonRectangle(
+      width: double.infinity,
+      onTap: canContinue ? _continueCreateWithNewTableName : null,
+      child: Text(
+        l10n.next,
+        style: TextStyle(
+          fontSize: ConstLayout.textM,
+          fontWeight: FontWeight.bold,
+          color: Theme.of(context).colorScheme.onPrimaryContainer,
+        ),
+      ),
+    );
+  }
+
+  /// Builds the player name input section with label and text field.
+  Widget _buildPlayerNameInput(AppLocalizations l10n) {
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(ConstLayout.paddingS),
+          child: Text(l10n.whoAreYou),
+        ),
+        const SizedBox(height: ConstLayout.sizeS),
+        EditBox(
+          label: l10n.join,
+          controller: _controllerName,
+          onSubmitted: () {
+            _controllerName.text = _controllerName.text.toUpperCase();
+            joinGame(_controllerName.text);
+          },
+          errorStatus: _errorTextName,
+          rightSideChild: IconButton(
+            onPressed: () {
+              joinGame(_controllerName.text);
+            },
+            icon: Icon(
+              Icons.add,
+              color: Theme.of(context).colorScheme.onSurface,
+            ),
+          ),
+        ),
+      ],
     );
   }
 
