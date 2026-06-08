@@ -64,103 +64,103 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
     final AppLocalizations localizations = AppLocalizations.of(context);
     return FutureBuilder<GolfScoreModel>(
       future: _scoreModelFuture,
-      builder: (context, snapshot) {
+      builder: (_, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting ||
             snapshot.hasError) {
-          return Screen(
-            title: localizations.golfScoreKeeper,
-            isWaiting: true,
-            child: Center(
-              child: snapshot.connectionState == ConnectionState.waiting
-                  ? CircularProgressIndicator()
-                  : Text(
-                      localizations.errorLoadingScores(
-                        snapshot.error.toString(),
-                      ),
-                    ),
-            ),
-          );
+          return _buildLoadingOrErrorContent(snapshot, localizations);
         }
-
         final GolfScoreModel scoreModel = snapshot.data!;
         final List<int> ranks = scoreModel.getPlayerRanks();
-        final colorScheme = Theme.of(context).colorScheme;
+        return _buildScoreContent(scoreModel, ranks, localizations);
+      },
+    );
+  }
 
-        return Screen(
-          title: localizations.golfScoreKeeper,
-          isWaiting: false,
-          onRefresh: () => confirmNewGame(scoreModel),
-          child: RawKeyboardListener(
-            focusNode: _keyboardFocusNode,
-            onKey: _handleKeyEvent,
-            autofocus: true,
-            child: GestureDetector(
-              behavior: HitTestBehavior.translucent,
-              onTap: () {
-                setState(() {
-                  _selectedCell = null;
-                });
-              },
-              child: Center(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    // Header row with player names
-                    FittedBox(child: _buildPlayersHeader(scoreModel, ranks)),
-                    Expanded(
-                      child: SingleChildScrollView(
-                        controller: _scrollController,
-                        // padding: EdgeInsets.all(8),
-                        child: FittedBox(
-                          child: Column(
-                            children: [
-                              _buildRounds(
-                                context,
-                                scoreModel,
-                                ranks,
-                                colorScheme,
-                              ),
-                              if (_selectedCell == null)
-                                _buildAddOrRemoveRow(
-                                  context,
-                                  scoreModel,
-                                  colorScheme,
-                                ),
-                              if (_selectedCell != null)
-                                Column(
-                                  children: [
-                                    InputKeyboard(
-                                      onKeyPressed: (key) =>
-                                          _handleKeyPress(key, scoreModel),
-                                    ),
+  Widget _buildLoadingOrErrorContent(
+    AsyncSnapshot<GolfScoreModel> snapshot,
+    AppLocalizations l10n,
+  ) {
+    return Screen(
+      title: l10n.golfScoreKeeper,
+      isWaiting: true,
+      child: Center(
+        child: snapshot.connectionState == ConnectionState.waiting
+            ? CircularProgressIndicator()
+            : Text(l10n.errorLoadingScores(snapshot.error.toString())),
+      ),
+    );
+  }
 
-                                    // AI Camera Scanner Button
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        MyButtonRound(
-                                          onTap: () =>
-                                              _openCameraScanner(scoreModel),
-                                          size: ConstLayout.iconL,
-                                          child: const Icon(Icons.camera_alt),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                            ],
-                          ),
-                        ),
+  Widget _buildScoreContent(
+    GolfScoreModel scoreModel,
+    List<int> ranks,
+    AppLocalizations l10n,
+  ) {
+    final colorScheme = Theme.of(context).colorScheme;
+    return Screen(
+      title: l10n.golfScoreKeeper,
+      isWaiting: false,
+      onRefresh: () => confirmNewGame(scoreModel),
+      child: RawKeyboardListener(
+        focusNode: _keyboardFocusNode,
+        onKey: _handleKeyEvent,
+        autofocus: true,
+        child: GestureDetector(
+          behavior: HitTestBehavior.translucent,
+          onTap: () {
+            setState(() {
+              _selectedCell = null;
+            });
+          },
+          child: Center(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                FittedBox(child: _buildPlayersHeader(scoreModel, ranks)),
+                Expanded(
+                  child: SingleChildScrollView(
+                    controller: _scrollController,
+                    child: FittedBox(
+                      child: Column(
+                        children: [
+                          _buildRounds(context, scoreModel, ranks, colorScheme),
+                          if (_selectedCell == null)
+                            _buildAddOrRemoveRow(
+                              context,
+                              scoreModel,
+                              colorScheme,
+                            ),
+                          if (_selectedCell != null)
+                            _buildKeyboardAndCameraSection(scoreModel),
+                        ],
                       ),
                     ),
-                  ],
+                  ),
                 ),
-              ),
+              ],
             ),
           ),
-        );
-      },
+        ),
+      ),
+    );
+  }
+
+  Widget _buildKeyboardAndCameraSection(GolfScoreModel scoreModel) {
+    return Column(
+      children: [
+        InputKeyboard(onKeyPressed: (key) => _handleKeyPress(key, scoreModel)),
+        // AI Camera Scanner Button
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            MyButtonRound(
+              onTap: () => _openCameraScanner(scoreModel),
+              size: ConstLayout.iconL,
+              child: const Icon(Icons.camera_alt),
+            ),
+          ],
+        ),
+      ],
     );
   }
 
