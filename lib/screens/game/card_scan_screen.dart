@@ -8,6 +8,7 @@ import 'package:cards/models/app/correction_sample_store.dart';
 import 'package:cards/models/app/correction_sample_store_factory.dart';
 import 'package:cards/models/app/tflite_rank_parser.dart';
 import 'package:cards/models/app/tflite_service.dart';
+import 'package:cards/screens/game/card_scan_helpers.dart';
 import 'package:cards/utils/logger.dart';
 import 'package:cards/widgets/buttons/my_button_rectangle.dart';
 import 'package:cards/widgets/buttons/my_button_round.dart';
@@ -27,165 +28,15 @@ part 'card_scan_overlay.dart';
 /// - `assets/models/labels.txt` — one class name per line.
 /// - Camera permissions granted (see Android / iOS manifests).
 class CardScanScreen extends StatefulWidget {
-  const CardScanScreen({super.key});
+  const CardScanScreen({super.key, this.onScoreConfirmed});
+
+  /// Optional callback invoked when the user confirms a detected score.
+  /// When provided, a confirm button appears in review mode that passes
+  /// the calculated score to this callback and pops the screen.
+  final void Function(int score)? onScoreConfirmed;
 
   @override
   State<CardScanScreen> createState() => _CardScanScreenState();
-}
-
-/// Returns a bitmask of cells cancelled by matching triplets per row/column.
-List<bool> _computeZeroScoredCells(List<int?> values, int dim) {
-  final isZeroScored = List<bool>.filled(dim * dim, false);
-
-  // Check rows
-  for (int row = 0; row < dim; row++) {
-    final i0 = row * dim;
-    final i1 = row * dim + 1;
-    final i2 = row * dim + (dim - 1);
-    final v0 = values[i0];
-    if (v0 != null && v0 == values[i1] && v0 == values[i2]) {
-      isZeroScored[i0] = true;
-      isZeroScored[i1] = true;
-      isZeroScored[i2] = true;
-    }
-  }
-
-  // Check columns
-  for (int col = 0; col < dim; col++) {
-    final i0 = col;
-    final i1 = dim + col;
-    final i2 = (dim - 1) * dim + col;
-    final v0 = values[i0];
-    if (v0 != null && v0 == values[i1] && v0 == values[i2]) {
-      isZeroScored[i0] = true;
-      isZeroScored[i1] = true;
-      isZeroScored[i2] = true;
-    }
-  }
-
-  return isZeroScored;
-}
-
-/// Computes the centered destination rect that preserves source aspect ratio.
-Rect _containedRect(Size canvasSize, Size sourceSize) {
-  final fittedSizes = applyBoxFit(BoxFit.contain, sourceSize, canvasSize);
-  final destinationSize = fittedSizes.destination;
-  final dx =
-      (canvasSize.width - destinationSize.width) / _CardScanScreenState._half;
-  final dy =
-      (canvasSize.height - destinationSize.height) / _CardScanScreenState._half;
-  return Rect.fromLTWH(dx, dy, destinationSize.width, destinationSize.height);
-}
-
-/// Computes the Intersection-over-Union ratio for two bounding boxes.
-double _iou(CardDetection a, CardDetection b) {
-  final left = a.left > b.left ? a.left : b.left;
-  final top = a.top > b.top ? a.top : b.top;
-  final right = (a.left + a.width) < (b.left + b.width)
-      ? (a.left + a.width)
-      : (b.left + b.width);
-  final bottom = (a.top + a.height) < (b.top + b.height)
-      ? (a.top + a.height)
-      : (b.top + b.height);
-
-  final interWidth = right - left;
-  final interHeight = bottom - top;
-  if (interWidth <= 0 || interHeight <= 0) {
-    return 0;
-  }
-
-  final intersection = interWidth * interHeight;
-  final union = (a.width * a.height) + (b.width * b.height) - intersection;
-  if (union <= 0) {
-    return 0;
-  }
-
-  return intersection / union;
-}
-
-/// Builds a user-facing rank label for the correction value dropdown.
-String _formatRankLabel(int value, AppLocalizations l10n) {
-  return switch (value) {
-    TfliteRankParser.jokerRankValue => l10n.scanRankJoker,
-    TfliteRankParser.rankValueKing => l10n.scanRankKing,
-    TfliteRankParser.rankValueAce => l10n.scanRankAce,
-    TfliteRankParser.rankValueJack => l10n.scanRankJack,
-    TfliteRankParser.rankValueQueen => l10n.scanRankQueen,
-    _ => '$value',
-  };
-}
-
-/// Returns the shared style used for score numbers in overlays and footer.
-TextStyle _scoreNumberStyle(BuildContext context, {required double fontSize}) {
-  final colorScheme = Theme.of(context).colorScheme;
-  final scoreFontFamily = Theme.of(context).textTheme.bodyMedium?.fontFamily;
-  return TextStyle(
-    fontFamily: scoreFontFamily,
-    fontWeight: FontWeight.bold,
-    fontSize: fontSize,
-    color: Color.alphaBlend(colorScheme.onSurface, Colors.green.shade300),
-    shadows: const <Shadow>[
-      Shadow(
-        color: Colors.white54,
-        offset: Offset(-ConstLayout.strokeXS, -ConstLayout.strokeXS),
-        blurRadius: ConstLayout.strokeS,
-      ),
-      Shadow(
-        color: Colors.black54,
-        offset: Offset(ConstLayout.strokeXS, ConstLayout.strokeXS),
-        blurRadius: ConstLayout.strokeS,
-      ),
-    ],
-  );
-}
-
-/// Shows card value correction dialog and returns the selected value.
-Future<int?> _showCardCorrectionDialog({
-  required BuildContext context,
-  required AppLocalizations l10n,
-  required int currentValue,
-  required List<int> correctionValues,
-}) async {
-  int selectedValue = currentValue;
-  return showDialog<int>(
-    context: context,
-    builder: (dialogContext) {
-      return StatefulBuilder(
-        builder: (_, setDialogState) {
-          return AlertDialog(
-            title: Text(l10n.scanCorrectCardValueTitle),
-            content: DropdownButton<int>(
-              value: selectedValue,
-              isExpanded: true,
-              items: correctionValues
-                  .map(
-                    (value) => DropdownMenuItem<int>(
-                      value: value,
-                      child: Text(_formatRankLabel(value, l10n)),
-                    ),
-                  )
-                  .toList(),
-              onChanged: (value) {
-                if (value != null) {
-                  setDialogState(() => selectedValue = value);
-                }
-              },
-            ),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.of(dialogContext).pop(),
-                child: Text(l10n.cancel),
-              ),
-              TextButton(
-                onPressed: () => Navigator.of(dialogContext).pop(selectedValue),
-                child: Text(l10n.save),
-              ),
-            ],
-          );
-        },
-      );
-    },
-  );
 }
 
 class _CardScanScreenState extends State<CardScanScreen> {
@@ -351,11 +202,11 @@ class _CardScanScreenState extends State<CardScanScreen> {
   /// Stacks the camera preview with the detection bounding-box overlay.
   Widget _buildPreviewWithOverlay() {
     final capturedImageBytes = _capturedImageBytes;
-    final overlayNumberStyle = _scoreNumberStyle(
+    final overlayNumberStyle = scoreNumberStyle(
       context,
       fontSize: ConstLayout.textS,
     );
-    final cellNumberStyle = _scoreNumberStyle(
+    final cellNumberStyle = scoreNumberStyle(
       context,
       fontSize: ConstLayout.textM * _scoreFontScale,
     );
@@ -387,7 +238,7 @@ class _CardScanScreenState extends State<CardScanScreen> {
     return LayoutBuilder(
       builder: (_, constraints) {
         final canvasSize = Size(constraints.maxWidth, constraints.maxHeight);
-        final destinationRect = _containedRect(
+        final destinationRect = containedRect(
           canvasSize,
           const Size(_modelImageSize, _modelImageSize),
         );
@@ -469,7 +320,7 @@ class _CardScanScreenState extends State<CardScanScreen> {
                       alignment: Alignment.centerLeft,
                       child: Text(
                         '${_calculateDetectedScore()}',
-                        style: _scoreNumberStyle(
+                        style: scoreNumberStyle(
                           context,
                           fontSize: ConstLayout.textXL * _scoreFontScale,
                         ),
@@ -484,7 +335,23 @@ class _CardScanScreenState extends State<CardScanScreen> {
               child: _buildScanButton(),
             ),
           ),
-          const Expanded(child: SizedBox.shrink()),
+          Expanded(
+            child: Align(
+              alignment: Alignment.centerRight,
+              child:
+                  isReviewMode &&
+                      widget.onScoreConfirmed != null &&
+                      _gridInference != null
+                  ? MyButtonRound(
+                      onTap: () {
+                        widget.onScoreConfirmed!(_calculateDetectedScore());
+                        Navigator.of(context).pop();
+                      },
+                      child: const Icon(Icons.check),
+                    )
+                  : const SizedBox.shrink(),
+            ),
+          ),
         ],
       ),
     );
@@ -525,7 +392,7 @@ class _CardScanScreenState extends State<CardScanScreen> {
 
     for (final candidate in sorted) {
       final overlapsExisting = kept.any(
-        (existing) => _iou(candidate, existing) >= _nmsIouThreshold,
+        (existing) => iou(candidate, existing) >= _nmsIouThreshold,
       );
       if (!overlapsExisting) {
         kept.add(candidate);
@@ -723,7 +590,7 @@ class _CardScanScreenState extends State<CardScanScreen> {
       height: gridHeight,
       badgeHeightNormalized: tallestDetectedSpan,
       valuesByCell: valuesByCell,
-      zeroScoredCells: _computeZeroScoredCells(valuesByCell, _gridDimension),
+      zeroScoredCells: computeZeroScoredCells(valuesByCell, _gridDimension),
     );
   }
 
@@ -940,7 +807,7 @@ class _CardScanScreenState extends State<CardScanScreen> {
     final currentValue =
         grid.valuesByCell[cellIndex] ?? TfliteService.jokerRankValue;
 
-    final correctedValue = await _showCardCorrectionDialog(
+    final correctedValue = await showCardCorrectionDialog(
       context: context,
       l10n: l10n,
       currentValue: currentValue,
