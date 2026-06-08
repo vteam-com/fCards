@@ -5,6 +5,7 @@ import 'package:cards/models/app/app_theme.dart';
 import 'package:cards/models/app/constants_layout.dart';
 import 'package:cards/models/game/game_constants.dart';
 import 'package:cards/models/game/golf_score_model.dart';
+import 'package:cards/screens/game/card_scan_screen.dart';
 import 'package:cards/widgets/buttons/my_button_rectangle.dart';
 import 'package:cards/widgets/buttons/my_button_round.dart';
 import 'package:cards/widgets/helpers/input_keyboard.dart';
@@ -126,9 +127,27 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
                                   colorScheme,
                                 ),
                               if (_selectedCell != null)
-                                InputKeyboard(
-                                  onKeyPressed: (key) =>
-                                      _handleKeyPress(key, scoreModel),
+                                Column(
+                                  children: [
+                                    InputKeyboard(
+                                      onKeyPressed: (key) =>
+                                          _handleKeyPress(key, scoreModel),
+                                    ),
+
+                                    // AI Camera Scanner Button
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        MyButtonRound(
+                                          onTap: () =>
+                                              _openCameraScanner(scoreModel),
+                                          size: ConstLayout.iconL,
+                                          child: const Icon(Icons.camera_alt),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
                                 ),
                             ],
                           ),
@@ -470,6 +489,31 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
     } else if (event is RawKeyUpEvent) {
       _keysPressed.remove(event.logicalKey);
     }
+  }
+
+  /// Opens the AI camera scanner and sets the detected score in the active cell.
+  Future<void> _openCameraScanner(GolfScoreModel model) async {
+    await Navigator.push(
+      context,
+      MaterialPageRoute<void>(
+        builder: (_) => CardScanScreen(
+          onScoreConfirmed: (score) => _setScoreFromCamera(score, model),
+        ),
+      ),
+    );
+  }
+
+  /// Sets the active cell value directly (used after camera detection).
+  void _setScoreFromCamera(int value, GolfScoreModel model) {
+    if (_selectedCell == null) {
+      return;
+    }
+    final int row = _selectedCell!['row']!;
+    final int col = _selectedCell!['col']!;
+    setState(() {
+      model.updateScore(row, col, value);
+      _selectedCell = null;
+    });
   }
 
   /// Applies a keypad action to the currently selected score cell.
