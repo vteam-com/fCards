@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 1.12.0
+
+- Add card scan / score camera feature with visual indication for zero-scored cells
+- Detect playing cards via on-device ML model
+- Add web-based card scanning support
+- Refactor card scan overlay and screen for clarity and maintainability
+- Upgrade Android Gradle and Kotlin versions
+
 ## 1.11.7
 
 - Refactor start flow after game type selection to offer:
@@ -15,6 +23,7 @@
 - fCheck 1.1.2
 
 ## 1.11.6
+
 - fCheck 1.1.1
 
 ## 1.11.5
@@ -32,7 +41,7 @@
   
 ## 1.11.2
 
-- Fix typo in game type selection (Skylo → Skyjo)
+- Fix typo in game type selection (Sky'l'o → Skyjo)
 
 ## 1.11.1
 
@@ -177,7 +186,7 @@
 
 ## 1.1.0
 
-- Add Skyjo (Gilles)
+- Add Skyjo (Giles)
 
 ## 1.2.0
 
