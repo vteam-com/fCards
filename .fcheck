@@ -1,6 +1,4 @@
 input:
   exclude:
-    - "**/firebase_options.dart"
-    - "**/firebase_options.example.dart"
-    - "lib/gen/l10n/app_localizations.dart"
-    - "build/**"
+    - "lib/gen/l10n/app_localization*.dart"
+    - "lib/models/app/firebase_options*.dart"

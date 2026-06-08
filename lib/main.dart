@@ -16,6 +16,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:the_splash/the_splash.dart';
 
+const int _firebaseInitTimeoutSeconds = 30;
+
 /// The entry point of the application.
 ///
 /// This function initializes the Flutter binding and then runs the `MyApp` widget,
@@ -28,11 +30,11 @@ void main() async {
   // Initialize Firebase for the entire app (if not offline)
   if (!isRunningOffLine) {
     try {
-      // Add a timeout for Firebase initialization (30 seconds)
+      // Add a timeout for Firebase initialization.
       // If it times out or fails on macOS, fall back to offline mode
       await Firebase.initializeApp(
         options: DefaultFirebaseOptions.currentPlatform,
-      ).timeout(const Duration(seconds: 30));
+      ).timeout(const Duration(seconds: _firebaseInitTimeoutSeconds));
       await AuthService.ensureSignedIn();
       backendReady = true;
       logger.i('Firebase initialized successfully');

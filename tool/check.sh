@@ -50,7 +50,4 @@ mkdir -p "$PWD/.dart_tool/fcheck_pub_cache"
 export PUB_CACHE="$PWD/.dart_tool/fcheck_pub_cache"
 
 dart pub global activate fcheck "1.3.3" > /dev/null
-dart pub global run fcheck --svg --fix --list full \
-  --exclude "**/app_localizations.dart" \
-  --exclude "**/firebase_options.dart" \
-  --exclude "**/firebase_options.example.dart" 
+dart pub global run fcheck --svg --fix --list full
