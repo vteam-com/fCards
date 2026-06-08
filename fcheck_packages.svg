@@ -422,11 +422,11 @@
 </g>
 <g>
   <path d="M 280.0 230.0 H 220.0 Q 214.0 230.0 214.0 236.0 V 2474.0 Q 214.0 2480.0 220.0 2480.0 H 460.0" class="edgeVertical"/>
-  <title>camera -> camera_android_camerax v0.6.30</title>
+  <title>camera -> camera_android_camerax v0.7.2+1</title>
 </g>
 <g>
   <path d="M 280.0 230.0 H 217.0 Q 211.0 230.0 211.0 236.0 V 2538.0 Q 211.0 2544.0 217.0 2544.0 H 460.0" class="edgeVertical"/>
-  <title>camera -> camera_avfoundation v0.9.23+2</title>
+  <title>camera -> camera_avfoundation v0.10.1</title>
 </g>
 <g>
   <path d="M 280.0 230.0 H 214.0 Q 208.0 230.0 208.0 236.0 V 2602.0 Q 208.0 2608.0 214.0 2608.0 H 460.0" class="edgeVertical"/>
@@ -1117,7 +1117,7 @@
 <g class="platformBadge platformBadge--ios"><title>iOS</title><rect x="373.5" y="235.0" width="13.0" height="13.0" rx="6.5" ry="6.5" fill="#111827" stroke="#0f172a" stroke-width="0.6"/><text x="380.0" y="242.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">I</text></g>
 <g class="platformBadge platformBadge--web"><title>Browser</title><rect x="390.5" y="235.0" width="13.0" height="13.0" rx="6.5" ry="6.5" fill="#0891b2" stroke="#0e7490" stroke-width="0.6"/><text x="397.0" y="242.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">B</text></g>
 <text x="380.0" y="216.0" class="packageLabelNodeName packageLabelCaption" text-anchor="middle">camera</text>
-<text x="380.0" y="229.0" class="packageLabelNodeVersion" text-anchor="middle">v0.11.4</text>
+<text x="380.0" y="229.0" class="packageLabelNodeVersion" text-anchor="middle">v0.12.0+1</text>
 </g>
 <g class="badge outgoingBadge">
   <path d="M 274.0,230.0 L 286.0,223.0 Q 289.0,223.0 289.0,226.0 L 289.0,234.0 Q 289.0,237.0 286.0,237.0 Z" fill="#10b981"/>
@@ -1381,7 +1381,7 @@
 <g class="platformBadge platformBadge--macos"><title>macOS</title><rect x="390.5" y="1731.0" width="13.0" height="13.0" rx="6.5" ry="6.5" fill="#475569" stroke="#334155" stroke-width="0.6"/><text x="397.0" y="1738.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">M</text></g>
 <g class="platformBadge platformBadge--windows"><title>Windows</title><rect x="407.5" y="1731.0" width="13.0" height="13.0" rx="6.5" ry="6.5" fill="#2563eb" stroke="#1d4ed8" stroke-width="0.6"/><text x="414.0" y="1738.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">W</text></g>
 <text x="380.0" y="1712.0" class="packageLabelNodeName packageLabelCaption" text-anchor="middle">tflite_flutter</text>
-<text x="380.0" y="1725.0" class="packageLabelNodeVersion" text-anchor="middle">v0.11.0</text>
+<text x="380.0" y="1725.0" class="packageLabelNodeVersion" text-anchor="middle">v0.12.1</text>
 </g>
 <g class="badge outgoingBadge">
   <path d="M 274.0,1726.0 L 286.0,1719.0 Q 289.0,1719.0 289.0,1722.0 L 289.0,1730.0 Q 289.0,1733.0 286.0,1733.0 Z" fill="#10b981"/>
@@ -1548,10 +1548,10 @@
 3. logging
 4. package_config</title></g><g class="packageNode">
 <rect x="460.0" y="2454.0" width="280.0" height="52.0" rx="8.0" ry="8.0" fill="#f8fafc" stroke="#64748b" stroke-width="1" stroke-dasharray="4,2"/>
-<g class="packageMetadataPill"><title>Flutter &gt;=3.35.0</title><rect x="561.2" y="2493.0" width="77.6" height="9.0" rx="4.5" ry="4.5" class="packageMetadataPillShape"/><text x="600.0" y="2498" class="packageLabelMetadata" text-anchor="middle" dominant-baseline="middle">Flutter &gt;=3.35.0</text></g>
+<g class="packageMetadataPill"><title>Flutter &gt;=3.44.0</title><rect x="561.2" y="2493.0" width="77.6" height="9.0" rx="4.5" ry="4.5" class="packageMetadataPillShape"/><text x="600.0" y="2498" class="packageLabelMetadata" text-anchor="middle" dominant-baseline="middle">Flutter &gt;=3.44.0</text></g>
 <g class="platformBadge platformBadge--android"><title>Android</title><rect x="593.5" y="2477.0" width="13.0" height="13.0" rx="6.5" ry="6.5" fill="#16a34a" stroke="#15803d" stroke-width="0.6"/><text x="600.0" y="2484.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">A</text></g>
 <text x="468.0" y="2472.0" class="packageLabelDerivedName packageLabelCaption" text-anchor="start">camera_android_camerax</text>
-<text x="732.0" y="2472.0" class="packageLabelDerivedVersion" text-anchor="end">^0.6.30</text>
+<text x="732.0" y="2472.0" class="packageLabelDerivedVersion" text-anchor="end">^0.7.2+1</text>
 </g>
 <g class="badge incomingBadge">
   <path d="M 466.0,2480.0 L 454.0,2473.0 Q 451.0,2473.0 451.0,2476.0 L 451.0,2484.0 Q 451.0,2487.0 454.0,2487.0 Z" fill="#3b82f6"/>
@@ -1563,7 +1563,7 @@
 <g class="packageMetadataPill"><title>Flutter &gt;=3.35.0</title><rect x="561.2" y="2557.0" width="77.6" height="9.0" rx="4.5" ry="4.5" class="packageMetadataPillShape"/><text x="600.0" y="2562" class="packageLabelMetadata" text-anchor="middle" dominant-baseline="middle">Flutter &gt;=3.35.0</text></g>
 <g class="platformBadge platformBadge--ios"><title>iOS</title><rect x="593.5" y="2541.0" width="13.0" height="13.0" rx="6.5" ry="6.5" fill="#111827" stroke="#0f172a" stroke-width="0.6"/><text x="600.0" y="2548.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">I</text></g>
 <text x="468.0" y="2536.0" class="packageLabelDerivedName packageLabelCaption" text-anchor="start">camera_avfoundation</text>
-<text x="732.0" y="2536.0" class="packageLabelDerivedVersion" text-anchor="end">^0.9.23+2</text>
+<text x="732.0" y="2536.0" class="packageLabelDerivedVersion" text-anchor="end">^0.10.1</text>
 </g>
 <g class="badge incomingBadge">
   <path d="M 466.0,2544.0 L 454.0,2537.0 Q 451.0,2537.0 451.0,2540.0 L 451.0,2548.0 Q 451.0,2551.0 454.0,2551.0 Z" fill="#3b82f6"/>
