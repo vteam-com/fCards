@@ -294,9 +294,7 @@
   <title>widgets ▶ player</title>
 </g>
 <g class="folderLayer">
-<rect x="122.0" y="80.0" width="454.0" height="3690.0" rx="12.0" ry="12.0" class="layerBackground layerBackgroundWarning"><title>Folder: .
-
-1 Magic Numbers warning</title></rect>
+<rect x="122.0" y="80.0" width="454.0" height="3690.0" rx="12.0" ry="12.0" class="layerBackground"><title>Folder: .</title></rect>
 </g>
 <g class="folderLayer">
 <rect x="186.0" y="132.0" width="366.0" height="98.0" rx="12.0" ry="12.0" class="layerBackgroundVirtualFolder" stroke-dasharray="4 2"><title>Folder: ...</title></rect>
@@ -445,9 +443,7 @@
   <text x="260.32" y="1085.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. widgets/helpers</title></g><g class="badge outgoingBadge">
   <path d="M 250.0,1302.0 L 262.0,1295.0 Q 265.0,1295.0 265.0,1298.0 L 265.0,1306.0 Q 265.0,1309.0 262.0,1309.0 Z" fill="#10b981"/>
   <text x="260.32" y="1303.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. widgets/buttons
-2. widgets/helpers</title></g><rect x="194.0" y="170.0" width="350.0" height="28.0" rx="5.0" ry="5.0" class="fileNode fileNodeWarning"><title>File: main.dart
-
-1 Magic Numbers warning</title></rect>
+2. widgets/helpers</title></g><rect x="194.0" y="170.0" width="350.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"><title>File: main.dart</title></rect>
 <rect x="194.0" y="3566.0" width="350.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"><title>File: utils/browser_utils.dart</title></rect>
 <rect x="194.0" y="3598.0" width="350.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"><title>File: utils/browser_utils_stub.dart</title></rect>
 <rect x="194.0" y="3630.0" width="350.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"><title>File: utils/browser_utils_web.dart</title></rect>

@@ -1,3 +1,4 @@
+// ignore: fcheck_dead_code
 import 'dart:convert';
 import 'dart:js_interop';
 
@@ -6,24 +7,24 @@ import 'package:cards/models/app/tflite_rank_parser.dart';
 import 'package:flutter/services.dart';
 
 @JS('fcardsOrtInit')
-external JSPromise<JSBoolean> _ortInit(JSUint8Array modelBytes); // ignore: fcheck_dead_code
+external JSPromise<JSBoolean> _ortInit(JSUint8Array modelBytes);
 
 @JS('fcardsOrtDetect')
 external JSPromise<JSString> _ortDetect(
-  JSUint8Array bytes, // ignore: fcheck_dead_code
-  int w, // ignore: fcheck_dead_code
-  int h, // ignore: fcheck_dead_code
-  int inputSize, // ignore: fcheck_dead_code
-  double threshold, // ignore: fcheck_dead_code
-  JSArray<JSString> labels, // ignore: fcheck_dead_code
+  JSUint8Array bytes,
+  int w,
+  int h,
+  int inputSize,
+  double threshold,
+  JSArray<JSString> labels,
 );
 
 @JS('fcardsDetectFromImageBytes')
 external JSPromise<JSString> _detectFromImageBytes(
-  JSUint8Array imageBytes, // ignore: fcheck_dead_code
-  int inputSize, // ignore: fcheck_dead_code
-  double threshold, // ignore: fcheck_dead_code
-  JSArray<JSString> labels, // ignore: fcheck_dead_code
+  JSUint8Array imageBytes,
+  int inputSize,
+  double threshold,
+  JSArray<JSString> labels,
 );
 
 /// Web fallback for TFLite service.
