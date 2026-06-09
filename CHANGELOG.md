@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 1.12.1
+
+- no more iOS cocoaPods
+- fCheck 1.3.4 - score 100%
+- Refactor the start game screen into smaller focused source files
+
 ## 1.12.0
 
 - Add card scan / score camera feature with visual indication for zero-scored cells
