@@ -32,9 +32,6 @@ flutter pub upgrade > /dev/null
 echo --- Pub Outdated
 flutter pub outdated
 
-echo --- Format sources
-dart format ./lib
-dart format ./test
  
 echo --- Analyze
 flutter analyze lib test --no-pub 2>&1 | sed 's/^/    /'
@@ -51,3 +48,7 @@ export PUB_CACHE="$PWD/.dart_tool/fcheck_pub_cache"
 
 dart pub global activate fcheck "1.3.4" > /dev/null
 dart pub global run fcheck --svg --fix --list full
+
+echo --- Format sources
+dart format ./lib
+dart format ./test
