@@ -1,3 +1,4 @@
+import 'dart:math' as math;
 import 'dart:ui';
 
 import 'package:cards/gen/l10n/app_localizations.dart';
@@ -11,8 +12,89 @@ import 'package:flutter/material.dart';
 const double _half = 2.0;
 const double _correctionCardWidth = 89.0;
 const double _correctionCardHeight = 144.0;
+const double _correctionCardMinWidth = 55.0;
 const int _bottomCornerQuarterTurns = 2;
 const double _cornerLabelWidthFactor = 0.55;
+
+class _CorrectionGridMetrics {
+  const _CorrectionGridMetrics({
+    required this.columns,
+    required this.cardWidth,
+    required this.cardHeight,
+  });
+
+  final int columns;
+  final double cardWidth;
+  final double cardHeight;
+}
+
+/// Chooses the largest correction card size that keeps all tiles visible.
+_CorrectionGridMetrics _computeCorrectionGridMetrics({
+  required double availableWidth,
+  required double availableHeight,
+  required int itemCount,
+  required double spacing,
+}) {
+  final double cardAspectRatio = _correctionCardHeight / _correctionCardWidth;
+  final int maxColumns = math.max(
+    1,
+    math.min(
+      itemCount,
+      ((availableWidth + spacing) / (_correctionCardMinWidth + spacing))
+          .floor(),
+    ),
+  );
+
+  _CorrectionGridMetrics? bestFit;
+
+  for (int columns = 1; columns <= maxColumns; columns++) {
+    final int rows = (itemCount + columns - 1) ~/ columns;
+    final double maxWidthPerCard =
+        (availableWidth - (spacing * (columns - 1))) / columns;
+    final double maxHeightPerCard =
+        (availableHeight - (spacing * (rows - 1))) / rows;
+    if (maxWidthPerCard <= 0 || maxHeightPerCard <= 0) {
+      continue;
+    }
+
+    final double cardWidth = math.min(
+      maxWidthPerCard,
+      maxHeightPerCard / cardAspectRatio,
+    );
+    if (cardWidth < _correctionCardMinWidth) {
+      continue;
+    }
+
+    final double clampedCardWidth = math.min(cardWidth, _correctionCardWidth);
+    final double cardHeight = clampedCardWidth * cardAspectRatio;
+    final _CorrectionGridMetrics candidate = _CorrectionGridMetrics(
+      columns: columns,
+      cardWidth: clampedCardWidth,
+      cardHeight: cardHeight,
+    );
+
+    if (bestFit == null || candidate.cardWidth > bestFit.cardWidth) {
+      bestFit = candidate;
+    }
+  }
+
+  if (bestFit != null) {
+    return bestFit;
+  }
+
+  final double fallbackWidth = math.max(
+    ConstLayout.sizeXL,
+    math.min(
+      _correctionCardWidth,
+      (availableWidth - (spacing * (maxColumns - 1))) / maxColumns,
+    ),
+  );
+  return _CorrectionGridMetrics(
+    columns: maxColumns,
+    cardWidth: fallbackWidth,
+    cardHeight: fallbackWidth * cardAspectRatio,
+  );
+}
 
 String _formatCardFaceLabel(int value, AppLocalizations l10n) {
   final label = formatRankLabel(value, l10n);
@@ -51,6 +133,8 @@ Widget _buildCorrectionCard({
   required AppLocalizations l10n,
   required int value,
   required bool isCurrentValue,
+  required double cardWidth,
+  required double cardHeight,
   required VoidCallback onTap,
 }) {
   final theme = Theme.of(context);
@@ -77,7 +161,7 @@ Widget _buildCorrectionCard({
   );
 
   return SizedBox(
-    width: _correctionCardWidth,
+    width: cardWidth,
     child: Material(
       color: Colors.transparent,
       child: InkWell(
@@ -109,7 +193,7 @@ Widget _buildCorrectionCard({
             ],
           ),
           child: SizedBox(
-            height: _correctionCardHeight,
+            height: cardHeight,
             child: Padding(
               padding: const EdgeInsets.all(ConstLayout.paddingM),
               child: Stack(
@@ -127,12 +211,18 @@ Widget _buildCorrectionCard({
                     ),
                   ),
                   Center(
-                    child: Text(
-                      scoreLabel,
-                      textAlign: TextAlign.center,
-                      style: theme.textTheme.displaySmall?.copyWith(
-                        color: accentColor,
-                        fontWeight: FontWeight.bold,
+                    child: FractionallySizedBox(
+                      widthFactor: _cornerLabelWidthFactor,
+                      child: FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Text(
+                          scoreLabel,
+                          textAlign: TextAlign.center,
+                          style: theme.textTheme.displaySmall?.copyWith(
+                            color: accentColor,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                       ),
                     ),
                   ),
@@ -209,86 +299,107 @@ Widget _buildCorrectionDialogContent({
   required int currentValue,
   required List<int> correctionValues,
 }) {
-  return Padding(
-    padding: const EdgeInsets.all(ConstLayout.paddingXL),
-    child: SingleChildScrollView(
-      child: LayoutBuilder(
-        builder: (_, constraints) {
-          final sectionWidth = constraints.maxWidth;
+  return LayoutBuilder(
+    builder: (_, constraints) {
+      final bool compactLayout =
+          constraints.maxWidth < ConstLayout.breakpointPhone ||
+          constraints.maxHeight < ConstLayout.desktopPlayerZoneHeight;
+      final double contentPadding = compactLayout
+          ? ConstLayout.paddingL
+          : ConstLayout.paddingXL;
 
-          return Wrap(
-            alignment: WrapAlignment.center,
-            runSpacing: ConstLayout.sizeL,
-            children: [
-              SizedBox(
-                width: sectionWidth,
-                child: Wrap(
-                  alignment: WrapAlignment.center,
-                  runSpacing: ConstLayout.sizeS,
-                  children: [
-                    SizedBox(
-                      width: sectionWidth,
-                      child: Text(
-                        l10n.scanCorrectCardValueTitle,
-                        textAlign: TextAlign.center,
-                        style: theme.textTheme.titleLarge?.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
+      return Padding(
+        padding: EdgeInsets.all(contentPadding),
+        child: LayoutBuilder(
+          builder: (_, paddedConstraints) {
+            final double sectionWidth = paddedConstraints.maxWidth;
+
+            return SizedBox(
+              width: sectionWidth,
+              height: paddedConstraints.maxHeight,
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Text(
+                    l10n.scanCorrectCardValueTitle,
+                    textAlign: TextAlign.center,
+                    style: theme.textTheme.titleLarge?.copyWith(
+                      fontWeight: FontWeight.bold,
                     ),
-                    SizedBox(
-                      width: sectionWidth,
-                      child: Text(
-                        _formatCorrectionTitleLabel(currentValue, l10n),
-                        textAlign: TextAlign.center,
-                        style: theme.textTheme.displaySmall?.copyWith(
-                          color: colorScheme.secondary,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
+                  ),
+                  const SizedBox(height: ConstLayout.sizeS),
+                  Text(
+                    _formatCorrectionTitleLabel(currentValue, l10n),
+                    textAlign: TextAlign.center,
+                    style: theme.textTheme.displaySmall?.copyWith(
+                      color: colorScheme.secondary,
+                      fontWeight: FontWeight.bold,
                     ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                width: sectionWidth,
-                child: Wrap(
-                  alignment: WrapAlignment.center,
-                  spacing: ConstLayout.sizeM,
-                  runSpacing: ConstLayout.sizeM,
-                  children: [
-                    ...correctionValues.map(
-                      (value) => _buildCorrectionCard(
-                        context: dialogContext,
-                        l10n: l10n,
-                        value: value,
-                        isCurrentValue: value == currentValue,
-                        onTap: () => Navigator.of(dialogContext).pop(value),
-                      ),
-                    ),
-                    SizedBox(
-                      width: _correctionCardWidth,
-                      child: MyButtonRectangle.action(
-                        width: _correctionCardWidth,
-                        height: _correctionCardHeight,
-                        onTap: () => Navigator.of(dialogContext).pop(),
-                        child: Text(
-                          l10n.cancel,
-                          textAlign: TextAlign.center,
-                          style: theme.textTheme.titleLarge?.copyWith(
-                            fontWeight: FontWeight.bold,
+                  ),
+                  const SizedBox(height: ConstLayout.sizeL),
+                  Expanded(
+                    child: LayoutBuilder(
+                      builder: (_, gridConstraints) {
+                        final _CorrectionGridMetrics gridMetrics =
+                            _computeCorrectionGridMetrics(
+                              availableWidth: gridConstraints.maxWidth,
+                              availableHeight: gridConstraints.maxHeight,
+                              itemCount: correctionValues.length + 1,
+                              spacing: ConstLayout.sizeM,
+                            );
+
+                        return Align(
+                          alignment: Alignment.topCenter,
+                          child: Wrap(
+                            alignment: WrapAlignment.center,
+                            spacing: ConstLayout.sizeM,
+                            runSpacing: ConstLayout.sizeM,
+                            children: [
+                              ...correctionValues.map(
+                                (value) => _buildCorrectionCard(
+                                  context: dialogContext,
+                                  l10n: l10n,
+                                  value: value,
+                                  isCurrentValue: value == currentValue,
+                                  cardWidth: gridMetrics.cardWidth,
+                                  cardHeight: gridMetrics.cardHeight,
+                                  onTap: () =>
+                                      Navigator.of(dialogContext).pop(value),
+                                ),
+                              ),
+                              SizedBox(
+                                width: gridMetrics.cardWidth,
+                                child: MyButtonRectangle.action(
+                                  width: gridMetrics.cardWidth,
+                                  height: gridMetrics.cardHeight,
+                                  onTap: () =>
+                                      Navigator.of(dialogContext).pop(),
+                                  child: FittedBox(
+                                    fit: BoxFit.scaleDown,
+                                    child: Text(
+                                      l10n.cancel,
+                                      textAlign: TextAlign.center,
+                                      style: theme.textTheme.titleLarge
+                                          ?.copyWith(
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
-                        ),
-                      ),
+                        );
+                      },
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            ],
-          );
-        },
-      ),
-    ),
+            );
+          },
+        ),
+      );
+    },
   );
 }
 
@@ -408,8 +519,8 @@ Future<int?> showCardCorrectionDialog({
     builder: (dialogContext) {
       final theme = Theme.of(dialogContext);
       final colorScheme = theme.colorScheme;
-      final isSmallScreen =
-          MediaQuery.of(dialogContext).size.width < ConstLayout.breakpointPhone;
+      final mediaQuery = MediaQuery.of(dialogContext);
+      final isSmallScreen = mediaQuery.size.width < ConstLayout.breakpointPhone;
       final content = _buildCorrectionDialogContent(
         dialogContext: dialogContext,
         l10n: l10n,
@@ -439,8 +550,9 @@ Future<int?> showCardCorrectionDialog({
         backgroundColor: Colors.transparent,
         insetPadding: const EdgeInsets.all(ConstLayout.paddingXL),
         child: ConstrainedBox(
-          constraints: const BoxConstraints(
+          constraints: BoxConstraints(
             maxWidth: ConstLayout.gameOverDialogWidth,
+            maxHeight: mediaQuery.size.height - (ConstLayout.sizeXL * _half),
           ),
           child: _buildCorrectionDialogSurface(
             colorScheme: colorScheme,
