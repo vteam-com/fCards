@@ -6,9 +6,6 @@ on:
   pull_request:
     branches: [main]
 
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
@@ -169,12 +166,17 @@ jobs:
             exit 1
           fi
 
-      - name: Deploy to Firebase Hosting (action)
-        uses: FirebaseExtended/action-hosting-deploy@v0
+      - name: Setup Node.js 24
+        uses: actions/setup-node@v5
         with:
-          repoToken: ${{ secrets.GITHUB_TOKEN }}
-          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_VTEAM_CARDS }}
-          channelId: live
-          projectId: vteam-cards
+          node-version: 24
+
+      - name: Deploy to Firebase Hosting
+        run: |
+          cat > "$RUNNER_TEMP/firebase-service-account.json" <<'EOF'
+          ${{ secrets.FIREBASE_SERVICE_ACCOUNT_VTEAM_CARDS }}
+          EOF
+          npx firebase-tools@latest deploy --only hosting --project vteam-cards --non-interactive
         env:
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ runner.temp }}/firebase-service-account.json
           FIREBASE_CLI_EXPERIMENTS: webframeworks

@@ -13,8 +13,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
-      - uses: FirebaseExtended/action-hosting-deploy@v0
+
+      - name: Setup Node.js 24
+        uses: actions/setup-node@v5
         with:
-          repoToken: ${{ secrets.GITHUB_TOKEN }}
-          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_VTEAM_CARDS }}
-          projectId: vteam-cards
+          node-version: 24
+
+      - name: Deploy PR preview to Firebase Hosting
+        run: |
+          cat > "$RUNNER_TEMP/firebase-service-account.json" <<'EOF'
+          ${{ secrets.FIREBASE_SERVICE_ACCOUNT_VTEAM_CARDS }}
+          EOF
+          npx firebase-tools@latest hosting:channel:deploy "pr-${{ github.event.pull_request.number }}" --project vteam-cards --non-interactive
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ runner.temp }}/firebase-service-account.json
