@@ -190,6 +190,51 @@ class _CardScanScreenState extends State<CardScanScreen> {
     );
   }
 
+  /// Crops one grid cell from the captured photo, optionally with extra context.
+  Uint8List? _buildCellCropImageBytes(
+    int cellIndex, {
+    bool includeContext = false,
+  }) {
+    final capturedImageBytes = _capturedImageBytes;
+    final grid = _gridInference;
+    if (capturedImageBytes == null || grid == null) return null;
+    final decoded = img.decodeImage(capturedImageBytes);
+    if (decoded == null) return null;
+    final row = cellIndex ~/ _gridDimension, col = cellIndex % _gridDimension;
+    final cellWidthNorm = grid.width / _gridDimension;
+    final cellHeightNorm = grid.height / _gridDimension;
+    var leftNorm = grid.left + col * cellWidthNorm;
+    var topNorm = grid.top + row * cellHeightNorm;
+    var rightNorm = leftNorm + cellWidthNorm;
+    var bottomNorm = topNorm + cellHeightNorm;
+    if (includeContext) {
+      final contextPaddingFactor = ConstLayout.sizeM / ConstLayout.sizeXXL;
+      final extraX = cellWidthNorm * contextPaddingFactor;
+      final extraY = cellHeightNorm * contextPaddingFactor;
+      leftNorm = (leftNorm - extraX).clamp(0.0, 1.0);
+      topNorm = (topNorm - extraY).clamp(0.0, 1.0);
+      rightNorm = (rightNorm + extraX).clamp(0.0, 1.0);
+      bottomNorm = (bottomNorm + extraY).clamp(0.0, 1.0);
+    }
+    final left = (leftNorm * decoded.width).round().clamp(0, decoded.width - 1);
+    final top = (topNorm * decoded.height).round().clamp(0, decoded.height - 1);
+    final right = (rightNorm * decoded.width).round().clamp(1, decoded.width);
+    final bottom = (bottomNorm * decoded.height).round().clamp(
+      1,
+      decoded.height,
+    );
+    final cropWidth = (right - left).clamp(1, decoded.width - left);
+    final cropHeight = (bottom - top).clamp(1, decoded.height - top);
+    final cropped = img.copyCrop(
+      decoded,
+      x: left,
+      y: top,
+      width: cropWidth,
+      height: cropHeight,
+    );
+    return Uint8List.fromList(img.encodeJpg(cropped));
+  }
+
   /// Renders the error message centred on screen.
   Widget _buildErrorView() {
     return Center(
@@ -731,47 +776,13 @@ class _CardScanScreenState extends State<CardScanScreen> {
     required int wrongValue,
     required int correctedValue,
   }) async {
-    final capturedImageBytes = _capturedImageBytes;
-    final grid = _gridInference;
-    if (capturedImageBytes == null || grid == null) {
+    final cropImageBytes = _buildCellCropImageBytes(cellIndex);
+    if (cropImageBytes == null) {
       return;
     }
-
-    final decoded = img.decodeImage(capturedImageBytes);
-    if (decoded == null) {
-      return;
-    }
-
-    final row = cellIndex ~/ _gridDimension;
-    final col = cellIndex % _gridDimension;
-    final cellWidthNorm = grid.width / _gridDimension;
-    final cellHeightNorm = grid.height / _gridDimension;
-
-    final leftNorm = grid.left + col * cellWidthNorm;
-    final topNorm = grid.top + row * cellHeightNorm;
-    final rightNorm = leftNorm + cellWidthNorm;
-    final bottomNorm = topNorm + cellHeightNorm;
-
-    final left = (leftNorm * decoded.width).round().clamp(0, decoded.width - 1);
-    final top = (topNorm * decoded.height).round().clamp(0, decoded.height - 1);
-    final right = (rightNorm * decoded.width).round().clamp(1, decoded.width);
-    final bottom = (bottomNorm * decoded.height).round().clamp(
-      1,
-      decoded.height,
-    );
-    final cropWidth = (right - left).clamp(1, decoded.width - left);
-    final cropHeight = (bottom - top).clamp(1, decoded.height - top);
-
-    final cropped = img.copyCrop(
-      decoded,
-      x: left,
-      y: top,
-      width: cropWidth,
-      height: cropHeight,
-    );
 
     await _correctionStore.saveSample(
-      imageBytes: Uint8List.fromList(img.encodeJpg(cropped)),
+      imageBytes: cropImageBytes,
       wrongValue: wrongValue,
       correctedValue: correctedValue,
       cellIndex: cellIndex,
@@ -859,12 +870,17 @@ class _CardScanScreenState extends State<CardScanScreen> {
 
     final currentValue =
         grid.valuesByCell[cellIndex] ?? TfliteService.jokerRankValue;
+    final selectedCardImageBytes = _buildCellCropImageBytes(
+      cellIndex,
+      includeContext: true,
+    );
 
     final correctedValue = await showCardCorrectionDialog(
       context: context,
       l10n: l10n,
       currentValue: currentValue,
       correctionValues: _correctionValues,
+      selectedCardImageBytes: selectedCardImageBytes,
     );
 
     if (!mounted || correctedValue == null) {
