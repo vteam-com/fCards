@@ -24,15 +24,15 @@ class GolfScoreScreen extends StatefulWidget {
 }
 
 class _GolfScoreScreenState extends State<GolfScoreScreen> {
-BuildContext? _cellContext;
-final FocusNode _keyboardFocusNode = FocusNode();
-final Set<LogicalKeyboardKey> _keysPressed = {};
-late Future<GolfScoreModel> _scoreModelFuture;
-final ScrollController _scrollController = ScrollController();
-Map<String, int>? _selectedCell;
-final double columnGap = ConstLayout.sizeS;
-final double columnWidth = ConstLayout.golfColumnWidth;
-@override
+  BuildContext? _cellContext;
+  final FocusNode _keyboardFocusNode = FocusNode();
+  final Set<LogicalKeyboardKey> _keysPressed = {};
+  late Future<GolfScoreModel> _scoreModelFuture;
+  final ScrollController _scrollController = ScrollController();
+  Map<String, int>? _selectedCell;
+  final double columnGap = ConstLayout.sizeS;
+  final double columnWidth = ConstLayout.golfColumnWidth;
+  @override
   void initState() {
     super.initState();
     _scoreModelFuture = GolfScoreModel.load().then((model) {
@@ -43,13 +43,15 @@ final double columnWidth = ConstLayout.golfColumnWidth;
       return model;
     });
   }
-@override
+
+  @override
   void dispose() {
     _keyboardFocusNode.dispose();
     _scrollController.dispose();
     super.dispose();
   }
-@override
+
+  @override
   Widget build(BuildContext context) {
     final AppLocalizations localizations = AppLocalizations.of(context);
     return FutureBuilder<GolfScoreModel>(
@@ -65,7 +67,8 @@ final double columnWidth = ConstLayout.golfColumnWidth;
       },
     );
   }
-/// Shows a confirmation dialog before deleting a round.
+
+  /// Shows a confirmation dialog before deleting a round.
   Future<void> confirmDeleteRound(int i, GolfScoreModel model) async {
     final AppLocalizations localizations = AppLocalizations.of(context);
     final bool? confirmed = await showDialog<bool>(
@@ -96,7 +99,8 @@ final double columnWidth = ConstLayout.golfColumnWidth;
       });
     }
   }
-/// Shows a confirmation dialog before deleting a round.
+
+  /// Shows a confirmation dialog before deleting a round.
   Future<void> confirmNewGame(GolfScoreModel model) async {
     final AppLocalizations localizations = AppLocalizations.of(context);
     final bool? confirmed = await showDialog<bool>(
@@ -127,14 +131,16 @@ final double columnWidth = ConstLayout.golfColumnWidth;
       });
     }
   }
-void _addPlayer(GolfScoreModel model) {
+
+  void _addPlayer(GolfScoreModel model) {
     setState(() {
       model.addPlayer(
         '${GameConstants.playerNumberPrefix}${model.playerNames.length + 1}',
       );
     });
   }
-/// Builds controls for adding/removing rounds and current round count.
+
+  /// Builds controls for adding/removing rounds and current round count.
   Widget _buildAddOrRemoveRow(
     final BuildContext context,
     final GolfScoreModel scoreModel,
@@ -202,7 +208,9 @@ void _addPlayer(GolfScoreModel model) {
       ),
     );
   }
-Widget _buildKeyboardAndCameraSection(GolfScoreModel scoreModel) {
+
+  /// Builds the inline keypad and camera tools for editing the selected score.
+  Widget _buildKeyboardAndCameraSection(GolfScoreModel scoreModel) {
     return Column(
       children: [
         InputKeyboard(onKeyPressed: (key) => _handleKeyPress(key, scoreModel)),
@@ -220,7 +228,9 @@ Widget _buildKeyboardAndCameraSection(GolfScoreModel scoreModel) {
       ],
     );
   }
-Widget _buildLoadingOrErrorContent(
+
+  /// Builds the loading state or an error message when score data cannot be read.
+  Widget _buildLoadingOrErrorContent(
     AsyncSnapshot<GolfScoreModel> snapshot,
     AppLocalizations l10n,
   ) {
@@ -234,7 +244,8 @@ Widget _buildLoadingOrErrorContent(
       ),
     );
   }
-/// Builds the player header row with rank, score, and player actions.
+
+  /// Builds the player header row with rank, score, and player actions.
   Widget _buildPlayersHeader(
     final GolfScoreModel scoreModel,
     final dynamic ranks,
@@ -274,7 +285,8 @@ Widget _buildLoadingOrErrorContent(
       ),
     );
   }
-/// Builds the round-by-round score grid with selectable score cells.
+
+  /// Builds the round-by-round score grid with selectable score cells.
   Widget _buildRounds(
     final BuildContext _,
     final dynamic scoreModel,
@@ -370,7 +382,9 @@ Widget _buildLoadingOrErrorContent(
       children: widgets,
     );
   }
-Widget _buildScoreContent(
+
+  /// Builds the complete scorekeeper layout once model data is available.
+  Widget _buildScoreContent(
     GolfScoreModel scoreModel,
     List<int> ranks,
     AppLocalizations l10n,
@@ -423,12 +437,14 @@ Widget _buildScoreContent(
       ),
     );
   }
-void _clearScores(GolfScoreModel model) {
+
+  void _clearScores(GolfScoreModel model) {
     setState(() {
       model.clearScores();
     });
   }
-/// Returns a score color based on leaderboard rank and player count.
+
+  /// Returns a score color based on leaderboard rank and player count.
   Color _getScoreColor(ColorScheme colorScheme, int rank, int numberOfPlayers) {
     if (rank == 1) {
       return colorScheme.primary;
@@ -438,7 +454,8 @@ void _clearScores(GolfScoreModel model) {
       return colorScheme.secondary;
     }
   }
-/// Handles physical keyboard input and routes supported keys to score edits.
+
+  /// Handles physical keyboard input and routes supported keys to score edits.
   void _handleKeyEvent(RawKeyEvent event) async {
     if (_selectedCell == null) {
       return;
@@ -468,7 +485,8 @@ void _clearScores(GolfScoreModel model) {
       _keysPressed.remove(event.logicalKey);
     }
   }
-/// Applies a keypad action to the currently selected score cell.
+
+  /// Applies a keypad action to the currently selected score cell.
   void _handleKeyPress(String key, GolfScoreModel model) {
     if (_selectedCell == null) {
       return;
@@ -513,7 +531,8 @@ void _clearScores(GolfScoreModel model) {
       }
     });
   }
-/// Opens the AI camera scanner and sets the detected score in the active cell.
+
+  /// Opens the AI camera scanner and sets the detected score in the active cell.
   Future<void> _openCameraScanner(GolfScoreModel model) async {
     await Navigator.push(
       context,
@@ -524,7 +543,8 @@ void _clearScores(GolfScoreModel model) {
       ),
     );
   }
-/// Sets the active cell value directly (used after camera detection).
+
+  /// Sets the active cell value directly (used after camera detection).
   void _setScoreFromCamera(int value, GolfScoreModel model) {
     if (_selectedCell == null) {
       return;
