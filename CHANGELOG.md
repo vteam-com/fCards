@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 1.12.4
+
+- Display preview of the card being corrected
+- CI/CD NodeJS 24
+
 ## 1.12.3
 
 - Improve correction card layout
