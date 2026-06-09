@@ -58,31 +58,6 @@ class MyApp extends StatelessWidget {
   ///
   /// The `super.key` parameter is passed to the parent class constructor.
   const MyApp({super.key});
-
-  static bool _isFirebaseAuthCallbackRoute(String? routeName) {
-    if (routeName == null) {
-      return false;
-    }
-
-    final uri = Uri.tryParse(routeName);
-    final deepLinkId = uri?.queryParameters['deep_link_id'];
-    return uri?.path == '/link' &&
-        deepLinkId != null &&
-        deepLinkId.contains('firebaseapp.com/__/auth/');
-  }
-
-  static Route<dynamic>? _handleGeneratedRoute(RouteSettings settings) {
-    if (!_isFirebaseAuthCallbackRoute(settings.name)) {
-      return null;
-    }
-
-    logger.i('Ignoring Firebase auth callback route: ${settings.name}');
-    return MaterialPageRoute<void>(
-      settings: settings,
-      builder: (BuildContext _) => const WelcomeScreen(),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder<Locale?>(
@@ -115,5 +90,31 @@ class MyApp extends StatelessWidget {
         );
       },
     );
+  }
+
+  /// Swallows Firebase auth callback routes so they do not break navigation.
+  static Route<dynamic>? _handleGeneratedRoute(RouteSettings settings) {
+    if (!_isFirebaseAuthCallbackRoute(settings.name)) {
+      return null;
+    }
+
+    logger.i('Ignoring Firebase auth callback route: ${settings.name}');
+    return MaterialPageRoute<void>(
+      settings: settings,
+      builder: (BuildContext _) => const WelcomeScreen(),
+    );
+  }
+
+  /// Detects the Firebase web auth redirect route emitted after sign-in.
+  static bool _isFirebaseAuthCallbackRoute(String? routeName) {
+    if (routeName == null) {
+      return false;
+    }
+
+    final uri = Uri.tryParse(routeName);
+    final deepLinkId = uri?.queryParameters['deep_link_id'];
+    return uri?.path == '/link' &&
+        deepLinkId != null &&
+        deepLinkId.contains('firebaseapp.com/__/auth/');
   }
 }
