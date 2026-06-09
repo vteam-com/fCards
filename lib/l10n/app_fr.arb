@@ -179,6 +179,7 @@
   "scanCard": "Scanner une carte",
   "scanCardTitle": "Scanner une carte",
   "scanCorrectCardValueTitle": "Corriger la valeur de la carte",
+  "scanCorrectionRequiresSignIn": "Connectez-vous avec Google pour corriger les valeurs des cartes.",
   "scanCorrectionSaved": "Correction enregistrée pour le réentraînement du modèle",
   "scanFailedDecode": "Impossible de décoder l'image capturée.",
   "scanMacosPhotoHint": "Sur macOS, choisissez une photo de carte depuis votre photothèque pour scanner.",

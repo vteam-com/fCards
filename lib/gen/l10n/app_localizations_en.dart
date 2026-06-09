@@ -268,6 +268,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get scanCorrectCardValueTitle => 'Correct Card Value';
 
   @override
+  String get scanCorrectionRequiresSignIn =>
+      'Sign in with Google to correct card values.';
+
+  @override
   String get scanCorrectionSaved => 'Correction saved for model retraining';
 
   @override

@@ -554,6 +554,12 @@ abstract class AppLocalizations {
   /// **'Correct Card Value'**
   String get scanCorrectCardValueTitle;
 
+  /// No description provided for @scanCorrectionRequiresSignIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in with Google to correct card values.'**
+  String get scanCorrectionRequiresSignIn;
+
   /// No description provided for @scanCorrectionSaved.
   ///
   /// In en, this message translates to:

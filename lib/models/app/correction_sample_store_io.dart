@@ -13,7 +13,6 @@ class _IoCorrectionSampleStore implements CorrectionSampleStore {
   static const String _metadataFileName = 'samples.jsonl';
   static const String _recordSeparator = '\n';
   static const String _dbPath = 'training_corrections';
-  static const String _anonymousUid = 'anonymous';
 
   @override
   Future<void> saveSample({
@@ -22,6 +21,10 @@ class _IoCorrectionSampleStore implements CorrectionSampleStore {
     required int correctedValue,
     required int cellIndex,
   }) async {
+    if (!AuthService.isSignedInWithAccount) {
+      throw StateError('A signed-in account is required to save corrections.');
+    }
+
     final now = DateTime.now();
     final timestamp = now.toIso8601String();
     final filename = 'sample_${now.millisecondsSinceEpoch}_cell_$cellIndex.jpg';
@@ -90,7 +93,13 @@ class _IoCorrectionSampleStore implements CorrectionSampleStore {
     required int wrongValue,
     required int correctedValue,
   }) async {
-    final uid = AuthService.currentUser?.uid ?? _anonymousUid;
+    final uid = AuthService.currentUser?.uid;
+    if (uid == null) {
+      throw StateError(
+        'A signed-in account is required to upload corrections.',
+      );
+    }
+
     final db = FirebaseDatabase.instance.ref();
     final key = filename.replaceAll('.', '_');
     await db.child('$_dbPath/$uid/$key').set(<String, dynamic>{

@@ -268,6 +268,10 @@ class AppLocalizationsFr extends AppLocalizations {
   String get scanCorrectCardValueTitle => 'Corriger la valeur de la carte';
 
   @override
+  String get scanCorrectionRequiresSignIn =>
+      'Connectez-vous avec Google pour corriger les valeurs des cartes.';
+
+  @override
   String get scanCorrectionSaved =>
       'Correction enregistrée pour le réentraînement du modèle';
 
