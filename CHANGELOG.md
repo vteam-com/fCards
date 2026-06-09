@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 1.12.3
+
+- Improve correction card layout
+- CI/CD node.js v24
+
 ## 1.12.2
 
 - Require Google sign-in before users can correct detected card values
@@ -8,7 +13,7 @@
 
 ## 1.12.1
 
-- no more iOS cocoaPods
+- No more iOS cocoaPods
 - fCheck 1.3.4 - score 100%
 - Refactor the start game screen into smaller focused source files
 
