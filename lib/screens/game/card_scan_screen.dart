@@ -45,8 +45,6 @@ class _CardScanScreenState extends State<CardScanScreen> {
   CameraController? _controller;
   final CorrectionSampleStore _correctionStore = createCorrectionSampleStore();
   static const List<int> _correctionValues = <int>[
-    TfliteService.jokerRankValue,
-    TfliteRankParser.rankValueKing,
     TfliteRankParser.rankValueAce,
     _minNumericCardValue,
     3,
@@ -59,6 +57,8 @@ class _CardScanScreenState extends State<CardScanScreen> {
     10,
     TfliteRankParser.rankValueJack,
     TfliteRankParser.rankValueQueen,
+    TfliteRankParser.rankValueKing,
+    TfliteService.jokerRankValue,
   ];
   List<CardDetection> _detections = [];
   String? _errorMessage;

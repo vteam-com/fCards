@@ -256,9 +256,6 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get save => 'Save';
-
-  @override
   String get scanCameraError => 'Camera error: ';
 
   @override
@@ -293,7 +290,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get scanRankAce => 'A (1)';
 
   @override
+  String get scanRankAceTitle => 'Ace (1)';
+
+  @override
   String get scanRankJack => 'J (11)';
+
+  @override
+  String get scanRankJackTitle => 'Jack (11)';
 
   @override
   String get scanRankJoker => 'Joker (-2)';
@@ -302,7 +305,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get scanRankKing => 'K (0)';
 
   @override
+  String get scanRankKingTitle => 'King (0)';
+
+  @override
   String get scanRankQueen => 'Q (12)';
+
+  @override
+  String get scanRankQueenTitle => 'Queen (12)';
 
   @override
   String get scanTapToCorrect => 'Tap a card value bubble to correct it';
