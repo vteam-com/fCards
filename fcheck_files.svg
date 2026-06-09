@@ -262,16 +262,13 @@
 <rect x="370.0" y="90.0" width="220" height="50" class="fileNode"><title>File: /Users/jp/src/github/vteam/fCards/lib/screens/game/start_game_wizard_screen.dart</title></rect>
 <rect x="370.0" y="160.0" width="220" height="50" class="fileNode fileNodeWarning"><title>File: /Users/jp/src/github/vteam/fCards/lib/screens/keepscore/golf_score_screen.dart
 
-3 Documentation warnings
-1 Source Sorting warning</title></rect>
+3 Documentation warnings</title></rect>
 <rect x="370.0" y="230.0" width="220" height="50" class="fileNode"><title>File: /Users/jp/src/github/vteam/fCards/lib/screens/welcome/welcome_screen.dart</title></rect>
 <rect x="690.0" y="90.0" width="220" height="50" class="fileNode"><title>File: /Users/jp/src/github/vteam/fCards/lib/screens/game/card_scan_screen.dart</title></rect>
 <rect x="690.0" y="160.0" width="220" height="50" class="fileNode"><title>File: /Users/jp/src/github/vteam/fCards/lib/screens/game/create_table_name_screen.dart</title></rect>
 <rect x="690.0" y="230.0" width="220" height="50" class="fileNode"><title>File: /Users/jp/src/github/vteam/fCards/lib/widgets/player/player_header.dart</title></rect>
 <rect x="690.0" y="300.0" width="220" height="50" class="fileNode"><title>File: /Users/jp/src/github/vteam/fCards/lib/models/game/golf_score_model.dart</title></rect>
-<rect x="1032.0" y="90.0" width="220" height="50" class="fileNode fileNodeWarning"><title>File: /Users/jp/src/github/vteam/fCards/lib/screens/game/start_game_screen.dart
-
-1 Source Sorting warning</title></rect>
+<rect x="1032.0" y="90.0" width="220" height="50" class="fileNode"><title>File: /Users/jp/src/github/vteam/fCards/lib/screens/game/start_game_screen.dart</title></rect>
 <rect x="1032.0" y="160.0" width="220" height="50" class="fileNode"><title>File: /Users/jp/src/github/vteam/fCards/lib/screens/game/card_scan_helpers.dart</title></rect>
 <rect x="1032.0" y="230.0" width="220" height="50" class="fileNode"><title>File: /Users/jp/src/github/vteam/fCards/lib/models/app/correction_sample_store_factory.dart</title></rect>
 <rect x="1032.0" y="300.0" width="220" height="50" class="fileNode"><title>File: /Users/jp/src/github/vteam/fCards/lib/models/app/tflite_service.dart</title></rect>

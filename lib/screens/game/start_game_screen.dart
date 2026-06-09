@@ -81,71 +81,55 @@ class StartScreen extends StatefulWidget {
 /// input, interacting with the backend service (Firebase), and updating the UI
 /// in response to state changes.
 class StartScreenState extends State<StartScreen> {
-  /// The last table name that was checked for existence.
+/// The last table name that was checked for existence.
   String _checkedCreateTableName = '';
-
-  /// Controller for the player name text field.
+/// Controller for the player name text field.
   final TextEditingController _controllerName = TextEditingController();
-
-  /// Controller for the room name text field.
+/// Controller for the room name text field.
   final TextEditingController _controllerRoom = TextEditingController(
     text: _offlineDemoDefaultRoomName, // Default room name
   );
-
-  /// Whether the currently checked table name already exists.
+/// Whether the currently checked table name already exists.
   bool _doesCreateTableNameExist = false;
-
-  /// Error text for the player name input field. Currently unused.
+/// Error text for the player name input field. Currently unused.
   final String _errorTextName = '';
-
-  /// Error text for the room name input field. Currently unused.
+/// Error text for the room name input field. Currently unused.
   final String _errorTextRoom = '';
-
-  /// Whether a create-flow table-name availability check is in progress.
+/// Whether a create-flow table-name availability check is in progress.
   bool _isCheckingCreateTableName = false;
-
-  /// Whether the create flow has passed the table-name-only step.
+/// Whether the create flow has passed the table-name-only step.
   bool _isCreateTableStepComplete = false;
-
-  /// A flag indicating whether the list of rooms is expanded.
+/// A flag indicating whether the list of rooms is expanded.
   bool _isExpandedRooms = false;
-
-  /// A flag indicating whether the game rules are expanded.
+/// A flag indicating whether the game rules are expanded.
   bool _isExpandedRules = false;
-
-  /// A list of all available rooms.
+/// A list of all available rooms.
   List<String> _listOfRooms = [];
-  static const String _offlineDemoDefaultRoomName = 'KIWI';
-  static const String _offlineDemoPlayerBob = 'BOB';
-  static const String _offlineDemoPlayerJohn = 'JOHN';
-  static const String _offlineDemoPlayerSue = 'SUE';
-  static const Set<String> _offlineDemoPlayers = {
+static const String _offlineDemoDefaultRoomName = 'KIWI';
+static const String _offlineDemoPlayerBob = 'BOB';
+static const String _offlineDemoPlayerJohn = 'JOHN';
+static const String _offlineDemoPlayerSue = 'SUE';
+static const Set<String> _offlineDemoPlayers = {
     _offlineDemoPlayerBob,
     _offlineDemoPlayerSue,
     _offlineDemoPlayerJohn,
   };
-  static const String _offlineDemoRoomName = 'BANANA';
-
-  /// A set of player names currently in the room.
+static const String _offlineDemoRoomName = 'BANANA';
+/// A set of player names currently in the room.
   Set<String> _playerNames = {};
-
-  /// Debounces room lookup while typing a room name.
+/// Debounces room lookup while typing a room name.
   Timer? _roomLookupDebounce;
-
-  /// The currently selected game style.
+/// The currently selected game style.
   GameStyles _selectedGameStyle = GameStyles.frenchCards9;
-
-  /// A subscription to the Firebase Realtime Database stream.
+/// A subscription to the Firebase Realtime Database stream.
   ///
   /// This is used to receive real-time updates for the current room.
   StreamSubscription? _streamSubscription;
-
-  /// A flag indicating whether the app is waiting for the first data from the backend.
+/// A flag indicating whether the app is waiting for the first data from the backend.
   bool _waitingOnFirstBackendData = !isRunningOffLine;
-
-  /// The current version of the app.
+/// The current version of the app.
   String appVersion = '?.?.?';
-  @override
+@override
   void initState() {
     super.initState();
     _selectedGameStyle = widget.initialGameStyle ?? GameStyles.frenchCards9;
@@ -168,8 +152,7 @@ class StartScreenState extends State<StartScreen> {
     _processUrlArguments();
     _getAppVersion();
   }
-
-  @override
+@override
   void dispose() {
     // Cancel the Firebase subscription to prevent memory leaks.
     _streamSubscription?.cancel();
@@ -178,8 +161,7 @@ class StartScreenState extends State<StartScreen> {
     _controllerName.dispose();
     super.dispose();
   }
-
-  @override
+@override
   Widget build(BuildContext context) {
     final AppLocalizations localizations = AppLocalizations.of(context);
     final bool isCreateTableNameStep =
@@ -243,8 +225,330 @@ class StartScreenState extends State<StartScreen> {
       ),
     );
   }
+/// A button that either joins the current player to the game or starts the game.
+  ///
+  /// The button's label and action change based on whether the current player
+  /// has already joined the game and whether there are enough players to start.
+  Widget actionButton() {
+    final AppLocalizations localizations = AppLocalizations.of(context);
 
-  /// Builds the room name section: optional hint, input row, table label, dropdown, and spinner.
+    if (_playerName.isEmpty) {
+      return MyButtonRectangle(
+        onTap: () {}, // Disabled action
+        width: double.infinity,
+        height: ConstLayout.sizeXXL,
+        child: Text(
+          localizations.pleaseEnterYourName,
+          style: TextStyle(
+            fontSize: ConstLayout.textM,
+            fontWeight: FontWeight.bold,
+            color: Theme.of(context).colorScheme.onSurface,
+          ),
+        ),
+      );
+    }
+
+    bool isPartOfTheList = _playerNames.contains(_playerName.toUpperCase());
+
+    String label = isPartOfTheList
+        ? (_playerNames.length > 1
+              ? localizations.startGame
+              : localizations.waitingForPlayers)
+        : (widget.createRoomFlow
+              ? localizations.createNewTable
+              : localizations.joinGame);
+    return MyButtonRectangle(
+      onTap: () {
+        if (isPartOfTheList) {
+          if (_playerNames.length > 1) {
+            startGame(context);
+          }
+        } else {
+          joinGame(_playerName);
+        }
+      },
+      width: double.infinity,
+      height: ConstLayout.sizeXXL,
+      child: Text(
+        label,
+        style: TextStyle(
+          fontSize: ConstLayout.textM,
+          fontWeight: FontWeight.bold,
+          color: Theme.of(context).colorScheme.onPrimaryContainer,
+        ),
+      ),
+    );
+  }
+/// Adds one or more players to the current room.
+  ///
+  /// This method takes a comma-separated string of names, processes them, and
+  /// adds them to the list of players for the current room. It then updates the
+  /// backend with the new list of players.
+  void joinGame(final String nameOrNamesToAdd) {
+    if (roomName.isEmpty) {
+      return;
+    }
+
+    final List<String> names = nameOrNamesToAdd
+        .toUpperCase()
+        .split(',')
+        .map((String name) => name.trim())
+        .where((String name) => name.isNotEmpty)
+        .toList();
+
+    if (names.isEmpty) {
+      return;
+    }
+
+    setState(() {
+      _playerNames.addAll(names);
+      _controllerName.text = names.first;
+    });
+
+    setPlayersInRoom(roomName, _playerNames);
+  }
+/// Prepares the backend for the specified room.
+  ///
+  /// This method sets up the connection to the backend service (Firebase) for
+  /// the given [roomId]. It fetches the initial list of players in the room
+  /// and sets up a stream to listen for real-time updates.
+  void prepareBackEndForRoom(final String roomId) {
+    final String normalizedRoomId = roomId.trim().toUpperCase();
+    if (normalizedRoomId.isEmpty) {
+      setState(() {
+        _playerNames = {};
+        _waitingOnFirstBackendData = false;
+      });
+      return;
+    }
+
+    if (isRunningOffLine) {
+      setState(() {
+        _waitingOnFirstBackendData = false;
+      });
+      return;
+    }
+
+    setState(() {
+      _waitingOnFirstBackendData = true;
+      if (widget.createRoomFlow) {
+        _playerNames = {};
+      }
+    });
+
+    // Cancel any existing subscription.
+    _streamSubscription?.cancel();
+
+    // Fetch the initial data from Firebase.
+    useFirebase()
+        .then((_) async {
+          final List<String> invitees = await getPlayersInRoom(
+            normalizedRoomId,
+          );
+          if (!mounted || roomName != normalizedRoomId) {
+            return;
+          }
+
+          setState(() {
+            _playerNames = Set.from(invitees);
+            _waitingOnFirstBackendData = false;
+
+            // Listen for updates to the list of invitees.
+            _streamSubscription = onBackendInviteesUpdated(normalizedRoomId, (
+              invitees,
+            ) async {
+              final List<String> listOfRooms = await getAllRooms();
+              if (!mounted || roomName != normalizedRoomId) {
+                return;
+              }
+
+              setState(() {
+                _listOfRooms = listOfRooms;
+                _playerNames = Set.from(invitees);
+              });
+            });
+          });
+        })
+        .catchError((Object error) {
+          logger.e(
+            'Error preparing backend for room $normalizedRoomId: $error',
+          );
+          if (!mounted || roomName != normalizedRoomId) {
+            return;
+          }
+          setState(() {
+            _playerNames = {};
+            _waitingOnFirstBackendData = false;
+          });
+        });
+  }
+/// Removes a player from the current room.
+  ///
+  /// This method removes the specified player from the list of players and
+  /// updates the backend to reflect the change.
+  void removePlayer(final String nameToRemove) {
+    if (!_playerNames.contains(nameToRemove)) {
+      return;
+    }
+
+    // Remove the player's name from the list of players.
+    setState(() {
+      _playerNames.remove(nameToRemove);
+    });
+
+    // Push the updated list of players to the backend.
+    setPlayersInRoom(roomName, _playerNames);
+  }
+/// The name of the room, derived from the [_controllerRoom].
+  String get roomName => _controllerRoom.text.trim().toUpperCase();
+/// Starts the game and navigates to the game screen.
+  ///
+  /// This method is called when the user clicks the "Start Game" button. It
+  /// creates a new [GameModel] with the current game settings and navigates
+  /// to the [GameScreen].
+  void startGame(BuildContext context) async {
+    final List<GameHistory> history = await getGameHistory(roomName);
+    logger.d(history.join('|'));
+
+    final config = getGameStyleConfig(_selectedGameStyle, _playerNames.length);
+
+    final GameModel newGame = GameModel(
+      version: appVersion,
+      gameStyle: _selectedGameStyle,
+      roomName: roomName,
+      roomHistory: history,
+      loginUserName: _controllerName.text.toUpperCase(),
+      names: _playerNames.toList(),
+      cardsToDeal: config.cardsToDeal,
+      deck: DeckModel(
+        numberOfDecks: config.decks,
+        gameStyle: _selectedGameStyle,
+      ),
+      isNewGame: true,
+    );
+
+    // Update the URL to include the room ID without reloading the page.
+    _updateUrlWithoutReload();
+
+    // Navigate to the main game screen.
+    if (context.mounted) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (BuildContext _) => GameScreen(gameModel: newGame),
+        ),
+      );
+    }
+  }
+/// Builds the "Continue" button for advancing past the table-name step.
+  Widget _buildContinueToSetupButton(AppLocalizations l10n, bool canContinue) {
+    return MyButtonRectangle(
+      width: double.infinity,
+      onTap: canContinue ? _continueCreateWithNewTableName : null,
+      child: Text(
+        l10n.next,
+        style: TextStyle(
+          fontSize: ConstLayout.textM,
+          fontWeight: FontWeight.bold,
+          color: Theme.of(context).colorScheme.onPrimaryContainer,
+        ),
+      ),
+    );
+  }
+/// Builds the join-shortcut section shown when the entered table name already exists.
+  Widget _buildJoinShortcutSection(AppLocalizations l10n) {
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(ConstLayout.paddingS),
+          child: Text(
+            l10n.thisTableAlreadyHasPlayers,
+            style: TextStyle(
+              fontSize: ConstLayout.textS,
+              color: Theme.of(context).colorScheme.tertiary,
+            ),
+            textAlign: TextAlign.center,
+          ),
+        ),
+        MyButtonRectangle(
+          width: double.infinity,
+          onTap: () {
+            openJoinFlowForTable(
+              context: context,
+              tableName: roomName,
+              gameStyle: _selectedGameStyle,
+            );
+          },
+          child: Text(
+            l10n.joinThisTable,
+            style: TextStyle(
+              fontSize: ConstLayout.textS,
+              fontWeight: FontWeight.bold,
+              color: Theme.of(context).colorScheme.onPrimaryContainer,
+            ),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(ConstLayout.paddingS),
+          child: Text(
+            l10n.enterTableName,
+            style: TextStyle(
+              fontSize: ConstLayout.textS,
+              color: Theme.of(context).colorScheme.tertiary,
+            ),
+            textAlign: TextAlign.center,
+          ),
+        ),
+      ],
+    );
+  }
+/// Builds the player name input section with label and text field.
+  Widget _buildPlayerNameInput(AppLocalizations l10n) {
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(ConstLayout.paddingS),
+          child: Text(l10n.whoAreYou),
+        ),
+        const SizedBox(height: ConstLayout.sizeS),
+        EditBox(
+          label: l10n.join,
+          controller: _controllerName,
+          onSubmitted: () {
+            _controllerName.text = _controllerName.text.toUpperCase();
+            joinGame(_controllerName.text);
+          },
+          errorStatus: _errorTextName,
+          rightSideChild: IconButton(
+            onPressed: () {
+              joinGame(_controllerName.text);
+            },
+            icon: Icon(
+              Icons.add,
+              color: Theme.of(context).colorScheme.onSurface,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+/// Builds the players-in-room list widget.
+  Widget _buildPlayersWidget() {
+    return SizedBox(
+      width: ConstLayout.startGameScreenMaxWidth,
+      child: PlayersInRoomWidget(
+        activePlayerName: _playerName,
+        playerNames: _playerNames.toList(),
+        onPlayerSelected: (String name) {
+          setState(() {
+            _controllerName.text = name;
+          });
+        },
+        onRemovePlayer: removePlayer,
+      ),
+    );
+  }
+/// Builds the room name section: optional hint, input row, table label, dropdown, and spinner.
   Widget _buildRoomSection(AppLocalizations l10n, bool isCreateTableNameStep) {
     return Column(
       children: [
@@ -340,341 +644,7 @@ class StartScreenState extends State<StartScreen> {
       ],
     );
   }
-
-  /// Builds the players-in-room list widget.
-  Widget _buildPlayersWidget() {
-    return SizedBox(
-      width: ConstLayout.startGameScreenMaxWidth,
-      child: PlayersInRoomWidget(
-        activePlayerName: _playerName,
-        playerNames: _playerNames.toList(),
-        onPlayerSelected: (String name) {
-          setState(() {
-            _controllerName.text = name;
-          });
-        },
-        onRemovePlayer: removePlayer,
-      ),
-    );
-  }
-
-  /// Builds the join-shortcut section shown when the entered table name already exists.
-  Widget _buildJoinShortcutSection(AppLocalizations l10n) {
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(ConstLayout.paddingS),
-          child: Text(
-            l10n.thisTableAlreadyHasPlayers,
-            style: TextStyle(
-              fontSize: ConstLayout.textS,
-              color: Theme.of(context).colorScheme.tertiary,
-            ),
-            textAlign: TextAlign.center,
-          ),
-        ),
-        MyButtonRectangle(
-          width: double.infinity,
-          onTap: () {
-            openJoinFlowForTable(
-              context: context,
-              tableName: roomName,
-              gameStyle: _selectedGameStyle,
-            );
-          },
-          child: Text(
-            l10n.joinThisTable,
-            style: TextStyle(
-              fontSize: ConstLayout.textS,
-              fontWeight: FontWeight.bold,
-              color: Theme.of(context).colorScheme.onPrimaryContainer,
-            ),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(ConstLayout.paddingS),
-          child: Text(
-            l10n.enterTableName,
-            style: TextStyle(
-              fontSize: ConstLayout.textS,
-              color: Theme.of(context).colorScheme.tertiary,
-            ),
-            textAlign: TextAlign.center,
-          ),
-        ),
-      ],
-    );
-  }
-
-  /// Builds the "Continue" button for advancing past the table-name step.
-  Widget _buildContinueToSetupButton(AppLocalizations l10n, bool canContinue) {
-    return MyButtonRectangle(
-      width: double.infinity,
-      onTap: canContinue ? _continueCreateWithNewTableName : null,
-      child: Text(
-        l10n.next,
-        style: TextStyle(
-          fontSize: ConstLayout.textM,
-          fontWeight: FontWeight.bold,
-          color: Theme.of(context).colorScheme.onPrimaryContainer,
-        ),
-      ),
-    );
-  }
-
-  /// Builds the player name input section with label and text field.
-  Widget _buildPlayerNameInput(AppLocalizations l10n) {
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(ConstLayout.paddingS),
-          child: Text(l10n.whoAreYou),
-        ),
-        const SizedBox(height: ConstLayout.sizeS),
-        EditBox(
-          label: l10n.join,
-          controller: _controllerName,
-          onSubmitted: () {
-            _controllerName.text = _controllerName.text.toUpperCase();
-            joinGame(_controllerName.text);
-          },
-          errorStatus: _errorTextName,
-          rightSideChild: IconButton(
-            onPressed: () {
-              joinGame(_controllerName.text);
-            },
-            icon: Icon(
-              Icons.add,
-              color: Theme.of(context).colorScheme.onSurface,
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
-  /// A button that either joins the current player to the game or starts the game.
-  ///
-  /// The button's label and action change based on whether the current player
-  /// has already joined the game and whether there are enough players to start.
-  Widget actionButton() {
-    final AppLocalizations localizations = AppLocalizations.of(context);
-
-    if (_playerName.isEmpty) {
-      return MyButtonRectangle(
-        onTap: () {}, // Disabled action
-        width: double.infinity,
-        height: ConstLayout.sizeXXL,
-        child: Text(
-          localizations.pleaseEnterYourName,
-          style: TextStyle(
-            fontSize: ConstLayout.textM,
-            fontWeight: FontWeight.bold,
-            color: Theme.of(context).colorScheme.onSurface,
-          ),
-        ),
-      );
-    }
-
-    bool isPartOfTheList = _playerNames.contains(_playerName.toUpperCase());
-
-    String label = isPartOfTheList
-        ? (_playerNames.length > 1
-              ? localizations.startGame
-              : localizations.waitingForPlayers)
-        : (widget.createRoomFlow
-              ? localizations.createNewTable
-              : localizations.joinGame);
-    return MyButtonRectangle(
-      onTap: () {
-        if (isPartOfTheList) {
-          if (_playerNames.length > 1) {
-            startGame(context);
-          }
-        } else {
-          joinGame(_playerName);
-        }
-      },
-      width: double.infinity,
-      height: ConstLayout.sizeXXL,
-      child: Text(
-        label,
-        style: TextStyle(
-          fontSize: ConstLayout.textM,
-          fontWeight: FontWeight.bold,
-          color: Theme.of(context).colorScheme.onPrimaryContainer,
-        ),
-      ),
-    );
-  }
-
-  /// Adds one or more players to the current room.
-  ///
-  /// This method takes a comma-separated string of names, processes them, and
-  /// adds them to the list of players for the current room. It then updates the
-  /// backend with the new list of players.
-  void joinGame(final String nameOrNamesToAdd) {
-    if (roomName.isEmpty) {
-      return;
-    }
-
-    final List<String> names = nameOrNamesToAdd
-        .toUpperCase()
-        .split(',')
-        .map((String name) => name.trim())
-        .where((String name) => name.isNotEmpty)
-        .toList();
-
-    if (names.isEmpty) {
-      return;
-    }
-
-    setState(() {
-      _playerNames.addAll(names);
-      _controllerName.text = names.first;
-    });
-
-    setPlayersInRoom(roomName, _playerNames);
-  }
-
-  /// Prepares the backend for the specified room.
-  ///
-  /// This method sets up the connection to the backend service (Firebase) for
-  /// the given [roomId]. It fetches the initial list of players in the room
-  /// and sets up a stream to listen for real-time updates.
-  void prepareBackEndForRoom(final String roomId) {
-    final String normalizedRoomId = roomId.trim().toUpperCase();
-    if (normalizedRoomId.isEmpty) {
-      setState(() {
-        _playerNames = {};
-        _waitingOnFirstBackendData = false;
-      });
-      return;
-    }
-
-    if (isRunningOffLine) {
-      setState(() {
-        _waitingOnFirstBackendData = false;
-      });
-      return;
-    }
-
-    setState(() {
-      _waitingOnFirstBackendData = true;
-      if (widget.createRoomFlow) {
-        _playerNames = {};
-      }
-    });
-
-    // Cancel any existing subscription.
-    _streamSubscription?.cancel();
-
-    // Fetch the initial data from Firebase.
-    useFirebase()
-        .then((_) async {
-          final List<String> invitees = await getPlayersInRoom(
-            normalizedRoomId,
-          );
-          if (!mounted || roomName != normalizedRoomId) {
-            return;
-          }
-
-          setState(() {
-            _playerNames = Set.from(invitees);
-            _waitingOnFirstBackendData = false;
-
-            // Listen for updates to the list of invitees.
-            _streamSubscription = onBackendInviteesUpdated(normalizedRoomId, (
-              invitees,
-            ) async {
-              final List<String> listOfRooms = await getAllRooms();
-              if (!mounted || roomName != normalizedRoomId) {
-                return;
-              }
-
-              setState(() {
-                _listOfRooms = listOfRooms;
-                _playerNames = Set.from(invitees);
-              });
-            });
-          });
-        })
-        .catchError((Object error) {
-          logger.e(
-            'Error preparing backend for room $normalizedRoomId: $error',
-          );
-          if (!mounted || roomName != normalizedRoomId) {
-            return;
-          }
-          setState(() {
-            _playerNames = {};
-            _waitingOnFirstBackendData = false;
-          });
-        });
-  }
-
-  /// Removes a player from the current room.
-  ///
-  /// This method removes the specified player from the list of players and
-  /// updates the backend to reflect the change.
-  void removePlayer(final String nameToRemove) {
-    if (!_playerNames.contains(nameToRemove)) {
-      return;
-    }
-
-    // Remove the player's name from the list of players.
-    setState(() {
-      _playerNames.remove(nameToRemove);
-    });
-
-    // Push the updated list of players to the backend.
-    setPlayersInRoom(roomName, _playerNames);
-  }
-
-  /// The name of the room, derived from the [_controllerRoom].
-  String get roomName => _controllerRoom.text.trim().toUpperCase();
-
-  /// Starts the game and navigates to the game screen.
-  ///
-  /// This method is called when the user clicks the "Start Game" button. It
-  /// creates a new [GameModel] with the current game settings and navigates
-  /// to the [GameScreen].
-  void startGame(BuildContext context) async {
-    final List<GameHistory> history = await getGameHistory(roomName);
-    logger.d(history.join('|'));
-
-    final config = getGameStyleConfig(_selectedGameStyle, _playerNames.length);
-
-    final GameModel newGame = GameModel(
-      version: appVersion,
-      gameStyle: _selectedGameStyle,
-      roomName: roomName,
-      roomHistory: history,
-      loginUserName: _controllerName.text.toUpperCase(),
-      names: _playerNames.toList(),
-      cardsToDeal: config.cardsToDeal,
-      deck: DeckModel(
-        numberOfDecks: config.decks,
-        gameStyle: _selectedGameStyle,
-      ),
-      isNewGame: true,
-    );
-
-    // Update the URL to include the room ID without reloading the page.
-    _updateUrlWithoutReload();
-
-    // Navigate to the main game screen.
-    if (context.mounted) {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (BuildContext _) => GameScreen(gameModel: newGame),
-        ),
-      );
-    }
-  }
-
-  /// Proceeds from table-name validation to player setup for a unique new table.
+/// Proceeds from table-name validation to player setup for a unique new table.
   void _continueCreateWithNewTableName() {
     final bool isUniqueTableName =
         roomName.isNotEmpty &&
@@ -692,8 +662,7 @@ class StartScreenState extends State<StartScreen> {
 
     prepareBackEndForRoom(roomName);
   }
-
-  /// A widget that displays the game instructions in an expandable tile.
+/// A widget that displays the game instructions in an expandable tile.
   Widget _gameInstructionsWidget() {
     final colorScheme = Theme.of(context).colorScheme;
     final AppLocalizations localizations = AppLocalizations.of(context);
@@ -722,8 +691,7 @@ class StartScreenState extends State<StartScreen> {
       ],
     );
   }
-
-  /// A widget for selecting the game mode.
+/// A widget for selecting the game mode.
   Widget _gameMode() {
     final AppLocalizations localizations = AppLocalizations.of(context);
     return Padding(
@@ -752,8 +720,7 @@ class StartScreenState extends State<StartScreen> {
       ),
     );
   }
-
-  /// Fetches the application version from the platform package info.
+/// Fetches the application version from the platform package info.
   Future<void> _getAppVersion() async {
     PackageInfo.fromPlatform().then((PackageInfo packageInfo) {
       setState(() {
@@ -761,8 +728,7 @@ class StartScreenState extends State<StartScreen> {
       });
     });
   }
-
-  /// Generates a shareable URL for the current game.
+/// Generates a shareable URL for the current game.
   ///
   /// This method constructs a URL that includes the current game mode, room name,
   /// and player list, allowing others to join the game directly.
@@ -777,8 +743,7 @@ class StartScreenState extends State<StartScreen> {
           _playerNames.toList(),
         );
   }
-
-  /// Validates whether [tableName] already exists so create flow can enforce uniqueness.
+/// Validates whether [tableName] already exists so create flow can enforce uniqueness.
   Future<void> _lookupCreateTableName(String tableName) async {
     final String normalizedTableName = tableName.trim().toUpperCase();
     if (normalizedTableName.isEmpty) {
@@ -821,8 +786,7 @@ class StartScreenState extends State<StartScreen> {
       });
     }
   }
-
-  /// Handles room-name changes and validates uniqueness in create flow.
+/// Handles room-name changes and validates uniqueness in create flow.
   void _onRoomNameChanged() {
     if (!widget.createRoomFlow || _isCreateTableStepComplete) {
       return;
@@ -857,11 +821,9 @@ class StartScreenState extends State<StartScreen> {
       },
     );
   }
-
-  /// The trimmed player name entered by the user.
+/// The trimmed player name entered by the user.
   String get _playerName => _controllerName.text.trim();
-
-  /// Processes URL arguments to set the initial state of the screen.
+/// Processes URL arguments to set the initial state of the screen.
   ///
   /// This method parses the URL for 'room', 'players', and 'mode' query
   /// parameters and configures the screen accordingly. This allows users to
@@ -945,8 +907,7 @@ class StartScreenState extends State<StartScreen> {
       _waitingOnFirstBackendData = false;
     }
   }
-
-  /// Updates the browser's URL without reloading the page.
+/// Updates the browser's URL without reloading the page.
   ///
   /// This method uses the browser's History API to update the URL, which is
   /// useful for reflecting the current game state in the URL without a full

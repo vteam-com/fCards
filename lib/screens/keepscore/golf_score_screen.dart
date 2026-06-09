@@ -24,23 +24,15 @@ class GolfScoreScreen extends StatefulWidget {
 }
 
 class _GolfScoreScreenState extends State<GolfScoreScreen> {
-  BuildContext? _cellContext;
-
-  final FocusNode _keyboardFocusNode = FocusNode();
-
-  final Set<LogicalKeyboardKey> _keysPressed = {};
-
-  late Future<GolfScoreModel> _scoreModelFuture;
-
-  final ScrollController _scrollController = ScrollController();
-
-  Map<String, int>? _selectedCell;
-
-  final double columnGap = ConstLayout.sizeS;
-
-  final double columnWidth = ConstLayout.golfColumnWidth;
-
-  @override
+BuildContext? _cellContext;
+final FocusNode _keyboardFocusNode = FocusNode();
+final Set<LogicalKeyboardKey> _keysPressed = {};
+late Future<GolfScoreModel> _scoreModelFuture;
+final ScrollController _scrollController = ScrollController();
+Map<String, int>? _selectedCell;
+final double columnGap = ConstLayout.sizeS;
+final double columnWidth = ConstLayout.golfColumnWidth;
+@override
   void initState() {
     super.initState();
     _scoreModelFuture = GolfScoreModel.load().then((model) {
@@ -51,15 +43,13 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
       return model;
     });
   }
-
-  @override
+@override
   void dispose() {
     _keyboardFocusNode.dispose();
     _scrollController.dispose();
     super.dispose();
   }
-
-  @override
+@override
   Widget build(BuildContext context) {
     final AppLocalizations localizations = AppLocalizations.of(context);
     return FutureBuilder<GolfScoreModel>(
@@ -75,96 +65,7 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
       },
     );
   }
-
-  Widget _buildLoadingOrErrorContent(
-    AsyncSnapshot<GolfScoreModel> snapshot,
-    AppLocalizations l10n,
-  ) {
-    return Screen(
-      title: l10n.golfScoreKeeper,
-      isWaiting: true,
-      child: Center(
-        child: snapshot.connectionState == ConnectionState.waiting
-            ? CircularProgressIndicator()
-            : Text(l10n.errorLoadingScores(snapshot.error.toString())),
-      ),
-    );
-  }
-
-  Widget _buildScoreContent(
-    GolfScoreModel scoreModel,
-    List<int> ranks,
-    AppLocalizations l10n,
-  ) {
-    final colorScheme = Theme.of(context).colorScheme;
-    return Screen(
-      title: l10n.golfScoreKeeper,
-      isWaiting: false,
-      onRefresh: () => confirmNewGame(scoreModel),
-      child: RawKeyboardListener(
-        focusNode: _keyboardFocusNode,
-        onKey: _handleKeyEvent,
-        autofocus: true,
-        child: GestureDetector(
-          behavior: HitTestBehavior.translucent,
-          onTap: () {
-            setState(() {
-              _selectedCell = null;
-            });
-          },
-          child: Center(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                FittedBox(child: _buildPlayersHeader(scoreModel, ranks)),
-                Expanded(
-                  child: SingleChildScrollView(
-                    controller: _scrollController,
-                    child: FittedBox(
-                      child: Column(
-                        children: [
-                          _buildRounds(context, scoreModel, ranks, colorScheme),
-                          if (_selectedCell == null)
-                            _buildAddOrRemoveRow(
-                              context,
-                              scoreModel,
-                              colorScheme,
-                            ),
-                          if (_selectedCell != null)
-                            _buildKeyboardAndCameraSection(scoreModel),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildKeyboardAndCameraSection(GolfScoreModel scoreModel) {
-    return Column(
-      children: [
-        InputKeyboard(onKeyPressed: (key) => _handleKeyPress(key, scoreModel)),
-        // AI Camera Scanner Button
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            MyButtonRound(
-              onTap: () => _openCameraScanner(scoreModel),
-              size: ConstLayout.iconL,
-              child: const Icon(Icons.camera_alt),
-            ),
-          ],
-        ),
-      ],
-    );
-  }
-
-  /// Shows a confirmation dialog before deleting a round.
+/// Shows a confirmation dialog before deleting a round.
   Future<void> confirmDeleteRound(int i, GolfScoreModel model) async {
     final AppLocalizations localizations = AppLocalizations.of(context);
     final bool? confirmed = await showDialog<bool>(
@@ -195,8 +96,7 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
       });
     }
   }
-
-  /// Shows a confirmation dialog before deleting a round.
+/// Shows a confirmation dialog before deleting a round.
   Future<void> confirmNewGame(GolfScoreModel model) async {
     final AppLocalizations localizations = AppLocalizations.of(context);
     final bool? confirmed = await showDialog<bool>(
@@ -227,16 +127,14 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
       });
     }
   }
-
-  void _addPlayer(GolfScoreModel model) {
+void _addPlayer(GolfScoreModel model) {
     setState(() {
       model.addPlayer(
         '${GameConstants.playerNumberPrefix}${model.playerNames.length + 1}',
       );
     });
   }
-
-  /// Builds controls for adding/removing rounds and current round count.
+/// Builds controls for adding/removing rounds and current round count.
   Widget _buildAddOrRemoveRow(
     final BuildContext context,
     final GolfScoreModel scoreModel,
@@ -304,8 +202,39 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
       ),
     );
   }
-
-  /// Builds the player header row with rank, score, and player actions.
+Widget _buildKeyboardAndCameraSection(GolfScoreModel scoreModel) {
+    return Column(
+      children: [
+        InputKeyboard(onKeyPressed: (key) => _handleKeyPress(key, scoreModel)),
+        // AI Camera Scanner Button
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            MyButtonRound(
+              onTap: () => _openCameraScanner(scoreModel),
+              size: ConstLayout.iconL,
+              child: const Icon(Icons.camera_alt),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+Widget _buildLoadingOrErrorContent(
+    AsyncSnapshot<GolfScoreModel> snapshot,
+    AppLocalizations l10n,
+  ) {
+    return Screen(
+      title: l10n.golfScoreKeeper,
+      isWaiting: true,
+      child: Center(
+        child: snapshot.connectionState == ConnectionState.waiting
+            ? CircularProgressIndicator()
+            : Text(l10n.errorLoadingScores(snapshot.error.toString())),
+      ),
+    );
+  }
+/// Builds the player header row with rank, score, and player actions.
   Widget _buildPlayersHeader(
     final GolfScoreModel scoreModel,
     final dynamic ranks,
@@ -345,8 +274,7 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
       ),
     );
   }
-
-  /// Builds the round-by-round score grid with selectable score cells.
+/// Builds the round-by-round score grid with selectable score cells.
   Widget _buildRounds(
     final BuildContext _,
     final dynamic scoreModel,
@@ -442,14 +370,65 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
       children: widgets,
     );
   }
-
-  void _clearScores(GolfScoreModel model) {
+Widget _buildScoreContent(
+    GolfScoreModel scoreModel,
+    List<int> ranks,
+    AppLocalizations l10n,
+  ) {
+    final colorScheme = Theme.of(context).colorScheme;
+    return Screen(
+      title: l10n.golfScoreKeeper,
+      isWaiting: false,
+      onRefresh: () => confirmNewGame(scoreModel),
+      child: RawKeyboardListener(
+        focusNode: _keyboardFocusNode,
+        onKey: _handleKeyEvent,
+        autofocus: true,
+        child: GestureDetector(
+          behavior: HitTestBehavior.translucent,
+          onTap: () {
+            setState(() {
+              _selectedCell = null;
+            });
+          },
+          child: Center(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                FittedBox(child: _buildPlayersHeader(scoreModel, ranks)),
+                Expanded(
+                  child: SingleChildScrollView(
+                    controller: _scrollController,
+                    child: FittedBox(
+                      child: Column(
+                        children: [
+                          _buildRounds(context, scoreModel, ranks, colorScheme),
+                          if (_selectedCell == null)
+                            _buildAddOrRemoveRow(
+                              context,
+                              scoreModel,
+                              colorScheme,
+                            ),
+                          if (_selectedCell != null)
+                            _buildKeyboardAndCameraSection(scoreModel),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+void _clearScores(GolfScoreModel model) {
     setState(() {
       model.clearScores();
     });
   }
-
-  /// Returns a score color based on leaderboard rank and player count.
+/// Returns a score color based on leaderboard rank and player count.
   Color _getScoreColor(ColorScheme colorScheme, int rank, int numberOfPlayers) {
     if (rank == 1) {
       return colorScheme.primary;
@@ -459,8 +438,7 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
       return colorScheme.secondary;
     }
   }
-
-  /// Handles physical keyboard input and routes supported keys to score edits.
+/// Handles physical keyboard input and routes supported keys to score edits.
   void _handleKeyEvent(RawKeyEvent event) async {
     if (_selectedCell == null) {
       return;
@@ -490,33 +468,7 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
       _keysPressed.remove(event.logicalKey);
     }
   }
-
-  /// Opens the AI camera scanner and sets the detected score in the active cell.
-  Future<void> _openCameraScanner(GolfScoreModel model) async {
-    await Navigator.push(
-      context,
-      MaterialPageRoute<void>(
-        builder: (_) => CardScanScreen(
-          onScoreConfirmed: (score) => _setScoreFromCamera(score, model),
-        ),
-      ),
-    );
-  }
-
-  /// Sets the active cell value directly (used after camera detection).
-  void _setScoreFromCamera(int value, GolfScoreModel model) {
-    if (_selectedCell == null) {
-      return;
-    }
-    final int row = _selectedCell!['row']!;
-    final int col = _selectedCell!['col']!;
-    setState(() {
-      model.updateScore(row, col, value);
-      _selectedCell = null;
-    });
-  }
-
-  /// Applies a keypad action to the currently selected score cell.
+/// Applies a keypad action to the currently selected score cell.
   void _handleKeyPress(String key, GolfScoreModel model) {
     if (_selectedCell == null) {
       return;
@@ -559,6 +511,29 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
         final int? parsedValue = int.tryParse(currentValue);
         model.updateScore(row, col, parsedValue ?? 0);
       }
+    });
+  }
+/// Opens the AI camera scanner and sets the detected score in the active cell.
+  Future<void> _openCameraScanner(GolfScoreModel model) async {
+    await Navigator.push(
+      context,
+      MaterialPageRoute<void>(
+        builder: (_) => CardScanScreen(
+          onScoreConfirmed: (score) => _setScoreFromCamera(score, model),
+        ),
+      ),
+    );
+  }
+/// Sets the active cell value directly (used after camera detection).
+  void _setScoreFromCamera(int value, GolfScoreModel model) {
+    if (_selectedCell == null) {
+      return;
+    }
+    final int row = _selectedCell!['row']!;
+    final int col = _selectedCell!['col']!;
+    setState(() {
+      model.updateScore(row, col, value);
+      _selectedCell = null;
     });
   }
 }

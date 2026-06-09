@@ -1052,11 +1052,12 @@ packages:
   tflite_flutter:
     dependency: "direct main"
     description:
-      name: tflite_flutter
-      sha256: "0bba9040d8decda0960d7abf8eabf32243bf092bc7d0084e8e19681866b0bdbe"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.12.1"
+      path: "."
+      ref: main
+      resolved-ref: "2b4816f39528309c786ddb76e79b64e731b1e013"
+      url: "https://github.com/kmmhanan/flutter-tflite.git"
+    source: git
+    version: "0.12.3"
   the_splash:
     dependency: "direct main"
     description:
