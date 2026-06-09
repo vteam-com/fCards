@@ -321,9 +321,7 @@
 <rect x="201.0" y="254.0" width="366.0" height="762.0" rx="12.0" ry="12.0" class="layerBackground"><title>Folder: screens</title></rect>
 </g>
 <g class="folderLayer">
-<rect x="265.0" y="550.0" width="278.0" height="418.0" rx="12.0" ry="12.0" class="layerBackground layerBackgroundWarning"><title>Folder: screens/game
-
-1 Source Sorting warning</title></rect>
+<rect x="265.0" y="550.0" width="278.0" height="418.0" rx="12.0" ry="12.0" class="layerBackground"><title>Folder: screens/game</title></rect>
 </g>
 <g class="folderLayer">
 <rect x="265.0" y="306.0" width="278.0" height="98.0" rx="12.0" ry="12.0" class="layerBackground"><title>Folder: screens/welcome</title></rect>
@@ -331,8 +329,7 @@
 <g class="folderLayer">
 <rect x="265.0" y="428.0" width="278.0" height="98.0" rx="12.0" ry="12.0" class="layerBackground layerBackgroundWarning"><title>Folder: screens/keepscore
 
-3 Documentation warnings
-1 Source Sorting warning</title></rect>
+3 Documentation warnings</title></rect>
 </g>
 <g class="folderLayer">
 <rect x="201.0" y="1040.0" width="366.0" height="1140.0" rx="12.0" ry="12.0" class="layerBackground"><title>Folder: widgets</title></rect>
@@ -520,9 +517,7 @@
 <rect x="273.0" y="588.0" width="262.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"><title>File: screens/game/start_game_wizard_screen.dart</title></rect>
 <rect x="273.0" y="620.0" width="262.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"><title>File: screens/game/card_scan_screen.dart</title></rect>
 <rect x="273.0" y="652.0" width="262.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"><title>File: screens/game/create_table_name_screen.dart</title></rect>
-<rect x="273.0" y="684.0" width="262.0" height="28.0" rx="5.0" ry="5.0" class="fileNode fileNodeWarning"><title>File: screens/game/start_game_screen.dart
-
-1 Source Sorting warning</title></rect>
+<rect x="273.0" y="684.0" width="262.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"><title>File: screens/game/start_game_screen.dart</title></rect>
 <rect x="273.0" y="716.0" width="262.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"><title>File: screens/game/game_style.dart</title></rect>
 <rect x="273.0" y="748.0" width="262.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"><title>File: screens/game/card_scan_helpers.dart</title></rect>
 <rect x="273.0" y="780.0" width="262.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"><title>File: screens/game/table_name_flow_helpers.dart</title></rect>
@@ -533,8 +528,7 @@
 <rect x="273.0" y="344.0" width="262.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"><title>File: screens/welcome/welcome_screen.dart</title></rect>
 <rect x="273.0" y="466.0" width="262.0" height="28.0" rx="5.0" ry="5.0" class="fileNode fileNodeWarning"><title>File: screens/keepscore/golf_score_screen.dart
 
-3 Documentation warnings
-1 Source Sorting warning</title></rect>
+3 Documentation warnings</title></rect>
 <rect x="273.0" y="2008.0" width="262.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"><title>File: widgets/buttons/my_button_rectangle.dart</title></rect>
 <rect x="273.0" y="2040.0" width="262.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"><title>File: widgets/buttons/my_button_round.dart</title></rect>
 <rect x="273.0" y="2072.0" width="262.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"><title>File: widgets/buttons/my_button.dart</title></rect>

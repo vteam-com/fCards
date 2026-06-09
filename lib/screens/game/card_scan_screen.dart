@@ -78,7 +78,9 @@ class _CardScanScreenState extends State<CardScanScreen> {
   void initState() {
     super.initState();
     _initCamera();
-    _loadModel();
+    if (!TfliteService.instance.isLoaded) {
+      _loadModel();
+    }
   }
 
   @override
