@@ -183,7 +183,6 @@
       }
     }
   },
-  "save": "Save",
   "scanCameraError": "Camera error: ",
   "scanCard": "Count Cards",
   "scanCardTitle": "Count Cards",
@@ -195,13 +194,17 @@
   "scanModelLoading": "Model is still loading — please wait.",
   "scanNoCameraFound": "No camera found on this device.",
   "scanRankAce": "A (1)",
+  "scanRankAceTitle": "Ace (1)",
   "scanRankJack": "J (11)",
+  "scanRankJackTitle": "Jack (11)",
   "scanRankJoker": "Joker (-2)",
   "@scanRankJoker": {
     "description": "DO NOT TRANSLATE. Joker is the universal card game term."
   },
   "scanRankKing": "K (0)",
+  "scanRankKingTitle": "King (0)",
   "scanRankQueen": "Q (12)",
+  "scanRankQueenTitle": "Queen (12)",
   "scanTapToCorrect": "Tap a card value bubble to correct it",
   "scanWebPhotoHint": "Choose a card photo from your device to scan.",
   "scoreKeeper": "Score Keeper",

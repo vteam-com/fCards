@@ -530,12 +530,6 @@ abstract class AppLocalizations {
   /// **'{count} Rounds'**
   String rounds(int count);
 
-  /// No description provided for @save.
-  ///
-  /// In en, this message translates to:
-  /// **'Save'**
-  String get save;
-
   /// No description provided for @scanCameraError.
   ///
   /// In en, this message translates to:
@@ -602,11 +596,23 @@ abstract class AppLocalizations {
   /// **'A (1)'**
   String get scanRankAce;
 
+  /// No description provided for @scanRankAceTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Ace (1)'**
+  String get scanRankAceTitle;
+
   /// No description provided for @scanRankJack.
   ///
   /// In en, this message translates to:
   /// **'J (11)'**
   String get scanRankJack;
+
+  /// No description provided for @scanRankJackTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Jack (11)'**
+  String get scanRankJackTitle;
 
   /// DO NOT TRANSLATE. Joker is the universal card game term.
   ///
@@ -620,11 +626,23 @@ abstract class AppLocalizations {
   /// **'K (0)'**
   String get scanRankKing;
 
+  /// No description provided for @scanRankKingTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'King (0)'**
+  String get scanRankKingTitle;
+
   /// No description provided for @scanRankQueen.
   ///
   /// In en, this message translates to:
   /// **'Q (12)'**
   String get scanRankQueen;
+
+  /// No description provided for @scanRankQueenTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Queen (12)'**
+  String get scanRankQueenTitle;
 
   /// No description provided for @scanTapToCorrect.
   ///

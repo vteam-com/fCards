@@ -175,7 +175,6 @@
       }
     }
   },
-  "save": "Enregistrer",
   "scanCameraError": "Erreur de caméra : ",
   "scanCard": "Scanner une carte",
   "scanCardTitle": "Scanner une carte",
@@ -187,10 +186,14 @@
   "scanModelLoading": "Le modèle est en cours de chargement — veuillez patienter.",
   "scanNoCameraFound": "Aucune caméra trouvée sur cet appareil.",
   "scanRankAce": "As (1)",
+  "scanRankAceTitle": "As (1)",
   "scanRankJack": "V (11)",
+  "scanRankJackTitle": "Valet (11)",
   "scanRankJoker": "Joker (-2)",
   "scanRankKing": "R (0)",
+  "scanRankKingTitle": "Roi (0)",
   "scanRankQueen": "D (12)",
+  "scanRankQueenTitle": "Dame (12)",
   "scanTapToCorrect": "Appuyez sur une bulle de valeur de carte pour la corriger",
   "scanWebPhotoHint": "Choisissez une photo de carte depuis votre appareil pour scanner.",
   "scoreKeeper": "Carnet de scores",
