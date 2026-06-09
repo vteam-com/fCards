@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 1.12.2
+
+- Require Google sign-in before users can correct detected card values
+- Reject anonymous correction sample submissions so retraining data stays attributable
+- Improve UX for AI correction of card value
+
 ## 1.12.1
 
 - no more iOS cocoaPods
