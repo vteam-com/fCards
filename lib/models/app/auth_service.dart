@@ -17,6 +17,12 @@ class AuthService {
   /// Returns the currently signed-in Firebase user, if available.
   static User? get currentUser => _auth.currentUser;
 
+  /// Returns true when the current auth session belongs to a non-anonymous user.
+  static bool get isSignedInWithAccount {
+    final user = _auth.currentUser;
+    return user != null && !user.isAnonymous;
+  }
+
   /// Ensures there is at least an anonymous authenticated user session.
   static Future<void> ensureSignedIn() async {
     if (_auth.currentUser != null) {

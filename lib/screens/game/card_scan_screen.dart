@@ -2,6 +2,7 @@ import 'dart:typed_data';
 
 import 'package:camera/camera.dart';
 import 'package:cards/gen/l10n/app_localizations.dart';
+import 'package:cards/models/app/auth_service.dart';
 import 'package:cards/models/app/card_detection.dart';
 import 'package:cards/models/app/constants_layout.dart';
 import 'package:cards/models/app/correction_sample_store.dart';
@@ -13,6 +14,7 @@ import 'package:cards/utils/logger.dart';
 import 'package:cards/widgets/buttons/my_button_rectangle.dart';
 import 'package:cards/widgets/buttons/my_button_round.dart';
 import 'package:cards/widgets/helpers/screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:image/image.dart' as img;
 import 'package:image_picker/image_picker.dart';
@@ -482,6 +484,34 @@ class _CardScanScreenState extends State<CardScanScreen> {
     }
   }
 
+  /// Requires a non-anonymous Google sign-in before correction UI can open.
+  Future<bool> _ensureSignedInForCorrections(AppLocalizations l10n) async {
+    if (AuthService.isSignedInWithAccount) {
+      return true;
+    }
+
+    _showMessage(l10n.scanCorrectionRequiresSignIn);
+
+    try {
+      await AuthService.signInWithGoogle();
+    } on FirebaseAuthException catch (error) {
+      if (error.code != 'sign_in_canceled') {
+        _showMessage(error.message ?? l10n.googleSignInFailed);
+      }
+      return false;
+    } catch (_) {
+      _showMessage(l10n.googleSignInFailed);
+      return false;
+    }
+
+    if (!AuthService.isSignedInWithAccount) {
+      _showMessage(l10n.scanCorrectionRequiresSignIn);
+      return false;
+    }
+
+    return true;
+  }
+
   /// Handles a tap on the review overlay: identifies the tapped grid cell and
   /// opens the correction dialog for that cell.
   Future<void> _handleReviewTap(TapUpDetails details, Rect contentRect) async {
@@ -822,6 +852,11 @@ class _CardScanScreenState extends State<CardScanScreen> {
       return;
     }
     final l10n = AppLocalizations.of(context);
+    final bool canCorrect = await _ensureSignedInForCorrections(l10n);
+    if (!mounted || !canCorrect) {
+      return;
+    }
+
     final currentValue =
         grid.valuesByCell[cellIndex] ?? TfliteService.jokerRankValue;
 
@@ -855,5 +890,15 @@ class _CardScanScreenState extends State<CardScanScreen> {
     ScaffoldMessenger.of(
       context,
     ).showSnackBar(SnackBar(content: Text(l10n.scanCorrectionSaved)));
+  }
+
+  void _showMessage(String message) {
+    if (!mounted) {
+      return;
+    }
+
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text(message)));
   }
 }

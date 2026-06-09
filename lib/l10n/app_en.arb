@@ -187,6 +187,7 @@
   "scanCard": "Count Cards",
   "scanCardTitle": "Count Cards",
   "scanCorrectCardValueTitle": "Correct Card Value",
+  "scanCorrectionRequiresSignIn": "Sign in with Google to correct card values.",
   "scanCorrectionSaved": "Correction saved for model retraining",
   "scanFailedDecode": "Failed to decode captured image.",
   "scanMacosPhotoHint": "On macOS, choose a card photo from your library to scan.",
