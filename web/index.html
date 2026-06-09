@@ -220,7 +220,7 @@
         }
         if (maxScore < confidenceThreshold) continue;
 
-        // ONNX export outputs pixel coordinates (0–inputSize); normalise to [0,1].
+        // ONNX export outputs pixel coordinates (0–inputSize); normalize to [0,1].
         const cx = getAt(0, i) / inputSize;
         const cy = getAt(1, i) / inputSize;
         const bw = getAt(2, i) / inputSize;
