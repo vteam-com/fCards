@@ -1,4 +1,5 @@
 import 'dart:math' as math;
+import 'dart:typed_data';
 import 'dart:ui';
 
 import 'package:cards/gen/l10n/app_localizations.dart';
@@ -298,6 +299,7 @@ Widget _buildCorrectionDialogContent({
   required ColorScheme colorScheme,
   required int currentValue,
   required List<int> correctionValues,
+  required Uint8List? selectedCardImageBytes,
 }) {
   return LayoutBuilder(
     builder: (_, constraints) {
@@ -319,24 +321,37 @@ Widget _buildCorrectionDialogContent({
               height: paddedConstraints.maxHeight,
               child: Column(
                 mainAxisSize: MainAxisSize.max,
+                spacing: ConstLayout.sizeL,
                 children: [
-                  Text(
-                    l10n.scanCorrectCardValueTitle,
-                    textAlign: TextAlign.center,
-                    style: theme.textTheme.titleLarge?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    spacing: ConstLayout.sizeM,
+                    children: [
+                      if (selectedCardImageBytes != null)
+                        _buildSelectedCardPreview(
+                          context: dialogContext,
+                          cardImageBytes: selectedCardImageBytes,
+                        )
+                      else
+                        Text(
+                          _formatCorrectionTitleLabel(currentValue, l10n),
+                          textAlign: TextAlign.center,
+                          style: theme.textTheme.displaySmall?.copyWith(
+                            color: colorScheme.secondary,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      Text(
+                        l10n.scanCorrectCardValueTitle,
+                        textAlign: TextAlign.center,
+                        style: theme.textTheme.titleLarge?.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
                   ),
-                  const SizedBox(height: ConstLayout.sizeS),
-                  Text(
-                    _formatCorrectionTitleLabel(currentValue, l10n),
-                    textAlign: TextAlign.center,
-                    style: theme.textTheme.displaySmall?.copyWith(
-                      color: colorScheme.secondary,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(height: ConstLayout.sizeL),
+
                   Expanded(
                     child: LayoutBuilder(
                       builder: (_, gridConstraints) {
@@ -397,6 +412,66 @@ Widget _buildCorrectionDialogContent({
               ),
             );
           },
+        ),
+      );
+    },
+  );
+}
+
+/// Builds the selected card preview shown above correction choices.
+Widget _buildSelectedCardPreview({
+  required BuildContext context,
+  required Uint8List cardImageBytes,
+}) {
+  return GestureDetector(
+    onTap: () => _showCardPreviewFullscreen(context, cardImageBytes),
+    child: Container(
+      width: _correctionCardWidth,
+      height: _correctionCardWidth,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        border: Border.all(
+          color: Colors.redAccent.withAlpha(ConstLayout.alphaL),
+          width: ConstLayout.strokeM,
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black,
+            blurRadius: ConstLayout.sizeM,
+            offset: const Offset(ConstLayout.strokeXS, ConstLayout.strokeS),
+          ),
+        ],
+      ),
+      child: ClipOval(child: Image.memory(cardImageBytes, fit: BoxFit.contain)),
+    ),
+  );
+}
+
+/// Opens the selected card preview in a fullscreen viewer.
+Future<void> _showCardPreviewFullscreen(
+  BuildContext context,
+  Uint8List cardImageBytes,
+) {
+  return showDialog<void>(
+    context: context,
+    barrierColor: Colors.black,
+    builder: (dialogContext) {
+      return GestureDetector(
+        onTap: () => Navigator.of(dialogContext).pop(),
+        child: ColoredBox(
+          color: Colors.transparent,
+          child: SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.all(ConstLayout.paddingL),
+              child: InteractiveViewer(
+                minScale: ConstLayout.scaleSmall,
+                maxScale: ConstLayout.cardHeightScale,
+                child: Center(
+                  child: Image.memory(cardImageBytes, fit: BoxFit.contain),
+                ),
+              ),
+            ),
+          ),
         ),
       );
     },
@@ -513,6 +588,7 @@ Future<int?> showCardCorrectionDialog({
   required AppLocalizations l10n,
   required int currentValue,
   required List<int> correctionValues,
+  Uint8List? selectedCardImageBytes,
 }) async {
   return showDialog<int>(
     context: context,
@@ -528,6 +604,7 @@ Future<int?> showCardCorrectionDialog({
         colorScheme: colorScheme,
         currentValue: currentValue,
         correctionValues: correctionValues,
+        selectedCardImageBytes: selectedCardImageBytes,
       );
 
       if (isSmallScreen) {
