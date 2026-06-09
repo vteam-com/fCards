@@ -72,9 +72,21 @@
 		<false/>
 		<key>NSCameraUsageDescription</key>
 		<string>Camera access is needed to scan and identify playing cards.</string>
+		<key>CFBundleURLTypes</key>
+		<array>
+			<dict>
+				<key>CFBundleTypeRole</key>
+				<string>Editor</string>
+				<key>CFBundleURLSchemes</key>
+				<array>
+					<string>app-1-365508423653-ios-1a2f65d35112c1efec090c</string>
+					<string>com.googleusercontent.apps.365508423653-sfram6r45c0iglhcd0ra0krv0n4poch1</string>
+				</array>
+			</dict>
+		</array>
 		<key>UIFileSharingEnabled</key>
 		<true/>
 		<key>LSSupportsOpeningDocumentsInPlace</key>
 		<true/>
-        </dict>
+	</dict>
 </plist>
