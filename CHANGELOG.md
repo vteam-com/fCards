@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 1.12.5
+
+- Refactor player edit dialog action buttons and improve layout constraints
+- Player initial input using virtual keyboard
+
 ## 1.12.4
 
 - Display preview of the card being corrected

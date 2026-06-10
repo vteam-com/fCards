@@ -130,7 +130,7 @@
   "orHereLeft": "\nou\nici\n←",
   "pickTableOrCreate": "Choisissez une table ou créez-en une",
   "playAgain": "Rejouer",
-  "playerName": "Nom du joueur",
+  "playerName": "Initiales du joueur",
   "players": "Joueurs",
   "playerWonTimesAtTable": "{player} a gagné {count} fois à la table {table}",
   "@playerWonTimesAtTable": {
