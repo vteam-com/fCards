@@ -614,7 +614,7 @@
 </g>
 <g>
   <path d="M 280.0 1638.0 H 76.0 Q 70.0 1638.0 70.0 1644.0 V 5994.0 Q 70.0 6000.0 76.0 6000.0 H 460.0" class="edgeVertical"/>
-  <title>shared_preferences -> shared_preferences_android v2.4.25</title>
+  <title>shared_preferences -> shared_preferences_android v2.4.26</title>
 </g>
 <g>
   <path d="M 280.0 1550.0 H 73.0 Q 67.0 1550.0 67.0 1556.0 V 5930.0 Q 67.0 5936.0 73.0 5936.0 H 460.0" class="edgeVertical"/>
@@ -2132,7 +2132,7 @@
 <g class="packageMetadataPill"><title>Flutter &gt;=3.44.0</title><rect x="561.2" y="6013.0" width="77.6" height="9.0" rx="4.5" ry="4.5" class="packageMetadataPillShape"/><text x="600.0" y="6018" class="packageLabelMetadata" text-anchor="middle" dominant-baseline="middle">Flutter &gt;=3.44.0</text></g>
 <g class="platformBadge platformBadge--android"><title>Android</title><rect x="593.5" y="5997.0" width="13.0" height="13.0" rx="6.5" ry="6.5" fill="#16a34a" stroke="#15803d" stroke-width="0.6"/><text x="600.0" y="6004.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">A</text></g>
 <text x="468.0" y="5992.0" class="packageLabelDerivedName packageLabelCaption" text-anchor="start">shared_preferences_android</text>
-<text x="732.0" y="5992.0" class="packageLabelDerivedVersion" text-anchor="end">^2.4.25</text>
+<text x="732.0" y="5992.0" class="packageLabelDerivedVersion" text-anchor="end">^2.4.26</text>
 </g>
 <g class="badge incomingBadge">
   <path d="M 466.0,6000.0 L 454.0,5993.0 Q 451.0,5993.0 451.0,5996.0 L 451.0,6004.0 Q 451.0,6007.0 454.0,6007.0 Z" fill="#3b82f6"/>

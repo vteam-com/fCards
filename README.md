@@ -10,7 +10,7 @@ A Flutter-based multiplayer card game application featuring multiple game modes 
   - 2 to 8 players
   - 3x3 card grid layout
   - 1 or 2 decks of cards
-  - Match cards within rows and columns to reduce score
+  - Match cards within rows or columns to reduce score
 
 - **MiniPut Golf Game**
   - 2 to 8 players
