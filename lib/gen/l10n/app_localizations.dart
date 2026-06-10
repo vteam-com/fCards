@@ -467,7 +467,7 @@ abstract class AppLocalizations {
   /// No description provided for @playerName.
   ///
   /// In en, this message translates to:
-  /// **'Player Name'**
+  /// **'Player Initials'**
   String get playerName;
 
   /// No description provided for @players.

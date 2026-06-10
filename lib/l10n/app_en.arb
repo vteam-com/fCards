@@ -138,7 +138,7 @@
   "orHereLeft": "\nor\nhere\n←",
   "pickTableOrCreate": "Pick a table or create a new one",
   "playAgain": "Play Again",
-  "playerName": "Player Name",
+  "playerName": "Player Initials",
   "players": "Players",
   "playerWonTimesAtTable": "{player} won {count} times at table {table}",
   "@playerWonTimesAtTable": {

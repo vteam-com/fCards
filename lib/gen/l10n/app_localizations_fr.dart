@@ -215,7 +215,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get playAgain => 'Rejouer';
 
   @override
-  String get playerName => 'Nom du joueur';
+  String get playerName => 'Initiales du joueur';
 
   @override
   String get players => 'Joueurs';
