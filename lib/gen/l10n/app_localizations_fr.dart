@@ -52,6 +52,72 @@ class AppLocalizationsFr extends AppLocalizations {
       'Êtes-vous sûr de vouloir commencer une nouvelle partie ? Tous les scores seront perdus.';
 
   @override
+  String get corrections => 'Révisions';
+
+  @override
+  String get correctionsAll => 'Tout';
+
+  @override
+  String get correctionsApprove => 'Approuver';
+
+  @override
+  String get correctionsApproved => 'Approuvé';
+
+  @override
+  String get correctionsBackendRequired =>
+      'La revue des corrections nécessite une connexion au backend.';
+
+  @override
+  String get correctionsCorrectedValue => 'Valeur corrigée';
+
+  @override
+  String get correctionsDecisionSaved => 'Décision de revue enregistrée';
+
+  @override
+  String get correctionsDetectedValue => 'Valeur détectée';
+
+  @override
+  String get correctionsNoApproved => 'Aucune correction approuvée.';
+
+  @override
+  String get correctionsNoData => 'Aucune correction trouvée.';
+
+  @override
+  String get correctionsNoPending => 'Aucune correction en attente de revue.';
+
+  @override
+  String get correctionsNoRejected => 'Aucune correction rejetée.';
+
+  @override
+  String get correctionsPending => 'En attente';
+
+  @override
+  String get correctionsReject => 'Rejeter';
+
+  @override
+  String get correctionsRejected => 'Rejeté';
+
+  @override
+  String get correctionsReviewerOnly =>
+      'Seuls les utilisateurs du groupe reviewer peuvent accéder à cet écran.';
+
+  @override
+  String get correctionsReviewStatus => 'Statut de revue';
+
+  @override
+  String get correctionsSubmittedAt => 'Soumis';
+
+  @override
+  String get correctionsSubmittedBy => 'Soumis par';
+
+  @override
+  String get correctionsTitle => 'Corrections d\'entraînement';
+
+  @override
+  String get correctionsWebOnly =>
+      'La revue des corrections est actuellement disponible sur le web.';
+
+  @override
   String get createNewTable => 'Créer une table';
 
   @override

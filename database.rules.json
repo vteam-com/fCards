@@ -14,8 +14,14 @@
     },
     "training_corrections": {
       "$uid": {
+        ".read": "auth != null && (auth.uid === $uid || root.child('reviewers').child(auth.uid).val() === true)",
+        ".write": "auth != null && (auth.uid === $uid || root.child('reviewers').child(auth.uid).val() === true)"
+      }
+    },
+    "reviewers": {
+      "$uid": {
         ".read": "auth != null && auth.uid === $uid",
-        ".write": "auth != null && auth.uid === $uid"
+        ".write": "auth != null && root.child('reviewers').child(auth.uid).val() === true"
       }
     },
     "history": {

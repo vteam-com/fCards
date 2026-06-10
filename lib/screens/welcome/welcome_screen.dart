@@ -2,6 +2,7 @@ import 'package:cards/gen/l10n/app_localizations.dart';
 import 'package:cards/models/app/app_theme.dart';
 import 'package:cards/models/app/auth_service.dart';
 import 'package:cards/models/app/constants_layout.dart';
+import 'package:cards/models/app/reviewer_access.dart';
 import 'package:cards/models/game/backend_model.dart';
 import 'package:cards/utils/logger.dart';
 import 'package:cards/widgets/buttons/my_button_rectangle.dart';
@@ -21,7 +22,6 @@ class WelcomeScreen extends StatefulWidget {
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
   bool _isAuthWorking = false;
-
   @override
   void initState() {
     super.initState();
@@ -74,6 +74,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   icon: Icons.camera_alt,
                   onPressed: () => Navigator.pushNamed(context, '/scan'),
                 ),
+                _buildCorrectionsMenuButton(localizations),
                 const Spacer(),
               ],
             ),
@@ -187,6 +188,34 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 ),
             ],
           ),
+        );
+      },
+    );
+  }
+
+  /// Shows the Corrections menu action only for web reviewers.
+  Widget _buildCorrectionsMenuButton(AppLocalizations localizations) {
+    if (isRunningOffLine || !kIsWeb) {
+      return const SizedBox.shrink();
+    }
+
+    return StreamBuilder<bool>(
+      stream: reviewerAccessStream(),
+      builder: (BuildContext _, AsyncSnapshot<bool> reviewerSnapshot) {
+        final bool isReviewer = reviewerSnapshot.data ?? false;
+        if (!isReviewer) {
+          return const SizedBox.shrink();
+        }
+
+        return Column(
+          children: [
+            SizedBox(height: ConstLayout.sizeM),
+            MenuButton(
+              label: localizations.corrections,
+              icon: Icons.fact_check,
+              onPressed: () => Navigator.pushNamed(context, '/corrections'),
+            ),
+          ],
         );
       },
     );

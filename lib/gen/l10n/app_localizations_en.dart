@@ -52,6 +52,72 @@ class AppLocalizationsEn extends AppLocalizations {
       'Are you sure you want to start a new game? All scores will be lost.';
 
   @override
+  String get corrections => 'Corrections';
+
+  @override
+  String get correctionsAll => 'All';
+
+  @override
+  String get correctionsApprove => 'Approve';
+
+  @override
+  String get correctionsApproved => 'Approved';
+
+  @override
+  String get correctionsBackendRequired =>
+      'Corrections review requires backend connectivity.';
+
+  @override
+  String get correctionsCorrectedValue => 'Corrected value';
+
+  @override
+  String get correctionsDecisionSaved => 'Review decision saved';
+
+  @override
+  String get correctionsDetectedValue => 'Detected value';
+
+  @override
+  String get correctionsNoApproved => 'No approved corrections found.';
+
+  @override
+  String get correctionsNoData => 'No corrections found.';
+
+  @override
+  String get correctionsNoPending => 'No pending corrections to review.';
+
+  @override
+  String get correctionsNoRejected => 'No rejected corrections found.';
+
+  @override
+  String get correctionsPending => 'Pending';
+
+  @override
+  String get correctionsReject => 'Reject';
+
+  @override
+  String get correctionsRejected => 'Rejected';
+
+  @override
+  String get correctionsReviewerOnly =>
+      'Only users in the reviewer group can access this screen.';
+
+  @override
+  String get correctionsReviewStatus => 'Review status';
+
+  @override
+  String get correctionsSubmittedAt => 'Submitted';
+
+  @override
+  String get correctionsSubmittedBy => 'Submitted by';
+
+  @override
+  String get correctionsTitle => 'Training Corrections';
+
+  @override
+  String get correctionsWebOnly =>
+      'Corrections review is currently available on web.';
+
+  @override
   String get createNewTable => 'Create New Table';
 
   @override

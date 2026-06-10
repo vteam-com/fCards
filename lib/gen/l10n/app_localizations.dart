@@ -170,6 +170,132 @@ abstract class AppLocalizations {
   /// **'Are you sure you want to start a new game? All scores will be lost.'**
   String get confirmNewGame;
 
+  /// No description provided for @corrections.
+  ///
+  /// In en, this message translates to:
+  /// **'Corrections'**
+  String get corrections;
+
+  /// No description provided for @correctionsAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get correctionsAll;
+
+  /// No description provided for @correctionsApprove.
+  ///
+  /// In en, this message translates to:
+  /// **'Approve'**
+  String get correctionsApprove;
+
+  /// No description provided for @correctionsApproved.
+  ///
+  /// In en, this message translates to:
+  /// **'Approved'**
+  String get correctionsApproved;
+
+  /// No description provided for @correctionsBackendRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Corrections review requires backend connectivity.'**
+  String get correctionsBackendRequired;
+
+  /// No description provided for @correctionsCorrectedValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Corrected value'**
+  String get correctionsCorrectedValue;
+
+  /// No description provided for @correctionsDecisionSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Review decision saved'**
+  String get correctionsDecisionSaved;
+
+  /// No description provided for @correctionsDetectedValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Detected value'**
+  String get correctionsDetectedValue;
+
+  /// No description provided for @correctionsNoApproved.
+  ///
+  /// In en, this message translates to:
+  /// **'No approved corrections found.'**
+  String get correctionsNoApproved;
+
+  /// No description provided for @correctionsNoData.
+  ///
+  /// In en, this message translates to:
+  /// **'No corrections found.'**
+  String get correctionsNoData;
+
+  /// No description provided for @correctionsNoPending.
+  ///
+  /// In en, this message translates to:
+  /// **'No pending corrections to review.'**
+  String get correctionsNoPending;
+
+  /// No description provided for @correctionsNoRejected.
+  ///
+  /// In en, this message translates to:
+  /// **'No rejected corrections found.'**
+  String get correctionsNoRejected;
+
+  /// No description provided for @correctionsPending.
+  ///
+  /// In en, this message translates to:
+  /// **'Pending'**
+  String get correctionsPending;
+
+  /// No description provided for @correctionsReject.
+  ///
+  /// In en, this message translates to:
+  /// **'Reject'**
+  String get correctionsReject;
+
+  /// No description provided for @correctionsRejected.
+  ///
+  /// In en, this message translates to:
+  /// **'Rejected'**
+  String get correctionsRejected;
+
+  /// No description provided for @correctionsReviewerOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'Only users in the reviewer group can access this screen.'**
+  String get correctionsReviewerOnly;
+
+  /// No description provided for @correctionsReviewStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'Review status'**
+  String get correctionsReviewStatus;
+
+  /// No description provided for @correctionsSubmittedAt.
+  ///
+  /// In en, this message translates to:
+  /// **'Submitted'**
+  String get correctionsSubmittedAt;
+
+  /// No description provided for @correctionsSubmittedBy.
+  ///
+  /// In en, this message translates to:
+  /// **'Submitted by'**
+  String get correctionsSubmittedBy;
+
+  /// No description provided for @correctionsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Training Corrections'**
+  String get correctionsTitle;
+
+  /// No description provided for @correctionsWebOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'Corrections review is currently available on web.'**
+  String get correctionsWebOnly;
+
   /// No description provided for @createNewTable.
   ///
   /// In en, this message translates to:
