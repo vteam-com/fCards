@@ -26,7 +26,7 @@ The visual identity of this app relies heavily on a classic casino table top car
   - `lib/models/app/constants_layout.dart` - `ConstLayout` class for layout, spacing, sizing
   - `lib/models/app/constants_animation.dart` - `ConstAnimation` class for animation and visual effects
   - `lib/models/app/constants_card_value.dart` - `ConstCardValue` class for card values and offsets
-  - `lib/screens/game/game_style_constants.dart` - `GameStyleConstants` class for game-specific values
+  - `lib/screens/game/start_screen_constants.dart` - `StartScreenConstants` class for start flow values
 - **Usage Examples**:
   - `ConstLayout.sizeS`, `sizeM`, `sizeL` for spacing/sizing
   - `ConstLayout.radiusL`, `radiusM` for border radius
@@ -74,10 +74,10 @@ The visual identity of this app relies heavily on a classic casino table top car
   - `lib/screens/`: Full-page views and screen-specific constants
   - `lib/widgets/`: Reusable components
     - `widgets/buttons/`: Custom button widgets (`MyButton`, `MyButtonRectangle`, `MyButtonRound`)
-    - `widgets/helpers/`: Generic helpers (`Screen`, `Dialog`, `InputKeyboard`, `WiggleWidget`)
+    - `widgets/helpers/`: Generic helpers (`Screen`, `myDialog`, `InputKeyboard`, `WiggleWidget`)
     - `widgets/player/`: Player-specific widgets
     - `widgets/cards/`: Card-related widgets
-  - `lib/utils/`: Shared utilities (`Logger`)
+  - `lib/utils/`: Shared utilities (`AppLogger`)
 
 ## 🚀 Release Process
 

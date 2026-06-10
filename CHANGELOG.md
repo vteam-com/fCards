@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 1.13.0
+
+- Add Tests
+- More training samples for AI Card Counting
+- Align project documentation with implementation paths and symbols
+- Fix architecture references in AGENTS guide (constants/logger/dialog helper naming)
+- Fix README project tree reference for welcome screen entry file
+
 ## 1.12.5
 
 - Refactor player edit dialog action buttons and improve layout constraints
