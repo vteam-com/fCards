@@ -21,20 +21,40 @@ from pathlib import Path
 
 # Ground-truth for benchmark images: filename -> {(row, col): expected rank token}
 _BENCHMARKS: dict[str, dict[tuple[int, int], str]] = {
-    "open_cards_3x3.jpeg": {
+    "cards_grid_open_a.jpeg": {
         (0, 0): "j", (0, 1): "10", (0, 2): "a",
         (1, 0): "6", (1, 1): "9",  (1, 2): "joker",
         (2, 0): "k", (2, 1): "4",  (2, 2): "5",
     },
-    "open_cards_3x3_b.jpeg": {
+    "cards_grid_open_b.jpeg": {
         (0, 0): "a",  (0, 1): "2",  (0, 2): "3",
         (1, 0): "4",  (1, 1): "10", (1, 2): "j",
         (2, 0): "q",  (2, 1): "k",  (2, 2): "joker",
     },
-    "open_cards_3x3_c.jpeg": {
+    "cards_grid_open_c.jpeg": {
         (0, 0): "q",  (0, 1): "2",  (0, 2): "3",
         (1, 0): "q",  (1, 1): "10", (1, 2): "j",
         (2, 0): "q",  (2, 1): "k",  (2, 2): "joker",
+    },
+    "cards_grid_1_to_9.jpeg": {
+        (0, 0): "a",  (0, 1): "2",  (0, 2): "3",
+        (1, 0): "4",  (1, 1): "5",  (1, 2): "6",
+        (2, 0): "7",  (2, 1): "8",  (2, 2): "9",
+    },
+    "cards_grid_2_kings.jpeg": {
+        (0, 0): "3",  (0, 1): "k",      (0, 2): "k",
+        (1, 0): "3",  (1, 1): "joker",  (1, 2): "10",
+        (2, 0): "3",  (2, 1): "6",      (2, 2): "5",
+    },
+    "cards_grid_all_aces.jpeg": {
+        (0, 0): "a",  (0, 1): "a",      (0, 2): "a",
+        (1, 0): "a",  (1, 1): "joker",  (1, 2): "a",
+        (2, 0): "a",  (2, 1): "a",      (2, 2): "a",
+    },
+    "cards_grid_zero.jpeg": {
+        (0, 0): "k",  (0, 1): "k",  (0, 2): "k",
+        (1, 0): "j",  (1, 1): "j",  (1, 2): "j",
+        (2, 0): "6",  (2, 1): "6",  (2, 2): "6",
     },
 }
 
@@ -112,7 +132,7 @@ def _parse_args() -> argparse.Namespace:
     p.add_argument("--imgsz", type=int, default=640)
     p.add_argument("--tflite", required=True, help="Destination .tflite path")
     p.add_argument("--onnx", required=True, help="Destination .onnx path")
-    p.add_argument("--benchmark-dir", default="assets/images",
+    p.add_argument("--benchmark-dir", default="test/assets/benchmarks",
                    help="Directory containing benchmark images")
     return p.parse_args()
 
