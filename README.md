@@ -164,7 +164,7 @@ lib/
 │   ├── game/                # Game state and backend logic
 │   └── player/              # Player data models
 ├── screens/                  # UI screens
-│   ├── main_menu.dart       # Main navigation menu
+│   ├── welcome/welcome_screen.dart # Main navigation menu
 │   ├── game/                # Game-related screens and constants
 │   └── keepscore/           # Score keeper screens
 ├── widgets/                  # Reusable UI components
