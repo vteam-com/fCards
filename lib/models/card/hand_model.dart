@@ -177,7 +177,7 @@ class HandModel {
   /// **Scoring Rules:**
   /// - Revealed cards are scored based on their face values
   /// - Cards that match in rank (same number/symbol) don't count toward the score
-  ///   - In 3x3 grids: matches can be horizonal (rows) or vertical (columns)
+  ///   - In 3x3 grids: matches can be horizontal (rows) or vertical (columns)
   ///   - In 2x2 grids: matches can be pairs in rows or columns
   /// - Only the unmatched revealed cards contribute to the final score
   ///
@@ -191,6 +191,11 @@ class HandModel {
   /// @return The total score (sum of values of scoring cards)
   int getSumOfCardsForGolf() {
     int score = 0;
+
+    // Reset stale set-membership from any previous call before re-evaluating.
+    for (final CardModel card in _list) {
+      card.partOfSet = false;
+    }
 
     final List<List<int>> checkingIndices =
         _list.length == CardModel.golfGrid2x2Size
@@ -212,34 +217,39 @@ class HandModel {
 
   /// Marks cards of the same rank as part of a set for Golf scoring.
   ///
-  /// Takes a list of boolean flags [markedForZeroScore] to track which cards have been marked,
-  /// and a list of [indices] specifying which card positions to check.
+  /// Takes a list of [indices] specifying which card positions to check.
   ///
   /// For 2 or 3 indices:
-  /// - Checks if cards at specified positions have matching ranks
-  /// - If they match, aren't already part of a set, and are revealed, marks them as part of a set
-  /// - Cards with rank '§' are excluded from being marked as part of a set
+  /// - Checks if all cards at the specified positions are revealed
+  /// - Checks if all cards have matching ranks
+  /// - If they match, marks every non-Joker card as part of a set
+  /// - Cards with rank '§' (Joker) are excluded from being marked as part of a set
+  ///
+  /// Each card belongs to at most one set. Once a card is claimed by a row (or
+  /// column) triple, it is unavailable for any subsequent column (or row) check.
+  /// This enforces the rule that a card used in one triple cannot be used again
+  /// in another triple.
   void markIfSameRankForGolf(List<int> indices) {
-    // Validate all cards are revealed and not already part of a set
-    final bool allCardsValid = indices.every(
+    // All cards must be revealed and not yet claimed by a previous set.
+    final bool allCardsAvailable = indices.every(
       (index) => _list[index].isRevealed && !_list[index].partOfSet,
     );
 
-    if (!allCardsValid) {
+    if (!allCardsAvailable) {
       return;
     }
-    const cardInxexFirst = 0;
-    const cardInxexSecond = 1;
-    const cardInxexThird = 2;
+    const cardIndexFirst = 0;
+    const cardIndexSecond = 1;
+    const cardIndexThird = 2;
 
     // Check if all cards have matching ranks
     final bool haveSameRank = indices.length == CardModel.twoCardMatchSize
-        ? _list[indices[cardInxexFirst]].rank ==
-              _list[indices[cardInxexSecond]].rank
-        : _list[indices[cardInxexFirst]].rank ==
-                  _list[indices[cardInxexSecond]].rank &&
-              _list[indices[cardInxexSecond]].rank ==
-                  _list[indices[cardInxexThird]].rank;
+        ? _list[indices[cardIndexFirst]].rank ==
+              _list[indices[cardIndexSecond]].rank
+        : _list[indices[cardIndexFirst]].rank ==
+                  _list[indices[cardIndexSecond]].rank &&
+              _list[indices[cardIndexSecond]].rank ==
+                  _list[indices[cardIndexThird]].rank;
 
     if (haveSameRank) {
       // Mark matching cards as part of set if not special rank
