@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
-"""retrain.py — Download correction samples from Firebase RTDB and fine-tune.
+"""retrain.py — Download approved correction samples from Firebase RTDB and fine-tune.
 
 The script:
-  1. Fetches all records under training_corrections/{uid}/* from Firebase RTDB.
-  2. Decodes the base64 image and writes it to a temp dataset directory.
-  3. Generates YOLO-format labels (corrected class, full-image bbox).
-  4. Fine-tunes the base model on those samples (transfer learning).
-  5. Exports to TFLite (float32) and ONNX, then copies to assets/models/.
+  1. Fetches records under training_corrections/{uid}/* from Firebase RTDB.
+  2. Filters to include only records with review_status == 'approved'.
+  3. Decodes the base64 image and writes it to a temp dataset directory.
+  4. Generates YOLO-format labels (corrected class, full-image bbox).
+  5. Fine-tunes the base model on those samples (transfer learning).
+  6. Exports to TFLite (float32) and ONNX, then copies to assets/models/.
 """
 
 import argparse
@@ -140,7 +141,10 @@ def _rank_value_to_class_indices(corrected_value: int, labels: list[str]) -> lis
 
 
 def _fetch_samples(project_id: str) -> list[dict]:
-    """Fetch all training correction records from Firebase RTDB."""
+    """Fetch approved training correction records from Firebase RTDB.
+    
+    Only includes records with review_status == 'approved'.
+    """
     try:
         import firebase_admin
         from firebase_admin import credentials, db as rtdb
@@ -165,12 +169,23 @@ def _fetch_samples(project_id: str) -> list[dict]:
         return []
 
     records = []
+    total_fetched = 0
+    approved_count = 0
     for _uid, entries in data.items():
         if not isinstance(entries, dict):
             continue
         for _key, record in entries.items():
             if isinstance(record, dict):
-                records.append(record)
+                total_fetched += 1
+                # Only include records with review_status == 'approved'
+                if record.get("review_status") == "approved":
+                    records.append(record)
+                    approved_count += 1
+    
+    if total_fetched > approved_count:
+        filtered_out = total_fetched - approved_count
+        print(f"    Filtered: {filtered_out} non-approved records excluded")
+    
     return records
 
 

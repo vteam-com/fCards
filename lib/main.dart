@@ -5,6 +5,7 @@ import 'package:cards/models/app/firebase_options.dart';
 import 'package:cards/models/app/locale_controller.dart';
 import 'package:cards/models/game/backend_model.dart';
 import 'package:cards/screens/game/card_scan_screen.dart';
+import 'package:cards/screens/game/corrections_review_screen.dart';
 import 'package:cards/screens/game/join_game_screen.dart';
 import 'package:cards/screens/game/start_game_screen.dart';
 import 'package:cards/screens/game/start_game_wizard_screen.dart';
@@ -84,6 +85,7 @@ class MyApp extends StatelessWidget {
             '/game': (BuildContext _) => const StartScreen(joinMode: false),
             '/join': (BuildContext _) => const JoinGameScreen(),
             '/score': (BuildContext _) => const GolfScoreScreen(),
+            '/corrections': (BuildContext _) => const CorrectionsReviewScreen(),
           },
           onGenerateRoute: _handleGeneratedRoute,
           debugShowCheckedModeBanner: false,
