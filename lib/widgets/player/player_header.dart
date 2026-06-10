@@ -50,6 +50,12 @@ class PlayerHeaderConstants {
 
   /// Border width for dialogs
   static const double dialogBorderWidth = 1.0;
+
+  /// Maximum width for the edit player dialog.
+  static const double editDialogMaxWidth = 800.0;
+
+  /// Maximum width for text action buttons in edit dialogs.
+  static const double textActionButtonMaxWidth = 300.0;
 }
 
 /// A widget for editing a player's name.
@@ -184,6 +190,60 @@ class _PlayerHeaderState extends State<PlayerHeader> {
     );
   }
 
+  /// Builds responsive action buttons for the edit-player dialog.
+  Widget _buildEditDialogActionButtons(AppLocalizations localizations) {
+    final addPlayerButton = MyButtonRectangle.secondary(
+      width: null,
+      height: PlayerHeaderConstants.inputHeight,
+      onTap: () {
+        Navigator.of(context).pop();
+        widget.onPlayerAdded?.call();
+      },
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: ConstLayout.sizeM),
+        child: Text(
+          localizations.addAnotherPlayer,
+          style: const TextStyle(fontWeight: FontWeight.bold),
+        ),
+      ),
+    );
+
+    final removePlayerButton = MyButtonRectangle.danger(
+      width: null,
+      height: PlayerHeaderConstants.inputHeight,
+      onTap: () {
+        Navigator.of(context).pop();
+        _showRemoveConfirmationDialog();
+      },
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: ConstLayout.sizeM),
+        child: Text(
+          localizations.removeThisPlayer,
+          style: const TextStyle(fontWeight: FontWeight.bold),
+        ),
+      ),
+    );
+
+    return Wrap(
+      spacing: PlayerHeaderConstants.wrapSpacing,
+      runSpacing: PlayerHeaderConstants.wrapSpacing,
+      children: [
+        ConstrainedBox(
+          constraints: const BoxConstraints(
+            maxWidth: PlayerHeaderConstants.textActionButtonMaxWidth,
+          ),
+          child: addPlayerButton,
+        ),
+        ConstrainedBox(
+          constraints: const BoxConstraints(
+            maxWidth: PlayerHeaderConstants.textActionButtonMaxWidth,
+          ),
+          child: removePlayerButton,
+        ),
+      ],
+    );
+  }
+
   /// Builds the rank badge for first, last, or middle leaderboard positions.
   Widget _buildWiningPosition(int rank, int numberOfPlayers) {
     final AppLocalizations localizations = AppLocalizations.of(context);
@@ -252,46 +312,7 @@ class _PlayerHeaderState extends State<PlayerHeader> {
               rightSideChild: null,
               onChanged: (_) => widget.onNameChanged(controller.text),
             ),
-            Wrap(
-              spacing: PlayerHeaderConstants.wrapSpacing,
-              runSpacing: PlayerHeaderConstants.wrapSpacing,
-              children: [
-                MyButtonRectangle.secondary(
-                  width: null, // Allow dynamic width
-                  height: PlayerHeaderConstants.inputHeight,
-                  onTap: () {
-                    Navigator.of(context).pop();
-                    widget.onPlayerAdded?.call();
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: ConstLayout.sizeM,
-                    ),
-                    child: Text(
-                      localizations.addAnotherPlayer,
-                      style: const TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                ),
-                MyButtonRectangle.danger(
-                  width: null, // Allow dynamic width
-                  height: PlayerHeaderConstants.inputHeight,
-                  onTap: () {
-                    Navigator.of(context).pop();
-                    _showRemoveConfirmationDialog();
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: ConstLayout.sizeM,
-                    ),
-                    child: Text(
-                      localizations.removeThisPlayer,
-                      style: const TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                ),
-              ],
-            ),
+            _buildEditDialogActionButtons(localizations),
           ],
         );
 
@@ -319,13 +340,24 @@ class _PlayerHeaderState extends State<PlayerHeader> {
                     spacing: PlayerHeaderConstants.dialogContentSpacing,
                     children: [
                       themedContent,
-                      MyButtonRectangle(
-                        width: double.infinity,
-                        height: PlayerHeaderConstants.inputHeight,
-                        onTap: () => Navigator.of(context).pop(),
-                        child: Text(
-                          localizations.done,
-                          style: const TextStyle(fontWeight: FontWeight.bold),
+                      Align(
+                        alignment: Alignment.center,
+                        child: ConstrainedBox(
+                          constraints: const BoxConstraints(
+                            maxWidth:
+                                PlayerHeaderConstants.textActionButtonMaxWidth,
+                          ),
+                          child: MyButtonRectangle(
+                            width: double.infinity,
+                            height: PlayerHeaderConstants.inputHeight,
+                            onTap: () => Navigator.of(context).pop(),
+                            child: Text(
+                              localizations.done,
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
                         ),
                       ),
                     ],
@@ -343,6 +375,9 @@ class _PlayerHeaderState extends State<PlayerHeader> {
             ),
           ),
           child: AlertDialog(
+            constraints: const BoxConstraints(
+              maxWidth: PlayerHeaderConstants.editDialogMaxWidth,
+            ),
             backgroundColor: colorScheme.surface,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(
