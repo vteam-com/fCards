@@ -1,14 +1,25 @@
 {
   "rules": {
-    ".read": "auth != null",
-    ".write": "auth != null",
+    ".read": false,
+    ".write": false,
     "rooms": {
-      ".read": "auth != null",
-      ".write": "auth != null",
+      ".read": false,
+      ".write": false,
       "$roomId": {
+        ".read": "auth != null && (root.child('rooms').child($roomId).child('invitees').hasChild(auth.uid) || root.child('rooms').child($roomId).child('players').hasChild(auth.uid))",
+        ".write": "auth != null && (root.child('rooms').child($roomId).child('invitees').hasChild(auth.uid) || root.child('rooms').child($roomId).child('players').hasChild(auth.uid))",
+        ".validate": "newData.hasChildren(['invitees', 'players', 'scores', 'gameType', 'deck', 'discard', 'turn'])",
         "invitees": {
-          ".read": "auth != null",
-          ".write": "auth != null"
+          ".read": "auth != null && (root.child('rooms').child($roomId).child('invitees').hasChild(auth.uid) || root.child('rooms').child($roomId).child('players').hasChild(auth.uid))",
+          ".write": false
+        },
+        "players": {
+          ".read": "auth != null && (root.child('rooms').child($roomId).child('invitees').hasChild(auth.uid) || root.child('rooms').child($roomId).child('players').hasChild(auth.uid))",
+          ".write": "auth != null && (root.child('rooms').child($roomId).child('invitees').hasChild(auth.uid) || root.child('rooms').child($roomId).child('players').hasChild(auth.uid))"
+        },
+        "$other": {
+          ".read": "auth != null && (root.child('rooms').child($roomId).child('invitees').hasChild(auth.uid) || root.child('rooms').child($roomId).child('players').hasChild(auth.uid))",
+          ".write": "auth != null && (root.child('rooms').child($roomId).child('invitees').hasChild(auth.uid) || root.child('rooms').child($roomId).child('players').hasChild(auth.uid))"
         }
       }
     },
@@ -25,11 +36,11 @@
       }
     },
     "history": {
-      ".read": "auth != null",
-      ".write": "auth != null",
+      ".read": false,
+      ".write": false,
       "$roomName": {
-        ".read": "auth != null",
-        ".write": "auth != null"
+        ".read": "auth != null && (root.child('history').child($roomName).child('participants').hasChild(auth.uid))",
+        ".write": "auth != null && (root.child('history').child($roomName).child('participants').hasChild(auth.uid))"
       }
     }
   }
