@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 1.13.1
+
+- Secure Firebase Realtime Database rules with least-privilege access controls
+- fCheck version 1.4.1
+- Enforce strict fcheck scoring in CI (`--strict`) so only 100% clean checks pass
+
 ## 1.13.0
 
 - Add Tests
