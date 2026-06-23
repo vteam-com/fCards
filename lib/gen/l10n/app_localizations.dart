@@ -560,12 +560,6 @@ abstract class AppLocalizations {
   /// **'Not allowed!'**
   String get notAllowed;
 
-  /// No description provided for @notSignedIn.
-  ///
-  /// In en, this message translates to:
-  /// **'Not signed in'**
-  String get notSignedIn;
-
   /// No description provided for @notYourTurn.
   ///
   /// In en, this message translates to:
@@ -607,12 +601,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{player} won {count} times at table {table}'**
   String playerWonTimesAtTable(String player, int count, String table);
-
-  /// No description provided for @playingAsGuest.
-  ///
-  /// In en, this message translates to:
-  /// **'Playing as Guest'**
-  String get playingAsGuest;
 
   /// No description provided for @pleaseEnterYourName.
   ///
@@ -812,23 +800,11 @@ abstract class AppLocalizations {
   /// **'Signed in'**
   String get signedIn;
 
-  /// No description provided for @signingIn.
+  /// No description provided for @signIn.
   ///
   /// In en, this message translates to:
-  /// **'Signing in...'**
-  String get signingIn;
-
-  /// No description provided for @signingOut.
-  ///
-  /// In en, this message translates to:
-  /// **'Signing out...'**
-  String get signingOut;
-
-  /// No description provided for @signInWithGoogle.
-  ///
-  /// In en, this message translates to:
-  /// **'Sign in with Google'**
-  String get signInWithGoogle;
+  /// **'Sign in'**
+  String get signIn;
 
   /// No description provided for @signOut.
   ///

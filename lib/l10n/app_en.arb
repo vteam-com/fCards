@@ -154,7 +154,6 @@
     }
   },
   "notAllowed": "Not allowed!",
-  "notSignedIn": "Not signed in",
   "notYourTurn": "It's not your turn!",
   "orHereLeft": "\nor\nhere\n←",
   "pickTableOrCreate": "Pick a table or create a new one",
@@ -175,7 +174,6 @@
       }
     }
   },
-  "playingAsGuest": "Playing as Guest",
   "pleaseEnterYourName": "Please enter your name above ⬆",
   "readyToPlayPlayersAtTable": "Ready to play! {count} players at table.",
   "@readyToPlayPlayersAtTable": {
@@ -233,9 +231,7 @@
   "selectAStatus": "Select a status",
   "selectTableToJoin": "Select a Table to Join",
   "signedIn": "Signed in",
-  "signingIn": "Signing in...",
-  "signingOut": "Signing out...",
-  "signInWithGoogle": "Sign in with Google",
+  "signIn": "Sign in",
   "signOut": "Sign out",
   "signOutFailed": "Sign out failed.",
   "skyjo": "Skyjo",

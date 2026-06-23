@@ -1,6 +1,8 @@
 import 'dart:math' as math;
 
 import 'package:cards/gen/l10n/app_localizations.dart';
+import 'package:cards/models/app/app_theme.dart';
+import 'package:cards/models/app/auth_service.dart';
 import 'package:cards/models/app/constants_animation.dart';
 import 'package:cards/models/app/constants_layout.dart';
 import 'package:cards/models/app/locale_controller.dart';
@@ -63,6 +65,51 @@ class Screen extends StatefulWidget {
   /// Title text shown in the app bar
   final String title;
 
+  /// Resolves up to two initials for avatar fallback rendering.
+  static String avatarFallbackInitials({
+    required String? displayName,
+    required String? email,
+  }) {
+    final String? trimmedDisplayName = displayName?.trim();
+    if (trimmedDisplayName != null && trimmedDisplayName.isNotEmpty) {
+      final List<String> displayNameParts = trimmedDisplayName
+          .split(RegExp(r'\s+'))
+          .where((String part) => part.isNotEmpty)
+          .toList();
+      if (displayNameParts.length >= ConstLayout.sizeXS.toInt()) {
+        return ('${displayNameParts.first.characters.first}'
+                '${displayNameParts[1].characters.first}')
+            .toUpperCase();
+      }
+
+      return trimmedDisplayName.characters
+          .take(ConstLayout.sizeXS.toInt())
+          .toString()
+          .toUpperCase();
+    }
+
+    final String? trimmedEmail = email?.trim();
+    if (trimmedEmail != null && trimmedEmail.isNotEmpty) {
+      final String localPart = trimmedEmail.split('@').first;
+      final List<String> emailParts = localPart
+          .split(RegExp(r'[._-]+'))
+          .where((String part) => part.isNotEmpty)
+          .toList();
+      if (emailParts.length >= ConstLayout.sizeXS.toInt()) {
+        return ('${emailParts.first.characters.first}'
+                '${emailParts[1].characters.first}')
+            .toUpperCase();
+      }
+
+      return localPart.characters
+          .take(ConstLayout.sizeXS.toInt())
+          .toString()
+          .toUpperCase();
+    }
+
+    return avatarFallbackText(displayName: displayName, email: email);
+  }
+
   /// Resolves avatar text for users without a profile photo.
   static String avatarFallbackText({
     required String? displayName,
@@ -87,9 +134,7 @@ class Screen extends StatefulWidget {
 
 class _ScreenState extends State<Screen> with SingleTickerProviderStateMixin {
   late final AnimationController _ambientAnimationController;
-
   String _version = '';
-
   @override
   void initState() {
     super.initState();
@@ -158,13 +203,22 @@ class _ScreenState extends State<Screen> with SingleTickerProviderStateMixin {
             ),
 
           /// USER AVATAR
-          if (Firebase.apps.isNotEmpty &&
-              FirebaseAuth.instance.currentUser != null)
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: ConstLayout.sizeS,
-              ),
-              child: _buildAvatar(FirebaseAuth.instance.currentUser!),
+          if (Firebase.apps.isNotEmpty)
+            StreamBuilder<User?>(
+              stream: AuthService.authStateChanges(),
+              builder: (BuildContext _, AsyncSnapshot<User?> snapshot) {
+                final User? user = snapshot.data;
+                if (user == null) {
+                  return const SizedBox.shrink();
+                }
+
+                return Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: ConstLayout.sizeS,
+                  ),
+                  child: _buildAvatar(user),
+                );
+              },
             ),
 
           /// RIGHT SIDE TEXT (User Name)
@@ -253,7 +307,7 @@ class _ScreenState extends State<Screen> with SingleTickerProviderStateMixin {
   Widget _buildAvatar(User user) {
     if (user.isAnonymous) {
       return GestureDetector(
-        onTap: () => _showLanguagePicker(),
+        onTap: () => _showAccountMenu(user),
         child: CircleAvatar(
           radius: ConstLayout.radiusXL,
           backgroundColor: Theme.of(context).colorScheme.surface,
@@ -263,30 +317,32 @@ class _ScreenState extends State<Screen> with SingleTickerProviderStateMixin {
       );
     }
 
-    final photoUrl = user.photoURL;
-    if (photoUrl != null && photoUrl.isNotEmpty) {
-      return GestureDetector(
-        onTap: () => _showLanguagePicker(),
-        child: CircleAvatar(
-          radius: ConstLayout.radiusXL,
-          backgroundImage: NetworkImage(photoUrl),
-          backgroundColor: Theme.of(context).colorScheme.surface,
-        ),
-      );
-    }
-
-    final String fallbackText = Screen.avatarFallbackText(
+    final String fallbackInitials = Screen.avatarFallbackInitials(
       displayName: user.displayName,
       email: user.email,
     );
 
+    final photoUrl = user.photoURL;
+    if (photoUrl != null && photoUrl.isNotEmpty) {
+      return GestureDetector(
+        onTap: () => _showAccountMenu(user),
+        child: CircleAvatar(
+          radius: ConstLayout.radiusXL,
+          foregroundImage: NetworkImage(photoUrl),
+          backgroundColor: Theme.of(context).colorScheme.primary,
+          foregroundColor: Theme.of(context).colorScheme.onPrimary,
+          child: Text(fallbackInitials),
+        ),
+      );
+    }
+
     return GestureDetector(
-      onTap: () => _showLanguagePicker(),
+      onTap: () => _showAccountMenu(user),
       child: CircleAvatar(
         radius: ConstLayout.radiusXL,
         backgroundColor: Theme.of(context).colorScheme.primary,
         foregroundColor: Theme.of(context).colorScheme.onPrimary,
-        child: Text(fallbackText.characters.first.toUpperCase()),
+        child: Text(fallbackInitials),
       ),
     );
   }
@@ -383,8 +439,8 @@ class _ScreenState extends State<Screen> with SingleTickerProviderStateMixin {
     return Alignment(x, y);
   }
 
-  /// Opens language selection anchored from the avatar interaction.
-  Future<void> _showLanguagePicker() async {
+  /// Opens account actions and language selection from the avatar.
+  Future<void> _showAccountMenu(User user) async {
     final List<Locale> supportedLocales = AppLocalizations.supportedLocales;
     final Locale englishLocale = supportedLocales.firstWhere(
       (Locale locale) => locale.languageCode == 'en',
@@ -399,48 +455,275 @@ class _ScreenState extends State<Screen> with SingleTickerProviderStateMixin {
     ).languageCode;
     final bool isEnglish = currentLanguageCode == englishLocale.languageCode;
     final bool isFrench = currentLanguageCode == frenchLocale.languageCode;
+    final AppLocalizations localizations = AppLocalizations.of(context);
+    final bool isSignedInWithAccount = !user.isAnonymous;
+    final String? accountLabel = isSignedInWithAccount
+        ? user.email ?? user.displayName ?? localizations.signedIn
+        : null;
+    final ThemeData theme = Theme.of(context);
+    final ColorScheme colorScheme = theme.colorScheme;
+    const BorderRadius accountSheetBorderRadius = BorderRadius.vertical(
+      top: Radius.circular(ConstLayout.radiusL),
+    );
 
-    await showDialog<void>(
+    await showModalBottomSheet<void>(
       context: context,
-      builder: (BuildContext dialogContext) {
-        return AlertDialog(
-          content: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              MyButtonRectangle(
-                width: ConstLayout.dialogButtonWidth,
-                height: ConstLayout.dialogButtonHeight,
-                onTap: () {
-                  LocaleController.setLanguageCode(englishLocale.languageCode);
-                  Navigator.of(dialogContext).pop();
-                },
-                child: Text(
-                  englishLocale.languageCode.toUpperCase(),
-                  style: TextStyle(
-                    fontSize: ConstLayout.textS,
-                    fontWeight: isEnglish ? FontWeight.bold : FontWeight.normal,
+      backgroundColor: Colors.transparent,
+      isScrollControlled: true,
+      useSafeArea: false,
+      builder: (BuildContext bottomSheetContext) {
+        return Padding(
+          padding: const EdgeInsets.only(
+            left: ConstLayout.paddingL,
+            top: ConstLayout.paddingL,
+            right: ConstLayout.paddingL,
+          ),
+          child: Align(
+            alignment: Alignment.bottomCenter,
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(
+                maxWidth: ConstLayout.mainMenuMaxWidth,
+              ),
+              child: Container(
+                clipBehavior: Clip.antiAlias,
+                decoration: BoxDecoration(
+                  borderRadius: accountSheetBorderRadius,
+                  border: Border.all(
+                    color: colorScheme.secondary,
+                    width: ConstLayout.strokeS,
+                  ),
+                  image: const DecorationImage(
+                    image: AssetImage('assets/images/table_top.png'),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                child: Container(
+                  padding: EdgeInsets.fromLTRB(
+                    ConstLayout.paddingL,
+                    ConstLayout.paddingL,
+                    ConstLayout.paddingL,
+                    ConstLayout.paddingL +
+                        MediaQuery.paddingOf(bottomSheetContext).bottom,
+                  ),
+                  decoration: BoxDecoration(
+                    color: AppTheme.panelInputZone.withAlpha(
+                      ConstLayout.alphaL,
+                    ),
+                    borderRadius: accountSheetBorderRadius,
+                  ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Container(
+                        width: ConstLayout.sizeXXL,
+                        height: ConstLayout.sizeS,
+                        decoration: BoxDecoration(
+                          color: colorScheme.onSurface.withAlpha(
+                            ConstLayout.alphaM,
+                          ),
+                          borderRadius: BorderRadius.circular(
+                            ConstLayout.radiusS,
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: ConstLayout.sizeL),
+                      CircleAvatar(
+                        radius: ConstLayout.sizeXL,
+                        foregroundImage:
+                            user.photoURL != null && user.photoURL!.isNotEmpty
+                            ? NetworkImage(user.photoURL!)
+                            : null,
+                        backgroundColor: colorScheme.primary,
+                        foregroundColor: colorScheme.onPrimary,
+                        child: Text(
+                          Screen.avatarFallbackInitials(
+                            displayName: user.displayName,
+                            email: user.email,
+                          ),
+                          style: TextStyle(
+                            fontSize: ConstLayout.textM,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: ConstLayout.sizeM),
+                      Text(
+                        localizations.account,
+                        style: TextStyle(
+                          fontSize: ConstLayout.textM,
+                          fontWeight: FontWeight.bold,
+                          color: colorScheme.secondary,
+                        ),
+                      ),
+                      if (accountLabel != null) ...[
+                        SizedBox(height: ConstLayout.sizeS),
+                        Text(
+                          accountLabel,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: ConstLayout.textS,
+                            color: colorScheme.onSurface,
+                          ),
+                        ),
+                      ],
+                      SizedBox(height: ConstLayout.sizeL),
+                      MyButtonRectangle.secondary(
+                        width: double.infinity,
+                        height: ConstLayout.dialogButtonHeight,
+                        onTap: () {
+                          Navigator.of(bottomSheetContext).pop();
+                          if (isSignedInWithAccount) {
+                            _signOut();
+                          } else {
+                            _signIn();
+                          }
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          spacing: ConstLayout.sizeS,
+                          children: [
+                            Icon(
+                              isSignedInWithAccount
+                                  ? Icons.logout
+                                  : Icons.login,
+                              color: colorScheme.onPrimaryContainer,
+                              size: ConstLayout.iconXS,
+                            ),
+                            Flexible(
+                              child: Text(
+                                isSignedInWithAccount
+                                    ? localizations.signOut
+                                    : localizations.signIn,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontSize: ConstLayout.textS,
+                                  fontWeight: FontWeight.bold,
+                                  color: colorScheme.onPrimaryContainer,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: ConstLayout.sizeL),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        spacing: ConstLayout.sizeS,
+                        children: [
+                          Icon(
+                            Icons.translate,
+                            color: colorScheme.secondary,
+                            size: ConstLayout.iconXS,
+                          ),
+                          Text(
+                            currentLanguageCode.toUpperCase(),
+                            style: TextStyle(
+                              fontSize: ConstLayout.textS,
+                              fontWeight: FontWeight.bold,
+                              color: colorScheme.secondary,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: ConstLayout.sizeM),
+                      Row(
+                        children: [
+                          Expanded(
+                            child:
+                                (isEnglish
+                                ? MyButtonRectangle.primary
+                                : MyButtonRectangle.secondary)(
+                                  height: ConstLayout.dialogButtonHeight,
+                                  onTap: () {
+                                    LocaleController.setLanguageCode(
+                                      englishLocale.languageCode,
+                                    );
+                                    Navigator.of(bottomSheetContext).pop();
+                                  },
+                                  child: Text(
+                                    englishLocale.languageCode.toUpperCase(),
+                                    style: TextStyle(
+                                      fontSize: ConstLayout.textS,
+                                      fontWeight: FontWeight.bold,
+                                      color: colorScheme.onPrimaryContainer,
+                                    ),
+                                  ),
+                                ),
+                          ),
+                          SizedBox(width: ConstLayout.sizeM),
+                          Expanded(
+                            child:
+                                (isFrench
+                                ? MyButtonRectangle.primary
+                                : MyButtonRectangle.secondary)(
+                                  height: ConstLayout.dialogButtonHeight,
+                                  onTap: () {
+                                    LocaleController.setLanguageCode(
+                                      frenchLocale.languageCode,
+                                    );
+                                    Navigator.of(bottomSheetContext).pop();
+                                  },
+                                  child: Text(
+                                    frenchLocale.languageCode.toUpperCase(),
+                                    style: TextStyle(
+                                      fontSize: ConstLayout.textS,
+                                      fontWeight: FontWeight.bold,
+                                      color: colorScheme.onPrimaryContainer,
+                                    ),
+                                  ),
+                                ),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 ),
               ),
-              MyButtonRectangle(
-                width: ConstLayout.dialogButtonWidth,
-                height: ConstLayout.dialogButtonHeight,
-                onTap: () {
-                  LocaleController.setLanguageCode(frenchLocale.languageCode);
-                  Navigator.of(dialogContext).pop();
-                },
-                child: Text(
-                  frenchLocale.languageCode.toUpperCase(),
-                  style: TextStyle(
-                    fontSize: ConstLayout.textS,
-                    fontWeight: isFrench ? FontWeight.bold : FontWeight.normal,
-                  ),
-                ),
-              ),
-            ],
+            ),
           ),
         );
       },
     );
+  }
+
+  /// Shows auth errors without leaving the current screen.
+  void _showAuthError(String message) {
+    logger.e('Auth error: $message');
+    if (!mounted) {
+      return;
+    }
+
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text(message)));
+  }
+
+  /// Signs in with Google from the avatar account menu.
+  Future<void> _signIn() async {
+    final AppLocalizations localizations = AppLocalizations.of(context);
+    try {
+      await AuthService.signInWithGoogle();
+    } on FirebaseAuthException catch (error) {
+      if (error.code == 'sign_in_canceled') {
+        return;
+      }
+
+      _showAuthError(error.message ?? localizations.googleSignInFailed);
+    } catch (_) {
+      _showAuthError(localizations.googleSignInFailed);
+    }
+  }
+
+  /// Signs out and restores the anonymous guest session.
+  Future<void> _signOut() async {
+    final AppLocalizations localizations = AppLocalizations.of(context);
+    try {
+      await AuthService.signOut();
+      await AuthService.ensureSignedIn();
+    } on FirebaseAuthException catch (error) {
+      _showAuthError(error.message ?? localizations.signOutFailed);
+    } catch (_) {
+      _showAuthError(localizations.signOutFailed);
+    }
   }
 }

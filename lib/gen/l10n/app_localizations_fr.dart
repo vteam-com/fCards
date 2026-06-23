@@ -266,9 +266,6 @@ class AppLocalizationsFr extends AppLocalizations {
   String get notAllowed => 'Action non autorisée !';
 
   @override
-  String get notSignedIn => 'Non connecté';
-
-  @override
   String get notYourTurn => 'Ce n\'est pas votre tour !';
 
   @override
@@ -290,9 +287,6 @@ class AppLocalizationsFr extends AppLocalizations {
   String playerWonTimesAtTable(String player, int count, String table) {
     return '$player a gagné $count fois à la table $table';
   }
-
-  @override
-  String get playingAsGuest => 'Jouer en invité';
 
   @override
   String get pleaseEnterYourName => 'Veuillez saisir votre nom ci-dessus ⬆';
@@ -406,13 +400,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get signedIn => 'Connecté';
 
   @override
-  String get signingIn => 'Connexion...';
-
-  @override
-  String get signingOut => 'Déconnexion...';
-
-  @override
-  String get signInWithGoogle => 'Se connecter avec Google';
+  String get signIn => 'Se connecter';
 
   @override
   String get signOut => 'Se déconnecter';
