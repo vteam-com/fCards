@@ -10,7 +10,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-/// Welcome screen that provides options to start new game, join existing game, or keep scores.
+/// Welcome screen that guides people into hosting or joining a table.
 class WelcomeScreen extends StatefulWidget {
   ///
   const WelcomeScreen({super.key});
@@ -32,50 +32,95 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   @override
   Widget build(BuildContext context) {
     final AppLocalizations localizations = AppLocalizations.of(context);
+    final ColorScheme colorScheme = Theme.of(context).colorScheme;
     return Screen(
       title: localizations.appTitle,
       isWaiting: false,
-      child: Center(
-        child: ConstrainedBox(
-          constraints: const BoxConstraints(
-            maxWidth: ConstLayout.mainMenuMaxWidth,
-          ),
-          child: Padding(
+      child: LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints constraints) {
+          return SingleChildScrollView(
             padding: const EdgeInsets.all(ConstLayout.paddingM),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                const Spacer(),
-                MenuButton(
-                  label: localizations.startNewGame,
-                  icon: Icons.play_circle_fill,
-                  onPressed: () => Navigator.pushNamed(context, '/start'),
+            child: ConstrainedBox(
+              constraints: BoxConstraints(minHeight: constraints.maxHeight),
+              child: Center(
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(
+                    maxWidth: ConstLayout.mainMenuMaxWidth,
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: ConstLayout.paddingL,
+                        ),
+                        child: Text(
+                          localizations.pickTableOrCreate,
+                          style: TextStyle(
+                            fontSize: ConstLayout.textL,
+                            fontWeight: FontWeight.bold,
+                            color: colorScheme.onSurface,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                      SizedBox(height: ConstLayout.sizeM),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: ConstLayout.paddingL,
+                        ),
+                        child: Text(
+                          localizations.welcomeOnboardingHint,
+                          style: TextStyle(
+                            fontSize: ConstLayout.textS,
+                            color: colorScheme.onSurface,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                      SizedBox(height: ConstLayout.sizeL),
+                      MenuButton(
+                        label: localizations.startTable,
+                        icon: Icons.add_circle_outline,
+                        onPressed: () => Navigator.pushNamed(context, '/start'),
+                      ),
+                      SizedBox(height: ConstLayout.sizeM),
+                      MenuButton(
+                        label: localizations.joinExistingGame,
+                        icon: Icons.group_add,
+                        onPressed: () => Navigator.pushNamed(context, '/join'),
+                      ),
+                      SizedBox(height: ConstLayout.sizeXL),
+                      Text(
+                        localizations.otherTools,
+                        style: TextStyle(
+                          fontSize: ConstLayout.textS,
+                          fontWeight: FontWeight.bold,
+                          color: colorScheme.tertiary,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                      SizedBox(height: ConstLayout.sizeM),
+                      MenuButton(
+                        label: localizations.scoreKeeper,
+                        icon: Icons.scoreboard,
+                        onPressed: () => Navigator.pushNamed(context, '/score'),
+                      ),
+                      SizedBox(height: ConstLayout.sizeM),
+                      MenuButton(
+                        label: localizations.scanCard,
+                        icon: Icons.camera_alt,
+                        onPressed: () => Navigator.pushNamed(context, '/scan'),
+                      ),
+                      _buildCorrectionsMenuButton(localizations),
+                    ],
+                  ),
                 ),
-                SizedBox(height: ConstLayout.sizeM),
-                MenuButton(
-                  label: localizations.joinExistingGame,
-                  icon: Icons.group_add,
-                  onPressed: () => Navigator.pushNamed(context, '/join'),
-                ),
-                SizedBox(height: ConstLayout.sizeM),
-                MenuButton(
-                  label: localizations.scoreKeeper,
-                  icon: Icons.scoreboard,
-                  onPressed: () => Navigator.pushNamed(context, '/score'),
-                ),
-                SizedBox(height: ConstLayout.sizeM),
-                MenuButton(
-                  label: localizations.scanCard,
-                  icon: Icons.camera_alt,
-                  onPressed: () => Navigator.pushNamed(context, '/scan'),
-                ),
-                _buildCorrectionsMenuButton(localizations),
-                const Spacer(),
-              ],
+              ),
             ),
-          ),
-        ),
+          );
+        },
       ),
     );
   }

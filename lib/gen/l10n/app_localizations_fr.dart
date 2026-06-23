@@ -121,6 +121,10 @@ class AppLocalizationsFr extends AppLocalizations {
   String get createNewTable => 'Créer une table';
 
   @override
+  String get createTableNameHint =>
+      'Choisissez un nom de table simple. S\'il existe déjà, nous vous aiderons à la rejoindre.';
+
+  @override
   String get deleteLastRow => 'Supprimer la dernière ligne';
 
   @override
@@ -245,10 +249,6 @@ class AppLocalizationsFr extends AppLocalizations {
   String get noCardsAvailableToDraw => 'Aucune carte disponible à piocher !';
 
   @override
-  String get noExistingTables =>
-      'Aucune table trouvée. Créez-en une pour continuer.';
-
-  @override
   String get noMatchingTables => 'Aucune table correspondante';
 
   @override
@@ -272,7 +272,10 @@ class AppLocalizationsFr extends AppLocalizations {
   String get orHereLeft => '\nou\nici\n←';
 
   @override
-  String get pickTableOrCreate => 'Choisissez une table ou créez-en une';
+  String get otherTools => 'Autres outils';
+
+  @override
+  String get pickTableOrCreate => 'Créez une table ou rejoignez-en une';
 
   @override
   String get playAgain => 'Rejouer';
@@ -415,13 +418,14 @@ class AppLocalizationsFr extends AppLocalizations {
   String get startGame => 'Démarrer la partie';
 
   @override
-  String get startGameWizardTitle => 'Démarrer';
+  String get startGameWizardSubtitle =>
+      'Choisissez le jeu pour cette table. Nous vous aiderons ensuite à la nommer.';
 
   @override
   String get starting => 'Démarrage';
 
   @override
-  String get startNewGame => 'Démarrer une nouvelle partie';
+  String get startTable => 'Créer une table';
 
   @override
   String get statusBrb => 'Reviens vite';
@@ -450,9 +454,6 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get tapExistingTable => 'Touchez une table existante pour continuer';
-
-  @override
   String get thisGame => 'Cette partie';
 
   @override
@@ -476,6 +477,10 @@ class AppLocalizationsFr extends AppLocalizations {
   String get waitYourTurn => 'Attendez votre tour !';
 
   @override
+  String get welcomeOnboardingHint =>
+      'Créez une table si vous organisez la partie. Rejoignez-en une si quelqu\'un vous l\'a déjà partagée.';
+
+  @override
   String welcomePlayer(String player) {
     return 'Bienvenue, $player !';
   }
@@ -486,6 +491,12 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get whoAreYou =>
       'Qui êtes-vous ?\nSélectionnez ci-dessus ⬆ ou rejoignez ci-dessous ⬇';
+
+  @override
+  String get wizardStepOneOfTwo => 'Étape 1 sur 2';
+
+  @override
+  String get wizardStepTwoOfTwo => 'Étape 2 sur 2';
 
   @override
   String get youAreDone => 'Vous avez terminé.';

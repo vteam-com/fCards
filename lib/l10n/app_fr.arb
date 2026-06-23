@@ -58,6 +58,7 @@
   "correctionsTitle": "Corrections d'entraînement",
   "correctionsWebOnly": "La revue des corrections est actuellement disponible sur le web.",
   "createNewTable": "Créer une table",
+  "createTableNameHint": "Choisissez un nom de table simple. S'il existe déjà, nous vous aiderons à la rejoindre.",
   "deleteLastRow": "Supprimer la dernière ligne",
   "discardOrSwap": "Défausser →\nou\n↓ échanger",
   "done": "Terminé",
@@ -133,7 +134,6 @@
   "newGame": "Nouvelle partie",
   "next": "Suivant",
   "noCardsAvailableToDraw": "Aucune carte disponible à piocher !",
-  "noExistingTables": "Aucune table trouvée. Créez-en une pour continuer.",
   "noMatchingTables": "Aucune table correspondante",
   "noOne": "Personne",
   "noTablesAvailable": "Aucune table disponible",
@@ -148,7 +148,8 @@
   "notAllowed": "Action non autorisée !",
   "notYourTurn": "Ce n'est pas votre tour !",
   "orHereLeft": "\nou\nici\n←",
-  "pickTableOrCreate": "Choisissez une table ou créez-en une",
+  "otherTools": "Autres outils",
+  "pickTableOrCreate": "Créez une table ou rejoignez-en une",
   "playAgain": "Rejouer",
   "playerName": "Initiales du joueur",
   "players": "Joueurs",
@@ -225,9 +226,9 @@
   "signOutFailed": "Échec de la déconnexion.",
   "skyjo": "Skyjo",
   "startGame": "Démarrer la partie",
-  "startGameWizardTitle": "Démarrer",
+  "startGameWizardSubtitle": "Choisissez le jeu pour cette table. Nous vous aiderons ensuite à la nommer.",
   "starting": "Démarrage",
-  "startNewGame": "Démarrer une nouvelle partie",
+  "startTable": "Créer une table",
   "statusBrb": "Reviens vite",
   "statusFeelingGood": "Ça va !",
   "statusOhNo": "Oh non !",
@@ -246,7 +247,6 @@
       }
     }
   },
-  "tapExistingTable": "Touchez une table existante pour continuer",
   "thisGame": "Cette partie",
   "thisTableAlreadyHasPlayers": "Cette table existe déjà. Rejoignez cette table ou entrez un autre nom.",
   "useSearchBox": "Utilisez la recherche pour trouver rapidement une table",
@@ -254,6 +254,7 @@
   "waitingForMorePlayers": "En attente d'autres joueurs...",
   "waitingForPlayers": "En attente de joueurs",
   "waitYourTurn": "Attendez votre tour !",
+  "welcomeOnboardingHint": "Créez une table si vous organisez la partie. Rejoignez-en une si quelqu'un vous l'a déjà partagée.",
   "welcomePlayer": "Bienvenue, {player} !",
   "@welcomePlayer": {
     "placeholders": {
@@ -264,6 +265,8 @@
   },
   "whatTypeOfGame": "Quel type de jeu ?",
   "whoAreYou": "Qui êtes-vous ?\nSélectionnez ci-dessus ⬆ ou rejoignez ci-dessous ⬇",
+  "wizardStepOneOfTwo": "Étape 1 sur 2",
+  "wizardStepTwoOfTwo": "Étape 2 sur 2",
   "youAreDone": "Vous avez terminé.",
   "youIndicator": "VOUS>",
   "yourName": "Votre nom"

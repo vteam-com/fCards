@@ -63,6 +63,7 @@
   "correctionsTitle": "Training Corrections",
   "correctionsWebOnly": "Corrections review is currently available on web.",
   "createNewTable": "Create New Table",
+  "createTableNameHint": "Choose a simple table name. If it already exists, we'll help you join it instead.",
   "deleteLastRow": "Delete Last Row",
   "discardOrSwap": "Discard →\nor\n↓ swap",
   "done": "Done",
@@ -141,7 +142,6 @@
   "newGame": "New Game",
   "next": "Next",
   "noCardsAvailableToDraw": "No cards available to draw!",
-  "noExistingTables": "No existing tables found. Create a new one to continue.",
   "noMatchingTables": "No matching tables",
   "noOne": "No one",
   "noTablesAvailable": "No tables available",
@@ -156,7 +156,8 @@
   "notAllowed": "Not allowed!",
   "notYourTurn": "It's not your turn!",
   "orHereLeft": "\nor\nhere\n←",
-  "pickTableOrCreate": "Pick a table or create a new one",
+  "otherTools": "Other Tools",
+  "pickTableOrCreate": "Start a table or join one",
   "playAgain": "Play Again",
   "playerName": "Player Initials",
   "players": "Players",
@@ -239,9 +240,9 @@
     "description": "DO NOT TRANSLATE. This is the official brand name."
   },
   "startGame": "Start Game",
-  "startGameWizardTitle": "Start Game",
+  "startGameWizardSubtitle": "Choose the game for this table. We'll help you name it next.",
   "starting": "Starting",
-  "startNewGame": "Start a New Game",
+  "startTable": "Start a Table",
   "statusBrb": "BRB",
   "statusFeelingGood": "Feeling Good!",
   "statusOhNo": "Oh NO!",
@@ -257,7 +258,6 @@
       }
     }
   },
-  "tapExistingTable": "Tap an existing table to continue",
   "thisGame": "This Game",
   "thisTableAlreadyHasPlayers": "This table already exists. Join this table or enter a different name.",
   "useSearchBox": "Use the search box to quickly find a table",
@@ -265,6 +265,7 @@
   "waitingForMorePlayers": "Waiting for more players to join...",
   "waitingForPlayers": "Waiting for players to join",
   "waitYourTurn": "Wait your turn!",
+  "welcomeOnboardingHint": "Start a table if you're hosting. Join a table if someone already shared one with you.",
   "welcomePlayer": "Welcome, {player}!",
   "@welcomePlayer": {
     "placeholders": {
@@ -275,6 +276,8 @@
   },
   "whatTypeOfGame": "What type of game?",
   "whoAreYou": "Who Are You?\nSelect above ⬆ or join below ⬇",
+  "wizardStepOneOfTwo": "Step 1 of 2",
+  "wizardStepTwoOfTwo": "Step 2 of 2",
   "youAreDone": "You are done.",
   "youIndicator": "YOU>",
   "yourName": "Your Name"

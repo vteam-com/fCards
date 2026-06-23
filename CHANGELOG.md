@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 1.13.2
+
+- Simplify multiplayer onboarding into a guided two-step "Start a Table" wizard
+- Better SignIn/Avatar
+
 ## 1.13.1
 
 - Secure Firebase Realtime Database rules with least-privilege access controls
