@@ -350,7 +350,7 @@
 <text x="711.0" y="28.0" class="packageLabelTitle" text-anchor="middle">cards v1.13.2</text>
 <text x="391.0" y="70.0" class="packageLabelSection">dependencies (23 items)</text>
 <line x1="391.0" y1="76.0" x2="591.0" y2="76.0" stroke="#1d4ed8" stroke-width="2.0" opacity="0.9"/>
-<text x="831.0" y="70.0" class="packageLabelSection">dev_dependencies (5 items)</text>
+<text x="831.0" y="70.0" class="packageLabelSection">dev_dependencies (4 items)</text>
 <line x1="831.0" y1="76.0" x2="1031.0" y2="76.0" stroke="#166534" stroke-width="2.0" opacity="0.9"/>
 <text x="711.0" y="2180.0" class="packageLabelDerivedSection" text-anchor="middle">Derived packages (Depth 1) (83 items)</text>
 <line x1="40.0" y1="2186.0" x2="1382.0" y2="2186.0" stroke="#64748b" stroke-width="1" opacity="0.35"/>
@@ -757,95 +757,83 @@
   <title>flutter_launcher_icons -> args v2.7.0</title>
 </g>
 <g>
-  <path d="M 1031.0 494.0 H 1046.0 Q 1052.0 494.0 1052.0 500.0 V 3050.0 Q 1052.0 3056.0 1046.0 3056.0 H 851.0" class="edgeVertical"/>
-  <title>mocktail -> collection v1.19.1</title>
-</g>
-<g>
-  <path d="M 1031.0 318.0 H 1049.0 Q 1055.0 318.0 1055.0 324.0 V 2922.0 Q 1055.0 2928.0 1049.0 2928.0 H 851.0" class="edgeVertical"/>
+  <path d="M 1031.0 318.0 H 1046.0 Q 1052.0 318.0 1052.0 324.0 V 2922.0 Q 1052.0 2928.0 1046.0 2928.0 H 851.0" class="edgeVertical"/>
   <title>flutter_test -> clock v1.1.2</title>
 </g>
 <g>
-  <path d="M 1031.0 142.0 H 1052.0 Q 1058.0 142.0 1058.0 148.0 V 2789.0 Q 1058.0 2795.0 1052.0 2795.0 H 851.0" class="edgeVertical"/>
+  <path d="M 1031.0 142.0 H 1049.0 Q 1055.0 142.0 1055.0 148.0 V 2789.0 Q 1055.0 2795.0 1049.0 2795.0 H 851.0" class="edgeVertical"/>
   <title>flutter_launcher_icons -> checked_yaml v2.0.4</title>
 </g>
 <g>
-  <path d="M 1031.0 142.0 H 1055.0 Q 1061.0 142.0 1061.0 148.0 V 2858.0 Q 1061.0 2864.0 1055.0 2864.0 H 851.0" class="edgeVertical"/>
+  <path d="M 1031.0 142.0 H 1052.0 Q 1058.0 142.0 1058.0 148.0 V 2858.0 Q 1058.0 2864.0 1052.0 2864.0 H 851.0" class="edgeVertical"/>
   <title>flutter_launcher_icons -> cli_util v0.4.2</title>
 </g>
 <g>
-  <path d="M 1031.0 318.0 H 1058.0 Q 1064.0 318.0 1064.0 324.0 V 3050.0 Q 1064.0 3056.0 1058.0 3056.0 H 851.0" class="edgeVertical"/>
+  <path d="M 1031.0 318.0 H 1055.0 Q 1061.0 318.0 1061.0 324.0 V 3050.0 Q 1061.0 3056.0 1055.0 3056.0 H 851.0" class="edgeVertical"/>
   <title>flutter_test -> collection v1.19.1</title>
 </g>
 <g>
-  <path d="M 1031.0 318.0 H 1061.0 Q 1067.0 318.0 1067.0 324.0 V 3242.0 Q 1067.0 3248.0 1061.0 3248.0 H 851.0" class="edgeVertical"/>
+  <path d="M 1031.0 318.0 H 1058.0 Q 1064.0 318.0 1064.0 324.0 V 3242.0 Q 1064.0 3248.0 1058.0 3248.0 H 851.0" class="edgeVertical"/>
   <title>flutter_test -> fake_async v1.3.3</title>
 </g>
 <g>
-  <path d="M 1031.0 406.0 H 1064.0 Q 1070.0 406.0 1070.0 412.0 V 3813.0 Q 1070.0 3819.0 1064.0 3819.0 H 851.0" class="edgeVertical"/>
+  <path d="M 1031.0 406.0 H 1061.0 Q 1067.0 406.0 1067.0 412.0 V 3813.0 Q 1067.0 3819.0 1061.0 3819.0 H 851.0" class="edgeVertical"/>
   <title>integration_test -> flutter_driver v0.0.0</title>
 </g>
 <g>
-  <path d="M 1031.0 318.0 H 1067.0 Q 1073.0 318.0 1073.0 324.0 V 4901.0 Q 1073.0 4907.0 1067.0 4907.0 H 851.0" class="edgeVertical"/>
+  <path d="M 1031.0 318.0 H 1064.0 Q 1070.0 318.0 1070.0 324.0 V 4901.0 Q 1070.0 4907.0 1064.0 4907.0 H 851.0" class="edgeVertical"/>
   <title>flutter_test -> leak_tracker_flutter_testing v3.0.10</title>
 </g>
 <g>
-  <path d="M 1031.0 494.0 H 1070.0 Q 1076.0 494.0 1076.0 500.0 V 5093.0 Q 1076.0 5099.0 1070.0 5099.0 H 851.0" class="edgeVertical"/>
-  <title>mocktail -> matcher v0.12.19</title>
-</g>
-<g>
-  <path d="M 1031.0 142.0 H 1073.0 Q 1079.0 142.0 1079.0 148.0 V 4842.0 Q 1079.0 4848.0 1073.0 4848.0 H 851.0" class="edgeVertical"/>
+  <path d="M 1031.0 142.0 H 1067.0 Q 1073.0 142.0 1073.0 148.0 V 4842.0 Q 1073.0 4848.0 1067.0 4848.0 H 851.0" class="edgeVertical"/>
   <title>flutter_launcher_icons -> json_annotation v4.12.0</title>
 </g>
 <g>
-  <path d="M 1031.0 230.0 H 1076.0 Q 1082.0 230.0 1082.0 236.0 V 4970.0 Q 1082.0 4976.0 1076.0 4976.0 H 851.0" class="edgeVertical"/>
+  <path d="M 1031.0 230.0 H 1070.0 Q 1076.0 230.0 1076.0 236.0 V 4970.0 Q 1076.0 4976.0 1070.0 4976.0 H 851.0" class="edgeVertical"/>
   <title>flutter_lints -> lints v6.1.0</title>
 </g>
 <g>
-  <path d="M 1031.0 318.0 H 1079.0 Q 1085.0 318.0 1085.0 324.0 V 5093.0 Q 1085.0 5099.0 1079.0 5099.0 H 851.0" class="edgeVertical"/>
+  <path d="M 1031.0 318.0 H 1073.0 Q 1079.0 318.0 1079.0 324.0 V 5093.0 Q 1079.0 5099.0 1073.0 5099.0 H 851.0" class="edgeVertical"/>
   <title>flutter_test -> matcher v0.12.19</title>
 </g>
 <g>
-  <path d="M 1031.0 318.0 H 1082.0 Q 1088.0 318.0 1088.0 324.0 V 5226.0 Q 1088.0 5232.0 1082.0 5232.0 H 851.0" class="edgeVertical"/>
+  <path d="M 1031.0 318.0 H 1076.0 Q 1082.0 318.0 1082.0 324.0 V 5226.0 Q 1082.0 5232.0 1076.0 5232.0 H 851.0" class="edgeVertical"/>
   <title>flutter_test -> meta v1.18.0</title>
 </g>
 <g>
-  <path d="M 1031.0 406.0 H 1085.0 Q 1091.0 406.0 1091.0 412.0 V 5418.0 Q 1091.0 5424.0 1085.0 5424.0 H 851.0" class="edgeVertical"/>
+  <path d="M 1031.0 406.0 H 1079.0 Q 1085.0 406.0 1085.0 412.0 V 5418.0 Q 1085.0 5424.0 1079.0 5424.0 H 851.0" class="edgeVertical"/>
   <title>integration_test -> path v1.9.1</title>
 </g>
 <g>
-  <path d="M 1031.0 318.0 H 1088.0 Q 1094.0 318.0 1094.0 324.0 V 5418.0 Q 1094.0 5424.0 1088.0 5424.0 H 851.0" class="edgeVertical"/>
+  <path d="M 1031.0 318.0 H 1082.0 Q 1088.0 318.0 1088.0 324.0 V 5418.0 Q 1088.0 5424.0 1082.0 5424.0 H 851.0" class="edgeVertical"/>
   <title>flutter_test -> path v1.9.1</title>
 </g>
 <g>
-  <path d="M 1031.0 142.0 H 1091.0 Q 1097.0 142.0 1097.0 148.0 V 5418.0 Q 1097.0 5424.0 1091.0 5424.0 H 851.0" class="edgeVertical"/>
+  <path d="M 1031.0 142.0 H 1085.0 Q 1091.0 142.0 1091.0 148.0 V 5418.0 Q 1091.0 5424.0 1085.0 5424.0 H 851.0" class="edgeVertical"/>
   <title>flutter_launcher_icons -> path v1.9.1</title>
 </g>
 <g>
-  <path d="M 1031.0 494.0 H 1094.0 Q 1100.0 494.0 1100.0 500.0 V 6629.0 Q 1100.0 6635.0 1094.0 6635.0 H 851.0" class="edgeVertical"/>
-  <title>mocktail -> test_api v0.7.11</title>
-</g>
-<g>
-  <path d="M 1031.0 318.0 H 1097.0 Q 1103.0 318.0 1103.0 324.0 V 6506.0 Q 1103.0 6512.0 1097.0 6512.0 H 851.0" class="edgeVertical"/>
+  <path d="M 1031.0 318.0 H 1088.0 Q 1094.0 318.0 1094.0 324.0 V 6506.0 Q 1094.0 6512.0 1088.0 6512.0 H 851.0" class="edgeVertical"/>
   <title>flutter_test -> stack_trace v1.12.1</title>
 </g>
 <g>
-  <path d="M 1031.0 318.0 H 1100.0 Q 1106.0 318.0 1106.0 324.0 V 6565.0 Q 1106.0 6571.0 1100.0 6571.0 H 851.0" class="edgeVertical"/>
+  <path d="M 1031.0 318.0 H 1091.0 Q 1097.0 318.0 1097.0 324.0 V 6565.0 Q 1097.0 6571.0 1091.0 6571.0 H 851.0" class="edgeVertical"/>
   <title>flutter_test -> stream_channel v2.1.4</title>
 </g>
 <g>
-  <path d="M 1031.0 318.0 H 1103.0 Q 1109.0 318.0 1109.0 324.0 V 6629.0 Q 1109.0 6635.0 1103.0 6635.0 H 851.0" class="edgeVertical"/>
+  <path d="M 1031.0 318.0 H 1094.0 Q 1100.0 318.0 1100.0 324.0 V 6629.0 Q 1100.0 6635.0 1094.0 6635.0 H 851.0" class="edgeVertical"/>
   <title>flutter_test -> test_api v0.7.11</title>
 </g>
 <g>
-  <path d="M 1031.0 406.0 H 1106.0 Q 1112.0 406.0 1112.0 412.0 V 7274.0 Q 1112.0 7280.0 1106.0 7280.0 H 851.0" class="edgeVertical"/>
+  <path d="M 1031.0 406.0 H 1097.0 Q 1103.0 406.0 1103.0 412.0 V 7274.0 Q 1103.0 7280.0 1097.0 7280.0 H 851.0" class="edgeVertical"/>
   <title>integration_test -> vm_service v15.2.0</title>
 </g>
 <g>
-  <path d="M 1031.0 318.0 H 1109.0 Q 1115.0 318.0 1115.0 324.0 V 7210.0 Q 1115.0 7216.0 1109.0 7216.0 H 851.0" class="edgeVertical"/>
+  <path d="M 1031.0 318.0 H 1100.0 Q 1106.0 318.0 1106.0 324.0 V 7210.0 Q 1106.0 7216.0 1100.0 7216.0 H 851.0" class="edgeVertical"/>
   <title>flutter_test -> vector_math v2.2.0</title>
 </g>
 <g>
-  <path d="M 1031.0 142.0 H 1112.0 Q 1118.0 142.0 1118.0 148.0 V 7461.0 Q 1118.0 7467.0 1112.0 7467.0 H 851.0" class="edgeVertical"/>
+  <path d="M 1031.0 142.0 H 1103.0 Q 1109.0 142.0 1109.0 148.0 V 7461.0 Q 1109.0 7467.0 1103.0 7467.0 H 851.0" class="edgeVertical"/>
   <title>flutter_launcher_icons -> yaml v3.1.3</title>
 </g>
 <g>
@@ -1520,17 +1508,6 @@
   <text x="1026.68" y="407.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">3</text><title>1. flutter_driver
 2. path
 3. vm_service</title></g><g class="packageNode">
-<rect x="831.0" y="460.0" width="200.0" height="68.0" rx="8.0" ry="8.0" fill="#dcfce7" stroke="#166534" stroke-width="1"/>
-<g class="packageMetadataPill"><title>Dart &gt;=2.12.0 &lt;4.0.0</title><rect x="884.0" y="515.0" width="94.0" height="9.0" rx="4.5" ry="4.5" class="packageMetadataPillShape"/><text x="931.0" y="520" class="packageLabelMetadata" text-anchor="middle" dominant-baseline="middle">Dart &gt;=2.12.0 &lt;4.0.0</text></g>
-<g class="platformBadge platformBadge--dart"><title>Dart SDK &gt;=2.12.0 &lt;4.0.0</title><rect x="917.0" y="499.0" width="28.0" height="13.0" rx="6.5" ry="6.5" fill="#0175c2" stroke="#0369a1" stroke-width="0.6"/><text x="931.0" y="505.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">Dart</text></g>
-<text x="931.0" y="480.0" class="packageLabelNodeName packageLabelCaption" text-anchor="middle">mocktail</text>
-<text x="931.0" y="493.0" class="packageLabelNodeVersion" text-anchor="middle">v1.0.5</text>
-</g>
-<g class="badge outgoingBadge">
-  <path d="M 1037.0,494.0 L 1025.0,487.0 Q 1022.0,487.0 1022.0,490.0 L 1022.0,498.0 Q 1022.0,501.0 1025.0,501.0 Z" fill="#10b981"/>
-  <text x="1026.68" y="495.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">3</text><title>1. collection
-2. matcher
-3. test_api</title></g><g class="packageNode">
 <rect x="571.0" y="2198.0" width="280.0" height="52.0" rx="8.0" ry="8.0" fill="#f8fafc" stroke="#64748b" stroke-width="1" stroke-dasharray="4,2"/>
 <g class="packageMetadataPill"><title>Dart ^3.9.0</title><rect x="682.45" y="2237.0" width="57.099999999999994" height="9.0" rx="4.5" ry="4.5" class="packageMetadataPillShape"/><text x="711.0" y="2242" class="packageLabelMetadata" text-anchor="middle" dominant-baseline="middle">Dart ^3.9.0</text></g>
 <g class="platformBadge platformBadge--dart"><title>Dart SDK ^3.9.0</title><rect x="697.0" y="2221.0" width="28.0" height="13.0" rx="6.5" ry="6.5" fill="#0175c2" stroke="#0369a1" stroke-width="0.6"/><text x="711.0" y="2227.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">Dart</text></g>
@@ -1692,8 +1669,7 @@
   <text x="566.68" y="3057.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. flutter
 2. mockito</title></g><g class="badge incomingBadge">
   <path d="M 845.0,3056.0 L 857.0,3049.0 Q 860.0,3049.0 860.0,3052.0 L 860.0,3060.0 Q 860.0,3063.0 857.0,3063.0 Z" fill="#3b82f6"/>
-  <text x="855.32" y="3057.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. flutter_test
-2. mocktail</title></g><g class="packageNode">
+  <text x="855.32" y="3057.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. flutter_test</title></g><g class="packageNode">
 <rect x="571.0" y="3094.0" width="280.0" height="52.0" rx="8.0" ry="8.0" fill="#f8fafc" stroke="#64748b" stroke-width="1" stroke-dasharray="4,2"/>
 <g class="packageMetadataPill"><title>Dart ^3.8.0</title><rect x="682.45" y="3133.0" width="57.099999999999994" height="9.0" rx="4.5" ry="4.5" class="packageMetadataPillShape"/><text x="711.0" y="3138" class="packageLabelMetadata" text-anchor="middle" dominant-baseline="middle">Dart ^3.8.0</text></g>
 <g class="platformBadge platformBadge--dart"><title>Dart SDK ^3.8.0</title><rect x="697.0" y="3117.0" width="28.0" height="13.0" rx="6.5" ry="6.5" fill="#0175c2" stroke="#0369a1" stroke-width="0.6"/><text x="711.0" y="3123.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">Dart</text></g>
@@ -2014,8 +1990,7 @@
   <path d="M 577.0,5104.0 L 565.0,5097.0 Q 562.0,5097.0 562.0,5100.0 L 562.0,5108.0 Q 562.0,5111.0 565.0,5111.0 Z" fill="#3b82f6"/>
   <text x="566.68" y="5105.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. mockito</title></g><g class="badge incomingBadge">
   <path d="M 845.0,5099.0 L 857.0,5092.0 Q 860.0,5092.0 860.0,5095.0 L 860.0,5103.0 Q 860.0,5106.0 857.0,5106.0 Z" fill="#3b82f6"/>
-  <text x="855.32" y="5100.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. flutter_test
-2. mocktail</title></g><g class="badge outgoingBadge">
+  <text x="855.32" y="5100.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. flutter_test</title></g><g class="badge outgoingBadge">
   <path d="M 857.0,5110.0 L 845.0,5103.0 Q 842.0,5103.0 842.0,5106.0 L 842.0,5114.0 Q 842.0,5117.0 845.0,5117.0 Z" fill="#10b981"/>
   <text x="846.68" y="5111.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. async
 2. term_glyph</title></g><g class="packageNode">
@@ -2271,8 +2246,7 @@
   <path d="M 577.0,6640.0 L 565.0,6633.0 Q 562.0,6633.0 562.0,6636.0 L 562.0,6644.0 Q 562.0,6647.0 565.0,6647.0 Z" fill="#3b82f6"/>
   <text x="566.68" y="6641.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. mockito</title></g><g class="badge incomingBadge">
   <path d="M 845.0,6635.0 L 857.0,6628.0 Q 860.0,6628.0 860.0,6631.0 L 860.0,6639.0 Q 860.0,6642.0 857.0,6642.0 Z" fill="#3b82f6"/>
-  <text x="855.32" y="6636.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. flutter_test
-2. mocktail</title></g><g class="badge outgoingBadge">
+  <text x="855.32" y="6636.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. flutter_test</title></g><g class="badge outgoingBadge">
   <path d="M 857.0,6646.0 L 845.0,6639.0 Q 842.0,6639.0 842.0,6642.0 L 842.0,6650.0 Q 842.0,6653.0 845.0,6653.0 Z" fill="#10b981"/>
   <text x="846.68" y="6647.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">5</text><title>1. async
 2. boolean_selector
