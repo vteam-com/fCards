@@ -36,9 +36,15 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
   void initState() {
     super.initState();
     _scoreModelFuture = GolfScoreModel.load().then((model) {
+      if (!mounted) {
+        return model;
+      }
+
       // Request focus after the model is loaded
       WidgetsBinding.instance.addPostFrameCallback((_) {
-        _keyboardFocusNode.requestFocus();
+        if (mounted) {
+          _keyboardFocusNode.requestFocus();
+        }
       });
       return model;
     });
@@ -93,11 +99,14 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
       ),
     );
 
-    if (confirmed == true) {
-      setState(() {
-        model.removeRoundAt(i);
-      });
+    if (!mounted || confirmed != true) {
+      return;
     }
+
+    setState(() {
+      model.removeRoundAt(i);
+      _selectedCell = null;
+    });
   }
 
   /// Shows a confirmation dialog before deleting a round.
@@ -125,11 +134,11 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
       ),
     );
 
-    if (confirmed == true) {
-      setState(() {
-        _clearScores(model);
-      });
+    if (!mounted || confirmed != true) {
+      return;
     }
+
+    _clearScores(model);
   }
 
   void _addPlayer(GolfScoreModel model) {
@@ -193,6 +202,7 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
                   if (allScoresAreZero) {
                     setState(() {
                       scoreModel.removeRoundAt(scoreModel.scores.length - 1);
+                      _selectedCell = null;
                     });
                   } else {
                     confirmDeleteRound(
@@ -234,11 +244,13 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
     AsyncSnapshot<GolfScoreModel> snapshot,
     AppLocalizations l10n,
   ) {
+    final bool isWaiting = snapshot.connectionState == ConnectionState.waiting;
+
     return Screen(
       title: l10n.golfScoreKeeper,
-      isWaiting: true,
+      isWaiting: isWaiting,
       child: Center(
-        child: snapshot.connectionState == ConnectionState.waiting
+        child: isWaiting
             ? CircularProgressIndicator()
             : Text(l10n.errorLoadingScores(snapshot.error.toString())),
       ),
@@ -274,6 +286,7 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
                 onPlayerRemoved: () {
                   setState(() {
                     scoreModel.removePlayerAt(i);
+                    _selectedCell = null;
                   });
                 },
                 onPlayerAdded: () {
@@ -331,7 +344,14 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
                 },
                 child: Builder(
                   builder: (BuildContext context) {
-                    _cellContext = context;
+                    final bool isSelectedCell =
+                        _selectedCell != null &&
+                        _selectedCell!['row'] == i &&
+                        _selectedCell!['col'] == j;
+                    if (isSelectedCell) {
+                      _cellContext = context;
+                    }
+
                     return Container(
                       width: columnWidth,
                       height: ConstLayout.height40,
@@ -339,10 +359,7 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
                       decoration: BoxDecoration(
                         color: AppTheme.panelInputZone,
                         border: Border.all(
-                          color:
-                              _selectedCell != null &&
-                                  _selectedCell!['row'] == i &&
-                                  _selectedCell!['col'] == j
+                          color: isSelectedCell
                               ? Colors.yellow
                               : Colors.transparent,
                           width: ConstLayout.strokeS,
@@ -441,6 +458,7 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
   void _clearScores(GolfScoreModel model) {
     setState(() {
       model.clearScores();
+      _selectedCell = null;
     });
   }
 
@@ -470,6 +488,9 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
 
       // Get the model from the future
       final model = await _scoreModelFuture;
+      if (!mounted) {
+        return;
+      }
 
       if (key == LogicalKeyboardKey.backspace) {
         _handleKeyPress('⇐', model);
