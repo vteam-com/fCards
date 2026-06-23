@@ -70,6 +70,16 @@ class _CreateTableNameScreenState extends State<CreateTableNameScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
+                  Text(
+                    localizations.wizardStepTwoOfTwo,
+                    style: TextStyle(
+                      fontSize: ConstLayout.textS,
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).colorScheme.tertiary,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: ConstLayout.sizeS),
                   Padding(
                     padding: const EdgeInsets.all(ConstLayout.paddingS),
                     child: Text(
@@ -77,6 +87,19 @@ class _CreateTableNameScreenState extends State<CreateTableNameScreen> {
                       style: TextStyle(
                         fontSize: ConstLayout.textS,
                         color: Theme.of(context).colorScheme.tertiary,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: ConstLayout.paddingL,
+                    ),
+                    child: Text(
+                      localizations.createTableNameHint,
+                      style: TextStyle(
+                        fontSize: ConstLayout.textS,
+                        color: Theme.of(context).colorScheme.onSurface,
                       ),
                       textAlign: TextAlign.center,
                     ),

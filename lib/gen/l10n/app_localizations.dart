@@ -302,6 +302,12 @@ abstract class AppLocalizations {
   /// **'Create New Table'**
   String get createNewTable;
 
+  /// No description provided for @createTableNameHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a simple table name. If it already exists, we\'ll help you join it instead.'**
+  String get createTableNameHint;
+
   /// No description provided for @deleteLastRow.
   ///
   /// In en, this message translates to:
@@ -524,12 +530,6 @@ abstract class AppLocalizations {
   /// **'No cards available to draw!'**
   String get noCardsAvailableToDraw;
 
-  /// No description provided for @noExistingTables.
-  ///
-  /// In en, this message translates to:
-  /// **'No existing tables found. Create a new one to continue.'**
-  String get noExistingTables;
-
   /// No description provided for @noMatchingTables.
   ///
   /// In en, this message translates to:
@@ -572,10 +572,16 @@ abstract class AppLocalizations {
   /// **'\nor\nhere\n←'**
   String get orHereLeft;
 
+  /// No description provided for @otherTools.
+  ///
+  /// In en, this message translates to:
+  /// **'Other Tools'**
+  String get otherTools;
+
   /// No description provided for @pickTableOrCreate.
   ///
   /// In en, this message translates to:
-  /// **'Pick a table or create a new one'**
+  /// **'Start a table or join one'**
   String get pickTableOrCreate;
 
   /// No description provided for @playAgain.
@@ -830,11 +836,11 @@ abstract class AppLocalizations {
   /// **'Start Game'**
   String get startGame;
 
-  /// No description provided for @startGameWizardTitle.
+  /// No description provided for @startGameWizardSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Start Game'**
-  String get startGameWizardTitle;
+  /// **'Choose the game for this table. We\'ll help you name it next.'**
+  String get startGameWizardSubtitle;
 
   /// No description provided for @starting.
   ///
@@ -842,11 +848,11 @@ abstract class AppLocalizations {
   /// **'Starting'**
   String get starting;
 
-  /// No description provided for @startNewGame.
+  /// No description provided for @startTable.
   ///
   /// In en, this message translates to:
-  /// **'Start a New Game'**
-  String get startNewGame;
+  /// **'Start a Table'**
+  String get startTable;
 
   /// No description provided for @statusBrb.
   ///
@@ -896,12 +902,6 @@ abstract class AppLocalizations {
   /// **'Table: {table}'**
   String tableLabel(String table);
 
-  /// No description provided for @tapExistingTable.
-  ///
-  /// In en, this message translates to:
-  /// **'Tap an existing table to continue'**
-  String get tapExistingTable;
-
   /// No description provided for @thisGame.
   ///
   /// In en, this message translates to:
@@ -944,6 +944,12 @@ abstract class AppLocalizations {
   /// **'Wait your turn!'**
   String get waitYourTurn;
 
+  /// No description provided for @welcomeOnboardingHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Start a table if you\'re hosting. Join a table if someone already shared one with you.'**
+  String get welcomeOnboardingHint;
+
   /// No description provided for @welcomePlayer.
   ///
   /// In en, this message translates to:
@@ -961,6 +967,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Who Are You?\nSelect above ⬆ or join below ⬇'**
   String get whoAreYou;
+
+  /// No description provided for @wizardStepOneOfTwo.
+  ///
+  /// In en, this message translates to:
+  /// **'Step 1 of 2'**
+  String get wizardStepOneOfTwo;
+
+  /// No description provided for @wizardStepTwoOfTwo.
+  ///
+  /// In en, this message translates to:
+  /// **'Step 2 of 2'**
+  String get wizardStepTwoOfTwo;
 
   /// No description provided for @youAreDone.
   ///
