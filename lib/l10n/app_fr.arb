@@ -146,7 +146,6 @@
     }
   },
   "notAllowed": "Action non autorisée !",
-  "notSignedIn": "Non connecté",
   "notYourTurn": "Ce n'est pas votre tour !",
   "orHereLeft": "\nou\nici\n←",
   "pickTableOrCreate": "Choisissez une table ou créez-en une",
@@ -167,7 +166,6 @@
       }
     }
   },
-  "playingAsGuest": "Jouer en invité",
   "pleaseEnterYourName": "Veuillez saisir votre nom ci-dessus ⬆",
   "readyToPlayPlayersAtTable": "Prêt à jouer ! {count} joueurs à la table.",
   "@readyToPlayPlayersAtTable": {
@@ -222,9 +220,7 @@
   "selectAStatus": "Sélectionnez un statut",
   "selectTableToJoin": "Sélectionnez une table",
   "signedIn": "Connecté",
-  "signingIn": "Connexion...",
-  "signingOut": "Déconnexion...",
-  "signInWithGoogle": "Se connecter avec Google",
+  "signIn": "Se connecter",
   "signOut": "Se déconnecter",
   "signOutFailed": "Échec de la déconnexion.",
   "skyjo": "Skyjo",

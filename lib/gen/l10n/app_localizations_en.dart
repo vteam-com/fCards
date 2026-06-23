@@ -266,9 +266,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get notAllowed => 'Not allowed!';
 
   @override
-  String get notSignedIn => 'Not signed in';
-
-  @override
   String get notYourTurn => 'It\'s not your turn!';
 
   @override
@@ -290,9 +287,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String playerWonTimesAtTable(String player, int count, String table) {
     return '$player won $count times at table $table';
   }
-
-  @override
-  String get playingAsGuest => 'Playing as Guest';
 
   @override
   String get pleaseEnterYourName => 'Please enter your name above ⬆';
@@ -403,13 +397,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get signedIn => 'Signed in';
 
   @override
-  String get signingIn => 'Signing in...';
-
-  @override
-  String get signingOut => 'Signing out...';
-
-  @override
-  String get signInWithGoogle => 'Sign in with Google';
+  String get signIn => 'Sign in';
 
   @override
   String get signOut => 'Sign out';

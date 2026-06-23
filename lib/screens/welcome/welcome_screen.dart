@@ -1,5 +1,4 @@
 import 'package:cards/gen/l10n/app_localizations.dart';
-import 'package:cards/models/app/app_theme.dart';
 import 'package:cards/models/app/auth_service.dart';
 import 'package:cards/models/app/constants_layout.dart';
 import 'package:cards/models/app/reviewer_access.dart';
@@ -21,7 +20,6 @@ class WelcomeScreen extends StatefulWidget {
 }
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
-  bool _isAuthWorking = false;
   @override
   void initState() {
     super.initState();
@@ -48,8 +46,6 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const Spacer(),
-                _authSection(),
                 const Spacer(),
                 MenuButton(
                   label: localizations.startNewGame,
@@ -84,140 +80,21 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     );
   }
 
-  /// Builds account status and sign-in/sign-out actions for the welcome screen.
-  Widget _authSection() {
-    if (isRunningOffLine) {
-      return const SizedBox.shrink();
-    }
-
-    final AppLocalizations localizations = AppLocalizations.of(context);
-    final colorScheme = Theme.of(context).colorScheme;
-    return StreamBuilder<User?>(
-      stream: AuthService.authStateChanges(),
-      builder: (BuildContext _, snapshot) {
-        final user = snapshot.data;
-        final bool isAnonymous = user?.isAnonymous ?? false;
-        final bool isSignedIn = user != null && !isAnonymous;
-        final String status = isSignedIn
-            ? (user.email ?? user.displayName ?? localizations.signedIn)
-            : (isAnonymous
-                  ? localizations.playingAsGuest
-                  : localizations.notSignedIn);
-
-        return Container(
-          width: double.infinity,
-          padding: const EdgeInsets.all(ConstLayout.paddingM),
-          decoration: BoxDecoration(
-            color: AppTheme.panelInputZone,
-            borderRadius: BorderRadius.circular(ConstLayout.radiusM),
-            border: Border.all(
-              color: colorScheme.onPrimary,
-              width: ConstLayout.strokeS,
-            ),
-          ),
-          child: Column(
-            children: [
-              Text(
-                localizations.account,
-                style: TextStyle(
-                  fontSize: ConstLayout.textS,
-                  fontWeight: FontWeight.bold,
-                  color: colorScheme.secondary,
-                ),
-              ),
-              SizedBox(height: ConstLayout.sizeS),
-              Text(
-                status,
-                textAlign: TextAlign.center,
-                style: TextStyle(color: colorScheme.onSurface),
-              ),
-              SizedBox(height: ConstLayout.sizeM),
-              if (!isSignedIn)
-                MyButtonRectangle(
-                  width: double.infinity,
-                  height: ConstLayout.sizeXL,
-                  onTap: _isAuthWorking ? null : _handleGoogleSignIn,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      if (_isAuthWorking)
-                        SizedBox(
-                          width: ConstLayout.iconS,
-                          height: ConstLayout.iconS,
-                          child: CircularProgressIndicator(
-                            strokeWidth: ConstLayout.strokeS,
-                            color: colorScheme.secondary,
-                          ),
-                        )
-                      else
-                        const Icon(Icons.mail_outline),
-                      SizedBox(width: ConstLayout.sizeS),
-                      Text(
-                        _isAuthWorking
-                            ? localizations.signingIn
-                            : localizations.signInWithGoogle,
-                        style: TextStyle(
-                          color: colorScheme.onPrimaryContainer,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-                )
-              else
-                MyButtonRectangle(
-                  width: double.infinity,
-                  height: ConstLayout.sizeXXL,
-                  onTap: _isAuthWorking ? null : _handleSignOut,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Icon(Icons.logout),
-                      SizedBox(width: ConstLayout.sizeS),
-                      Text(
-                        _isAuthWorking
-                            ? localizations.signingOut
-                            : localizations.signOut,
-                        style: TextStyle(
-                          color: colorScheme.onPrimaryContainer,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-            ],
-          ),
-        );
-      },
-    );
-  }
-
-  /// Shows the Corrections menu action only for web reviewers.
+  /// Shows the Corrections menu action on web and requests sign-in only on use.
   Widget _buildCorrectionsMenuButton(AppLocalizations localizations) {
     if (isRunningOffLine || !kIsWeb) {
       return const SizedBox.shrink();
     }
 
-    return StreamBuilder<bool>(
-      stream: reviewerAccessStream(),
-      builder: (BuildContext _, AsyncSnapshot<bool> reviewerSnapshot) {
-        final bool isReviewer = reviewerSnapshot.data ?? false;
-        if (!isReviewer) {
-          return const SizedBox.shrink();
-        }
-
-        return Column(
-          children: [
-            SizedBox(height: ConstLayout.sizeM),
-            MenuButton(
-              label: localizations.corrections,
-              icon: Icons.fact_check,
-              onPressed: () => Navigator.pushNamed(context, '/corrections'),
-            ),
-          ],
-        );
-      },
+    return Column(
+      children: [
+        SizedBox(height: ConstLayout.sizeM),
+        MenuButton(
+          label: localizations.corrections,
+          icon: Icons.fact_check,
+          onPressed: _openCorrections,
+        ),
+      ],
     );
   }
 
@@ -239,46 +116,38 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     }
   }
 
-  Future<void> _handleGoogleSignIn() async {
-    await _performAuthAction(
-      AuthService.signInWithGoogle,
-      AppLocalizations.of(context).googleSignInFailed,
-    );
-  }
-
-  Future<void> _handleSignOut() async {
-    await _performAuthAction(() async {
-      await AuthService.signOut();
-      await AuthService.ensureSignedIn();
-    }, AppLocalizations.of(context).signOutFailed);
-  }
-
-  /// Runs an auth action with busy-state handling and user-facing errors.
-  Future<void> _performAuthAction(
-    Future<void> Function() action,
-    String defaultErrorMessage,
-  ) async {
-    setState(() {
-      _isAuthWorking = true;
-    });
-
+  /// Requests Google auth only when someone opens the reviewer workflow.
+  Future<void> _openCorrections() async {
+    final AppLocalizations localizations = AppLocalizations.of(context);
     try {
-      await action();
-    } on FirebaseAuthException catch (error) {
-      _showAuthError(error.message ?? defaultErrorMessage);
-    } catch (_) {
-      _showAuthError(defaultErrorMessage);
-    } finally {
-      if (mounted) {
-        setState(() {
-          _isAuthWorking = false;
-        });
+      if (!AuthService.isSignedInWithAccount) {
+        await AuthService.signInWithGoogle();
       }
+    } on FirebaseAuthException catch (error) {
+      if (error.code != 'sign_in_canceled') {
+        _showMessage(error.message ?? localizations.googleSignInFailed);
+      }
+      return;
+    } catch (_) {
+      _showMessage(localizations.googleSignInFailed);
+      return;
     }
+
+    final bool isReviewer = await isCurrentUserReviewer();
+    if (!mounted) {
+      return;
+    }
+
+    if (!isReviewer) {
+      _showMessage(localizations.correctionsReviewerOnly);
+      return;
+    }
+
+    await Navigator.pushNamed(context, '/corrections');
   }
 
-  /// Logs an auth error and shows it as a snackbar message.
-  void _showAuthError(String message) {
+  /// Logs an auth message and shows it as a snackbar.
+  void _showMessage(String message) {
     logger.e('Auth error: $message');
     if (!mounted) {
       return;
