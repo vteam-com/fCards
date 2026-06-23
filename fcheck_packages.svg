@@ -347,7 +347,7 @@
     font-weight: 900;
   }
 </style>
-<text x="711.0" y="28.0" class="packageLabelTitle" text-anchor="middle">cards v1.13.1</text>
+<text x="711.0" y="28.0" class="packageLabelTitle" text-anchor="middle">cards v1.13.2</text>
 <text x="391.0" y="70.0" class="packageLabelSection">dependencies (23 items)</text>
 <line x1="391.0" y1="76.0" x2="591.0" y2="76.0" stroke="#1d4ed8" stroke-width="2.0" opacity="0.9"/>
 <text x="831.0" y="70.0" class="packageLabelSection">dev_dependencies (5 items)</text>
@@ -1170,7 +1170,7 @@
 <g class="platformBadge platformBadge--windows"><title>Windows</title><rect x="501.5" y="323.0" width="13.0" height="13.0" rx="6.5" ry="6.5" fill="#2563eb" stroke="#1d4ed8" stroke-width="0.6"/><text x="508.0" y="330.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">W</text></g>
 <g class="platformBadge platformBadge--web"><title>Browser</title><rect x="518.5" y="323.0" width="13.0" height="13.0" rx="6.5" ry="6.5" fill="#0891b2" stroke="#0e7490" stroke-width="0.6"/><text x="525.0" y="330.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">B</text></g>
 <text x="491.0" y="304.0" class="packageLabelNodeName packageLabelCaption" text-anchor="middle">firebase_auth</text>
-<text x="491.0" y="317.0" class="packageLabelNodeVersion" text-anchor="middle">v6.5.3</text>
+<text x="491.0" y="317.0" class="packageLabelNodeVersion" text-anchor="middle">v6.5.4</text>
 </g>
 <g class="badge outgoingBadge">
   <path d="M 385.0,318.0 L 397.0,311.0 Q 400.0,311.0 400.0,314.0 L 400.0,322.0 Q 400.0,325.0 397.0,325.0 Z" fill="#10b981"/>
@@ -1201,7 +1201,7 @@
 <g class="platformBadge platformBadge--windows"><title>Windows</title><rect x="501.5" y="499.0" width="13.0" height="13.0" rx="6.5" ry="6.5" fill="#2563eb" stroke="#1d4ed8" stroke-width="0.6"/><text x="508.0" y="506.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">W</text></g>
 <g class="platformBadge platformBadge--web"><title>Browser</title><rect x="518.5" y="499.0" width="13.0" height="13.0" rx="6.5" ry="6.5" fill="#0891b2" stroke="#0e7490" stroke-width="0.6"/><text x="525.0" y="506.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">B</text></g>
 <text x="491.0" y="480.0" class="packageLabelNodeName packageLabelCaption" text-anchor="middle">firebase_database</text>
-<text x="491.0" y="493.0" class="packageLabelNodeVersion" text-anchor="middle">v12.4.3</text>
+<text x="491.0" y="493.0" class="packageLabelNodeVersion" text-anchor="middle">v12.4.4</text>
 </g>
 <g class="badge outgoingBadge">
   <path d="M 385.0,494.0 L 397.0,487.0 Q 400.0,487.0 400.0,490.0 L 400.0,498.0 Q 400.0,501.0 397.0,501.0 Z" fill="#10b981"/>
