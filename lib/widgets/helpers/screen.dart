@@ -63,6 +63,24 @@ class Screen extends StatefulWidget {
   /// Title text shown in the app bar
   final String title;
 
+  /// Resolves avatar text for users without a profile photo.
+  static String avatarFallbackText({
+    required String? displayName,
+    required String? email,
+  }) {
+    final String? trimmedDisplayName = displayName?.trim();
+    if (trimmedDisplayName != null && trimmedDisplayName.isNotEmpty) {
+      return trimmedDisplayName;
+    }
+
+    final String? trimmedEmail = email?.trim();
+    if (trimmedEmail != null && trimmedEmail.isNotEmpty) {
+      return trimmedEmail;
+    }
+
+    return '🤔';
+  }
+
   @override
   State<Screen> createState() => _ScreenState();
 }
@@ -257,9 +275,10 @@ class _ScreenState extends State<Screen> with SingleTickerProviderStateMixin {
       );
     }
 
-    final fallbackText = user.displayName?.trim().isEmpty == true
-        ? (user.email ?? '🤔')
-        : user.displayName!;
+    final String fallbackText = Screen.avatarFallbackText(
+      displayName: user.displayName,
+      email: user.email,
+    );
 
     return GestureDetector(
       onTap: () => _showLanguagePicker(),
