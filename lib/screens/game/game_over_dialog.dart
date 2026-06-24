@@ -71,11 +71,11 @@ void showGameOverDialog(
               children: [
                 Text(
                   gameModel.getWinsForPlayerName(player.name).length.toString(),
-                  style: const TextStyle(fontSize: ConstLayout.textXS),
+                  style: const TextStyle(fontSize: ConstLayout.textS),
                 ),
                 MyText(
                   player.sumOfRevealedCards.toString(),
-                  fontSize: ConstLayout.textM.toInt(),
+                  fontSize: ConstLayout.textM,
                   bold: true,
                 ),
               ],

@@ -1,3 +1,4 @@
+import 'package:cards/models/app/constants_layout.dart';
 import 'package:flutter/material.dart';
 
 /// A widget for displaying text with custom font size, color, alignment, and weight.
@@ -7,7 +8,8 @@ import 'package:flutter/material.dart';
 ///
 /// The [text] parameter specifies the text to be displayed.
 ///
-/// The [fontSize] parameter specifies the font size of the text. It can be an integer or a double.
+/// The [fontSize] parameter specifies the font size of the text.
+/// Use only [ConstLayout.textS], [ConstLayout.textM], or [ConstLayout.textL].
 ///
 /// The [color] parameter specifies the color of the text.
 ///
@@ -19,7 +21,7 @@ import 'package:flutter/material.dart';
 /// ```dart
 /// MyText(
 ///   "Hello, world!",
-///   fontSize: 20,
+///   fontSize: ConstLayout.textM,
 ///   color: Colors.blue,
 ///   align: TextAlign.center,
 ///   bold: true
@@ -34,7 +36,11 @@ class MyText extends StatelessWidget {
     this.color,
     this.align,
     this.bold = false,
-  });
+  }) : assert(
+         fontSize == ConstLayout.textS ||
+             fontSize == ConstLayout.textM ||
+             fontSize == ConstLayout.textL,
+       );
 
   /// The alignment of the text.
   final TextAlign? align;
@@ -46,22 +52,40 @@ class MyText extends StatelessWidget {
   final Color? color;
 
   /// The font size of the text.
-  final num fontSize;
+  final double fontSize;
 
   /// The text to be displayed.
   final String text;
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      text,
-      textAlign: align,
-      style: TextStyle(
-        fontSize: fontSize.toDouble(),
+    return Text(text, textAlign: align, style: _buildTextStyle());
+  }
+
+  /// Returns a text style that resolves to one of the three app font sizes.
+  TextStyle _buildTextStyle() {
+    if (fontSize == ConstLayout.textL) {
+      return TextStyle(
+        fontSize: ConstLayout.textL,
         color: color,
         fontWeight: bold ? FontWeight.bold : null,
         decoration: TextDecoration.none,
-      ),
+      );
+    }
+    if (fontSize == ConstLayout.textM) {
+      return TextStyle(
+        fontSize: ConstLayout.textM,
+        color: color,
+        fontWeight: bold ? FontWeight.bold : null,
+        decoration: TextDecoration.none,
+      );
+    }
+
+    return TextStyle(
+      fontSize: ConstLayout.textS,
+      color: color,
+      fontWeight: bold ? FontWeight.bold : null,
+      decoration: TextDecoration.none,
     );
   }
 }

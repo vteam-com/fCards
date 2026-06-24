@@ -163,7 +163,7 @@ class _StartGameWizardScreenState extends State<StartGameWizardScreen> {
                   Text(
                     localizations.columnsByRows(columns, rows),
                     style: TextStyle(
-                      fontSize: ConstLayout.textXS,
+                      fontSize: ConstLayout.textS,
                       color: colorScheme.onSurface,
                     ),
                   ),

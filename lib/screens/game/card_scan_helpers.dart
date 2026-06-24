@@ -560,12 +560,16 @@ String formatRankLabel(int value, AppLocalizations l10n) {
 
 /// Returns the shared style used for score numbers in overlays and footer.
 TextStyle scoreNumberStyle(BuildContext context, {required double fontSize}) {
+  assert(
+    fontSize == ConstLayout.textS ||
+        fontSize == ConstLayout.textM ||
+        fontSize == ConstLayout.textL,
+  );
   final colorScheme = Theme.of(context).colorScheme;
   final scoreFontFamily = Theme.of(context).textTheme.bodyMedium?.fontFamily;
-  return TextStyle(
+  final baseStyle = TextStyle(
     fontFamily: scoreFontFamily,
     fontWeight: FontWeight.bold,
-    fontSize: fontSize,
     color: Color.alphaBlend(colorScheme.onSurface, Colors.green.shade300),
     shadows: const <Shadow>[
       Shadow(
@@ -580,6 +584,15 @@ TextStyle scoreNumberStyle(BuildContext context, {required double fontSize}) {
       ),
     ],
   );
+
+  if (fontSize == ConstLayout.textL) {
+    return baseStyle.copyWith(fontSize: ConstLayout.textL);
+  }
+  if (fontSize == ConstLayout.textM) {
+    return baseStyle.copyWith(fontSize: ConstLayout.textM);
+  }
+
+  return baseStyle.copyWith(fontSize: ConstLayout.textS);
 }
 
 /// Shows card value correction dialog and returns the tapped value.

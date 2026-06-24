@@ -36,6 +36,9 @@ flutter pub outdated
 echo --- Analyze
 flutter analyze lib test --no-pub 2>&1 | sed 's/^/    /'
 
+echo --- Font size policy
+sh ./tool/check_font_sizes.sh
+
 echo --- Test
 echo "    Running tests..."
 flutter test --reporter=compact --no-pub

@@ -4,11 +4,9 @@ class ConstLayout {
 
   // Base Fibonacci numbers: 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765, 10946
   // Text sizes (S/M/L approach)
-  static const double textXS = 8.0; // Extra Small
-  static const double textS = 13.0; // Small
-  static const double textM = 21.0; // Medium
-  static const double textL = 34.0; // Large
-  static const double textXL = 55.0; // Extra Large
+  static const double textS = 2.0 * 8.0; // Small
+  static const double textM = 3.0 * 8.0; // Medium
+  static const double textL = 5.0 * 8.0; // Large
 
   // Size (XS/S/M/L/XL approach)
   static const double sizeXS = 2.0; // Extra Small

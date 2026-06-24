@@ -59,14 +59,14 @@ class _StatusPickerState extends State<StatusPicker> {
             children: [
               MyText(
                 status.emoji,
-                fontSize: ConstLayout.sizeM,
+                fontSize: ConstLayout.textS,
                 color: Colors.yellow,
                 bold: true,
               ),
 
               MyText(
                 label,
-                fontSize: ConstLayout.sizeM,
+                fontSize: ConstLayout.textS,
                 color: Colors.yellow,
                 bold: true,
               ),

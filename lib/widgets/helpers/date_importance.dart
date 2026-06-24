@@ -14,30 +14,38 @@ class DateTimeWidget extends StatelessWidget {
 
   ///
   final DateTime dateTime;
-
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        _buildText(dateTime.year, ConstLayout.textS),
+        _buildSmallText(dateTime.year),
         const Text(' . '),
-        _buildText(dateTime.month, ConstLayout.textS),
+        _buildSmallText(dateTime.month),
         const Text(' . '),
-        _buildText(dateTime.day, ConstLayout.textM),
+        _buildMediumText(dateTime.day),
         SizedBox(width: ConstLayout.sizeM),
-        _buildText(dateTime.hour, ConstLayout.textM),
+        _buildMediumText(dateTime.hour),
         const Text(':'),
-        _buildText(dateTime.minute, ConstLayout.textM),
+        _buildMediumText(dateTime.minute),
       ],
     );
   }
 
-  /// Builds a zero-padded numeric segment for the date/time display.
-  Widget _buildText(final num value, double fontSize) {
+  /// Builds a zero-padded medium numeric segment for the date/time display.
+  Widget _buildMediumText(final num value) {
     return MyText(
       value.toString().padLeft(ConstLayout.dateCharacterLeftSpacePadding, '0'),
-      fontSize: fontSize,
+      fontSize: ConstLayout.textM,
+      bold: true,
+    );
+  }
+
+  /// Builds a zero-padded small numeric segment for the date display.
+  Widget _buildSmallText(final num value) {
+    return MyText(
+      value.toString().padLeft(ConstLayout.dateCharacterLeftSpacePadding, '0'),
+      fontSize: ConstLayout.textS,
       bold: true,
     );
   }

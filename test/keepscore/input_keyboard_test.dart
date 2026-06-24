@@ -2,6 +2,15 @@ import 'package:cards/widgets/helpers/input_keyboard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+Finder findBackspaceKey() => find.byWidgetPredicate(
+  (widget) =>
+      (widget is Icon &&
+          (widget.icon == Icons.backspace ||
+              widget.icon == Icons.backspace_outlined)) ||
+      (widget is Text && widget.data == keyBackspace),
+  description: 'backspace key',
+);
+
 void main() {
   group('InputKeyboard', () {
     late List<String> capturedKeys;
@@ -40,7 +49,7 @@ void main() {
       );
 
       expect(find.text(keyChangeSign), findsOneWidget);
-      expect(find.text(keyBackspace), findsOneWidget);
+      expect(findBackspaceKey(), findsOneWidget);
     });
 
     testWidgets('should call onPressed when number key is tapped', (
@@ -82,7 +91,7 @@ void main() {
         ),
       );
 
-      await tester.tap(find.text(keyBackspace));
+      await tester.tap(findBackspaceKey());
       await tester.pump();
 
       expect(capturedKeys, [keyBackspace]);
@@ -101,7 +110,7 @@ void main() {
       await tester.pump();
       await tester.tap(find.text('2'));
       await tester.pump();
-      await tester.tap(find.text(keyBackspace));
+      await tester.tap(findBackspaceKey());
       await tester.pump();
 
       expect(capturedKeys, ['1', '2', keyBackspace]);
@@ -205,7 +214,7 @@ void main() {
         expect(currentInput, '-123');
 
         // Remove last digit
-        await tester.tap(find.text(keyBackspace));
+        await tester.tap(findBackspaceKey());
         await tester.pump();
 
         expect(currentInput, '-12');
@@ -245,7 +254,7 @@ void main() {
         );
 
         expect(find.text('SPACE'), findsOneWidget);
-        expect(find.text(keyBackspace), findsOneWidget);
+        expect(findBackspaceKey(), findsOneWidget);
       });
 
       testWidgets('should not display numeric-only keys', (
@@ -316,7 +325,7 @@ void main() {
           ),
         );
 
-        await tester.tap(find.text(keyBackspace));
+        await tester.tap(findBackspaceKey());
         await tester.pump();
 
         expect(capturedKeys, [keyBackspace]);
@@ -356,7 +365,7 @@ void main() {
 
         expect(name, 'JP');
 
-        await tester.tap(find.text(keyBackspace));
+        await tester.tap(findBackspaceKey());
         await tester.pump();
 
         expect(name, 'J');

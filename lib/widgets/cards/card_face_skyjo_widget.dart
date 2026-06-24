@@ -88,7 +88,7 @@ class CardFaceSkyjoWidget extends CardFaceFrenchWidget {
           style:
               TextStyle(
                 fontFamily: _skyjoCardFontFamily,
-                fontSize: ConstLayout.textXL,
+                fontSize: ConstLayout.textL,
                 color: Colors.white,
                 decoration: TextDecoration.none,
               ).copyWith(
@@ -102,7 +102,7 @@ class CardFaceSkyjoWidget extends CardFaceFrenchWidget {
           card.value.toString(),
           style: TextStyle(
             fontFamily: _skyjoCardFontFamily,
-            fontSize: ConstLayout.textXL,
+            fontSize: ConstLayout.textL,
             color: Colors.black,
             decoration: TextDecoration.none,
           ),
