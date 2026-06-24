@@ -216,7 +216,7 @@ class _CorrectionsReviewScreenState extends State<CorrectionsReviewScreen> {
               style: TextStyle(
                 color: Theme.of(context).colorScheme.onPrimaryContainer,
                 fontWeight: FontWeight.bold,
-                fontSize: ConstLayout.textXS,
+                fontSize: ConstLayout.textS,
               ),
             ),
           ),
@@ -300,7 +300,7 @@ class _CorrectionsReviewScreenState extends State<CorrectionsReviewScreen> {
                     SizedBox(height: ConstLayout.sizeS),
                     Text(
                       '${l10n.correctionsSubmittedAt}: ${_formatDateTime(record.submittedAt)}',
-                      style: const TextStyle(fontSize: ConstLayout.textXS),
+                      style: const TextStyle(fontSize: ConstLayout.textS),
                     ),
                     SizedBox(height: ConstLayout.sizeS),
                     Text(
@@ -323,12 +323,12 @@ class _CorrectionsReviewScreenState extends State<CorrectionsReviewScreen> {
                     if (record.reviewerEmail.isNotEmpty)
                       Text(
                         '${l10n.account}: ${record.reviewerEmail}',
-                        style: const TextStyle(fontSize: ConstLayout.textXS),
+                        style: const TextStyle(fontSize: ConstLayout.textS),
                       ),
                     if (record.reviewedAt != null)
                       Text(
                         '${l10n.done}: ${_formatDateTime(record.reviewedAt)}',
-                        style: const TextStyle(fontSize: ConstLayout.textXS),
+                        style: const TextStyle(fontSize: ConstLayout.textS),
                       ),
                   ],
                 ),

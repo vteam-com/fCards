@@ -103,11 +103,39 @@ class CardFaceFrenchWidget extends StatelessWidget {
 
   ///
   Widget buildSuitSymbol({final double size = ConstLayout.textS}) {
+    assert(
+      size == ConstLayout.textS ||
+          size == ConstLayout.textM ||
+          size == ConstLayout.textL,
+    );
+
+    final suitColor = getSuitColor(card.suit);
+    if (size == ConstLayout.textL) {
+      return Text(
+        card.suit,
+        style: TextStyle(
+          fontSize: ConstLayout.textL,
+          color: suitColor,
+          decoration: TextDecoration.none,
+        ),
+      );
+    }
+    if (size == ConstLayout.textM) {
+      return Text(
+        card.suit,
+        style: TextStyle(
+          fontSize: ConstLayout.textM,
+          color: suitColor,
+          decoration: TextDecoration.none,
+        ),
+      );
+    }
+
     return Text(
       card.suit,
       style: TextStyle(
-        fontSize: size,
-        color: getSuitColor(card.suit),
+        fontSize: ConstLayout.textS,
+        color: suitColor,
         decoration: TextDecoration.none,
       ),
     );
@@ -290,7 +318,7 @@ class CardFaceFrenchWidget extends StatelessWidget {
           text,
           textAlign: TextAlign.center,
           style: TextStyle(
-            fontSize: ConstLayout.textXL,
+            fontSize: ConstLayout.textL,
             color: getSuitColor(card.suit),
             decoration: TextDecoration.none,
           ),

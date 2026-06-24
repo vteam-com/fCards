@@ -40,7 +40,7 @@ class AppTheme {
     final sizedTextTheme = baseTextTheme
         .copyWith(
           displayLarge: baseTextTheme.displayLarge?.copyWith(
-            fontSize: ConstLayout.textXL,
+            fontSize: ConstLayout.textL,
             color: onSurface,
           ),
           displayMedium: baseTextTheme.displayMedium?.copyWith(
@@ -84,7 +84,7 @@ class AppTheme {
             color: onSurface,
           ),
           bodySmall: baseTextTheme.bodySmall?.copyWith(
-            fontSize: ConstLayout.textXS,
+            fontSize: ConstLayout.textS,
             color: onSurface,
           ),
           labelLarge: baseTextTheme.labelLarge?.copyWith(
@@ -92,11 +92,11 @@ class AppTheme {
             color: onSurface,
           ),
           labelMedium: baseTextTheme.labelMedium?.copyWith(
-            fontSize: ConstLayout.textXS,
+            fontSize: ConstLayout.textS,
             color: onSurface,
           ),
           labelSmall: baseTextTheme.labelSmall?.copyWith(
-            fontSize: ConstLayout.textXS,
+            fontSize: ConstLayout.textS,
             color: onSurface,
           ),
         )
@@ -121,8 +121,8 @@ class AppTheme {
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
         fillColor: onSurface.withAlpha(ConstLayout.alphaH),
-        hintStyle: TextStyle(color: onSurfaceHint),
-        labelStyle: TextStyle(color: onSurface),
+        hintStyle: TextStyle(color: onSurfaceHint, fontSize: ConstLayout.textS),
+        labelStyle: TextStyle(color: onSurface, fontSize: ConstLayout.textS),
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(
             color: colorScheme.primary.withAlpha(ConstLayout.alphaM),
@@ -173,6 +173,7 @@ class AppTheme {
         backgroundColor: surfaceBackground,
         titleTextStyle: TextStyle(
           color: onSurface,
+          fontSize: ConstLayout.textM,
           fontWeight: FontWeight.bold,
         ),
         iconTheme: IconThemeData(color: onSurface),

@@ -64,7 +64,7 @@ void myDialog({
       return AlertDialog(
         title: Text(
           title,
-          style: TextStyle(fontSize: ConstLayout.textXL),
+          style: TextStyle(fontSize: ConstLayout.textL),
           textAlign: TextAlign.center,
         ),
         content: content,

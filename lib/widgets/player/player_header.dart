@@ -14,9 +14,6 @@ class PlayerHeaderConstants {
   /// Height of the score display
   static const double scoreHeight = 30.0;
 
-  /// Font size for rank text
-  static const double rankFontSize = 14.0;
-
   /// Opacity for non-first place players
   static const double nonFirstPlaceOpacity = 0.7;
 
@@ -488,7 +485,7 @@ class _PlayerHeaderState extends State<PlayerHeader> {
           localizations.last,
           style: TextStyle(
             fontWeight: FontWeight.w900,
-            fontSize: PlayerHeaderConstants.rankFontSize,
+            fontSize: ConstLayout.textS,
           ),
         ),
       );
@@ -499,7 +496,7 @@ class _PlayerHeaderState extends State<PlayerHeader> {
           '#$rank',
           style: TextStyle(
             fontWeight: FontWeight.w900,
-            fontSize: PlayerHeaderConstants.rankFontSize,
+            fontSize: ConstLayout.textS,
           ),
         ),
       );

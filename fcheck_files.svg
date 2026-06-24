@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="6072" height="960" viewBox="0 0 6072 960" xmlns="http://www.w3.org/2000/svg" font-family="Arial, Helvetica, sans-serif">
+<svg width="6392" height="960" viewBox="0 0 6392 960" xmlns="http://www.w3.org/2000/svg" font-family="Arial, Helvetica, sans-serif">
 <defs>
   <filter id="whiteShadow" x="-20%" y="-20%" width="140%" height="140%">
     <feGaussianBlur in="SourceAlpha" stdDeviation="3"/>
@@ -259,6 +259,8 @@
 <text x="5550.75" y="75.0" class="layerTitle">14</text>
 <rect x="5767.5" y="50" width="279.5" height="860.0" rx="8.0" class="layerBackground"/>
 <text x="5907.25" y="75.0" class="layerTitle">15</text>
+<rect x="6097.0" y="50" width="270.0" height="860.0" rx="8.0" class="layerBackground"/>
+<text x="6232.0" y="75.0" class="layerTitle">16</text>
 <rect x="50.0" y="90.0" width="220" height="50" class="fileNode"><title>File: /Users/jp/src/github/vteam/fCards/lib/main.dart</title></rect>
 <rect x="50.0" y="160.0" width="220" height="50" class="fileNode"><title>File: /Users/jp/src/github/vteam/fCards/lib/screens/game/card_scan_overlay.dart</title></rect>
 <rect x="370.0" y="90.0" width="220" height="50" class="fileNode"><title>File: /Users/jp/src/github/vteam/fCards/lib/screens/keepscore/golf_score_screen.dart</title></rect>
@@ -334,16 +336,13 @@
 <rect x="5444.0" y="160.0" width="220" height="50" class="fileNode"><title>File: /Users/jp/src/github/vteam/fCards/lib/models/game/game_constants.dart</title></rect>
 <rect x="5444.0" y="230.0" width="220" height="50" class="fileNode"><title>File: /Users/jp/src/github/vteam/fCards/lib/widgets/cards/card_face_french_widget.dart</title></rect>
 <rect x="5444.0" y="300.0" width="220" height="50" class="fileNode"><title>File: /Users/jp/src/github/vteam/fCards/lib/models/app/constants_animation.dart</title></rect>
-<rect x="5802.0" y="90.0" width="220" height="50" class="fileNode"><title>File: /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title></rect>
-<rect x="5802.0" y="160.0" width="220" height="50" class="fileNode"><title>File: /Users/jp/src/github/vteam/fCards/lib/models/card/card_model.dart</title></rect>
-<rect x="5802.0" y="230.0" width="220" height="50" class="fileNode"><title>File: /Users/jp/src/github/vteam/fCards/lib/widgets/helpers/my_text.dart</title></rect>
-<rect x="5802.0" y="300.0" width="220" height="50" class="fileNode"><title>File: /Users/jp/src/github/vteam/fCards/lib/models/app/constants_card_value.dart</title></rect>
-<defs>
-<linearGradient id="flatEdgeGradient1" gradientUnits="userSpaceOnUse" x1="5670.0" y1="115.0" x2="5808.0" y2="115.0"><stop offset="0%" stop-color="#28a745"/><stop offset="100%" stop-color="#007bff"/></linearGradient>
-</defs>
+<rect x="5802.0" y="90.0" width="220" height="50" class="fileNode"><title>File: /Users/jp/src/github/vteam/fCards/lib/models/card/card_model.dart</title></rect>
+<rect x="5802.0" y="160.0" width="220" height="50" class="fileNode"><title>File: /Users/jp/src/github/vteam/fCards/lib/widgets/helpers/my_text.dart</title></rect>
+<rect x="5802.0" y="230.0" width="220" height="50" class="fileNode"><title>File: /Users/jp/src/github/vteam/fCards/lib/models/app/constants_card_value.dart</title></rect>
+<rect x="6122.0" y="90.0" width="220" height="50" class="fileNode"><title>File: /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title></rect>
 <g>
-  <path d="M 2950.0 115.0 Q 3067.0 109.0 3184.0 115.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/game_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/helpers/screen.dart</title>
+  <path d="M 598.0 115.0 Q 647.0 109.0 696.0 115.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/screens/keepscore/golf_score_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/screens/game/card_scan_screen.dart</title>
 </g>
 <g>
   <path d="M 3404.0 325.0 Q 3526.0 319.0 3648.0 325.0" class="edge"/>
@@ -354,12 +353,32 @@
   <title>/Users/jp/src/github/vteam/fCards/lib/models/app/tflite_service.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/tflite_service_native.dart</title>
 </g>
 <g>
-  <path d="M 5670.0 115.0 L 5808.0 115.0" class="edge edgeFlat" style="stroke:url(#flatEdgeGradient1);"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/models/app/app_theme.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
+  <path d="M 2950.0 115.0 Q 3067.0 109.0 3184.0 115.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/game_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/helpers/screen.dart</title>
+</g>
+<g>
+  <path d="M 1268.0 115.0 Q 1355.0 109.0 1442.0 115.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/start_game_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/screens/game/start_screen_game_handler.dart</title>
 </g>
 <g>
   <path d="M 5286.0 185.0 Q 5368.0 179.0 5450.0 185.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/models/game/game_styles.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/game/game_constants.dart</title>
+</g>
+<g>
+  <path d="M 2514.0 115.0 Q 2622.0 109.0 2730.0 115.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/join_game_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/screens/game/game_screen.dart</title>
+</g>
+<g>
+  <path d="M 596.0 185.0 Q 646.0 179.0 696.0 185.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/corrections_review_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/reviewer_access.dart</title>
+</g>
+<g>
+  <path d="M 3868.0 255.0 Q 3996.0 249.0 4124.0 255.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/player/player_header_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/helpers/dialog.dart</title>
+</g>
+<g>
+  <path d="M 5670.0 255.0 Q 5739.0 249.0 5808.0 255.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/cards/card_face_french_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_card_value.dart</title>
 </g>
 <g>
   <path d="M 278.0 115.0 Q 327.0 109.0 376.0 115.0" class="edge"/>
@@ -374,44 +393,8 @@
   <title>/Users/jp/src/github/vteam/fCards/lib/widgets/player/player_zone_cta_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/cards/card_pile_widget.dart</title>
 </g>
 <g>
-  <path d="M 2514.0 115.0 Q 2622.0 109.0 2730.0 115.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/join_game_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/screens/game/game_screen.dart</title>
-</g>
-<g>
-  <path d="M 1268.0 115.0 Q 1355.0 109.0 1442.0 115.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/start_game_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/screens/game/start_screen_game_handler.dart</title>
-</g>
-<g>
-  <path d="M 598.0 115.0 Q 647.0 109.0 696.0 115.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/screens/keepscore/golf_score_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/screens/game/card_scan_screen.dart</title>
-</g>
-<g>
-  <path d="M 596.0 185.0 Q 646.0 179.0 696.0 185.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/corrections_review_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/reviewer_access.dart</title>
-</g>
-<g>
-  <path d="M 5670.0 255.0 Q 5739.0 249.0 5808.0 255.0" class="edge"/>
+  <path d="M 5670.0 255.0 L 5678.0 255.0 Q 5684.0 255.0 5684.0 249.0 V 191.0 Q 5684.0 185.0 5690.0 185.0 L 5799.0 185.0 L 5808.0 185.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/widgets/cards/card_face_french_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/helpers/my_text.dart</title>
-</g>
-<g>
-  <path d="M 3868.0 255.0 Q 3996.0 249.0 4124.0 255.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/player/player_header_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/helpers/dialog.dart</title>
-</g>
-<g>
-  <path d="M 3404.0 115.0 L 3410.0 115.0 Q 3416.0 115.0 3416.0 121.0 V 179.0 Q 3416.0 185.0 3422.0 185.0 L 3639.0 185.0 L 3648.0 185.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/helpers/screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/locale_controller.dart</title>
-</g>
-<g>
-  <path d="M 4344.0 325.0 L 4372.0 325.0 Q 4378.0 325.0 4378.0 319.0 V 261.0 Q 4378.0 255.0 4384.0 255.0 L 4597.0 255.0 L 4606.0 255.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/cards/card_pile_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/cards/card_widget.dart</title>
-</g>
-<g>
-  <path d="M 1662.0 325.0 L 1696.0 325.0 Q 1702.0 325.0 1702.0 319.0 V 261.0 Q 1702.0 255.0 1708.0 255.0 L 1867.0 255.0 L 1876.0 255.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/models/app/tflite_service_native.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/tflite_rank_parser.dart</title>
-</g>
-<g>
-  <path d="M 3404.0 325.0 L 3442.0 325.0 Q 3448.0 325.0 3448.0 319.0 V 261.0 Q 3448.0 255.0 3454.0 255.0 L 3639.0 255.0 L 3648.0 255.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/player/player_zone_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/player/player_header_widget.dart</title>
 </g>
 <g>
   <path d="M 4344.0 115.0 L 4356.0 115.0 Q 4362.0 115.0 4362.0 121.0 V 179.0 Q 4362.0 185.0 4368.0 185.0 L 4595.0 185.0 L 4606.0 185.0" class="edge"/>
@@ -426,144 +409,132 @@
   <title>/Users/jp/src/github/vteam/fCards/lib/models/game/backend_model.dart ▶ /Users/jp/src/github/vteam/fCards/lib/utils/logger.dart</title>
 </g>
 <g>
-  <path d="M 3404.0 185.0 L 3420.0 185.0 Q 3426.0 185.0 3426.0 179.0 V 121.0 Q 3426.0 115.0 3432.0 115.0 L 3639.0 115.0 L 3648.0 115.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/helpers/edit_box.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/helpers/input_keyboard.dart</title>
-</g>
-<g>
   <path d="M 2950.0 255.0 L 2978.0 255.0 Q 2984.0 255.0 2984.0 249.0 V 191.0 Q 2984.0 185.0 2990.0 185.0 L 3175.0 185.0 L 3184.0 185.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/widgets/helpers/table_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/helpers/edit_box.dart</title>
-</g>
-<g>
-  <path d="M 4826.0 255.0 L 4846.0 255.0 Q 4852.0 255.0 4852.0 261.0 V 319.0 Q 4852.0 325.0 4858.0 325.0 L 5057.0 325.0 L 5066.0 325.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/cards/card_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/card/card_dimensions.dart</title>
-</g>
-<g>
-  <path d="M 2514.0 115.0 L 2522.0 115.0 Q 2528.0 115.0 2528.0 121.0 V 179.0 Q 2528.0 185.0 2534.0 185.0 L 2721.0 185.0 L 2730.0 185.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/join_game_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/player/players_in_room_widget.dart</title>
-</g>
-<g>
-  <path d="M 5670.0 255.0 L 5676.0 255.0 Q 5682.0 255.0 5682.0 261.0 V 319.0 Q 5682.0 325.0 5688.0 325.0 L 5799.0 325.0 L 5808.0 325.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/cards/card_face_french_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_card_value.dart</title>
-</g>
-<g>
-  <path d="M 5670.0 255.0 L 5678.0 255.0 Q 5684.0 255.0 5684.0 249.0 V 191.0 Q 5684.0 185.0 5690.0 185.0 L 5797.0 185.0 L 5808.0 185.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/cards/card_face_french_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/card/card_model.dart</title>
-</g>
-<g>
-  <path d="M 1662.0 395.0 L 1700.0 395.0 Q 1706.0 395.0 1706.0 401.0 V 459.0 Q 1706.0 465.0 1712.0 465.0 L 1867.0 465.0 L 1876.0 465.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/utils/browser_utils.dart ▶ /Users/jp/src/github/vteam/fCards/lib/utils/browser_utils_stub.dart</title>
 </g>
 <g>
   <path d="M 1268.0 115.0 L 1286.0 115.0 Q 1292.0 115.0 1292.0 121.0 V 179.0 Q 1292.0 185.0 1298.0 185.0 L 1433.0 185.0 L 1442.0 185.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/start_game_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/screens/game/start_screen_room_section.dart</title>
 </g>
 <g>
+  <path d="M 3404.0 325.0 L 3442.0 325.0 Q 3448.0 325.0 3448.0 319.0 V 261.0 Q 3448.0 255.0 3454.0 255.0 L 3639.0 255.0 L 3648.0 255.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/player/player_zone_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/player/player_header_widget.dart</title>
+</g>
+<g>
+  <path d="M 3404.0 185.0 L 3420.0 185.0 Q 3426.0 185.0 3426.0 179.0 V 121.0 Q 3426.0 115.0 3432.0 115.0 L 3639.0 115.0 L 3648.0 115.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/helpers/edit_box.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/helpers/input_keyboard.dart</title>
+</g>
+<g>
+  <path d="M 4344.0 325.0 L 4372.0 325.0 Q 4378.0 325.0 4378.0 319.0 V 261.0 Q 4378.0 255.0 4384.0 255.0 L 4597.0 255.0 L 4606.0 255.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/cards/card_pile_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/cards/card_widget.dart</title>
+</g>
+<g>
+  <path d="M 2514.0 115.0 L 2522.0 115.0 Q 2528.0 115.0 2528.0 121.0 V 179.0 Q 2528.0 185.0 2534.0 185.0 L 2721.0 185.0 L 2730.0 185.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/join_game_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/player/players_in_room_widget.dart</title>
+</g>
+<g>
   <path d="M 3868.0 115.0 L 3870.0 115.0 Q 3876.0 115.0 3876.0 121.0 V 179.0 Q 3876.0 185.0 3882.0 185.0 L 4115.0 185.0 L 4124.0 185.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/widgets/helpers/input_keyboard.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/buttons/my_button_round.dart</title>
 </g>
 <g>
-  <path d="M 918.0 115.0 L 928.0 115.0 Q 934.0 115.0 934.0 121.0 V 179.0 Q 934.0 185.0 940.0 185.0 L 1037.0 185.0 L 1046.0 185.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/card_scan_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/screens/game/card_scan_helpers.dart</title>
+  <path d="M 1662.0 395.0 L 1700.0 395.0 Q 1706.0 395.0 1706.0 401.0 V 459.0 Q 1706.0 465.0 1712.0 465.0 L 1867.0 465.0 L 1876.0 465.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/utils/browser_utils.dart ▶ /Users/jp/src/github/vteam/fCards/lib/utils/browser_utils_stub.dart</title>
+</g>
+<g>
+  <path d="M 4826.0 255.0 L 4848.0 255.0 Q 4854.0 255.0 4854.0 261.0 V 319.0 Q 4854.0 325.0 4860.0 325.0 L 5057.0 325.0 L 5066.0 325.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/cards/card_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/card/card_dimensions.dart</title>
+</g>
+<g>
+  <path d="M 1662.0 325.0 L 1696.0 325.0 Q 1702.0 325.0 1702.0 319.0 V 261.0 Q 1702.0 255.0 1708.0 255.0 L 1867.0 255.0 L 1876.0 255.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/models/app/tflite_service_native.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/tflite_rank_parser.dart</title>
+</g>
+<g>
+  <path d="M 3404.0 115.0 L 3410.0 115.0 Q 3416.0 115.0 3416.0 121.0 V 179.0 Q 3416.0 185.0 3422.0 185.0 L 3639.0 185.0 L 3648.0 185.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/helpers/screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/locale_controller.dart</title>
+</g>
+<g>
+  <path d="M 6028.0 185.0 L 6030.0 185.0 Q 6036.0 185.0 6036.0 179.0 V 121.0 Q 6036.0 115.0 6042.0 115.0 L 6117.0 115.0 L 6128.0 115.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/helpers/my_text.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
 </g>
 <g>
   <path d="M 278.0 115.0 L 286.0 115.0 Q 292.0 115.0 292.0 121.0 V 179.0 Q 292.0 185.0 298.0 185.0 L 367.0 185.0 L 376.0 185.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/main.dart ▶ /Users/jp/src/github/vteam/fCards/lib/screens/game/corrections_review_screen.dart</title>
 </g>
 <g>
-  <path d="M 3868.0 255.0 L 3880.0 255.0 Q 3886.0 255.0 3886.0 261.0 V 389.0 Q 3886.0 395.0 3892.0 395.0 L 4115.0 395.0 L 4124.0 395.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/player/player_header_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/player/status_picker.dart</title>
-</g>
-<g>
-  <path d="M 1662.0 255.0 L 1686.0 255.0 Q 1692.0 255.0 1692.0 261.0 V 389.0 Q 1692.0 395.0 1698.0 395.0 L 1867.0 395.0 L 1876.0 395.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/start_screen_game_instructions.dart ▶ /Users/jp/src/github/vteam/fCards/lib/screens/game/game_style.dart</title>
+  <path d="M 918.0 115.0 L 928.0 115.0 Q 934.0 115.0 934.0 121.0 V 179.0 Q 934.0 185.0 940.0 185.0 L 1037.0 185.0 L 1046.0 185.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/card_scan_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/screens/game/card_scan_helpers.dart</title>
 </g>
 <g>
   <path d="M 596.0 325.0 L 660.0 325.0 Q 666.0 325.0 666.0 319.0 V 191.0 Q 666.0 185.0 672.0 185.0 L 687.0 185.0 L 696.0 185.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/screens/welcome/welcome_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/reviewer_access.dart</title>
 </g>
 <g>
-  <path d="M 2514.0 115.0 L 2520.0 115.0 Q 2526.0 115.0 2526.0 121.0 V 249.0 Q 2526.0 255.0 2532.0 255.0 L 2721.0 255.0 L 2730.0 255.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/join_game_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/helpers/table_widget.dart</title>
+  <path d="M 4826.0 325.0 L 4862.0 325.0 Q 4868.0 325.0 4868.0 331.0 V 459.0 Q 4868.0 465.0 4874.0 465.0 L 5057.0 465.0 L 5066.0 465.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/models/player/player_model.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/player/player_status.dart</title>
 </g>
 <g>
-  <path d="M 1268.0 115.0 L 1284.0 115.0 Q 1290.0 115.0 1290.0 121.0 V 249.0 Q 1290.0 255.0 1296.0 255.0 L 1433.0 255.0 L 1442.0 255.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/start_game_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/screens/game/start_screen_game_instructions.dart</title>
-</g>
-<g>
-  <path d="M 4344.0 255.0 L 4364.0 255.0 Q 4370.0 255.0 4370.0 249.0 V 121.0 Q 4370.0 115.0 4376.0 115.0 L 4595.0 115.0 L 4606.0 115.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/helpers/dialog.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/buttons/my_button_rectangle.dart</title>
-</g>
-<g>
-  <path d="M 2950.0 115.0 L 2956.0 115.0 Q 2962.0 115.0 2962.0 121.0 V 249.0 Q 2962.0 255.0 2968.0 255.0 L 3175.0 255.0 L 3184.0 255.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/game_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/screens/game/game_over_dialog.dart</title>
+  <path d="M 4826.0 325.0 L 4862.0 325.0 Q 4868.0 325.0 4868.0 331.0 V 459.0 Q 4868.0 465.0 4874.0 465.0 L 5057.0 465.0 L 5066.0 465.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/models/player/player_model.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/player/player_status.dart</title>
 </g>
 <g>
   <path d="M 5670.0 255.0 L 5674.0 255.0 Q 5680.0 255.0 5680.0 249.0 V 121.0 Q 5680.0 115.0 5686.0 115.0 L 5797.0 115.0 L 5808.0 115.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/cards/card_face_french_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
-</g>
-<g>
-  <path d="M 918.0 115.0 L 922.0 115.0 Q 928.0 115.0 928.0 121.0 V 249.0 Q 928.0 255.0 934.0 255.0 L 1037.0 255.0 L 1046.0 255.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/card_scan_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/correction_sample_store_factory.dart</title>
-</g>
-<g>
-  <path d="M 916.0 255.0 L 944.0 255.0 Q 950.0 255.0 950.0 249.0 V 121.0 Q 950.0 115.0 956.0 115.0 L 1037.0 115.0 L 1046.0 115.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/create_table_name_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/screens/game/start_game_screen.dart</title>
+  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/cards/card_face_french_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/card/card_model.dart</title>
 </g>
 <g>
   <path d="M 278.0 115.0 L 282.0 115.0 Q 288.0 115.0 288.0 121.0 V 249.0 Q 288.0 255.0 294.0 255.0 L 367.0 255.0 L 376.0 255.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/main.dart ▶ /Users/jp/src/github/vteam/fCards/lib/screens/game/start_game_wizard_screen.dart</title>
 </g>
 <g>
-  <path d="M 4826.0 325.0 L 4860.0 325.0 Q 4866.0 325.0 4866.0 331.0 V 459.0 Q 4866.0 465.0 4872.0 465.0 L 5057.0 465.0 L 5066.0 465.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/models/player/player_model.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/player/player_status.dart</title>
+  <path d="M 4344.0 255.0 L 4364.0 255.0 Q 4370.0 255.0 4370.0 249.0 V 121.0 Q 4370.0 115.0 4376.0 115.0 L 4595.0 115.0 L 4606.0 115.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/helpers/dialog.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/buttons/my_button_rectangle.dart</title>
 </g>
 <g>
-  <path d="M 4826.0 325.0 L 4860.0 325.0 Q 4866.0 325.0 4866.0 331.0 V 459.0 Q 4866.0 465.0 4872.0 465.0 L 5057.0 465.0 L 5066.0 465.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/models/player/player_model.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/player/player_status.dart</title>
+  <path d="M 916.0 255.0 L 944.0 255.0 Q 950.0 255.0 950.0 249.0 V 121.0 Q 950.0 115.0 956.0 115.0 L 1037.0 115.0 L 1046.0 115.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/create_table_name_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/screens/game/start_game_screen.dart</title>
+</g>
+<g>
+  <path d="M 1268.0 115.0 L 1284.0 115.0 Q 1290.0 115.0 1290.0 121.0 V 249.0 Q 1290.0 255.0 1296.0 255.0 L 1433.0 255.0 L 1442.0 255.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/start_game_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/screens/game/start_screen_game_instructions.dart</title>
+</g>
+<g>
+  <path d="M 918.0 115.0 L 922.0 115.0 Q 928.0 115.0 928.0 121.0 V 249.0 Q 928.0 255.0 934.0 255.0 L 1037.0 255.0 L 1046.0 255.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/card_scan_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/correction_sample_store_factory.dart</title>
+</g>
+<g>
+  <path d="M 2514.0 115.0 L 2520.0 115.0 Q 2526.0 115.0 2526.0 121.0 V 249.0 Q 2526.0 255.0 2532.0 255.0 L 2721.0 255.0 L 2730.0 255.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/join_game_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/helpers/table_widget.dart</title>
+</g>
+<g>
+  <path d="M 2950.0 115.0 L 2956.0 115.0 Q 2962.0 115.0 2962.0 121.0 V 249.0 Q 2962.0 255.0 2968.0 255.0 L 3175.0 255.0 L 3184.0 255.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/game_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/screens/game/game_over_dialog.dart</title>
+</g>
+<g>
+  <path d="M 3868.0 255.0 L 3880.0 255.0 Q 3886.0 255.0 3886.0 261.0 V 389.0 Q 3886.0 395.0 3892.0 395.0 L 4115.0 395.0 L 4124.0 395.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/player/player_header_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/player/status_picker.dart</title>
 </g>
 <g>
   <path d="M 1662.0 395.0 L 1698.0 395.0 Q 1704.0 395.0 1704.0 401.0 V 529.0 Q 1704.0 535.0 1710.0 535.0 L 1867.0 535.0 L 1876.0 535.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/utils/browser_utils.dart ▶ /Users/jp/src/github/vteam/fCards/lib/utils/browser_utils_web.dart</title>
 </g>
 <g>
+  <path d="M 1662.0 255.0 L 1686.0 255.0 Q 1692.0 255.0 1692.0 261.0 V 389.0 Q 1692.0 395.0 1698.0 395.0 L 1867.0 395.0 L 1876.0 395.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/start_screen_game_instructions.dart ▶ /Users/jp/src/github/vteam/fCards/lib/screens/game/game_style.dart</title>
+</g>
+<g>
   <path d="M 3868.0 255.0 L 3878.0 255.0 Q 3884.0 255.0 3884.0 249.0 V 121.0 Q 3884.0 115.0 3890.0 115.0 L 4115.0 115.0 L 4124.0 115.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/widgets/player/player_header_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/game/game_model.dart</title>
-</g>
-<g>
-  <path d="M 2950.0 115.0 L 2952.0 115.0 Q 2958.0 115.0 2958.0 121.0 V 319.0 Q 2958.0 325.0 2964.0 325.0 L 3175.0 325.0 L 3184.0 325.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/game_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/player/player_zone_widget.dart</title>
-</g>
-<g>
-  <path d="M 3868.0 325.0 L 3890.0 325.0 Q 3896.0 325.0 3896.0 319.0 V 121.0 Q 3896.0 115.0 3902.0 115.0 L 4115.0 115.0 L 4124.0 115.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/player/player_zone_cta_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/game/game_model.dart</title>
-</g>
-<g>
-  <path d="M 918.0 115.0 L 920.0 115.0 Q 926.0 115.0 926.0 121.0 V 319.0 Q 926.0 325.0 932.0 325.0 L 1037.0 325.0 L 1046.0 325.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/card_scan_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/tflite_service.dart</title>
 </g>
 <g>
   <path d="M 2514.0 115.0 L 2518.0 115.0 Q 2524.0 115.0 2524.0 121.0 V 319.0 Q 2524.0 325.0 2530.0 325.0 L 2721.0 325.0 L 2730.0 325.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/join_game_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/helpers/wizard_footer.dart</title>
 </g>
 <g>
-  <path d="M 4826.0 325.0 L 4854.0 325.0 Q 4860.0 325.0 4860.0 331.0 V 529.0 Q 4860.0 535.0 4866.0 535.0 L 5057.0 535.0 L 5066.0 535.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/models/player/player_model.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/card/hand_model.dart</title>
+  <path d="M 2950.0 115.0 L 2952.0 115.0 Q 2958.0 115.0 2958.0 121.0 V 319.0 Q 2958.0 325.0 2964.0 325.0 L 3175.0 325.0 L 3184.0 325.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/game_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/player/player_zone_widget.dart</title>
 </g>
 <g>
   <path d="M 4344.0 115.0 L 4354.0 115.0 Q 4360.0 115.0 4360.0 121.0 V 319.0 Q 4360.0 325.0 4366.0 325.0 L 4597.0 325.0 L 4606.0 325.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/models/game/game_model.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/player/player_model.dart</title>
-</g>
-<g>
-  <path d="M 4344.0 115.0 L 4354.0 115.0 Q 4360.0 115.0 4360.0 121.0 V 319.0 Q 4360.0 325.0 4366.0 325.0 L 4597.0 325.0 L 4606.0 325.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/models/game/game_model.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/player/player_model.dart</title>
-</g>
-<g>
-  <path d="M 1662.0 115.0 L 1668.0 115.0 Q 1674.0 115.0 1674.0 121.0 V 319.0 Q 1674.0 325.0 1680.0 325.0 L 1867.0 325.0 L 1876.0 325.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/start_screen_game_handler.dart ▶ /Users/jp/src/github/vteam/fCards/lib/screens/game/table_name_flow_helpers.dart</title>
-</g>
-<g>
-  <path d="M 1662.0 325.0 L 1692.0 325.0 Q 1698.0 325.0 1698.0 319.0 V 121.0 Q 1698.0 115.0 1704.0 115.0 L 1867.0 115.0 L 1876.0 115.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/models/app/tflite_service_native.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/card_detection.dart</title>
 </g>
 <g>
   <path d="M 4826.0 185.0 L 4834.0 185.0 Q 4840.0 185.0 4840.0 191.0 V 389.0 Q 4840.0 395.0 4846.0 395.0 L 5057.0 395.0 L 5066.0 395.0" class="edge"/>
@@ -574,20 +545,32 @@
   <title>/Users/jp/src/github/vteam/fCards/lib/widgets/player/player_header_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/helpers/date_importance.dart</title>
 </g>
 <g>
-  <path d="M 2096.0 325.0 L 2098.0 325.0 Q 2104.0 325.0 2104.0 319.0 V 121.0 Q 2104.0 115.0 2110.0 115.0 L 2283.0 115.0 L 2292.0 115.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/table_name_flow_helpers.dart ▶ /Users/jp/src/github/vteam/fCards/lib/screens/game/join_game_screen.dart</title>
-</g>
-<g>
-  <path d="M 4826.0 395.0 L 4866.0 395.0 Q 4872.0 395.0 4872.0 389.0 V 191.0 Q 4872.0 185.0 4878.0 185.0 L 5055.0 185.0 L 5066.0 185.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/models/game/deck_model.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/game/game_styles.dart</title>
-</g>
-<g>
-  <path d="M 278.0 115.0 L 280.0 115.0 Q 286.0 115.0 286.0 121.0 V 319.0 Q 286.0 325.0 292.0 325.0 L 367.0 325.0 L 376.0 325.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/main.dart ▶ /Users/jp/src/github/vteam/fCards/lib/screens/welcome/welcome_screen.dart</title>
-</g>
-<g>
   <path d="M 598.0 115.0 L 602.0 115.0 Q 608.0 115.0 608.0 121.0 V 319.0 Q 608.0 325.0 614.0 325.0 L 687.0 325.0 L 696.0 325.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/screens/keepscore/golf_score_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/player/player_header.dart</title>
+</g>
+<g>
+  <path d="M 1662.0 115.0 L 1668.0 115.0 Q 1674.0 115.0 1674.0 121.0 V 319.0 Q 1674.0 325.0 1680.0 325.0 L 1867.0 325.0 L 1876.0 325.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/start_screen_game_handler.dart ▶ /Users/jp/src/github/vteam/fCards/lib/screens/game/table_name_flow_helpers.dart</title>
+</g>
+<g>
+  <path d="M 1662.0 325.0 L 1692.0 325.0 Q 1698.0 325.0 1698.0 319.0 V 121.0 Q 1698.0 115.0 1704.0 115.0 L 1867.0 115.0 L 1876.0 115.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/models/app/tflite_service_native.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/card_detection.dart</title>
+</g>
+<g>
+  <path d="M 1266.0 255.0 L 1316.0 255.0 Q 1322.0 255.0 1322.0 261.0 V 459.0 Q 1322.0 465.0 1328.0 465.0 L 1433.0 465.0 L 1442.0 465.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/models/app/correction_sample_store_factory.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/correction_sample_store_io.dart</title>
+</g>
+<g>
+  <path d="M 4826.0 325.0 L 4854.0 325.0 Q 4860.0 325.0 4860.0 331.0 V 529.0 Q 4860.0 535.0 4866.0 535.0 L 5057.0 535.0 L 5066.0 535.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/models/player/player_model.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/card/hand_model.dart</title>
+</g>
+<g>
+  <path d="M 3868.0 325.0 L 3890.0 325.0 Q 3896.0 325.0 3896.0 319.0 V 121.0 Q 3896.0 115.0 3902.0 115.0 L 4115.0 115.0 L 4124.0 115.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/player/player_zone_cta_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/game/game_model.dart</title>
+</g>
+<g>
+  <path d="M 918.0 115.0 L 920.0 115.0 Q 926.0 115.0 926.0 121.0 V 319.0 Q 926.0 325.0 932.0 325.0 L 1037.0 325.0 L 1046.0 325.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/card_scan_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/tflite_service.dart</title>
 </g>
 <g>
   <path d="M 4826.0 325.0 L 4856.0 325.0 Q 4862.0 325.0 4862.0 319.0 V 121.0 Q 4862.0 115.0 4868.0 115.0 L 5055.0 115.0 L 5066.0 115.0" class="edge"/>
@@ -598,52 +581,76 @@
   <title>/Users/jp/src/github/vteam/fCards/lib/models/player/player_model.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/card/hand_model.dart</title>
 </g>
 <g>
-  <path d="M 1266.0 255.0 L 1316.0 255.0 Q 1322.0 255.0 1322.0 261.0 V 459.0 Q 1322.0 465.0 1328.0 465.0 L 1433.0 465.0 L 1442.0 465.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/models/app/correction_sample_store_factory.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/correction_sample_store_io.dart</title>
+  <path d="M 2096.0 325.0 L 2098.0 325.0 Q 2104.0 325.0 2104.0 319.0 V 121.0 Q 2104.0 115.0 2110.0 115.0 L 2283.0 115.0 L 2292.0 115.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/table_name_flow_helpers.dart ▶ /Users/jp/src/github/vteam/fCards/lib/screens/game/join_game_screen.dart</title>
 </g>
 <g>
-  <path d="M 4344.0 115.0 L 4348.0 115.0 Q 4354.0 115.0 4354.0 121.0 V 389.0 Q 4354.0 395.0 4360.0 395.0 L 4597.0 395.0 L 4606.0 395.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/models/game/game_model.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/game/deck_model.dart</title>
+  <path d="M 4826.0 395.0 L 4870.0 395.0 Q 4876.0 395.0 4876.0 389.0 V 191.0 Q 4876.0 185.0 4882.0 185.0 L 5055.0 185.0 L 5066.0 185.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/models/game/deck_model.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/game/game_styles.dart</title>
 </g>
 <g>
-  <path d="M 1662.0 465.0 L 1702.0 465.0 Q 1708.0 465.0 1708.0 459.0 V 191.0 Q 1708.0 185.0 1714.0 185.0 L 1867.0 185.0 L 1876.0 185.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/models/app/correction_sample_store_io.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/correction_sample_store.dart</title>
+  <path d="M 278.0 115.0 L 280.0 115.0 Q 286.0 115.0 286.0 121.0 V 319.0 Q 286.0 325.0 292.0 325.0 L 367.0 325.0 L 376.0 325.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/main.dart ▶ /Users/jp/src/github/vteam/fCards/lib/screens/welcome/welcome_screen.dart</title>
+</g>
+<g>
+  <path d="M 4344.0 115.0 L 4354.0 115.0 Q 4360.0 115.0 4360.0 121.0 V 319.0 Q 4360.0 325.0 4366.0 325.0 L 4597.0 325.0 L 4606.0 325.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/models/game/game_model.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/player/player_model.dart</title>
 </g>
 <g>
   <path d="M 596.0 185.0 L 618.0 185.0 Q 624.0 185.0 624.0 191.0 V 459.0 Q 624.0 465.0 630.0 465.0 L 687.0 465.0 L 696.0 465.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/corrections_review_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/training_correction_record.dart</title>
 </g>
 <g>
-  <path d="M 1268.0 115.0 L 1278.0 115.0 Q 1284.0 115.0 1284.0 121.0 V 389.0 Q 1284.0 395.0 1290.0 395.0 L 1433.0 395.0 L 1442.0 395.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/start_game_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/utils/browser_utils.dart</title>
-</g>
-<g>
-  <path d="M 4826.0 395.0 L 4864.0 395.0 Q 4870.0 395.0 4870.0 401.0 V 669.0 Q 4870.0 675.0 4876.0 675.0 L 5057.0 675.0 L 5066.0 675.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/models/game/deck_model.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/card/card_model_french.dart</title>
+  <path d="M 4344.0 115.0 L 4348.0 115.0 Q 4354.0 115.0 4354.0 121.0 V 389.0 Q 4354.0 395.0 4360.0 395.0 L 4597.0 395.0 L 4606.0 395.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/models/game/game_model.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/game/deck_model.dart</title>
 </g>
 <g>
   <path d="M 598.0 115.0 L 600.0 115.0 Q 606.0 115.0 606.0 121.0 V 389.0 Q 606.0 395.0 612.0 395.0 L 687.0 395.0 L 696.0 395.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/screens/keepscore/golf_score_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/game/golf_score_model.dart</title>
 </g>
 <g>
+  <path d="M 4826.0 395.0 L 4864.0 395.0 Q 4870.0 395.0 4870.0 401.0 V 669.0 Q 4870.0 675.0 4876.0 675.0 L 5057.0 675.0 L 5066.0 675.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/models/game/deck_model.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/card/card_model_french.dart</title>
+</g>
+<g>
+  <path d="M 1662.0 465.0 L 1702.0 465.0 Q 1708.0 465.0 1708.0 459.0 V 191.0 Q 1708.0 185.0 1714.0 185.0 L 1867.0 185.0 L 1876.0 185.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/models/app/correction_sample_store_io.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/correction_sample_store.dart</title>
+</g>
+<g>
   <path d="M 4344.0 115.0 L 4348.0 115.0 Q 4354.0 115.0 4354.0 121.0 V 389.0 Q 4354.0 395.0 4360.0 395.0 L 4597.0 395.0 L 4606.0 395.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/models/game/game_model.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/game/deck_model.dart</title>
 </g>
 <g>
-  <path d="M 1266.0 325.0 L 1320.0 325.0 Q 1326.0 325.0 1326.0 331.0 V 739.0 Q 1326.0 745.0 1332.0 745.0 L 1433.0 745.0 L 1442.0 745.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/models/app/tflite_service.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/tflite_service_web.dart</title>
+  <path d="M 1268.0 115.0 L 1278.0 115.0 Q 1284.0 115.0 1284.0 121.0 V 389.0 Q 1284.0 395.0 1290.0 395.0 L 1433.0 395.0 L 1442.0 395.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/start_game_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/utils/browser_utils.dart</title>
 </g>
 <g>
   <path d="M 1268.0 115.0 L 1276.0 115.0 Q 1282.0 115.0 1282.0 121.0 V 529.0 Q 1282.0 535.0 1288.0 535.0 L 1433.0 535.0 L 1442.0 535.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/start_game_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/screens/game/start_screen_action_button.dart</title>
 </g>
 <g>
-  <path d="M 1662.0 115.0 L 1664.0 115.0 Q 1670.0 115.0 1670.0 121.0 V 599.0 Q 1670.0 605.0 1676.0 605.0 L 1867.0 605.0 L 1876.0 605.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/start_screen_game_handler.dart ▶ /Users/jp/src/github/vteam/fCards/lib/screens/game/start_screen_table_name_check_result.dart</title>
+  <path d="M 1266.0 325.0 L 1320.0 325.0 Q 1326.0 325.0 1326.0 331.0 V 739.0 Q 1326.0 745.0 1332.0 745.0 L 1433.0 745.0 L 1442.0 745.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/models/app/tflite_service.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/tflite_service_web.dart</title>
 </g>
 <g>
   <path d="M 4826.0 255.0 L 4842.0 255.0 Q 4848.0 255.0 4848.0 261.0 V 739.0 Q 4848.0 745.0 4854.0 745.0 L 5057.0 745.0 L 5066.0 745.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/widgets/cards/card_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/cards/card_face_skyjo_widget.dart</title>
+</g>
+<g>
+  <path d="M 5286.0 745.0 L 5306.0 745.0 Q 5312.0 745.0 5312.0 739.0 V 261.0 Q 5312.0 255.0 5318.0 255.0 L 5441.0 255.0 L 5450.0 255.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/cards/card_face_skyjo_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/cards/card_face_french_widget.dart</title>
+</g>
+<g>
+  <path d="M 1268.0 115.0 L 1274.0 115.0 Q 1280.0 115.0 1280.0 121.0 V 599.0 Q 1280.0 605.0 1286.0 605.0 L 1433.0 605.0 L 1442.0 605.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/start_game_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/screens/game/start_screen_game_mode.dart</title>
+</g>
+<g>
+  <path d="M 5286.0 605.0 L 5296.0 605.0 Q 5302.0 605.0 5302.0 599.0 V 121.0 Q 5302.0 115.0 5308.0 115.0 L 5439.0 115.0 L 5450.0 115.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/buttons/my_button.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/app_theme.dart</title>
+</g>
+<g>
+  <path d="M 1662.0 115.0 L 1664.0 115.0 Q 1670.0 115.0 1670.0 121.0 V 599.0 Q 1670.0 605.0 1676.0 605.0 L 1867.0 605.0 L 1876.0 605.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/start_screen_game_handler.dart ▶ /Users/jp/src/github/vteam/fCards/lib/screens/game/start_screen_table_name_check_result.dart</title>
 </g>
 <g>
   <path d="M 5286.0 815.0 L 5312.0 815.0 Q 5318.0 815.0 5318.0 809.0 V 331.0 Q 5318.0 325.0 5324.0 325.0 L 5441.0 325.0 L 5450.0 325.0" class="edge"/>
@@ -654,20 +661,12 @@
   <title>/Users/jp/src/github/vteam/fCards/lib/models/app/tflite_service_web.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/tflite_rank_parser.dart</title>
 </g>
 <g>
-  <path d="M 5286.0 605.0 L 5296.0 605.0 Q 5302.0 605.0 5302.0 599.0 V 121.0 Q 5302.0 115.0 5308.0 115.0 L 5439.0 115.0 L 5450.0 115.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/buttons/my_button.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/app_theme.dart</title>
-</g>
-<g>
-  <path d="M 5286.0 745.0 L 5304.0 745.0 Q 5310.0 745.0 5310.0 739.0 V 261.0 Q 5310.0 255.0 5316.0 255.0 L 5441.0 255.0 L 5450.0 255.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/cards/card_face_skyjo_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/cards/card_face_french_widget.dart</title>
-</g>
-<g>
   <path d="M 4826.0 115.0 L 4828.0 115.0 Q 4834.0 115.0 4834.0 121.0 V 599.0 Q 4834.0 605.0 4840.0 605.0 L 5057.0 605.0 L 5066.0 605.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/widgets/buttons/my_button_rectangle.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/buttons/my_button.dart</title>
 </g>
 <g>
-  <path d="M 1268.0 115.0 L 1274.0 115.0 Q 1280.0 115.0 1280.0 121.0 V 599.0 Q 1280.0 605.0 1286.0 605.0 L 1433.0 605.0 L 1442.0 605.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/start_game_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/screens/game/start_screen_game_mode.dart</title>
+  <path d="M 1268.0 115.0 L 1272.0 115.0 Q 1278.0 115.0 1278.0 121.0 V 669.0 Q 1278.0 675.0 1284.0 675.0 L 1433.0 675.0 L 1442.0 675.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/start_game_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/screens/game/start_screen_player_name_input.dart</title>
 </g>
 <g>
   <path d="M 4826.0 255.0 L 4840.0 255.0 Q 4846.0 255.0 4846.0 261.0 V 809.0 Q 4846.0 815.0 4852.0 815.0 L 5057.0 815.0 L 5066.0 815.0" class="edge"/>
@@ -678,64 +677,56 @@
   <title>/Users/jp/src/github/vteam/fCards/lib/models/app/correction_sample_store_factory.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/correction_sample_store_stub.dart</title>
 </g>
 <g>
-  <path d="M 1268.0 115.0 L 1272.0 115.0 Q 1278.0 115.0 1278.0 121.0 V 669.0 Q 1278.0 675.0 1284.0 675.0 L 1433.0 675.0 L 1442.0 675.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/start_game_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/screens/game/start_screen_player_name_input.dart</title>
+  <path d="M 1662.0 815.0 L 1722.0 815.0 Q 1728.0 815.0 1728.0 809.0 V 191.0 Q 1728.0 185.0 1734.0 185.0 L 1867.0 185.0 L 1876.0 185.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/models/app/correction_sample_store_stub.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/correction_sample_store.dart</title>
 </g>
 <g>
   <path d="M 1662.0 745.0 L 1718.0 745.0 Q 1724.0 745.0 1724.0 739.0 V 121.0 Q 1724.0 115.0 1730.0 115.0 L 1867.0 115.0 L 1876.0 115.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/models/app/tflite_service_web.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/card_detection.dart</title>
 </g>
 <g>
-  <path d="M 1662.0 815.0 L 1722.0 815.0 Q 1728.0 815.0 1728.0 809.0 V 191.0 Q 1728.0 185.0 1734.0 185.0 L 1867.0 185.0 L 1876.0 185.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/models/app/correction_sample_store_stub.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/correction_sample_store.dart</title>
-</g>
-<g>
   <path d="M 1268.0 115.0 L 1270.0 115.0 Q 1276.0 115.0 1276.0 121.0 V 879.0 Q 1276.0 885.0 1282.0 885.0 L 1433.0 885.0 L 1442.0 885.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/start_game_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/screens/game/start_screen_constants.dart</title>
-</g>
-<g>
-  <path d="M 4344.0 325.0 L 4374.0 325.0 Q 4380.0 325.0 4380.0 319.0 V 294.0 Q 4380.0 288.0 4386.0 288.0 L 4820.0 288.0 L 4850.0 288.0 Q 4856.0 288.0 4856.0 294.0 V 319.0 Q 4856.0 325.0 4862.0 325.0 L 5060.0 325.0 L 5066.0 325.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/cards/card_pile_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/card/card_dimensions.dart</title>
-</g>
-<g>
-  <path d="M 278.0 115.0 L 302.0 115.0 Q 308.0 115.0 308.0 109.0 V 88.0 Q 308.0 82.0 314.0 82.0 L 606.0 82.0 Q 612.0 82.0 612.0 88.0 V 109.0 Q 612.0 115.0 618.0 115.0 L 687.0 115.0 L 696.0 115.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/main.dart ▶ /Users/jp/src/github/vteam/fCards/lib/screens/game/card_scan_screen.dart</title>
-</g>
-<g>
-  <path d="M 4826.0 255.0 L 4850.0 255.0 Q 4856.0 255.0 4856.0 249.0 V 224.0 Q 4856.0 218.0 4862.0 218.0 L 5280.0 218.0 L 5304.0 218.0 Q 5310.0 218.0 5310.0 224.0 V 249.0 Q 5310.0 255.0 5316.0 255.0 L 5444.0 255.0 L 5450.0 255.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/cards/card_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/cards/card_face_french_widget.dart</title>
-</g>
-<g>
-  <path d="M 5286.0 185.0 L 5290.0 185.0 Q 5296.0 185.0 5296.0 179.0 V 156.0 Q 5296.0 150.0 5302.0 150.0 L 5664.0 150.0 L 5668.0 150.0 Q 5674.0 150.0 5674.0 156.0 V 179.0 Q 5674.0 185.0 5680.0 185.0 L 5802.0 185.0 L 5808.0 185.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/models/game/game_styles.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/card/card_model.dart</title>
-</g>
-<g>
-  <path d="M 3404.0 255.0 L 3434.0 255.0 Q 3440.0 255.0 3440.0 249.0 V 223.0 Q 3440.0 217.0 3446.0 217.0 L 3862.0 217.0 L 3892.0 217.0 Q 3898.0 217.0 3898.0 223.0 V 249.0 Q 3898.0 255.0 3904.0 255.0 L 4118.0 255.0 L 4124.0 255.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/game_over_dialog.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/helpers/dialog.dart</title>
-</g>
-<g>
-  <path d="M 4826.0 115.0 L 4832.0 115.0 Q 4838.0 115.0 4838.0 109.0 V 88.0 Q 4838.0 82.0 4844.0 82.0 L 5284.0 82.0 Q 5290.0 82.0 5290.0 88.0 V 109.0 Q 5290.0 115.0 5296.0 115.0 L 5439.0 115.0 L 5450.0 115.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/buttons/my_button_rectangle.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/app_theme.dart</title>
-</g>
-<g>
-  <path d="M 2514.0 115.0 L 2540.0 115.0 Q 2546.0 115.0 2546.0 109.0 V 88.0 Q 2546.0 82.0 2552.0 82.0 L 2962.0 82.0 Q 2968.0 82.0 2968.0 88.0 V 109.0 Q 2968.0 115.0 2974.0 115.0 L 3175.0 115.0 L 3184.0 115.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/join_game_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/helpers/screen.dart</title>
 </g>
 <g>
   <path d="M 3868.0 115.0 L 3874.0 115.0 Q 3880.0 115.0 3880.0 109.0 V 88.0 Q 3880.0 82.0 3886.0 82.0 L 4342.0 82.0 Q 4348.0 82.0 4348.0 88.0 V 109.0 Q 4348.0 115.0 4354.0 115.0 L 4595.0 115.0 L 4606.0 115.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/widgets/helpers/input_keyboard.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/buttons/my_button_rectangle.dart</title>
 </g>
 <g>
-  <path d="M 1266.0 255.0 L 1318.0 255.0 Q 1324.0 255.0 1324.0 249.0 V 156.0 Q 1324.0 150.0 1330.0 150.0 L 1656.0 150.0 L 1708.0 150.0 Q 1714.0 150.0 1714.0 156.0 V 179.0 Q 1714.0 185.0 1720.0 185.0 L 1870.0 185.0 L 1876.0 185.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/models/app/correction_sample_store_factory.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/correction_sample_store.dart</title>
+  <path d="M 278.0 115.0 L 302.0 115.0 Q 308.0 115.0 308.0 109.0 V 88.0 Q 308.0 82.0 314.0 82.0 L 606.0 82.0 Q 612.0 82.0 612.0 88.0 V 109.0 Q 612.0 115.0 618.0 115.0 L 687.0 115.0 L 696.0 115.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/main.dart ▶ /Users/jp/src/github/vteam/fCards/lib/screens/game/card_scan_screen.dart</title>
+</g>
+<g>
+  <path d="M 2514.0 115.0 L 2540.0 115.0 Q 2546.0 115.0 2546.0 109.0 V 88.0 Q 2546.0 82.0 2552.0 82.0 L 2962.0 82.0 Q 2968.0 82.0 2968.0 88.0 V 109.0 Q 2968.0 115.0 2974.0 115.0 L 3175.0 115.0 L 3184.0 115.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/join_game_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/helpers/screen.dart</title>
+</g>
+<g>
+  <path d="M 4344.0 325.0 L 4374.0 325.0 Q 4380.0 325.0 4380.0 319.0 V 294.0 Q 4380.0 288.0 4386.0 288.0 L 4820.0 288.0 L 4850.0 288.0 Q 4856.0 288.0 4856.0 294.0 V 319.0 Q 4856.0 325.0 4862.0 325.0 L 5060.0 325.0 L 5066.0 325.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/cards/card_pile_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/card/card_dimensions.dart</title>
+</g>
+<g>
+  <path d="M 4826.0 255.0 L 4850.0 255.0 Q 4856.0 255.0 4856.0 249.0 V 224.0 Q 4856.0 218.0 4862.0 218.0 L 5280.0 218.0 L 5304.0 218.0 Q 5310.0 218.0 5310.0 224.0 V 249.0 Q 5310.0 255.0 5316.0 255.0 L 5444.0 255.0 L 5450.0 255.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/cards/card_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/cards/card_face_french_widget.dart</title>
+</g>
+<g>
+  <path d="M 3404.0 255.0 L 3436.0 255.0 Q 3442.0 255.0 3442.0 249.0 V 223.0 Q 3442.0 217.0 3448.0 217.0 L 3862.0 217.0 L 3894.0 217.0 Q 3900.0 217.0 3900.0 223.0 V 249.0 Q 3900.0 255.0 3906.0 255.0 L 4118.0 255.0 L 4124.0 255.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/game_over_dialog.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/helpers/dialog.dart</title>
+</g>
+<g>
+  <path d="M 5670.0 115.0 L 5672.0 115.0 Q 5678.0 115.0 5678.0 109.0 V 88.0 Q 5678.0 82.0 5684.0 82.0 L 6024.0 82.0 Q 6030.0 82.0 6030.0 88.0 V 109.0 Q 6030.0 115.0 6036.0 115.0 L 6117.0 115.0 L 6128.0 115.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/models/app/app_theme.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
+</g>
+<g>
+  <path d="M 4826.0 115.0 L 4832.0 115.0 Q 4838.0 115.0 4838.0 109.0 V 88.0 Q 4838.0 82.0 4844.0 82.0 L 5284.0 82.0 Q 5290.0 82.0 5290.0 88.0 V 109.0 Q 5290.0 115.0 5296.0 115.0 L 5439.0 115.0 L 5450.0 115.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/buttons/my_button_rectangle.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/app_theme.dart</title>
 </g>
 <g>
   <path d="M 4344.0 395.0 L 4380.0 395.0 Q 4386.0 395.0 4386.0 401.0 V 422.0 Q 4386.0 428.0 4392.0 428.0 L 4820.0 428.0 L 4856.0 428.0 Q 4862.0 428.0 4862.0 434.0 V 459.0 Q 4862.0 465.0 4868.0 465.0 L 5060.0 465.0 L 5066.0 465.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/widgets/player/status_picker.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/player/player_status.dart</title>
 </g>
 <g>
-  <path d="M 4344.0 115.0 L 4358.0 115.0 Q 4364.0 115.0 4364.0 121.0 V 143.0 Q 4364.0 149.0 4370.0 149.0 L 4820.0 149.0 L 4834.0 149.0 Q 4840.0 149.0 4840.0 155.0 V 179.0 Q 4840.0 185.0 4846.0 185.0 L 5060.0 185.0 L 5066.0 185.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/models/game/game_model.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/game/game_styles.dart</title>
+  <path d="M 1266.0 185.0 L 1306.0 185.0 Q 1312.0 185.0 1312.0 191.0 V 212.0 Q 1312.0 218.0 1318.0 218.0 L 1656.0 218.0 L 1696.0 218.0 Q 1702.0 218.0 1702.0 224.0 V 249.0 Q 1702.0 255.0 1708.0 255.0 L 1870.0 255.0 L 1876.0 255.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/card_scan_helpers.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/tflite_rank_parser.dart</title>
 </g>
 <g>
   <path d="M 1266.0 185.0 L 1304.0 185.0 Q 1310.0 185.0 1310.0 179.0 V 82.0 Q 1310.0 76.0 1316.0 76.0 L 1656.0 76.0 L 1694.0 76.0 Q 1700.0 76.0 1700.0 82.0 V 109.0 Q 1700.0 115.0 1706.0 115.0 L 1870.0 115.0 L 1876.0 115.0" class="edge"/>
@@ -746,76 +737,68 @@
   <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/join_game_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/helpers/edit_box.dart</title>
 </g>
 <g>
-  <path d="M 1266.0 185.0 L 1306.0 185.0 Q 1312.0 185.0 1312.0 191.0 V 212.0 Q 1312.0 218.0 1318.0 218.0 L 1656.0 218.0 L 1696.0 218.0 Q 1702.0 218.0 1702.0 224.0 V 249.0 Q 1702.0 255.0 1708.0 255.0 L 1870.0 255.0 L 1876.0 255.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/card_scan_helpers.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/tflite_rank_parser.dart</title>
+  <path d="M 5286.0 185.0 L 5288.0 185.0 Q 5294.0 185.0 5294.0 179.0 V 86.0 Q 5294.0 80.0 5300.0 80.0 L 5664.0 80.0 L 5666.0 80.0 Q 5672.0 80.0 5672.0 86.0 V 109.0 Q 5672.0 115.0 5678.0 115.0 L 5802.0 115.0 L 5808.0 115.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/models/game/game_styles.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/card/card_model.dart</title>
+</g>
+<g>
+  <path d="M 1266.0 255.0 L 1318.0 255.0 Q 1324.0 255.0 1324.0 249.0 V 156.0 Q 1324.0 150.0 1330.0 150.0 L 1656.0 150.0 L 1708.0 150.0 Q 1714.0 150.0 1714.0 156.0 V 179.0 Q 1714.0 185.0 1720.0 185.0 L 1870.0 185.0 L 1876.0 185.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/models/app/correction_sample_store_factory.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/correction_sample_store.dart</title>
+</g>
+<g>
+  <path d="M 4344.0 115.0 L 4358.0 115.0 Q 4364.0 115.0 4364.0 121.0 V 143.0 Q 4364.0 149.0 4370.0 149.0 L 4820.0 149.0 L 4834.0 149.0 Q 4840.0 149.0 4840.0 155.0 V 179.0 Q 4840.0 185.0 4846.0 185.0 L 5060.0 185.0 L 5066.0 185.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/models/game/game_model.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/game/game_styles.dart</title>
+</g>
+<g>
+  <path d="M 5670.0 255.0 L 5676.0 255.0 Q 5682.0 255.0 5682.0 249.0 V 86.0 Q 5682.0 80.0 5688.0 80.0 L 6022.0 80.0 L 6028.0 80.0 Q 6034.0 80.0 6034.0 86.0 V 109.0 Q 6034.0 115.0 6040.0 115.0 L 6122.0 115.0 L 6128.0 115.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/cards/card_face_french_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
 </g>
 <g>
   <path d="M 3404.0 255.0 L 3426.0 255.0 Q 3432.0 255.0 3432.0 249.0 V 82.0 Q 3432.0 76.0 3438.0 76.0 L 3862.0 76.0 L 3884.0 76.0 Q 3890.0 76.0 3890.0 82.0 V 109.0 Q 3890.0 115.0 3896.0 115.0 L 4118.0 115.0 L 4124.0 115.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/game_over_dialog.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/game/game_model.dart</title>
 </g>
 <g>
-  <path d="M 1268.0 115.0 L 1282.0 115.0 Q 1288.0 115.0 1288.0 121.0 V 280.0 Q 1288.0 286.0 1294.0 286.0 L 1656.0 286.0 L 1670.0 286.0 Q 1676.0 286.0 1676.0 292.0 V 319.0 Q 1676.0 325.0 1682.0 325.0 L 1870.0 325.0 L 1876.0 325.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/start_game_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/screens/game/table_name_flow_helpers.dart</title>
-</g>
-<g>
   <path d="M 3404.0 325.0 L 3438.0 325.0 Q 3444.0 325.0 3444.0 319.0 V 84.0 Q 3444.0 78.0 3450.0 78.0 L 3862.0 78.0 L 3896.0 78.0 Q 3902.0 78.0 3902.0 84.0 V 109.0 Q 3902.0 115.0 3908.0 115.0 L 4118.0 115.0 L 4124.0 115.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/widgets/player/player_zone_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/game/game_model.dart</title>
 </g>
 <g>
-  <path d="M 4344.0 115.0 L 4350.0 115.0 Q 4356.0 115.0 4356.0 121.0 V 355.0 Q 4356.0 361.0 4362.0 361.0 L 4820.0 361.0 L 4826.0 361.0 Q 4832.0 361.0 4832.0 367.0 V 389.0 Q 4832.0 395.0 4838.0 395.0 L 5060.0 395.0 L 5066.0 395.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/models/game/game_model.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/game/game_history.dart</title>
+  <path d="M 1268.0 115.0 L 1282.0 115.0 Q 1288.0 115.0 1288.0 121.0 V 280.0 Q 1288.0 286.0 1294.0 286.0 L 1656.0 286.0 L 1670.0 286.0 Q 1676.0 286.0 1676.0 292.0 V 319.0 Q 1676.0 325.0 1682.0 325.0 L 1870.0 325.0 L 1876.0 325.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/start_game_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/screens/game/table_name_flow_helpers.dart</title>
 </g>
 <g>
   <path d="M 1268.0 115.0 L 1280.0 115.0 Q 1286.0 115.0 1286.0 121.0 V 350.0 Q 1286.0 356.0 1292.0 356.0 L 1656.0 356.0 L 1668.0 356.0 Q 1674.0 356.0 1674.0 362.0 V 389.0 Q 1674.0 395.0 1680.0 395.0 L 1870.0 395.0 L 1876.0 395.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/start_game_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/screens/game/game_style.dart</title>
 </g>
 <g>
-  <path d="M 5286.0 535.0 L 5294.0 535.0 Q 5300.0 535.0 5300.0 529.0 V 157.0 Q 5300.0 151.0 5306.0 151.0 L 5664.0 151.0 L 5672.0 151.0 Q 5678.0 151.0 5678.0 157.0 V 179.0 Q 5678.0 185.0 5684.0 185.0 L 5802.0 185.0 L 5808.0 185.0" class="edge"/>
+  <path d="M 4344.0 115.0 L 4350.0 115.0 Q 4356.0 115.0 4356.0 121.0 V 355.0 Q 4356.0 361.0 4362.0 361.0 L 4820.0 361.0 L 4826.0 361.0 Q 4832.0 361.0 4832.0 367.0 V 389.0 Q 4832.0 395.0 4838.0 395.0 L 5060.0 395.0 L 5066.0 395.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/models/game/game_model.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/game/game_history.dart</title>
+</g>
+<g>
+  <path d="M 5286.0 535.0 L 5294.0 535.0 Q 5300.0 535.0 5300.0 529.0 V 87.0 Q 5300.0 81.0 5306.0 81.0 L 5664.0 81.0 L 5672.0 81.0 Q 5678.0 81.0 5678.0 87.0 V 109.0 Q 5678.0 115.0 5684.0 115.0 L 5802.0 115.0 L 5808.0 115.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/models/card/hand_model.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/card/card_model.dart</title>
 </g>
 <g>
-  <path d="M 5286.0 535.0 L 5294.0 535.0 Q 5300.0 535.0 5300.0 529.0 V 157.0 Q 5300.0 151.0 5306.0 151.0 L 5664.0 151.0 L 5672.0 151.0 Q 5678.0 151.0 5678.0 157.0 V 179.0 Q 5678.0 185.0 5684.0 185.0 L 5802.0 185.0 L 5808.0 185.0" class="edge"/>
+  <path d="M 5286.0 535.0 L 5294.0 535.0 Q 5300.0 535.0 5300.0 529.0 V 87.0 Q 5300.0 81.0 5306.0 81.0 L 5664.0 81.0 L 5672.0 81.0 Q 5678.0 81.0 5678.0 87.0 V 109.0 Q 5678.0 115.0 5684.0 115.0 L 5802.0 115.0 L 5808.0 115.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/models/card/hand_model.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/card/card_model.dart</title>
-</g>
-<g>
-  <path d="M 5286.0 745.0 L 5308.0 745.0 Q 5314.0 745.0 5314.0 739.0 V 299.0 Q 5314.0 293.0 5320.0 293.0 L 5664.0 293.0 L 5686.0 293.0 Q 5692.0 293.0 5692.0 299.0 V 319.0 Q 5692.0 325.0 5698.0 325.0 L 5802.0 325.0 L 5808.0 325.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/cards/card_face_skyjo_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_card_value.dart</title>
 </g>
 <g>
   <path d="M 4344.0 185.0 L 4360.0 185.0 Q 4366.0 185.0 4366.0 191.0 V 423.0 Q 4366.0 429.0 4372.0 429.0 L 4820.0 429.0 L 4836.0 429.0 Q 4842.0 429.0 4842.0 435.0 V 599.0 Q 4842.0 605.0 4848.0 605.0 L 5060.0 605.0 L 5066.0 605.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/widgets/buttons/my_button_round.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/buttons/my_button.dart</title>
 </g>
 <g>
-  <path d="M 5286.0 605.0 L 5298.0 605.0 Q 5304.0 605.0 5304.0 599.0 V 86.0 Q 5304.0 80.0 5310.0 80.0 L 5664.0 80.0 L 5676.0 80.0 Q 5682.0 80.0 5682.0 86.0 V 109.0 Q 5682.0 115.0 5688.0 115.0 L 5802.0 115.0 L 5808.0 115.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/buttons/my_button.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
+  <path d="M 5286.0 745.0 L 5308.0 745.0 Q 5314.0 745.0 5314.0 739.0 V 227.0 Q 5314.0 221.0 5320.0 221.0 L 5664.0 221.0 L 5686.0 221.0 Q 5692.0 221.0 5692.0 227.0 V 249.0 Q 5692.0 255.0 5698.0 255.0 L 5802.0 255.0 L 5808.0 255.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/cards/card_face_skyjo_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_card_value.dart</title>
 </g>
 <g>
-  <path d="M 5286.0 745.0 L 5306.0 745.0 Q 5312.0 745.0 5312.0 739.0 V 227.0 Q 5312.0 221.0 5318.0 221.0 L 5664.0 221.0 L 5684.0 221.0 Q 5690.0 221.0 5690.0 227.0 V 249.0 Q 5690.0 255.0 5696.0 255.0 L 5802.0 255.0 L 5808.0 255.0" class="edge"/>
+  <path d="M 5286.0 745.0 L 5304.0 745.0 Q 5310.0 745.0 5310.0 739.0 V 155.0 Q 5310.0 149.0 5316.0 149.0 L 5664.0 149.0 L 5682.0 149.0 Q 5688.0 149.0 5688.0 155.0 V 179.0 Q 5688.0 185.0 5694.0 185.0 L 5802.0 185.0 L 5808.0 185.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/widgets/cards/card_face_skyjo_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/helpers/my_text.dart</title>
 </g>
 <g>
-  <path d="M 5286.0 745.0 L 5302.0 745.0 Q 5308.0 745.0 5308.0 739.0 V 155.0 Q 5308.0 149.0 5314.0 149.0 L 5664.0 149.0 L 5680.0 149.0 Q 5686.0 149.0 5686.0 155.0 V 179.0 Q 5686.0 185.0 5692.0 185.0 L 5802.0 185.0 L 5808.0 185.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/cards/card_face_skyjo_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/card/card_model.dart</title>
-</g>
-<g>
   <path d="M 5286.0 745.0 L 5300.0 745.0 Q 5306.0 745.0 5306.0 739.0 V 83.0 Q 5306.0 77.0 5312.0 77.0 L 5664.0 77.0 L 5678.0 77.0 Q 5684.0 77.0 5684.0 83.0 V 109.0 Q 5684.0 115.0 5690.0 115.0 L 5802.0 115.0 L 5808.0 115.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/cards/card_face_skyjo_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
-</g>
-<g>
-  <path d="M 5286.0 815.0 L 5310.0 815.0 Q 5316.0 815.0 5316.0 809.0 V 86.0 Q 5316.0 80.0 5322.0 80.0 L 5664.0 80.0 L 5688.0 80.0 Q 5694.0 80.0 5694.0 86.0 V 109.0 Q 5694.0 115.0 5700.0 115.0 L 5802.0 115.0 L 5808.0 115.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/helpers/wiggle_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
+  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/cards/card_face_skyjo_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/card/card_model.dart</title>
 </g>
 <g>
   <path d="M 918.0 115.0 L 942.0 115.0 Q 948.0 115.0 948.0 109.0 V 84.0 Q 948.0 78.0 954.0 78.0 L 1672.0 78.0 Q 1678.0 78.0 1678.0 84.0 V 109.0 Q 1678.0 115.0 1684.0 115.0 L 1867.0 115.0 L 1876.0 115.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/card_scan_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/card_detection.dart</title>
-</g>
-<g>
-  <path d="M 3404.0 115.0 L 3418.0 115.0 Q 3424.0 115.0 3424.0 109.0 V 84.0 Q 3424.0 78.0 3430.0 78.0 L 4346.0 78.0 Q 4352.0 78.0 4352.0 84.0 V 109.0 Q 4352.0 115.0 4358.0 115.0 L 4595.0 115.0 L 4606.0 115.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/helpers/screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/buttons/my_button_rectangle.dart</title>
-</g>
-<g>
-  <path d="M 4826.0 115.0 L 4830.0 115.0 Q 4836.0 115.0 4836.0 109.0 V 84.0 Q 4836.0 78.0 4842.0 78.0 L 5670.0 78.0 Q 5676.0 78.0 5676.0 84.0 V 109.0 Q 5676.0 115.0 5682.0 115.0 L 5797.0 115.0 L 5808.0 115.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/buttons/my_button_rectangle.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
 </g>
 <g>
   <path d="M 2950.0 115.0 L 2966.0 115.0 Q 2972.0 115.0 2972.0 109.0 V 84.0 Q 2972.0 78.0 2978.0 78.0 L 3876.0 78.0 Q 3882.0 78.0 3882.0 84.0 V 109.0 Q 3882.0 115.0 3888.0 115.0 L 4115.0 115.0 L 4124.0 115.0" class="edge"/>
@@ -826,72 +809,88 @@
   <title>/Users/jp/src/github/vteam/fCards/lib/main.dart ▶ /Users/jp/src/github/vteam/fCards/lib/screens/game/start_game_screen.dart</title>
 </g>
 <g>
-  <path d="M 1662.0 185.0 L 1678.0 185.0 Q 1684.0 185.0 1684.0 191.0 V 211.0 Q 1684.0 217.0 1690.0 217.0 L 2090.0 217.0 L 2196.0 217.0 Q 2202.0 217.0 2202.0 211.0 V 153.0 Q 2202.0 147.0 2208.0 147.0 L 2506.0 147.0 L 2522.0 147.0 Q 2528.0 147.0 2528.0 153.0 V 249.0 Q 2528.0 255.0 2534.0 255.0 L 2724.0 255.0 L 2730.0 255.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/start_screen_room_section.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/helpers/table_widget.dart</title>
-</g>
-<g>
-  <path d="M 3404.0 325.0 L 3444.0 325.0 Q 3450.0 325.0 3450.0 319.0 V 226.0 Q 3450.0 220.0 3456.0 220.0 L 3862.0 220.0 L 4338.0 220.0 L 4378.0 220.0 Q 4384.0 220.0 4384.0 226.0 V 249.0 Q 4384.0 255.0 4390.0 255.0 L 4600.0 255.0 L 4606.0 255.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/player/player_zone_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/cards/card_widget.dart</title>
-</g>
-<g>
-  <path d="M 916.0 255.0 L 954.0 255.0 Q 960.0 255.0 960.0 261.0 V 280.0 Q 960.0 286.0 966.0 286.0 L 1260.0 286.0 L 1656.0 286.0 L 1694.0 286.0 Q 1700.0 286.0 1700.0 292.0 V 319.0 Q 1700.0 325.0 1706.0 325.0 L 1870.0 325.0 L 1876.0 325.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/create_table_name_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/screens/game/table_name_flow_helpers.dart</title>
-</g>
-<g>
-  <path d="M 4826.0 395.0 L 4872.0 395.0 Q 4878.0 395.0 4878.0 389.0 V 298.0 Q 4878.0 292.0 4884.0 292.0 L 5280.0 292.0 L 5664.0 292.0 L 5710.0 292.0 Q 5716.0 292.0 5716.0 298.0 V 319.0 Q 5716.0 325.0 5722.0 325.0 L 5802.0 325.0 L 5808.0 325.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/models/game/deck_model.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_card_value.dart</title>
+  <path d="M 3404.0 115.0 L 3418.0 115.0 Q 3424.0 115.0 3424.0 109.0 V 84.0 Q 3424.0 78.0 3430.0 78.0 L 4346.0 78.0 Q 4352.0 78.0 4352.0 84.0 V 109.0 Q 4352.0 115.0 4358.0 115.0 L 4595.0 115.0 L 4606.0 115.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/helpers/screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/buttons/my_button_rectangle.dart</title>
 </g>
 <g>
   <path d="M 3404.0 255.0 L 3432.0 255.0 Q 3438.0 255.0 3438.0 249.0 V 157.0 Q 3438.0 151.0 3444.0 151.0 L 3862.0 151.0 L 4338.0 151.0 L 4366.0 151.0 Q 4372.0 151.0 4372.0 157.0 V 179.0 Q 4372.0 185.0 4378.0 185.0 L 4600.0 185.0 L 4606.0 185.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/game_over_dialog.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/game/backend_model.dart</title>
 </g>
 <g>
+  <path d="M 916.0 255.0 L 954.0 255.0 Q 960.0 255.0 960.0 261.0 V 280.0 Q 960.0 286.0 966.0 286.0 L 1260.0 286.0 L 1656.0 286.0 L 1694.0 286.0 Q 1700.0 286.0 1700.0 292.0 V 319.0 Q 1700.0 325.0 1706.0 325.0 L 1870.0 325.0 L 1876.0 325.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/create_table_name_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/screens/game/table_name_flow_helpers.dart</title>
+</g>
+<g>
+  <path d="M 1662.0 185.0 L 1678.0 185.0 Q 1684.0 185.0 1684.0 191.0 V 211.0 Q 1684.0 217.0 1690.0 217.0 L 2090.0 217.0 L 2196.0 217.0 Q 2202.0 217.0 2202.0 211.0 V 153.0 Q 2202.0 147.0 2208.0 147.0 L 2506.0 147.0 L 2522.0 147.0 Q 2528.0 147.0 2528.0 153.0 V 249.0 Q 2528.0 255.0 2534.0 255.0 L 2724.0 255.0 L 2730.0 255.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/start_screen_room_section.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/helpers/table_widget.dart</title>
+</g>
+<g>
   <path d="M 918.0 115.0 L 930.0 115.0 Q 936.0 115.0 936.0 121.0 V 140.0 Q 936.0 146.0 942.0 146.0 L 1260.0 146.0 L 1656.0 146.0 L 1668.0 146.0 Q 1674.0 146.0 1674.0 152.0 V 179.0 Q 1674.0 185.0 1680.0 185.0 L 1870.0 185.0 L 1876.0 185.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/card_scan_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/correction_sample_store.dart</title>
 </g>
 <g>
-  <path d="M 4826.0 255.0 L 4848.0 255.0 Q 4854.0 255.0 4854.0 249.0 V 158.0 Q 4854.0 152.0 4860.0 152.0 L 5280.0 152.0 L 5664.0 152.0 L 5686.0 152.0 Q 5692.0 152.0 5692.0 158.0 V 179.0 Q 5692.0 185.0 5698.0 185.0 L 5802.0 185.0 L 5808.0 185.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/cards/card_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/card/card_model.dart</title>
-</g>
-<g>
-  <path d="M 4826.0 255.0 L 4844.0 255.0 Q 4850.0 255.0 4850.0 249.0 V 86.0 Q 4850.0 80.0 4856.0 80.0 L 5280.0 80.0 L 5664.0 80.0 L 5682.0 80.0 Q 5688.0 80.0 5688.0 86.0 V 109.0 Q 5688.0 115.0 5694.0 115.0 L 5802.0 115.0 L 5808.0 115.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/cards/card_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
-</g>
-<g>
-  <path d="M 918.0 115.0 L 924.0 115.0 Q 930.0 115.0 930.0 121.0 V 210.0 Q 930.0 216.0 936.0 216.0 L 1260.0 216.0 L 1656.0 216.0 L 1662.0 216.0 Q 1668.0 216.0 1668.0 222.0 V 249.0 Q 1668.0 255.0 1674.0 255.0 L 1870.0 255.0 L 1876.0 255.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/card_scan_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/tflite_rank_parser.dart</title>
-</g>
-<g>
-  <path d="M 4826.0 325.0 L 4862.0 325.0 Q 4868.0 325.0 4868.0 319.0 V 156.0 Q 4868.0 150.0 4874.0 150.0 L 5280.0 150.0 L 5664.0 150.0 L 5700.0 150.0 Q 5706.0 150.0 5706.0 156.0 V 179.0 Q 5706.0 185.0 5712.0 185.0 L 5802.0 185.0 L 5808.0 185.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/models/player/player_model.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/card/card_model.dart</title>
+  <path d="M 3404.0 325.0 L 3444.0 325.0 Q 3450.0 325.0 3450.0 319.0 V 226.0 Q 3450.0 220.0 3456.0 220.0 L 3862.0 220.0 L 4338.0 220.0 L 4378.0 220.0 Q 4384.0 220.0 4384.0 226.0 V 249.0 Q 4384.0 255.0 4390.0 255.0 L 4600.0 255.0 L 4606.0 255.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/player/player_zone_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/cards/card_widget.dart</title>
 </g>
 <g>
   <path d="M 3404.0 255.0 L 3428.0 255.0 Q 3434.0 255.0 3434.0 249.0 V 85.0 Q 3434.0 79.0 3440.0 79.0 L 3862.0 79.0 L 4338.0 79.0 L 4362.0 79.0 Q 4368.0 79.0 4368.0 85.0 V 109.0 Q 4368.0 115.0 4374.0 115.0 L 4600.0 115.0 L 4606.0 115.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/game_over_dialog.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/buttons/my_button_rectangle.dart</title>
 </g>
 <g>
-  <path d="M 4826.0 395.0 L 4870.0 395.0 Q 4876.0 395.0 4876.0 389.0 V 156.0 Q 4876.0 150.0 4882.0 150.0 L 5280.0 150.0 L 5664.0 150.0 L 5708.0 150.0 Q 5714.0 150.0 5714.0 156.0 V 179.0 Q 5714.0 185.0 5720.0 185.0 L 5802.0 185.0 L 5808.0 185.0" class="edge"/>
+  <path d="M 4826.0 255.0 L 4844.0 255.0 Q 4850.0 255.0 4850.0 249.0 V 86.0 Q 4850.0 80.0 4856.0 80.0 L 5280.0 80.0 L 5664.0 80.0 L 5682.0 80.0 Q 5688.0 80.0 5688.0 86.0 V 109.0 Q 5688.0 115.0 5694.0 115.0 L 5802.0 115.0 L 5808.0 115.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/cards/card_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/card/card_model.dart</title>
+</g>
+<g>
+  <path d="M 918.0 115.0 L 924.0 115.0 Q 930.0 115.0 930.0 121.0 V 210.0 Q 930.0 216.0 936.0 216.0 L 1260.0 216.0 L 1656.0 216.0 L 1662.0 216.0 Q 1668.0 216.0 1668.0 222.0 V 249.0 Q 1668.0 255.0 1674.0 255.0 L 1870.0 255.0 L 1876.0 255.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/card_scan_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/tflite_rank_parser.dart</title>
+</g>
+<g>
+  <path d="M 4826.0 395.0 L 4872.0 395.0 Q 4878.0 395.0 4878.0 389.0 V 228.0 Q 4878.0 222.0 4884.0 222.0 L 5280.0 222.0 L 5664.0 222.0 L 5710.0 222.0 Q 5716.0 222.0 5716.0 228.0 V 249.0 Q 5716.0 255.0 5722.0 255.0 L 5802.0 255.0 L 5808.0 255.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/models/game/deck_model.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_card_value.dart</title>
+</g>
+<g>
+  <path d="M 4826.0 325.0 L 4858.0 325.0 Q 4864.0 325.0 4864.0 319.0 V 86.0 Q 4864.0 80.0 4870.0 80.0 L 5280.0 80.0 L 5664.0 80.0 L 5696.0 80.0 Q 5702.0 80.0 5702.0 86.0 V 109.0 Q 5702.0 115.0 5708.0 115.0 L 5802.0 115.0 L 5808.0 115.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/models/player/player_model.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/card/card_model.dart</title>
+</g>
+<g>
+  <path d="M 4826.0 395.0 L 4868.0 395.0 Q 4874.0 395.0 4874.0 389.0 V 86.0 Q 4874.0 80.0 4880.0 80.0 L 5280.0 80.0 L 5664.0 80.0 L 5706.0 80.0 Q 5712.0 80.0 5712.0 86.0 V 109.0 Q 5712.0 115.0 5718.0 115.0 L 5802.0 115.0 L 5808.0 115.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/models/game/deck_model.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/card/card_model.dart</title>
 </g>
 <g>
-  <path d="M 4826.0 395.0 L 4870.0 395.0 Q 4876.0 395.0 4876.0 389.0 V 156.0 Q 4876.0 150.0 4882.0 150.0 L 5280.0 150.0 L 5664.0 150.0 L 5708.0 150.0 Q 5714.0 150.0 5714.0 156.0 V 179.0 Q 5714.0 185.0 5720.0 185.0 L 5802.0 185.0 L 5808.0 185.0" class="edge"/>
+  <path d="M 4826.0 395.0 L 4868.0 395.0 Q 4874.0 395.0 4874.0 389.0 V 86.0 Q 4874.0 80.0 4880.0 80.0 L 5280.0 80.0 L 5664.0 80.0 L 5706.0 80.0 Q 5712.0 80.0 5712.0 86.0 V 109.0 Q 5712.0 115.0 5718.0 115.0 L 5802.0 115.0 L 5808.0 115.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/models/game/deck_model.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/card/card_model.dart</title>
+</g>
+<g>
+  <path d="M 5286.0 605.0 L 5298.0 605.0 Q 5304.0 605.0 5304.0 599.0 V 86.0 Q 5304.0 80.0 5310.0 80.0 L 5664.0 80.0 L 6022.0 80.0 L 6034.0 80.0 Q 6040.0 80.0 6040.0 86.0 V 109.0 Q 6040.0 115.0 6046.0 115.0 L 6122.0 115.0 L 6128.0 115.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/buttons/my_button.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
+</g>
+<g>
+  <path d="M 5286.0 745.0 L 5302.0 745.0 Q 5308.0 745.0 5308.0 739.0 V 89.0 Q 5308.0 83.0 5314.0 83.0 L 5664.0 83.0 L 6022.0 83.0 L 6038.0 83.0 Q 6044.0 83.0 6044.0 89.0 V 109.0 Q 6044.0 115.0 6050.0 115.0 L 6122.0 115.0 L 6128.0 115.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/cards/card_face_skyjo_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
+</g>
+<g>
+  <path d="M 5286.0 815.0 L 5310.0 815.0 Q 5316.0 815.0 5316.0 809.0 V 86.0 Q 5316.0 80.0 5322.0 80.0 L 5664.0 80.0 L 6022.0 80.0 L 6046.0 80.0 Q 6052.0 80.0 6052.0 86.0 V 109.0 Q 6052.0 115.0 6058.0 115.0 L 6122.0 115.0 L 6128.0 115.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/helpers/wiggle_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
 </g>
 <g>
   <path d="M 1662.0 185.0 L 1684.0 185.0 Q 1690.0 185.0 1690.0 179.0 V 155.0 Q 1690.0 149.0 1696.0 149.0 L 2090.0 149.0 L 2506.0 149.0 L 2944.0 149.0 L 2966.0 149.0 Q 2972.0 149.0 2972.0 155.0 V 179.0 Q 2972.0 185.0 2978.0 185.0 L 3178.0 185.0 L 3184.0 185.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/start_screen_room_section.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/helpers/edit_box.dart</title>
 </g>
 <g>
-  <path d="M 1268.0 115.0 L 1304.0 115.0 Q 1310.0 115.0 1310.0 109.0 V 80.0 Q 1310.0 74.0 1316.0 74.0 L 2534.0 74.0 Q 2540.0 74.0 2540.0 80.0 V 109.0 Q 2540.0 115.0 2546.0 115.0 L 2721.0 115.0 L 2730.0 115.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/start_game_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/screens/game/game_screen.dart</title>
+  <path d="M 3404.0 115.0 L 3416.0 115.0 Q 3422.0 115.0 3422.0 109.0 V 80.0 Q 3422.0 74.0 3428.0 74.0 L 4830.0 74.0 Q 4836.0 74.0 4836.0 80.0 V 109.0 Q 4836.0 115.0 4842.0 115.0 L 5055.0 115.0 L 5066.0 115.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/helpers/screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/utils/logger.dart</title>
 </g>
 <g>
   <path d="M 2514.0 115.0 L 2538.0 115.0 Q 2544.0 115.0 2544.0 109.0 V 80.0 Q 2544.0 74.0 2550.0 74.0 L 3882.0 74.0 Q 3888.0 74.0 3888.0 80.0 V 109.0 Q 3888.0 115.0 3894.0 115.0 L 4115.0 115.0 L 4124.0 115.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/join_game_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/game/game_model.dart</title>
 </g>
 <g>
-  <path d="M 3404.0 115.0 L 3416.0 115.0 Q 3422.0 115.0 3422.0 109.0 V 80.0 Q 3422.0 74.0 3428.0 74.0 L 4830.0 74.0 Q 4836.0 74.0 4836.0 80.0 V 109.0 Q 4836.0 115.0 4842.0 115.0 L 5055.0 115.0 L 5066.0 115.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/helpers/screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/utils/logger.dart</title>
+  <path d="M 1268.0 115.0 L 1304.0 115.0 Q 1310.0 115.0 1310.0 109.0 V 80.0 Q 1310.0 74.0 1316.0 74.0 L 2534.0 74.0 Q 2540.0 74.0 2540.0 80.0 V 109.0 Q 2540.0 115.0 2546.0 115.0 L 2721.0 115.0 L 2730.0 115.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/start_game_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/screens/game/game_screen.dart</title>
+</g>
+<g>
+  <path d="M 4826.0 115.0 L 4830.0 115.0 Q 4836.0 115.0 4836.0 109.0 V 80.0 Q 4836.0 74.0 4842.0 74.0 L 6028.0 74.0 Q 6034.0 74.0 6034.0 80.0 V 109.0 Q 6034.0 115.0 6040.0 115.0 L 6117.0 115.0 L 6128.0 115.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/buttons/my_button_rectangle.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
 </g>
 <g>
   <path d="M 1268.0 115.0 L 1288.0 115.0 Q 1294.0 115.0 1294.0 121.0 V 141.0 Q 1294.0 147.0 1300.0 147.0 L 1656.0 147.0 L 2090.0 147.0 L 2506.0 147.0 L 2526.0 147.0 Q 2532.0 147.0 2532.0 153.0 V 179.0 Q 2532.0 185.0 2538.0 185.0 L 2724.0 185.0 L 2730.0 185.0" class="edge"/>
@@ -902,88 +901,72 @@
   <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/game_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/game/backend_model.dart</title>
 </g>
 <g>
-  <path d="M 4344.0 185.0 L 4362.0 185.0 Q 4368.0 185.0 4368.0 179.0 V 87.0 Q 4368.0 81.0 4374.0 81.0 L 4820.0 81.0 L 5280.0 81.0 L 5664.0 81.0 L 5682.0 81.0 Q 5688.0 81.0 5688.0 87.0 V 109.0 Q 5688.0 115.0 5694.0 115.0 L 5802.0 115.0 L 5808.0 115.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/buttons/my_button_round.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
+  <path d="M 3404.0 115.0 L 3408.0 115.0 Q 3414.0 115.0 3414.0 121.0 V 213.0 Q 3414.0 219.0 3420.0 219.0 L 3862.0 219.0 L 4338.0 219.0 L 4820.0 219.0 L 4824.0 219.0 Q 4830.0 219.0 4830.0 225.0 V 249.0 Q 4830.0 255.0 4836.0 255.0 L 5060.0 255.0 L 5066.0 255.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/helpers/screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/auth_service.dart</title>
 </g>
 <g>
-  <path d="M 4344.0 395.0 L 4378.0 395.0 Q 4384.0 395.0 4384.0 389.0 V 228.0 Q 4384.0 222.0 4390.0 222.0 L 4820.0 222.0 L 5280.0 222.0 L 5664.0 222.0 L 5698.0 222.0 Q 5704.0 222.0 5704.0 228.0 V 249.0 Q 5704.0 255.0 5710.0 255.0 L 5802.0 255.0 L 5808.0 255.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/player/status_picker.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/helpers/my_text.dart</title>
-</g>
-<g>
-  <path d="M 4344.0 255.0 L 4366.0 255.0 Q 4372.0 255.0 4372.0 249.0 V 86.0 Q 4372.0 80.0 4378.0 80.0 L 4820.0 80.0 L 5280.0 80.0 L 5664.0 80.0 L 5686.0 80.0 Q 5692.0 80.0 5692.0 86.0 V 109.0 Q 5692.0 115.0 5698.0 115.0 L 5802.0 115.0 L 5808.0 115.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/helpers/dialog.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
+  <path d="M 4826.0 255.0 L 4846.0 255.0 Q 4852.0 255.0 4852.0 249.0 V 88.0 Q 4852.0 82.0 4858.0 82.0 L 5280.0 82.0 L 5664.0 82.0 L 6022.0 82.0 L 6042.0 82.0 Q 6048.0 82.0 6048.0 88.0 V 109.0 Q 6048.0 115.0 6054.0 115.0 L 6122.0 115.0 L 6128.0 115.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/cards/card_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
 </g>
 <g>
   <path d="M 2950.0 115.0 L 2958.0 115.0 Q 2964.0 115.0 2964.0 121.0 V 214.0 Q 2964.0 220.0 2970.0 220.0 L 3398.0 220.0 L 3862.0 220.0 L 4338.0 220.0 L 4346.0 220.0 Q 4352.0 220.0 4352.0 226.0 V 249.0 Q 4352.0 255.0 4358.0 255.0 L 4600.0 255.0 L 4606.0 255.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/game_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/cards/card_widget.dart</title>
 </g>
 <g>
-  <path d="M 3404.0 115.0 L 3408.0 115.0 Q 3414.0 115.0 3414.0 121.0 V 213.0 Q 3414.0 219.0 3420.0 219.0 L 3862.0 219.0 L 4338.0 219.0 L 4820.0 219.0 L 4824.0 219.0 Q 4830.0 219.0 4830.0 225.0 V 249.0 Q 4830.0 255.0 4836.0 255.0 L 5060.0 255.0 L 5066.0 255.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/helpers/screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/auth_service.dart</title>
-</g>
-<g>
-  <path d="M 4344.0 325.0 L 4370.0 325.0 Q 4376.0 325.0 4376.0 319.0 V 158.0 Q 4376.0 152.0 4382.0 152.0 L 4820.0 152.0 L 5280.0 152.0 L 5664.0 152.0 L 5690.0 152.0 Q 5696.0 152.0 5696.0 158.0 V 179.0 Q 5696.0 185.0 5702.0 185.0 L 5802.0 185.0 L 5808.0 185.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/cards/card_pile_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/card/card_model.dart</title>
-</g>
-<g>
-  <path d="M 4344.0 325.0 L 4368.0 325.0 Q 4374.0 325.0 4374.0 319.0 V 86.0 Q 4374.0 80.0 4380.0 80.0 L 4820.0 80.0 L 5280.0 80.0 L 5664.0 80.0 L 5688.0 80.0 Q 5694.0 80.0 5694.0 86.0 V 109.0 Q 5694.0 115.0 5700.0 115.0 L 5802.0 115.0 L 5808.0 115.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/cards/card_pile_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
-</g>
-<g>
-  <path d="M 4344.0 465.0 L 4384.0 465.0 Q 4390.0 465.0 4390.0 459.0 V 227.0 Q 4390.0 221.0 4396.0 221.0 L 4820.0 221.0 L 5280.0 221.0 L 5664.0 221.0 L 5704.0 221.0 Q 5710.0 221.0 5710.0 227.0 V 249.0 Q 5710.0 255.0 5716.0 255.0 L 5802.0 255.0 L 5808.0 255.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/helpers/date_importance.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/helpers/my_text.dart</title>
-</g>
-<g>
   <path d="M 2950.0 325.0 L 2980.0 325.0 Q 2986.0 325.0 2986.0 319.0 V 85.0 Q 2986.0 79.0 2992.0 79.0 L 3398.0 79.0 L 3862.0 79.0 L 4338.0 79.0 L 4368.0 79.0 Q 4374.0 79.0 4374.0 85.0 V 109.0 Q 4374.0 115.0 4380.0 115.0 L 4600.0 115.0 L 4606.0 115.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/widgets/helpers/wizard_footer.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/buttons/my_button_rectangle.dart</title>
 </g>
 <g>
-  <path d="M 4344.0 395.0 L 4376.0 395.0 Q 4382.0 395.0 4382.0 389.0 V 86.0 Q 4382.0 80.0 4388.0 80.0 L 4820.0 80.0 L 5280.0 80.0 L 5664.0 80.0 L 5696.0 80.0 Q 5702.0 80.0 5702.0 86.0 V 109.0 Q 5702.0 115.0 5708.0 115.0 L 5802.0 115.0 L 5808.0 115.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/player/status_picker.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
+  <path d="M 4344.0 395.0 L 4378.0 395.0 Q 4384.0 395.0 4384.0 389.0 V 156.0 Q 4384.0 150.0 4390.0 150.0 L 4820.0 150.0 L 5280.0 150.0 L 5664.0 150.0 L 5698.0 150.0 Q 5704.0 150.0 5704.0 156.0 V 179.0 Q 5704.0 185.0 5710.0 185.0 L 5802.0 185.0 L 5808.0 185.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/player/status_picker.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/helpers/my_text.dart</title>
 </g>
 <g>
-  <path d="M 4344.0 465.0 L 4382.0 465.0 Q 4388.0 465.0 4388.0 459.0 V 85.0 Q 4388.0 79.0 4394.0 79.0 L 4820.0 79.0 L 5280.0 79.0 L 5664.0 79.0 L 5702.0 79.0 Q 5708.0 79.0 5708.0 85.0 V 109.0 Q 5708.0 115.0 5714.0 115.0 L 5802.0 115.0 L 5808.0 115.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/helpers/date_importance.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
+  <path d="M 4344.0 325.0 L 4368.0 325.0 Q 4374.0 325.0 4374.0 319.0 V 86.0 Q 4374.0 80.0 4380.0 80.0 L 4820.0 80.0 L 5280.0 80.0 L 5664.0 80.0 L 5688.0 80.0 Q 5694.0 80.0 5694.0 86.0 V 109.0 Q 5694.0 115.0 5700.0 115.0 L 5802.0 115.0 L 5808.0 115.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/cards/card_pile_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/card/card_model.dart</title>
+</g>
+<g>
+  <path d="M 4344.0 465.0 L 4384.0 465.0 Q 4390.0 465.0 4390.0 459.0 V 155.0 Q 4390.0 149.0 4396.0 149.0 L 4820.0 149.0 L 5280.0 149.0 L 5664.0 149.0 L 5704.0 149.0 Q 5710.0 149.0 5710.0 155.0 V 179.0 Q 5710.0 185.0 5716.0 185.0 L 5802.0 185.0 L 5808.0 185.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/helpers/date_importance.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/helpers/my_text.dart</title>
 </g>
 <g>
   <path d="M 1662.0 675.0 L 1716.0 675.0 Q 1722.0 675.0 1722.0 669.0 V 155.0 Q 1722.0 149.0 1728.0 149.0 L 2090.0 149.0 L 2506.0 149.0 L 2944.0 149.0 L 2998.0 149.0 Q 3004.0 149.0 3004.0 155.0 V 179.0 Q 3004.0 185.0 3010.0 185.0 L 3178.0 185.0 L 3184.0 185.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/start_screen_player_name_input.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/helpers/edit_box.dart</title>
 </g>
 <g>
-  <path d="M 1268.0 115.0 L 1302.0 115.0 Q 1308.0 115.0 1308.0 109.0 V 76.0 Q 1308.0 70.0 1314.0 70.0 L 2974.0 70.0 Q 2980.0 70.0 2980.0 76.0 V 109.0 Q 2980.0 115.0 2986.0 115.0 L 3175.0 115.0 L 3184.0 115.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/start_game_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/helpers/screen.dart</title>
-</g>
-<g>
   <path d="M 2514.0 115.0 L 2536.0 115.0 Q 2542.0 115.0 2542.0 109.0 V 76.0 Q 2542.0 70.0 2548.0 70.0 L 4360.0 70.0 Q 4366.0 70.0 4366.0 76.0 V 109.0 Q 4366.0 115.0 4372.0 115.0 L 4595.0 115.0 L 4606.0 115.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/join_game_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/buttons/my_button_rectangle.dart</title>
 </g>
 <g>
-  <path d="M 3868.0 255.0 L 3888.0 255.0 Q 3894.0 255.0 3894.0 249.0 V 226.0 Q 3894.0 220.0 3900.0 220.0 L 4338.0 220.0 L 4820.0 220.0 L 5280.0 220.0 L 5664.0 220.0 L 5684.0 220.0 Q 5690.0 220.0 5690.0 226.0 V 249.0 Q 5690.0 255.0 5696.0 255.0 L 5802.0 255.0 L 5808.0 255.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/player/player_header_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/helpers/my_text.dart</title>
-</g>
-<g>
-  <path d="M 3868.0 115.0 L 3872.0 115.0 Q 3878.0 115.0 3878.0 109.0 V 76.0 Q 3878.0 70.0 3884.0 70.0 L 5670.0 70.0 Q 5676.0 70.0 5676.0 76.0 V 109.0 Q 5676.0 115.0 5682.0 115.0 L 5797.0 115.0 L 5808.0 115.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/helpers/input_keyboard.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
+  <path d="M 1268.0 115.0 L 1302.0 115.0 Q 1308.0 115.0 1308.0 109.0 V 76.0 Q 1308.0 70.0 1314.0 70.0 L 2974.0 70.0 Q 2980.0 70.0 2980.0 76.0 V 109.0 Q 2980.0 115.0 2986.0 115.0 L 3175.0 115.0 L 3184.0 115.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/start_game_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/helpers/screen.dart</title>
 </g>
 <g>
   <path d="M 3404.0 115.0 L 3414.0 115.0 Q 3420.0 115.0 3420.0 109.0 V 76.0 Q 3420.0 70.0 3426.0 70.0 L 5292.0 70.0 Q 5298.0 70.0 5298.0 76.0 V 109.0 Q 5298.0 115.0 5304.0 115.0 L 5439.0 115.0 L 5450.0 115.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/widgets/helpers/screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/app_theme.dart</title>
 </g>
 <g>
-  <path d="M 3868.0 255.0 L 3884.0 255.0 Q 3890.0 255.0 3890.0 261.0 V 286.0 Q 3890.0 292.0 3896.0 292.0 L 4338.0 292.0 L 4820.0 292.0 L 5280.0 292.0 L 5664.0 292.0 L 5680.0 292.0 Q 5686.0 292.0 5686.0 298.0 V 319.0 Q 5686.0 325.0 5692.0 325.0 L 5802.0 325.0 L 5808.0 325.0" class="edge"/>
+  <path d="M 3868.0 255.0 L 3888.0 255.0 Q 3894.0 255.0 3894.0 249.0 V 226.0 Q 3894.0 220.0 3900.0 220.0 L 4338.0 220.0 L 4820.0 220.0 L 5280.0 220.0 L 5664.0 220.0 L 5684.0 220.0 Q 5690.0 220.0 5690.0 226.0 V 249.0 Q 5690.0 255.0 5696.0 255.0 L 5802.0 255.0 L 5808.0 255.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/widgets/player/player_header_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_card_value.dart</title>
 </g>
 <g>
-  <path d="M 2514.0 115.0 L 2526.0 115.0 Q 2532.0 115.0 2532.0 121.0 V 144.0 Q 2532.0 150.0 2538.0 150.0 L 2944.0 150.0 L 3398.0 150.0 L 3862.0 150.0 L 4338.0 150.0 L 4350.0 150.0 Q 4356.0 150.0 4356.0 156.0 V 179.0 Q 4356.0 185.0 4362.0 185.0 L 4600.0 185.0 L 4606.0 185.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/join_game_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/game/backend_model.dart</title>
+  <path d="M 4344.0 185.0 L 4362.0 185.0 Q 4368.0 185.0 4368.0 179.0 V 87.0 Q 4368.0 81.0 4374.0 81.0 L 4820.0 81.0 L 5280.0 81.0 L 5664.0 81.0 L 6022.0 81.0 L 6040.0 81.0 Q 6046.0 81.0 6046.0 87.0 V 109.0 Q 6046.0 115.0 6052.0 115.0 L 6122.0 115.0 L 6128.0 115.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/buttons/my_button_round.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
 </g>
 <g>
   <path d="M 3404.0 185.0 L 3422.0 185.0 Q 3428.0 185.0 3428.0 179.0 V 85.0 Q 3428.0 79.0 3434.0 79.0 L 3862.0 79.0 L 4338.0 79.0 L 4820.0 79.0 L 5280.0 79.0 L 5298.0 79.0 Q 5304.0 79.0 5304.0 85.0 V 109.0 Q 5304.0 115.0 5310.0 115.0 L 5444.0 115.0 L 5450.0 115.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/widgets/helpers/edit_box.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/app_theme.dart</title>
 </g>
 <g>
-  <path d="M 3868.0 255.0 L 3882.0 255.0 Q 3888.0 255.0 3888.0 249.0 V 84.0 Q 3888.0 78.0 3894.0 78.0 L 4338.0 78.0 L 4820.0 78.0 L 5280.0 78.0 L 5664.0 78.0 L 5678.0 78.0 Q 5684.0 78.0 5684.0 84.0 V 109.0 Q 5684.0 115.0 5690.0 115.0 L 5802.0 115.0 L 5808.0 115.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/player/player_header_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
+  <path d="M 2514.0 115.0 L 2526.0 115.0 Q 2532.0 115.0 2532.0 121.0 V 144.0 Q 2532.0 150.0 2538.0 150.0 L 2944.0 150.0 L 3398.0 150.0 L 3862.0 150.0 L 4338.0 150.0 L 4350.0 150.0 Q 4356.0 150.0 4356.0 156.0 V 179.0 Q 4356.0 185.0 4362.0 185.0 L 4600.0 185.0 L 4606.0 185.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/join_game_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/game/backend_model.dart</title>
+</g>
+<g>
+  <path d="M 3868.0 255.0 L 3884.0 255.0 Q 3890.0 255.0 3890.0 249.0 V 154.0 Q 3890.0 148.0 3896.0 148.0 L 4338.0 148.0 L 4820.0 148.0 L 5280.0 148.0 L 5664.0 148.0 L 5680.0 148.0 Q 5686.0 148.0 5686.0 154.0 V 179.0 Q 5686.0 185.0 5692.0 185.0 L 5802.0 185.0 L 5808.0 185.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/player/player_header_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/helpers/my_text.dart</title>
+</g>
+<g>
+  <path d="M 4344.0 255.0 L 4366.0 255.0 Q 4372.0 255.0 4372.0 249.0 V 86.0 Q 4372.0 80.0 4378.0 80.0 L 4820.0 80.0 L 5280.0 80.0 L 5664.0 80.0 L 6022.0 80.0 L 6044.0 80.0 Q 6050.0 80.0 6050.0 86.0 V 109.0 Q 6050.0 115.0 6056.0 115.0 L 6122.0 115.0 L 6128.0 115.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/helpers/dialog.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
 </g>
 <g>
   <path d="M 2950.0 115.0 L 2954.0 115.0 Q 2960.0 115.0 2960.0 121.0 V 286.0 Q 2960.0 292.0 2966.0 292.0 L 3398.0 292.0 L 3862.0 292.0 L 4338.0 292.0 L 4820.0 292.0 L 4824.0 292.0 Q 4830.0 292.0 4830.0 298.0 V 319.0 Q 4830.0 325.0 4836.0 325.0 L 5060.0 325.0 L 5066.0 325.0" class="edge"/>
@@ -994,24 +977,28 @@
   <title>/Users/jp/src/github/vteam/fCards/lib/widgets/helpers/screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_animation.dart</title>
 </g>
 <g>
-  <path d="M 3868.0 325.0 L 3892.0 325.0 Q 3898.0 325.0 3898.0 319.0 V 86.0 Q 3898.0 80.0 3904.0 80.0 L 4338.0 80.0 L 4820.0 80.0 L 5280.0 80.0 L 5664.0 80.0 L 5688.0 80.0 Q 5694.0 80.0 5694.0 86.0 V 109.0 Q 5694.0 115.0 5700.0 115.0 L 5802.0 115.0 L 5808.0 115.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/player/player_zone_cta_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
+  <path d="M 4344.0 325.0 L 4370.0 325.0 Q 4376.0 325.0 4376.0 319.0 V 88.0 Q 4376.0 82.0 4382.0 82.0 L 4820.0 82.0 L 5280.0 82.0 L 5664.0 82.0 L 6022.0 82.0 L 6048.0 82.0 Q 6054.0 82.0 6054.0 88.0 V 109.0 Q 6054.0 115.0 6060.0 115.0 L 6122.0 115.0 L 6128.0 115.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/cards/card_pile_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
 </g>
 <g>
   <path d="M 2096.0 395.0 L 2104.0 395.0 Q 2110.0 395.0 2110.0 389.0 V 82.0 Q 2110.0 76.0 2116.0 76.0 L 2506.0 76.0 L 2944.0 76.0 L 3398.0 76.0 L 3862.0 76.0 L 3870.0 76.0 Q 3876.0 76.0 3876.0 82.0 V 109.0 Q 3876.0 115.0 3882.0 115.0 L 4118.0 115.0 L 4124.0 115.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/game_style.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/game/game_model.dart</title>
 </g>
 <g>
+  <path d="M 4344.0 395.0 L 4376.0 395.0 Q 4382.0 395.0 4382.0 389.0 V 88.0 Q 4382.0 82.0 4388.0 82.0 L 4820.0 82.0 L 5280.0 82.0 L 5664.0 82.0 L 6022.0 82.0 L 6054.0 82.0 Q 6060.0 82.0 6060.0 88.0 V 109.0 Q 6060.0 115.0 6066.0 115.0 L 6122.0 115.0 L 6128.0 115.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/player/status_picker.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
+</g>
+<g>
+  <path d="M 4344.0 465.0 L 4382.0 465.0 Q 4388.0 465.0 4388.0 459.0 V 87.0 Q 4388.0 81.0 4394.0 81.0 L 4820.0 81.0 L 5280.0 81.0 L 5664.0 81.0 L 6022.0 81.0 L 6060.0 81.0 Q 6066.0 81.0 6066.0 87.0 V 109.0 Q 6066.0 115.0 6072.0 115.0 L 6122.0 115.0 L 6128.0 115.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/helpers/date_importance.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
+</g>
+<g>
+  <path d="M 3868.0 115.0 L 3872.0 115.0 Q 3878.0 115.0 3878.0 109.0 V 72.0 Q 3878.0 66.0 3884.0 66.0 L 6028.0 66.0 Q 6034.0 66.0 6034.0 72.0 V 109.0 Q 6034.0 115.0 6040.0 115.0 L 6117.0 115.0 L 6128.0 115.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/helpers/input_keyboard.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
+</g>
+<g>
   <path d="M 2514.0 115.0 L 2534.0 115.0 Q 2540.0 115.0 2540.0 109.0 V 72.0 Q 2540.0 66.0 2546.0 66.0 L 4844.0 66.0 Q 4850.0 66.0 4850.0 72.0 V 109.0 Q 4850.0 115.0 4856.0 115.0 L 5055.0 115.0 L 5066.0 115.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/join_game_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/utils/logger.dart</title>
-</g>
-<g>
-  <path d="M 278.0 115.0 L 298.0 115.0 Q 304.0 115.0 304.0 109.0 V 72.0 Q 304.0 66.0 310.0 66.0 L 2110.0 66.0 Q 2116.0 66.0 2116.0 72.0 V 109.0 Q 2116.0 115.0 2122.0 115.0 L 2283.0 115.0 L 2292.0 115.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/main.dart ▶ /Users/jp/src/github/vteam/fCards/lib/screens/game/join_game_screen.dart</title>
-</g>
-<g>
-  <path d="M 3404.0 255.0 L 3436.0 255.0 Q 3442.0 255.0 3442.0 249.0 V 230.0 Q 3442.0 224.0 3448.0 224.0 L 3862.0 224.0 L 4338.0 224.0 L 4820.0 224.0 L 5280.0 224.0 L 5664.0 224.0 L 5696.0 224.0 Q 5702.0 224.0 5702.0 230.0 V 249.0 Q 5702.0 255.0 5708.0 255.0 L 5802.0 255.0 L 5808.0 255.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/game_over_dialog.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/helpers/my_text.dart</title>
 </g>
 <g>
   <path d="M 1662.0 115.0 L 1676.0 115.0 Q 1682.0 115.0 1682.0 109.0 V 72.0 Q 1682.0 66.0 1688.0 66.0 L 3874.0 66.0 Q 3880.0 66.0 3880.0 72.0 V 109.0 Q 3880.0 115.0 3886.0 115.0 L 4115.0 115.0 L 4124.0 115.0" class="edge"/>
@@ -1022,32 +1009,28 @@
   <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/card_scan_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/helpers/screen.dart</title>
 </g>
 <g>
-  <path d="M 3404.0 115.0 L 3412.0 115.0 Q 3418.0 115.0 3418.0 109.0 V 72.0 Q 3418.0 66.0 3424.0 66.0 L 5678.0 66.0 Q 5684.0 66.0 5684.0 72.0 V 109.0 Q 5684.0 115.0 5690.0 115.0 L 5797.0 115.0 L 5808.0 115.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/helpers/screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
+  <path d="M 278.0 115.0 L 298.0 115.0 Q 304.0 115.0 304.0 109.0 V 72.0 Q 304.0 66.0 310.0 66.0 L 2110.0 66.0 Q 2116.0 66.0 2116.0 72.0 V 109.0 Q 2116.0 115.0 2122.0 115.0 L 2283.0 115.0 L 2292.0 115.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/main.dart ▶ /Users/jp/src/github/vteam/fCards/lib/screens/game/join_game_screen.dart</title>
 </g>
 <g>
   <path d="M 2950.0 185.0 L 2968.0 185.0 Q 2974.0 185.0 2974.0 179.0 V 84.0 Q 2974.0 78.0 2980.0 78.0 L 3398.0 78.0 L 3862.0 78.0 L 4338.0 78.0 L 4820.0 78.0 L 5280.0 78.0 L 5298.0 78.0 Q 5304.0 78.0 5304.0 84.0 V 109.0 Q 5304.0 115.0 5310.0 115.0 L 5444.0 115.0 L 5450.0 115.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/widgets/player/players_in_room_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/app_theme.dart</title>
 </g>
 <g>
-  <path d="M 916.0 255.0 L 956.0 255.0 Q 962.0 255.0 962.0 249.0 V 154.0 Q 962.0 148.0 968.0 148.0 L 1260.0 148.0 L 1656.0 148.0 L 2090.0 148.0 L 2506.0 148.0 L 2944.0 148.0 L 2984.0 148.0 Q 2990.0 148.0 2990.0 154.0 V 179.0 Q 2990.0 185.0 2996.0 185.0 L 3178.0 185.0 L 3184.0 185.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/create_table_name_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/helpers/edit_box.dart</title>
-</g>
-<g>
-  <path d="M 3404.0 185.0 L 3424.0 185.0 Q 3430.0 185.0 3430.0 179.0 V 87.0 Q 3430.0 81.0 3436.0 81.0 L 3862.0 81.0 L 4338.0 81.0 L 4820.0 81.0 L 5280.0 81.0 L 5664.0 81.0 L 5684.0 81.0 Q 5690.0 81.0 5690.0 87.0 V 109.0 Q 5690.0 115.0 5696.0 115.0 L 5802.0 115.0 L 5808.0 115.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/helpers/edit_box.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
-</g>
-<g>
-  <path d="M 596.0 255.0 L 642.0 255.0 Q 648.0 255.0 648.0 261.0 V 280.0 Q 648.0 286.0 654.0 286.0 L 910.0 286.0 L 1260.0 286.0 L 1656.0 286.0 L 2090.0 286.0 L 2226.0 286.0 Q 2232.0 286.0 2232.0 280.0 V 152.0 Q 2232.0 146.0 2238.0 146.0 L 2506.0 146.0 L 2552.0 146.0 Q 2558.0 146.0 2558.0 152.0 V 319.0 Q 2558.0 325.0 2564.0 325.0 L 2724.0 325.0 L 2730.0 325.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/start_game_wizard_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/helpers/wizard_footer.dart</title>
-</g>
-<g>
   <path d="M 2514.0 115.0 L 2528.0 115.0 Q 2534.0 115.0 2534.0 121.0 V 148.0 Q 2534.0 154.0 2540.0 154.0 L 2944.0 154.0 L 3398.0 154.0 L 3862.0 154.0 L 4338.0 154.0 L 4820.0 154.0 L 4834.0 154.0 Q 4840.0 154.0 4840.0 160.0 V 179.0 Q 4840.0 185.0 4846.0 185.0 L 5060.0 185.0 L 5066.0 185.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/join_game_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/game/game_styles.dart</title>
 </g>
 <g>
-  <path d="M 3404.0 255.0 L 3430.0 255.0 Q 3436.0 255.0 3436.0 249.0 V 89.0 Q 3436.0 83.0 3442.0 83.0 L 3862.0 83.0 L 4338.0 83.0 L 4820.0 83.0 L 5280.0 83.0 L 5664.0 83.0 L 5690.0 83.0 Q 5696.0 83.0 5696.0 89.0 V 109.0 Q 5696.0 115.0 5702.0 115.0 L 5802.0 115.0 L 5808.0 115.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/game_over_dialog.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
+  <path d="M 596.0 255.0 L 644.0 255.0 Q 650.0 255.0 650.0 261.0 V 280.0 Q 650.0 286.0 656.0 286.0 L 910.0 286.0 L 1260.0 286.0 L 1656.0 286.0 L 2090.0 286.0 L 2228.0 286.0 Q 2234.0 286.0 2234.0 280.0 V 152.0 Q 2234.0 146.0 2240.0 146.0 L 2506.0 146.0 L 2554.0 146.0 Q 2560.0 146.0 2560.0 152.0 V 319.0 Q 2560.0 325.0 2566.0 325.0 L 2724.0 325.0 L 2730.0 325.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/start_game_wizard_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/helpers/wizard_footer.dart</title>
+</g>
+<g>
+  <path d="M 916.0 255.0 L 956.0 255.0 Q 962.0 255.0 962.0 249.0 V 154.0 Q 962.0 148.0 968.0 148.0 L 1260.0 148.0 L 1656.0 148.0 L 2090.0 148.0 L 2506.0 148.0 L 2944.0 148.0 L 2984.0 148.0 Q 2990.0 148.0 2990.0 154.0 V 179.0 Q 2990.0 185.0 2996.0 185.0 L 3178.0 185.0 L 3184.0 185.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/create_table_name_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/helpers/edit_box.dart</title>
+</g>
+<g>
+  <path d="M 3404.0 255.0 L 3434.0 255.0 Q 3440.0 255.0 3440.0 249.0 V 159.0 Q 3440.0 153.0 3446.0 153.0 L 3862.0 153.0 L 4338.0 153.0 L 4820.0 153.0 L 5280.0 153.0 L 5664.0 153.0 L 5694.0 153.0 Q 5700.0 153.0 5700.0 159.0 V 179.0 Q 5700.0 185.0 5706.0 185.0 L 5802.0 185.0 L 5808.0 185.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/game_over_dialog.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/helpers/my_text.dart</title>
 </g>
 <g>
   <path d="M 2950.0 255.0 L 2974.0 255.0 Q 2980.0 255.0 2980.0 249.0 V 85.0 Q 2980.0 79.0 2986.0 79.0 L 3398.0 79.0 L 3862.0 79.0 L 4338.0 79.0 L 4820.0 79.0 L 5280.0 79.0 L 5304.0 79.0 Q 5310.0 79.0 5310.0 85.0 V 109.0 Q 5310.0 115.0 5316.0 115.0 L 5444.0 115.0 L 5450.0 115.0" class="edge"/>
@@ -1058,6 +1041,10 @@
   <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/game_style.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/cards/card_widget.dart</title>
 </g>
 <g>
+  <path d="M 3868.0 255.0 L 3882.0 255.0 Q 3888.0 255.0 3888.0 249.0 V 88.0 Q 3888.0 82.0 3894.0 82.0 L 4338.0 82.0 L 4820.0 82.0 L 5280.0 82.0 L 5664.0 82.0 L 6022.0 82.0 L 6036.0 82.0 Q 6042.0 82.0 6042.0 88.0 V 109.0 Q 6042.0 115.0 6048.0 115.0 L 6122.0 115.0 L 6128.0 115.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/player/player_header_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
+</g>
+<g>
   <path d="M 916.0 255.0 L 946.0 255.0 Q 952.0 255.0 952.0 249.0 V 82.0 Q 952.0 76.0 958.0 76.0 L 1260.0 76.0 L 1656.0 76.0 L 2090.0 76.0 L 2506.0 76.0 L 2944.0 76.0 L 2974.0 76.0 Q 2980.0 76.0 2980.0 82.0 V 109.0 Q 2980.0 115.0 2986.0 115.0 L 3178.0 115.0 L 3184.0 115.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/create_table_name_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/helpers/screen.dart</title>
 </g>
@@ -1066,16 +1053,16 @@
   <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/table_name_flow_helpers.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/game/backend_model.dart</title>
 </g>
 <g>
-  <path d="M 3404.0 325.0 L 3440.0 325.0 Q 3446.0 325.0 3446.0 319.0 V 88.0 Q 3446.0 82.0 3452.0 82.0 L 3862.0 82.0 L 4338.0 82.0 L 4820.0 82.0 L 5280.0 82.0 L 5664.0 82.0 L 5700.0 82.0 Q 5706.0 82.0 5706.0 88.0 V 109.0 Q 5706.0 115.0 5712.0 115.0 L 5802.0 115.0 L 5808.0 115.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/player/player_zone_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
+  <path d="M 3868.0 325.0 L 3892.0 325.0 Q 3898.0 325.0 3898.0 319.0 V 86.0 Q 3898.0 80.0 3904.0 80.0 L 4338.0 80.0 L 4820.0 80.0 L 5280.0 80.0 L 5664.0 80.0 L 6022.0 80.0 L 6046.0 80.0 Q 6052.0 80.0 6052.0 86.0 V 109.0 Q 6052.0 115.0 6058.0 115.0 L 6122.0 115.0 L 6128.0 115.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/player/player_zone_cta_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
 </g>
 <g>
   <path d="M 2514.0 115.0 L 2516.0 115.0 Q 2522.0 115.0 2522.0 121.0 V 358.0 Q 2522.0 364.0 2528.0 364.0 L 2944.0 364.0 L 3398.0 364.0 L 3862.0 364.0 L 4338.0 364.0 L 4820.0 364.0 L 4822.0 364.0 Q 4828.0 364.0 4828.0 370.0 V 389.0 Q 4828.0 395.0 4834.0 395.0 L 5060.0 395.0 L 5066.0 395.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/join_game_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/game/game_history.dart</title>
 </g>
 <g>
-  <path d="M 2950.0 115.0 L 2964.0 115.0 Q 2970.0 115.0 2970.0 109.0 V 68.0 Q 2970.0 62.0 2976.0 62.0 L 5680.0 62.0 Q 5686.0 62.0 5686.0 68.0 V 109.0 Q 5686.0 115.0 5692.0 115.0 L 5797.0 115.0 L 5808.0 115.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/game_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
+  <path d="M 3404.0 115.0 L 3412.0 115.0 Q 3418.0 115.0 3418.0 109.0 V 68.0 Q 3418.0 62.0 3424.0 62.0 L 6036.0 62.0 Q 6042.0 62.0 6042.0 68.0 V 109.0 Q 6042.0 115.0 6048.0 115.0 L 6117.0 115.0 L 6128.0 115.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/helpers/screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
 </g>
 <g>
   <path d="M 598.0 115.0 L 618.0 115.0 Q 624.0 115.0 624.0 109.0 V 68.0 Q 624.0 62.0 630.0 62.0 L 2956.0 62.0 Q 2962.0 62.0 2962.0 68.0 V 109.0 Q 2962.0 115.0 2968.0 115.0 L 3175.0 115.0 L 3184.0 115.0" class="edge"/>
@@ -1086,12 +1073,20 @@
   <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/start_game_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/game/game_model.dart</title>
 </g>
 <g>
-  <path d="M 2950.0 185.0 L 2972.0 185.0 Q 2978.0 185.0 2978.0 191.0 V 216.0 Q 2978.0 222.0 2984.0 222.0 L 3398.0 222.0 L 3862.0 222.0 L 4338.0 222.0 L 4820.0 222.0 L 5280.0 222.0 L 5664.0 222.0 L 5686.0 222.0 Q 5692.0 222.0 5692.0 228.0 V 249.0 Q 5692.0 255.0 5698.0 255.0 L 5802.0 255.0 L 5808.0 255.0" class="edge"/>
+  <path d="M 2950.0 185.0 L 2972.0 185.0 Q 2978.0 185.0 2978.0 179.0 V 156.0 Q 2978.0 150.0 2984.0 150.0 L 3398.0 150.0 L 3862.0 150.0 L 4338.0 150.0 L 4820.0 150.0 L 5280.0 150.0 L 5664.0 150.0 L 5686.0 150.0 Q 5692.0 150.0 5692.0 156.0 V 179.0 Q 5692.0 185.0 5698.0 185.0 L 5802.0 185.0 L 5808.0 185.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/widgets/player/players_in_room_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/helpers/my_text.dart</title>
 </g>
 <g>
   <path d="M 2096.0 395.0 L 2118.0 395.0 Q 2124.0 395.0 2124.0 389.0 V 157.0 Q 2124.0 151.0 2130.0 151.0 L 2506.0 151.0 L 2629.0 151.0 Q 2635.0 151.0 2635.0 157.0 V 285.0 Q 2635.0 291.0 2641.0 291.0 L 2944.0 291.0 L 3398.0 291.0 L 3862.0 291.0 L 4338.0 291.0 L 4820.0 291.0 L 4842.0 291.0 Q 4848.0 291.0 4848.0 297.0 V 319.0 Q 4848.0 325.0 4854.0 325.0 L 5060.0 325.0 L 5066.0 325.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/game_style.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/card/card_dimensions.dart</title>
+</g>
+<g>
+  <path d="M 3404.0 185.0 L 3424.0 185.0 Q 3430.0 185.0 3430.0 179.0 V 87.0 Q 3430.0 81.0 3436.0 81.0 L 3862.0 81.0 L 4338.0 81.0 L 4820.0 81.0 L 5280.0 81.0 L 5664.0 81.0 L 6022.0 81.0 L 6042.0 81.0 Q 6048.0 81.0 6048.0 87.0 V 109.0 Q 6048.0 115.0 6054.0 115.0 L 6122.0 115.0 L 6128.0 115.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/helpers/edit_box.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
+</g>
+<g>
+  <path d="M 1662.0 185.0 L 1680.0 185.0 Q 1686.0 185.0 1686.0 179.0 V 87.0 Q 1686.0 81.0 1692.0 81.0 L 2090.0 81.0 L 2506.0 81.0 L 2944.0 81.0 L 3398.0 81.0 L 3862.0 81.0 L 4338.0 81.0 L 4356.0 81.0 Q 4362.0 81.0 4362.0 87.0 V 109.0 Q 4362.0 115.0 4368.0 115.0 L 4600.0 115.0 L 4606.0 115.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/start_screen_room_section.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/buttons/my_button_rectangle.dart</title>
 </g>
 <g>
   <path d="M 1662.0 115.0 L 1670.0 115.0 Q 1676.0 115.0 1676.0 121.0 V 142.0 Q 1676.0 148.0 1682.0 148.0 L 2090.0 148.0 L 2506.0 148.0 L 2944.0 148.0 L 3398.0 148.0 L 3862.0 148.0 L 4338.0 148.0 L 4346.0 148.0 Q 4352.0 148.0 4352.0 154.0 V 179.0 Q 4352.0 185.0 4358.0 185.0 L 4600.0 185.0 L 4606.0 185.0" class="edge"/>
@@ -1102,40 +1097,32 @@
   <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/corrections_review_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/helpers/screen.dart</title>
 </g>
 <g>
-  <path d="M 2950.0 185.0 L 2970.0 185.0 Q 2976.0 185.0 2976.0 179.0 V 86.0 Q 2976.0 80.0 2982.0 80.0 L 3398.0 80.0 L 3862.0 80.0 L 4338.0 80.0 L 4820.0 80.0 L 5280.0 80.0 L 5664.0 80.0 L 5684.0 80.0 Q 5690.0 80.0 5690.0 86.0 V 109.0 Q 5690.0 115.0 5696.0 115.0 L 5802.0 115.0 L 5808.0 115.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/player/players_in_room_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
-</g>
-<g>
-  <path d="M 1662.0 185.0 L 1680.0 185.0 Q 1686.0 185.0 1686.0 179.0 V 87.0 Q 1686.0 81.0 1692.0 81.0 L 2090.0 81.0 L 2506.0 81.0 L 2944.0 81.0 L 3398.0 81.0 L 3862.0 81.0 L 4338.0 81.0 L 4356.0 81.0 Q 4362.0 81.0 4362.0 87.0 V 109.0 Q 4362.0 115.0 4368.0 115.0 L 4600.0 115.0 L 4606.0 115.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/start_screen_room_section.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/buttons/my_button_rectangle.dart</title>
+  <path d="M 2096.0 325.0 L 2102.0 325.0 Q 2108.0 325.0 2108.0 319.0 V 157.0 Q 2108.0 151.0 2114.0 151.0 L 2506.0 151.0 L 2944.0 151.0 L 3398.0 151.0 L 3862.0 151.0 L 4338.0 151.0 L 4820.0 151.0 L 4826.0 151.0 Q 4832.0 151.0 4832.0 157.0 V 179.0 Q 4832.0 185.0 4838.0 185.0 L 5060.0 185.0 L 5066.0 185.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/table_name_flow_helpers.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/game/game_styles.dart</title>
 </g>
 <g>
   <path d="M 596.0 255.0 L 636.0 255.0 Q 642.0 255.0 642.0 249.0 V 82.0 Q 642.0 76.0 648.0 76.0 L 910.0 76.0 L 1260.0 76.0 L 1656.0 76.0 L 2090.0 76.0 L 2506.0 76.0 L 2944.0 76.0 L 2984.0 76.0 Q 2990.0 76.0 2990.0 82.0 V 109.0 Q 2990.0 115.0 2996.0 115.0 L 3178.0 115.0 L 3184.0 115.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/start_game_wizard_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/helpers/screen.dart</title>
 </g>
 <g>
-  <path d="M 2950.0 255.0 L 2976.0 255.0 Q 2982.0 255.0 2982.0 249.0 V 87.0 Q 2982.0 81.0 2988.0 81.0 L 3398.0 81.0 L 3862.0 81.0 L 4338.0 81.0 L 4820.0 81.0 L 5280.0 81.0 L 5664.0 81.0 L 5690.0 81.0 Q 5696.0 81.0 5696.0 87.0 V 109.0 Q 5696.0 115.0 5702.0 115.0 L 5802.0 115.0 L 5808.0 115.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/helpers/table_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
+  <path d="M 3404.0 255.0 L 3430.0 255.0 Q 3436.0 255.0 3436.0 249.0 V 90.0 Q 3436.0 84.0 3442.0 84.0 L 3862.0 84.0 L 4338.0 84.0 L 4820.0 84.0 L 5280.0 84.0 L 5664.0 84.0 L 6022.0 84.0 L 6048.0 84.0 Q 6054.0 84.0 6054.0 90.0 V 109.0 Q 6054.0 115.0 6060.0 115.0 L 6122.0 115.0 L 6128.0 115.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/game_over_dialog.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
 </g>
 <g>
-  <path d="M 2096.0 325.0 L 2102.0 325.0 Q 2108.0 325.0 2108.0 319.0 V 157.0 Q 2108.0 151.0 2114.0 151.0 L 2506.0 151.0 L 2944.0 151.0 L 3398.0 151.0 L 3862.0 151.0 L 4338.0 151.0 L 4820.0 151.0 L 4826.0 151.0 Q 4832.0 151.0 4832.0 157.0 V 179.0 Q 4832.0 185.0 4838.0 185.0 L 5060.0 185.0 L 5066.0 185.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/table_name_flow_helpers.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/game/game_styles.dart</title>
+  <path d="M 2096.0 395.0 L 2112.0 395.0 Q 2118.0 395.0 2118.0 389.0 V 155.0 Q 2118.0 149.0 2124.0 149.0 L 2506.0 149.0 L 2944.0 149.0 L 3398.0 149.0 L 3862.0 149.0 L 4338.0 149.0 L 4820.0 149.0 L 4836.0 149.0 Q 4842.0 149.0 4842.0 155.0 V 179.0 Q 4842.0 185.0 4848.0 185.0 L 5060.0 185.0 L 5066.0 185.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/game_style.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/game/game_styles.dart</title>
+</g>
+<g>
+  <path d="M 3404.0 325.0 L 3440.0 325.0 Q 3446.0 325.0 3446.0 319.0 V 88.0 Q 3446.0 82.0 3452.0 82.0 L 3862.0 82.0 L 4338.0 82.0 L 4820.0 82.0 L 5280.0 82.0 L 5664.0 82.0 L 6022.0 82.0 L 6058.0 82.0 Q 6064.0 82.0 6064.0 88.0 V 109.0 Q 6064.0 115.0 6070.0 115.0 L 6122.0 115.0 L 6128.0 115.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/player/player_zone_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
 </g>
 <g>
   <path d="M 596.0 325.0 L 652.0 325.0 Q 658.0 325.0 658.0 319.0 V 82.0 Q 658.0 76.0 664.0 76.0 L 910.0 76.0 L 1260.0 76.0 L 1656.0 76.0 L 2090.0 76.0 L 2506.0 76.0 L 2944.0 76.0 L 3000.0 76.0 Q 3006.0 76.0 3006.0 82.0 V 109.0 Q 3006.0 115.0 3012.0 115.0 L 3178.0 115.0 L 3184.0 115.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/screens/welcome/welcome_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/helpers/screen.dart</title>
 </g>
 <g>
-  <path d="M 2950.0 325.0 L 2982.0 325.0 Q 2988.0 325.0 2988.0 319.0 V 87.0 Q 2988.0 81.0 2994.0 81.0 L 3398.0 81.0 L 3862.0 81.0 L 4338.0 81.0 L 4820.0 81.0 L 5280.0 81.0 L 5664.0 81.0 L 5696.0 81.0 Q 5702.0 81.0 5702.0 87.0 V 109.0 Q 5702.0 115.0 5708.0 115.0 L 5802.0 115.0 L 5808.0 115.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/helpers/wizard_footer.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
-</g>
-<g>
   <path d="M 916.0 325.0 L 960.0 325.0 Q 966.0 325.0 966.0 319.0 V 84.0 Q 966.0 78.0 972.0 78.0 L 1260.0 78.0 L 1656.0 78.0 L 2090.0 78.0 L 2506.0 78.0 L 2944.0 78.0 L 3398.0 78.0 L 3442.0 78.0 Q 3448.0 78.0 3448.0 84.0 V 109.0 Q 3448.0 115.0 3454.0 115.0 L 3642.0 115.0 L 3648.0 115.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/widgets/player/player_header.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/helpers/input_keyboard.dart</title>
-</g>
-<g>
-  <path d="M 2096.0 395.0 L 2112.0 395.0 Q 2118.0 395.0 2118.0 389.0 V 155.0 Q 2118.0 149.0 2124.0 149.0 L 2506.0 149.0 L 2944.0 149.0 L 3398.0 149.0 L 3862.0 149.0 L 4338.0 149.0 L 4820.0 149.0 L 4836.0 149.0 Q 4842.0 149.0 4842.0 155.0 V 179.0 Q 4842.0 185.0 4848.0 185.0 L 5060.0 185.0 L 5066.0 185.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/game_style.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/game/game_styles.dart</title>
 </g>
 <g>
   <path d="M 2096.0 395.0 L 2106.0 395.0 Q 2112.0 395.0 2112.0 389.0 V 159.0 Q 2112.0 153.0 2118.0 153.0 L 2506.0 153.0 L 2617.0 153.0 Q 2623.0 153.0 2623.0 159.0 V 357.0 Q 2623.0 363.0 2629.0 363.0 L 2944.0 363.0 L 3398.0 363.0 L 3862.0 363.0 L 3992.0 363.0 Q 3998.0 363.0 3998.0 369.0 V 497.0 Q 3998.0 503.0 4004.0 503.0 L 4338.0 503.0 L 4471.0 503.0 Q 4477.0 503.0 4477.0 497.0 V 439.0 Q 4477.0 433.0 4483.0 433.0 L 4820.0 433.0 L 4830.0 433.0 Q 4836.0 433.0 4836.0 439.0 V 669.0 Q 4836.0 675.0 4842.0 675.0 L 5060.0 675.0 L 5066.0 675.0" class="edge"/>
@@ -1150,28 +1137,32 @@
   <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/start_screen_action_button.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/buttons/my_button_rectangle.dart</title>
 </g>
 <g>
-  <path d="M 1662.0 115.0 L 1674.0 115.0 Q 1680.0 115.0 1680.0 109.0 V 64.0 Q 1680.0 58.0 1686.0 58.0 L 4834.0 58.0 Q 4840.0 58.0 4840.0 64.0 V 109.0 Q 4840.0 115.0 4846.0 115.0 L 5055.0 115.0 L 5066.0 115.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/start_screen_game_handler.dart ▶ /Users/jp/src/github/vteam/fCards/lib/utils/logger.dart</title>
-</g>
-<g>
-  <path d="M 2514.0 115.0 L 2532.0 115.0 Q 2538.0 115.0 2538.0 109.0 V 64.0 Q 2538.0 58.0 2544.0 58.0 L 5690.0 58.0 Q 5696.0 58.0 5696.0 64.0 V 109.0 Q 5696.0 115.0 5702.0 115.0 L 5797.0 115.0 L 5808.0 115.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/join_game_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
+  <path d="M 2950.0 115.0 L 2964.0 115.0 Q 2970.0 115.0 2970.0 109.0 V 64.0 Q 2970.0 58.0 2976.0 58.0 L 6038.0 58.0 Q 6044.0 58.0 6044.0 64.0 V 109.0 Q 6044.0 115.0 6050.0 115.0 L 6117.0 115.0 L 6128.0 115.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/game_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
 </g>
 <g>
   <path d="M 598.0 115.0 L 616.0 115.0 Q 622.0 115.0 622.0 109.0 V 64.0 Q 622.0 58.0 628.0 58.0 L 3412.0 58.0 Q 3418.0 58.0 3418.0 64.0 V 109.0 Q 3418.0 115.0 3424.0 115.0 L 3639.0 115.0 L 3648.0 115.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/screens/keepscore/golf_score_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/helpers/input_keyboard.dart</title>
 </g>
 <g>
-  <path d="M 1268.0 115.0 L 1290.0 115.0 Q 1296.0 115.0 1296.0 121.0 V 147.0 Q 1296.0 153.0 1302.0 153.0 L 1656.0 153.0 L 2090.0 153.0 L 2506.0 153.0 L 2944.0 153.0 L 3398.0 153.0 L 3862.0 153.0 L 4338.0 153.0 L 4360.0 153.0 Q 4366.0 153.0 4366.0 159.0 V 179.0 Q 4366.0 185.0 4372.0 185.0 L 4600.0 185.0 L 4606.0 185.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/start_game_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/game/backend_model.dart</title>
+  <path d="M 1662.0 115.0 L 1674.0 115.0 Q 1680.0 115.0 1680.0 109.0 V 64.0 Q 1680.0 58.0 1686.0 58.0 L 4834.0 58.0 Q 4840.0 58.0 4840.0 64.0 V 109.0 Q 4840.0 115.0 4846.0 115.0 L 5055.0 115.0 L 5066.0 115.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/start_screen_game_handler.dart ▶ /Users/jp/src/github/vteam/fCards/lib/utils/logger.dart</title>
+</g>
+<g>
+  <path d="M 2950.0 185.0 L 2970.0 185.0 Q 2976.0 185.0 2976.0 179.0 V 88.0 Q 2976.0 82.0 2982.0 82.0 L 3398.0 82.0 L 3862.0 82.0 L 4338.0 82.0 L 4820.0 82.0 L 5280.0 82.0 L 5664.0 82.0 L 6022.0 82.0 L 6042.0 82.0 Q 6048.0 82.0 6048.0 88.0 V 109.0 Q 6048.0 115.0 6054.0 115.0 L 6122.0 115.0 L 6128.0 115.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/player/players_in_room_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
+</g>
+<g>
+  <path d="M 1662.0 115.0 L 1672.0 115.0 Q 1678.0 115.0 1678.0 121.0 V 146.0 Q 1678.0 152.0 1684.0 152.0 L 2090.0 152.0 L 2506.0 152.0 L 2944.0 152.0 L 3398.0 152.0 L 3862.0 152.0 L 4338.0 152.0 L 4820.0 152.0 L 4830.0 152.0 Q 4836.0 152.0 4836.0 158.0 V 179.0 Q 4836.0 185.0 4842.0 185.0 L 5060.0 185.0 L 5066.0 185.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/start_screen_game_handler.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/game/game_styles.dart</title>
 </g>
 <g>
   <path d="M 1266.0 185.0 L 1308.0 185.0 Q 1314.0 185.0 1314.0 179.0 V 86.0 Q 1314.0 80.0 1320.0 80.0 L 1656.0 80.0 L 2090.0 80.0 L 2506.0 80.0 L 2944.0 80.0 L 3398.0 80.0 L 3862.0 80.0 L 4338.0 80.0 L 4380.0 80.0 Q 4386.0 80.0 4386.0 86.0 V 109.0 Q 4386.0 115.0 4392.0 115.0 L 4600.0 115.0 L 4606.0 115.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/card_scan_helpers.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/buttons/my_button_rectangle.dart</title>
 </g>
 <g>
-  <path d="M 1662.0 115.0 L 1672.0 115.0 Q 1678.0 115.0 1678.0 121.0 V 146.0 Q 1678.0 152.0 1684.0 152.0 L 2090.0 152.0 L 2506.0 152.0 L 2944.0 152.0 L 3398.0 152.0 L 3862.0 152.0 L 4338.0 152.0 L 4820.0 152.0 L 4830.0 152.0 Q 4836.0 152.0 4836.0 158.0 V 179.0 Q 4836.0 185.0 4842.0 185.0 L 5060.0 185.0 L 5066.0 185.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/start_screen_game_handler.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/game/game_styles.dart</title>
+  <path d="M 1268.0 115.0 L 1290.0 115.0 Q 1296.0 115.0 1296.0 121.0 V 147.0 Q 1296.0 153.0 1302.0 153.0 L 1656.0 153.0 L 2090.0 153.0 L 2506.0 153.0 L 2944.0 153.0 L 3398.0 153.0 L 3862.0 153.0 L 4338.0 153.0 L 4360.0 153.0 Q 4366.0 153.0 4366.0 159.0 V 179.0 Q 4366.0 185.0 4372.0 185.0 L 4600.0 185.0 L 4606.0 185.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/start_game_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/game/backend_model.dart</title>
 </g>
 <g>
   <path d="M 1662.0 255.0 L 1690.0 255.0 Q 1696.0 255.0 1696.0 249.0 V 155.0 Q 1696.0 149.0 1702.0 149.0 L 2090.0 149.0 L 2506.0 149.0 L 2944.0 149.0 L 3398.0 149.0 L 3862.0 149.0 L 4338.0 149.0 L 4820.0 149.0 L 4848.0 149.0 Q 4854.0 149.0 4854.0 155.0 V 179.0 Q 4854.0 185.0 4860.0 185.0 L 5060.0 185.0 L 5066.0 185.0" class="edge"/>
@@ -1182,12 +1173,20 @@
   <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/card_scan_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/buttons/my_button_round.dart</title>
 </g>
 <g>
-  <path d="M 1662.0 325.0 L 1694.0 325.0 Q 1700.0 325.0 1700.0 319.0 V 86.0 Q 1700.0 80.0 1706.0 80.0 L 2090.0 80.0 L 2506.0 80.0 L 2944.0 80.0 L 3398.0 80.0 L 3862.0 80.0 L 4338.0 80.0 L 4820.0 80.0 L 4852.0 80.0 Q 4858.0 80.0 4858.0 86.0 V 109.0 Q 4858.0 115.0 4864.0 115.0 L 5060.0 115.0 L 5066.0 115.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/models/app/tflite_service_native.dart ▶ /Users/jp/src/github/vteam/fCards/lib/utils/logger.dart</title>
+  <path d="M 2950.0 255.0 L 2976.0 255.0 Q 2982.0 255.0 2982.0 249.0 V 87.0 Q 2982.0 81.0 2988.0 81.0 L 3398.0 81.0 L 3862.0 81.0 L 4338.0 81.0 L 4820.0 81.0 L 5280.0 81.0 L 5664.0 81.0 L 6022.0 81.0 L 6048.0 81.0 Q 6054.0 81.0 6054.0 87.0 V 109.0 Q 6054.0 115.0 6060.0 115.0 L 6122.0 115.0 L 6128.0 115.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/helpers/table_widget.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
 </g>
 <g>
   <path d="M 1662.0 465.0 L 1704.0 465.0 Q 1710.0 465.0 1710.0 459.0 V 226.0 Q 1710.0 220.0 1716.0 220.0 L 2090.0 220.0 L 2222.0 220.0 Q 2228.0 220.0 2228.0 214.0 V 156.0 Q 2228.0 150.0 2234.0 150.0 L 2506.0 150.0 L 2649.0 150.0 Q 2655.0 150.0 2655.0 156.0 V 214.0 Q 2655.0 220.0 2661.0 220.0 L 2944.0 220.0 L 3398.0 220.0 L 3862.0 220.0 L 4338.0 220.0 L 4820.0 220.0 L 4862.0 220.0 Q 4868.0 220.0 4868.0 226.0 V 249.0 Q 4868.0 255.0 4874.0 255.0 L 5060.0 255.0 L 5066.0 255.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/models/app/correction_sample_store_io.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/auth_service.dart</title>
+</g>
+<g>
+  <path d="M 1662.0 325.0 L 1694.0 325.0 Q 1700.0 325.0 1700.0 319.0 V 86.0 Q 1700.0 80.0 1706.0 80.0 L 2090.0 80.0 L 2506.0 80.0 L 2944.0 80.0 L 3398.0 80.0 L 3862.0 80.0 L 4338.0 80.0 L 4820.0 80.0 L 4852.0 80.0 Q 4858.0 80.0 4858.0 86.0 V 109.0 Q 4858.0 115.0 4864.0 115.0 L 5060.0 115.0 L 5066.0 115.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/models/app/tflite_service_native.dart ▶ /Users/jp/src/github/vteam/fCards/lib/utils/logger.dart</title>
+</g>
+<g>
+  <path d="M 2950.0 325.0 L 2982.0 325.0 Q 2988.0 325.0 2988.0 319.0 V 87.0 Q 2988.0 81.0 2994.0 81.0 L 3398.0 81.0 L 3862.0 81.0 L 4338.0 81.0 L 4820.0 81.0 L 5280.0 81.0 L 5664.0 81.0 L 6022.0 81.0 L 6054.0 81.0 Q 6060.0 81.0 6060.0 87.0 V 109.0 Q 6060.0 115.0 6066.0 115.0 L 6122.0 115.0 L 6128.0 115.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/helpers/wizard_footer.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
 </g>
 <g>
   <path d="M 2096.0 395.0 L 2114.0 395.0 Q 2120.0 395.0 2120.0 389.0 V 160.0 Q 2120.0 154.0 2126.0 154.0 L 2506.0 154.0 L 2944.0 154.0 L 3398.0 154.0 L 3862.0 154.0 L 4338.0 154.0 L 4820.0 154.0 L 5280.0 154.0 L 5298.0 154.0 Q 5304.0 154.0 5304.0 160.0 V 179.0 Q 5304.0 185.0 5310.0 185.0 L 5444.0 185.0 L 5450.0 185.0" class="edge"/>
@@ -1202,24 +1201,28 @@
   <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/start_screen_game_mode.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/game/game_styles.dart</title>
 </g>
 <g>
-  <path d="M 918.0 115.0 L 938.0 115.0 Q 944.0 115.0 944.0 109.0 V 60.0 Q 944.0 54.0 950.0 54.0 L 4358.0 54.0 Q 4364.0 54.0 4364.0 60.0 V 109.0 Q 4364.0 115.0 4370.0 115.0 L 4595.0 115.0 L 4606.0 115.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/card_scan_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/buttons/my_button_rectangle.dart</title>
+  <path d="M 2514.0 115.0 L 2532.0 115.0 Q 2538.0 115.0 2538.0 109.0 V 60.0 Q 2538.0 54.0 2544.0 54.0 L 6048.0 54.0 Q 6054.0 54.0 6054.0 60.0 V 109.0 Q 6054.0 115.0 6060.0 115.0 L 6117.0 115.0 L 6128.0 115.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/join_game_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
 </g>
 <g>
   <path d="M 1268.0 115.0 L 1298.0 115.0 Q 1304.0 115.0 1304.0 109.0 V 60.0 Q 1304.0 54.0 1310.0 54.0 L 4854.0 54.0 Q 4860.0 54.0 4860.0 60.0 V 109.0 Q 4860.0 115.0 4866.0 115.0 L 5055.0 115.0 L 5066.0 115.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/start_game_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/utils/logger.dart</title>
 </g>
 <g>
+  <path d="M 918.0 115.0 L 938.0 115.0 Q 944.0 115.0 944.0 109.0 V 60.0 Q 944.0 54.0 950.0 54.0 L 4358.0 54.0 Q 4364.0 54.0 4364.0 60.0 V 109.0 Q 4364.0 115.0 4370.0 115.0 L 4595.0 115.0 L 4606.0 115.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/card_scan_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/buttons/my_button_rectangle.dart</title>
+</g>
+<g>
   <path d="M 278.0 115.0 L 288.0 115.0 Q 294.0 115.0 294.0 121.0 V 143.0 Q 294.0 149.0 300.0 149.0 L 590.0 149.0 L 910.0 149.0 L 1260.0 149.0 L 1656.0 149.0 L 2090.0 149.0 L 2506.0 149.0 L 2944.0 149.0 L 3398.0 149.0 L 3408.0 149.0 Q 3414.0 149.0 3414.0 155.0 V 179.0 Q 3414.0 185.0 3420.0 185.0 L 3642.0 185.0 L 3648.0 185.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/main.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/locale_controller.dart</title>
 </g>
 <g>
-  <path d="M 1268.0 115.0 L 1292.0 115.0 Q 1298.0 115.0 1298.0 121.0 V 148.0 Q 1298.0 154.0 1304.0 154.0 L 1656.0 154.0 L 2090.0 154.0 L 2506.0 154.0 L 2944.0 154.0 L 3398.0 154.0 L 3862.0 154.0 L 4338.0 154.0 L 4820.0 154.0 L 4844.0 154.0 Q 4850.0 154.0 4850.0 160.0 V 179.0 Q 4850.0 185.0 4856.0 185.0 L 5060.0 185.0 L 5066.0 185.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/start_game_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/game/game_styles.dart</title>
-</g>
-<g>
   <path d="M 598.0 115.0 L 604.0 115.0 Q 610.0 115.0 610.0 121.0 V 142.0 Q 610.0 148.0 616.0 148.0 L 910.0 148.0 L 1260.0 148.0 L 1656.0 148.0 L 2090.0 148.0 L 2506.0 148.0 L 2944.0 148.0 L 3398.0 148.0 L 3862.0 148.0 L 3868.0 148.0 Q 3874.0 148.0 3874.0 154.0 V 179.0 Q 3874.0 185.0 3880.0 185.0 L 4118.0 185.0 L 4124.0 185.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/screens/keepscore/golf_score_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/buttons/my_button_round.dart</title>
+</g>
+<g>
+  <path d="M 1268.0 115.0 L 1292.0 115.0 Q 1298.0 115.0 1298.0 121.0 V 148.0 Q 1298.0 154.0 1304.0 154.0 L 1656.0 154.0 L 2090.0 154.0 L 2506.0 154.0 L 2944.0 154.0 L 3398.0 154.0 L 3862.0 154.0 L 4338.0 154.0 L 4820.0 154.0 L 4844.0 154.0 Q 4850.0 154.0 4850.0 160.0 V 179.0 Q 4850.0 185.0 4856.0 185.0 L 5060.0 185.0 L 5066.0 185.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/start_game_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/game/game_styles.dart</title>
 </g>
 <g>
   <path d="M 916.0 255.0 L 948.0 255.0 Q 954.0 255.0 954.0 249.0 V 86.0 Q 954.0 80.0 960.0 80.0 L 1260.0 80.0 L 1656.0 80.0 L 2090.0 80.0 L 2506.0 80.0 L 2944.0 80.0 L 3398.0 80.0 L 3862.0 80.0 L 4338.0 80.0 L 4370.0 80.0 Q 4376.0 80.0 4376.0 86.0 V 109.0 Q 4376.0 115.0 4382.0 115.0 L 4600.0 115.0 L 4606.0 115.0" class="edge"/>
@@ -1230,171 +1233,171 @@
   <title>/Users/jp/src/github/vteam/fCards/lib/widgets/player/player_header.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/buttons/my_button_rectangle.dart</title>
 </g>
 <g>
-  <path d="M 2096.0 395.0 L 2110.0 395.0 Q 2116.0 395.0 2116.0 389.0 V 90.0 Q 2116.0 84.0 2122.0 84.0 L 2506.0 84.0 L 2944.0 84.0 L 3398.0 84.0 L 3862.0 84.0 L 4338.0 84.0 L 4820.0 84.0 L 5280.0 84.0 L 5664.0 84.0 L 5678.0 84.0 Q 5684.0 84.0 5684.0 90.0 V 109.0 Q 5684.0 115.0 5690.0 115.0 L 5802.0 115.0 L 5808.0 115.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/game_style.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
+  <path d="M 596.0 185.0 L 634.0 185.0 Q 640.0 185.0 640.0 179.0 V 154.0 Q 640.0 148.0 646.0 148.0 L 910.0 148.0 L 1260.0 148.0 L 1656.0 148.0 L 2090.0 148.0 L 2506.0 148.0 L 2944.0 148.0 L 3398.0 148.0 L 3862.0 148.0 L 4338.0 148.0 L 4376.0 148.0 Q 4382.0 148.0 4382.0 154.0 V 179.0 Q 4382.0 185.0 4388.0 185.0 L 4600.0 185.0 L 4606.0 185.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/corrections_review_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/game/backend_model.dart</title>
 </g>
 <g>
   <path d="M 598.0 115.0 L 614.0 115.0 Q 620.0 115.0 620.0 109.0 V 56.0 Q 620.0 50.0 626.0 50.0 L 4354.0 50.0 Q 4360.0 50.0 4360.0 56.0 V 109.0 Q 4360.0 115.0 4366.0 115.0 L 4595.0 115.0 L 4606.0 115.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/screens/keepscore/golf_score_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/buttons/my_button_rectangle.dart</title>
 </g>
 <g>
-  <path d="M 596.0 185.0 L 634.0 185.0 Q 640.0 185.0 640.0 179.0 V 154.0 Q 640.0 148.0 646.0 148.0 L 910.0 148.0 L 1260.0 148.0 L 1656.0 148.0 L 2090.0 148.0 L 2506.0 148.0 L 2944.0 148.0 L 3398.0 148.0 L 3862.0 148.0 L 4338.0 148.0 L 4376.0 148.0 Q 4382.0 148.0 4382.0 154.0 V 179.0 Q 4382.0 185.0 4388.0 185.0 L 4600.0 185.0 L 4606.0 185.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/corrections_review_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/game/backend_model.dart</title>
-</g>
-<g>
   <path d="M 918.0 115.0 L 936.0 115.0 Q 942.0 115.0 942.0 109.0 V 56.0 Q 942.0 50.0 948.0 50.0 L 4842.0 50.0 Q 4848.0 50.0 4848.0 56.0 V 109.0 Q 4848.0 115.0 4854.0 115.0 L 5055.0 115.0 L 5066.0 115.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/card_scan_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/utils/logger.dart</title>
-</g>
-<g>
-  <path d="M 1266.0 185.0 L 1310.0 185.0 Q 1316.0 185.0 1316.0 179.0 V 88.0 Q 1316.0 82.0 1322.0 82.0 L 1656.0 82.0 L 2090.0 82.0 L 2506.0 82.0 L 2944.0 82.0 L 3398.0 82.0 L 3862.0 82.0 L 4338.0 82.0 L 4820.0 82.0 L 5280.0 82.0 L 5324.0 82.0 Q 5330.0 82.0 5330.0 88.0 V 109.0 Q 5330.0 115.0 5336.0 115.0 L 5444.0 115.0 L 5450.0 115.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/card_scan_helpers.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/app_theme.dart</title>
-</g>
-<g>
-  <path d="M 916.0 255.0 L 958.0 255.0 Q 964.0 255.0 964.0 249.0 V 160.0 Q 964.0 154.0 970.0 154.0 L 1260.0 154.0 L 1656.0 154.0 L 2090.0 154.0 L 2506.0 154.0 L 2944.0 154.0 L 3398.0 154.0 L 3862.0 154.0 L 4338.0 154.0 L 4820.0 154.0 L 4862.0 154.0 Q 4868.0 154.0 4868.0 160.0 V 179.0 Q 4868.0 185.0 4874.0 185.0 L 5060.0 185.0 L 5066.0 185.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/create_table_name_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/game/game_styles.dart</title>
-</g>
-<g>
-  <path d="M 1662.0 185.0 L 1682.0 185.0 Q 1688.0 185.0 1688.0 179.0 V 89.0 Q 1688.0 83.0 1694.0 83.0 L 2090.0 83.0 L 2506.0 83.0 L 2944.0 83.0 L 3398.0 83.0 L 3862.0 83.0 L 4338.0 83.0 L 4820.0 83.0 L 5280.0 83.0 L 5664.0 83.0 L 5684.0 83.0 Q 5690.0 83.0 5690.0 89.0 V 109.0 Q 5690.0 115.0 5696.0 115.0 L 5802.0 115.0 L 5808.0 115.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/start_screen_room_section.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
-</g>
-<g>
-  <path d="M 596.0 185.0 L 622.0 185.0 Q 628.0 185.0 628.0 179.0 V 82.0 Q 628.0 76.0 634.0 76.0 L 910.0 76.0 L 1260.0 76.0 L 1656.0 76.0 L 2090.0 76.0 L 2506.0 76.0 L 2944.0 76.0 L 3398.0 76.0 L 3862.0 76.0 L 4338.0 76.0 L 4364.0 76.0 Q 4370.0 76.0 4370.0 82.0 V 109.0 Q 4370.0 115.0 4376.0 115.0 L 4600.0 115.0 L 4606.0 115.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/corrections_review_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/buttons/my_button_rectangle.dart</title>
 </g>
 <g>
   <path d="M 916.0 185.0 L 942.0 185.0 Q 948.0 185.0 948.0 191.0 V 214.0 Q 948.0 220.0 954.0 220.0 L 1260.0 220.0 L 1656.0 220.0 L 2090.0 220.0 L 2206.0 220.0 Q 2212.0 220.0 2212.0 214.0 V 156.0 Q 2212.0 150.0 2218.0 150.0 L 2506.0 150.0 L 2633.0 150.0 Q 2639.0 150.0 2639.0 156.0 V 214.0 Q 2639.0 220.0 2645.0 220.0 L 2944.0 220.0 L 3398.0 220.0 L 3862.0 220.0 L 4338.0 220.0 L 4820.0 220.0 L 4846.0 220.0 Q 4852.0 220.0 4852.0 226.0 V 249.0 Q 4852.0 255.0 4858.0 255.0 L 5060.0 255.0 L 5066.0 255.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/models/app/reviewer_access.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/auth_service.dart</title>
 </g>
 <g>
-  <path d="M 918.0 115.0 L 926.0 115.0 Q 932.0 115.0 932.0 121.0 V 218.0 Q 932.0 224.0 938.0 224.0 L 1260.0 224.0 L 1656.0 224.0 L 2090.0 224.0 L 2188.0 224.0 Q 2194.0 224.0 2194.0 218.0 V 160.0 Q 2194.0 154.0 2200.0 154.0 L 2506.0 154.0 L 2615.0 154.0 Q 2621.0 154.0 2621.0 160.0 V 218.0 Q 2621.0 224.0 2627.0 224.0 L 2944.0 224.0 L 3398.0 224.0 L 3862.0 224.0 L 4338.0 224.0 L 4820.0 224.0 L 4828.0 224.0 Q 4834.0 224.0 4834.0 230.0 V 249.0 Q 4834.0 255.0 4840.0 255.0 L 5060.0 255.0 L 5066.0 255.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/card_scan_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/auth_service.dart</title>
+  <path d="M 916.0 255.0 L 958.0 255.0 Q 964.0 255.0 964.0 249.0 V 160.0 Q 964.0 154.0 970.0 154.0 L 1260.0 154.0 L 1656.0 154.0 L 2090.0 154.0 L 2506.0 154.0 L 2944.0 154.0 L 3398.0 154.0 L 3862.0 154.0 L 4338.0 154.0 L 4820.0 154.0 L 4862.0 154.0 Q 4868.0 154.0 4868.0 160.0 V 179.0 Q 4868.0 185.0 4874.0 185.0 L 5060.0 185.0 L 5066.0 185.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/create_table_name_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/game/game_styles.dart</title>
 </g>
 <g>
-  <path d="M 916.0 255.0 L 950.0 255.0 Q 956.0 255.0 956.0 249.0 V 88.0 Q 956.0 82.0 962.0 82.0 L 1260.0 82.0 L 1656.0 82.0 L 2090.0 82.0 L 2506.0 82.0 L 2944.0 82.0 L 3398.0 82.0 L 3862.0 82.0 L 4338.0 82.0 L 4820.0 82.0 L 4854.0 82.0 Q 4860.0 82.0 4860.0 88.0 V 109.0 Q 4860.0 115.0 4866.0 115.0 L 5060.0 115.0 L 5066.0 115.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/create_table_name_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/utils/logger.dart</title>
+  <path d="M 1266.0 185.0 L 1310.0 185.0 Q 1316.0 185.0 1316.0 179.0 V 88.0 Q 1316.0 82.0 1322.0 82.0 L 1656.0 82.0 L 2090.0 82.0 L 2506.0 82.0 L 2944.0 82.0 L 3398.0 82.0 L 3862.0 82.0 L 4338.0 82.0 L 4820.0 82.0 L 5280.0 82.0 L 5324.0 82.0 Q 5330.0 82.0 5330.0 88.0 V 109.0 Q 5330.0 115.0 5336.0 115.0 L 5444.0 115.0 L 5450.0 115.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/card_scan_helpers.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/app_theme.dart</title>
 </g>
 <g>
-  <path d="M 596.0 255.0 L 638.0 255.0 Q 644.0 255.0 644.0 249.0 V 84.0 Q 644.0 78.0 650.0 78.0 L 910.0 78.0 L 1260.0 78.0 L 1656.0 78.0 L 2090.0 78.0 L 2506.0 78.0 L 2944.0 78.0 L 3398.0 78.0 L 3862.0 78.0 L 4338.0 78.0 L 4380.0 78.0 Q 4386.0 78.0 4386.0 84.0 V 109.0 Q 4386.0 115.0 4392.0 115.0 L 4600.0 115.0 L 4606.0 115.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/start_game_wizard_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/buttons/my_button_rectangle.dart</title>
+  <path d="M 596.0 185.0 L 622.0 185.0 Q 628.0 185.0 628.0 179.0 V 82.0 Q 628.0 76.0 634.0 76.0 L 910.0 76.0 L 1260.0 76.0 L 1656.0 76.0 L 2090.0 76.0 L 2506.0 76.0 L 2944.0 76.0 L 3398.0 76.0 L 3862.0 76.0 L 4338.0 76.0 L 4364.0 76.0 Q 4370.0 76.0 4370.0 82.0 V 109.0 Q 4370.0 115.0 4376.0 115.0 L 4600.0 115.0 L 4606.0 115.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/corrections_review_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/buttons/my_button_rectangle.dart</title>
 </g>
 <g>
   <path d="M 596.0 325.0 L 662.0 325.0 Q 668.0 325.0 668.0 319.0 V 155.0 Q 668.0 149.0 674.0 149.0 L 910.0 149.0 L 1260.0 149.0 L 1656.0 149.0 L 2090.0 149.0 L 2506.0 149.0 L 2944.0 149.0 L 3398.0 149.0 L 3862.0 149.0 L 4338.0 149.0 L 4404.0 149.0 Q 4410.0 149.0 4410.0 155.0 V 179.0 Q 4410.0 185.0 4416.0 185.0 L 4600.0 185.0 L 4606.0 185.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/screens/welcome/welcome_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/game/backend_model.dart</title>
 </g>
 <g>
-  <path d="M 1662.0 255.0 L 1688.0 255.0 Q 1694.0 255.0 1694.0 249.0 V 87.0 Q 1694.0 81.0 1700.0 81.0 L 2090.0 81.0 L 2506.0 81.0 L 2944.0 81.0 L 3398.0 81.0 L 3862.0 81.0 L 4338.0 81.0 L 4820.0 81.0 L 5280.0 81.0 L 5664.0 81.0 L 5690.0 81.0 Q 5696.0 81.0 5696.0 87.0 V 109.0 Q 5696.0 115.0 5702.0 115.0 L 5802.0 115.0 L 5808.0 115.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/start_screen_game_instructions.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
+  <path d="M 916.0 255.0 L 950.0 255.0 Q 956.0 255.0 956.0 249.0 V 88.0 Q 956.0 82.0 962.0 82.0 L 1260.0 82.0 L 1656.0 82.0 L 2090.0 82.0 L 2506.0 82.0 L 2944.0 82.0 L 3398.0 82.0 L 3862.0 82.0 L 4338.0 82.0 L 4820.0 82.0 L 4854.0 82.0 Q 4860.0 82.0 4860.0 88.0 V 109.0 Q 4860.0 115.0 4866.0 115.0 L 5060.0 115.0 L 5066.0 115.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/create_table_name_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/utils/logger.dart</title>
+</g>
+<g>
+  <path d="M 918.0 115.0 L 926.0 115.0 Q 932.0 115.0 932.0 121.0 V 218.0 Q 932.0 224.0 938.0 224.0 L 1260.0 224.0 L 1656.0 224.0 L 2090.0 224.0 L 2188.0 224.0 Q 2194.0 224.0 2194.0 218.0 V 160.0 Q 2194.0 154.0 2200.0 154.0 L 2506.0 154.0 L 2615.0 154.0 Q 2621.0 154.0 2621.0 160.0 V 218.0 Q 2621.0 224.0 2627.0 224.0 L 2944.0 224.0 L 3398.0 224.0 L 3862.0 224.0 L 4338.0 224.0 L 4820.0 224.0 L 4828.0 224.0 Q 4834.0 224.0 4834.0 230.0 V 249.0 Q 4834.0 255.0 4840.0 255.0 L 5060.0 255.0 L 5066.0 255.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/card_scan_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/auth_service.dart</title>
+</g>
+<g>
+  <path d="M 596.0 255.0 L 638.0 255.0 Q 644.0 255.0 644.0 249.0 V 84.0 Q 644.0 78.0 650.0 78.0 L 910.0 78.0 L 1260.0 78.0 L 1656.0 78.0 L 2090.0 78.0 L 2506.0 78.0 L 2944.0 78.0 L 3398.0 78.0 L 3862.0 78.0 L 4338.0 78.0 L 4380.0 78.0 Q 4386.0 78.0 4386.0 84.0 V 109.0 Q 4386.0 115.0 4392.0 115.0 L 4600.0 115.0 L 4606.0 115.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/start_game_wizard_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/buttons/my_button_rectangle.dart</title>
 </g>
 <g>
   <path d="M 596.0 325.0 L 654.0 325.0 Q 660.0 325.0 660.0 319.0 V 83.0 Q 660.0 77.0 666.0 77.0 L 910.0 77.0 L 1260.0 77.0 L 1656.0 77.0 L 2090.0 77.0 L 2506.0 77.0 L 2944.0 77.0 L 3398.0 77.0 L 3862.0 77.0 L 4338.0 77.0 L 4396.0 77.0 Q 4402.0 77.0 4402.0 83.0 V 109.0 Q 4402.0 115.0 4408.0 115.0 L 4600.0 115.0 L 4606.0 115.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/screens/welcome/welcome_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/widgets/buttons/my_button_rectangle.dart</title>
 </g>
 <g>
-  <path d="M 1662.0 535.0 L 1708.0 535.0 Q 1714.0 535.0 1714.0 529.0 V 87.0 Q 1714.0 81.0 1720.0 81.0 L 2090.0 81.0 L 2506.0 81.0 L 2944.0 81.0 L 3398.0 81.0 L 3862.0 81.0 L 4338.0 81.0 L 4820.0 81.0 L 5280.0 81.0 L 5664.0 81.0 L 5710.0 81.0 Q 5716.0 81.0 5716.0 87.0 V 109.0 Q 5716.0 115.0 5722.0 115.0 L 5802.0 115.0 L 5808.0 115.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/start_screen_action_button.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
-</g>
-<g>
-  <path d="M 1662.0 605.0 L 1710.0 605.0 Q 1716.0 605.0 1716.0 599.0 V 87.0 Q 1716.0 81.0 1722.0 81.0 L 2090.0 81.0 L 2506.0 81.0 L 2944.0 81.0 L 3398.0 81.0 L 3862.0 81.0 L 4338.0 81.0 L 4820.0 81.0 L 5280.0 81.0 L 5664.0 81.0 L 5712.0 81.0 Q 5718.0 81.0 5718.0 87.0 V 109.0 Q 5718.0 115.0 5724.0 115.0 L 5802.0 115.0 L 5808.0 115.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/start_screen_game_mode.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
-</g>
-<g>
-  <path d="M 1662.0 675.0 L 1714.0 675.0 Q 1720.0 675.0 1720.0 669.0 V 87.0 Q 1720.0 81.0 1726.0 81.0 L 2090.0 81.0 L 2506.0 81.0 L 2944.0 81.0 L 3398.0 81.0 L 3862.0 81.0 L 4338.0 81.0 L 4820.0 81.0 L 5280.0 81.0 L 5664.0 81.0 L 5716.0 81.0 Q 5722.0 81.0 5722.0 87.0 V 109.0 Q 5722.0 115.0 5728.0 115.0 L 5802.0 115.0 L 5808.0 115.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/start_screen_player_name_input.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
-</g>
-<g>
-  <path d="M 1662.0 885.0 L 1724.0 885.0 Q 1730.0 885.0 1730.0 879.0 V 86.0 Q 1730.0 80.0 1736.0 80.0 L 2090.0 80.0 L 2506.0 80.0 L 2944.0 80.0 L 3398.0 80.0 L 3862.0 80.0 L 4338.0 80.0 L 4820.0 80.0 L 5280.0 80.0 L 5664.0 80.0 L 5726.0 80.0 Q 5732.0 80.0 5732.0 86.0 V 109.0 Q 5732.0 115.0 5738.0 115.0 L 5802.0 115.0 L 5808.0 115.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/start_screen_constants.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
-</g>
-<g>
-  <path d="M 1268.0 115.0 L 1296.0 115.0 Q 1302.0 115.0 1302.0 109.0 V 52.0 Q 1302.0 46.0 1308.0 46.0 L 5700.0 46.0 Q 5706.0 46.0 5706.0 52.0 V 109.0 Q 5706.0 115.0 5712.0 115.0 L 5797.0 115.0 L 5808.0 115.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/start_game_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
+  <path d="M 2096.0 395.0 L 2110.0 395.0 Q 2116.0 395.0 2116.0 389.0 V 90.0 Q 2116.0 84.0 2122.0 84.0 L 2506.0 84.0 L 2944.0 84.0 L 3398.0 84.0 L 3862.0 84.0 L 4338.0 84.0 L 4820.0 84.0 L 5280.0 84.0 L 5664.0 84.0 L 6022.0 84.0 L 6036.0 84.0 Q 6042.0 84.0 6042.0 90.0 V 109.0 Q 6042.0 115.0 6048.0 115.0 L 6122.0 115.0 L 6128.0 115.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/game_style.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
 </g>
 <g>
   <path d="M 596.0 325.0 L 664.0 325.0 Q 670.0 325.0 670.0 319.0 V 229.0 Q 670.0 223.0 676.0 223.0 L 910.0 223.0 L 1260.0 223.0 L 1656.0 223.0 L 2090.0 223.0 L 2248.0 223.0 Q 2254.0 223.0 2254.0 217.0 V 159.0 Q 2254.0 153.0 2260.0 153.0 L 2506.0 153.0 L 2675.0 153.0 Q 2681.0 153.0 2681.0 159.0 V 217.0 Q 2681.0 223.0 2687.0 223.0 L 2944.0 223.0 L 3398.0 223.0 L 3862.0 223.0 L 4338.0 223.0 L 4820.0 223.0 L 4888.0 223.0 Q 4894.0 223.0 4894.0 229.0 V 249.0 Q 4894.0 255.0 4900.0 255.0 L 5060.0 255.0 L 5066.0 255.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/screens/welcome/welcome_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/auth_service.dart</title>
 </g>
 <g>
-  <path d="M 596.0 255.0 L 644.0 255.0 Q 650.0 255.0 650.0 249.0 V 156.0 Q 650.0 150.0 656.0 150.0 L 910.0 150.0 L 1260.0 150.0 L 1656.0 150.0 L 2090.0 150.0 L 2506.0 150.0 L 2944.0 150.0 L 3398.0 150.0 L 3862.0 150.0 L 4338.0 150.0 L 4820.0 150.0 L 4868.0 150.0 Q 4874.0 150.0 4874.0 156.0 V 179.0 Q 4874.0 185.0 4880.0 185.0 L 5060.0 185.0 L 5066.0 185.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/start_game_wizard_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/game/game_styles.dart</title>
-</g>
-<g>
-  <path d="M 596.0 185.0 L 626.0 185.0 Q 632.0 185.0 632.0 179.0 V 86.0 Q 632.0 80.0 638.0 80.0 L 910.0 80.0 L 1260.0 80.0 L 1656.0 80.0 L 2090.0 80.0 L 2506.0 80.0 L 2944.0 80.0 L 3398.0 80.0 L 3862.0 80.0 L 4338.0 80.0 L 4820.0 80.0 L 4850.0 80.0 Q 4856.0 80.0 4856.0 86.0 V 109.0 Q 4856.0 115.0 4862.0 115.0 L 5060.0 115.0 L 5066.0 115.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/corrections_review_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/utils/logger.dart</title>
+  <path d="M 1662.0 185.0 L 1682.0 185.0 Q 1688.0 185.0 1688.0 179.0 V 89.0 Q 1688.0 83.0 1694.0 83.0 L 2090.0 83.0 L 2506.0 83.0 L 2944.0 83.0 L 3398.0 83.0 L 3862.0 83.0 L 4338.0 83.0 L 4820.0 83.0 L 5280.0 83.0 L 5664.0 83.0 L 6022.0 83.0 L 6042.0 83.0 Q 6048.0 83.0 6048.0 89.0 V 109.0 Q 6048.0 115.0 6054.0 115.0 L 6122.0 115.0 L 6128.0 115.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/start_screen_room_section.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
 </g>
 <g>
   <path d="M 278.0 115.0 L 290.0 115.0 Q 296.0 115.0 296.0 121.0 V 145.0 Q 296.0 151.0 302.0 151.0 L 590.0 151.0 L 910.0 151.0 L 1260.0 151.0 L 1656.0 151.0 L 2090.0 151.0 L 2506.0 151.0 L 2944.0 151.0 L 3398.0 151.0 L 3862.0 151.0 L 4338.0 151.0 L 4350.0 151.0 Q 4356.0 151.0 4356.0 157.0 V 179.0 Q 4356.0 185.0 4362.0 185.0 L 4600.0 185.0 L 4606.0 185.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/main.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/game/backend_model.dart</title>
 </g>
 <g>
+  <path d="M 596.0 255.0 L 646.0 255.0 Q 652.0 255.0 652.0 249.0 V 156.0 Q 652.0 150.0 658.0 150.0 L 910.0 150.0 L 1260.0 150.0 L 1656.0 150.0 L 2090.0 150.0 L 2506.0 150.0 L 2944.0 150.0 L 3398.0 150.0 L 3862.0 150.0 L 4338.0 150.0 L 4820.0 150.0 L 4870.0 150.0 Q 4876.0 150.0 4876.0 156.0 V 179.0 Q 4876.0 185.0 4882.0 185.0 L 5060.0 185.0 L 5066.0 185.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/start_game_wizard_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/game/game_styles.dart</title>
+</g>
+<g>
   <path d="M 596.0 185.0 L 624.0 185.0 Q 630.0 185.0 630.0 191.0 V 216.0 Q 630.0 222.0 636.0 222.0 L 910.0 222.0 L 1260.0 222.0 L 1656.0 222.0 L 2090.0 222.0 L 2208.0 222.0 Q 2214.0 222.0 2214.0 216.0 V 158.0 Q 2214.0 152.0 2220.0 152.0 L 2506.0 152.0 L 2635.0 152.0 Q 2641.0 152.0 2641.0 158.0 V 216.0 Q 2641.0 222.0 2647.0 222.0 L 2944.0 222.0 L 3398.0 222.0 L 3862.0 222.0 L 4338.0 222.0 L 4820.0 222.0 L 4848.0 222.0 Q 4854.0 222.0 4854.0 228.0 V 249.0 Q 4854.0 255.0 4860.0 255.0 L 5060.0 255.0 L 5066.0 255.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/corrections_review_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/auth_service.dart</title>
 </g>
 <g>
-  <path d="M 1266.0 185.0 L 1312.0 185.0 Q 1318.0 185.0 1318.0 179.0 V 90.0 Q 1318.0 84.0 1324.0 84.0 L 1656.0 84.0 L 2090.0 84.0 L 2506.0 84.0 L 2944.0 84.0 L 3398.0 84.0 L 3862.0 84.0 L 4338.0 84.0 L 4820.0 84.0 L 5280.0 84.0 L 5664.0 84.0 L 5710.0 84.0 Q 5716.0 84.0 5716.0 90.0 V 109.0 Q 5716.0 115.0 5722.0 115.0 L 5802.0 115.0 L 5808.0 115.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/card_scan_helpers.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
+  <path d="M 596.0 185.0 L 626.0 185.0 Q 632.0 185.0 632.0 179.0 V 86.0 Q 632.0 80.0 638.0 80.0 L 910.0 80.0 L 1260.0 80.0 L 1656.0 80.0 L 2090.0 80.0 L 2506.0 80.0 L 2944.0 80.0 L 3398.0 80.0 L 3862.0 80.0 L 4338.0 80.0 L 4820.0 80.0 L 4850.0 80.0 Q 4856.0 80.0 4856.0 86.0 V 109.0 Q 4856.0 115.0 4862.0 115.0 L 5060.0 115.0 L 5066.0 115.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/corrections_review_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/utils/logger.dart</title>
+</g>
+<g>
+  <path d="M 1662.0 255.0 L 1688.0 255.0 Q 1694.0 255.0 1694.0 249.0 V 87.0 Q 1694.0 81.0 1700.0 81.0 L 2090.0 81.0 L 2506.0 81.0 L 2944.0 81.0 L 3398.0 81.0 L 3862.0 81.0 L 4338.0 81.0 L 4820.0 81.0 L 5280.0 81.0 L 5664.0 81.0 L 6022.0 81.0 L 6048.0 81.0 Q 6054.0 81.0 6054.0 87.0 V 109.0 Q 6054.0 115.0 6060.0 115.0 L 6122.0 115.0 L 6128.0 115.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/start_screen_game_instructions.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
 </g>
 <g>
   <path d="M 596.0 325.0 L 656.0 325.0 Q 662.0 325.0 662.0 319.0 V 87.0 Q 662.0 81.0 668.0 81.0 L 910.0 81.0 L 1260.0 81.0 L 1656.0 81.0 L 2090.0 81.0 L 2506.0 81.0 L 2944.0 81.0 L 3398.0 81.0 L 3862.0 81.0 L 4338.0 81.0 L 4820.0 81.0 L 4880.0 81.0 Q 4886.0 81.0 4886.0 87.0 V 109.0 Q 4886.0 115.0 4892.0 115.0 L 5060.0 115.0 L 5066.0 115.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/screens/welcome/welcome_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/utils/logger.dart</title>
 </g>
 <g>
-  <path d="M 918.0 115.0 L 934.0 115.0 Q 940.0 115.0 940.0 109.0 V 48.0 Q 940.0 42.0 946.0 42.0 L 5688.0 42.0 Q 5694.0 42.0 5694.0 48.0 V 109.0 Q 5694.0 115.0 5700.0 115.0 L 5797.0 115.0 L 5808.0 115.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/card_scan_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
+  <path d="M 1662.0 535.0 L 1708.0 535.0 Q 1714.0 535.0 1714.0 529.0 V 87.0 Q 1714.0 81.0 1720.0 81.0 L 2090.0 81.0 L 2506.0 81.0 L 2944.0 81.0 L 3398.0 81.0 L 3862.0 81.0 L 4338.0 81.0 L 4820.0 81.0 L 5280.0 81.0 L 5664.0 81.0 L 6022.0 81.0 L 6068.0 81.0 Q 6074.0 81.0 6074.0 87.0 V 109.0 Q 6074.0 115.0 6080.0 115.0 L 6122.0 115.0 L 6128.0 115.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/start_screen_action_button.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
 </g>
 <g>
-  <path d="M 278.0 115.0 L 296.0 115.0 Q 302.0 115.0 302.0 109.0 V 48.0 Q 302.0 42.0 308.0 42.0 L 4842.0 42.0 Q 4848.0 42.0 4848.0 48.0 V 109.0 Q 4848.0 115.0 4854.0 115.0 L 5055.0 115.0 L 5066.0 115.0" class="edge"/>
+  <path d="M 1662.0 605.0 L 1710.0 605.0 Q 1716.0 605.0 1716.0 599.0 V 87.0 Q 1716.0 81.0 1722.0 81.0 L 2090.0 81.0 L 2506.0 81.0 L 2944.0 81.0 L 3398.0 81.0 L 3862.0 81.0 L 4338.0 81.0 L 4820.0 81.0 L 5280.0 81.0 L 5664.0 81.0 L 6022.0 81.0 L 6070.0 81.0 Q 6076.0 81.0 6076.0 87.0 V 109.0 Q 6076.0 115.0 6082.0 115.0 L 6122.0 115.0 L 6128.0 115.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/start_screen_game_mode.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
+</g>
+<g>
+  <path d="M 1662.0 675.0 L 1714.0 675.0 Q 1720.0 675.0 1720.0 669.0 V 87.0 Q 1720.0 81.0 1726.0 81.0 L 2090.0 81.0 L 2506.0 81.0 L 2944.0 81.0 L 3398.0 81.0 L 3862.0 81.0 L 4338.0 81.0 L 4820.0 81.0 L 5280.0 81.0 L 5664.0 81.0 L 6022.0 81.0 L 6074.0 81.0 Q 6080.0 81.0 6080.0 87.0 V 109.0 Q 6080.0 115.0 6086.0 115.0 L 6122.0 115.0 L 6128.0 115.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/start_screen_player_name_input.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
+</g>
+<g>
+  <path d="M 1662.0 885.0 L 1724.0 885.0 Q 1730.0 885.0 1730.0 879.0 V 86.0 Q 1730.0 80.0 1736.0 80.0 L 2090.0 80.0 L 2506.0 80.0 L 2944.0 80.0 L 3398.0 80.0 L 3862.0 80.0 L 4338.0 80.0 L 4820.0 80.0 L 5280.0 80.0 L 5664.0 80.0 L 6022.0 80.0 L 6084.0 80.0 Q 6090.0 80.0 6090.0 86.0 V 109.0 Q 6090.0 115.0 6096.0 115.0 L 6122.0 115.0 L 6128.0 115.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/start_screen_constants.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
+</g>
+<g>
+  <path d="M 278.0 115.0 L 296.0 115.0 Q 302.0 115.0 302.0 109.0 V 52.0 Q 302.0 46.0 308.0 46.0 L 4842.0 46.0 Q 4848.0 46.0 4848.0 52.0 V 109.0 Q 4848.0 115.0 4854.0 115.0 L 5055.0 115.0 L 5066.0 115.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/main.dart ▶ /Users/jp/src/github/vteam/fCards/lib/utils/logger.dart</title>
 </g>
 <g>
-  <path d="M 598.0 115.0 L 612.0 115.0 Q 618.0 115.0 618.0 109.0 V 48.0 Q 618.0 42.0 624.0 42.0 L 5298.0 42.0 Q 5304.0 42.0 5304.0 48.0 V 109.0 Q 5304.0 115.0 5310.0 115.0 L 5439.0 115.0 L 5450.0 115.0" class="edge"/>
+  <path d="M 598.0 115.0 L 612.0 115.0 Q 618.0 115.0 618.0 109.0 V 52.0 Q 618.0 46.0 624.0 46.0 L 5298.0 46.0 Q 5304.0 46.0 5304.0 52.0 V 109.0 Q 5304.0 115.0 5310.0 115.0 L 5439.0 115.0 L 5450.0 115.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/screens/keepscore/golf_score_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/app_theme.dart</title>
 </g>
 <g>
-  <path d="M 596.0 255.0 L 646.0 255.0 Q 652.0 255.0 652.0 249.0 V 158.0 Q 652.0 152.0 658.0 152.0 L 910.0 152.0 L 1260.0 152.0 L 1656.0 152.0 L 2090.0 152.0 L 2506.0 152.0 L 2944.0 152.0 L 3398.0 152.0 L 3862.0 152.0 L 4338.0 152.0 L 4820.0 152.0 L 5280.0 152.0 L 5330.0 152.0 Q 5336.0 152.0 5336.0 158.0 V 179.0 Q 5336.0 185.0 5342.0 185.0 L 5444.0 185.0 L 5450.0 185.0" class="edge"/>
+  <path d="M 1268.0 115.0 L 1296.0 115.0 Q 1302.0 115.0 1302.0 109.0 V 52.0 Q 1302.0 46.0 1308.0 46.0 L 6058.0 46.0 Q 6064.0 46.0 6064.0 52.0 V 109.0 Q 6064.0 115.0 6070.0 115.0 L 6117.0 115.0 L 6128.0 115.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/start_game_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
+</g>
+<g>
+  <path d="M 596.0 255.0 L 648.0 255.0 Q 654.0 255.0 654.0 249.0 V 158.0 Q 654.0 152.0 660.0 152.0 L 910.0 152.0 L 1260.0 152.0 L 1656.0 152.0 L 2090.0 152.0 L 2506.0 152.0 L 2944.0 152.0 L 3398.0 152.0 L 3862.0 152.0 L 4338.0 152.0 L 4820.0 152.0 L 5280.0 152.0 L 5332.0 152.0 Q 5338.0 152.0 5338.0 158.0 V 179.0 Q 5338.0 185.0 5344.0 185.0 L 5444.0 185.0 L 5450.0 185.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/start_game_wizard_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/game/game_constants.dart</title>
 </g>
 <g>
-  <path d="M 596.0 185.0 L 628.0 185.0 Q 634.0 185.0 634.0 179.0 V 90.0 Q 634.0 84.0 640.0 84.0 L 910.0 84.0 L 1260.0 84.0 L 1656.0 84.0 L 2090.0 84.0 L 2506.0 84.0 L 2944.0 84.0 L 3398.0 84.0 L 3862.0 84.0 L 4338.0 84.0 L 4820.0 84.0 L 5280.0 84.0 L 5312.0 84.0 Q 5318.0 84.0 5318.0 90.0 V 109.0 Q 5318.0 115.0 5324.0 115.0 L 5444.0 115.0 L 5450.0 115.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/corrections_review_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/app_theme.dart</title>
+  <path d="M 1266.0 185.0 L 1312.0 185.0 Q 1318.0 185.0 1318.0 179.0 V 90.0 Q 1318.0 84.0 1324.0 84.0 L 1656.0 84.0 L 2090.0 84.0 L 2506.0 84.0 L 2944.0 84.0 L 3398.0 84.0 L 3862.0 84.0 L 4338.0 84.0 L 4820.0 84.0 L 5280.0 84.0 L 5664.0 84.0 L 6022.0 84.0 L 6068.0 84.0 Q 6074.0 84.0 6074.0 90.0 V 109.0 Q 6074.0 115.0 6080.0 115.0 L 6122.0 115.0 L 6128.0 115.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/card_scan_helpers.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
 </g>
 <g>
   <path d="M 598.0 115.0 L 606.0 115.0 Q 612.0 115.0 612.0 121.0 V 148.0 Q 612.0 154.0 618.0 154.0 L 910.0 154.0 L 1260.0 154.0 L 1656.0 154.0 L 2090.0 154.0 L 2506.0 154.0 L 2944.0 154.0 L 3398.0 154.0 L 3862.0 154.0 L 4338.0 154.0 L 4820.0 154.0 L 5280.0 154.0 L 5288.0 154.0 Q 5294.0 154.0 5294.0 160.0 V 179.0 Q 5294.0 185.0 5300.0 185.0 L 5444.0 185.0 L 5450.0 185.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/screens/keepscore/golf_score_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/game/game_constants.dart</title>
 </g>
 <g>
-  <path d="M 916.0 255.0 L 952.0 255.0 Q 958.0 255.0 958.0 249.0 V 90.0 Q 958.0 84.0 964.0 84.0 L 1260.0 84.0 L 1656.0 84.0 L 2090.0 84.0 L 2506.0 84.0 L 2944.0 84.0 L 3398.0 84.0 L 3862.0 84.0 L 4338.0 84.0 L 4820.0 84.0 L 5280.0 84.0 L 5664.0 84.0 L 5700.0 84.0 Q 5706.0 84.0 5706.0 90.0 V 109.0 Q 5706.0 115.0 5712.0 115.0 L 5802.0 115.0 L 5808.0 115.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/create_table_name_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
+  <path d="M 596.0 185.0 L 628.0 185.0 Q 634.0 185.0 634.0 179.0 V 90.0 Q 634.0 84.0 640.0 84.0 L 910.0 84.0 L 1260.0 84.0 L 1656.0 84.0 L 2090.0 84.0 L 2506.0 84.0 L 2944.0 84.0 L 3398.0 84.0 L 3862.0 84.0 L 4338.0 84.0 L 4820.0 84.0 L 5280.0 84.0 L 5312.0 84.0 Q 5318.0 84.0 5318.0 90.0 V 109.0 Q 5318.0 115.0 5324.0 115.0 L 5444.0 115.0 L 5450.0 115.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/corrections_review_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/app_theme.dart</title>
 </g>
 <g>
   <path d="M 278.0 115.0 L 284.0 115.0 Q 290.0 115.0 290.0 121.0 V 218.0 Q 290.0 224.0 296.0 224.0 L 590.0 224.0 L 910.0 224.0 L 1260.0 224.0 L 1656.0 224.0 L 2090.0 224.0 L 2186.0 224.0 Q 2192.0 224.0 2192.0 218.0 V 160.0 Q 2192.0 154.0 2198.0 154.0 L 2506.0 154.0 L 2613.0 154.0 Q 2619.0 154.0 2619.0 160.0 V 218.0 Q 2619.0 224.0 2625.0 224.0 L 2944.0 224.0 L 3398.0 224.0 L 3862.0 224.0 L 4338.0 224.0 L 4820.0 224.0 L 4826.0 224.0 Q 4832.0 224.0 4832.0 230.0 V 249.0 Q 4832.0 255.0 4838.0 255.0 L 5060.0 255.0 L 5066.0 255.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/main.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/auth_service.dart</title>
 </g>
 <g>
-  <path d="M 916.0 325.0 L 964.0 325.0 Q 970.0 325.0 970.0 319.0 V 88.0 Q 970.0 82.0 976.0 82.0 L 1260.0 82.0 L 1656.0 82.0 L 2090.0 82.0 L 2506.0 82.0 L 2944.0 82.0 L 3398.0 82.0 L 3862.0 82.0 L 4338.0 82.0 L 4820.0 82.0 L 5280.0 82.0 L 5664.0 82.0 L 5712.0 82.0 Q 5718.0 82.0 5718.0 88.0 V 109.0 Q 5718.0 115.0 5724.0 115.0 L 5802.0 115.0 L 5808.0 115.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/player/player_header.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
+  <path d="M 918.0 115.0 L 934.0 115.0 Q 940.0 115.0 940.0 109.0 V 48.0 Q 940.0 42.0 946.0 42.0 L 6046.0 42.0 Q 6052.0 42.0 6052.0 48.0 V 109.0 Q 6052.0 115.0 6058.0 115.0 L 6117.0 115.0 L 6128.0 115.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/card_scan_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
 </g>
 <g>
-  <path d="M 598.0 115.0 L 610.0 115.0 Q 616.0 115.0 616.0 109.0 V 44.0 Q 616.0 38.0 622.0 38.0 L 5684.0 38.0 Q 5690.0 38.0 5690.0 44.0 V 109.0 Q 5690.0 115.0 5696.0 115.0 L 5797.0 115.0 L 5808.0 115.0" class="edge"/>
-  <title>/Users/jp/src/github/vteam/fCards/lib/screens/keepscore/golf_score_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
-</g>
-<g>
-  <path d="M 278.0 115.0 L 294.0 115.0 Q 300.0 115.0 300.0 109.0 V 44.0 Q 300.0 38.0 306.0 38.0 L 5304.0 38.0 Q 5310.0 38.0 5310.0 44.0 V 109.0 Q 5310.0 115.0 5316.0 115.0 L 5439.0 115.0 L 5450.0 115.0" class="edge"/>
+  <path d="M 278.0 115.0 L 294.0 115.0 Q 300.0 115.0 300.0 109.0 V 48.0 Q 300.0 42.0 306.0 42.0 L 5304.0 42.0 Q 5310.0 42.0 5310.0 48.0 V 109.0 Q 5310.0 115.0 5316.0 115.0 L 5439.0 115.0 L 5450.0 115.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/main.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/app_theme.dart</title>
 </g>
 <g>
-  <path d="M 596.0 255.0 L 648.0 255.0 Q 654.0 255.0 654.0 249.0 V 160.0 Q 654.0 154.0 660.0 154.0 L 910.0 154.0 L 1260.0 154.0 L 1656.0 154.0 L 2090.0 154.0 L 2506.0 154.0 L 2944.0 154.0 L 3398.0 154.0 L 3862.0 154.0 L 4338.0 154.0 L 4820.0 154.0 L 5280.0 154.0 L 5664.0 154.0 L 5716.0 154.0 Q 5722.0 154.0 5722.0 160.0 V 179.0 Q 5722.0 185.0 5728.0 185.0 L 5802.0 185.0 L 5808.0 185.0" class="edge"/>
+  <path d="M 596.0 255.0 L 640.0 255.0 Q 646.0 255.0 646.0 249.0 V 90.0 Q 646.0 84.0 652.0 84.0 L 910.0 84.0 L 1260.0 84.0 L 1656.0 84.0 L 2090.0 84.0 L 2506.0 84.0 L 2944.0 84.0 L 3398.0 84.0 L 3862.0 84.0 L 4338.0 84.0 L 4820.0 84.0 L 5280.0 84.0 L 5664.0 84.0 L 5708.0 84.0 Q 5714.0 84.0 5714.0 90.0 V 109.0 Q 5714.0 115.0 5720.0 115.0 L 5802.0 115.0 L 5808.0 115.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/start_game_wizard_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/card/card_model.dart</title>
 </g>
 <g>
-  <path d="M 596.0 185.0 L 630.0 185.0 Q 636.0 185.0 636.0 179.0 V 90.0 Q 636.0 84.0 642.0 84.0 L 910.0 84.0 L 1260.0 84.0 L 1656.0 84.0 L 2090.0 84.0 L 2506.0 84.0 L 2944.0 84.0 L 3398.0 84.0 L 3862.0 84.0 L 4338.0 84.0 L 4820.0 84.0 L 5280.0 84.0 L 5664.0 84.0 L 5698.0 84.0 Q 5704.0 84.0 5704.0 90.0 V 109.0 Q 5704.0 115.0 5710.0 115.0 L 5802.0 115.0 L 5808.0 115.0" class="edge"/>
+  <path d="M 916.0 255.0 L 952.0 255.0 Q 958.0 255.0 958.0 249.0 V 90.0 Q 958.0 84.0 964.0 84.0 L 1260.0 84.0 L 1656.0 84.0 L 2090.0 84.0 L 2506.0 84.0 L 2944.0 84.0 L 3398.0 84.0 L 3862.0 84.0 L 4338.0 84.0 L 4820.0 84.0 L 5280.0 84.0 L 5664.0 84.0 L 6022.0 84.0 L 6058.0 84.0 Q 6064.0 84.0 6064.0 90.0 V 109.0 Q 6064.0 115.0 6070.0 115.0 L 6122.0 115.0 L 6128.0 115.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/create_table_name_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
+</g>
+<g>
+  <path d="M 916.0 325.0 L 964.0 325.0 Q 970.0 325.0 970.0 319.0 V 88.0 Q 970.0 82.0 976.0 82.0 L 1260.0 82.0 L 1656.0 82.0 L 2090.0 82.0 L 2506.0 82.0 L 2944.0 82.0 L 3398.0 82.0 L 3862.0 82.0 L 4338.0 82.0 L 4820.0 82.0 L 5280.0 82.0 L 5664.0 82.0 L 6022.0 82.0 L 6070.0 82.0 Q 6076.0 82.0 6076.0 88.0 V 109.0 Q 6076.0 115.0 6082.0 115.0 L 6122.0 115.0 L 6128.0 115.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/widgets/player/player_header.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
+</g>
+<g>
+  <path d="M 598.0 115.0 L 610.0 115.0 Q 616.0 115.0 616.0 109.0 V 44.0 Q 616.0 38.0 622.0 38.0 L 6042.0 38.0 Q 6048.0 38.0 6048.0 44.0 V 109.0 Q 6048.0 115.0 6054.0 115.0 L 6117.0 115.0 L 6128.0 115.0" class="edge"/>
+  <title>/Users/jp/src/github/vteam/fCards/lib/screens/keepscore/golf_score_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
+</g>
+<g>
+  <path d="M 596.0 185.0 L 630.0 185.0 Q 636.0 185.0 636.0 179.0 V 90.0 Q 636.0 84.0 642.0 84.0 L 910.0 84.0 L 1260.0 84.0 L 1656.0 84.0 L 2090.0 84.0 L 2506.0 84.0 L 2944.0 84.0 L 3398.0 84.0 L 3862.0 84.0 L 4338.0 84.0 L 4820.0 84.0 L 5280.0 84.0 L 5664.0 84.0 L 6022.0 84.0 L 6056.0 84.0 Q 6062.0 84.0 6062.0 90.0 V 109.0 Q 6062.0 115.0 6068.0 115.0 L 6122.0 115.0 L 6128.0 115.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/corrections_review_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
 </g>
 <g>
-  <path d="M 596.0 255.0 L 640.0 255.0 Q 646.0 255.0 646.0 249.0 V 90.0 Q 646.0 84.0 652.0 84.0 L 910.0 84.0 L 1260.0 84.0 L 1656.0 84.0 L 2090.0 84.0 L 2506.0 84.0 L 2944.0 84.0 L 3398.0 84.0 L 3862.0 84.0 L 4338.0 84.0 L 4820.0 84.0 L 5280.0 84.0 L 5664.0 84.0 L 5708.0 84.0 Q 5714.0 84.0 5714.0 90.0 V 109.0 Q 5714.0 115.0 5720.0 115.0 L 5802.0 115.0 L 5808.0 115.0" class="edge"/>
+  <path d="M 596.0 255.0 L 642.0 255.0 Q 648.0 255.0 648.0 249.0 V 90.0 Q 648.0 84.0 654.0 84.0 L 910.0 84.0 L 1260.0 84.0 L 1656.0 84.0 L 2090.0 84.0 L 2506.0 84.0 L 2944.0 84.0 L 3398.0 84.0 L 3862.0 84.0 L 4338.0 84.0 L 4820.0 84.0 L 5280.0 84.0 L 5664.0 84.0 L 6022.0 84.0 L 6068.0 84.0 Q 6074.0 84.0 6074.0 90.0 V 109.0 Q 6074.0 115.0 6080.0 115.0 L 6122.0 115.0 L 6128.0 115.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/screens/game/start_game_wizard_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
 </g>
 <g>
-  <path d="M 596.0 325.0 L 658.0 325.0 Q 664.0 325.0 664.0 319.0 V 90.0 Q 664.0 84.0 670.0 84.0 L 910.0 84.0 L 1260.0 84.0 L 1656.0 84.0 L 2090.0 84.0 L 2506.0 84.0 L 2944.0 84.0 L 3398.0 84.0 L 3862.0 84.0 L 4338.0 84.0 L 4820.0 84.0 L 5280.0 84.0 L 5664.0 84.0 L 5726.0 84.0 Q 5732.0 84.0 5732.0 90.0 V 109.0 Q 5732.0 115.0 5738.0 115.0 L 5802.0 115.0 L 5808.0 115.0" class="edge"/>
+  <path d="M 596.0 325.0 L 658.0 325.0 Q 664.0 325.0 664.0 319.0 V 90.0 Q 664.0 84.0 670.0 84.0 L 910.0 84.0 L 1260.0 84.0 L 1656.0 84.0 L 2090.0 84.0 L 2506.0 84.0 L 2944.0 84.0 L 3398.0 84.0 L 3862.0 84.0 L 4338.0 84.0 L 4820.0 84.0 L 5280.0 84.0 L 5664.0 84.0 L 6022.0 84.0 L 6084.0 84.0 Q 6090.0 84.0 6090.0 90.0 V 109.0 Q 6090.0 115.0 6096.0 115.0 L 6122.0 115.0 L 6128.0 115.0" class="edge"/>
   <title>/Users/jp/src/github/vteam/fCards/lib/screens/welcome/welcome_screen.dart ▶ /Users/jp/src/github/vteam/fCards/lib/models/app/constants_layout.dart</title>
 </g>
 <g class="badge outgoingBadge">
@@ -2060,7 +2063,35 @@
 2. wiggle_widget.dart</title></g><text x="5554.0" y="325.0" class="textNormal">constants_animation.dart</text>
 <g class="badge incomingBadge">
   <path d="M 5816.0,115.0 L 5800.0,107.4 Q 5797.0,107.4 5797.0,110.4 L 5797.0,119.6 Q 5797.0,122.6 5800.0,122.6 Z" fill="#3b82f6"/>
-  <text x="5802.72" y="116.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold" textLength="10.120000000000001" lengthAdjust="spacingAndGlyphs">40</text><title>1. app_theme.dart
+  <text x="5802.72" y="116.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold" textLength="10.120000000000001" lengthAdjust="spacingAndGlyphs">11</text><title>1. card_face_french_widget.dart
+2. card_face_skyjo_widget.dart
+3. card_pile_widget.dart
+4. card_widget.dart
+5. deck_model.dart
+6. game_styles.dart
+7. hand_model.dart
+8. player_model.dart
+9. start_game_wizard_screen.dart</title></g><text x="5912.0" y="115.0" class="textNormal">card_model.dart</text>
+<g class="badge incomingBadge">
+  <path d="M 5814.0,185.0 L 5802.0,178.0 Q 5799.0,178.0 5799.0,181.0 L 5799.0,189.0 Q 5799.0,192.0 5802.0,192.0 Z" fill="#3b82f6"/>
+  <text x="5803.68" y="186.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">7</text><title>1. card_face_french_widget.dart
+2. card_face_skyjo_widget.dart
+3. date_importance.dart
+4. game_over_dialog.dart
+5. player_header_widget.dart
+6. players_in_room_widget.dart
+7. status_picker.dart</title></g><g class="badge outgoingBadge">
+  <path d="M 6028.0,185.0 L 6016.0,178.0 Q 6013.0,178.0 6013.0,181.0 L 6013.0,189.0 Q 6013.0,192.0 6016.0,192.0 Z" fill="#10b981"/>
+  <text x="6017.68" y="186.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. constants_layout.dart</title></g><text x="5912.0" y="185.0" class="textNormal">my_text.dart</text>
+<g class="badge incomingBadge">
+  <path d="M 5814.0,255.0 L 5802.0,248.0 Q 5799.0,248.0 5799.0,251.0 L 5799.0,259.0 Q 5799.0,262.0 5802.0,262.0 Z" fill="#3b82f6"/>
+  <text x="5803.68" y="256.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">4</text><title>1. card_face_french_widget.dart
+2. card_face_skyjo_widget.dart
+3. deck_model.dart
+4. player_header_widget.dart</title></g><text x="5912.0" y="255.0" class="textSmall">constants_card_value.dart</text>
+<g class="badge incomingBadge">
+  <path d="M 6136.0,115.0 L 6120.0,107.4 Q 6117.0,107.4 6117.0,110.4 L 6117.0,119.6 Q 6117.0,122.6 6120.0,122.6 Z" fill="#3b82f6"/>
+  <text x="6122.72" y="116.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold" textLength="10.120000000000001" lengthAdjust="spacingAndGlyphs">41</text><title>1. app_theme.dart
 2. card_face_french_widget.dart
 3. card_face_skyjo_widget.dart
 4. card_pile_widget.dart
@@ -2081,49 +2112,24 @@
 19. my_button.dart
 20. my_button_rectangle.dart
 21. my_button_round.dart
-22. player_header.dart
-23. player_header_widget.dart
-24. player_zone_cta_widget.dart
-25. player_zone_widget.dart
-26. players_in_room_widget.dart
-27. screen.dart
-28. start_game_screen.dart
-29. start_game_wizard_screen.dart
-30. start_screen_action_button.dart
-31. start_screen_constants.dart
-32. start_screen_game_instructions.dart
-33. start_screen_game_mode.dart
-34. start_screen_player_name_input.dart
-35. start_screen_room_section.dart
-36. status_picker.dart
-37. table_widget.dart
-38. welcome_screen.dart
-39. wiggle_widget.dart
-40. wizard_footer.dart</title></g><text x="5912.0" y="115.0" class="textNormal">constants_layout.dart</text>
-<g class="badge incomingBadge">
-  <path d="M 5816.0,185.0 L 5800.0,177.4 Q 5797.0,177.4 5797.0,180.4 L 5797.0,189.6 Q 5797.0,192.6 5800.0,192.6 Z" fill="#3b82f6"/>
-  <text x="5802.72" y="186.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold" textLength="10.120000000000001" lengthAdjust="spacingAndGlyphs">11</text><title>1. card_face_french_widget.dart
-2. card_face_skyjo_widget.dart
-3. card_pile_widget.dart
-4. card_widget.dart
-5. deck_model.dart
-6. game_styles.dart
-7. hand_model.dart
-8. player_model.dart
-9. start_game_wizard_screen.dart</title></g><text x="5912.0" y="185.0" class="textNormal">card_model.dart</text>
-<g class="badge incomingBadge">
-  <path d="M 5814.0,255.0 L 5802.0,248.0 Q 5799.0,248.0 5799.0,251.0 L 5799.0,259.0 Q 5799.0,262.0 5802.0,262.0 Z" fill="#3b82f6"/>
-  <text x="5803.68" y="256.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">7</text><title>1. card_face_french_widget.dart
-2. card_face_skyjo_widget.dart
-3. date_importance.dart
-4. game_over_dialog.dart
-5. player_header_widget.dart
-6. players_in_room_widget.dart
-7. status_picker.dart</title></g><text x="5912.0" y="255.0" class="textNormal">my_text.dart</text>
-<g class="badge incomingBadge">
-  <path d="M 5814.0,325.0 L 5802.0,318.0 Q 5799.0,318.0 5799.0,321.0 L 5799.0,329.0 Q 5799.0,332.0 5802.0,332.0 Z" fill="#3b82f6"/>
-  <text x="5803.68" y="326.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">4</text><title>1. card_face_french_widget.dart
-2. card_face_skyjo_widget.dart
-3. deck_model.dart
-4. player_header_widget.dart</title></g><text x="5912.0" y="325.0" class="textSmall">constants_card_value.dart</text>
+22. my_text.dart
+23. player_header.dart
+24. player_header_widget.dart
+25. player_zone_cta_widget.dart
+26. player_zone_widget.dart
+27. players_in_room_widget.dart
+28. screen.dart
+29. start_game_screen.dart
+30. start_game_wizard_screen.dart
+31. start_screen_action_button.dart
+32. start_screen_constants.dart
+33. start_screen_game_instructions.dart
+34. start_screen_game_mode.dart
+35. start_screen_player_name_input.dart
+36. start_screen_room_section.dart
+37. status_picker.dart
+38. table_widget.dart
+39. welcome_screen.dart
+40. wiggle_widget.dart
+41. wizard_footer.dart</title></g><text x="6232.0" y="115.0" class="textNormal">constants_layout.dart</text>
 </svg>

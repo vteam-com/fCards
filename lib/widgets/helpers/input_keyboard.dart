@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 const String keyChangeSign = '±';
 
 /// Key label for the backspace button.
-const String keyBackspace = '⌫';
+const String keyBackspace = 'BS';
 
 /// Key value emitted by the space button on the alpha keyboard.
 const String keySpace = ' ';
@@ -102,11 +102,13 @@ class InputKeyboard extends StatelessWidget {
       child: MyButtonRound(
         size: ConstLayout.iconL,
         onTap: () => onKeyPressed(text),
-        child: Text(
-          text,
-          textAlign: TextAlign.center,
-          style: TextStyle(fontSize: ConstLayout.textM),
-        ),
+        child: text == keyBackspace
+            ? const Icon(Icons.backspace, size: ConstLayout.iconS)
+            : Text(
+                text,
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: ConstLayout.textM),
+              ),
       ),
     );
   }

@@ -75,7 +75,6 @@ class _CardScanScreenState extends State<CardScanScreen> {
   static const int _minNumericCardValue = 2;
   static const double _modelImageSize = TfliteService.modelInputSize * 1.0;
   static const double _nmsIouThreshold = 0.35;
-  static const double _scoreFontScale = 3.0;
   @override
   void initState() {
     super.initState();
@@ -135,7 +134,7 @@ class _CardScanScreenState extends State<CardScanScreen> {
     );
     final cellNumberStyle = scoreNumberStyle(
       context,
-      fontSize: ConstLayout.textM * _scoreFontScale,
+      fontSize: ConstLayout.textM,
     );
     return LayoutBuilder(
       builder: (_, constraints) {
@@ -296,7 +295,7 @@ class _CardScanScreenState extends State<CardScanScreen> {
     );
     final cellNumberStyle = scoreNumberStyle(
       context,
-      fontSize: ConstLayout.textM * _scoreFontScale,
+      fontSize: ConstLayout.textM,
     );
     final preview = CameraPreview(_controller!);
     return Stack(
@@ -387,7 +386,7 @@ class _CardScanScreenState extends State<CardScanScreen> {
                         '${_calculateDetectedScore()}',
                         style: scoreNumberStyle(
                           context,
-                          fontSize: ConstLayout.textXL * _scoreFontScale,
+                          fontSize: ConstLayout.textL,
                         ),
                       ),
                     )

@@ -3,6 +3,15 @@ import 'package:cards/widgets/helpers/input_keyboard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+Finder findBackspaceKey() => find.byWidgetPredicate(
+  (widget) =>
+      (widget is Icon &&
+          (widget.icon == Icons.backspace ||
+              widget.icon == Icons.backspace_outlined)) ||
+      (widget is Text && widget.data == keyBackspace),
+  description: 'backspace key',
+);
+
 void main() {
   group('EditBox virtual keyboard', () {
     late TextEditingController controller;
@@ -71,7 +80,7 @@ void main() {
       await tester.tap(find.byType(TextField));
       await tester.pump();
 
-      await tester.tap(find.text(keyBackspace));
+      await tester.tap(findBackspaceKey());
       await tester.pump();
 
       expect(controller.text, 'A');
@@ -84,7 +93,7 @@ void main() {
       await tester.tap(find.byType(TextField));
       await tester.pump();
 
-      await tester.tap(find.text(keyBackspace));
+      await tester.tap(findBackspaceKey());
       await tester.pump();
 
       expect(controller.text, '');
