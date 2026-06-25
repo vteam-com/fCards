@@ -4,6 +4,7 @@ import 'package:cards/gen/l10n/app_localizations.dart';
 import 'package:cards/models/app/constants_layout.dart';
 import 'package:cards/models/game/backend_model.dart';
 import 'package:cards/models/game/game_model.dart';
+import 'package:cards/models/app/identity_service.dart';
 import 'package:cards/models/game/game_styles.dart';
 import 'package:cards/screens/game/game_screen.dart';
 import 'package:cards/screens/game/game_style.dart';
@@ -172,6 +173,7 @@ class StartScreenState extends State<StartScreen> {
     }
     _processUrlArguments();
     _getAppVersion();
+    _prefillPlayerNameFromIdentity();
   }
 
   @override
@@ -465,7 +467,6 @@ class StartScreenState extends State<StartScreen> {
     prepareBackEndForRoom(roomName);
   }
 
-  /// Fetches the application version from the platform package info.
   Future<void> _getAppVersion() async {
     PackageInfo.fromPlatform().then((PackageInfo packageInfo) {
       setState(() {
@@ -479,12 +480,8 @@ class StartScreenState extends State<StartScreen> {
     if (!kIsWeb) {
       return '';
     }
-    return getWindowOrigin() +
-        GameModel.getLinkToGameFromInput(
-          _selectedGameStyle.index.toString(),
-          roomName,
-          _playerNames.toList(),
-        );
+    // Invite link — omit player names so joiners start with a blank name field.
+    return '${getWindowOrigin()}?mode=${_selectedGameStyle.index}&room=${Uri.encodeComponent(roomName)}';
   }
 
   /// Validates whether [tableName] already exists.
@@ -566,6 +563,22 @@ class StartScreenState extends State<StartScreen> {
   /// The trimmed player name entered by the user.
   String get _playerName => _controllerName.text.trim();
 
+  /// Fetches the application version from the platform package info.
+  /// Pre-fills the player name field from stored identity when empty.
+  Future<void> _prefillPlayerNameFromIdentity() async {
+    if (_controllerName.text.isNotEmpty) return;
+    final name = await IdentityService.resolveIdentityName();
+    if (!mounted || name == null || name.isEmpty) return;
+    if (_controllerName.text.isEmpty) {
+      setState(() {
+        _controllerName.text = name;
+      });
+      if (widget.createRoomFlow && _isCreateTableStepComplete) {
+        joinGame(name);
+      }
+    }
+  }
+
   /// Processes URL arguments to set the initial state of the screen.
   void _processUrlArguments() {
     if (isRunningOffLine) {
@@ -608,19 +621,22 @@ class StartScreenState extends State<StartScreen> {
     }
 
     final playersFromUrl = uri.queryParameters['players'];
-    if (playersFromUrl != null) {
+    if (playersFromUrl != null && playersFromUrl.isNotEmpty) {
       final playerNames = playersFromUrl
           .toUpperCase()
           .split(',')
           .map((name) => name.trim())
+          .where((name) => name.isNotEmpty)
           .toList();
-      _controllerName.text = playerNames.first;
-      _playerNames = playerNames.toSet();
+      if (playerNames.isNotEmpty) {
+        _controllerName.text = playerNames.first;
+        _playerNames = playerNames.toSet();
 
-      Future.delayed(Duration.zero, () async {
-        await useFirebase();
-        _gameHandler.addPlayersToRoom(roomName, _playerNames);
-      });
+        Future.delayed(Duration.zero, () async {
+          await useFirebase();
+          _gameHandler.addPlayersToRoom(roomName, _playerNames);
+        });
+      }
     }
 
     if (roomName.isNotEmpty) {

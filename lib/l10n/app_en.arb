@@ -68,8 +68,8 @@
   "discardOrSwap": "Discard →\nor\n↓ swap",
   "done": "Done",
   "drawCardHere": "Draw\na card\nhere\n→",
+  "editInitials": "Edit initials",
   "enterTableName": "Enter name of the new table.",
-  "enterYourName": "Enter Your Name",
   "errorLoadingScores": "Error loading scores: {error}",
   "@errorLoadingScores": {
     "placeholders": {
@@ -99,6 +99,13 @@
   "golf9CardsFull": "Golf 9 Cards",
   "golfScoreKeeper": "9 Cards Golf Scorekeeper",
   "googleSignInFailed": "Google sign-in failed.",
+  "identityChangeableLater": "You can change this later",
+  "identityChooseActionTitle": "What do you want to do?",
+  "identityFirstSubtitle": "Others see this name at the table.",
+  "identityFirstTitle": "Who are you?",
+  "identityHostHint": "You're the host.",
+  "identityJoinHint": "You have a link or table name.",
+  "identitySignInWithGoogle": "Sign in with Google",
   "instructionsCustom": "Custom rules",
   "instructionsFrenchCards9": "- Aim for the lowest score.\n- Choose a card from either the Deck or Discard pile.\n- Swap the chosen card with a card in your 3x3 grid, or discard it and flip over one of your face-down cards.\n- Three cards of the same rank in a row or column score zero.\n- The first player to reveal all nine cards challenges others, claiming the lowest score.\n- If someone else has an equal or lower score, the challenger doubles their points!\n- Players are eliminated after busting 100 points.\n\n\nLearn more [Wikipedia](https://en.wikipedia.org/wiki/Golf_(card_game))",
   "instructionsMiniPut": "- Aim for the lowest score.\n- Choose a card from either the Deck or Discard pile.\n- Swap the chosen card with a card in your 2x2 grid, or discard it and flip over one of your face-down cards.\n- Three cards of the same rank in a row or column score zero.\n- The first player to reveal all nine cards challenges others, claiming the lowest score.\n- If someone else has an equal or lower score, the challenger doubles their points!\n- Players are eliminated after busting 100 points.\n\n\nLearn more [Wikipedia](https://en.wikipedia.org/wiki/Golf_(card_game))",
@@ -120,17 +127,9 @@
     }
   },
   "join": "Join",
-  "joinExistingGame": "Join an Existing Game",
+  "joinExistingGame": "Join a Game",
   "joinGame": "Join Game",
   "joinGameTitle": "Join Game",
-  "joiningTable": "Joining Table: {table}",
-  "@joiningTable": {
-    "placeholders": {
-      "table": {
-        "type": "String"
-      }
-    }
-  },
   "joinTable": "Join Table",
   "joinThisTable": "Join This Table",
   "last": "LAST",
@@ -157,7 +156,7 @@
   "notYourTurn": "It's not your turn!",
   "orHereLeft": "\nor\nhere\n←",
   "otherTools": "Other Tools",
-  "pickTableOrCreate": "Start a table or join one",
+  "pickTableOrCreateHint": "Pick an existing table, or create a new one.",
   "playAgain": "Play Again",
   "playerName": "Player Initials",
   "players": "Players",
@@ -265,20 +264,10 @@
   "waitingForMorePlayers": "Waiting for more players to join...",
   "waitingForPlayers": "Waiting for players to join",
   "waitYourTurn": "Wait your turn!",
-  "welcomeOnboardingHint": "Start a table if you're hosting. Join a table if someone already shared one with you.",
-  "welcomePlayer": "Welcome, {player}!",
-  "@welcomePlayer": {
-    "placeholders": {
-      "player": {
-        "type": "String"
-      }
-    }
-  },
   "whatTypeOfGame": "What type of game?",
   "whoAreYou": "Who Are You?\nSelect above ⬆ or join below ⬇",
   "wizardStepOneOfTwo": "Step 1 of 2",
   "wizardStepTwoOfTwo": "Step 2 of 2",
   "youAreDone": "You are done.",
-  "youIndicator": "YOU>",
-  "yourName": "Your Name"
+  "youIndicator": "YOU>"
 }

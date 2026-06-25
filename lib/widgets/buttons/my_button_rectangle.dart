@@ -90,4 +90,60 @@ class MyButtonRectangle extends MyButton {
     super.gradientTop = AppTheme.buttonDangerTop,
     super.gradientBottom = AppTheme.buttonDangerBottom,
   }) : super();
+
+  /// Creates a full-width menu button with a leading [icon], a [label], and
+  /// an optional [subLabel] shown below the label in a smaller font.
+  factory MyButtonRectangle.menu({
+    Key? key,
+    required IconData icon,
+    required String label,
+    String? subLabel,
+    required VoidCallback onTap,
+  }) => MyButtonRectangle(
+    key: key,
+    onTap: onTap,
+    width: double.infinity,
+    height: ConstLayout.mainMenuButtonHeight,
+    child: Builder(
+      builder: (BuildContext context) {
+        final ColorScheme colorScheme = Theme.of(context).colorScheme;
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: ConstLayout.paddingL),
+          child: Row(
+            children: [
+              Icon(icon, size: ConstLayout.iconM, color: colorScheme.secondary),
+              SizedBox(width: ConstLayout.sizeM),
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      label,
+                      style: TextStyle(
+                        fontSize: ConstLayout.textM,
+                        fontWeight: FontWeight.bold,
+                        color: colorScheme.onPrimaryContainer,
+                      ),
+                    ),
+                    if (subLabel != null)
+                      Text(
+                        subLabel,
+                        style: TextStyle(
+                          fontSize: ConstLayout.textS,
+                          color: colorScheme.onPrimaryContainer.withAlpha(
+                            ConstLayout.alphaM,
+                          ),
+                        ),
+                      ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    ),
+  );
 }

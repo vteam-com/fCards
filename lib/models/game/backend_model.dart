@@ -12,6 +12,13 @@ import 'package:firebase_database/firebase_database.dart';
 const String _firebaseRoomsNode = 'rooms';
 const List<String> _offlineDemoPlayerNames = ['BOB', 'SUE', 'JOHN', 'MARY'];
 
+/// Returns true when [error] represents a Firebase permission denial.
+bool _isPermissionDeniedError(Object error) {
+  final String text = error.toString().toLowerCase();
+  return text.contains('permission-denied') ||
+      text.contains('permission_denied');
+}
+
 /// Indicates whether the app is running offline or not.
 ///
 /// This flag is used to determine the behavior of the app's backend functionality.
@@ -85,16 +92,34 @@ Future<List<String>> getPlayersInRoom(final String roomId) async {
     return _offlineDemoPlayerNames;
   }
 
-  final DataSnapshot dataSnapshot = await FirebaseDatabase.instance
-      .ref('$_firebaseRoomsNode/$roomId/invitees')
-      .get();
-
-  final List? players = dataSnapshot.value as List?;
-
-  if (players == null) {
+  await useFirebase();
+  if (!backendReady) {
+    logger.e('getPlayersInRoom: backend not ready');
     return [];
-  } else {
+  }
+
+  try {
+    final DataSnapshot dataSnapshot = await FirebaseDatabase.instance
+        .ref('$_firebaseRoomsNode/$roomId/invitees')
+        .get();
+
+    final List? players = dataSnapshot.value as List?;
+
+    if (players == null) {
+      return [];
+    }
+
     return players.cast<String>().toList();
+  } on FirebaseException catch (error) {
+    if (!_isPermissionDeniedError(error)) {
+      logger.w('getPlayersInRoom failed: $error');
+    }
+    return [];
+  } catch (error) {
+    if (!_isPermissionDeniedError(error)) {
+      logger.w('getPlayersInRoom failed: $error');
+    }
+    return [];
   }
 }
 
@@ -111,11 +136,30 @@ void setPlayersInRoom(final String room, final Set<String> playersNames) {
     return;
   }
 
-  useFirebase().then((_) {
-    FirebaseDatabase.instance
-        .ref('$_firebaseRoomsNode/$room/invitees')
-        .set(playersNames.toList());
-  });
+  useFirebase()
+      .then((_) async {
+        if (!backendReady) {
+          return;
+        }
+        try {
+          await FirebaseDatabase.instance
+              .ref('$_firebaseRoomsNode/$room/invitees')
+              .set(playersNames.toList());
+        } on FirebaseException catch (error) {
+          if (!_isPermissionDeniedError(error)) {
+            logger.w('setPlayersInRoom failed: $error');
+          }
+        } catch (error) {
+          if (!_isPermissionDeniedError(error)) {
+            logger.w('setPlayersInRoom failed: $error');
+          }
+        }
+      })
+      .catchError((Object error) {
+        if (!_isPermissionDeniedError(error)) {
+          logger.w('setPlayersInRoom init failed: $error');
+        }
+      });
 }
 
 /// Retrieves the game history for a specific room.
@@ -129,6 +173,12 @@ Future<List<GameHistory>> getGameHistory(final String roomName) async {
   List<GameHistory> list = [];
   if (!isRunningOffLine) {
     try {
+      await useFirebase();
+      if (!backendReady) {
+        logger.e('getGameHistory: backend not ready');
+        return list;
+      }
+
       final DataSnapshot dataSnapshot = await FirebaseDatabase.instance
           .ref('history/$roomName/')
           .get();
@@ -172,6 +222,12 @@ Future<void> recordPlayerWin(
   }
 
   try {
+    await useFirebase();
+    if (!backendReady) {
+      logger.e('recordPlayerWin: backend not ready');
+      return;
+    }
+
     final String dateTimeAsKey = gameStartDate.millisecondsSinceEpoch
         .toString();
 
@@ -203,42 +259,30 @@ StreamSubscription onBackendInviteesUpdated(
   final String roomId,
   void Function(List<String>) onInviteesNamesChanged,
 ) {
-  return FirebaseDatabase.instance.ref().onValue.listen((
-    final DatabaseEvent event,
-  ) {
-    getInviteesFromDataSnapshot(event.snapshot, roomId);
-    onInviteesNamesChanged(getInviteesFromDataSnapshot(event.snapshot, roomId));
-  });
+  return FirebaseDatabase.instance
+      .ref('$_firebaseRoomsNode/$roomId/invitees')
+      .onValue
+      .listen(
+        (final DatabaseEvent event) {
+          onInviteesNamesChanged(getInviteesFromDataSnapshot(event.snapshot));
+        },
+        onError: (Object error) {
+          logger.w('onBackendInviteesUpdated listener error: $error');
+        },
+      );
 }
 
-/// Extracts the list of invitees from a Firebase DataSnapshot.
-///
-/// @param snapshot The Firebase DataSnapshot to extract the invitees from.
-/// @param roomId The ID of the room to extract the invitees for.
-/// @return A list of player names.
-List<String> getInviteesFromDataSnapshot(
-  final DataSnapshot snapshot,
-  final String roomId,
-) {
-  List<String> playersNames = [];
-  if (snapshot.exists) {
-    final Object? data = snapshot.value;
-
-    // Safely access and update the player list from the Firebase snapshot.
-    if (data != null && data is Map) {
-      final rooms = data[_firebaseRoomsNode] as Map?;
-      if (rooms != null) {
-        final room = rooms[roomId] as Map?;
-        if (room != null) {
-          final players = room['invitees'] as List?;
-          if (players != null) {
-            playersNames = players.cast<String>().toList();
-          }
-        }
-      }
-    }
+/// Extracts the list of invitees from a Firebase DataSnapshot scoped to
+/// the `rooms/$roomId/invitees` path.
+List<String> getInviteesFromDataSnapshot(final DataSnapshot snapshot) {
+  if (!snapshot.exists) {
+    return [];
   }
-  return playersNames;
+  final players = snapshot.value as List?;
+  if (players == null) {
+    return [];
+  }
+  return players.whereType<String>().toList();
 }
 
 /// Retrieves a list of all available room names.
@@ -253,18 +297,36 @@ Future<List<String>> getAllRooms() async {
     return ['TEST_ROOM'];
   }
 
-  final DataSnapshot dataSnapshot = await FirebaseDatabase.instance
-      .ref(_firebaseRoomsNode)
-      .get();
-  final List<String> rooms = [];
-
-  if (dataSnapshot.exists && dataSnapshot.value is Map) {
-    final Map<dynamic, dynamic> data =
-        dataSnapshot.value as Map<dynamic, dynamic>;
-    data.forEach((key, _ /* value */) {
-      rooms.add(key.toString());
-    });
+  await useFirebase();
+  if (!backendReady) {
+    logger.e('getAllRooms: backend not ready');
+    return [];
   }
 
-  return rooms;
+  try {
+    final DataSnapshot dataSnapshot = await FirebaseDatabase.instance
+        .ref(_firebaseRoomsNode)
+        .get();
+    final List<String> rooms = [];
+
+    if (dataSnapshot.exists && dataSnapshot.value is Map) {
+      final Map<dynamic, dynamic> data =
+          dataSnapshot.value as Map<dynamic, dynamic>;
+      data.forEach((key, _ /* value */) {
+        rooms.add(key.toString());
+      });
+    }
+
+    return rooms;
+  } on FirebaseException catch (error) {
+    if (!_isPermissionDeniedError(error)) {
+      logger.w('getAllRooms failed: $error');
+    }
+    return [];
+  } catch (error) {
+    if (!_isPermissionDeniedError(error)) {
+      logger.w('getAllRooms failed: $error');
+    }
+    return [];
+  }
 }

@@ -3,23 +3,23 @@
     ".read": false,
     ".write": false,
     "rooms": {
-      ".read": false,
+      ".read": "auth != null",
       ".write": false,
       "$roomId": {
-        ".read": "auth != null && (root.child('rooms').child($roomId).child('invitees').hasChild(auth.uid) || root.child('rooms').child($roomId).child('players').hasChild(auth.uid))",
-        ".write": "auth != null && (root.child('rooms').child($roomId).child('invitees').hasChild(auth.uid) || root.child('rooms').child($roomId).child('players').hasChild(auth.uid))",
+        ".read": "auth != null",
+        ".write": "auth != null",
         ".validate": "newData.hasChildren(['invitees', 'players', 'scores', 'gameType', 'deck', 'discard', 'turn'])",
         "invitees": {
-          ".read": "auth != null && (root.child('rooms').child($roomId).child('invitees').hasChild(auth.uid) || root.child('rooms').child($roomId).child('players').hasChild(auth.uid))",
-          ".write": false
+          ".read": "auth != null",
+          ".write": "auth != null"
         },
         "players": {
-          ".read": "auth != null && (root.child('rooms').child($roomId).child('invitees').hasChild(auth.uid) || root.child('rooms').child($roomId).child('players').hasChild(auth.uid))",
-          ".write": "auth != null && (root.child('rooms').child($roomId).child('invitees').hasChild(auth.uid) || root.child('rooms').child($roomId).child('players').hasChild(auth.uid))"
+          ".read": "auth != null",
+          ".write": "auth != null"
         },
         "$other": {
-          ".read": "auth != null && (root.child('rooms').child($roomId).child('invitees').hasChild(auth.uid) || root.child('rooms').child($roomId).child('players').hasChild(auth.uid))",
-          ".write": "auth != null && (root.child('rooms').child($roomId).child('invitees').hasChild(auth.uid) || root.child('rooms').child($roomId).child('players').hasChild(auth.uid))"
+          ".read": "auth != null",
+          ".write": "auth != null"
         }
       }
     },
@@ -36,12 +36,21 @@
         ".write": "auth != null && (root.child('reviewers').child(auth.uid).val() === true || root.child('reviewers').child(auth.uid).val() === 1 || root.child('reviewers').child(auth.uid).val() === 'true' || root.child('reviewers').child(auth.uid).val() === '1' || root.child('reviewers').child(auth.uid).val() === 'yes' || root.child('reviewers').child(auth.uid).child('enabled').val() === true || root.child('reviewers').child(auth.uid).child('enabled').val() === 1 || root.child('reviewers').child(auth.uid).child('enabled').val() === 'true' || root.child('reviewers').child(auth.uid).child('enabled').val() === '1' || root.child('reviewers').child(auth.uid).child('enabled').val() === 'yes' || root.child('reviewers').child(auth.uid).child('active').val() === true || root.child('reviewers').child(auth.uid).child('active').val() === 1 || root.child('reviewers').child(auth.uid).child('active').val() === 'true' || root.child('reviewers').child(auth.uid).child('active').val() === '1' || root.child('reviewers').child(auth.uid).child('active').val() === 'yes' || root.child('reviewers').child(auth.uid).child('isReviewer').val() === true || root.child('reviewers').child(auth.uid).child('isReviewer').val() === 1 || root.child('reviewers').child(auth.uid).child('isReviewer').val() === 'true' || root.child('reviewers').child(auth.uid).child('isReviewer').val() === '1' || root.child('reviewers').child(auth.uid).child('isReviewer').val() === 'yes')"
       }
     },
+    "users": {
+      "$uid": {
+        ".read": "auth != null && auth.uid === $uid",
+        ".write": "auth != null && auth.uid === $uid",
+        "initials": {
+          ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 2"
+        }
+      }
+    },
     "history": {
       ".read": false,
       ".write": false,
       "$roomName": {
-        ".read": "auth != null && (root.child('history').child($roomName).child('participants').hasChild(auth.uid))",
-        ".write": "auth != null && (root.child('history').child($roomName).child('participants').hasChild(auth.uid))"
+        ".read": "auth != null",
+        ".write": "auth != null"
       }
     }
   }

@@ -20,6 +20,13 @@ const String _preferenceStorageSectionRooms = 'rooms';
 
 final AppLocalizationsEn _fallbackLocalizations = AppLocalizationsEn();
 
+/// Returns true when [error] represents a Firebase permission denial.
+bool _isPermissionDeniedError(Object error) {
+  final String text = error.toString().toLowerCase();
+  return text.contains('permission-denied') ||
+      text.contains('permission_denied');
+}
+
 /// Represents a game model that manages the state and logic of a game.
 /// This class extends `ChangeNotifier` to allow for state changes to be
 /// observed by other parts of the application.
@@ -165,7 +172,11 @@ class GameModel with ChangeNotifier {
         final refPlayers = FirebaseDatabase.instance.ref().child(
           '$_preferenceStorageSectionRooms/$roomName',
         );
-        refPlayers.set(toJson());
+        refPlayers.set(toJson()).catchError((Object error) {
+          if (!_isPermissionDeniedError(error)) {
+            debugPrint('pushGameModelToBackend failed: $error');
+          }
+        });
       }
     }
   }

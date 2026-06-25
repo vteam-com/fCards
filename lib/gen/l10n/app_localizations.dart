@@ -332,17 +332,17 @@ abstract class AppLocalizations {
   /// **'Draw\na card\nhere\n→'**
   String get drawCardHere;
 
+  /// No description provided for @editInitials.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit initials'**
+  String get editInitials;
+
   /// No description provided for @enterTableName.
   ///
   /// In en, this message translates to:
   /// **'Enter name of the new table.'**
   String get enterTableName;
-
-  /// No description provided for @enterYourName.
-  ///
-  /// In en, this message translates to:
-  /// **'Enter Your Name'**
-  String get enterYourName;
 
   /// No description provided for @errorLoadingScores.
   ///
@@ -416,6 +416,48 @@ abstract class AppLocalizations {
   /// **'Google sign-in failed.'**
   String get googleSignInFailed;
 
+  /// No description provided for @identityChangeableLater.
+  ///
+  /// In en, this message translates to:
+  /// **'You can change this later'**
+  String get identityChangeableLater;
+
+  /// No description provided for @identityChooseActionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'What do you want to do?'**
+  String get identityChooseActionTitle;
+
+  /// No description provided for @identityFirstSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Others see this name at the table.'**
+  String get identityFirstSubtitle;
+
+  /// No description provided for @identityFirstTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Who are you?'**
+  String get identityFirstTitle;
+
+  /// No description provided for @identityHostHint.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re the host.'**
+  String get identityHostHint;
+
+  /// No description provided for @identityJoinHint.
+  ///
+  /// In en, this message translates to:
+  /// **'You have a link or table name.'**
+  String get identityJoinHint;
+
+  /// No description provided for @identitySignInWithGoogle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in with Google'**
+  String get identitySignInWithGoogle;
+
   /// No description provided for @instructionsCustom.
   ///
   /// In en, this message translates to:
@@ -461,7 +503,7 @@ abstract class AppLocalizations {
   /// No description provided for @joinExistingGame.
   ///
   /// In en, this message translates to:
-  /// **'Join an Existing Game'**
+  /// **'Join a Game'**
   String get joinExistingGame;
 
   /// No description provided for @joinGame.
@@ -475,12 +517,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Join Game'**
   String get joinGameTitle;
-
-  /// No description provided for @joiningTable.
-  ///
-  /// In en, this message translates to:
-  /// **'Joining Table: {table}'**
-  String joiningTable(String table);
 
   /// No description provided for @joinTable.
   ///
@@ -578,11 +614,11 @@ abstract class AppLocalizations {
   /// **'Other Tools'**
   String get otherTools;
 
-  /// No description provided for @pickTableOrCreate.
+  /// No description provided for @pickTableOrCreateHint.
   ///
   /// In en, this message translates to:
-  /// **'Start a table or join one'**
-  String get pickTableOrCreate;
+  /// **'Pick an existing table, or create a new one.'**
+  String get pickTableOrCreateHint;
 
   /// No description provided for @playAgain.
   ///
@@ -944,18 +980,6 @@ abstract class AppLocalizations {
   /// **'Wait your turn!'**
   String get waitYourTurn;
 
-  /// No description provided for @welcomeOnboardingHint.
-  ///
-  /// In en, this message translates to:
-  /// **'Start a table if you\'re hosting. Join a table if someone already shared one with you.'**
-  String get welcomeOnboardingHint;
-
-  /// No description provided for @welcomePlayer.
-  ///
-  /// In en, this message translates to:
-  /// **'Welcome, {player}!'**
-  String welcomePlayer(String player);
-
   /// No description provided for @whatTypeOfGame.
   ///
   /// In en, this message translates to:
@@ -991,12 +1015,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'YOU>'**
   String get youIndicator;
-
-  /// No description provided for @yourName.
-  ///
-  /// In en, this message translates to:
-  /// **'Your Name'**
-  String get yourName;
 }
 
 class _AppLocalizationsDelegate

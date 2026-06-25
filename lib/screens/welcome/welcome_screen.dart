@@ -1,6 +1,7 @@
 import 'package:cards/gen/l10n/app_localizations.dart';
 import 'package:cards/models/app/auth_service.dart';
 import 'package:cards/models/app/constants_layout.dart';
+import 'package:cards/models/app/identity_service.dart';
 import 'package:cards/models/app/reviewer_access.dart';
 import 'package:cards/models/game/backend_model.dart';
 import 'package:cards/utils/logger.dart';
@@ -10,7 +11,24 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-/// Welcome screen that guides people into hosting or joining a table.
+/// Progress through the welcome flow.
+enum _WelcomeStep {
+  /// Checking stored identity – show spinner.
+  loading,
+
+  /// No identity known – show Google / Initials picker.
+  identityPicker,
+
+  /// Identity resolved – show Start-a-table / Join-a-table choice.
+  choice,
+}
+
+/// Welcome screen that guides players into hosting or joining a table.
+///
+/// Follows an identity-first flow: before showing Start / Join options the
+/// screen resolves who the player is (Google sign-in or two-character initials).
+/// Returning players whose identity is already stored go straight to the
+/// choice step; identity can be changed at any time from the avatar menu.
 class WelcomeScreen extends StatefulWidget {
   ///
   const WelcomeScreen({super.key});
@@ -20,10 +38,13 @@ class WelcomeScreen extends StatefulWidget {
 }
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
+  bool _hasPendingDeepLink = false;
+  bool _isSigningInWithGoogle = false;
+  _WelcomeStep _step = _WelcomeStep.loading;
   @override
   void initState() {
     super.initState();
-    // Check if we have URL parameters that should redirect to game
+    _loadIdentity();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _checkForUrlParameters();
     });
@@ -32,12 +53,11 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   @override
   Widget build(BuildContext context) {
     final AppLocalizations localizations = AppLocalizations.of(context);
-    final ColorScheme colorScheme = Theme.of(context).colorScheme;
     return Screen(
       title: localizations.appTitle,
-      isWaiting: false,
+      isWaiting: _step == _WelcomeStep.loading || _isSigningInWithGoogle,
       child: LayoutBuilder(
-        builder: (BuildContext context, BoxConstraints constraints) {
+        builder: (_, BoxConstraints constraints) {
           return SingleChildScrollView(
             padding: const EdgeInsets.all(ConstLayout.paddingM),
             child: ConstrainedBox(
@@ -50,71 +70,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: ConstLayout.paddingL,
-                        ),
-                        child: Text(
-                          localizations.pickTableOrCreate,
-                          style: TextStyle(
-                            fontSize: ConstLayout.textL,
-                            fontWeight: FontWeight.bold,
-                            color: colorScheme.onSurface,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                      SizedBox(height: ConstLayout.sizeM),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: ConstLayout.paddingL,
-                        ),
-                        child: Text(
-                          localizations.welcomeOnboardingHint,
-                          style: TextStyle(
-                            fontSize: ConstLayout.textS,
-                            color: colorScheme.onSurface,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                      SizedBox(height: ConstLayout.sizeL),
-                      MenuButton(
-                        label: localizations.startTable,
-                        icon: Icons.add_circle_outline,
-                        onPressed: () => Navigator.pushNamed(context, '/start'),
-                      ),
-                      SizedBox(height: ConstLayout.sizeM),
-                      MenuButton(
-                        label: localizations.joinExistingGame,
-                        icon: Icons.group_add,
-                        onPressed: () => Navigator.pushNamed(context, '/join'),
-                      ),
-                      SizedBox(height: ConstLayout.sizeXL),
-                      Text(
-                        localizations.otherTools,
-                        style: TextStyle(
-                          fontSize: ConstLayout.textS,
-                          fontWeight: FontWeight.bold,
-                          color: colorScheme.tertiary,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                      SizedBox(height: ConstLayout.sizeM),
-                      MenuButton(
-                        label: localizations.scoreKeeper,
-                        icon: Icons.scoreboard,
-                        onPressed: () => Navigator.pushNamed(context, '/score'),
-                      ),
-                      SizedBox(height: ConstLayout.sizeM),
-                      MenuButton(
-                        label: localizations.scanCard,
-                        icon: Icons.camera_alt,
-                        onPressed: () => Navigator.pushNamed(context, '/scan'),
-                      ),
-                      _buildCorrectionsMenuButton(localizations),
-                    ],
+                    children: [_buildCurrentStep(localizations)],
                   ),
                 ),
               ),
@@ -125,43 +81,214 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     );
   }
 
-  /// Shows the Corrections menu action on web and requests sign-in only on use.
+  /// Builds the Start / Join choice step shown after identity is resolved.
+  Widget _buildChoiceStep(AppLocalizations localizations) {
+    final ColorScheme colorScheme = Theme.of(context).colorScheme;
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: ConstLayout.paddingL),
+          child: Text(
+            localizations.identityChooseActionTitle,
+            style: TextStyle(
+              fontSize: ConstLayout.textL,
+              fontWeight: FontWeight.bold,
+              color: colorScheme.onSurface,
+            ),
+            textAlign: TextAlign.center,
+          ),
+        ),
+        SizedBox(height: ConstLayout.sizeL),
+        MyButtonRectangle.menu(
+          label: localizations.startTable,
+          icon: Icons.add_circle_outline,
+          subLabel: localizations.identityHostHint,
+          onTap: () => Navigator.pushNamed(context, '/start'),
+        ),
+        SizedBox(height: ConstLayout.sizeM),
+        MyButtonRectangle.menu(
+          label: localizations.joinExistingGame,
+          icon: Icons.group_add,
+          subLabel: localizations.identityJoinHint,
+          onTap: () => Navigator.pushNamed(context, '/join'),
+        ),
+        SizedBox(height: ConstLayout.sizeXL),
+        Text(
+          localizations.otherTools,
+          style: TextStyle(
+            fontSize: ConstLayout.textS,
+            fontWeight: FontWeight.bold,
+            color: colorScheme.tertiary,
+          ),
+          textAlign: TextAlign.center,
+        ),
+        SizedBox(height: ConstLayout.sizeM),
+        MyButtonRectangle.menu(
+          label: localizations.scoreKeeper,
+          icon: Icons.scoreboard,
+          onTap: () => Navigator.pushNamed(context, '/score'),
+        ),
+        SizedBox(height: ConstLayout.sizeM),
+        MyButtonRectangle.menu(
+          label: localizations.scanCard,
+          icon: Icons.camera_alt,
+          onTap: () => Navigator.pushNamed(context, '/scan'),
+        ),
+        _buildCorrectionsMenuButton(localizations),
+      ],
+    );
+  }
+
+  /// Builds the Corrections menu entry (web-only, reviewer gate).
   Widget _buildCorrectionsMenuButton(AppLocalizations localizations) {
     if (isRunningOffLine || !kIsWeb) {
       return const SizedBox.shrink();
     }
-
     return Column(
       children: [
         SizedBox(height: ConstLayout.sizeM),
-        MenuButton(
+        MyButtonRectangle.menu(
           label: localizations.corrections,
           icon: Icons.fact_check,
-          onPressed: _openCorrections,
+          onTap: _openCorrections,
         ),
       ],
     );
   }
 
-  /// Redirects web users when URL query parameters target game deep links.
-  void _checkForUrlParameters() {
-    if (!kIsWeb) {
-      return; // Only check on web
-    }
-
-    final uri = Uri.parse(Uri.base.toString());
-    if (uri.queryParameters.isNotEmpty) {
-      // We have query parameters, redirect to start screen which can handle them
-      // Use Future.delayed to ensure context is available
-      Future.delayed(Duration.zero, () {
-        if (mounted) {
-          Navigator.pushReplacementNamed(context, '/game');
-        }
-      });
+  /// Returns the widget for the current welcome step.
+  Widget _buildCurrentStep(AppLocalizations localizations) {
+    switch (_step) {
+      case _WelcomeStep.loading:
+        return const SizedBox.shrink();
+      case _WelcomeStep.identityPicker:
+        return _buildIdentityPickerStep(localizations);
+      case _WelcomeStep.choice:
+        return _buildChoiceStep(localizations);
     }
   }
 
-  /// Requests Google auth only when someone opens the reviewer workflow.
+  /// Builds the identity picker shown when no identity is known.
+  Widget _buildIdentityPickerStep(AppLocalizations localizations) {
+    final ColorScheme colorScheme = Theme.of(context).colorScheme;
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: ConstLayout.paddingL),
+          child: Text(
+            localizations.identityFirstTitle,
+            style: TextStyle(
+              fontSize: ConstLayout.textL,
+              fontWeight: FontWeight.bold,
+              color: colorScheme.onSurface,
+            ),
+            textAlign: TextAlign.center,
+          ),
+        ),
+        SizedBox(height: ConstLayout.sizeM),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: ConstLayout.paddingL),
+          child: Text(
+            localizations.identityFirstSubtitle,
+            style: TextStyle(
+              fontSize: ConstLayout.textS,
+              color: colorScheme.onSurface,
+            ),
+            textAlign: TextAlign.center,
+          ),
+        ),
+        SizedBox(height: ConstLayout.sizeXL),
+        MyButtonRectangle.menu(
+          label: localizations.identitySignInWithGoogle,
+          icon: Icons.login,
+          onTap: _handleGoogleSignIn,
+        ),
+        SizedBox(height: ConstLayout.sizeL),
+        Text(
+          localizations.identityChangeableLater,
+          style: TextStyle(
+            fontSize: ConstLayout.textS,
+            color: colorScheme.onSurface.withAlpha(ConstLayout.alphaM),
+          ),
+          textAlign: TextAlign.center,
+        ),
+      ],
+    );
+  }
+
+  /// Redirects web users when URL query parameters target a game deep link.
+  ///
+  /// If the user is already signed in, navigates immediately.
+  /// Otherwise stores a flag so that [_handleGoogleSignIn] can redirect after
+  /// authentication completes.
+  void _checkForUrlParameters() {
+    if (!kIsWeb) return;
+    final uri = Uri.parse(Uri.base.toString());
+    if (uri.queryParameters.isNotEmpty) {
+      if (_step == _WelcomeStep.choice) {
+        // Already signed in — go straight to the game.
+        Future.delayed(Duration.zero, () {
+          if (mounted) Navigator.pushReplacementNamed(context, '/game');
+        });
+      } else {
+        // Not signed in — require Google sign-in first, then navigate.
+        setState(() {
+          _hasPendingDeepLink = true;
+        });
+      }
+    }
+  }
+
+  /// Triggers Google sign-in and advances to the choice step on success.
+  Future<void> _handleGoogleSignIn() async {
+    final AppLocalizations localizations = AppLocalizations.of(context);
+    setState(() {
+      _isSigningInWithGoogle = true;
+    });
+    try {
+      await AuthService.signInWithGoogle();
+      if (!mounted) return;
+      if (_hasPendingDeepLink) {
+        Navigator.pushReplacementNamed(context, '/game');
+      } else {
+        setState(() {
+          _isSigningInWithGoogle = false;
+          _step = _WelcomeStep.choice;
+        });
+      }
+    } on FirebaseAuthException catch (error) {
+      if (!mounted) return;
+      setState(() => _isSigningInWithGoogle = false);
+      if (error.code != 'sign_in_canceled') {
+        _showMessage(error.message ?? localizations.googleSignInFailed);
+      }
+    } catch (_) {
+      if (!mounted) return;
+      setState(() => _isSigningInWithGoogle = false);
+      _showMessage(localizations.googleSignInFailed);
+    }
+  }
+
+  /// Checks stored identity and advances to the correct step.
+  Future<void> _loadIdentity() async {
+    final googleName = IdentityService.googleDisplayName;
+    if (googleName != null && googleName.isNotEmpty) {
+      if (!mounted) return;
+      setState(() {
+        _step = _WelcomeStep.choice;
+      });
+      return;
+    }
+
+    if (!mounted) return;
+    setState(() {
+      _step = _WelcomeStep.identityPicker;
+    });
+  }
+
+  /// Signs in and navigates to the corrections reviewer screen.
   Future<void> _openCorrections() async {
     final AppLocalizations localizations = AppLocalizations.of(context);
     try {
@@ -179,9 +306,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     }
 
     final bool isReviewer = await isCurrentUserReviewer();
-    if (!mounted) {
-      return;
-    }
+    if (!mounted) return;
 
     if (!isReviewer) {
       _showMessage(localizations.correctionsReviewerOnly);
@@ -191,66 +316,11 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     await Navigator.pushNamed(context, '/corrections');
   }
 
-  /// Logs an auth message and shows it as a snackbar.
   void _showMessage(String message) {
     logger.e('Auth error: $message');
-    if (!mounted) {
-      return;
-    }
-
+    if (!mounted) return;
     ScaffoldMessenger.of(
       context,
     ).showSnackBar(SnackBar(content: Text(message)));
-  }
-}
-
-/// A styled button for the main menu.
-class MenuButton extends StatelessWidget {
-  ///
-  const MenuButton({
-    super.key,
-    required this.label,
-    required this.icon,
-    required this.onPressed,
-  });
-
-  ///
-  final IconData icon;
-
-  ///
-  final String label;
-
-  ///
-  final VoidCallback onPressed;
-
-  @override
-  Widget build(BuildContext context) {
-    return MyButtonRectangle(
-      width: double.infinity,
-      height: ConstLayout.mainMenuButtonHeight,
-      onTap: onPressed,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(
-            icon,
-            size: ConstLayout.iconM,
-            color: Theme.of(context).colorScheme.secondary,
-          ),
-          SizedBox(width: ConstLayout.sizeM),
-          SizedBox(
-            width: ConstLayout.mainMenuButtonTextWidth,
-            child: Text(
-              label,
-              style: TextStyle(
-                fontSize: ConstLayout.textM,
-                fontWeight: FontWeight.bold,
-                color: Theme.of(context).colorScheme.onPrimaryContainer,
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
   }
 }

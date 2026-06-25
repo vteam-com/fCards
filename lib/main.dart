@@ -4,11 +4,12 @@ import 'package:cards/models/app/auth_service.dart';
 import 'package:cards/models/app/firebase_options.dart';
 import 'package:cards/models/app/locale_controller.dart';
 import 'package:cards/models/game/backend_model.dart';
+import 'package:cards/models/game/game_styles.dart';
 import 'package:cards/screens/game/card_scan_screen.dart';
 import 'package:cards/screens/game/corrections_review_screen.dart';
+import 'package:cards/screens/game/create_table_name_screen.dart';
 import 'package:cards/screens/game/join_game_screen.dart';
 import 'package:cards/screens/game/start_game_screen.dart';
-import 'package:cards/screens/game/start_game_wizard_screen.dart';
 import 'package:cards/screens/keepscore/golf_score_screen.dart';
 import 'package:cards/screens/welcome/welcome_screen.dart';
 import 'package:cards/utils/logger.dart';
@@ -81,7 +82,8 @@ class MyApp extends StatelessWidget {
           routes: {
             '/': (BuildContext _) => const WelcomeScreen(),
             '/scan': (BuildContext _) => const CardScanScreen(),
-            '/start': (BuildContext _) => const StartGameWizardScreen(),
+            '/start': (BuildContext _) =>
+                const JoinGameScreen(canCreateTable: true),
             '/game': (BuildContext _) => const StartScreen(joinMode: false),
             '/join': (BuildContext _) => const JoinGameScreen(),
             '/score': (BuildContext _) => const GolfScoreScreen(),
@@ -96,6 +98,14 @@ class MyApp extends StatelessWidget {
 
   /// Swallows Firebase auth callback routes so they do not break navigation.
   static Route<dynamic>? _handleGeneratedRoute(RouteSettings settings) {
+    if (settings.name == '/create-table') {
+      final gameStyle = settings.arguments as GameStyles;
+      return MaterialPageRoute(
+        settings: settings,
+        builder: (BuildContext _) =>
+            CreateTableNameScreen(gameStyle: gameStyle),
+      );
+    }
     if (!_isFirebaseAuthCallbackRoute(settings.name)) {
       return null;
     }

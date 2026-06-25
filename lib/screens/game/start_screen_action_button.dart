@@ -72,7 +72,7 @@ class StartScreenActionButton extends StatelessWidget {
 
     return _buildButton(
       context: context,
-      label: isCreateRoomFlow ? l10n.createNewTable : l10n.joinGame,
+      label: isCreateRoomFlow ? l10n.joinTable : l10n.joinGame,
       onTap: onJoinGame,
     );
   }

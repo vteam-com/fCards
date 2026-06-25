@@ -598,7 +598,7 @@
 </g>
 <g>
   <path d="M 391.0 1462.0 H 202.0 Q 196.0 1462.0 196.0 1468.0 V 5610.0 Q 196.0 5616.0 202.0 5616.0 H 571.0" class="edgeVertical"/>
-  <title>path_provider -> path_provider_linux v2.2.1</title>
+  <title>path_provider -> path_provider_linux v2.2.2</title>
 </g>
 <g>
   <path d="M 391.0 1462.0 H 199.0 Q 193.0 1462.0 193.0 1468.0 V 5674.0 Q 193.0 5680.0 199.0 5680.0 H 571.0" class="edgeVertical"/>
@@ -2082,10 +2082,10 @@
   <path d="M 857.0,5552.0 L 845.0,5545.0 Q 842.0,5545.0 842.0,5548.0 L 842.0,5556.0 Q 842.0,5559.0 845.0,5559.0 Z" fill="#10b981"/>
   <text x="846.68" y="5553.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. objective_c</title></g><g class="packageNode">
 <rect x="571.0" y="5590.0" width="280.0" height="52.0" rx="8.0" ry="8.0" fill="#f8fafc" stroke="#64748b" stroke-width="1" stroke-dasharray="4,2"/>
-<g class="packageMetadataPill"><title>Flutter &gt;=3.7.0</title><rect x="674.25" y="5629.0" width="73.5" height="9.0" rx="4.5" ry="4.5" class="packageMetadataPillShape"/><text x="711.0" y="5634" class="packageLabelMetadata" text-anchor="middle" dominant-baseline="middle">Flutter &gt;=3.7.0</text></g>
+<g class="packageMetadataPill"><title>Flutter &gt;=3.38.0</title><rect x="672.2" y="5629.0" width="77.6" height="9.0" rx="4.5" ry="4.5" class="packageMetadataPillShape"/><text x="711.0" y="5634" class="packageLabelMetadata" text-anchor="middle" dominant-baseline="middle">Flutter &gt;=3.38.0</text></g>
 <g class="platformBadge platformBadge--linux"><title>Linux</title><rect x="704.5" y="5613.0" width="13.0" height="13.0" rx="6.5" ry="6.5" fill="#7c3aed" stroke="#6d28d9" stroke-width="0.6"/><text x="711.0" y="5620.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">L</text></g>
 <text x="579.0" y="5608.0" class="packageLabelDerivedName packageLabelCaption" text-anchor="start">path_provider_linux</text>
-<text x="843.0" y="5608.0" class="packageLabelDerivedVersion" text-anchor="end">^2.2.1</text>
+<text x="843.0" y="5608.0" class="packageLabelDerivedVersion" text-anchor="end">^2.2.2</text>
 </g>
 <g class="badge incomingBadge">
   <path d="M 577.0,5616.0 L 565.0,5609.0 Q 562.0,5609.0 562.0,5612.0 L 562.0,5620.0 Q 562.0,5623.0 565.0,5623.0 Z" fill="#3b82f6"/>

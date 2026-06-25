@@ -95,9 +95,6 @@ class ConstLayout {
   /// Main Menu Button Height (89.0)
   static const double mainMenuButtonHeight = 89.0;
 
-  /// Main menu button width for text text (233.0).
-  static const double mainMenuButtonTextWidth = 233.0;
-
   /// Main menu spacer height (21.0).
   static const double mainMenuSpacerHeight = 21.0;
 
@@ -175,7 +172,6 @@ class ConstLayout {
   static const int dateCharacterLeftSpacePadding = 2;
   static const int negativeNumberMaxLength = 2;
 
-  static const int joinGameStepCount = 3;
   static const double joinGamePlayerListMaxWidth = 377.0;
 
   // Button dimensions
