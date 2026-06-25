@@ -8,7 +8,7 @@ import 'package:cards/models/app/constants_layout.dart';
 import 'package:cards/models/app/identity_service.dart';
 import 'package:cards/models/app/locale_controller.dart';
 import 'package:cards/utils/logger.dart';
-import 'package:cards/widgets/buttons/my_button_rectangle.dart';
+import 'package:cards/widgets/helpers/avatar_profile_dialog.dart';
 import 'package:cards/widgets/helpers/initials_dialog.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -486,27 +486,11 @@ class _ScreenState extends State<Screen> with SingleTickerProviderStateMixin {
     return Alignment(x, y);
   }
 
-  /// Opens account actions and language selection from the avatar.
+  /// Opens the account profile dialog showing user info and settings.
   Future<void> _showAccountMenu(User user) async {
-    final List<Locale> supportedLocales = AppLocalizations.supportedLocales;
-    final Locale englishLocale = supportedLocales.firstWhere(
-      (Locale locale) => locale.languageCode == 'en',
-      orElse: () => supportedLocales.first,
-    );
-    final Locale frenchLocale = supportedLocales.firstWhere(
-      (Locale locale) => locale.languageCode == 'fr',
-      orElse: () => supportedLocales.last,
-    );
     final String currentLanguageCode = Localizations.localeOf(
       context,
     ).languageCode;
-    final bool isEnglish = currentLanguageCode == englishLocale.languageCode;
-    final bool isFrench = currentLanguageCode == frenchLocale.languageCode;
-    final AppLocalizations localizations = AppLocalizations.of(context);
-    final bool isSignedInWithAccount = !user.isAnonymous;
-    final String? accountLabel = isSignedInWithAccount
-        ? user.email ?? user.displayName ?? localizations.signedIn
-        : _guestInitials;
     final ThemeData theme = Theme.of(context);
     final ColorScheme colorScheme = theme.colorScheme;
     const BorderRadius accountSheetBorderRadius = BorderRadius.vertical(
@@ -558,211 +542,29 @@ class _ScreenState extends State<Screen> with SingleTickerProviderStateMixin {
                     ),
                     borderRadius: accountSheetBorderRadius,
                   ),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Container(
-                        width: ConstLayout.sizeXXL,
-                        height: ConstLayout.sizeS,
-                        decoration: BoxDecoration(
-                          color: colorScheme.onSurface.withAlpha(
-                            ConstLayout.alphaM,
-                          ),
-                          borderRadius: BorderRadius.circular(
-                            ConstLayout.radiusS,
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: ConstLayout.sizeL),
-                      CircleAvatar(
-                        radius: ConstLayout.sizeXL,
-                        foregroundImage:
-                            user.photoURL != null && user.photoURL!.isNotEmpty
-                            ? NetworkImage(user.photoURL!)
-                            : null,
-                        onForegroundImageError:
-                            user.photoURL != null && user.photoURL!.isNotEmpty
-                            ? (_, _) {}
-                            : null,
-                        backgroundColor: colorScheme.primary,
-                        foregroundColor: colorScheme.onPrimary,
-                        child: Text(
-                          user.isAnonymous && _guestInitials != null
-                              ? _guestInitials!
-                              : (_guestInitials != null &&
-                                    _guestInitials!.isNotEmpty)
-                              ? _guestInitials!
-                              : Screen.avatarFallbackInitials(
-                                  displayName: user.displayName,
-                                  email: user.email,
-                                ),
-                          style: TextStyle(
-                            fontSize: ConstLayout.textM,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: ConstLayout.sizeM),
-                      Text(
-                        localizations.account,
-                        style: TextStyle(
-                          fontSize: ConstLayout.textM,
-                          fontWeight: FontWeight.bold,
-                          color: colorScheme.secondary,
-                        ),
-                      ),
-                      if (accountLabel != null) ...[
-                        SizedBox(height: ConstLayout.sizeS),
-                        Text(
-                          accountLabel,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: ConstLayout.textS,
-                            color: colorScheme.onSurface,
-                          ),
-                        ),
-                      ],
-                      SizedBox(height: ConstLayout.sizeL),
-                      MyButtonRectangle.secondary(
-                        width: double.infinity,
-                        height: ConstLayout.dialogButtonHeight,
-                        onTap: () {
-                          Navigator.of(bottomSheetContext).pop();
-                          _changeInitials(user: user);
-                        },
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          spacing: ConstLayout.sizeS,
-                          children: [
-                            Icon(
-                              Icons.edit_outlined,
-                              color: colorScheme.onPrimaryContainer,
-                              size: ConstLayout.iconXS,
-                            ),
-                            Flexible(
-                              child: Text(
-                                localizations.editInitials,
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontSize: ConstLayout.textS,
-                                  fontWeight: FontWeight.bold,
-                                  color: colorScheme.onPrimaryContainer,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(height: ConstLayout.sizeM),
-                      MyButtonRectangle.secondary(
-                        width: double.infinity,
-                        height: ConstLayout.dialogButtonHeight,
-                        onTap: () {
-                          Navigator.of(bottomSheetContext).pop();
-                          if (isSignedInWithAccount) {
-                            _signOut();
-                          } else {
-                            _signIn();
-                          }
-                        },
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          spacing: ConstLayout.sizeS,
-                          children: [
-                            Icon(
-                              isSignedInWithAccount
-                                  ? Icons.logout
-                                  : Icons.login,
-                              color: colorScheme.onPrimaryContainer,
-                              size: ConstLayout.iconXS,
-                            ),
-                            Flexible(
-                              child: Text(
-                                isSignedInWithAccount
-                                    ? localizations.signOut
-                                    : localizations.signIn,
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontSize: ConstLayout.textS,
-                                  fontWeight: FontWeight.bold,
-                                  color: colorScheme.onPrimaryContainer,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(height: ConstLayout.sizeL),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        spacing: ConstLayout.sizeS,
-                        children: [
-                          Icon(
-                            Icons.translate,
-                            color: colorScheme.secondary,
-                            size: ConstLayout.iconXS,
-                          ),
-                          Text(
-                            currentLanguageCode.toUpperCase(),
-                            style: TextStyle(
-                              fontSize: ConstLayout.textS,
-                              fontWeight: FontWeight.bold,
-                              color: colorScheme.secondary,
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: ConstLayout.sizeM),
-                      Row(
-                        children: [
-                          Expanded(
-                            child:
-                                (isEnglish
-                                ? MyButtonRectangle.primary
-                                : MyButtonRectangle.secondary)(
-                                  height: ConstLayout.dialogButtonHeight,
-                                  onTap: () {
-                                    LocaleController.setLanguageCode(
-                                      englishLocale.languageCode,
-                                    );
-                                    Navigator.of(bottomSheetContext).pop();
-                                  },
-                                  child: Text(
-                                    englishLocale.languageCode.toUpperCase(),
-                                    style: TextStyle(
-                                      fontSize: ConstLayout.textS,
-                                      fontWeight: FontWeight.bold,
-                                      color: colorScheme.onPrimaryContainer,
-                                    ),
-                                  ),
-                                ),
-                          ),
-                          SizedBox(width: ConstLayout.sizeM),
-                          Expanded(
-                            child:
-                                (isFrench
-                                ? MyButtonRectangle.primary
-                                : MyButtonRectangle.secondary)(
-                                  height: ConstLayout.dialogButtonHeight,
-                                  onTap: () {
-                                    LocaleController.setLanguageCode(
-                                      frenchLocale.languageCode,
-                                    );
-                                    Navigator.of(bottomSheetContext).pop();
-                                  },
-                                  child: Text(
-                                    frenchLocale.languageCode.toUpperCase(),
-                                    style: TextStyle(
-                                      fontSize: ConstLayout.textS,
-                                      fontWeight: FontWeight.bold,
-                                      color: colorScheme.onPrimaryContainer,
-                                    ),
-                                  ),
-                                ),
-                          ),
-                        ],
-                      ),
-                    ],
+                  child: AvatarProfileDialog(
+                    user: user,
+                    guestInitials: _guestInitials,
+                    currentLanguageCode: currentLanguageCode,
+                    onInitialsChanged: (String initials) async {
+                      await IdentityService.saveInitials(initials);
+                      await _loadGuestInitials();
+                    },
+                    onLanguageChanged: (String languageCode) {
+                      LocaleController.setLanguageCode(languageCode);
+                    },
+                    onSignInTap: () {
+                      Navigator.of(bottomSheetContext).pop();
+                      _signIn();
+                    },
+                    onSignOutTap: () {
+                      Navigator.of(bottomSheetContext).pop();
+                      _signOut();
+                    },
+                    onEditInitialsTap: () {
+                      Navigator.of(bottomSheetContext).pop();
+                      _changeInitials(user: user);
+                    },
                   ),
                 ),
               ),

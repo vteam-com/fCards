@@ -140,6 +140,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get editInitials => 'Edit initials';
 
   @override
+  String get email => 'Email';
+
+  @override
   String get enterTableName => 'Enter name of the new table.';
 
   @override
@@ -157,6 +160,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get flipOpenOneHiddenCard => '↓ Flip open one of your hidden cards ↓';
+
+  @override
+  String get fullName => 'Full Name';
 
   @override
   String get gameOver => 'Game Over';
@@ -245,6 +251,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get joinThisTable => 'Join This Table';
+
+  @override
+  String get language => 'Language';
 
   @override
   String get last => 'LAST';
@@ -412,9 +421,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get selectTableToJoin => 'Select a Table to Join';
-
-  @override
-  String get signedIn => 'Signed in';
 
   @override
   String get signIn => 'Sign in';

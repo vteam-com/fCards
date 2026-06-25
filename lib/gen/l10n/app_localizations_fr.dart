@@ -140,6 +140,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get editInitials => 'Modifier les initiales';
 
   @override
+  String get email => 'E-mail';
+
+  @override
   String get enterTableName => 'Entrez le nom de la nouvelle table.';
 
   @override
@@ -157,6 +160,9 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get flipOpenOneHiddenCard => '↓ Retournez une de vos cartes cachées ↓';
+
+  @override
+  String get fullName => 'Nom complet';
 
   @override
   String get gameOver => 'Fin de partie';
@@ -245,6 +251,9 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get joinThisTable => 'Rejoindre cette table';
+
+  @override
+  String get language => 'Langue';
 
   @override
   String get last => 'DERNIER';
@@ -415,9 +424,6 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get selectTableToJoin => 'Sélectionnez une table';
-
-  @override
-  String get signedIn => 'Connecté';
 
   @override
   String get signIn => 'Se connecter';
