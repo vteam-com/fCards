@@ -69,6 +69,7 @@
   "done": "Done",
   "drawCardHere": "Draw\na card\nhere\n→",
   "editInitials": "Edit initials",
+  "email": "Email",
   "enterTableName": "Enter name of the new table.",
   "errorLoadingScores": "Error loading scores: {error}",
   "@errorLoadingScores": {
@@ -91,6 +92,7 @@
     }
   },
   "flipOpenOneHiddenCard": "↓ Flip open one of your hidden cards ↓",
+  "fullName": "Full Name",
   "gameOver": "Game Over",
   "gameOverTitle": "GAME OVER",
   "gameRules": "Game Rules",
@@ -132,6 +134,7 @@
   "joinGameTitle": "Join Game",
   "joinTable": "Join Table",
   "joinThisTable": "Join This Table",
+  "language": "Language",
   "last": "LAST",
   "miniPut": "MiniPut",
   "@miniPut": {
@@ -230,7 +233,6 @@
   "scoreKeeper": "Score Keeper",
   "selectAStatus": "Select a status",
   "selectTableToJoin": "Select a Table to Join",
-  "signedIn": "Signed in",
   "signIn": "Sign in",
   "signOut": "Sign out",
   "signOutFailed": "Sign out failed.",

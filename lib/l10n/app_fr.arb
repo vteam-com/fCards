@@ -64,6 +64,7 @@
   "done": "Terminé",
   "drawCardHere": "Piochez\nune carte\nici\n→",
   "editInitials": "Modifier les initiales",
+  "email": "E-mail",
   "enterTableName": "Entrez le nom de la nouvelle table.",
   "errorLoadingScores": "Erreur lors du chargement des scores : {error}",
   "@errorLoadingScores": {
@@ -86,6 +87,7 @@
     }
   },
   "flipOpenOneHiddenCard": "↓ Retournez une de vos cartes cachées ↓",
+  "fullName": "Nom complet",
   "gameOver": "Fin de partie",
   "gameOverTitle": "FIN DE PARTIE",
   "gameRules": "Règles du jeu",
@@ -127,6 +129,7 @@
   "joinGameTitle": "Rejoindre",
   "joinTable": "Rejoindre la table",
   "joinThisTable": "Rejoindre cette table",
+  "language": "Langue",
   "last": "DERNIER",
   "miniPut": "MiniPut",
   "miniPutFull": "MiniPut 4 Cartes",
@@ -219,7 +222,6 @@
   "scoreKeeper": "Carnet de scores",
   "selectAStatus": "Sélectionnez un statut",
   "selectTableToJoin": "Sélectionnez une table",
-  "signedIn": "Connecté",
   "signIn": "Se connecter",
   "signOut": "Se déconnecter",
   "signOutFailed": "Échec de la déconnexion.",

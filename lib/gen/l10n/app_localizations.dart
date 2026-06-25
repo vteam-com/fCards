@@ -338,6 +338,12 @@ abstract class AppLocalizations {
   /// **'Edit initials'**
   String get editInitials;
 
+  /// No description provided for @email.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get email;
+
   /// No description provided for @enterTableName.
   ///
   /// In en, this message translates to:
@@ -367,6 +373,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'↓ Flip open one of your hidden cards ↓'**
   String get flipOpenOneHiddenCard;
+
+  /// No description provided for @fullName.
+  ///
+  /// In en, this message translates to:
+  /// **'Full Name'**
+  String get fullName;
 
   /// No description provided for @gameOver.
   ///
@@ -529,6 +541,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Join This Table'**
   String get joinThisTable;
+
+  /// No description provided for @language.
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get language;
 
   /// No description provided for @last.
   ///
@@ -835,12 +853,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Select a Table to Join'**
   String get selectTableToJoin;
-
-  /// No description provided for @signedIn.
-  ///
-  /// In en, this message translates to:
-  /// **'Signed in'**
-  String get signedIn;
 
   /// No description provided for @signIn.
   ///
