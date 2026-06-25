@@ -442,7 +442,10 @@ class _ScreenState extends State<Screen> with SingleTickerProviderStateMixin {
       width: ConstLayout.waitingWidgetSize,
       height: ConstLayout.waitingWidgetSize,
       child: Center(
-        child: CupertinoActivityIndicator(radius: ConstLayout.sizeXL),
+        child: CupertinoActivityIndicator(
+          radius: ConstLayout.sizeXL,
+          color: Colors.white,
+        ),
       ),
     );
   }
