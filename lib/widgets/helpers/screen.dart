@@ -5,9 +5,11 @@ import 'package:cards/models/app/app_theme.dart';
 import 'package:cards/models/app/auth_service.dart';
 import 'package:cards/models/app/constants_animation.dart';
 import 'package:cards/models/app/constants_layout.dart';
+import 'package:cards/models/app/identity_service.dart';
 import 'package:cards/models/app/locale_controller.dart';
 import 'package:cards/utils/logger.dart';
 import 'package:cards/widgets/buttons/my_button_rectangle.dart';
+import 'package:cards/widgets/helpers/initials_dialog.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
@@ -134,6 +136,7 @@ class Screen extends StatefulWidget {
 
 class _ScreenState extends State<Screen> with SingleTickerProviderStateMixin {
   late final AnimationController _ambientAnimationController;
+  String? _guestInitials;
   String _version = '';
   @override
   void initState() {
@@ -145,6 +148,7 @@ class _ScreenState extends State<Screen> with SingleTickerProviderStateMixin {
       ),
     )..repeat();
     _getAppVersion();
+    _loadGuestInitials();
   }
 
   @override
@@ -306,13 +310,23 @@ class _ScreenState extends State<Screen> with SingleTickerProviderStateMixin {
   /// Builds an avatar for authenticated users with guest and fallback handling.
   Widget _buildAvatar(User user) {
     if (user.isAnonymous) {
+      final String? initials =
+          (_guestInitials != null && _guestInitials!.isNotEmpty)
+          ? _guestInitials
+          : null;
       return GestureDetector(
         onTap: () => _showAccountMenu(user),
         child: CircleAvatar(
           radius: ConstLayout.radiusXL,
-          backgroundColor: Theme.of(context).colorScheme.surface,
-          foregroundColor: Theme.of(context).colorScheme.onSurface,
-          child: const Icon(Icons.person_outline),
+          backgroundColor: initials != null
+              ? Theme.of(context).colorScheme.primary
+              : Theme.of(context).colorScheme.surface,
+          foregroundColor: initials != null
+              ? Theme.of(context).colorScheme.onPrimary
+              : Theme.of(context).colorScheme.onSurface,
+          child: initials != null
+              ? Text(initials)
+              : const Icon(Icons.person_outline),
         ),
       );
     }
@@ -321,6 +335,10 @@ class _ScreenState extends State<Screen> with SingleTickerProviderStateMixin {
       displayName: user.displayName,
       email: user.email,
     );
+    final String displayInitials =
+        (_guestInitials != null && _guestInitials!.isNotEmpty)
+        ? _guestInitials!
+        : fallbackInitials;
 
     final photoUrl = user.photoURL;
     if (photoUrl != null && photoUrl.isNotEmpty) {
@@ -329,9 +347,10 @@ class _ScreenState extends State<Screen> with SingleTickerProviderStateMixin {
         child: CircleAvatar(
           radius: ConstLayout.radiusXL,
           foregroundImage: NetworkImage(photoUrl),
+          onForegroundImageError: (_, _) {},
           backgroundColor: Theme.of(context).colorScheme.primary,
           foregroundColor: Theme.of(context).colorScheme.onPrimary,
-          child: Text(fallbackInitials),
+          child: Text(displayInitials),
         ),
       );
     }
@@ -342,7 +361,7 @@ class _ScreenState extends State<Screen> with SingleTickerProviderStateMixin {
         radius: ConstLayout.radiusXL,
         backgroundColor: Theme.of(context).colorScheme.primary,
         foregroundColor: Theme.of(context).colorScheme.onPrimary,
-        child: Text(fallbackInitials),
+        child: Text(displayInitials),
       ),
     );
   }
@@ -395,6 +414,28 @@ class _ScreenState extends State<Screen> with SingleTickerProviderStateMixin {
     );
   }
 
+  /// Opens the initials dialog and persists the new value.
+  ///
+  /// Pre-populates with stored initials when available, otherwise derives them
+  /// from [user]'s display name or email as a starting suggestion.
+  Future<void> _changeInitials({User? user}) async {
+    final existing = await IdentityService.getStoredInitials();
+    if (!mounted) return;
+    final String prefill = (existing != null && existing.isNotEmpty)
+        ? existing
+        : Screen.avatarFallbackInitials(
+            displayName: user?.displayName,
+            email: user?.email,
+          );
+    final String? result = await showDialog<String>(
+      context: context,
+      builder: (_) => InitialsDialog(initialValue: prefill),
+    );
+    if (result == null || result.isEmpty) return;
+    await IdentityService.saveInitials(result);
+    _loadGuestInitials();
+  }
+
   /// Builds the waiting-state loading indicator used by [Screen].
   Widget _displayWaiting() {
     return SizedBox(
@@ -423,6 +464,12 @@ class _ScreenState extends State<Screen> with SingleTickerProviderStateMixin {
         });
       }
     }
+  }
+
+  /// Loads and caches the guest player initials from shared preferences.
+  Future<void> _loadGuestInitials() async {
+    final initials = await IdentityService.getStoredInitials();
+    if (mounted) setState(() => _guestInitials = initials);
   }
 
   /// Computes orbital alignment coordinates for ambient overlay animations.
@@ -459,7 +506,7 @@ class _ScreenState extends State<Screen> with SingleTickerProviderStateMixin {
     final bool isSignedInWithAccount = !user.isAnonymous;
     final String? accountLabel = isSignedInWithAccount
         ? user.email ?? user.displayName ?? localizations.signedIn
-        : null;
+        : _guestInitials;
     final ThemeData theme = Theme.of(context);
     final ColorScheme colorScheme = theme.colorScheme;
     const BorderRadius accountSheetBorderRadius = BorderRadius.vertical(
@@ -533,13 +580,22 @@ class _ScreenState extends State<Screen> with SingleTickerProviderStateMixin {
                             user.photoURL != null && user.photoURL!.isNotEmpty
                             ? NetworkImage(user.photoURL!)
                             : null,
+                        onForegroundImageError:
+                            user.photoURL != null && user.photoURL!.isNotEmpty
+                            ? (_, _) {}
+                            : null,
                         backgroundColor: colorScheme.primary,
                         foregroundColor: colorScheme.onPrimary,
                         child: Text(
-                          Screen.avatarFallbackInitials(
-                            displayName: user.displayName,
-                            email: user.email,
-                          ),
+                          user.isAnonymous && _guestInitials != null
+                              ? _guestInitials!
+                              : (_guestInitials != null &&
+                                    _guestInitials!.isNotEmpty)
+                              ? _guestInitials!
+                              : Screen.avatarFallbackInitials(
+                                  displayName: user.displayName,
+                                  email: user.email,
+                                ),
                           style: TextStyle(
                             fontSize: ConstLayout.textM,
                             fontWeight: FontWeight.bold,
@@ -567,6 +623,37 @@ class _ScreenState extends State<Screen> with SingleTickerProviderStateMixin {
                         ),
                       ],
                       SizedBox(height: ConstLayout.sizeL),
+                      MyButtonRectangle.secondary(
+                        width: double.infinity,
+                        height: ConstLayout.dialogButtonHeight,
+                        onTap: () {
+                          Navigator.of(bottomSheetContext).pop();
+                          _changeInitials(user: user);
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          spacing: ConstLayout.sizeS,
+                          children: [
+                            Icon(
+                              Icons.edit_outlined,
+                              color: colorScheme.onPrimaryContainer,
+                              size: ConstLayout.iconXS,
+                            ),
+                            Flexible(
+                              child: Text(
+                                localizations.editInitials,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontSize: ConstLayout.textS,
+                                  fontWeight: FontWeight.bold,
+                                  color: colorScheme.onPrimaryContainer,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: ConstLayout.sizeM),
                       MyButtonRectangle.secondary(
                         width: double.infinity,
                         height: ConstLayout.dialogButtonHeight,

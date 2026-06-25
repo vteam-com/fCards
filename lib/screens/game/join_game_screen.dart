@@ -1,15 +1,17 @@
 import 'dart:async';
 
 import 'package:cards/gen/l10n/app_localizations.dart';
+import 'package:cards/models/app/auth_service.dart';
 import 'package:cards/models/app/constants_layout.dart';
+import 'package:cards/models/app/identity_service.dart';
 import 'package:cards/models/game/backend_model.dart';
+import 'package:cards/models/game/game_constants.dart';
 import 'package:cards/models/game/game_history.dart';
 import 'package:cards/models/game/game_model.dart';
 import 'package:cards/models/game/game_styles.dart';
 import 'package:cards/screens/game/game_screen.dart';
 import 'package:cards/utils/logger.dart';
 import 'package:cards/widgets/buttons/my_button_rectangle.dart';
-import 'package:cards/widgets/helpers/edit_box.dart';
 import 'package:cards/widgets/helpers/screen.dart';
 import 'package:cards/widgets/helpers/table_widget.dart';
 import 'package:cards/widgets/helpers/wizard_footer.dart';
@@ -17,16 +19,65 @@ import 'package:cards/widgets/player/players_in_room_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
-const String _selectRoomPlaceholder = 'SELECT_ROOM';
+const int _stepTablePick = 0;
+const int _stepGameType = 1;
+const int _stepWaiting = 2;
 
-/// Step-by-step screen for joining an existing game.
+const double _miniCardWidth = ConstLayout.sizeM;
+const double _miniCardHeight = ConstLayout.sizeL;
+const double _miniCardSpacing = ConstLayout.sizeXS;
+
+const List<_GameTypeOption> _gameTypeOptions = <_GameTypeOption>[
+  _GameTypeOption(
+    style: GameStyles.frenchCards9,
+    labelKey: 'golf9CardsFull',
+    columns: CardModel.standardColumns,
+    rows: CardModel.standardRows,
+  ),
+  _GameTypeOption(
+    style: GameStyles.miniPut,
+    labelKey: 'miniPutFull',
+    columns: CardModel.miniPutColumns,
+    rows: CardModel.miniPutRows,
+  ),
+  _GameTypeOption(
+    style: GameStyles.skyjo,
+    labelKey: 'Skyjo',
+    columns: CardModel.skyjoColumns,
+    rows: CardModel.skyjoRows,
+  ),
+];
+
+class _GameTypeOption {
+  const _GameTypeOption({
+    required this.columns,
+    required this.labelKey,
+    required this.rows,
+    required this.style,
+  });
+
+  final int columns;
+  final String labelKey;
+  final int rows;
+  final GameStyles style;
+}
+
+/// Step-by-step screen for joining or starting a game.
+///
+/// When [canCreateTable] is true (the Start flow), an extra
+/// "Create New Table" option appears on the table-picker step and leads to
+/// the game-type wizard before creating a named table.
 class JoinGameScreen extends StatefulWidget {
   ///
   const JoinGameScreen({
     super.key,
+    this.canCreateTable = false,
     this.initialRoom,
     this.gameStyle = GameStyles.frenchCards9,
   });
+
+  /// When true, shows the "Create New Table" option on the table-picker step.
+  final bool canCreateTable;
 
   /// Game style to use when launching the game from the join wizard.
   final GameStyles gameStyle;
@@ -64,9 +115,13 @@ class JoinGameScreenState extends State<JoinGameScreen> {
     _playerNames = {};
     _preparedRoom = '';
     _listOfRooms = [];
-    _currentStep = _selectedRoom.isNotEmpty ? 1 : 0;
+    _currentStep = _selectedRoom.isNotEmpty ? _stepWaiting : _stepTablePick;
     _getAppVersion();
-    // Don't fetch rooms immediately - wait until user chooses to join
+    _prefillPlayerNameFromIdentity().then((_) {
+      if (_selectedRoom.isNotEmpty) {
+        _joinGameAndContinue();
+      }
+    });
   }
 
   @override
@@ -81,7 +136,9 @@ class JoinGameScreenState extends State<JoinGameScreen> {
     final AppLocalizations localizations = AppLocalizations.of(context);
     return Screen(
       isWaiting: false,
-      title: localizations.joinGameTitle,
+      title: widget.canCreateTable
+          ? localizations.startTable
+          : localizations.joinGameTitle,
       child: Padding(
         padding: const EdgeInsets.all(ConstLayout.paddingM),
         child: Column(
@@ -91,24 +148,99 @@ class JoinGameScreenState extends State<JoinGameScreen> {
                 child: SingleChildScrollView(child: _buildStepContent()),
               ),
             ),
-            WizardFooter(
-              backLabel: localizations.back,
-              onBack: _currentStep > 0
-                  ? () => setState(() => _currentStep--)
-                  : null,
-              primaryLabel: _currentStep < ConstLayout.joinGameStepCount - 1
-                  ? localizations.next
-                  : localizations.startGame,
-              isPrimaryEnabled: _canProceed,
-              onForward: !_isSingleCtaStep
-                  ? () {
-                      if (_currentStep < ConstLayout.joinGameStepCount - 1) {
-                        setState(() => _currentStep++);
-                      } else {
-                        _startGame(context);
-                      }
-                    }
-                  : null,
+            _buildActions(),
+          ],
+        ),
+      ),
+    );
+  }
+
+  /// Builds navigation actions for the current wizard step.
+  Widget _buildActions() {
+    final AppLocalizations localizations = AppLocalizations.of(context);
+    if (_currentStep == _stepGameType) {
+      return WizardFooter(
+        backLabel: localizations.back,
+        onBack: () => setState(() => _currentStep = _stepTablePick),
+        primaryLabel: localizations.next,
+        isPrimaryEnabled: true,
+        onForward: _navigateToCreateNewGame,
+      );
+    }
+    return WizardFooter(
+      backLabel: localizations.back,
+      onBack: _currentStep > _stepTablePick
+          ? () => setState(() {
+              _currentStep = _stepTablePick;
+            })
+          : null,
+      primaryLabel: _currentStep == _stepWaiting
+          ? localizations.startGame
+          : localizations.next,
+      isPrimaryEnabled: _canProceed,
+      onForward: () {
+        if (_currentStep == _stepWaiting) {
+          _startGame(context);
+        } else if (_currentStep == _stepTablePick) {
+          _joinGameAndContinue();
+        }
+      },
+    );
+  }
+
+  /// Builds a selectable game style card with a compact layout preview.
+  Widget _buildGameStyleOption({
+    required int columns,
+    required GameStyles style,
+    required int rows,
+    required String label,
+  }) {
+    final AppLocalizations localizations = AppLocalizations.of(context);
+    final bool isSelected = _selectedGameStyle == style;
+    final ColorScheme colorScheme = Theme.of(context).colorScheme;
+    return MyButtonRectangle(
+      width: double.infinity,
+      height: ConstLayout.mainMenuButtonHeight,
+      onTap: () => setState(() => _selectedGameStyle = style),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: ConstLayout.paddingM),
+        child: Row(
+          children: [
+            Icon(
+              isSelected
+                  ? Icons.radio_button_checked
+                  : Icons.radio_button_unchecked,
+              color: isSelected ? colorScheme.tertiary : colorScheme.onSurface,
+            ),
+            const SizedBox(width: ConstLayout.sizeM),
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    label,
+                    style: TextStyle(
+                      fontSize: ConstLayout.textM,
+                      fontWeight: FontWeight.bold,
+                      color: colorScheme.onPrimaryContainer,
+                    ),
+                  ),
+                  Text(
+                    localizations.columnsByRows(columns, rows),
+                    style: TextStyle(
+                      fontSize: ConstLayout.textS,
+                      color: colorScheme.onSurface,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(width: ConstLayout.sizeM),
+            _buildMiniLayoutPreview(
+              columns: columns,
+              isSelected: isSelected,
+              rows: rows,
             ),
           ],
         ),
@@ -116,53 +248,96 @@ class JoinGameScreenState extends State<JoinGameScreen> {
     );
   }
 
-  /// Builds the step where the player enters a name before joining the room.
-  Widget _buildNameEntryStep() {
+  /// Builds the game-type selection step shown when creating a new table.
+  Widget _buildGameTypeStep() {
     final AppLocalizations localizations = AppLocalizations.of(context);
-    final colorScheme = Theme.of(context).colorScheme;
-    _prepareForSelectedRoomIfNeeded();
-
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      spacing: ConstLayout.sizeL,
-      children: [
-        Text(
-          localizations.joiningTable(_selectedRoom),
-          style: TextStyle(
-            fontSize: ConstLayout.textL,
-            fontWeight: FontWeight.bold,
-          ),
-          textAlign: TextAlign.center,
-        ),
-        Text(
-          localizations.enterYourName,
-          style: TextStyle(
-            fontSize: ConstLayout.textS,
-            color: colorScheme.onSurface,
-          ),
-        ),
-
-        EditBox(
-          label: localizations.yourName,
-          controller: _controllerName,
-          onSubmitted: _joinGameAndContinue,
-          errorStatus: '',
-          rightSideChild: const SizedBox.shrink(),
-        ),
-
-        MyButtonRectangle(
-          onTap: _joinGameAndContinue,
-          child: Text(localizations.joinTable),
-        ),
-
-        if (_playerName.isNotEmpty)
+    final ColorScheme colorScheme = Theme.of(context).colorScheme;
+    return ConstrainedBox(
+      constraints: const BoxConstraints(maxWidth: ConstLayout.mainMenuMaxWidth),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        spacing: ConstLayout.sizeM,
+        children: [
           Text(
-            localizations.welcomePlayer(_playerName),
+            localizations.wizardStepOneOfTwo,
             style: TextStyle(
-              fontSize: ConstLayout.textM,
-              color: colorScheme.secondary,
+              fontSize: ConstLayout.textS,
+              fontWeight: FontWeight.bold,
+              color: colorScheme.tertiary,
             ),
+            textAlign: TextAlign.center,
           ),
+          Text(
+            localizations.whatTypeOfGame,
+            style: TextStyle(
+              fontSize: ConstLayout.textL,
+              fontWeight: FontWeight.bold,
+              color: colorScheme.onSurface,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          Text(
+            localizations.startGameWizardSubtitle,
+            style: TextStyle(
+              fontSize: ConstLayout.textS,
+              color: colorScheme.onSurface,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          for (final _GameTypeOption option in _gameTypeOptions)
+            _buildGameStyleOption(
+              columns: option.columns,
+              style: option.style,
+              rows: option.rows,
+              label: _getLocalizedLabel(option.labelKey, localizations),
+            ),
+        ],
+      ),
+    );
+  }
+
+  /// Builds a single miniature card used in style preview grids.
+  Widget _buildMiniCard({required Color cardBorder, required Color cardFill}) {
+    return Container(
+      width: _miniCardWidth,
+      height: _miniCardHeight,
+      decoration: BoxDecoration(
+        color: cardFill,
+        borderRadius: BorderRadius.circular(ConstLayout.radiusXS),
+        border: Border.all(color: cardBorder, width: ConstLayout.strokeXXS),
+      ),
+    );
+  }
+
+  /// Builds a mini grid preview that mirrors the selected card layout.
+  Widget _buildMiniLayoutPreview({
+    required int columns,
+    required bool isSelected,
+    required int rows,
+  }) {
+    final ColorScheme colorScheme = Theme.of(context).colorScheme;
+    final Color cardFill = isSelected
+        ? colorScheme.secondary.withAlpha(ConstLayout.alphaH)
+        : colorScheme.surface.withAlpha(ConstLayout.alphaM);
+    final Color cardBorder = isSelected
+        ? colorScheme.tertiary
+        : colorScheme.onSurface.withAlpha(ConstLayout.alphaM);
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        for (int rowIndex = 0; rowIndex < rows; rowIndex++) ...[
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              for (int colIndex = 0; colIndex < columns; colIndex++) ...[
+                _buildMiniCard(cardBorder: cardBorder, cardFill: cardFill),
+                if (colIndex < columns - 1)
+                  const SizedBox(width: _miniCardSpacing),
+              ],
+            ],
+          ),
+          if (rowIndex < rows - 1) const SizedBox(height: _miniCardSpacing),
+        ],
       ],
     );
   }
@@ -170,63 +345,70 @@ class JoinGameScreenState extends State<JoinGameScreen> {
   /// Builds the room selection step with searchable available tables.
   Widget _buildRoomSelectionStep() {
     final AppLocalizations localizations = AppLocalizations.of(context);
-    final colorScheme = Theme.of(context).colorScheme;
-    // Fetch rooms if not already done
+    final ColorScheme colorScheme = Theme.of(context).colorScheme;
     if (!_roomsFetched) {
       _roomsFetched = true;
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        _fetchAllRooms();
-      });
+      WidgetsBinding.instance.addPostFrameCallback((_) => _fetchAllRooms());
     }
 
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      spacing: ConstLayout.sizeM,
-      children: [
-        Text(
-          localizations.selectTableToJoin,
-          style: TextStyle(
-            fontSize: ConstLayout.textL,
-            fontWeight: FontWeight.bold,
-            color: colorScheme.onSurface,
+    return ConstrainedBox(
+      constraints: const BoxConstraints(maxWidth: ConstLayout.mainMenuMaxWidth),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        spacing: ConstLayout.sizeM,
+        children: [
+          Text(
+            localizations.selectTableToJoin,
+            style: TextStyle(
+              fontSize: ConstLayout.textL,
+              fontWeight: FontWeight.bold,
+              color: colorScheme.onSurface,
+            ),
+            textAlign: TextAlign.center,
           ),
-          textAlign: TextAlign.center,
-        ),
-        const SizedBox(height: ConstLayout.sizeS),
-        Text(
-          localizations.useSearchBox,
-          style: TextStyle(fontSize: ConstLayout.textS),
-          textAlign: TextAlign.center,
-        ),
-        const SizedBox(height: ConstLayout.sizeM),
-        TableWidget(
-          roomId: _selectedRoom.isEmpty
-              ? _selectRoomPlaceholder
-              : _selectedRoom,
-          rooms: _listOfRooms,
-          onSelected: (String room) {
-            setState(() {
-              _selectedRoom = room;
-              _preparedRoom = '';
-            });
-          },
-          onRemoveRoom: null, // No remove for join mode
-        ),
-      ],
+          Text(
+            widget.canCreateTable
+                ? localizations.pickTableOrCreateHint
+                : localizations.useSearchBox,
+            style: TextStyle(
+              fontSize: ConstLayout.textS,
+              color: colorScheme.onSurface,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          if (widget.canCreateTable)
+            MyButtonRectangle.menu(
+              label: localizations.createNewTable,
+              icon: Icons.add_circle_outline,
+              onTap: () => setState(() => _currentStep = _stepGameType),
+            ),
+          TableWidget(
+            roomId: _selectedRoom,
+            rooms: _listOfRooms,
+            onSelected: (String room) {
+              setState(() {
+                _selectedRoom = room;
+                _preparedRoom = '';
+              });
+            },
+            onRemoveRoom: null,
+          ),
+        ],
+      ),
     );
   }
 
   /// Returns the widget content for the currently active wizard step.
   Widget _buildStepContent() {
     switch (_currentStep) {
-      case 0:
+      case _stepTablePick:
         return _buildRoomSelectionStep();
-      case 1:
-        return _buildNameEntryStep();
-      case ConstLayout.joinGameStepCount - 1:
+      case _stepGameType:
+        return _buildGameTypeStep();
+      case _stepWaiting:
         return _buildWaitingStep();
       default:
-        return const SizedBox();
+        return const SizedBox.shrink();
     }
   }
 
@@ -234,6 +416,7 @@ class JoinGameScreenState extends State<JoinGameScreen> {
   Widget _buildWaitingStep() {
     final AppLocalizations localizations = AppLocalizations.of(context);
     final colorScheme = Theme.of(context).colorScheme;
+    _prepareForSelectedRoomIfNeeded();
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       spacing: ConstLayout.sizeM,
@@ -283,11 +466,11 @@ class JoinGameScreenState extends State<JoinGameScreen> {
   /// Indicates whether the current step has enough data to move forward.
   bool get _canProceed {
     switch (_currentStep) {
-      case 0:
-        return _selectedRoom.isNotEmpty;
-      case 1:
-        return _playerName.isNotEmpty;
-      case ConstLayout.joinGameStepCount - 1:
+      case _stepTablePick:
+        return _selectedRoom.isNotEmpty && _playerName.isNotEmpty;
+      case _stepGameType:
+        return true;
+      case _stepWaiting:
         return _playerNames.length >= CardModel.minPlayersToStartGame;
       default:
         return false;
@@ -322,7 +505,19 @@ class JoinGameScreenState extends State<JoinGameScreen> {
     });
   }
 
-  bool get _isSingleCtaStep => _currentStep == 1;
+  /// Gets localized label for a game type option.
+  String _getLocalizedLabel(String labelKey, AppLocalizations localizations) {
+    switch (labelKey) {
+      case 'golf9CardsFull':
+        return localizations.golf9CardsFull;
+      case 'miniPutFull':
+        return localizations.miniPutFull;
+      case GameConstants.gameStyleLabelKeySkyjo:
+        return localizations.skyjo;
+      default:
+        return labelKey;
+    }
+  }
 
   /// Adds the typed player name to the selected room and local state.
   void _joinGame() {
@@ -337,15 +532,48 @@ class JoinGameScreenState extends State<JoinGameScreen> {
   }
 
   /// Joins the room, then advances to the waiting step when possible.
-  void _joinGameAndContinue() {
+  Future<void> _joinGameAndContinue() async {
+    if (_playerName.isEmpty) {
+      await _prefillPlayerNameFromIdentity();
+    }
+
     _joinGame();
     if (_playerName.isEmpty) {
       return;
     }
 
-    if (_currentStep < ConstLayout.joinGameStepCount - 1) {
+    if (_currentStep < _stepWaiting) {
       setState(() {
-        _currentStep++;
+        _currentStep = _stepWaiting;
+      });
+    }
+  }
+
+  /// Navigates to the create-room flow using the selected game style.
+  void _navigateToCreateNewGame() {
+    Navigator.pushReplacementNamed(
+      context,
+      '/create-table',
+      arguments: _selectedGameStyle,
+    );
+  }
+
+  /// Pre-fills the player name field from stored identity when empty.
+  Future<void> _prefillPlayerNameFromIdentity() async {
+    final String? stored = await IdentityService.getStoredInitials();
+    final String fallbackInitials = Screen.avatarFallbackInitials(
+      displayName: AuthService.currentUser?.displayName,
+      email: AuthService.currentUser?.email,
+    );
+    final String name = stored != null && stored.isNotEmpty
+        ? stored
+        : fallbackInitials;
+    if (!mounted || name.isEmpty) return;
+
+    if (_controllerName.text.isEmpty) {
+      setState(() {
+        _controllerName.text = name;
+        _playerName = name;
       });
     }
   }
@@ -358,24 +586,33 @@ class JoinGameScreenState extends State<JoinGameScreen> {
     _streamSubscription?.cancel();
 
     useFirebase().then((_) async {
-      final List<String> invitees = await getPlayersInRoom(roomId);
-      if (mounted) {
-        setState(() {
-          _playerNames = Set.from(invitees);
-          _waitingOnFirstBackendData = false;
+      try {
+        final List<String> invitees = await getPlayersInRoom(roomId);
+        if (mounted) {
+          setState(() {
+            _playerNames = Set.from(invitees);
+            _waitingOnFirstBackendData = false;
 
-          _streamSubscription = onBackendInviteesUpdated(roomId, (
-            invitees,
-          ) async {
-            final List<String> rooms = await getAllRooms();
-            if (mounted) {
-              setState(() {
-                _listOfRooms = List.from(rooms);
-                _playerNames = Set.from(invitees);
-              });
-            }
+            _streamSubscription = onBackendInviteesUpdated(roomId, (
+              invitees,
+            ) async {
+              final List<String> rooms = await getAllRooms();
+              if (mounted) {
+                setState(() {
+                  _listOfRooms = List.from(rooms);
+                  _playerNames = Set.from(invitees);
+                });
+              }
+            });
           });
-        });
+        }
+      } catch (error) {
+        logger.w('prepareForRoom failed: $error');
+        if (mounted) {
+          setState(() {
+            _waitingOnFirstBackendData = false;
+          });
+        }
       }
     });
   }

@@ -12,8 +12,16 @@ import 'package:cards/screens/game/game_over_dialog.dart';
 import 'package:cards/widgets/cards/card_widget.dart';
 import 'package:cards/widgets/helpers/screen.dart';
 import 'package:cards/widgets/player/player_zone_widget.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+
+/// Returns true when [error] represents a Firebase permission denial.
+bool _isPermissionDeniedError(Object error) {
+  final String text = error.toString().toLowerCase();
+  return text.contains('permission-denied') ||
+      text.contains('permission_denied');
+}
 
 /// Widget for the main game screen.
 ///
@@ -323,10 +331,20 @@ class GameScreenState extends State<GameScreen> {
     if (isRunningOffLine) {
       _jsonToGameModel(fakeData());
     } else {
-      final DataSnapshot snapshot = await FirebaseDatabase.instance
-          .ref(_getFirebaseRef())
-          .get();
-      _dataSnapshotToGameModel(snapshot);
+      try {
+        final DataSnapshot snapshot = await FirebaseDatabase.instance
+            .ref(_getFirebaseRef())
+            .get();
+        _dataSnapshotToGameModel(snapshot);
+      } on FirebaseException catch (error) {
+        if (!_isPermissionDeniedError(error)) {
+          debugPrint('get game data failed: $error');
+        }
+      } catch (error) {
+        if (!_isPermissionDeniedError(error)) {
+          debugPrint('get game data failed: $error');
+        }
+      }
     }
   }
 
@@ -343,9 +361,16 @@ class GameScreenState extends State<GameScreen> {
       _streamSubscription = FirebaseDatabase.instance
           .ref(_getFirebaseRef())
           .onValue
-          .listen((DatabaseEvent event) {
-            _dataSnapshotToGameModel(event.snapshot);
-          });
+          .listen(
+            (DatabaseEvent event) {
+              _dataSnapshotToGameModel(event.snapshot);
+            },
+            onError: (Object error) {
+              if (!_isPermissionDeniedError(error)) {
+                debugPrint('game listener failed: $error');
+              }
+            },
+          );
     }
   }
 

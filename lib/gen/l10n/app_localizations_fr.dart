@@ -137,10 +137,10 @@ class AppLocalizationsFr extends AppLocalizations {
   String get drawCardHere => 'Piochez\nune carte\nici\n→';
 
   @override
-  String get enterTableName => 'Entrez le nom de la nouvelle table.';
+  String get editInitials => 'Modifier les initiales';
 
   @override
-  String get enterYourName => 'Entrez votre nom';
+  String get enterTableName => 'Entrez le nom de la nouvelle table.';
 
   @override
   String errorLoadingScores(String error) {
@@ -183,6 +183,27 @@ class AppLocalizationsFr extends AppLocalizations {
   String get googleSignInFailed => 'Échec de la connexion Google.';
 
   @override
+  String get identityChangeableLater => 'Vous pouvez changer ça plus tard';
+
+  @override
+  String get identityChooseActionTitle => 'Que voulez-vous faire ?';
+
+  @override
+  String get identityFirstSubtitle => 'Les autres joueurs voient ce nom.';
+
+  @override
+  String get identityFirstTitle => 'Qui êtes-vous ?';
+
+  @override
+  String get identityHostHint => 'Vous êtes l\'hôte.';
+
+  @override
+  String get identityJoinHint => 'Vous avez un lien ou un nom de table.';
+
+  @override
+  String get identitySignInWithGoogle => 'Se connecter avec Google';
+
+  @override
   String get instructionsCustom => 'Règles personnalisées';
 
   @override
@@ -218,11 +239,6 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get joinGameTitle => 'Rejoindre';
-
-  @override
-  String joiningTable(String table) {
-    return 'Table : $table';
-  }
 
   @override
   String get joinTable => 'Rejoindre la table';
@@ -275,7 +291,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get otherTools => 'Autres outils';
 
   @override
-  String get pickTableOrCreate => 'Créez une table ou rejoignez-en une';
+  String get pickTableOrCreateHint =>
+      'Choisissez une table existante, ou créez-en une nouvelle.';
 
   @override
   String get playAgain => 'Rejouer';
@@ -477,15 +494,6 @@ class AppLocalizationsFr extends AppLocalizations {
   String get waitYourTurn => 'Attendez votre tour !';
 
   @override
-  String get welcomeOnboardingHint =>
-      'Créez une table si vous organisez la partie. Rejoignez-en une si quelqu\'un vous l\'a déjà partagée.';
-
-  @override
-  String welcomePlayer(String player) {
-    return 'Bienvenue, $player !';
-  }
-
-  @override
   String get whatTypeOfGame => 'Quel type de jeu ?';
 
   @override
@@ -503,7 +511,4 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get youIndicator => 'VOUS>';
-
-  @override
-  String get yourName => 'Votre nom';
 }

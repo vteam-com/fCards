@@ -63,8 +63,8 @@
   "discardOrSwap": "Défausser →\nou\n↓ échanger",
   "done": "Terminé",
   "drawCardHere": "Piochez\nune carte\nici\n→",
+  "editInitials": "Modifier les initiales",
   "enterTableName": "Entrez le nom de la nouvelle table.",
-  "enterYourName": "Entrez votre nom",
   "errorLoadingScores": "Erreur lors du chargement des scores : {error}",
   "@errorLoadingScores": {
     "placeholders": {
@@ -94,6 +94,13 @@
   "golf9CardsFull": "Golf 9 Cartes",
   "golfScoreKeeper": "Carnet de scores 9 Cartes Golf",
   "googleSignInFailed": "Échec de la connexion Google.",
+  "identityChangeableLater": "Vous pouvez changer ça plus tard",
+  "identityChooseActionTitle": "Que voulez-vous faire ?",
+  "identityFirstSubtitle": "Les autres joueurs voient ce nom.",
+  "identityFirstTitle": "Qui êtes-vous ?",
+  "identityHostHint": "Vous êtes l'hôte.",
+  "identityJoinHint": "Vous avez un lien ou un nom de table.",
+  "identitySignInWithGoogle": "Se connecter avec Google",
   "instructionsCustom": "Règles personnalisées",
   "instructionsFrenchCards9": "- Visez le score le plus bas.\n- Choisissez une carte depuis le paquet ou la défausse.\n- Échangez la carte choisie avec une carte de votre grille 3x3, ou défaussez-la et retournez une de vos cartes cachées.\n- Trois cartes de même rang sur une ligne ou une colonne valent zéro.\n- Le premier joueur à révéler ses neuf cartes défie les autres et revendique le meilleur score.\n- Si quelqu'un obtient un score égal ou inférieur, le challenger double ses points !\n- Les joueurs sont éliminés après 100 points.\n\n\nEn savoir plus [Wikipedia](https://en.wikipedia.org/wiki/Golf_(card_game))",
   "instructionsMiniPut": "- Visez le score le plus bas.\n- Choisissez une carte depuis le paquet ou la défausse.\n- Échangez la carte choisie avec une carte de votre grille 2x2, ou défaussez-la et retournez une de vos cartes cachées.\n- Trois cartes de même rang sur une ligne ou une colonne valent zéro.\n- Le premier joueur à révéler ses cartes défie les autres et revendique le meilleur score.\n- Si quelqu'un obtient un score égal ou inférieur, le challenger double ses points !\n- Les joueurs sont éliminés après 100 points.\n\n\nEn savoir plus [Wikipedia](https://en.wikipedia.org/wiki/Golf_(card_game))",
@@ -118,14 +125,6 @@
   "joinExistingGame": "Rejoindre une partie",
   "joinGame": "Rejoindre la partie",
   "joinGameTitle": "Rejoindre",
-  "joiningTable": "Table : {table}",
-  "@joiningTable": {
-    "placeholders": {
-      "table": {
-        "type": "String"
-      }
-    }
-  },
   "joinTable": "Rejoindre la table",
   "joinThisTable": "Rejoindre cette table",
   "last": "DERNIER",
@@ -149,7 +148,7 @@
   "notYourTurn": "Ce n'est pas votre tour !",
   "orHereLeft": "\nou\nici\n←",
   "otherTools": "Autres outils",
-  "pickTableOrCreate": "Créez une table ou rejoignez-en une",
+  "pickTableOrCreateHint": "Choisissez une table existante, ou créez-en une nouvelle.",
   "playAgain": "Rejouer",
   "playerName": "Initiales du joueur",
   "players": "Joueurs",
@@ -254,20 +253,10 @@
   "waitingForMorePlayers": "En attente d'autres joueurs...",
   "waitingForPlayers": "En attente de joueurs",
   "waitYourTurn": "Attendez votre tour !",
-  "welcomeOnboardingHint": "Créez une table si vous organisez la partie. Rejoignez-en une si quelqu'un vous l'a déjà partagée.",
-  "welcomePlayer": "Bienvenue, {player} !",
-  "@welcomePlayer": {
-    "placeholders": {
-      "player": {
-        "type": "String"
-      }
-    }
-  },
   "whatTypeOfGame": "Quel type de jeu ?",
   "whoAreYou": "Qui êtes-vous ?\nSélectionnez ci-dessus ⬆ ou rejoignez ci-dessous ⬇",
   "wizardStepOneOfTwo": "Étape 1 sur 2",
   "wizardStepTwoOfTwo": "Étape 2 sur 2",
   "youAreDone": "Vous avez terminé.",
-  "youIndicator": "VOUS>",
-  "yourName": "Votre nom"
+  "youIndicator": "VOUS>"
 }

@@ -9,6 +9,7 @@ import 'package:cards/utils/logger.dart';
 import 'package:cards/widgets/buttons/my_button_rectangle.dart';
 import 'package:cards/widgets/helpers/edit_box.dart';
 import 'package:cards/widgets/helpers/screen.dart';
+import 'package:cards/widgets/helpers/wizard_footer.dart';
 import 'package:flutter/material.dart';
 
 /// Dedicated create-table step that only handles table-name input/validation.
@@ -58,141 +59,142 @@ class _CreateTableNameScreenState extends State<CreateTableNameScreen> {
     return Screen(
       isWaiting: false,
       title: localizations.createNewTable,
-      child: SingleChildScrollView(
-        child: Center(
-          child: Padding(
-            padding: const EdgeInsets.all(ConstLayout.paddingM),
-            child: ConstrainedBox(
-              constraints: const BoxConstraints(
-                maxWidth: ConstLayout.startGameScreenMaxWidth,
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    localizations.wizardStepTwoOfTwo,
-                    style: TextStyle(
-                      fontSize: ConstLayout.textS,
-                      fontWeight: FontWeight.bold,
-                      color: Theme.of(context).colorScheme.tertiary,
+      child: Padding(
+        padding: const EdgeInsets.all(ConstLayout.paddingM),
+        child: Column(
+          children: [
+            Expanded(
+              child: Center(
+                child: SingleChildScrollView(
+                  child: ConstrainedBox(
+                    constraints: const BoxConstraints(
+                      maxWidth: ConstLayout.startGameScreenMaxWidth,
                     ),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(height: ConstLayout.sizeS),
-                  Padding(
-                    padding: const EdgeInsets.all(ConstLayout.paddingS),
-                    child: Text(
-                      localizations.enterTableName,
-                      style: TextStyle(
-                        fontSize: ConstLayout.textS,
-                        color: Theme.of(context).colorScheme.tertiary,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: ConstLayout.paddingL,
-                    ),
-                    child: Text(
-                      localizations.createTableNameHint,
-                      style: TextStyle(
-                        fontSize: ConstLayout.textS,
-                        color: Theme.of(context).colorScheme.onSurface,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                  const SizedBox(height: ConstLayout.sizeM),
-                  EditBox(
-                    label: localizations.table,
-                    controller: _controllerTableName,
-                    onSubmitted: () {
-                      _controllerTableName.text = _controllerTableName.text
-                          .toUpperCase();
-                      if (tableName.isEmpty) {
-                        return;
-                      }
-                      _lookupTableName(tableName);
-                    },
-                    onChanged: (String _) {
-                      _onTableNameChanged();
-                    },
-                    errorStatus: '',
-                    rightSideChild: const SizedBox.shrink(),
-                  ),
-                  if (tableName.isNotEmpty && _lookupInProgress)
-                    const Padding(
-                      padding: EdgeInsets.all(ConstLayout.paddingS),
-                      child: SizedBox(
-                        width: ConstLayout.sizeXXL,
-                        height: ConstLayout.sizeXXL,
-                        child: CircularProgressIndicator(),
-                      ),
-                    ),
-                  if (showJoinShortcut)
-                    Padding(
-                      padding: const EdgeInsets.all(ConstLayout.paddingS),
-                      child: Text(
-                        localizations.thisTableAlreadyHasPlayers,
-                        style: TextStyle(
-                          fontSize: ConstLayout.textS,
-                          color: Theme.of(context).colorScheme.tertiary,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          localizations.wizardStepTwoOfTwo,
+                          style: TextStyle(
+                            fontSize: ConstLayout.textS,
+                            fontWeight: FontWeight.bold,
+                            color: Theme.of(context).colorScheme.tertiary,
+                          ),
+                          textAlign: TextAlign.center,
                         ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                  if (showJoinShortcut)
-                    MyButtonRectangle(
-                      width: double.infinity,
-                      onTap: () {
-                        openJoinFlowForTable(
-                          context: context,
-                          tableName: tableName,
-                          gameStyle: widget.gameStyle,
-                        );
-                      },
-                      child: Text(
-                        localizations.joinThisTable,
-                        style: TextStyle(
-                          fontSize: ConstLayout.textS,
-                          fontWeight: FontWeight.bold,
-                          color: Theme.of(
-                            context,
-                          ).colorScheme.onPrimaryContainer,
+                        const SizedBox(height: ConstLayout.sizeS),
+                        Padding(
+                          padding: const EdgeInsets.all(ConstLayout.paddingS),
+                          child: Text(
+                            localizations.enterTableName,
+                            style: TextStyle(
+                              fontSize: ConstLayout.textS,
+                              color: Theme.of(context).colorScheme.tertiary,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
                         ),
-                      ),
-                    ),
-                  if (showJoinShortcut)
-                    Padding(
-                      padding: const EdgeInsets.all(ConstLayout.paddingS),
-                      child: Text(
-                        localizations.enterTableName,
-                        style: TextStyle(
-                          fontSize: ConstLayout.textS,
-                          color: Theme.of(context).colorScheme.tertiary,
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: ConstLayout.paddingL,
+                          ),
+                          child: Text(
+                            localizations.createTableNameHint,
+                            style: TextStyle(
+                              fontSize: ConstLayout.textS,
+                              color: Theme.of(context).colorScheme.onSurface,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
                         ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                  const SizedBox(height: ConstLayout.sizeS),
-                  MyButtonRectangle(
-                    width: double.infinity,
-                    onTap: canContinue ? _continueToCreateTable : null,
-                    child: Text(
-                      localizations.next,
-                      style: TextStyle(
-                        fontSize: ConstLayout.textM,
-                        fontWeight: FontWeight.bold,
-                        color: Theme.of(context).colorScheme.onPrimaryContainer,
-                      ),
+                        const SizedBox(height: ConstLayout.sizeM),
+                        EditBox(
+                          label: localizations.table,
+                          controller: _controllerTableName,
+                          onSubmitted: () {
+                            _controllerTableName.text = _controllerTableName
+                                .text
+                                .toUpperCase();
+                            if (tableName.isEmpty) {
+                              return;
+                            }
+                            _lookupTableName(tableName);
+                          },
+                          onChanged: (String _) {
+                            _onTableNameChanged();
+                          },
+                          errorStatus: '',
+                          rightSideChild: const SizedBox.shrink(),
+                        ),
+                        if (tableName.isNotEmpty && _lookupInProgress)
+                          const Padding(
+                            padding: EdgeInsets.all(ConstLayout.paddingS),
+                            child: SizedBox(
+                              width: ConstLayout.sizeXXL,
+                              height: ConstLayout.sizeXXL,
+                              child: CircularProgressIndicator(),
+                            ),
+                          ),
+                        if (showJoinShortcut)
+                          Padding(
+                            padding: const EdgeInsets.all(ConstLayout.paddingS),
+                            child: Text(
+                              localizations.thisTableAlreadyHasPlayers,
+                              style: TextStyle(
+                                fontSize: ConstLayout.textS,
+                                color: Theme.of(context).colorScheme.tertiary,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        if (showJoinShortcut)
+                          MyButtonRectangle(
+                            width: double.infinity,
+                            onTap: () {
+                              openJoinFlowForTable(
+                                context: context,
+                                tableName: tableName,
+                                gameStyle: widget.gameStyle,
+                              );
+                            },
+                            child: Text(
+                              localizations.joinThisTable,
+                              style: TextStyle(
+                                fontSize: ConstLayout.textS,
+                                fontWeight: FontWeight.bold,
+                                color: Theme.of(
+                                  context,
+                                ).colorScheme.onPrimaryContainer,
+                              ),
+                            ),
+                          ),
+                        if (showJoinShortcut)
+                          Padding(
+                            padding: const EdgeInsets.all(ConstLayout.paddingS),
+                            child: Text(
+                              localizations.enterTableName,
+                              style: TextStyle(
+                                fontSize: ConstLayout.textS,
+                                color: Theme.of(context).colorScheme.tertiary,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                      ],
                     ),
                   ),
-                ],
+                ),
               ),
             ),
-          ),
+            WizardFooter(
+              backLabel: localizations.back,
+              onBack: null,
+              primaryLabel: localizations.next,
+              isPrimaryEnabled: canContinue,
+              onForward: canContinue ? _continueToCreateTable : null,
+            ),
+          ],
         ),
       ),
     );

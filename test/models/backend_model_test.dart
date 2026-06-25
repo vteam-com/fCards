@@ -4,8 +4,6 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
-import 'backend_json_data.dart';
-
 class MockDataSnapshot extends Mock implements DataSnapshot {}
 
 class MockDatabaseReference extends Mock implements DatabaseReference {}
@@ -16,7 +14,7 @@ class MockFirebaseDatabase extends Mock implements FirebaseDatabase {}
 
 class MockDataSnapshotImpl implements DataSnapshot {
   @override
-  dynamic get value => backEndRoomInstance();
+  dynamic get value => ['JOHN', 'PAUL', 'GORGES', 'RINGO'];
   @override
   String get key => 'mockKey';
 
@@ -83,10 +81,7 @@ void main() {
   group('test offline', () {
     test('getInviteesFromDataSnapshot', () async {
       isRunningOffLine = false;
-      final players = getInviteesFromDataSnapshot(
-        MockDataSnapshotImpl(),
-        'TEST_ROOM',
-      );
+      final players = getInviteesFromDataSnapshot(MockDataSnapshotImpl());
       expect(players, ['JOHN', 'PAUL', 'GORGES', 'RINGO']);
     });
 
