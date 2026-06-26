@@ -1,4 +1,5 @@
 import 'package:cards/models/game/game_history.dart';
+import 'package:cards/models/game/backend_model.dart';
 import 'package:cards/models/game/game_model.dart';
 import 'package:cards/models/game/game_styles.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -105,6 +106,31 @@ void main() {
   });
 
   group('Game State Management', () {
+    test('should notify listeners for online game state changes', () {
+      final gameModel = getNewSkyjoInstance();
+      final bool previousIsRunningOffLine = isRunningOffLine;
+      final bool previousBackendReady = backendReady;
+      int notificationCount = 0;
+
+      isRunningOffLine = false;
+      backendReady = false;
+      gameModel.addListener(() {
+        notificationCount += 1;
+      });
+
+      gameModel.gameState =
+          GameStates.swapTopDeckCardWithAnyCardsInHandOrDiscard;
+
+      expect(
+        notificationCount,
+        1,
+        reason: 'Local listeners should rebuild before backend sync completes',
+      );
+
+      isRunningOffLine = previousIsRunningOffLine;
+      backendReady = previousBackendReady;
+    });
+
     test('should properly track active player', () {
       final gameModel = getNewSkyjoInstance();
       expect(gameModel.playerIdPlaying, equals(0));

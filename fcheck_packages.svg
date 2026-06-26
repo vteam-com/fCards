@@ -1355,7 +1355,7 @@
 <g class="platformBadge platformBadge--windows"><title>Windows</title><rect x="522.0" y="1467.0" width="13.0" height="13.0" rx="6.5" ry="6.5" fill="#2563eb" stroke="#1d4ed8" stroke-width="0.6"/><text x="528.5" y="1474.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">W</text></g>
 <g class="platformBadge platformBadge--web"><title>Browser</title><rect x="539.0" y="1467.0" width="13.0" height="13.0" rx="6.5" ry="6.5" fill="#0891b2" stroke="#0e7490" stroke-width="0.6"/><text x="545.5" y="1474.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">B</text></g>
 <text x="503.0" y="1448.0" class="packageLabelNodeName packageLabelCaption" text-anchor="middle">package_info_plus</text>
-<text x="503.0" y="1461.0" class="packageLabelNodeVersion" text-anchor="middle">v10.1.0</text>
+<text x="503.0" y="1461.0" class="packageLabelNodeVersion" text-anchor="middle">v10.2.0</text>
 </g>
 <g class="badge outgoingBadge">
   <path d="M 397.0,1462.0 L 409.0,1455.0 Q 412.0,1455.0 412.0,1458.0 L 412.0,1466.0 Q 412.0,1469.0 409.0,1469.0 Z" fill="#10b981"/>
@@ -1393,7 +1393,7 @@
 <g class="platformBadge platformBadge--windows"><title>Windows</title><rect x="522.0" y="1643.0" width="13.0" height="13.0" rx="6.5" ry="6.5" fill="#2563eb" stroke="#1d4ed8" stroke-width="0.6"/><text x="528.5" y="1650.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">W</text></g>
 <g class="platformBadge platformBadge--web"><title>Browser</title><rect x="539.0" y="1643.0" width="13.0" height="13.0" rx="6.5" ry="6.5" fill="#0891b2" stroke="#0e7490" stroke-width="0.6"/><text x="545.5" y="1650.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">B</text></g>
 <text x="503.0" y="1624.0" class="packageLabelNodeName packageLabelCaption" text-anchor="middle">share_plus</text>
-<text x="503.0" y="1637.0" class="packageLabelNodeVersion" text-anchor="middle">v13.1.0</text>
+<text x="503.0" y="1637.0" class="packageLabelNodeVersion" text-anchor="middle">v13.2.0</text>
 </g>
 <g class="badge outgoingBadge">
   <path d="M 395.0,1638.0 L 411.0,1630.4 Q 414.0,1630.4 414.0,1633.4 L 414.0,1642.6 Q 414.0,1645.6 411.0,1645.6 Z" fill="#10b981"/>

@@ -38,16 +38,8 @@ class AuthService {
   static bool get _usesGoogleSignInPluginFlow =>
       !kIsWeb && defaultTargetPlatform == TargetPlatform.macOS;
 
-  /// Returns true on platforms where this app currently exposes Apple sign-in.
-  ///
-  /// macOS is intentionally excluded here because the native Apple sign-in
-  /// entitlement requires a Mac App Development provisioning profile for this
-  /// bundle ID, and CLI debug builds fail without that profile.
-  static bool get supportsAppleSignIn =>
-      kIsWeb ||
-      defaultTargetPlatform == TargetPlatform.android ||
-      defaultTargetPlatform == TargetPlatform.iOS ||
-      defaultTargetPlatform == TargetPlatform.windows;
+  /// Returns true on platforms where this app exposes Apple sign-in.
+  static bool get supportsAppleSignIn => true;
 
   static Future<void> _ensureInitialized() async {
     if (_initialized) return;
