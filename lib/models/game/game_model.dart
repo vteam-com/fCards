@@ -155,9 +155,9 @@ class GameModel with ChangeNotifier {
     if (_gameState != value) {
       _gameState = value;
 
-      if (isRunningOffLine) {
-        notifyListeners();
-      } else {
+      notifyListeners();
+
+      if (!isRunningOffLine) {
         pushGameModelToBackend();
       }
     }

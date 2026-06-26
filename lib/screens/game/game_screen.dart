@@ -112,7 +112,7 @@ class GameScreenState extends State<GameScreen> {
   @override
   void initState() {
     super.initState();
-    _createGlobalKeyForPlayers();
+    _syncPlayerKeys();
     widget.gameModel.addListener(_onGameModelUpdated);
     if (isRunningOffLine) {
       _getFirebaseData();
@@ -310,13 +310,6 @@ class GameScreenState extends State<GameScreen> {
     );
   }
 
-  void _createGlobalKeyForPlayers() {
-    _playerKeys = List.generate(
-      widget.gameModel.numPlayers,
-      (_ /* index */) => GlobalKey(),
-    );
-  }
-
   /// Converts a Firebase snapshot payload into the in-memory game model.
   void _dataSnapshotToGameModel(final DataSnapshot snapshot) {
     if (!snapshot.exists) {
@@ -391,7 +384,7 @@ class GameScreenState extends State<GameScreen> {
   void _jsonToGameModel(Map<String, dynamic> mapData) {
     widget.gameModel.fromJson(mapData);
     setState(() {
-      _createGlobalKeyForPlayers();
+      _syncPlayerKeys();
       if (widget.gameModel.gameState == GameStates.gameOver) {
         widget.gameModel.endedOn = DateTime.now();
 
@@ -535,5 +528,16 @@ class GameScreenState extends State<GameScreen> {
         }
       }
     });
+  }
+
+  void _syncPlayerKeys() {
+    if (_playerKeys.length == widget.gameModel.numPlayers) {
+      return;
+    }
+
+    _playerKeys = List.generate(
+      widget.gameModel.numPlayers,
+      (_ /* index */) => GlobalKey(),
+    );
   }
 }
