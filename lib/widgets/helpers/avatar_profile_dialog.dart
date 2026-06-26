@@ -13,8 +13,8 @@ class _AvatarProfileDialogConstants {
   static const double contentSpacing = 13.0;
   static const double sectionSpacing = 21.0;
   static const double buttonHeight = 55.0;
-  static const int maxInfoValueLines = 2;
-  static const int minPartsForPairInitials = 2;
+  static const int infoValueMaxLines = 2;
+  static const int initialsSourcePartCount = 2;
 }
 
 /// A comprehensive profile dialog showing user information and editable settings.
@@ -87,7 +87,7 @@ class _AvatarProfileDialogState extends State<AvatarProfileDialog> {
         spacing: _AvatarProfileDialogConstants.sectionSpacing,
         children: [
           // Header with avatar and basic info
-          _buildHeaderSection(colorScheme),
+          _buildHeaderSection(colorScheme, localizations),
 
           // Main content
           Padding(
@@ -195,7 +195,7 @@ class _AvatarProfileDialogState extends State<AvatarProfileDialog> {
   }
 
   /// Builds the header section with avatar and account title.
-  Widget _buildHeaderSection(ColorScheme colorScheme) {
+  Widget _buildHeaderSection(ColorScheme colorScheme, AppLocalizations _) {
     return Container(
       padding: const EdgeInsets.symmetric(
         horizontal: _AvatarProfileDialogConstants.headerHorizontalPadding,
@@ -262,7 +262,7 @@ class _AvatarProfileDialogState extends State<AvatarProfileDialog> {
                   fontSize: ConstLayout.textS,
                   color: colorScheme.onSurface,
                 ),
-                maxLines: _AvatarProfileDialogConstants.maxInfoValueLines,
+                maxLines: _AvatarProfileDialogConstants.infoValueMaxLines,
                 overflow: TextOverflow.ellipsis,
               ),
             ],
@@ -358,9 +358,7 @@ class _AvatarProfileDialogState extends State<AvatarProfileDialog> {
     widget.onLanguageChanged(languageCode);
   }
 
-  /// Computes avatar initials from guest initials, display name, or email.
-  ///
-  /// Falls back to a generic avatar glyph when no source text is available.
+  /// Resolves avatar initials from guest initials, display name, or email.
   String get _displayInitials {
     if (widget.guestInitials != null && widget.guestInitials!.isNotEmpty) {
       return widget.guestInitials!;
@@ -370,7 +368,7 @@ class _AvatarProfileDialogState extends State<AvatarProfileDialog> {
     if (displayName != null && displayName.isNotEmpty) {
       final parts = displayName.split(RegExp(r'\s+'));
       if (parts.length >=
-          _AvatarProfileDialogConstants.minPartsForPairInitials) {
+          _AvatarProfileDialogConstants.initialsSourcePartCount) {
         return ('${parts[0][0]}${parts[1][0]}').toUpperCase();
       }
       return displayName.substring(0, 1).toUpperCase();
@@ -381,17 +379,17 @@ class _AvatarProfileDialogState extends State<AvatarProfileDialog> {
       final localPart = email.split('@').first;
       final parts = localPart.split(RegExp(r'[._-]+'));
       if (parts.length >=
-          _AvatarProfileDialogConstants.minPartsForPairInitials) {
+          _AvatarProfileDialogConstants.initialsSourcePartCount) {
         return ('${parts[0][0]}${parts[1][0]}').toUpperCase();
       }
       return localPart.substring(0, 1).toUpperCase();
     }
 
-    return 'NA';
+    return '👤';
   }
 }
 
-/// Wrapper used by widget previews to provide app localization and scaffolding.
+/// Provides a localized Material wrapper for the dialog widget preview.
 Widget avatarProfileDialogPreviewWrapper(Widget child) {
   return MaterialApp(
     localizationsDelegates: AppLocalizations.localizationsDelegates,
@@ -400,21 +398,23 @@ Widget avatarProfileDialogPreviewWrapper(Widget child) {
   );
 }
 
+final Locale _avatarProfilePreviewLocale =
+    AppLocalizations.supportedLocales.first;
+final AppLocalizations _avatarProfilePreviewLocalizations =
+    lookupAppLocalizations(_avatarProfilePreviewLocale);
+
 @Preview(
   name: 'Avatar Profile Dialog',
   group: 'Dialogs',
   wrapper: avatarProfileDialogPreviewWrapper,
   size: Size(400, 1900),
 )
-/// Preview fixture for the avatar profile dialog.
+/// Renders the avatar profile dialog preview with a signed-in sample user.
 Widget avatarProfileDialogPreview() {
-  final defaultLocaleCode =
-      AppLocalizations.supportedLocales.first.languageCode;
-
   return AvatarProfileDialog(
     user: _AvatarProfilePreviewUser(),
     guestInitials: null,
-    currentLanguageCode: defaultLocaleCode,
+    currentLanguageCode: _avatarProfilePreviewLocale.languageCode,
     onInitialsChanged: (_) {},
     onLanguageChanged: (_) {},
     onSignInTap: () {},
@@ -425,10 +425,10 @@ Widget avatarProfileDialogPreview() {
 
 final class _AvatarProfilePreviewUser implements User {
   @override
-  String? get displayName => null;
+  String? get displayName => _avatarProfilePreviewLocalizations.fullName;
 
   @override
-  String? get email => null;
+  String? get email => _avatarProfilePreviewLocalizations.email;
 
   @override
   bool get isAnonymous => false;

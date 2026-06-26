@@ -86,6 +86,11 @@ class GameScreen extends StatefulWidget {
 class GameScreenState extends State<GameScreen> {
   ({CardModel discardedCard, Offset? origin, bool wasHidden})?
   _activeSwapAnimationEvent;
+  static const int _firebaseUpdateDebounceMs = 1500;
+
+  /// Timer to debounce Firebase updates after local changes.
+  /// Prevents stale Firebase data from overwriting local changes during async push.
+  Timer? _firebaseUpdateDebounceTimer;
   int _lastHandledSwapAnimationEventId = 0;
 
   /// List of GlobalKeys for each player widget, used for scrolling.
@@ -124,6 +129,7 @@ class GameScreenState extends State<GameScreen> {
   void dispose() {
     _scrollController.dispose();
     _swapAnimationCleanupTimer?.cancel();
+    _firebaseUpdateDebounceTimer?.cancel();
     widget.gameModel.removeListener(_onGameModelUpdated);
     if (!isRunningOffLine) {
       _streamSubscription.cancel();
@@ -319,6 +325,12 @@ class GameScreenState extends State<GameScreen> {
 
     final Object? data = snapshot.value;
     if (data != null) {
+      // Ignore Firebase updates during debounce period to prevent stale data
+      // from overwriting local changes that are being pushed to backend
+      if (_firebaseUpdateDebounceTimer?.isActive == true) {
+        return;
+      }
+
       // Convert the data to a Map<String, dynamic>
       String jsonData = jsonEncode(data);
       Map<String, dynamic> mapData = jsonDecode(jsonData);
@@ -375,6 +387,7 @@ class GameScreenState extends State<GameScreen> {
   }
 
   /// Applies decoded game JSON to [widget.gameModel] and refreshes local UI.
+  /// Also resets the Firebase update debounce timer to allow new updates.
   void _jsonToGameModel(Map<String, dynamic> mapData) {
     widget.gameModel.fromJson(mapData);
     setState(() {
@@ -386,6 +399,10 @@ class GameScreenState extends State<GameScreen> {
       }
       isReady = true;
     });
+
+    // Reset debounce timer after processing Firebase update
+    _firebaseUpdateDebounceTimer?.cancel();
+    _firebaseUpdateDebounceTimer = null;
   }
 
   /// Builds the layout for desktop/tablet screens.  Uses a horizontal wrapping layout.
@@ -426,10 +443,21 @@ class GameScreenState extends State<GameScreen> {
 
   /// Updates local UI and triggers the discarded-card overlay animation when a
   /// new swap animation event is emitted by the game model.
+  /// Also starts a debounce timer to prevent stale Firebase updates from
+  /// overwriting local changes during the async push to backend.
   void _onGameModelUpdated() {
     if (!mounted) {
       return;
     }
+
+    // Start debounce timer to ignore stale Firebase updates during async push
+    _firebaseUpdateDebounceTimer?.cancel();
+    _firebaseUpdateDebounceTimer = Timer(
+      const Duration(milliseconds: _firebaseUpdateDebounceMs),
+      () {
+        _firebaseUpdateDebounceTimer = null;
+      },
+    );
 
     final int eventId = widget.gameModel.swapAnimationEventId;
     if (eventId > _lastHandledSwapAnimationEventId &&

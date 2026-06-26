@@ -207,13 +207,28 @@ class GameModel with ChangeNotifier {
   /// - 'playerIdAttacking': index of player being attacked (-1 if not in final turn)
   /// - 'state': string representation of game state
   void _loadGameState(Map<String, dynamic> json) {
-    deck = loadDeck(json['deck']);
-    setActivePlayer(json['playerIdPlaying']);
-    playerIdAttacking = json['playerIdAttacking'];
-    _gameState = GameStates.values.firstWhere(
-      (e) => e.toString() == json['state'],
-      orElse: () => GameStates.pickCardFromEitherPiles,
-    );
+    final deckJson = json['deck'];
+    if (deckJson != null && deckJson is Map<String, dynamic>) {
+      deck = loadDeck(deckJson);
+    }
+
+    final playerIdPlayingValue = json['playerIdPlaying'];
+    if (playerIdPlayingValue != null) {
+      setActivePlayer(playerIdPlayingValue as int);
+    }
+
+    final playerIdAttackingValue = json['playerIdAttacking'];
+    if (playerIdAttackingValue != null) {
+      playerIdAttacking = playerIdAttackingValue as int;
+    }
+
+    final stateValue = json['state'];
+    if (stateValue != null) {
+      _gameState = GameStates.values.firstWhere(
+        (e) => e.toString() == stateValue,
+        orElse: () => GameStates.pickCardFromEitherPiles,
+      );
+    }
   }
 
   /// Loads a deck from JSON data.
@@ -324,6 +339,10 @@ class GameModel with ChangeNotifier {
       'playerIdPlaying': playerIdPlaying,
       'playerIdAttacking': playerIdAttacking,
       'state': gameState.toString(),
+      'gameType': gameStyle.toString(),
+      'scores': <dynamic>[],
+      'discard': deck.cardsDeckDiscarded.map((card) => card.toJson()).toList(),
+      'turn': playerIdPlaying,
     };
   }
 

@@ -15,6 +15,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get addAnotherPlayer => 'Add another player';
 
   @override
+  String get appleSignInFailed => 'Apple sign-in failed.';
+
+  @override
   String get appTitle => 'VTeam Cards';
 
   @override
@@ -207,6 +210,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get identityJoinHint => 'You have a link or table name.';
 
   @override
+  String get identitySignInWithApple => 'Sign in with Apple';
+
+  @override
   String get identitySignInWithGoogle => 'Sign in with Google';
 
   @override
@@ -358,7 +364,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get scanCorrectionRequiresSignIn =>
-      'Sign in with Google to correct card values.';
+      'Sign in with an account to correct card values.';
 
   @override
   String get scanCorrectionSaved => 'Correction saved for model retraining';
