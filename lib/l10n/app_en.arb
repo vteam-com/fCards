@@ -1,6 +1,7 @@
 {
   "account": "Account",
   "addAnotherPlayer": "Add another player",
+  "appleSignInFailed": "Apple sign-in failed.",
   "appTitle": "VTeam Cards",
   "@appTitle": {
     "description": "DO NOT TRANSLATE. This is the official brand name."
@@ -107,6 +108,7 @@
   "identityFirstTitle": "Who are you?",
   "identityHostHint": "You're the host.",
   "identityJoinHint": "You have a link or table name.",
+  "identitySignInWithApple": "Sign in with Apple",
   "identitySignInWithGoogle": "Sign in with Google",
   "instructionsCustom": "Custom rules",
   "instructionsFrenchCards9": "- Aim for the lowest score.\n- Choose a card from either the Deck or Discard pile.\n- Swap the chosen card with a card in your 3x3 grid, or discard it and flip over one of your face-down cards.\n- Three cards of the same rank in a row or column score zero.\n- The first player to reveal all nine cards challenges others, claiming the lowest score.\n- If someone else has an equal or lower score, the challenger doubles their points!\n- Players are eliminated after busting 100 points.\n\n\nLearn more [Wikipedia](https://en.wikipedia.org/wiki/Golf_(card_game))",
@@ -209,7 +211,7 @@
   "scanCard": "Count Cards",
   "scanCardTitle": "Count Cards",
   "scanCorrectCardValueTitle": "Correct Card Value",
-  "scanCorrectionRequiresSignIn": "Sign in with Google to correct card values.",
+  "scanCorrectionRequiresSignIn": "Sign in with an account to correct card values.",
   "scanCorrectionSaved": "Correction saved for model retraining",
   "scanFailedDecode": "Failed to decode captured image.",
   "scanMacosPhotoHint": "On macOS, choose a card photo from your library to scan.",

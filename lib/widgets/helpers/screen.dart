@@ -9,6 +9,7 @@ import 'package:cards/models/app/identity_service.dart';
 import 'package:cards/models/app/locale_controller.dart';
 import 'package:cards/utils/logger.dart';
 import 'package:cards/widgets/helpers/avatar_profile_dialog.dart';
+import 'package:cards/widgets/helpers/google_mark_icon.dart';
 import 'package:cards/widgets/helpers/initials_dialog.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -16,6 +17,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:share_plus/share_plus.dart';
+
+enum _AccountSignInProvider { google, apple }
 
 /// Defines breakpoint constants for responsive design
 class ResponsiveBreakpoints {
@@ -436,6 +439,53 @@ class _ScreenState extends State<Screen> with SingleTickerProviderStateMixin {
     _loadGuestInitials();
   }
 
+  /// Lets the user pick a sign-in provider when multiple account flows exist.
+  Future<_AccountSignInProvider?> _chooseAccountSignInProvider(
+    AppLocalizations localizations,
+  ) async {
+    if (!AuthService.supportsAppleSignIn) {
+      return _AccountSignInProvider.google;
+    }
+
+    return showDialog<_AccountSignInProvider>(
+      context: context,
+      builder: (BuildContext dialogContext) {
+        return SimpleDialog(
+          title: Text(localizations.signIn),
+          children: [
+            SimpleDialogOption(
+              onPressed: () => Navigator.of(
+                dialogContext,
+              ).pop(_AccountSignInProvider.google),
+              child: Row(
+                spacing: ConstLayout.sizeM,
+                children: [
+                  const GoogleMarkIcon(),
+                  Expanded(child: Text(localizations.identitySignInWithGoogle)),
+                ],
+              ),
+            ),
+            SimpleDialogOption(
+              onPressed: () =>
+                  Navigator.of(dialogContext).pop(_AccountSignInProvider.apple),
+              child: Row(
+                spacing: ConstLayout.sizeM,
+                children: [
+                  Icon(Icons.apple, size: ConstLayout.iconS),
+                  Expanded(child: Text(localizations.identitySignInWithApple)),
+                ],
+              ),
+            ),
+            SimpleDialogOption(
+              onPressed: () => Navigator.of(dialogContext).pop(),
+              child: Text(localizations.cancel),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   /// Builds the waiting-state loading indicator used by [Screen].
   Widget _displayWaiting() {
     return SizedBox(
@@ -590,19 +640,43 @@ class _ScreenState extends State<Screen> with SingleTickerProviderStateMixin {
     ).showSnackBar(SnackBar(content: Text(message)));
   }
 
-  /// Signs in with Google from the avatar account menu.
+  /// Signs in from the avatar account menu.
   Future<void> _signIn() async {
     final AppLocalizations localizations = AppLocalizations.of(context);
+
+    final _AccountSignInProvider? provider = await _chooseAccountSignInProvider(
+      localizations,
+    );
+    if (!mounted || provider == null) {
+      return;
+    }
+
     try {
-      await AuthService.signInWithGoogle();
+      switch (provider) {
+        case _AccountSignInProvider.google:
+          await AuthService.signInWithGoogle();
+          break;
+        case _AccountSignInProvider.apple:
+          await AuthService.signInWithApple();
+          break;
+      }
     } on FirebaseAuthException catch (error) {
       if (error.code == 'sign_in_canceled') {
         return;
       }
 
-      _showAuthError(error.message ?? localizations.googleSignInFailed);
+      _showAuthError(
+        error.message ??
+            (provider == _AccountSignInProvider.apple
+                ? localizations.appleSignInFailed
+                : localizations.googleSignInFailed),
+      );
     } catch (_) {
-      _showAuthError(localizations.googleSignInFailed);
+      _showAuthError(
+        provider == _AccountSignInProvider.apple
+            ? localizations.appleSignInFailed
+            : localizations.googleSignInFailed,
+      );
     }
   }
 

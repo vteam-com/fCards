@@ -110,6 +110,12 @@ abstract class AppLocalizations {
   /// **'Add another player'**
   String get addAnotherPlayer;
 
+  /// No description provided for @appleSignInFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Apple sign-in failed.'**
+  String get appleSignInFailed;
+
   /// DO NOT TRANSLATE. This is the official brand name.
   ///
   /// In en, this message translates to:
@@ -464,6 +470,12 @@ abstract class AppLocalizations {
   /// **'You have a link or table name.'**
   String get identityJoinHint;
 
+  /// No description provided for @identitySignInWithApple.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in with Apple'**
+  String get identitySignInWithApple;
+
   /// No description provided for @identitySignInWithGoogle.
   ///
   /// In en, this message translates to:
@@ -731,7 +743,7 @@ abstract class AppLocalizations {
   /// No description provided for @scanCorrectionRequiresSignIn.
   ///
   /// In en, this message translates to:
-  /// **'Sign in with Google to correct card values.'**
+  /// **'Sign in with an account to correct card values.'**
   String get scanCorrectionRequiresSignIn;
 
   /// No description provided for @scanCorrectionSaved.

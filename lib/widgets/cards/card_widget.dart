@@ -29,7 +29,13 @@ class CardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // If there's no drop handler, don't use DragTarget to allow taps to pass through
+    if (onDropped == null) {
+      return buildCard();
+    }
+
     return DragTarget<CardModel>(
+      hitTestBehavior: HitTestBehavior.translucent,
       onAcceptWithDetails: (DragTargetDetails<CardModel> data) {
         // DROPPED DROP CARD
         final RenderBox? box = context.findRenderObject() as RenderBox?;

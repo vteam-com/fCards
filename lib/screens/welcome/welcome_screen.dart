@@ -6,6 +6,7 @@ import 'package:cards/models/app/reviewer_access.dart';
 import 'package:cards/models/game/backend_model.dart';
 import 'package:cards/utils/logger.dart';
 import 'package:cards/widgets/buttons/my_button_rectangle.dart';
+import 'package:cards/widgets/helpers/google_mark_icon.dart';
 import 'package:cards/widgets/helpers/screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
@@ -39,7 +40,7 @@ class WelcomeScreen extends StatefulWidget {
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
   bool _hasPendingDeepLink = false;
-  bool _isSigningInWithGoogle = false;
+  bool _isSigningIn = false;
   _WelcomeStep _step = _WelcomeStep.loading;
   @override
   void initState() {
@@ -55,7 +56,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     final AppLocalizations localizations = AppLocalizations.of(context);
     return Screen(
       title: localizations.appTitle,
-      isWaiting: _step == _WelcomeStep.loading || _isSigningInWithGoogle,
+      isWaiting: _step == _WelcomeStep.loading || _isSigningIn,
       child: LayoutBuilder(
         builder: (_, BoxConstraints constraints) {
           return SingleChildScrollView(
@@ -200,11 +201,23 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           ),
         ),
         SizedBox(height: ConstLayout.sizeXL),
-        MyButtonRectangle.menu(
+        _buildIdentityProviderButton(
           label: localizations.identitySignInWithGoogle,
-          icon: Icons.login,
+          leading: const GoogleMarkIcon(),
           onTap: _handleGoogleSignIn,
         ),
+        if (AuthService.supportsAppleSignIn) ...[
+          SizedBox(height: ConstLayout.sizeM),
+          _buildIdentityProviderButton(
+            label: localizations.identitySignInWithApple,
+            leading: Icon(
+              Icons.apple,
+              size: ConstLayout.iconM,
+              color: colorScheme.secondary,
+            ),
+            onTap: _handleAppleSignIn,
+          ),
+        ],
         SizedBox(height: ConstLayout.sizeL),
         Text(
           localizations.identityChangeableLater,
@@ -215,6 +228,42 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           textAlign: TextAlign.center,
         ),
       ],
+    );
+  }
+
+  /// Builds a full-width identity provider button with a branded leading icon.
+  Widget _buildIdentityProviderButton({
+    required Widget leading,
+    required String label,
+    required VoidCallback onTap,
+  }) {
+    final ColorScheme colorScheme = Theme.of(context).colorScheme;
+    return MyButtonRectangle(
+      onTap: onTap,
+      width: double.infinity,
+      height: ConstLayout.mainMenuButtonHeight,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: ConstLayout.paddingL),
+        child: Row(
+          children: [
+            SizedBox.square(
+              dimension: ConstLayout.iconM,
+              child: Center(child: leading),
+            ),
+            SizedBox(width: ConstLayout.sizeM),
+            Expanded(
+              child: Text(
+                label,
+                style: TextStyle(
+                  fontSize: ConstLayout.textM,
+                  fontWeight: FontWeight.bold,
+                  color: colorScheme.onPrimaryContainer,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 
@@ -241,34 +290,54 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     }
   }
 
-  /// Triggers Google sign-in and advances to the choice step on success.
-  Future<void> _handleGoogleSignIn() async {
-    final AppLocalizations localizations = AppLocalizations.of(context);
+  /// Runs the selected account sign-in flow and advances on success.
+  Future<void> _handleAccountSignIn({
+    required Future<UserCredential> Function() signIn,
+    required String fallbackErrorMessage,
+  }) async {
     setState(() {
-      _isSigningInWithGoogle = true;
+      _isSigningIn = true;
     });
     try {
-      await AuthService.signInWithGoogle();
+      await signIn();
       if (!mounted) return;
       if (_hasPendingDeepLink) {
         Navigator.pushReplacementNamed(context, '/game');
       } else {
         setState(() {
-          _isSigningInWithGoogle = false;
+          _isSigningIn = false;
           _step = _WelcomeStep.choice;
         });
       }
     } on FirebaseAuthException catch (error) {
       if (!mounted) return;
-      setState(() => _isSigningInWithGoogle = false);
+      setState(() => _isSigningIn = false);
       if (error.code != 'sign_in_canceled') {
-        _showMessage(error.message ?? localizations.googleSignInFailed);
+        _showMessage(error.message ?? fallbackErrorMessage);
       }
     } catch (_) {
       if (!mounted) return;
-      setState(() => _isSigningInWithGoogle = false);
-      _showMessage(localizations.googleSignInFailed);
+      setState(() => _isSigningIn = false);
+      _showMessage(fallbackErrorMessage);
     }
+  }
+
+  /// Triggers Apple sign-in and advances to the choice step on success.
+  Future<void> _handleAppleSignIn() async {
+    final AppLocalizations localizations = AppLocalizations.of(context);
+    await _handleAccountSignIn(
+      signIn: AuthService.signInWithApple,
+      fallbackErrorMessage: localizations.appleSignInFailed,
+    );
+  }
+
+  /// Triggers Google sign-in and advances to the choice step on success.
+  Future<void> _handleGoogleSignIn() async {
+    final AppLocalizations localizations = AppLocalizations.of(context);
+    await _handleAccountSignIn(
+      signIn: AuthService.signInWithGoogle,
+      fallbackErrorMessage: localizations.googleSignInFailed,
+    );
   }
 
   /// Checks stored identity and advances to the correct step.

@@ -15,6 +15,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get addAnotherPlayer => 'Ajouter un autre joueur';
 
   @override
+  String get appleSignInFailed => 'Échec de la connexion Apple.';
+
+  @override
   String get appTitle => 'VTeam Cards';
 
   @override
@@ -207,6 +210,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get identityJoinHint => 'Vous avez un lien ou un nom de table.';
 
   @override
+  String get identitySignInWithApple => 'Se connecter avec Apple';
+
+  @override
   String get identitySignInWithGoogle => 'Se connecter avec Google';
 
   @override
@@ -358,7 +364,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get scanCorrectionRequiresSignIn =>
-      'Connectez-vous avec Google pour corriger les valeurs des cartes.';
+      'Connectez-vous avec un compte pour corriger les valeurs des cartes.';
 
   @override
   String get scanCorrectionSaved =>
