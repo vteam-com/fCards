@@ -158,11 +158,24 @@ jobs:
           echo "Current firebase.json configuration:"
           cat firebase.json
           echo ""
-          echo "Checking if public directory exists in firebase.json..."
-          if grep -q '"public": "build/web"' firebase.json; then
-            echo "✓ firebase.json correctly configured for build/web"
+          echo "Checking if firebase hosting config is valid for CI deploy..."
+          if python3 - <<'PY'
+          import json
+
+          with open('firebase.json', encoding='utf-8') as fh:
+              hosting = json.load(fh).get('hosting', {})
+
+          has_public_build_web = hosting.get('public') == 'build/web'
+          has_frameworks_hosting = (
+              hosting.get('source') == '.' and 'frameworksBackend' in hosting
+          )
+
+          raise SystemExit(0 if has_public_build_web or has_frameworks_hosting else 1)
+          PY
+          then
+            echo "✓ firebase.json hosting config is valid"
           else
-            echo "✗ firebase.json public path is not set to build/web"
+            echo "✗ firebase.json hosting config is neither public build/web nor framework-based hosting"
             exit 1
           fi
 
@@ -172,11 +185,29 @@ jobs:
           node-version: 24
 
       - name: Deploy to Firebase Hosting
+        shell: bash
         run: |
           cat > "$RUNNER_TEMP/firebase-service-account.json" <<'EOF'
           ${{ secrets.FIREBASE_SERVICE_ACCOUNT_VTEAM_CARDS }}
           EOF
-          npx firebase-tools@latest deploy --only hosting --project vteam-cards --non-interactive
+
+          deploy_log="$RUNNER_TEMP/firebase-hosting-deploy.log"
+
+          set +e
+          npx firebase-tools@latest deploy --only hosting --project vteam-cards --non-interactive 2>&1 | tee "$deploy_log"
+          exit_code=${PIPESTATUS[0]}
+          set -e
+
+          if [[ "$exit_code" -eq 0 ]]; then
+            exit 0
+          fi
+
+          if grep -Fq "is the current active version" "$deploy_log"; then
+            echo "Firebase Hosting is already serving this version; treating deploy as a successful no-op."
+            exit 0
+          fi
+
+          exit "$exit_code"
         env:
           GOOGLE_APPLICATION_CREDENTIALS: ${{ runner.temp }}/firebase-service-account.json
           FIREBASE_CLI_EXPERIMENTS: webframeworks
