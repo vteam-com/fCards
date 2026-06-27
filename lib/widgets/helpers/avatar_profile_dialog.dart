@@ -1,5 +1,7 @@
 import 'package:cards/gen/l10n/app_localizations.dart';
+import 'package:cards/models/app/app_theme.dart';
 import 'package:cards/models/app/constants_layout.dart';
+import 'package:cards/models/app/locale_controller.dart';
 import 'package:cards/widgets/buttons/my_button_rectangle.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +15,7 @@ class _AvatarProfileDialogConstants {
   static const double contentSpacing = 13.0;
   static const double sectionSpacing = 21.0;
   static const double buttonHeight = 55.0;
+  static const double languageSegmentMinWidth = 55.0;
   static const int infoValueMaxLines = 2;
   static const int initialsSourcePartCount = 2;
 }
@@ -24,24 +27,25 @@ class _AvatarProfileDialogConstants {
 /// - Full name (if available)
 /// - Email (if signed in)
 /// - Editable initials
-/// - Language selection (EN/FR)
+/// - Language selection
 /// - Sign in/out button
 class AvatarProfileDialog extends StatefulWidget {
   /// Creates an [AvatarProfileDialog].
   const AvatarProfileDialog({
     required this.user,
     required this.guestInitials,
-    required this.currentLanguageCode,
+    required this.currentLocaleTag,
     required this.onInitialsChanged,
-    required this.onLanguageChanged,
+    required this.onLocaleChanged,
     required this.onSignInTap,
     required this.onSignOutTap,
     required this.onEditInitialsTap,
     super.key,
   });
+  static const double avatarRadius = 55.0;
 
-  /// Current language code (en, fr, etc.).
-  final String currentLanguageCode;
+  /// Current locale tag (for example: en, fr, pt-PT).
+  final String currentLocaleTag;
 
   /// Guest initials (for anonymous users).
   final String? guestInitials;
@@ -52,10 +56,8 @@ class AvatarProfileDialog extends StatefulWidget {
   /// Callback when initials are changed.
   final ValueChanged<String> onInitialsChanged;
 
-  /// Callback when language is changed.
-  final ValueChanged<String> onLanguageChanged;
-
-  /// Callback when sign in is tapped.
+  /// Callback when locale is changed.
+  final ValueChanged<String> onLocaleChanged;
   final VoidCallback onSignInTap;
 
   /// Callback when sign out is tapped.
@@ -68,11 +70,11 @@ class AvatarProfileDialog extends StatefulWidget {
 }
 
 class _AvatarProfileDialogState extends State<AvatarProfileDialog> {
-  late String _currentLanguage;
+  late String _currentLocaleTag;
   @override
   void initState() {
     super.initState();
-    _currentLanguage = widget.currentLanguageCode;
+    _currentLocaleTag = widget.currentLocaleTag;
   }
 
   @override
@@ -277,15 +279,15 @@ class _AvatarProfileDialogState extends State<AvatarProfileDialog> {
     ColorScheme colorScheme,
     AppLocalizations localizations,
   ) {
-    final supportedLocales = AppLocalizations.supportedLocales;
-    final englishLocale = supportedLocales.firstWhere(
-      (locale) => locale.languageCode == 'en',
-      orElse: () => supportedLocales.first,
-    );
-    final frenchLocale = supportedLocales.firstWhere(
-      (locale) => locale.languageCode == 'fr',
-      orElse: () => supportedLocales.last,
-    );
+    final Set<String> availableLocaleTags = _selectableLocales()
+        .map(LocaleController.localeTagFor)
+        .toSet();
+    final Map<String, String> localeLabels = <String, String>{
+      'en': localizations.languageEnglish,
+      'fr': localizations.languageFrench,
+      'es': localizations.languageSpanish,
+      'pt-PT': localizations.languagePortuguesePortugal,
+    };
 
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -310,52 +312,106 @@ class _AvatarProfileDialogState extends State<AvatarProfileDialog> {
             ),
           ],
         ),
-        Row(
-          spacing: ConstLayout.sizeM,
-          children: [
-            Expanded(
-              child:
-                  (_currentLanguage == englishLocale.languageCode
-                  ? MyButtonRectangle.primary
-                  : MyButtonRectangle.secondary)(
-                    height: _AvatarProfileDialogConstants.buttonHeight,
-                    onTap: () => _changeLanguage(englishLocale.languageCode),
-                    child: Text(
-                      englishLocale.languageCode.toUpperCase(),
-                      style: TextStyle(
-                        fontSize: ConstLayout.textS,
-                        fontWeight: FontWeight.bold,
-                        color: colorScheme.onPrimaryContainer,
-                      ),
+        SegmentedButton<String>(
+          showSelectedIcon: false,
+          segments: localeLabels.entries
+              .where(
+                (MapEntry<String, String> entry) =>
+                    availableLocaleTags.contains(entry.key),
+              )
+              .map(
+                (MapEntry<String, String> entry) => ButtonSegment<String>(
+                  value: entry.key,
+                  label: Text(
+                    entry.value,
+                    textAlign: TextAlign.center,
+                    maxLines: _AvatarProfileDialogConstants.infoValueMaxLines,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      fontSize: ConstLayout.textS,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
+                ),
+              )
+              .toList(),
+          selected: <String>{_currentLocaleTag},
+          onSelectionChanged: (Set<String> value) {
+            _changeLocale(value.first);
+          },
+          style: ButtonStyle(
+            padding: const WidgetStatePropertyAll<EdgeInsetsGeometry>(
+              EdgeInsets.symmetric(
+                horizontal: ConstLayout.paddingM,
+                vertical: ConstLayout.paddingL,
+              ),
             ),
-            Expanded(
-              child:
-                  (_currentLanguage == frenchLocale.languageCode
-                  ? MyButtonRectangle.primary
-                  : MyButtonRectangle.secondary)(
-                    height: _AvatarProfileDialogConstants.buttonHeight,
-                    onTap: () => _changeLanguage(frenchLocale.languageCode),
-                    child: Text(
-                      frenchLocale.languageCode.toUpperCase(),
-                      style: TextStyle(
-                        fontSize: ConstLayout.textS,
-                        fontWeight: FontWeight.bold,
-                        color: colorScheme.onPrimaryContainer,
-                      ),
-                    ),
-                  ),
+            minimumSize: const WidgetStatePropertyAll<Size>(
+              Size(
+                _AvatarProfileDialogConstants.languageSegmentMinWidth,
+                _AvatarProfileDialogConstants.buttonHeight,
+              ),
             ),
-          ],
+            side: WidgetStateProperty.resolveWith<BorderSide>((
+              Set<WidgetState> states,
+            ) {
+              if (states.contains(WidgetState.selected)) {
+                return BorderSide(
+                  color: colorScheme.secondary,
+                  width: ConstLayout.strokeS,
+                );
+              }
+
+              return BorderSide(
+                color: colorScheme.secondary.withAlpha(ConstLayout.alphaM),
+                width: ConstLayout.strokeXS,
+              );
+            }),
+            shape: const WidgetStatePropertyAll<OutlinedBorder>(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(ConstLayout.radiusM),
+                ),
+              ),
+            ),
+            foregroundColor: WidgetStateProperty.resolveWith<Color>((
+              Set<WidgetState> states,
+            ) {
+              if (states.contains(WidgetState.selected)) {
+                return colorScheme.onPrimaryContainer;
+              }
+
+              return colorScheme.secondary;
+            }),
+            backgroundColor: WidgetStateProperty.resolveWith<Color>((
+              Set<WidgetState> states,
+            ) {
+              if (states.contains(WidgetState.selected)) {
+                return AppTheme.buttonPrimaryTop;
+              }
+
+              return AppTheme.buttonSecondaryBottom.withAlpha(
+                ConstLayout.alphaL,
+              );
+            }),
+            overlayColor: WidgetStateProperty.resolveWith<Color>((
+              Set<WidgetState> states,
+            ) {
+              if (states.contains(WidgetState.pressed)) {
+                return colorScheme.secondary.withAlpha(ConstLayout.alphaH);
+              }
+
+              return Colors.transparent;
+            }),
+          ),
         ),
       ],
     );
   }
 
-  void _changeLanguage(String languageCode) {
-    setState(() => _currentLanguage = languageCode);
-    widget.onLanguageChanged(languageCode);
+  void _changeLocale(String localeTag) {
+    setState(() => _currentLocaleTag = localeTag);
+    widget.onLocaleChanged(localeTag);
   }
 
   /// Resolves avatar initials from guest initials, display name, or email.
@@ -364,9 +420,9 @@ class _AvatarProfileDialogState extends State<AvatarProfileDialog> {
       return widget.guestInitials!;
     }
 
-    final displayName = widget.user.displayName;
+    final String? displayName = widget.user.displayName;
     if (displayName != null && displayName.isNotEmpty) {
-      final parts = displayName.split(RegExp(r'\s+'));
+      final List<String> parts = displayName.split(RegExp(r'\s+'));
       if (parts.length >=
           _AvatarProfileDialogConstants.initialsSourcePartCount) {
         return ('${parts[0][0]}${parts[1][0]}').toUpperCase();
@@ -374,10 +430,10 @@ class _AvatarProfileDialogState extends State<AvatarProfileDialog> {
       return displayName.substring(0, 1).toUpperCase();
     }
 
-    final email = widget.user.email;
+    final String? email = widget.user.email;
     if (email != null && email.isNotEmpty) {
-      final localPart = email.split('@').first;
-      final parts = localPart.split(RegExp(r'[._-]+'));
+      final String localPart = email.split('@').first;
+      final List<String> parts = localPart.split(RegExp(r'[._-]+'));
       if (parts.length >=
           _AvatarProfileDialogConstants.initialsSourcePartCount) {
         return ('${parts[0][0]}${parts[1][0]}').toUpperCase();
@@ -386,6 +442,25 @@ class _AvatarProfileDialogState extends State<AvatarProfileDialog> {
     }
 
     return '👤';
+  }
+
+  /// Returns the locales that should be visible in the language picker.
+  List<Locale> _selectableLocales() {
+    final List<Locale> supportedLocales = AppLocalizations.supportedLocales;
+
+    return supportedLocales.where((Locale locale) {
+      final String? countryCode = locale.countryCode;
+      if (countryCode != null && countryCode.isNotEmpty) {
+        return true;
+      }
+
+      return !supportedLocales.any((Locale candidate) {
+        final String? candidateCountryCode = candidate.countryCode;
+        return candidate.languageCode == locale.languageCode &&
+            candidateCountryCode != null &&
+            candidateCountryCode.isNotEmpty;
+      });
+    }).toList();
   }
 }
 
@@ -414,9 +489,11 @@ Widget avatarProfileDialogPreview() {
   return AvatarProfileDialog(
     user: _AvatarProfilePreviewUser(),
     guestInitials: null,
-    currentLanguageCode: _avatarProfilePreviewLocale.languageCode,
+    currentLocaleTag: LocaleController.localeTagFor(
+      _avatarProfilePreviewLocale,
+    ),
     onInitialsChanged: (_) {},
-    onLanguageChanged: (_) {},
+    onLocaleChanged: (_) {},
     onSignInTap: () {},
     onSignOutTap: () {},
     onEditInitialsTap: () {},

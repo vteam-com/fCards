@@ -1,0 +1,294 @@
+{
+  "account": "Conta",
+  "addAnotherPlayer": "Adicionar outro jogador",
+  "appleSignInFailed": "Falha ao iniciar sessao com Apple.",
+  "appTitle": "VTeam Cards",
+  "@appTitle": {
+    "description": "DO NOT TRANSLATE. This is the official brand name."
+  },
+  "back": "Voltar",
+  "cancel": "Cancelar",
+  "cardCountTooltip": "{count}\\ncartas",
+  "@cardCountTooltip": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "cardGamesTitle": "Jogos de cartas",
+  "cardsTitle": "Cards",
+  "@cardsTitle": {
+    "description": "DO NOT TRANSLATE."
+  },
+  "columnsByRows": "{columns} x {rows}",
+  "@columnsByRows": {
+    "description": "reviewed",
+    "placeholders": {
+      "columns": {
+        "type": "int"
+      },
+      "rows": {
+        "type": "int"
+      }
+    }
+  },
+  "confirm": "Confirmar",
+  "confirmDeleteRound": "Tem a certeza de que quer apagar a ronda {round}?",
+  "@confirmDeleteRound": {
+    "placeholders": {
+      "round": {
+        "type": "int"
+      }
+    }
+  },
+  "confirmNewGame": "Tem a certeza de que quer comecar um novo jogo? Todas as pontuacoes serao perdidas.",
+  "corrections": "Correcoes",
+  "correctionsAll": "Todas",
+  "correctionsApprove": "Aprovar",
+  "correctionsApproved": "Aprovada",
+  "correctionsBackendRequired": "A revisao de correcoes requer ligacao ao backend.",
+  "correctionsCorrectedValue": "Valor corrigido",
+  "correctionsDecisionSaved": "Decisao de revisao guardada",
+  "correctionsDetectedValue": "Valor detetado",
+  "correctionsNoApproved": "Nao foram encontradas correcoes aprovadas.",
+  "correctionsNoData": "Nao foram encontradas correcoes.",
+  "correctionsNoPending": "Nao ha correcoes pendentes para rever.",
+  "correctionsNoRejected": "Nao foram encontradas correcoes rejeitadas.",
+  "correctionsPending": "Pendentes",
+  "correctionsReject": "Rejeitar",
+  "correctionsRejected": "Rejeitada",
+  "correctionsReviewerOnly": "Apenas os utilizadores do grupo reviewer podem aceder a este ecra.",
+  "correctionsReviewStatus": "Estado da revisao",
+  "correctionsSubmittedAt": "Enviado em",
+  "correctionsSubmittedBy": "Enviado por",
+  "correctionsTitle": "Correcoes de treino",
+  "correctionsWebOnly": "A revisao de correcoes esta atualmente disponivel na web.",
+  "createNewTable": "Criar mesa",
+  "createTableNameHint": "Escolha um nome simples para a mesa. Se ja existir, ajudamos a entrar nela.",
+  "deleteLastRow": "Apagar ultima linha",
+  "discardOrSwap": "Descartar →\\nou\\n↓ trocar",
+  "done": "Concluido",
+  "drawCardHere": "Tire\\numa carta\\naqui\\n→",
+  "editInitials": "Editar iniciais",
+  "email": "E-mail",
+  "enterTableName": "Introduza o nome da nova mesa.",
+  "errorLoadingScores": "Erro ao carregar pontuacoes: {error}",
+  "@errorLoadingScores": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "exit": "Sair",
+  "finalRoundYouHaveToBeat": "Ronda final. {turnText}. Tem de vencer {attacker}",
+  "@finalRoundYouHaveToBeat": {
+    "placeholders": {
+      "turnText": {
+        "type": "String"
+      },
+      "attacker": {
+        "type": "String"
+      }
+    }
+  },
+  "flipOpenOneHiddenCard": "↓ Vire uma das suas cartas escondidas ↓",
+  "fullName": "Nome completo",
+  "gameOver": "Fim do jogo",
+  "gameOverTitle": "FIM DO JOGO",
+  "gameRules": "Regras do jogo",
+  "gamesWon": "Jogos ganhos",
+  "golf9Cards": "9 Cartas",
+  "golf9CardsFull": "Golf 9 Cartas",
+  "golfScoreKeeper": "Marcador de Golf 9 Cartas",
+  "googleSignInFailed": "Falha ao iniciar sessao com Google.",
+  "identityChangeableLater": "Podes alterar isto mais tarde",
+  "identityChooseActionTitle": "O que queres fazer?",
+  "identityFirstSubtitle": "Os outros veem este nome na mesa.",
+  "identityFirstTitle": "Quem es?",
+  "identityHostHint": "Es o anfitriao.",
+  "identityJoinHint": "Tens uma ligacao ou o nome da mesa.",
+  "identitySignInWithApple": "Iniciar sessao com Apple",
+  "identitySignInWithGoogle": "Iniciar sessao com Google",
+  "instructionsCustom": "Regras personalizadas",
+  "instructionsFrenchCards9": "- Tenta obter a pontuacao mais baixa.\n- Escolhe uma carta do baralho ou do descarte.\n- Troca a carta escolhida por uma carta da tua grelha 3x3, ou descarta-a e vira uma das tuas cartas viradas para baixo.\n- Tres cartas do mesmo valor numa linha ou coluna valem zero.\n- O primeiro jogador a revelar as suas nove cartas desafia os outros e afirma ter a pontuacao mais baixa.\n- Se outra pessoa obtiver uma pontuacao igual ou inferior, o desafiante duplica os seus pontos.\n- Os jogadores sao eliminados ao ultrapassar 100 pontos.\n\n\nSaber mais [Wikipedia](https://en.wikipedia.org/wiki/Golf_(card_game))",
+  "instructionsMiniPut": "- Tenta obter a pontuacao mais baixa.\n- Escolhe uma carta do baralho ou do descarte.\n- Troca a carta escolhida por uma carta da tua grelha 2x2, ou descarta-a e vira uma das tuas cartas viradas para baixo.\n- Tres cartas do mesmo valor numa linha ou coluna valem zero.\n- O primeiro jogador a revelar as suas cartas desafia os outros e afirma ter a pontuacao mais baixa.\n- Se outra pessoa obtiver uma pontuacao igual ou inferior, o desafiante duplica os seus pontos.\n- Os jogadores sao eliminados ao ultrapassar 100 pontos.\n\n\nSaber mais [Wikipedia](https://en.wikipedia.org/wiki/Golf_(card_game))",
+  "instructionsSkyjo": "- Tenta obter a pontuacao mais baixa.\n- Escolhe uma carta do baralho ou do descarte.\n- Troca a carta escolhida por uma carta da tua grelha 4x3, ou descarta-a e vira uma das tuas cartas viradas para baixo.\n- Quando 3 cartas do mesmo valor se alinham numa coluna, sao movidas para a pilha de descarte.\n- O primeiro jogador a revelar todas as suas cartas desafia os outros e afirma ter a pontuacao mais baixa.\n\n\nSaber mais [Skyjo](https://www.geekyhobbies.com/how-to-play-skyjo-card-game-rules-and-instructions/)",
+  "itsPlayersTurn": "E a vez de {player}",
+  "@itsPlayersTurn": {
+    "placeholders": {
+      "player": {
+        "type": "String"
+      }
+    }
+  },
+  "itsYourTurn": "E a tua vez {player}",
+  "@itsYourTurn": {
+    "placeholders": {
+      "player": {
+        "type": "String"
+      }
+    }
+  },
+  "join": "Entrar",
+  "joinExistingGame": "Entrar num jogo",
+  "joinGame": "Entrar no jogo",
+  "joinGameTitle": "Entrar no jogo",
+  "joinTable": "Entrar na mesa",
+  "joinThisTable": "Entrar nesta mesa",
+  "language": "Idioma",
+  "languageEnglish": "🇬🇧\nEN",
+  "@languageEnglish": {
+    "description": "DO NOT TRANSLATE. Language selector badge with representative flag and locale code."
+  },
+  "languageFrench": "🇫🇷\nFR",
+  "@languageFrench": {
+    "description": "DO NOT TRANSLATE. Language selector badge with representative flag and locale code."
+  },
+  "languagePortuguesePortugal": "🇵🇹\nPT",
+  "@languagePortuguesePortugal": {
+    "description": "DO NOT TRANSLATE. Language selector badge with representative flag and locale code."
+  },
+  "languageSpanish": "🇪🇸\nES",
+  "@languageSpanish": {
+    "description": "DO NOT TRANSLATE. Language selector badge with representative flag and locale code."
+  },
+  "last": "ULTIMO",
+  "miniPut": "MiniPut",
+  "@miniPut": {
+    "description": "DO NOT TRANSLATE."
+  },
+  "miniPutFull": "MiniPut 4 Cartas",
+  "newGame": "Novo jogo",
+  "next": "Seguinte",
+  "noCardsAvailableToDraw": "Nao ha cartas disponiveis para tirar.",
+  "noMatchingTables": "Sem mesas correspondentes",
+  "noOne": "Ninguem",
+  "noTablesAvailable": "Nao ha mesas disponiveis",
+  "noTablesFoundMatching": "Nao foram encontradas mesas que correspondam a \"{searchText}\"",
+  "@noTablesFoundMatching": {
+    "placeholders": {
+      "searchText": {
+        "type": "String"
+      }
+    }
+  },
+  "notAllowed": "Nao permitido!",
+  "notYourTurn": "Nao e a tua vez!",
+  "orHereLeft": "\\nou\\naqui\\n←",
+  "otherTools": "Outras ferramentas",
+  "pickTableOrCreateHint": "Escolhe uma mesa existente ou cria uma nova.",
+  "playAgain": "Jogar novamente",
+  "playerName": "Iniciais do jogador",
+  "players": "Jogadores",
+  "playerWonTimesAtTable": "{player} ganhou {count} vezes na mesa {table}",
+  "@playerWonTimesAtTable": {
+    "placeholders": {
+      "player": {
+        "type": "String"
+      },
+      "count": {
+        "type": "int"
+      },
+      "table": {
+        "type": "String"
+      }
+    }
+  },
+  "pleaseEnterYourName": "Introduz o teu nome acima ⬆",
+  "readyToPlayPlayersAtTable": "Pronto para jogar. {count} jogadores na mesa.",
+  "@readyToPlayPlayersAtTable": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "remove": "Remover",
+  "removePlayer": "Remover jogador",
+  "removePlayerConfirmation": "Tem a certeza de que quer remover \"{playerName}\"?",
+  "@removePlayerConfirmation": {
+    "placeholders": {
+      "playerName": {
+        "type": "String"
+      }
+    }
+  },
+  "removeThisPlayer": "Remover este jogador",
+  "rounds": "{count} Rondas",
+  "@rounds": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "scanCameraError": "Erro da camara: ",
+  "scanCard": "Contar cartas",
+  "scanCardTitle": "Contar cartas",
+  "scanCorrectCardValueTitle": "Corrigir valor da carta",
+  "scanCorrectionRequiresSignIn": "Inicia sessao com uma conta para corrigir os valores das cartas.",
+  "scanCorrectionSaved": "Correcao guardada para novo treino do modelo",
+  "scanFailedDecode": "Falha ao descodificar a imagem capturada.",
+  "scanMacosPhotoHint": "No macOS, escolhe uma fotografia de uma carta da tua biblioteca para a analisar.",
+  "scanModelError": "Nao foi possivel carregar o modelo: ",
+  "scanModelLoading": "O modelo ainda esta a carregar. Aguarda.",
+  "scanNoCameraFound": "Nao foi encontrada nenhuma camara neste dispositivo.",
+  "scanRankAce": "As (1)",
+  "scanRankAceTitle": "As (1)",
+  "scanRankJack": "V (11)",
+  "scanRankJackTitle": "Valete (11)",
+  "scanRankJoker": "Joker (-2)",
+  "@scanRankJoker": {
+    "description": "DO NOT TRANSLATE. Joker is the universal card game term."
+  },
+  "scanRankKing": "R (0)",
+  "scanRankKingTitle": "Rei (0)",
+  "scanRankQueen": "D (12)",
+  "scanRankQueenTitle": "Dama (12)",
+  "scanTapToCorrect": "Toca numa bolha de valor da carta para a corrigir",
+  "scanWebPhotoHint": "Escolhe uma fotografia de uma carta do teu dispositivo para a analisar.",
+  "scoreKeeper": "Marcador",
+  "selectAStatus": "Seleciona um estado",
+  "selectTableToJoin": "Seleciona uma mesa",
+  "signIn": "Iniciar sessao",
+  "signOut": "Terminar sessao",
+  "signOutFailed": "Falha ao terminar sessao.",
+  "skyjo": "Skyjo",
+  "@skyjo": {
+    "description": "DO NOT TRANSLATE. This is the official brand name."
+  },
+  "startGame": "Iniciar jogo",
+  "startGameWizardSubtitle": "Escolhe o jogo para esta mesa. Ajudamos a dar-lhe um nome a seguir.",
+  "starting": "A iniciar",
+  "startTable": "Criar mesa",
+  "statusBrb": "Ja volto",
+  "statusFeelingGood": "A sentir-me bem!",
+  "statusOhNo": "Oh nao!",
+  "statusThinking": "A pensar...",
+  "statusVoila": "Ja esta!",
+  "swapThisWith": "troca isto →\\n\\npor ↓",
+  "table": "Mesa",
+  "tableLabel": "Mesa: {table}",
+  "@tableLabel": {
+    "placeholders": {
+      "table": {
+        "type": "String"
+      }
+    }
+  },
+  "thisGame": "Este jogo",
+  "thisTableAlreadyHasPlayers": "Esta mesa ja existe. Entra nesta mesa ou introduz outro nome.",
+  "useSearchBox": "Usa a pesquisa para encontrar uma mesa rapidamente",
+  "waitForYourTurnSmiley": "Espera pela tua vez :)",
+  "waitingForMorePlayers": "A espera de mais jogadores...",
+  "waitingForPlayers": "A espera de jogadores",
+  "waitYourTurn": "Espera pela tua vez!",
+  "whatTypeOfGame": "Que tipo de jogo?",
+  "whoAreYou": "Quem es?\\nSeleciona acima ⬆ ou entra abaixo ⬇",
+  "wizardStepOneOfTwo": "Passo 1 de 2",
+  "wizardStepTwoOfTwo": "Passo 2 de 2",
+  "youAreDone": "Terminaste.",
+  "youIndicator": "TU>"
+}

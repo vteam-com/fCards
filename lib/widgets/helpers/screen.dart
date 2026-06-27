@@ -38,9 +38,6 @@ class Screen extends StatefulWidget {
   ///
   /// [title] - Text shown in app bar
   /// [child] - Main content widget
-  /// [onRefresh] - Optional callback for refresh button
-  /// [getLinkToShare] - Optional callback to get shareable link
-  /// [rightText] - Optional text shown on right side of app bar
   /// [isWaiting] - Shows loading indicator when true
   const Screen({
     super.key,
@@ -541,9 +538,9 @@ class _ScreenState extends State<Screen> with SingleTickerProviderStateMixin {
 
   /// Opens the account profile dialog showing user info and settings.
   Future<void> _showAccountMenu(User user) async {
-    final String currentLanguageCode = Localizations.localeOf(
-      context,
-    ).languageCode;
+    final String currentLocaleTag = LocaleController.localeTagFor(
+      Localizations.localeOf(context),
+    );
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
     const BorderRadius accountSheetBorderRadius = BorderRadius.vertical(
       top: Radius.circular(ConstLayout.radiusL),
@@ -597,14 +594,12 @@ class _ScreenState extends State<Screen> with SingleTickerProviderStateMixin {
                   child: AvatarProfileDialog(
                     user: user,
                     guestInitials: _guestInitials,
-                    currentLanguageCode: currentLanguageCode,
+                    currentLocaleTag: currentLocaleTag,
                     onInitialsChanged: (String initials) async {
                       await IdentityService.saveInitials(initials);
                       await _loadGuestInitials();
                     },
-                    onLanguageChanged: (String languageCode) {
-                      LocaleController.setLanguageCode(languageCode);
-                    },
+                    onLocaleChanged: LocaleController.setLocaleTag,
                     onSignInTap: () {
                       Navigator.of(bottomSheetContext).pop();
                       _signIn();

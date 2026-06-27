@@ -262,6 +262,18 @@ class AppLocalizationsEn extends AppLocalizations {
   String get language => 'Language';
 
   @override
+  String get languageEnglish => '🇬🇧\nEN';
+
+  @override
+  String get languageFrench => '🇫🇷\nFR';
+
+  @override
+  String get languagePortuguesePortugal => '🇵🇹\nPT';
+
+  @override
+  String get languageSpanish => '🇪🇸\nES';
+
+  @override
   String get last => 'LAST';
 
   @override

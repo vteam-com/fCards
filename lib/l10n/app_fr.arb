@@ -132,6 +132,22 @@
   "joinTable": "Rejoindre la table",
   "joinThisTable": "Rejoindre cette table",
   "language": "Langue",
+  "languageEnglish": "🇬🇧\nEN",
+  "@languageEnglish": {
+    "description": "DO NOT TRANSLATE. Language selector badge with representative flag and locale code."
+  },
+  "languageFrench": "🇫🇷\nFR",
+  "@languageFrench": {
+    "description": "DO NOT TRANSLATE. Language selector badge with representative flag and locale code."
+  },
+  "languagePortuguesePortugal": "🇵🇹\nPT",
+  "@languagePortuguesePortugal": {
+    "description": "DO NOT TRANSLATE. Language selector badge with representative flag and locale code."
+  },
+  "languageSpanish": "🇪🇸\nES",
+  "@languageSpanish": {
+    "description": "DO NOT TRANSLATE. Language selector badge with representative flag and locale code."
+  },
   "last": "DERNIER",
   "miniPut": "MiniPut",
   "miniPutFull": "MiniPut 4 Cartes",

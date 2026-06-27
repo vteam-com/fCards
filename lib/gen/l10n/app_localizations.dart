@@ -6,7 +6,9 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
 import 'app_localizations_en.dart';
+import 'app_localizations_es.dart';
 import 'app_localizations_fr.dart';
+import 'app_localizations_pt.dart';
 
 // ignore_for_file: type=lint
 
@@ -95,7 +97,10 @@ abstract class AppLocalizations {
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
     Locale('en'),
+    Locale('es'),
     Locale('fr'),
+    Locale('pt', 'PT'),
+    Locale('pt'),
   ];
 
   /// No description provided for @account.
@@ -559,6 +564,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Language'**
   String get language;
+
+  /// DO NOT TRANSLATE. Language selector badge with representative flag and locale code.
+  ///
+  /// In en, this message translates to:
+  /// **'🇬🇧\nEN'**
+  String get languageEnglish;
+
+  /// DO NOT TRANSLATE. Language selector badge with representative flag and locale code.
+  ///
+  /// In en, this message translates to:
+  /// **'🇫🇷\nFR'**
+  String get languageFrench;
+
+  /// DO NOT TRANSLATE. Language selector badge with representative flag and locale code.
+  ///
+  /// In en, this message translates to:
+  /// **'🇵🇹\nPT'**
+  String get languagePortuguesePortugal;
+
+  /// DO NOT TRANSLATE. Language selector badge with representative flag and locale code.
+  ///
+  /// In en, this message translates to:
+  /// **'🇪🇸\nES'**
+  String get languageSpanish;
 
   /// No description provided for @last.
   ///
@@ -1052,19 +1081,35 @@ class _AppLocalizationsDelegate
 
   @override
   bool isSupported(Locale locale) =>
-      <String>['en', 'fr'].contains(locale.languageCode);
+      <String>['en', 'es', 'fr', 'pt'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
 }
 
 AppLocalizations lookupAppLocalizations(Locale locale) {
+  // Lookup logic when language+country codes are specified.
+  switch (locale.languageCode) {
+    case 'pt':
+      {
+        switch (locale.countryCode) {
+          case 'PT':
+            return AppLocalizationsPtPt();
+        }
+        break;
+      }
+  }
+
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
     case 'en':
       return AppLocalizationsEn();
+    case 'es':
+      return AppLocalizationsEs();
     case 'fr':
       return AppLocalizationsFr();
+    case 'pt':
+      return AppLocalizationsPt();
   }
 
   throw FlutterError(
