@@ -79,6 +79,11 @@ class MyButton extends StatelessWidget {
     final Color bottomColor = isAction
         ? AppTheme.buttonActionGradientBottom
         : baseBottomColor.withAlpha(ConstLayout.alphaL);
+    final LinearGradient backgroundGradient = AppTheme.surfaceGradient(
+      topColor: topColor,
+      bottomColor: bottomColor,
+      softenBottom: false,
+    );
 
     return Padding(
       padding: padding,
@@ -97,11 +102,7 @@ class MyButton extends StatelessWidget {
                 decoration: BoxDecoration(
                   shape: shape,
                   borderRadius: radius,
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [topColor, bottomColor],
-                  ),
+                  gradient: backgroundGradient,
                   border: Border.all(
                     color: Colors.white.withAlpha(ConstLayout.alphaM),
                     width: ConstLayout.strokeXXS,

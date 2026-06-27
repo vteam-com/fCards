@@ -175,6 +175,15 @@ class _ScreenState extends State<Screen> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        scrolledUnderElevation: 0,
+        surfaceTintColor: Colors.transparent,
+        toolbarHeight: ConstLayout.dialogButtonHeight,
+        flexibleSpace: DecoratedBox(
+          decoration: BoxDecoration(gradient: AppTheme.menuSurfaceGradient()),
+          child: const SizedBox.expand(),
+        ),
         title: FittedBox(
           fit: BoxFit.scaleDown,
           child: Text(
@@ -268,6 +277,7 @@ class _ScreenState extends State<Screen> with SingleTickerProviderStateMixin {
                 );
               },
             ),
+          SizedBox(width: ConstLayout.sizeM),
         ],
       ),
       body: Stack(

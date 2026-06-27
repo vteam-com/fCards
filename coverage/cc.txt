@@ -1,7 +1,7 @@
 Reading tracefile coverage/lcov.info.
 Summary coverage rate:
   source files: 43
-  lines.......: 39.6% (1314 of 3320 lines)
+  lines.......: 39.5% (1316 of 3328 lines)
   functions...: no data found
 Message summary:
   no messages were reported

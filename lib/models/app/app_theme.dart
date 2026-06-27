@@ -28,6 +28,33 @@ class AppTheme {
   static final surfaceBackground = colorScheme.surface;
   static final onSurfaceHint = onSurface.withAlpha(ConstLayout.alphaH);
 
+  /// Builds a shared vertical surface gradient for buttons and toolbars.
+  static LinearGradient surfaceGradient({
+    required Color topColor,
+    required Color bottomColor,
+    bool softenBottom = true,
+    Alignment begin = Alignment.topCenter,
+    Alignment end = Alignment.bottomCenter,
+  }) => LinearGradient(
+    begin: begin,
+    end: end,
+    colors: [
+      topColor,
+      softenBottom ? bottomColor.withAlpha(ConstLayout.alphaL) : bottomColor,
+    ],
+  );
+
+  /// Builds the shared green chrome used by the main menu buttons.
+  static LinearGradient menuSurfaceGradient({
+    Alignment begin = Alignment.topCenter,
+    Alignment end = Alignment.bottomCenter,
+  }) => surfaceGradient(
+    topColor: buttonGradientTop,
+    bottomColor: buttonGradientBottom,
+    begin: begin,
+    end: end,
+  );
+
   /// Builds the themed `ThemeData` used across the app.
   static ThemeData get theme {
     final baseTheme = ThemeData.dark();

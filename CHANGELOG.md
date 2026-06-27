@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 1.13.5
+
+- Add Spanish and Portuguese (Portugal) localization support
+- toolbar improvements
+- remove package_info_plus
+
 ## 1.13.2
 
 - Simplify multiplayer onboarding into a guided two-step "Start a Table" wizard
