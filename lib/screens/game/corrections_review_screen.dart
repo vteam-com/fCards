@@ -264,8 +264,7 @@ class _CorrectionsReviewScreenState extends State<CorrectionsReviewScreen> {
     AppLocalizations l10n,
     TrainingCorrectionRecord record,
   ) {
-    final ThemeData theme = Theme.of(context);
-    final ColorScheme colorScheme = theme.colorScheme;
+    final ColorScheme colorScheme = Theme.of(context).colorScheme;
     final bool isProcessing = _processingRecordId == record.id;
 
     return Container(

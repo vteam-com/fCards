@@ -134,9 +134,6 @@ class StartScreenState extends State<StartScreen> {
 
   /// A flag indicating whether the app is waiting for the first data from the backend.
   bool _waitingOnFirstBackendData = !isRunningOffLine;
-
-  /// The current version of the app.
-  final String appVersion = packageVersion;
   @override
   void initState() {
     super.initState();
@@ -306,7 +303,7 @@ class StartScreenState extends State<StartScreen> {
   /// Starts the game and navigates to the game screen.
   void startGame(BuildContext context) async {
     final GameModel? newGame = await _gameHandler.initializeGame(
-      appVersion: appVersion,
+      appVersion: packageVersion,
       gameStyle: _selectedGameStyle,
       roomName: roomName,
       playerName: _controllerName.text.toUpperCase(),
