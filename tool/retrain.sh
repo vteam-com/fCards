@@ -14,7 +14,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
 VENV="/Users/jp/src/github/models/.venv"
 OUT_DIR="/tmp/retrain_output"
-FRESH_MODEL="$PROJECT_ROOT/tmp/models/mustafa_cards.pt"
+FRESH_MODEL="$PROJECT_ROOT/runs/detect/cards/weights/best.pt"
 CONTINUE_MODEL="$OUT_DIR/runs/retrain/weights/best.pt"
 
 show_help() {
@@ -63,6 +63,11 @@ if [[ "$MODE" == "continue" ]]; then
   fi
 else
   echo "--- Using fresh base model: $MODEL_PATH"
+fi
+
+if [[ ! -f "$MODEL_PATH" ]]; then
+  echo "--- Base model not found: $MODEL_PATH" >&2
+  exit 1
 fi
 
 echo "--- Activate venv"
