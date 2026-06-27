@@ -347,7 +347,7 @@
     font-weight: 900;
   }
 </style>
-<text x="699.0" y="28.0" class="packageLabelTitle" text-anchor="middle">cards v1.13.4</text>
+<text x="699.0" y="28.0" class="packageLabelTitle" text-anchor="middle">cards v1.13.5</text>
 <text x="379.0" y="70.0" class="packageLabelSection">dependencies (23 items)</text>
 <line x1="379.0" y1="76.0" x2="579.0" y2="76.0" stroke="#1d4ed8" stroke-width="2.0" opacity="0.9"/>
 <text x="819.0" y="70.0" class="packageLabelSection">dev_dependencies (3 items)</text>
