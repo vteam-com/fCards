@@ -1,7 +1,27 @@
 #!/bin/sh
 set -euo pipefail
 
+RUN_CLEAN=0
+if [ "${1:-}" = "--clean" ]; then
+  RUN_CLEAN=1
+  shift
+fi
+
+if [ "$#" -ne 0 ]; then
+  echo "Usage: $0 [--clean]"
+  exit 1
+fi
+
 FIREBASE_OPTIONS_FILE="lib/models/app/firebase_options.dart"
+COVERAGE_DIR="coverage"
+COVERAGE_UNITS_FILE="$COVERAGE_DIR/lcov_units.info"
+COVERAGE_FILE="$COVERAGE_DIR/lcov.info"
+COVERAGE_SUMMARY_FILE="$COVERAGE_DIR/cc.txt"
+
+if [ "$RUN_CLEAN" -eq 1 ]; then
+  echo --- Clean
+  sh ./tool/clean.sh
+fi
 
 echo --- Firebase config
 if [ ! -f "$FIREBASE_OPTIONS_FILE" ]; then
@@ -40,8 +60,14 @@ echo --- Font size policy
 sh ./tool/check_font_sizes.sh
 
 echo --- Test
-echo "    Running tests..."
-flutter test --reporter=compact --no-pub
+echo "    Running tests with coverage..."
+mkdir -p "$COVERAGE_DIR"
+flutter test --coverage --coverage-path="$COVERAGE_UNITS_FILE" --reporter=compact --no-pub
+
+echo --- Coverage
+lcov -a "$COVERAGE_UNITS_FILE" -o "$COVERAGE_FILE"
+lcov --summary "$COVERAGE_FILE" > "$COVERAGE_SUMMARY_FILE"
+cat "$COVERAGE_SUMMARY_FILE"
 
 echo --- fCheck
 # Use an ephemeral private directory for this session's fcheck installation
