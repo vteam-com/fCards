@@ -6,4 +6,6 @@ output-class: AppLocalizations
 nullable-getter: false
 preferred-supported-locales:
   - en
+  - es
   - fr
+  - pt_PT
