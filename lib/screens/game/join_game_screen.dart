@@ -9,6 +9,7 @@ import 'package:cards/models/game/game_constants.dart';
 import 'package:cards/models/game/game_history.dart';
 import 'package:cards/models/game/game_model.dart';
 import 'package:cards/models/game/game_styles.dart';
+import 'package:cards/models/version.dart';
 import 'package:cards/screens/game/game_screen.dart';
 import 'package:cards/utils/logger.dart';
 import 'package:cards/widgets/buttons/my_button_rectangle.dart';
@@ -17,7 +18,6 @@ import 'package:cards/widgets/helpers/table_widget.dart';
 import 'package:cards/widgets/helpers/wizard_footer.dart';
 import 'package:cards/widgets/player/players_in_room_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:package_info_plus/package_info_plus.dart';
 
 const int _stepTablePick = 0;
 const int _stepGameType = 1;
@@ -105,7 +105,7 @@ class JoinGameScreenState extends State<JoinGameScreen> {
   bool _waitingOnFirstBackendData = false;
 
   ///
-  late String appVersion;
+  final String appVersion = packageVersion;
   @override
   void initState() {
     super.initState();
@@ -116,7 +116,6 @@ class JoinGameScreenState extends State<JoinGameScreen> {
     _preparedRoom = '';
     _listOfRooms = [];
     _currentStep = _selectedRoom.isNotEmpty ? _stepWaiting : _stepTablePick;
-    _getAppVersion();
     _prefillPlayerNameFromIdentity().then((_) {
       if (_selectedRoom.isNotEmpty) {
         _joinGameAndContinue();
@@ -496,13 +495,6 @@ class JoinGameScreenState extends State<JoinGameScreen> {
     } catch (e) {
       logger.e('Error fetching rooms: $e');
     }
-  }
-
-  Future<void> _getAppVersion() async {
-    PackageInfo packageInfo = await PackageInfo.fromPlatform();
-    setState(() {
-      appVersion = packageInfo.version;
-    });
   }
 
   /// Gets localized label for a game type option.

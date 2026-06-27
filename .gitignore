@@ -51,6 +51,7 @@ firebase_options.dart
 macos/Runner/GoogleService-Info.plist
 ios/Runner/GoogleService-Info.plist
 android/app/google-services.json
+coverage/lcov_units.info
 coverage/html
 graph.dot
 graph.dot
