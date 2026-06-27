@@ -33,7 +33,6 @@ jobs:
         with:
           path: |
             ~/.pub-cache
-            .dart_tool
           key: ${{ runner.os }}-flutter-${{ hashFiles('**/pubspec.lock') }}
           restore-keys: |
             ${{ runner.os }}-flutter-
@@ -59,7 +58,7 @@ jobs:
           dart pub global run fcheck --list full --strict
 
       - name: Build Flutter Web
-        run: flutter build web --release --dart-define=FLUTTER_WEB_CANVASKIT_URL=/canvaskit/
+        run: flutter build web --release --no-wasm-dry-run --dart-define=FLUTTER_WEB_CANVASKIT_URL=/canvaskit/
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v7.0.1
