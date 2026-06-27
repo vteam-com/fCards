@@ -156,7 +156,6 @@ class Screen extends StatefulWidget {
 class _ScreenState extends State<Screen> with SingleTickerProviderStateMixin {
   late final AnimationController _ambientAnimationController;
   String? _guestInitials;
-  final String _version = packageVersion;
   @override
   void initState() {
     super.initState();
@@ -191,7 +190,7 @@ class _ScreenState extends State<Screen> with SingleTickerProviderStateMixin {
           /// VERSION & LICENSES
           ///
           TextButton(
-            child: Text(_version),
+            child: Text(packageVersion),
             onPressed: () async {
               if (context.mounted) {
                 final AppLocalizations localizations = AppLocalizations.of(
@@ -207,7 +206,12 @@ class _ScreenState extends State<Screen> with SingleTickerProviderStateMixin {
                           Animation<double> _,
                         ) => LicensePage(
                           applicationName: localizations.appTitle,
-                          applicationVersion: _version,
+                          applicationIcon: Image.asset(
+                            'assets/app_icon.png',
+                            width: ConstLayout.iconXL,
+                            height: ConstLayout.iconXL,
+                          ),
+                          applicationVersion: packageVersion,
                         ),
                   ),
                 );
@@ -540,8 +544,7 @@ class _ScreenState extends State<Screen> with SingleTickerProviderStateMixin {
     final String currentLanguageCode = Localizations.localeOf(
       context,
     ).languageCode;
-    final ThemeData theme = Theme.of(context);
-    final ColorScheme colorScheme = theme.colorScheme;
+    final ColorScheme colorScheme = Theme.of(context).colorScheme;
     const BorderRadius accountSheetBorderRadius = BorderRadius.vertical(
       top: Radius.circular(ConstLayout.radiusL),
     );

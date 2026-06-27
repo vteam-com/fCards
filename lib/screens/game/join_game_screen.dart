@@ -103,9 +103,6 @@ class JoinGameScreenState extends State<JoinGameScreen> {
   late String _selectedRoom;
   StreamSubscription? _streamSubscription;
   bool _waitingOnFirstBackendData = false;
-
-  ///
-  final String appVersion = packageVersion;
   @override
   void initState() {
     super.initState();
@@ -640,7 +637,7 @@ class JoinGameScreenState extends State<JoinGameScreen> {
     final config = getGameStyleConfig(_selectedGameStyle, _playerNames.length);
 
     final gameModel = GameModel(
-      version: appVersion,
+      version: packageVersion,
       gameStyle: _selectedGameStyle,
       roomName: _selectedRoom,
       roomHistory: history,

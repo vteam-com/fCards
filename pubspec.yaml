@@ -75,6 +75,7 @@ flutter:
   # the material Icons class.
   uses-material-design: true
   assets:
+    - assets/app_icon.png
     - assets/images/background.png
     - assets/images/table_top.png
     - assets/images/back_of_card.png
