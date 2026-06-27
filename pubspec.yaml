@@ -45,7 +45,6 @@ dependencies:
   intl: ^0.20.2
   logger: ^2.6.2
   mockito: ^5.6.3
-  package_info_plus: ^10.1.0
   path_provider: ^2.1.5
   share_plus: ^13.1.0
   shared_preferences: ^2.5.4
@@ -60,8 +59,6 @@ dependencies:
 
 dev_dependencies:
   flutter_test:
-    sdk: flutter
-  integration_test:
     sdk: flutter
   flutter_lints: ^6.0.0
   flutter_launcher_icons: ^0.14.4

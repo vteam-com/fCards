@@ -6,6 +6,7 @@ import 'package:cards/models/game/backend_model.dart';
 import 'package:cards/models/game/game_model.dart';
 import 'package:cards/models/app/identity_service.dart';
 import 'package:cards/models/game/game_styles.dart';
+import 'package:cards/models/version.dart';
 import 'package:cards/screens/game/game_screen.dart';
 import 'package:cards/screens/game/game_style.dart';
 import 'package:cards/screens/game/start_screen_action_button.dart';
@@ -22,7 +23,6 @@ import 'package:cards/widgets/player/players_in_room_widget.dart';
 import 'package:cards/widgets/helpers/screen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:package_info_plus/package_info_plus.dart';
 
 /// The initial screen for the card game application.
 ///
@@ -136,7 +136,7 @@ class StartScreenState extends State<StartScreen> {
   bool _waitingOnFirstBackendData = !isRunningOffLine;
 
   /// The current version of the app.
-  String appVersion = '?.?.?';
+  final String appVersion = packageVersion;
   @override
   void initState() {
     super.initState();
@@ -172,7 +172,6 @@ class StartScreenState extends State<StartScreen> {
       }
     }
     _processUrlArguments();
-    _getAppVersion();
     _prefillPlayerNameFromIdentity();
   }
 
@@ -465,14 +464,6 @@ class StartScreenState extends State<StartScreen> {
     });
 
     prepareBackEndForRoom(roomName);
-  }
-
-  Future<void> _getAppVersion() async {
-    PackageInfo.fromPlatform().then((PackageInfo packageInfo) {
-      setState(() {
-        appVersion = packageInfo.version;
-      });
-    });
   }
 
   /// Generates a shareable URL for the current game.

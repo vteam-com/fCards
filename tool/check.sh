@@ -14,9 +14,10 @@ fi
 
 FIREBASE_OPTIONS_FILE="lib/models/app/firebase_options.dart"
 COVERAGE_DIR="coverage"
-COVERAGE_UNITS_FILE="$COVERAGE_DIR/lcov_units.info"
 COVERAGE_FILE="$COVERAGE_DIR/lcov.info"
 COVERAGE_SUMMARY_FILE="$COVERAGE_DIR/cc.txt"
+PUBSPEC_FILE="pubspec.yaml"
+VERSION_FILE="lib/models/version.dart"
 
 if [ "$RUN_CLEAN" -eq 1 ]; then
   echo --- Clean
@@ -52,6 +53,19 @@ flutter pub upgrade > /dev/null
 echo --- Pub Outdated
 flutter pub outdated
 
+echo --- Version source
+PUBSPEC_VERSION=$(awk '/^version:/ { print $2; exit }' "$PUBSPEC_FILE")
+PACKAGE_VERSION="${PUBSPEC_VERSION%%+*}"
+if [ -z "$PACKAGE_VERSION" ]; then
+  echo "ERROR: Unable to extract version from $PUBSPEC_FILE."
+  exit 1
+fi
+
+cat > "$VERSION_FILE" <<EOF
+/// Generated from pubspec.yaml by tool/check.sh.
+const String packageVersion = '$PACKAGE_VERSION';
+EOF
+
  
 echo --- Analyze
 flutter analyze lib test --no-pub 2>&1 | sed 's/^/    /'
@@ -62,10 +76,10 @@ sh ./tool/check_font_sizes.sh
 echo --- Test
 echo "    Running tests with coverage..."
 mkdir -p "$COVERAGE_DIR"
-flutter test --coverage --coverage-path="$COVERAGE_UNITS_FILE" --reporter=compact --no-pub
+rm -f "$COVERAGE_DIR/lcov_units.info"
+flutter test --coverage --coverage-path="$COVERAGE_FILE" --reporter=compact --no-pub
 
 echo --- Coverage
-lcov -a "$COVERAGE_UNITS_FILE" -o "$COVERAGE_FILE"
 lcov --summary "$COVERAGE_FILE" > "$COVERAGE_SUMMARY_FILE"
 cat "$COVERAGE_SUMMARY_FILE"
 

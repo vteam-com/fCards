@@ -7,6 +7,7 @@ import 'package:cards/models/app/constants_animation.dart';
 import 'package:cards/models/app/constants_layout.dart';
 import 'package:cards/models/app/identity_service.dart';
 import 'package:cards/models/app/locale_controller.dart';
+import 'package:cards/models/version.dart';
 import 'package:cards/utils/logger.dart';
 import 'package:cards/widgets/helpers/avatar_profile_dialog.dart';
 import 'package:cards/widgets/helpers/google_mark_icon.dart';
@@ -15,7 +16,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:package_info_plus/package_info_plus.dart';
 import 'package:share_plus/share_plus.dart';
 
 enum _AccountSignInProvider { google, apple }
@@ -135,12 +135,28 @@ class Screen extends StatefulWidget {
 
   @override
   State<Screen> createState() => _ScreenState();
+
+  /// Signs out, restores the guest session, and returns to the welcome screen.
+  static Future<void> signOutToHome({
+    required BuildContext context,
+    required Future<void> Function() signOut,
+    required Future<void> Function() ensureSignedIn,
+  }) async {
+    await signOut();
+    await ensureSignedIn();
+    if (!context.mounted) {
+      return;
+    }
+    Navigator.of(
+      context,
+    ).pushNamedAndRemoveUntil('/', (Route<dynamic> _) => false);
+  }
 }
 
 class _ScreenState extends State<Screen> with SingleTickerProviderStateMixin {
   late final AnimationController _ambientAnimationController;
   String? _guestInitials;
-  String _version = '';
+  final String _version = packageVersion;
   @override
   void initState() {
     super.initState();
@@ -150,7 +166,6 @@ class _ScreenState extends State<Screen> with SingleTickerProviderStateMixin {
         milliseconds: ConstAnimation.tableTopAmbientDuration,
       ),
     )..repeat();
-    _getAppVersion();
     _loadGuestInitials();
   }
 
@@ -500,25 +515,6 @@ class _ScreenState extends State<Screen> with SingleTickerProviderStateMixin {
     );
   }
 
-  /// Fetches the application version from the platform package info.
-  Future<void> _getAppVersion() async {
-    try {
-      final packageInfo = await PackageInfo.fromPlatform();
-      if (mounted) {
-        setState(() {
-          _version = packageInfo.version;
-        });
-      }
-    } catch (e) {
-      logger.e('Error getting package info: $e');
-      if (mounted) {
-        setState(() {
-          _version = '1.0.0';
-        });
-      }
-    }
-  }
-
   /// Loads and caches the guest player initials from shared preferences.
   Future<void> _loadGuestInitials() async {
     final initials = await IdentityService.getStoredInitials();
@@ -684,8 +680,11 @@ class _ScreenState extends State<Screen> with SingleTickerProviderStateMixin {
   Future<void> _signOut() async {
     final AppLocalizations localizations = AppLocalizations.of(context);
     try {
-      await AuthService.signOut();
-      await AuthService.ensureSignedIn();
+      await Screen.signOutToHome(
+        context: context,
+        signOut: AuthService.signOut,
+        ensureSignedIn: AuthService.ensureSignedIn,
+      );
     } on FirebaseAuthException catch (error) {
       _showAuthError(error.message ?? localizations.signOutFailed);
     } catch (_) {
