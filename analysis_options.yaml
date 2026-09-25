@@ -8,3 +8,10 @@ analyzer:
     - "**/*.graphql.dart"
     - "**/*.mocks.dart"
     - "**/generated/**"
+    - build/**
+    - android/**
+    - ios/**
+    - web/**
+    - windows/**
+    - macos/**
+    - linux/**

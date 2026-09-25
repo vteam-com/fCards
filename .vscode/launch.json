@@ -5,19 +5,19 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "cards",
+            "name": "cards-debug",
             "request": "launch",
             "type": "dart",
             "flutterMode": "debug"
         },
         {
-            "name": "cards (profile mode)",
+            "name": "cards-profile",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile"
         },
         {
-            "name": "cards (release mode)",
+            "name": "cards-release",
             "request": "launch",
             "type": "dart",
             "flutterMode": "release"
