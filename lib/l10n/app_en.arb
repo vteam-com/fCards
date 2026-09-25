@@ -21,6 +21,7 @@
   "@cardsTitle": {
     "description": "DO NOT TRANSLATE."
   },
+  "clearScores": "Clear scores",
   "columnsByRows": "{columns} x {rows}",
   "@columnsByRows": {
     "placeholders": {
@@ -234,6 +235,7 @@
   "scanModelError": "Could not load model: ",
   "scanModelLoading": "Model is still loading — please wait.",
   "scanNoCameraFound": "No camera found on this device.",
+  "scanQrToJoin": "Scan to sign in and join this table.",
   "scanRankAce": "A (1)",
   "scanRankAceTitle": "Ace (1)",
   "scanRankJack": "J (11)",
@@ -261,6 +263,7 @@
   "startGame": "Start Game",
   "startGameWizardSubtitle": "Choose the game for this table. We'll help you name it next.",
   "starting": "Starting",
+  "startNewGameWithQr": "Start with QR",
   "startTable": "Start a Table",
   "statusBrb": "BRB",
   "statusFeelingGood": "Feeling Good!",

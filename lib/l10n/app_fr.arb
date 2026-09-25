@@ -15,6 +15,7 @@
   },
   "cardGamesTitle": "Jeux de cartes",
   "cardsTitle": "Cards",
+  "clearScores": "Effacer les scores",
   "columnsByRows": "{columns} x {rows}",
   "@columnsByRows": {
     "description": "reviewed",
@@ -226,6 +227,7 @@
   "scanModelError": "Impossible de charger le modèle : ",
   "scanModelLoading": "Le modèle est en cours de chargement — veuillez patienter.",
   "scanNoCameraFound": "Aucune caméra trouvée sur cet appareil.",
+  "scanQrToJoin": "Scannez pour vous connecter et rejoindre cette table.",
   "scanRankAce": "As (1)",
   "scanRankAceTitle": "As (1)",
   "scanRankJack": "V (11)",
@@ -247,6 +249,7 @@
   "startGame": "Démarrer la partie",
   "startGameWizardSubtitle": "Choisissez le jeu pour cette table. Nous vous aiderons ensuite à la nommer.",
   "starting": "Démarrage",
+  "startNewGameWithQr": "Démarrer avec QR",
   "startTable": "Créer une table",
   "statusBrb": "Reviens vite",
   "statusFeelingGood": "Ça va !",

@@ -12,6 +12,15 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+const String _scoreSessionParameter = 'scoreSession';
+
+/// Returns the app route targeted by the active web invitation.
+String _deepLinkDestination() {
+  return Uri.base.queryParameters.containsKey(_scoreSessionParameter)
+      ? '/score'
+      : '/game';
+}
+
 /// Progress through the welcome flow.
 enum _WelcomeStep {
   /// Checking stored identity – show spinner.
@@ -279,7 +288,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
       if (_step == _WelcomeStep.choice) {
         // Already signed in — go straight to the game.
         Future.delayed(Duration.zero, () {
-          if (mounted) Navigator.pushReplacementNamed(context, '/game');
+          if (mounted) {
+            Navigator.pushReplacementNamed(context, _deepLinkDestination());
+          }
         });
       } else {
         // Not signed in — require Google sign-in first, then navigate.
@@ -302,7 +313,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
       await signIn();
       if (!mounted) return;
       if (_hasPendingDeepLink) {
-        Navigator.pushReplacementNamed(context, '/game');
+        Navigator.pushReplacementNamed(context, _deepLinkDestination());
       } else {
         setState(() {
           _isSigningIn = false;

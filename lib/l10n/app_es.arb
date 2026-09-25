@@ -21,6 +21,7 @@
   "@cardsTitle": {
     "description": "DO NOT TRANSLATE."
   },
+  "clearScores": "Borrar puntuaciones",
   "columnsByRows": "{columns} x {rows}",
   "@columnsByRows": {
     "description": "reviewed",
@@ -235,6 +236,7 @@
   "scanModelError": "No se pudo cargar el modelo: ",
   "scanModelLoading": "El modelo aun se esta cargando. Espera un momento.",
   "scanNoCameraFound": "No se encontro ninguna camara en este dispositivo.",
+  "scanQrToJoin": "Escanea para iniciar sesion y unirte a esta mesa.",
   "scanRankAce": "As (1)",
   "scanRankAceTitle": "As (1)",
   "scanRankJack": "S (11)",
@@ -262,6 +264,7 @@
   "startGame": "Iniciar partida",
   "startGameWizardSubtitle": "Elige el juego para esta mesa. Te ayudaremos a nombrarla despues.",
   "starting": "Iniciando",
+  "startNewGameWithQr": "Iniciar con QR",
   "startTable": "Crear mesa",
   "statusBrb": "Ahora vuelvo",
   "statusFeelingGood": "Todo bien!",

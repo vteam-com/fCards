@@ -67,6 +67,14 @@ class GolfScoreModel {
     _save();
   }
 
+  /// Starts a fresh score card using the current table participants.
+  void startNewGame(List<String> participants) {
+    playerNames = List<String>.from(participants);
+    scores = [];
+    addRound();
+    _save();
+  }
+
   /// Removes a round at the specified index.
   ///
   /// [roundIndex] The index of the round to remove.

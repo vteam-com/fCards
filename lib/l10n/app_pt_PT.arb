@@ -21,6 +21,7 @@
   "@cardsTitle": {
     "description": "DO NOT TRANSLATE."
   },
+  "clearScores": "Limpar pontuacoes",
   "columnsByRows": "{columns} x {rows}",
   "@columnsByRows": {
     "description": "reviewed",
@@ -235,6 +236,7 @@
   "scanModelError": "Nao foi possivel carregar o modelo: ",
   "scanModelLoading": "O modelo ainda esta a carregar. Aguarda.",
   "scanNoCameraFound": "Nao foi encontrada nenhuma camara neste dispositivo.",
+  "scanQrToJoin": "Leia o codigo para iniciar sessao e entrar nesta mesa.",
   "scanRankAce": "As (1)",
   "scanRankAceTitle": "As (1)",
   "scanRankJack": "V (11)",
@@ -262,6 +264,7 @@
   "startGame": "Iniciar jogo",
   "startGameWizardSubtitle": "Escolhe o jogo para esta mesa. Ajudamos a dar-lhe um nome a seguir.",
   "starting": "A iniciar",
+  "startNewGameWithQr": "Iniciar com QR",
   "startTable": "Criar mesa",
   "statusBrb": "Ja volto",
   "statusFeelingGood": "A sentir-me bem!",

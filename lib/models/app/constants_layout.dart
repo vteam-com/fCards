@@ -104,6 +104,9 @@ class ConstLayout {
   /// Golf column width (89.0).
   static const double golfColumnWidth = 89.0;
 
+  /// Side length for a Score Keeper QR invitation.
+  static const double scoreQrCodeSize = 233.0;
+
   /// Animation duration 300ms.
   static const int animationDuration300 = 300;
 
