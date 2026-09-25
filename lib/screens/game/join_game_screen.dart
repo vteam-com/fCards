@@ -64,9 +64,8 @@ class _GameTypeOption {
 
 /// Step-by-step screen for joining or starting a game.
 ///
-/// When [canCreateTable] is true (the Start flow), an extra
-/// "Create New Table" option appears on the table-picker step and leads to
-/// the game-type wizard before creating a named table.
+/// When [canCreateTable] is true (the Start flow), the screen opens directly
+/// on the game-type wizard before creating a named table.
 class JoinGameScreen extends StatefulWidget {
   ///
   const JoinGameScreen({
@@ -76,7 +75,7 @@ class JoinGameScreen extends StatefulWidget {
     this.gameStyle = GameStyles.frenchCards9,
   });
 
-  /// When true, shows the "Create New Table" option on the table-picker step.
+  /// When true, starts the create-table flow at game-type selection.
   final bool canCreateTable;
 
   /// Game style to use when launching the game from the join wizard.
@@ -112,7 +111,11 @@ class JoinGameScreenState extends State<JoinGameScreen> {
     _playerNames = {};
     _preparedRoom = '';
     _listOfRooms = [];
-    _currentStep = _selectedRoom.isNotEmpty ? _stepWaiting : _stepTablePick;
+    _currentStep = _selectedRoom.isNotEmpty
+        ? _stepWaiting
+        : widget.canCreateTable
+        ? _stepGameType
+        : _stepTablePick;
     _prefillPlayerNameFromIdentity().then((_) {
       if (_selectedRoom.isNotEmpty) {
         _joinGameAndContinue();
@@ -154,10 +157,15 @@ class JoinGameScreenState extends State<JoinGameScreen> {
   /// Builds navigation actions for the current wizard step.
   Widget _buildActions() {
     final AppLocalizations localizations = AppLocalizations.of(context);
+    if (_currentStep == _stepTablePick) {
+      return const SizedBox.shrink();
+    }
     if (_currentStep == _stepGameType) {
       return WizardFooter(
         backLabel: localizations.back,
-        onBack: () => setState(() => _currentStep = _stepTablePick),
+        onBack: widget.canCreateTable
+            ? () => Navigator.pop(context)
+            : () => setState(() => _currentStep = _stepTablePick),
         primaryLabel: localizations.next,
         isPrimaryEnabled: true,
         onForward: _navigateToCreateNewGame,
@@ -386,6 +394,7 @@ class JoinGameScreenState extends State<JoinGameScreen> {
                 _selectedRoom = room;
                 _preparedRoom = '';
               });
+              _joinGameAndContinue();
             },
             onRemoveRoom: null,
           ),
