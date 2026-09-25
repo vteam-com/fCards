@@ -38,6 +38,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get cardsTitle => 'Cards';
 
   @override
+  String get clearScores => 'Borrar puntuaciones';
+
+  @override
   String columnsByRows(int columns, int rows) {
     return '$columns x $rows';
   }
@@ -405,6 +408,10 @@ class AppLocalizationsEs extends AppLocalizations {
       'No se encontro ninguna camara en este dispositivo.';
 
   @override
+  String get scanQrToJoin =>
+      'Escanea para iniciar sesion y unirte a esta mesa.';
+
+  @override
   String get scanRankAce => 'As (1)';
 
   @override
@@ -469,6 +476,9 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get starting => 'Iniciando';
+
+  @override
+  String get startNewGameWithQr => 'Iniciar con QR';
 
   @override
   String get startTable => 'Crear mesa';

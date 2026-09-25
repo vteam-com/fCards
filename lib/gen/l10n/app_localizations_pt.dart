@@ -38,6 +38,9 @@ class AppLocalizationsPt extends AppLocalizations {
   String get cardsTitle => 'Cards';
 
   @override
+  String get clearScores => 'Limpar pontuacoes';
+
+  @override
   String columnsByRows(int columns, int rows) {
     return '$columns x $rows';
   }
@@ -402,6 +405,10 @@ class AppLocalizationsPt extends AppLocalizations {
       'Nao foi encontrada nenhuma camara neste dispositivo.';
 
   @override
+  String get scanQrToJoin =>
+      'Leia o codigo para iniciar sessao e entrar nesta mesa.';
+
+  @override
   String get scanRankAce => 'As (1)';
 
   @override
@@ -466,6 +473,9 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get starting => 'A iniciar';
+
+  @override
+  String get startNewGameWithQr => 'Iniciar com QR';
 
   @override
   String get startTable => 'Criar mesa';
@@ -572,6 +582,9 @@ class AppLocalizationsPtPt extends AppLocalizationsPt {
   String get cardsTitle => 'Cards';
 
   @override
+  String get clearScores => 'Limpar pontuacoes';
+
+  @override
   String columnsByRows(int columns, int rows) {
     return '$columns x $rows';
   }
@@ -936,6 +949,10 @@ class AppLocalizationsPtPt extends AppLocalizationsPt {
       'Nao foi encontrada nenhuma camara neste dispositivo.';
 
   @override
+  String get scanQrToJoin =>
+      'Leia o codigo para iniciar sessao e entrar nesta mesa.';
+
+  @override
   String get scanRankAce => 'As (1)';
 
   @override
@@ -1000,6 +1017,9 @@ class AppLocalizationsPtPt extends AppLocalizationsPt {
 
   @override
   String get starting => 'A iniciar';
+
+  @override
+  String get startNewGameWithQr => 'Iniciar com QR';
 
   @override
   String get startTable => 'Criar mesa';

@@ -38,6 +38,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get cardsTitle => 'Cards';
 
   @override
+  String get clearScores => 'Clear scores';
+
+  @override
   String columnsByRows(int columns, int rows) {
     return '$columns x $rows';
   }
@@ -398,6 +401,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get scanNoCameraFound => 'No camera found on this device.';
 
   @override
+  String get scanQrToJoin => 'Scan to sign in and join this table.';
+
+  @override
   String get scanRankAce => 'A (1)';
 
   @override
@@ -461,6 +467,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get starting => 'Starting';
+
+  @override
+  String get startNewGameWithQr => 'Start with QR';
 
   @override
   String get startTable => 'Start a Table';

@@ -157,6 +157,12 @@ abstract class AppLocalizations {
   /// **'Cards'**
   String get cardsTitle;
 
+  /// No description provided for @clearScores.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear scores'**
+  String get clearScores;
+
   /// No description provided for @columnsByRows.
   ///
   /// In en, this message translates to:
@@ -811,6 +817,12 @@ abstract class AppLocalizations {
   /// **'No camera found on this device.'**
   String get scanNoCameraFound;
 
+  /// No description provided for @scanQrToJoin.
+  ///
+  /// In en, this message translates to:
+  /// **'Scan to sign in and join this table.'**
+  String get scanQrToJoin;
+
   /// No description provided for @scanRankAce.
   ///
   /// In en, this message translates to:
@@ -936,6 +948,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Starting'**
   String get starting;
+
+  /// No description provided for @startNewGameWithQr.
+  ///
+  /// In en, this message translates to:
+  /// **'Start with QR'**
+  String get startNewGameWithQr;
 
   /// No description provided for @startTable.
   ///

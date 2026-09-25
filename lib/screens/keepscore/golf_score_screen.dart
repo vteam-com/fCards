@@ -1,10 +1,15 @@
 // ignore_for_file: require_trailing_commas, deprecated_member_use
 
+import 'dart:async';
+
 import 'package:cards/gen/l10n/app_localizations.dart';
 import 'package:cards/models/app/app_theme.dart';
 import 'package:cards/models/app/constants_layout.dart';
+import 'package:cards/models/app/identity_service.dart';
 import 'package:cards/models/game/game_constants.dart';
 import 'package:cards/models/game/golf_score_model.dart';
+import 'package:cards/models/game/score_session.dart';
+import 'package:cards/models/game/score_session_service.dart';
 import 'package:cards/screens/game/card_scan_screen.dart';
 import 'package:cards/widgets/buttons/my_button_rectangle.dart';
 import 'package:cards/widgets/buttons/my_button_round.dart';
@@ -13,6 +18,9 @@ import 'package:cards/widgets/helpers/screen.dart';
 import 'package:cards/widgets/player/player_header.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:qr_flutter/qr_flutter.dart';
+
+enum _NewGameAction { clearScores, startWithQr }
 
 /// A screen for keeping score of 9 Cards Golf games.
 class GolfScoreScreen extends StatefulWidget {
@@ -30,6 +38,7 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
   late Future<GolfScoreModel> _scoreModelFuture;
   final ScrollController _scrollController = ScrollController();
   Map<String, int>? _selectedCell;
+  StreamSubscription<List<String>>? _scoreSessionSubscription;
   final double columnGap = ConstLayout.sizeS;
   final double columnWidth = ConstLayout.golfColumnWidth;
   @override
@@ -46,12 +55,14 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
           _keyboardFocusNode.requestFocus();
         }
       });
+      _joinScoreSessionFromLink();
       return model;
     });
   }
 
   @override
   void dispose() {
+    _scoreSessionSubscription?.cancel();
     _keyboardFocusNode.dispose();
     _scrollController.dispose();
     super.dispose();
@@ -109,36 +120,55 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
     });
   }
 
-  /// Shows a confirmation dialog before deleting a round.
+  /// Offers a local clear or a QR-invited new score table.
   Future<void> confirmNewGame(GolfScoreModel model) async {
     final AppLocalizations localizations = AppLocalizations.of(context);
-    final bool? confirmed = await showDialog<bool>(
+    final _NewGameAction? action = await showModalBottomSheet<_NewGameAction>(
       context: context,
-      builder: (ctx) => AlertDialog(
-        title: Text(localizations.newGame),
-        content: Text(localizations.confirmNewGame),
-        actions: [
-          MyButtonRectangle.secondary(
-            width: ConstLayout.dialogButtonWidth,
-            height: ConstLayout.dialogButtonHeight,
-            onTap: () => Navigator.of(ctx).pop(false),
-            child: Text(localizations.cancel),
+      builder: (BuildContext sheetContext) => SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(ConstLayout.paddingL),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            spacing: ConstLayout.sizeM,
+            children: [
+              Text(
+                localizations.newGame,
+                style: TextStyle(
+                  fontSize: ConstLayout.textL,
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              Text(localizations.confirmNewGame, textAlign: TextAlign.center),
+              MyButtonRectangle.menu(
+                label: localizations.clearScores,
+                icon: Icons.clear,
+                onTap: () =>
+                    Navigator.of(sheetContext).pop(_NewGameAction.clearScores),
+              ),
+              MyButtonRectangle.menu(
+                label: localizations.startNewGameWithQr,
+                icon: Icons.qr_code,
+                onTap: () =>
+                    Navigator.of(sheetContext).pop(_NewGameAction.startWithQr),
+              ),
+            ],
           ),
-          MyButtonRectangle.danger(
-            width: ConstLayout.dialogButtonWidth,
-            height: ConstLayout.dialogButtonHeight,
-            onTap: () => Navigator.of(ctx).pop(true),
-            child: Text(localizations.confirm),
-          ),
-        ],
+        ),
       ),
     );
 
-    if (!mounted || confirmed != true) {
+    if (!mounted || action == null) {
       return;
     }
 
-    _clearScores(model);
+    if (action == _NewGameAction.clearScores) {
+      _clearScores(model);
+    } else {
+      await _startNewGameWithQr(model);
+    }
   }
 
   void _addPlayer(GolfScoreModel model) {
@@ -460,6 +490,69 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
       model.clearScores();
       _selectedCell = null;
     });
+  }
+
+  Future<void> _joinScoreSessionFromLink() async {
+    final String? sessionId = ScoreSessionService.sessionIdFromUri(Uri.base);
+    if (sessionId == null || sessionId.isEmpty) {
+      return;
+    }
+    final String? identity = await IdentityService.resolveIdentityName();
+    await ScoreSessionService.joinSession(sessionId, identity ?? '');
+  }
+
+  Future<void> _startNewGameWithQr(GolfScoreModel model) async {
+    final String? identity = await IdentityService.resolveIdentityName();
+    final ScoreSession? session = await ScoreSessionService.createSession(
+      identity ?? '',
+    );
+    if (!mounted || session == null) {
+      return;
+    }
+
+    _scoreSessionSubscription?.cancel();
+    _scoreSessionSubscription = ScoreSessionService.participants(session.id)
+        .listen((List<String> participants) {
+          if (!mounted) {
+            return;
+          }
+          setState(() {
+            model.startNewGame(participants);
+            _selectedCell = null;
+          });
+        });
+
+    await showDialog<void>(
+      context: context,
+      builder: (BuildContext dialogContext) {
+        final AppLocalizations localizations = AppLocalizations.of(
+          dialogContext,
+        );
+        return AlertDialog(
+          title: Text(localizations.tableLabel(session.tableName)),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              QrImageView(
+                data: session.inviteUrl,
+                size: ConstLayout.scoreQrCodeSize,
+                backgroundColor: Colors.white,
+              ),
+              const SizedBox(height: ConstLayout.sizeM),
+              Text(localizations.scanQrToJoin, textAlign: TextAlign.center),
+            ],
+          ),
+          actions: [
+            MyButtonRectangle.secondary(
+              width: ConstLayout.dialogButtonWidth,
+              height: ConstLayout.dialogButtonHeight,
+              onTap: () => Navigator.of(dialogContext).pop(),
+              child: Text(localizations.done),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   /// Returns a score color based on leaderboard rank and player count.

@@ -15,6 +15,7 @@
         "RTDB",
         "tflite",
         "uppercased",
+        "vteam",
         "xcconfig"
     ],
     "files.exclude": {

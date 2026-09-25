@@ -74,6 +74,20 @@ void main() {
       expect(scoreModel.scores[0], equals([0, 0, 0]));
     });
 
+    test('should start a fresh score card for QR participants', () {
+      scoreModel.updateScore(0, 0, 10);
+
+      scoreModel.startNewGame(['Host', 'Guest']);
+
+      expect(scoreModel.playerNames, equals(['Host', 'Guest']));
+      expect(
+        scoreModel.scores,
+        equals([
+          [0, 0],
+        ]),
+      );
+    });
+
     test('should remove round at specific index', () {
       scoreModel.addRound();
       scoreModel.updateScore(0, 0, 10);
