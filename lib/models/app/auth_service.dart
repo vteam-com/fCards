@@ -120,14 +120,14 @@ class AuthService {
           if (error.code == 'credential-already-in-use' ||
               error.code == 'provider-already-linked') {
             await user.delete();
-            return _auth.signInWithCredential(credential);
+            return await _auth.signInWithCredential(credential);
           }
 
           rethrow;
         }
       }
 
-      return _auth.signInWithCredential(credential);
+      return await _auth.signInWithCredential(credential);
     } on GoogleSignInException catch (error) {
       throw _googleSignInExceptionToFirebaseAuthException(error);
     } on PlatformException catch (error) {

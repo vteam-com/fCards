@@ -3,7 +3,7 @@ import 'package:cards/models/game/game_styles.dart';
 import 'package:cards/gen/l10n/app_localizations_en.dart';
 import 'package:cards/widgets/cards/card_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_markdown/flutter_markdown.dart';
+import 'package:flutter_markdown_plus/flutter_markdown_plus.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
