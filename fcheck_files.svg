@@ -269,7 +269,9 @@
 <rect x="708.0" y="160.0" width="220" height="50" class="fileNode"><title>File: /Users/jp/src/github/vteam/fCards/lib/screens/game/card_scan_screen.dart</title></rect>
 <rect x="708.0" y="230.0" width="220" height="50" class="fileNode"><title>File: /Users/jp/src/github/vteam/fCards/lib/models/app/reviewer_access.dart</title></rect>
 <rect x="708.0" y="300.0" width="220" height="50" class="fileNode"><title>File: /Users/jp/src/github/vteam/fCards/lib/models/game/score_session_service.dart</title></rect>
-<rect x="708.0" y="370.0" width="220" height="50" class="fileNode"><title>File: /Users/jp/src/github/vteam/fCards/lib/widgets/player/player_header.dart</title></rect>
+<rect x="708.0" y="370.0" width="220" height="50" class="fileNode fileNodeWarning"><title>File: /Users/jp/src/github/vteam/fCards/lib/widgets/player/player_header.dart
+
+1 Magic Numbers warning</title></rect>
 <rect x="708.0" y="440.0" width="220" height="50" class="fileNode"><title>File: /Users/jp/src/github/vteam/fCards/lib/models/game/golf_score_model.dart</title></rect>
 <rect x="708.0" y="510.0" width="220" height="50" class="fileNode"><title>File: /Users/jp/src/github/vteam/fCards/lib/models/app/training_correction_record.dart</title></rect>
 <rect x="1112.0" y="90.0" width="220" height="50" class="fileNode"><title>File: /Users/jp/src/github/vteam/fCards/lib/models/game/score_session.dart</title></rect>

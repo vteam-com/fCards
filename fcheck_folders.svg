@@ -346,7 +346,9 @@
 <rect x="265.0" y="1848.0" width="308.0" height="482.0" rx="12.0" ry="12.0" class="layerBackground"><title>Folder: widgets/helpers</title></rect>
 </g>
 <g class="folderLayer">
-<rect x="265.0" y="1348.0" width="308.0" height="258.0" rx="12.0" ry="12.0" class="layerBackground"><title>Folder: widgets/player</title></rect>
+<rect x="265.0" y="1348.0" width="308.0" height="258.0" rx="12.0" ry="12.0" class="layerBackground layerBackgroundWarning"><title>Folder: widgets/player
+
+1 Magic Numbers warning</title></rect>
 </g>
 <g class="folderLayer">
 <rect x="265.0" y="1630.0" width="308.0" height="194.0" rx="12.0" ry="12.0" class="layerBackground"><title>Folder: widgets/cards</title></rect>
@@ -566,7 +568,9 @@
 <rect x="273.0" y="2270.0" width="292.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"><title>File: widgets/helpers/my_text.dart</title></rect>
 <rect x="273.0" y="1386.0" width="292.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"><title>File: widgets/player/player_zone_widget.dart</title></rect>
 <rect x="273.0" y="1418.0" width="292.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"><title>File: widgets/player/player_header_widget.dart</title></rect>
-<rect x="273.0" y="1450.0" width="292.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"><title>File: widgets/player/player_header.dart</title></rect>
+<rect x="273.0" y="1450.0" width="292.0" height="28.0" rx="5.0" ry="5.0" class="fileNode fileNodeWarning"><title>File: widgets/player/player_header.dart
+
+1 Magic Numbers warning</title></rect>
 <rect x="273.0" y="1482.0" width="292.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"><title>File: widgets/player/player_zone_cta_widget.dart</title></rect>
 <rect x="273.0" y="1514.0" width="292.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"><title>File: widgets/player/status_picker.dart</title></rect>
 <rect x="273.0" y="1546.0" width="292.0" height="28.0" rx="5.0" ry="5.0" class="fileNode"><title>File: widgets/player/players_in_room_widget.dart</title></rect>

@@ -47,6 +47,7 @@ class Screen extends StatefulWidget {
     this.onRefresh,
     this.getLinkToShare,
     this.rightText = '',
+    this.showVersion = false,
     required this.isWaiting,
   });
 
@@ -64,6 +65,9 @@ class Screen extends StatefulWidget {
 
   /// Optional text shown on right side of app bar (e.g. user name)
   final String rightText;
+
+  /// Whether to show the app version in the app bar
+  final bool showVersion;
 
   /// Title text shown in the app bar
   final String title;
@@ -193,38 +197,36 @@ class _ScreenState extends State<Screen> with SingleTickerProviderStateMixin {
           ),
         ),
         actions: [
-          ///
-          /// VERSION & LICENSES
-          ///
-          TextButton(
-            child: Text(packageVersion),
-            onPressed: () async {
-              if (context.mounted) {
-                final AppLocalizations localizations = AppLocalizations.of(
-                  context,
-                );
-                Navigator.push(
-                  context,
-                  PageRouteBuilder(
-                    pageBuilder:
-                        (
-                          BuildContext _,
-                          Animation<double> _,
-                          Animation<double> _,
-                        ) => LicensePage(
-                          applicationName: localizations.appTitle,
-                          applicationIcon: Image.asset(
-                            'assets/app_icon.png',
-                            width: ConstLayout.iconXL,
-                            height: ConstLayout.iconXL,
+          if (widget.showVersion)
+            TextButton(
+              child: Text(packageVersion),
+              onPressed: () async {
+                if (context.mounted) {
+                  final AppLocalizations localizations = AppLocalizations.of(
+                    context,
+                  );
+                  Navigator.push(
+                    context,
+                    PageRouteBuilder(
+                      pageBuilder:
+                          (
+                            BuildContext _,
+                            Animation<double> _,
+                            Animation<double> _,
+                          ) => LicensePage(
+                            applicationName: localizations.appTitle,
+                            applicationIcon: Image.asset(
+                              'assets/app_icon.png',
+                              width: ConstLayout.iconXL,
+                              height: ConstLayout.iconXL,
+                            ),
+                            applicationVersion: packageVersion,
                           ),
-                          applicationVersion: packageVersion,
-                        ),
-                  ),
-                );
-              }
-            },
-          ),
+                    ),
+                  );
+                }
+              },
+            ),
 
           ///
           /// REFRESH
@@ -246,9 +248,7 @@ class _ScreenState extends State<Screen> with SingleTickerProviderStateMixin {
                 }
 
                 return Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: ConstLayout.sizeS,
-                  ),
+                  padding: const EdgeInsets.all(ConstLayout.sizeS),
                   child: _buildAvatar(user),
                 );
               },
