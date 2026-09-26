@@ -2,8 +2,6 @@ import 'package:cards/gen/l10n/app_localizations.dart';
 import 'package:cards/models/app/auth_service.dart';
 import 'package:cards/models/app/constants_layout.dart';
 import 'package:cards/models/app/identity_service.dart';
-import 'package:cards/models/app/reviewer_access.dart';
-import 'package:cards/models/game/backend_model.dart';
 import 'package:cards/utils/logger.dart';
 import 'package:cards/widgets/buttons/my_button_rectangle.dart';
 import 'package:cards/widgets/helpers/google_mark_icon.dart';
@@ -145,24 +143,6 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           label: localizations.scanCard,
           icon: Icons.camera_alt,
           onTap: () => Navigator.pushNamed(context, '/scan'),
-        ),
-        _buildCorrectionsMenuButton(localizations),
-      ],
-    );
-  }
-
-  /// Builds the Corrections menu entry (web-only, reviewer gate).
-  Widget _buildCorrectionsMenuButton(AppLocalizations localizations) {
-    if (isRunningOffLine || !kIsWeb) {
-      return const SizedBox.shrink();
-    }
-    return Column(
-      children: [
-        SizedBox(height: ConstLayout.sizeM),
-        MyButtonRectangle.menu(
-          label: localizations.corrections,
-          icon: Icons.fact_check,
-          onTap: _openCorrections,
         ),
       ],
     );
@@ -367,34 +347,6 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     setState(() {
       _step = _WelcomeStep.identityPicker;
     });
-  }
-
-  /// Signs in and navigates to the corrections reviewer screen.
-  Future<void> _openCorrections() async {
-    final AppLocalizations localizations = AppLocalizations.of(context);
-    try {
-      if (!AuthService.isSignedInWithAccount) {
-        await AuthService.signInWithGoogle();
-      }
-    } on FirebaseAuthException catch (error) {
-      if (error.code != 'sign_in_canceled') {
-        _showMessage(error.message ?? localizations.googleSignInFailed);
-      }
-      return;
-    } catch (_) {
-      _showMessage(localizations.googleSignInFailed);
-      return;
-    }
-
-    final bool isReviewer = await isCurrentUserReviewer();
-    if (!mounted) return;
-
-    if (!isReviewer) {
-      _showMessage(localizations.correctionsReviewerOnly);
-      return;
-    }
-
-    await Navigator.pushNamed(context, '/corrections');
   }
 
   void _showMessage(String message) {

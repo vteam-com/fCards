@@ -7,6 +7,8 @@ import 'package:cards/models/app/constants_animation.dart';
 import 'package:cards/models/app/constants_layout.dart';
 import 'package:cards/models/app/identity_service.dart';
 import 'package:cards/models/app/locale_controller.dart';
+import 'package:cards/models/app/reviewer_access.dart';
+import 'package:cards/models/game/backend_model.dart';
 import 'package:cards/models/version.dart';
 import 'package:cards/utils/logger.dart';
 import 'package:cards/widgets/helpers/app_bottom_sheet.dart';
@@ -16,6 +18,7 @@ import 'package:cards/widgets/helpers/initials_dialog.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -518,6 +521,16 @@ class _ScreenState extends State<Screen> with SingleTickerProviderStateMixin {
     );
   }
 
+  /// Streams whether the Corrections admin tool should be offered.
+  ///
+  /// The tool is web-only and limited to signed-in reviewers.
+  Stream<bool> _correctionsAccessStream() {
+    if (isRunningOffLine || !kIsWeb) {
+      return Stream<bool>.value(false);
+    }
+    return reviewerAccessStream();
+  }
+
   /// Builds the waiting-state loading indicator used by [Screen].
   Widget _displayWaiting() {
     return SizedBox(
@@ -559,27 +572,37 @@ class _ScreenState extends State<Screen> with SingleTickerProviderStateMixin {
     );
     await showAppBottomSheet<void>(
       context: context,
-      builder: (BuildContext bottomSheetContext) => AvatarProfileDialog(
-        user: user,
-        guestInitials: _guestInitials,
-        currentLocaleTag: currentLocaleTag,
-        onInitialsChanged: (String initials) async {
-          await IdentityService.saveInitials(initials);
-          await _loadGuestInitials();
-        },
-        onLocaleChanged: LocaleController.setLocaleTag,
-        onSignInTap: () {
-          Navigator.of(bottomSheetContext).pop();
-          _signIn();
-        },
-        onSignOutTap: () {
-          Navigator.of(bottomSheetContext).pop();
-          _signOut();
-        },
-        onEditInitialsTap: () {
-          Navigator.of(bottomSheetContext).pop();
-          _changeInitials(user: user);
-        },
+      builder: (BuildContext bottomSheetContext) => StreamBuilder<bool>(
+        stream: _correctionsAccessStream(),
+        builder: (BuildContext _, AsyncSnapshot<bool> reviewerSnapshot) =>
+            AvatarProfileDialog(
+              user: user,
+              guestInitials: _guestInitials,
+              currentLocaleTag: currentLocaleTag,
+              onInitialsChanged: (String initials) async {
+                await IdentityService.saveInitials(initials);
+                await _loadGuestInitials();
+              },
+              onLocaleChanged: LocaleController.setLocaleTag,
+              onSignInTap: () {
+                Navigator.of(bottomSheetContext).pop();
+                _signIn();
+              },
+              onSignOutTap: () {
+                Navigator.of(bottomSheetContext).pop();
+                _signOut();
+              },
+              onEditInitialsTap: () {
+                Navigator.of(bottomSheetContext).pop();
+                _changeInitials(user: user);
+              },
+              onCorrectionsTap: reviewerSnapshot.data == true
+                  ? () {
+                      Navigator.of(bottomSheetContext).pop();
+                      Navigator.pushNamed(context, '/corrections');
+                    }
+                  : null,
+            ),
       ),
     );
   }
