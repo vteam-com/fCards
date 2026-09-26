@@ -12,6 +12,9 @@ class PlayerHeaderConstants {
   /// Height of the winning position display
   static const double winningPositionHeight = 24.0;
 
+  /// Height of the player name display, shared by initials and long names.
+  static const double nameHeight = ConstLayout.sizeXL;
+
   /// Height of the score display
   static const double scoreHeight = 30.0;
 
@@ -85,6 +88,7 @@ class PlayerHeader extends StatefulWidget {
     required this.onNameChanged,
     required this.onPlayerRemoved,
     this.onPlayerAdded,
+    this.onLongPress,
     this.editingEnabled = true,
     this.editOnCreate = false,
     this.participantAvatarUrl,
@@ -112,6 +116,9 @@ class PlayerHeader extends StatefulWidget {
 
   /// A callback that is called when a new player should be added.
   final void Function()? onPlayerAdded;
+
+  /// Called when the header is long-pressed, even while editing is disabled.
+  final VoidCallback? onLongPress;
 
   /// A callback that is called when the player is removed.
   final void Function() onPlayerRemoved;
@@ -148,7 +155,6 @@ class PlayerHeader extends StatefulWidget {
 
 class _PlayerHeaderState extends State<PlayerHeader> {
   int _activePinSlotIndex = 0;
-
   @override
   void initState() {
     super.initState();
@@ -164,128 +170,10 @@ class _PlayerHeaderState extends State<PlayerHeader> {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    return Stack(
-      clipBehavior: Clip.none,
-      children: [
-        IgnorePointer(
-          ignoring: !widget.editingEnabled,
-          child: ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              backgroundColor: _getScoreColor(
-                widget.rank,
-                widget.numberOfPlayers,
-              ).withAlpha(PlayerHeaderConstants.selectionColorAlpha),
-            ),
-            onPressed: _showEditPlayerDialog,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              spacing: PlayerHeaderConstants.columnSpacing,
-              children: [
-                //
-                // Running place King,2,3,4,Last
-                //
-                SizedBox(
-                  height: PlayerHeaderConstants.winningPositionHeight,
-                  child: Center(
-                    child: _buildWiningPosition(
-                      widget.rank,
-                      widget.numberOfPlayers,
-                    ),
-                  ),
-                ),
-
-                //
-                // Name of the Player
-                //
-                if (widget.playerName.length >
-                    PlayerHeaderConstants.playerAcronymLength)
-                  SizedBox(
-                    height: ConstLayout.textM,
-                    width: double.infinity,
-                    child: FittedBox(
-                      fit: BoxFit.scaleDown,
-                      child: Text(
-                        widget.playerName,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: ConstLayout.textM,
-                        ),
-                      ),
-                    ),
-                  )
-                else
-                  Text(
-                    widget.playerName,
-                    textAlign: TextAlign.center,
-                    maxLines: 1,
-                    softWrap: false,
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: ConstLayout.textM,
-                    ),
-                  ),
-
-                //
-                // Score
-                //
-                SizedBox(
-                  height: PlayerHeaderConstants.scoreHeight,
-                  child: FittedBox(
-                    child: Text(
-                      widget.totalScore.toString(),
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: ConstLayout.textM,
-                        // Make the score color brighter by blending with white
-                        color: Color.alphaBlend(
-                          colorScheme.onSurface,
-                          _getScoreColor(widget.rank, widget.numberOfPlayers),
-                        ),
-                        shadows: <Shadow>[
-                          const Shadow(
-                            color: Colors.white54,
-                            offset: Offset(
-                              -PlayerHeaderConstants.scoreShadowOffset,
-                              -PlayerHeaderConstants.scoreShadowOffset,
-                            ),
-                            blurRadius:
-                                PlayerHeaderConstants.scoreShadowBlurRadius,
-                          ),
-                          const Shadow(
-                            color: Colors.black54,
-                            offset: Offset(
-                              PlayerHeaderConstants.scoreShadowOffset,
-                              PlayerHeaderConstants.scoreShadowOffset,
-                            ),
-                            blurRadius:
-                                PlayerHeaderConstants.scoreShadowBlurRadius,
-                          ),
-                        ],
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-        if (widget.editingEnabled)
-          Positioned(
-            top: 0,
-            right: 0,
-            child: IconButton(
-              tooltip: AppLocalizations.of(context).removeThisPlayer,
-              icon: const Icon(Icons.close, size: ConstLayout.iconXS),
-              onPressed: _showRemoveConfirmationDialog,
-              constraints: const BoxConstraints(
-                minWidth: ConstLayout.sizeXL,
-                minHeight: ConstLayout.sizeXL,
-              ),
-            ),
-          ),
-      ],
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onLongPress: widget.onLongPress,
+      child: _buildHeaderContent(context, colorScheme),
     );
   }
 
@@ -348,6 +236,123 @@ class _PlayerHeaderState extends State<PlayerHeader> {
           ),
           child: removePlayerButton,
         ),
+      ],
+    );
+  }
+
+  /// Builds the rank, name, score, and remove-action stack.
+  Widget _buildHeaderContent(BuildContext context, ColorScheme colorScheme) {
+    return Stack(
+      clipBehavior: Clip.none,
+      children: [
+        IgnorePointer(
+          ignoring: !widget.editingEnabled,
+          child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: _getScoreColor(
+                widget.rank,
+                widget.numberOfPlayers,
+              ).withAlpha(PlayerHeaderConstants.selectionColorAlpha),
+            ),
+            onPressed: _showEditPlayerDialog,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              spacing: PlayerHeaderConstants.columnSpacing,
+              children: [
+                //
+                // Running place King,2,3,4,Last
+                //
+                SizedBox(
+                  height: PlayerHeaderConstants.winningPositionHeight,
+                  child: Center(
+                    child: _buildWiningPosition(
+                      widget.rank,
+                      widget.numberOfPlayers,
+                    ),
+                  ),
+                ),
+
+                //
+                // Name of the Player
+                //
+                SizedBox(
+                  height: PlayerHeaderConstants.nameHeight,
+                  width: double.infinity,
+                  child: FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: Text(
+                      widget.playerName,
+                      textAlign: TextAlign.center,
+                      maxLines: 1,
+                      softWrap: false,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: ConstLayout.textM,
+                      ),
+                    ),
+                  ),
+                ),
+
+                //
+                // Score
+                //
+                SizedBox(
+                  height: PlayerHeaderConstants.scoreHeight,
+                  child: FittedBox(
+                    child: Text(
+                      widget.totalScore.toString(),
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: ConstLayout.textM,
+                        // Make the score color brighter by blending with white
+                        color: Color.alphaBlend(
+                          colorScheme.onSurface,
+                          _getScoreColor(widget.rank, widget.numberOfPlayers),
+                        ),
+                        shadows: <Shadow>[
+                          const Shadow(
+                            color: Colors.white54,
+                            offset: Offset(
+                              -PlayerHeaderConstants.scoreShadowOffset,
+                              -PlayerHeaderConstants.scoreShadowOffset,
+                            ),
+                            blurRadius:
+                                PlayerHeaderConstants.scoreShadowBlurRadius,
+                          ),
+                          const Shadow(
+                            color: Colors.black54,
+                            offset: Offset(
+                              PlayerHeaderConstants.scoreShadowOffset,
+                              PlayerHeaderConstants.scoreShadowOffset,
+                            ),
+                            blurRadius:
+                                PlayerHeaderConstants.scoreShadowBlurRadius,
+                          ),
+                        ],
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        if (widget.editingEnabled)
+          Positioned(
+            top: 0,
+            right: 0,
+            child: IconButton(
+              tooltip: AppLocalizations.of(context).removeThisPlayer,
+              icon: const Icon(Icons.close, size: ConstLayout.iconXS),
+              onPressed: _showRemoveConfirmationDialog,
+              constraints: const BoxConstraints(
+                minWidth: ConstLayout.sizeXL,
+                minHeight: ConstLayout.sizeXL,
+              ),
+            ),
+          ),
       ],
     );
   }

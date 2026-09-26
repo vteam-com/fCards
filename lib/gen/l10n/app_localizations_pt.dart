@@ -248,6 +248,9 @@ class AppLocalizationsPt extends AppLocalizations {
       '- Tenta obter a pontuacao mais baixa.\n- Escolhe uma carta do baralho ou do descarte.\n- Troca a carta escolhida por uma carta da tua grelha 4x3, ou descarta-a e vira uma das tuas cartas viradas para baixo.\n- Quando 3 cartas do mesmo valor se alinham numa coluna, sao movidas para a pilha de descarte.\n- O primeiro jogador a revelar todas as suas cartas desafia os outros e afirma ter a pontuacao mais baixa.\n\n\nSaber mais [Skyjo](https://www.geekyhobbies.com/how-to-play-skyjo-card-game-rules-and-instructions/)';
 
   @override
+  String get invitePlayerWithQr => 'Convidar jogador com QR';
+
+  @override
   String itsPlayersTurn(String player) {
     return 'E a vez de $player';
   }
@@ -808,6 +811,9 @@ class AppLocalizationsPtPt extends AppLocalizationsPt {
   @override
   String get instructionsSkyjo =>
       '- Tenta obter a pontuacao mais baixa.\n- Escolhe uma carta do baralho ou do descarte.\n- Troca a carta escolhida por uma carta da tua grelha 4x3, ou descarta-a e vira uma das tuas cartas viradas para baixo.\n- Quando 3 cartas do mesmo valor se alinham numa coluna, sao movidas para a pilha de descarte.\n- O primeiro jogador a revelar todas as suas cartas desafia os outros e afirma ter a pontuacao mais baixa.\n\n\nSaber mais [Skyjo](https://www.geekyhobbies.com/how-to-play-skyjo-card-game-rules-and-instructions/)';
+
+  @override
+  String get invitePlayerWithQr => 'Convidar jogador com QR';
 
   @override
   String itsPlayersTurn(String player) {
