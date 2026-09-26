@@ -60,9 +60,7 @@ void main() {
       return text.data ?? '';
     }
 
-    testWidgets('shows localized Player Initials label', (
-      WidgetTester tester,
-    ) async {
+    testWidgets('shows localized Player title', (WidgetTester tester) async {
       String latestName = '';
       await tester.pumpWidget(
         buildSubject(playerName: 'JP', onNameChanged: (v) => latestName = v),
@@ -70,7 +68,7 @@ void main() {
 
       await openEditDialog(tester);
 
-      expect(find.text('Player Initials'), findsOneWidget);
+      expect(find.text('Player'), findsOneWidget);
       expect(latestName, '');
     });
 
@@ -229,7 +227,7 @@ void main() {
       expect(latestName, 'DC');
     });
 
-    testWidgets('ENTER submits like Done and closes dialog', (
+    testWidgets('ENTER submits and closes the player sheet', (
       WidgetTester tester,
     ) async {
       String latestName = '';
@@ -244,11 +242,11 @@ void main() {
       await tester.sendKeyDownEvent(LogicalKeyboardKey.enter);
       await tester.pumpAndSettle();
 
-      expect(find.byType(AlertDialog), findsNothing);
+      expect(find.byType(BottomSheet), findsNothing);
       expect(latestName, 'J');
     });
 
-    testWidgets('dialog keeps max width and action button width caps', (
+    testWidgets('sheet keeps menu width and action button width caps', (
       WidgetTester tester,
     ) async {
       await tester.pumpWidget(
@@ -256,14 +254,6 @@ void main() {
       );
 
       await openEditDialog(tester);
-
-      final AlertDialog dialog = tester.widget<AlertDialog>(
-        find.byType(AlertDialog),
-      );
-      expect(
-        dialog.constraints?.maxWidth,
-        PlayerHeaderConstants.editDialogMaxWidth,
-      );
 
       final Iterable<ConstrainedBox> constrained = tester
           .widgetList<ConstrainedBox>(find.byType(ConstrainedBox))
@@ -273,6 +263,16 @@ void main() {
                 PlayerHeaderConstants.textActionButtonMaxWidth,
           );
       expect(constrained.length >= 2, isTrue);
+
+      expect(
+        tester
+            .widgetList<ConstrainedBox>(find.byType(ConstrainedBox))
+            .any(
+              (ConstrainedBox c) =>
+                  c.constraints.maxWidth == ConstLayout.mainMenuMaxWidth,
+            ),
+        isTrue,
+      );
     });
   });
 }

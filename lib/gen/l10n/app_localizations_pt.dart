@@ -167,6 +167,9 @@ class AppLocalizationsPt extends AppLocalizations {
   }
 
   @override
+  String get firebaseId => 'ID do Firebase';
+
+  @override
   String get flipOpenOneHiddenCard => '↓ Vire uma das suas cartas escondidas ↓';
 
   @override
@@ -219,6 +222,9 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get identitySignInWithGoogle => 'Iniciar sessao com Google';
+
+  @override
+  String get info => 'Informacao';
 
   @override
   String get instructionsCustom => 'Regras personalizadas';
@@ -328,6 +334,9 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get playAgain => 'Jogar novamente';
+
+  @override
+  String get player => 'Jogador';
 
   @override
   String get playerName => 'Iniciais do jogador';
@@ -512,6 +521,9 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get thisTableAlreadyHasPlayers =>
       'Esta mesa ja existe. Entra nesta mesa ou introduz outro nome.';
+
+  @override
+  String get typeOfOAuthUsed => 'Tipo de OAuth utilizado';
 
   @override
   String get useSearchBox =>
@@ -711,6 +723,9 @@ class AppLocalizationsPtPt extends AppLocalizationsPt {
   }
 
   @override
+  String get firebaseId => 'ID do Firebase';
+
+  @override
   String get flipOpenOneHiddenCard => '↓ Vire uma das suas cartas escondidas ↓';
 
   @override
@@ -763,6 +778,9 @@ class AppLocalizationsPtPt extends AppLocalizationsPt {
 
   @override
   String get identitySignInWithGoogle => 'Iniciar sessao com Google';
+
+  @override
+  String get info => 'Informacao';
 
   @override
   String get instructionsCustom => 'Regras personalizadas';
@@ -872,6 +890,9 @@ class AppLocalizationsPtPt extends AppLocalizationsPt {
 
   @override
   String get playAgain => 'Jogar novamente';
+
+  @override
+  String get player => 'Jogador';
 
   @override
   String get playerName => 'Iniciais do jogador';
@@ -1056,6 +1077,9 @@ class AppLocalizationsPtPt extends AppLocalizationsPt {
   @override
   String get thisTableAlreadyHasPlayers =>
       'Esta mesa ja existe. Entra nesta mesa ou introduz outro nome.';
+
+  @override
+  String get typeOfOAuthUsed => 'Tipo de OAuth utilizado';
 
   @override
   String get useSearchBox =>

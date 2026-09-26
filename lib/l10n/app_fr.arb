@@ -88,6 +88,7 @@
       }
     }
   },
+  "firebaseId": "ID Firebase",
   "flipOpenOneHiddenCard": "↓ Retournez une de vos cartes cachées ↓",
   "fullName": "Nom complet",
   "gameOver": "Fin de partie",
@@ -106,6 +107,7 @@
   "identityJoinHint": "Vous avez un lien ou un nom de table.",
   "identitySignInWithApple": "Se connecter avec Apple",
   "identitySignInWithGoogle": "Se connecter avec Google",
+  "info": "Informations",
   "instructionsCustom": "Règles personnalisées",
   "instructionsFrenchCards9": "- Visez le score le plus bas.\n- Choisissez une carte depuis le paquet ou la défausse.\n- Échangez la carte choisie avec une carte de votre grille 3x3, ou défaussez-la et retournez une de vos cartes cachées.\n- Trois cartes de même rang sur une ligne ou une colonne valent zéro.\n- Le premier joueur à révéler ses neuf cartes défie les autres et revendique le meilleur score.\n- Si quelqu'un obtient un score égal ou inférieur, le challenger double ses points !\n- Les joueurs sont éliminés après 100 points.\n\n\nEn savoir plus [Wikipedia](https://en.wikipedia.org/wiki/Golf_(card_game))",
   "instructionsMiniPut": "- Visez le score le plus bas.\n- Choisissez une carte depuis le paquet ou la défausse.\n- Échangez la carte choisie avec une carte de votre grille 2x2, ou défaussez-la et retournez une de vos cartes cachées.\n- Trois cartes de même rang sur une ligne ou une colonne valent zéro.\n- Le premier joueur à révéler ses cartes défie les autres et revendique le meilleur score.\n- Si quelqu'un obtient un score égal ou inférieur, le challenger double ses points !\n- Les joueurs sont éliminés après 100 points.\n\n\nEn savoir plus [Wikipedia](https://en.wikipedia.org/wiki/Golf_(card_game))",
@@ -172,6 +174,7 @@
   "otherTools": "Autres outils",
   "pickTableOrCreateHint": "Choisissez une table existante, ou créez-en une nouvelle.",
   "playAgain": "Rejouer",
+  "player": "Joueur",
   "playerName": "Initiales du joueur",
   "players": "Joueurs",
   "playerWonTimesAtTable": "{player} a gagné {count} fois à la table {table}",
@@ -271,6 +274,7 @@
   },
   "thisGame": "Cette partie",
   "thisTableAlreadyHasPlayers": "Cette table existe déjà. Rejoignez cette table ou entrez un autre nom.",
+  "typeOfOAuthUsed": "Type d'OAuth utilise",
   "useSearchBox": "Utilisez la recherche pour trouver rapidement une table",
   "waitForYourTurnSmiley": "Attendez votre tour :)",
   "waitingForMorePlayers": "En attente d'autres joueurs...",

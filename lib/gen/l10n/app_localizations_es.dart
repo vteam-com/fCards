@@ -168,6 +168,9 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
+  String get firebaseId => 'ID de Firebase';
+
+  @override
   String get flipOpenOneHiddenCard =>
       '↓ Da la vuelta a una de tus cartas ocultas ↓';
 
@@ -221,6 +224,9 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get identitySignInWithGoogle => 'Iniciar sesion con Google';
+
+  @override
+  String get info => 'Informacion';
 
   @override
   String get instructionsCustom => 'Reglas personalizadas';
@@ -330,6 +336,9 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get playAgain => 'Jugar de nuevo';
+
+  @override
+  String get player => 'Jugador';
 
   @override
   String get playerName => 'Iniciales del jugador';
@@ -515,6 +524,9 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get thisTableAlreadyHasPlayers =>
       'Esta mesa ya existe. Unete a esta mesa o introduce otro nombre.';
+
+  @override
+  String get typeOfOAuthUsed => 'Tipo de OAuth usado';
 
   @override
   String get useSearchBox =>

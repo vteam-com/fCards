@@ -2,7 +2,6 @@
 
 import 'package:cards/gen/l10n/app_localizations.dart';
 import 'package:cards/models/app/constants_layout.dart';
-import 'package:cards/widgets/buttons/my_button_rectangle.dart';
 import 'package:cards/widgets/helpers/input_keyboard.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -55,12 +54,29 @@ class _InitialsDialogState extends State<InitialsDialog> {
         (defaultTargetPlatform == TargetPlatform.android ||
             defaultTargetPlatform == TargetPlatform.iOS);
 
-    return AlertDialog(
-      title: Text(localizations.playerName),
-      content: SingleChildScrollView(
+    return Padding(
+      padding: const EdgeInsets.all(ConstLayout.paddingL),
+      child: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  localizations.player,
+                  style: TextStyle(
+                    fontSize: ConstLayout.textL,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                IconButton(
+                  tooltip: localizations.done,
+                  icon: const Icon(Icons.close),
+                  onPressed: _accept,
+                ),
+              ],
+            ),
             ListenableBuilder(
               listenable: Listenable.merge([_controller, _focusNode]),
               builder: (_, _) {
@@ -170,20 +186,6 @@ class _InitialsDialogState extends State<InitialsDialog> {
               },
             ),
             SizedBox(height: ConstLayout.sizeM),
-            ConstrainedBox(
-              constraints: const BoxConstraints(
-                maxWidth: ConstLayout.startGameScreenMaxWidth,
-              ),
-              child: MyButtonRectangle(
-                width: double.infinity,
-                height: ConstLayout.mainMenuButtonHeight,
-                onTap: _accept,
-                child: Text(
-                  localizations.done,
-                  style: const TextStyle(fontWeight: FontWeight.bold),
-                ),
-              ),
-            ),
           ],
         ),
       ),

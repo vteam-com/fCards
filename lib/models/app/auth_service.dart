@@ -5,9 +5,12 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 const String appleSignInFieldEmail = 'email';
 const String appleSignInFieldName = 'name';
+const String appleOAuthProviderId = 'apple.com';
 const String googleSignInFieldEmail = 'email';
 const String googleSignInFieldProfile = 'profile';
 const String googleSignInPromptSelectAccount = 'select_account';
+const String googleOAuthProviderId = 'google.com';
+const String anonymousOAuthProviderType = 'Anonymous';
 
 /// Authentication helper for guest mode and Google sign-in flows.
 class AuthService {
@@ -24,6 +27,23 @@ class AuthService {
   static bool get isSignedInWithAccount {
     final user = _auth.currentUser;
     return user != null && !user.isAnonymous;
+  }
+
+  /// Returns the linked OAuth provider type, or [anonymousOAuthProviderType].
+  static String get currentOAuthProviderType {
+    final Set<String> providerIds =
+        _auth.currentUser?.providerData
+            .map((provider) => provider.providerId)
+            .where((providerId) => providerId.isNotEmpty)
+            .toSet() ??
+        <String>{};
+    if (providerIds.contains(appleOAuthProviderId)) {
+      return appleOAuthProviderId;
+    }
+    if (providerIds.contains(googleOAuthProviderId)) {
+      return googleOAuthProviderId;
+    }
+    return anonymousOAuthProviderType;
   }
 
   /// Ensures there is at least an anonymous authenticated user session.

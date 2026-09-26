@@ -9,6 +9,7 @@ import 'package:cards/models/app/identity_service.dart';
 import 'package:cards/models/app/locale_controller.dart';
 import 'package:cards/models/version.dart';
 import 'package:cards/utils/logger.dart';
+import 'package:cards/widgets/helpers/app_bottom_sheet.dart';
 import 'package:cards/widgets/helpers/avatar_profile_dialog.dart';
 import 'package:cards/widgets/helpers/google_mark_icon.dart';
 import 'package:cards/widgets/helpers/initials_dialog.dart';
@@ -456,7 +457,7 @@ class _ScreenState extends State<Screen> with SingleTickerProviderStateMixin {
             displayName: user?.displayName,
             email: user?.email,
           );
-    final String? result = await showDialog<String>(
+    final String? result = await showAppBottomSheet<String>(
       context: context,
       builder: (_) => InitialsDialog(initialValue: prefill),
     );
@@ -551,84 +552,30 @@ class _ScreenState extends State<Screen> with SingleTickerProviderStateMixin {
     final String currentLocaleTag = LocaleController.localeTagFor(
       Localizations.localeOf(context),
     );
-    final ColorScheme colorScheme = Theme.of(context).colorScheme;
-    const BorderRadius accountSheetBorderRadius = BorderRadius.vertical(
-      top: Radius.circular(ConstLayout.radiusL),
-    );
-
-    await showModalBottomSheet<void>(
+    await showAppBottomSheet<void>(
       context: context,
-      backgroundColor: Colors.transparent,
-      isScrollControlled: true,
-      useSafeArea: false,
-      builder: (BuildContext bottomSheetContext) {
-        return Padding(
-          padding: const EdgeInsets.only(
-            left: ConstLayout.paddingL,
-            top: ConstLayout.paddingL,
-            right: ConstLayout.paddingL,
-          ),
-          child: Align(
-            alignment: Alignment.bottomCenter,
-            child: ConstrainedBox(
-              constraints: const BoxConstraints(
-                maxWidth: ConstLayout.mainMenuMaxWidth,
-              ),
-              child: Container(
-                clipBehavior: Clip.antiAlias,
-                decoration: BoxDecoration(
-                  borderRadius: accountSheetBorderRadius,
-                  border: Border.all(
-                    color: colorScheme.secondary,
-                    width: ConstLayout.strokeS,
-                  ),
-                  image: const DecorationImage(
-                    image: AssetImage('assets/images/table_top.png'),
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                child: Container(
-                  padding: EdgeInsets.fromLTRB(
-                    ConstLayout.paddingL,
-                    ConstLayout.paddingL,
-                    ConstLayout.paddingL,
-                    ConstLayout.paddingL +
-                        MediaQuery.paddingOf(bottomSheetContext).bottom,
-                  ),
-                  decoration: BoxDecoration(
-                    color: AppTheme.panelInputZone.withAlpha(
-                      ConstLayout.alphaL,
-                    ),
-                    borderRadius: accountSheetBorderRadius,
-                  ),
-                  child: AvatarProfileDialog(
-                    user: user,
-                    guestInitials: _guestInitials,
-                    currentLocaleTag: currentLocaleTag,
-                    onInitialsChanged: (String initials) async {
-                      await IdentityService.saveInitials(initials);
-                      await _loadGuestInitials();
-                    },
-                    onLocaleChanged: LocaleController.setLocaleTag,
-                    onSignInTap: () {
-                      Navigator.of(bottomSheetContext).pop();
-                      _signIn();
-                    },
-                    onSignOutTap: () {
-                      Navigator.of(bottomSheetContext).pop();
-                      _signOut();
-                    },
-                    onEditInitialsTap: () {
-                      Navigator.of(bottomSheetContext).pop();
-                      _changeInitials(user: user);
-                    },
-                  ),
-                ),
-              ),
-            ),
-          ),
-        );
-      },
+      builder: (BuildContext bottomSheetContext) => AvatarProfileDialog(
+        user: user,
+        guestInitials: _guestInitials,
+        currentLocaleTag: currentLocaleTag,
+        onInitialsChanged: (String initials) async {
+          await IdentityService.saveInitials(initials);
+          await _loadGuestInitials();
+        },
+        onLocaleChanged: LocaleController.setLocaleTag,
+        onSignInTap: () {
+          Navigator.of(bottomSheetContext).pop();
+          _signIn();
+        },
+        onSignOutTap: () {
+          Navigator.of(bottomSheetContext).pop();
+          _signOut();
+        },
+        onEditInitialsTap: () {
+          Navigator.of(bottomSheetContext).pop();
+          _changeInitials(user: user);
+        },
+      ),
     );
   }
 

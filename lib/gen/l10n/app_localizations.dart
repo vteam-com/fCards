@@ -385,6 +385,12 @@ abstract class AppLocalizations {
   /// **'Final Round. {turnText}. You have to beat {attacker}'**
   String finalRoundYouHaveToBeat(String turnText, String attacker);
 
+  /// No description provided for @firebaseId.
+  ///
+  /// In en, this message translates to:
+  /// **'Firebase ID'**
+  String get firebaseId;
+
   /// No description provided for @flipOpenOneHiddenCard.
   ///
   /// In en, this message translates to:
@@ -492,6 +498,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Sign in with Google'**
   String get identitySignInWithGoogle;
+
+  /// No description provided for @info.
+  ///
+  /// In en, this message translates to:
+  /// **'Info'**
+  String get info;
 
   /// No description provided for @instructionsCustom.
   ///
@@ -690,6 +702,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Play Again'**
   String get playAgain;
+
+  /// No description provided for @player.
+  ///
+  /// In en, this message translates to:
+  /// **'Player'**
+  String get player;
 
   /// No description provided for @playerName.
   ///
@@ -1020,6 +1038,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'This table already exists. Join this table or enter a different name.'**
   String get thisTableAlreadyHasPlayers;
+
+  /// No description provided for @typeOfOAuthUsed.
+  ///
+  /// In en, this message translates to:
+  /// **'Type of OAuth used'**
+  String get typeOfOAuthUsed;
 
   /// No description provided for @useSearchBox.
   ///

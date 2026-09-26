@@ -1,5 +1,6 @@
 import 'package:cards/gen/l10n/app_localizations.dart';
 import 'package:cards/models/app/app_theme.dart';
+import 'package:cards/models/app/auth_service.dart';
 import 'package:cards/models/app/constants_layout.dart';
 import 'package:cards/models/app/locale_controller.dart';
 import 'package:cards/widgets/buttons/my_button_rectangle.dart';
@@ -88,6 +89,14 @@ class _AvatarProfileDialogState extends State<AvatarProfileDialog> {
         mainAxisSize: MainAxisSize.min,
         spacing: _AvatarProfileDialogConstants.sectionSpacing,
         children: [
+          Align(
+            alignment: Alignment.centerRight,
+            child: IconButton(
+              tooltip: localizations.done,
+              icon: const Icon(Icons.close),
+              onPressed: () => Navigator.of(context).maybePop(),
+            ),
+          ),
           // Header with avatar and basic info
           _buildHeaderSection(colorScheme, localizations),
 
@@ -115,36 +124,11 @@ class _AvatarProfileDialogState extends State<AvatarProfileDialog> {
                     value: widget.user.email ?? '—',
                   ),
                 ],
-
-                SizedBox(height: _AvatarProfileDialogConstants.contentSpacing),
-
-                // Editable initials button
-                MyButtonRectangle.secondary(
-                  width: double.infinity,
-                  height: _AvatarProfileDialogConstants.buttonHeight,
-                  onTap: widget.onEditInitialsTap,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    spacing: ConstLayout.sizeS,
-                    children: [
-                      Icon(
-                        Icons.edit_outlined,
-                        color: colorScheme.onPrimaryContainer,
-                        size: ConstLayout.iconXS,
-                      ),
-                      Flexible(
-                        child: Text(
-                          localizations.editInitials,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: ConstLayout.textS,
-                            fontWeight: FontWeight.bold,
-                            color: colorScheme.onPrimaryContainer,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                _buildInfoSection(
+                  colorScheme,
+                  icon: Icons.key_outlined,
+                  label: localizations.typeOfOAuthUsed,
+                  value: AuthService.currentOAuthProviderType,
                 ),
 
                 SizedBox(height: _AvatarProfileDialogConstants.contentSpacing),
@@ -197,7 +181,10 @@ class _AvatarProfileDialogState extends State<AvatarProfileDialog> {
   }
 
   /// Builds the header section with avatar and account title.
-  Widget _buildHeaderSection(ColorScheme colorScheme, AppLocalizations _) {
+  Widget _buildHeaderSection(
+    ColorScheme colorScheme,
+    AppLocalizations localizations,
+  ) {
     return Container(
       padding: const EdgeInsets.symmetric(
         horizontal: _AvatarProfileDialogConstants.headerHorizontalPadding,
@@ -207,26 +194,47 @@ class _AvatarProfileDialogState extends State<AvatarProfileDialog> {
         mainAxisSize: MainAxisSize.min,
         spacing: _AvatarProfileDialogConstants.contentSpacing,
         children: [
-          // Avatar circle
-          CircleAvatar(
-            radius: _AvatarProfileDialogConstants.avatarRadius,
-            foregroundImage:
-                widget.user.photoURL != null && widget.user.photoURL!.isNotEmpty
-                ? NetworkImage(widget.user.photoURL!)
-                : null,
-            onForegroundImageError:
-                widget.user.photoURL != null && widget.user.photoURL!.isNotEmpty
-                ? (_, _) {}
-                : null,
-            backgroundColor: colorScheme.primary,
-            foregroundColor: colorScheme.onPrimary,
-            child: Text(
-              _displayInitials,
-              style: TextStyle(
-                fontSize: ConstLayout.textL,
-                fontWeight: FontWeight.bold,
+          Stack(
+            clipBehavior: Clip.none,
+            children: [
+              CircleAvatar(
+                radius: _AvatarProfileDialogConstants.avatarRadius,
+                foregroundImage:
+                    widget.user.photoURL != null &&
+                        widget.user.photoURL!.isNotEmpty
+                    ? NetworkImage(widget.user.photoURL!)
+                    : null,
+                onForegroundImageError:
+                    widget.user.photoURL != null &&
+                        widget.user.photoURL!.isNotEmpty
+                    ? (_, _) {}
+                    : null,
+                backgroundColor: colorScheme.primary,
+                foregroundColor: colorScheme.onPrimary,
+                child: Text(
+                  _displayInitials,
+                  style: TextStyle(
+                    fontSize: ConstLayout.textL,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ),
-            ),
+              Positioned(
+                bottom: ConstLayout.sizeXS,
+                right: ConstLayout.sizeXS,
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    color: colorScheme.secondary,
+                    shape: BoxShape.circle,
+                  ),
+                  child: IconButton(
+                    tooltip: localizations.editInitials,
+                    icon: Icon(Icons.edit, color: colorScheme.onSecondary),
+                    onPressed: widget.onEditInitialsTap,
+                  ),
+                ),
+              ),
+            ],
           ),
         ],
       ),

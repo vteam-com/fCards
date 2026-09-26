@@ -94,6 +94,7 @@
       }
     }
   },
+  "firebaseId": "ID do Firebase",
   "flipOpenOneHiddenCard": "↓ Vire uma das suas cartas escondidas ↓",
   "fullName": "Nome completo",
   "gameOver": "Fim do jogo",
@@ -112,6 +113,7 @@
   "identityJoinHint": "Tens uma ligacao ou o nome da mesa.",
   "identitySignInWithApple": "Iniciar sessao com Apple",
   "identitySignInWithGoogle": "Iniciar sessao com Google",
+  "info": "Informacao",
   "instructionsCustom": "Regras personalizadas",
   "instructionsFrenchCards9": "- Tenta obter a pontuacao mais baixa.\n- Escolhe uma carta do baralho ou do descarte.\n- Troca a carta escolhida por uma carta da tua grelha 3x3, ou descarta-a e vira uma das tuas cartas viradas para baixo.\n- Tres cartas do mesmo valor numa linha ou coluna valem zero.\n- O primeiro jogador a revelar as suas nove cartas desafia os outros e afirma ter a pontuacao mais baixa.\n- Se outra pessoa obtiver uma pontuacao igual ou inferior, o desafiante duplica os seus pontos.\n- Os jogadores sao eliminados ao ultrapassar 100 pontos.\n\n\nSaber mais [Wikipedia](https://en.wikipedia.org/wiki/Golf_(card_game))",
   "instructionsMiniPut": "- Tenta obter a pontuacao mais baixa.\n- Escolhe uma carta do baralho ou do descarte.\n- Troca a carta escolhida por uma carta da tua grelha 2x2, ou descarta-a e vira uma das tuas cartas viradas para baixo.\n- Tres cartas do mesmo valor numa linha ou coluna valem zero.\n- O primeiro jogador a revelar as suas cartas desafia os outros e afirma ter a pontuacao mais baixa.\n- Se outra pessoa obtiver uma pontuacao igual ou inferior, o desafiante duplica os seus pontos.\n- Os jogadores sao eliminados ao ultrapassar 100 pontos.\n\n\nSaber mais [Wikipedia](https://en.wikipedia.org/wiki/Golf_(card_game))",
@@ -181,6 +183,7 @@
   "otherTools": "Outras ferramentas",
   "pickTableOrCreateHint": "Escolhe uma mesa existente ou cria uma nova.",
   "playAgain": "Jogar novamente",
+  "player": "Jogador",
   "playerName": "Iniciais do jogador",
   "players": "Jogadores",
   "playerWonTimesAtTable": "{player} ganhou {count} vezes na mesa {table}",
@@ -283,6 +286,7 @@
   },
   "thisGame": "Este jogo",
   "thisTableAlreadyHasPlayers": "Esta mesa ja existe. Entra nesta mesa ou introduz outro nome.",
+  "typeOfOAuthUsed": "Tipo de OAuth utilizado",
   "useSearchBox": "Usa a pesquisa para encontrar uma mesa rapidamente",
   "waitForYourTurnSmiley": "Espera pela tua vez :)",
   "waitingForMorePlayers": "A espera de mais jogadores...",
