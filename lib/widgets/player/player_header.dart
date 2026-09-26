@@ -806,12 +806,15 @@ class _PlayerHeaderState extends State<PlayerHeader> {
                 ),
               ],
             ),
-            CircleAvatar(
-              radius: ConstLayout.iconL,
-              foregroundImage: avatarUrl.isNotEmpty
-                  ? NetworkImage(avatarUrl)
-                  : null,
-              child: Text(widget.playerName),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: CircleAvatar(
+                radius: ConstLayout.iconL,
+                foregroundImage: avatarUrl.isNotEmpty
+                    ? NetworkImage(avatarUrl)
+                    : null,
+                child: Text(widget.playerName),
+              ),
             ),
             Text(localizations.email),
             SelectableText(email),

@@ -66,6 +66,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     return Screen(
       title: localizations.appTitle,
       isWaiting: _step == _WelcomeStep.loading || _isSigningIn,
+      showVersion: true,
       child: LayoutBuilder(
         builder: (_, BoxConstraints constraints) {
           return SingleChildScrollView(

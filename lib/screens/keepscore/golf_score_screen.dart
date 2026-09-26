@@ -243,40 +243,38 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
               },
               child: Icon(Icons.add),
             ),
+
             Text(
               localizations.rounds(scoreModel.scores.length),
               style: TextStyle(fontSize: ConstLayout.textS),
             ),
-            if (scoreModel.scores.length > 1)
-              MyButtonRound(
-                onTap: () {
-                  final lastRoundScores = scoreModel.scores.last;
-                  final allScoresAreZero = lastRoundScores.every(
-                    (score) => score == 0,
-                  );
-                  if (allScoresAreZero) {
-                    setState(() {
-                      scoreModel.removeRoundAt(scoreModel.scores.length - 1);
-                      _selectedCell = null;
-                    });
-                    final ScoreSession? session = _activeScoreSession;
-                    if (session != null) {
-                      unawaited(
-                        ScoreSessionService.removeRound(
-                          session.id,
-                          scoreModel.scores.length,
-                        ),
-                      );
-                    }
-                  } else {
-                    confirmDeleteRound(
-                      scoreModel.scores.length - 1,
-                      scoreModel,
+
+            MyButtonRound(
+              onTap: () {
+                final lastRoundScores = scoreModel.scores.last;
+                final allScoresAreZero = lastRoundScores.every(
+                  (score) => score == 0,
+                );
+                if (allScoresAreZero) {
+                  setState(() {
+                    scoreModel.removeRoundAt(scoreModel.scores.length - 1);
+                    _selectedCell = null;
+                  });
+                  final ScoreSession? session = _activeScoreSession;
+                  if (session != null) {
+                    unawaited(
+                      ScoreSessionService.removeRound(
+                        session.id,
+                        scoreModel.scores.length,
+                      ),
                     );
                   }
-                },
-                child: Icon(Icons.remove),
-              ),
+                } else {
+                  confirmDeleteRound(scoreModel.scores.length - 1, scoreModel);
+                }
+              },
+              child: Icon(Icons.remove),
+            ),
           ],
         ),
       ),
