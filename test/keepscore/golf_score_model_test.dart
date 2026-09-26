@@ -121,6 +121,25 @@ void main() {
       expect(scoreModel.scores[0], equals([0, 0]));
     });
 
+    test('moves player scores together and persists the new order', () async {
+      scoreModel.updateScore(0, 0, 12);
+      scoreModel.updateScore(0, 1, 7);
+      scoreModel.addRound();
+      scoreModel.updateScore(1, 0, 3);
+      scoreModel.updateScore(1, 2, 9);
+
+      scoreModel.movePlayer(0, 2);
+
+      expect(scoreModel.playerNames, ['Bob', 'Charlie', 'Alice']);
+      expect(scoreModel.scores, [
+        [7, 0, 12],
+        [0, 9, 3],
+      ]);
+      final GolfScoreModel reloaded = await GolfScoreModel.load();
+      expect(reloaded.playerNames, scoreModel.playerNames);
+      expect(reloaded.scores, scoreModel.scores);
+    });
+
     test('should remove player by name', () {
       scoreModel.removePlayer('Bob');
 
@@ -144,6 +163,46 @@ void main() {
         equals(['Alice', 'Bob', 'Charlie', 'David']),
       );
       expect(scoreModel.scores[0], equals([0, 0, 0, 0]));
+    });
+
+    test('draft player edits do not persist before apply', () async {
+      scoreModel.updateScore(0, 0, 12);
+      await Future<void>.delayed(Duration.zero);
+      final GolfScoreModel draft = GolfScoreModel(
+        playerNames: List<String>.from(scoreModel.playerNames),
+        scores: scoreModel.scores
+            .map((List<int> round) => List<int>.from(round))
+            .toList(),
+        persistChanges: false,
+      );
+
+      draft.renamePlayer(0, 'JP');
+      draft.removePlayerAt(1);
+      draft.addPlayer('NEW');
+      draft.movePlayer(0, 2);
+
+      final GolfScoreModel stored = await GolfScoreModel.load();
+      expect(stored.playerNames, ['Alice', 'Bob', 'Charlie']);
+      expect(stored.scores, [
+        [12, 0, 0],
+      ]);
+      expect(draft.playerNames, ['Charlie', 'NEW', 'JP']);
+    });
+
+    test('applied player edits persist the edited columns', () async {
+      scoreModel.updateScore(0, 0, 12);
+      scoreModel.replacePlayersAndScores(
+        names: ['Charlie', 'Alice'],
+        updatedScores: [
+          [0, 12],
+        ],
+      );
+
+      final GolfScoreModel stored = await GolfScoreModel.load();
+      expect(stored.playerNames, ['Charlie', 'Alice']);
+      expect(stored.scores, [
+        [0, 12],
+      ]);
     });
 
     test('should add player to existing rounds', () {

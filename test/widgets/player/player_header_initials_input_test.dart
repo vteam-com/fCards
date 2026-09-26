@@ -12,6 +12,9 @@ void main() {
     Widget buildSubject({
       required String playerName,
       required ValueChanged<String> onNameChanged,
+      VoidCallback? onPlayerRemoved,
+      bool editingEnabled = true,
+      bool editOnCreate = false,
     }) {
       return MaterialApp(
         localizationsDelegates: const <LocalizationsDelegate<dynamic>>[
@@ -29,8 +32,10 @@ void main() {
               numberOfPlayers: 2,
               totalScore: 0,
               onNameChanged: onNameChanged,
-              onPlayerRemoved: () {},
+              onPlayerRemoved: onPlayerRemoved ?? () {},
               onPlayerAdded: () {},
+              editingEnabled: editingEnabled,
+              editOnCreate: editOnCreate,
             ),
           ),
         ),
@@ -41,6 +46,47 @@ void main() {
       await tester.tap(find.byType(ElevatedButton));
       await tester.pumpAndSettle();
     }
+
+    testWidgets('does not open editor until editing is enabled', (
+      WidgetTester tester,
+    ) async {
+      await tester.pumpWidget(
+        buildSubject(
+          playerName: 'JP',
+          onNameChanged: (_) {},
+          editingEnabled: false,
+        ),
+      );
+      await tester.tap(find.byType(ElevatedButton), warnIfMissed: false);
+      await tester.pumpAndSettle();
+      expect(find.byKey(PlayerHeaderConstants.pinSlotOneKey), findsNothing);
+      expect(find.byIcon(Icons.close), findsNothing);
+    });
+
+    testWidgets('new player opens editor and X confirms removal', (
+      WidgetTester tester,
+    ) async {
+      bool removed = false;
+      await tester.pumpWidget(
+        buildSubject(
+          playerName: 'P4',
+          onNameChanged: (_) {},
+          onPlayerRemoved: () => removed = true,
+          editOnCreate: true,
+        ),
+      );
+      await tester.pumpAndSettle();
+      expect(find.byKey(PlayerHeaderConstants.pinSlotOneKey), findsOneWidget);
+      await tester.tap(find.byTooltip('Done'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.byTooltip('Remove this player'));
+      await tester.pumpAndSettle();
+      expect(find.textContaining('P4'), findsWidgets);
+      expect(removed, isFalse);
+      await tester.tap(find.text('Remove').last);
+      await tester.pumpAndSettle();
+      expect(removed, isTrue);
+    });
 
     bool isSlotActive(WidgetTester tester, Key slotKey) {
       final AnimatedContainer slot = tester.widget<AnimatedContainer>(

@@ -121,6 +121,12 @@ abstract class AppLocalizations {
   /// **'Apple sign-in failed.'**
   String get appleSignInFailed;
 
+  /// No description provided for @apply.
+  ///
+  /// In en, this message translates to:
+  /// **'Apply'**
+  String get apply;
+
   /// DO NOT TRANSLATE. This is the official brand name.
   ///
   /// In en, this message translates to:
@@ -354,6 +360,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Edit initials'**
   String get editInitials;
+
+  /// No description provided for @editPlayers.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit players'**
+  String get editPlayers;
 
   /// No description provided for @email.
   ///

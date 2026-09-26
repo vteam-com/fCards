@@ -18,6 +18,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get appleSignInFailed => 'Apple sign-in failed.';
 
   @override
+  String get apply => 'Apply';
+
+  @override
   String get appTitle => 'VTeam Cards';
 
   @override
@@ -144,6 +147,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get editInitials => 'Edit initials';
+
+  @override
+  String get editPlayers => 'Edit players';
 
   @override
   String get email => 'Email';

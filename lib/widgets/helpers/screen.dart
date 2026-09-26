@@ -45,6 +45,7 @@ class Screen extends StatefulWidget {
     required this.title,
     required this.child,
     this.onRefresh,
+    this.toolbarActions = const [],
     this.getLinkToShare,
     this.rightText = '',
     this.showVersion = false,
@@ -71,6 +72,9 @@ class Screen extends StatefulWidget {
 
   /// Title text shown in the app bar
   final String title;
+
+  /// Optional actions displayed before the refresh button in the app bar.
+  final List<Widget> toolbarActions;
 
   /// Resolves up to two initials for avatar fallback rendering.
   static String avatarFallbackInitials({
@@ -197,6 +201,7 @@ class _ScreenState extends State<Screen> with SingleTickerProviderStateMixin {
           ),
         ),
         actions: [
+          ...widget.toolbarActions,
           if (widget.showVersion)
             TextButton(
               child: Text(packageVersion),

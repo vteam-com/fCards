@@ -10,8 +10,11 @@ const String _prefsKeyScores = 'scores';
 class GolfScoreModel {
   // ignore: sort_constructors_first
   /// Creates a [GolfScoreModel] instance.
-  GolfScoreModel({required this.playerNames, List<List<int>>? scores})
-    : scores = scores ?? [] {
+  GolfScoreModel({
+    required this.playerNames,
+    List<List<int>>? scores,
+    this.persistChanges = true,
+  }) : scores = scores ?? [] {
     if (this.scores.isEmpty) {
       addRound();
     }
@@ -23,6 +26,9 @@ class GolfScoreModel {
   /// A list of lists, where each inner list represents a round
   /// and contains the scores for each player in that round.
   List<List<int>> scores;
+
+  /// Whether mutations should be written to local storage.
+  final bool persistChanges;
 
   /// Adds a new round to the game with initial scores (e.g., all zeros).
   void addRound() {
@@ -107,6 +113,22 @@ class GolfScoreModel {
     }
   }
 
+  /// Moves a player and all of their round scores to another column.
+  void movePlayer(int fromIndex, int toIndex) {
+    if (fromIndex < 0 ||
+        fromIndex >= playerNames.length ||
+        toIndex < 0 ||
+        toIndex >= playerNames.length ||
+        fromIndex == toIndex) {
+      return;
+    }
+    playerNames.insert(toIndex, playerNames.removeAt(fromIndex));
+    for (final List<int> roundScores in scores) {
+      roundScores.insert(toIndex, roundScores.removeAt(fromIndex));
+    }
+    _save();
+  }
+
   /// Removes a player from the game by name.
   ///
   /// [playerName] The name of the player to remove.
@@ -127,6 +149,26 @@ class GolfScoreModel {
         ..add(0);
       scores[i] = newRound;
     }
+    _save();
+  }
+
+  /// Renames a player and persists the new label.
+  void renamePlayer(int playerIndex, String name) {
+    if (playerIndex >= 0 && playerIndex < playerNames.length) {
+      playerNames[playerIndex] = name;
+      _save();
+    }
+  }
+
+  /// Replaces players and scores with an edited snapshot and persists it.
+  void replacePlayersAndScores({
+    required List<String> names,
+    required List<List<int>> updatedScores,
+  }) {
+    playerNames = List<String>.from(names);
+    scores = updatedScores
+        .map((List<int> round) => List<int>.from(round, growable: true))
+        .toList(growable: true);
     _save();
   }
 
@@ -167,6 +209,9 @@ class GolfScoreModel {
 
   ///
   Future<void> _save() async {
+    if (!persistChanges) {
+      return;
+    }
     final prefs = await SharedPreferences.getInstance();
     prefs.setString(_prefsKeyPlayerNames, jsonEncode(playerNames));
     prefs.setString(_prefsKeyScores, jsonEncode(scores));

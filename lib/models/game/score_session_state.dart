@@ -16,6 +16,25 @@ class ScoreSessionState {
   /// Round scores, where each inner list follows [playerIds] order.
   final List<List<int>> scores;
 
+  /// Moves a player and their scores in the shared column order.
+  ScoreSessionState movePlayer(String playerId, String targetPlayerId) {
+    final int fromIndex = playerIds.indexOf(playerId);
+    final int toIndex = playerIds.indexOf(targetPlayerId);
+    if (fromIndex < 0 || toIndex < 0 || fromIndex == toIndex) {
+      return this;
+    }
+    final List<String> nextIds = [...playerIds];
+    final List<String> nextNames = [...playerNames];
+    return ScoreSessionState(
+      playerIds: nextIds..insert(toIndex, nextIds.removeAt(fromIndex)),
+      playerNames: nextNames..insert(toIndex, nextNames.removeAt(fromIndex)),
+      scores: scores.map((List<int> round) {
+        final List<int> nextRound = [...round];
+        return nextRound..insert(toIndex, nextRound.removeAt(fromIndex));
+      }).toList(),
+    );
+  }
+
   /// Parses a Firebase Realtime Database score-state value.
   factory ScoreSessionState.fromValue(Object? value) {
     if (value is! Map) {
