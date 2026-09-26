@@ -18,6 +18,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get appleSignInFailed => 'Fallo el inicio de sesion con Apple.';
 
   @override
+  String get apply => 'Aplicar';
+
+  @override
   String get appTitle => 'VTeam Cards';
 
   @override
@@ -147,6 +150,9 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get editInitials => 'Editar iniciales';
+
+  @override
+  String get editPlayers => 'Editar jugadores';
 
   @override
   String get email => 'Correo electronico';

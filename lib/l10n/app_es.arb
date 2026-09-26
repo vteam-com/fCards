@@ -2,6 +2,7 @@
   "account": "Cuenta",
   "addAnotherPlayer": "Anadir otro jugador",
   "appleSignInFailed": "Fallo el inicio de sesion con Apple.",
+  "apply": "Aplicar",
   "appTitle": "VTeam Cards",
   "@appTitle": {
     "description": "DO NOT TRANSLATE. This is the official brand name."
@@ -72,6 +73,7 @@
   "done": "Hecho",
   "drawCardHere": "Roba\\nuna carta\\naqui\\n→",
   "editInitials": "Editar iniciales",
+  "editPlayers": "Editar jugadores",
   "email": "Correo electronico",
   "enterTableName": "Introduce el nombre de la nueva mesa.",
   "errorLoadingScores": "Error al cargar las puntuaciones: {error}",

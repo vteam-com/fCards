@@ -34,4 +34,25 @@ void main() {
       [12],
     ]);
   });
+
+  test('moves IDs, names and scores together in either direction', () {
+    const ScoreSessionState state = ScoreSessionState(
+      playerIds: ['a', 'b', 'c'],
+      playerNames: ['Alice', 'Bob', 'Charlie'],
+      scores: [
+        [12, 7, 4],
+        [3, 9, 1],
+      ],
+    );
+
+    final ScoreSessionState moved = state.movePlayer('a', 'c');
+    expect(moved.playerIds, ['b', 'c', 'a']);
+    expect(moved.playerNames, ['Bob', 'Charlie', 'Alice']);
+    expect(moved.scores, [
+      [7, 4, 12],
+      [9, 1, 3],
+    ]);
+    expect(moved.movePlayer('a', 'b').playerIds, state.playerIds);
+    expect(state.movePlayer('missing', 'b'), same(state));
+  });
 }

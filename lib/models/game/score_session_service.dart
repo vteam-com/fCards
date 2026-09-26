@@ -257,38 +257,6 @@ class ScoreSessionService {
     ),
   );
 
-  /// Updates one shared player label.
-  static Future<void> updatePlayerName(
-    String sessionId,
-    int playerIndex,
-    String playerName,
-  ) => _updateState(sessionId, (ScoreSessionState state) {
-    if (playerIndex >= state.playerNames.length) {
-      return state;
-    }
-    return ScoreSessionState(
-      playerIds: state.playerIds,
-      playerNames: [...state.playerNames]..[playerIndex] = playerName,
-      scores: state.scores,
-    );
-  });
-
-  /// Adds a local score-only player to the shared table.
-  static Future<void> addManualPlayer(
-    String sessionId,
-    String playerId,
-    String playerName,
-  ) => _updateState(sessionId, (ScoreSessionState state) {
-    if (state.playerIds.contains(playerId)) {
-      return state;
-    }
-    return ScoreSessionState(
-      playerIds: [...state.playerIds, playerId],
-      playerNames: [...state.playerNames, playerName],
-      scores: state.scores.map((List<int> round) => [...round, 0]).toList(),
-    );
-  });
-
   /// Removes one player column from the shared table.
   static Future<void> removePlayer(String sessionId, int playerIndex) =>
       _updateState(sessionId, (ScoreSessionState state) {
@@ -303,6 +271,31 @@ class ScoreSessionService {
           }).toList(),
         );
       });
+
+  /// Moves a player column by ID so a concurrent edit cannot move another player.
+  static Future<void> movePlayer(
+    String sessionId,
+    String playerId,
+    String targetPlayerId,
+  ) => _updateState(
+    sessionId,
+    (ScoreSessionState state) => state.movePlayer(playerId, targetPlayerId),
+  );
+
+  /// Replaces the player columns with an explicitly applied edit snapshot.
+  static Future<void> replacePlayersAndScores(
+    String sessionId, {
+    required List<String> playerIds,
+    required List<String> playerNames,
+    required List<List<int>> scores,
+  }) => _updateState(
+    sessionId,
+    (_) => ScoreSessionState(
+      playerIds: List<String>.from(playerIds),
+      playerNames: List<String>.from(playerNames),
+      scores: scores.map((List<int> round) => List<int>.from(round)).toList(),
+    ),
+  );
 
   /// Extracts a score-session ID from a web invitation URL.
   static String? sessionIdFromUri(Uri uri) =>

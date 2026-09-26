@@ -18,6 +18,9 @@ class AppLocalizationsPt extends AppLocalizations {
   String get appleSignInFailed => 'Falha ao iniciar sessao com Apple.';
 
   @override
+  String get apply => 'Aplicar';
+
+  @override
   String get appTitle => 'VTeam Cards';
 
   @override
@@ -146,6 +149,9 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get editInitials => 'Editar iniciais';
+
+  @override
+  String get editPlayers => 'Editar jogadores';
 
   @override
   String get email => 'E-mail';
@@ -574,6 +580,9 @@ class AppLocalizationsPtPt extends AppLocalizationsPt {
   String get appleSignInFailed => 'Falha ao iniciar sessao com Apple.';
 
   @override
+  String get apply => 'Aplicar';
+
+  @override
   String get appTitle => 'VTeam Cards';
 
   @override
@@ -702,6 +711,9 @@ class AppLocalizationsPtPt extends AppLocalizationsPt {
 
   @override
   String get editInitials => 'Editar iniciais';
+
+  @override
+  String get editPlayers => 'Editar jogadores';
 
   @override
   String get email => 'E-mail';

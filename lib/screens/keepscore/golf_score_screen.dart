@@ -18,6 +18,7 @@ import 'package:cards/widgets/buttons/my_button_round.dart';
 import 'package:cards/widgets/helpers/app_bottom_sheet.dart';
 import 'package:cards/widgets/helpers/input_keyboard.dart';
 import 'package:cards/widgets/helpers/screen.dart';
+import 'package:cards/widgets/player/player_edit_tile.dart';
 import 'package:cards/widgets/player/player_header.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -46,6 +47,10 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
   ScoreSession? _activeScoreSession;
   final List<ScoreSessionParticipant> _scoreSessionParticipants = [];
   final List<String> _scoreSessionPlayerIds = [];
+  bool _editingPlayers = false;
+  GolfScoreModel? _playerEditsDraft;
+  List<String>? _playerEditsDraftIds;
+  int? _newPlayerIndex;
   StreamSubscription<List<ScoreSessionParticipant>>?
   _scoreSessionParticipantsSubscription;
   StreamSubscription<ScoreSessionState>? _scoreSessionStateSubscription;
@@ -89,9 +94,14 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
             snapshot.hasError) {
           return _buildLoadingOrErrorContent(snapshot, localizations);
         }
-        final GolfScoreModel scoreModel = snapshot.data!;
+        final GolfScoreModel scoreModel = _playerEditsDraft ?? snapshot.data!;
         final List<int> ranks = scoreModel.getPlayerRanks();
-        return _buildScoreContent(scoreModel, ranks, localizations);
+        return _buildScoreContent(
+          scoreModel,
+          ranks,
+          localizations,
+          snapshot.data!,
+        );
       },
     );
   }
@@ -191,13 +201,131 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
         '${_manualScorePlayerIdPrefix}_${DateTime.now().microsecondsSinceEpoch}';
     setState(() {
       model.addPlayer(playerName);
+      _newPlayerIndex = model.playerNames.length - 1;
+      _playerEditsDraftIds?.add(playerId);
     });
+  }
+
+  void _movePlayer(GolfScoreModel model, int fromIndex, int toIndex) {
+    if (fromIndex == toIndex) {
+      return;
+    }
+    setState(() {
+      model.movePlayer(fromIndex, toIndex);
+      _newPlayerIndex = null;
+      final List<String>? draftIds = _playerEditsDraftIds;
+      if (draftIds != null && draftIds.length == model.playerNames.length) {
+        draftIds.insert(toIndex, draftIds.removeAt(fromIndex));
+      }
+      _selectedCell = null;
+    });
+  }
+
+  Future<void> _confirmRemovePlayer(
+    GolfScoreModel model,
+    int playerIndex,
+  ) async {
+    final AppLocalizations localizations = AppLocalizations.of(context);
+    final bool? confirmed = await showDialog<bool>(
+      context: context,
+      builder: (BuildContext dialogContext) => AlertDialog(
+        title: Text(localizations.removePlayer),
+        content: Text(
+          localizations.removePlayerConfirmation(
+            model.playerNames[playerIndex],
+          ),
+        ),
+        actions: [
+          MyButtonRectangle.secondary(
+            width: ConstLayout.dialogButtonWidth,
+            height: ConstLayout.dialogButtonHeight,
+            onTap: () => Navigator.of(dialogContext).pop(false),
+            child: Text(localizations.cancel),
+          ),
+          MyButtonRectangle.danger(
+            width: ConstLayout.dialogButtonWidth,
+            height: ConstLayout.dialogButtonHeight,
+            onTap: () => Navigator.of(dialogContext).pop(true),
+            child: Text(localizations.remove),
+          ),
+        ],
+      ),
+    );
+    if (!mounted || confirmed != true) {
+      return;
+    }
+    setState(() {
+      model.removePlayerAt(playerIndex);
+      _playerEditsDraftIds?.removeAt(playerIndex);
+      _newPlayerIndex = null;
+    });
+  }
+
+  void _beginPlayerEditing(GolfScoreModel model) {
+    setState(() {
+      _playerEditsDraft = GolfScoreModel(
+        playerNames: List<String>.from(model.playerNames),
+        scores: model.scores
+            .map((List<int> round) => List<int>.from(round))
+            .toList(),
+        persistChanges: false,
+      );
+      _playerEditsDraftIds = List<String>.from(_scoreSessionPlayerIds);
+      for (
+        int index = _playerEditsDraftIds!.length;
+        index < model.playerNames.length;
+        index++
+      ) {
+        _playerEditsDraftIds!.add(
+          '${_manualScorePlayerIdPrefix}_${DateTime.now().microsecondsSinceEpoch}_$index',
+        );
+      }
+      _editingPlayers = true;
+      _selectedCell = null;
+    });
+  }
+
+  void _cancelPlayerEditing() {
+    setState(() {
+      _playerEditsDraft = null;
+      _playerEditsDraftIds = null;
+      _newPlayerIndex = null;
+      _editingPlayers = false;
+      _selectedCell = null;
+    });
+  }
+
+  void _applyPlayerEditing(GolfScoreModel model) {
+    final GolfScoreModel? draft = _playerEditsDraft;
+    if (draft == null) {
+      return;
+    }
+    model.replacePlayersAndScores(
+      names: draft.playerNames,
+      updatedScores: draft.scores,
+    );
     final ScoreSession? session = _activeScoreSession;
-    if (session != null) {
+    final List<String> draftIds = _playerEditsDraftIds ?? [];
+    if (session != null && draftIds.length == draft.playerNames.length) {
+      _scoreSessionPlayerIds
+        ..clear()
+        ..addAll(draftIds);
       unawaited(
-        ScoreSessionService.addManualPlayer(session.id, playerId, playerName),
+        ScoreSessionService.replacePlayersAndScores(
+          session.id,
+          playerIds: draftIds,
+          playerNames: draft.playerNames,
+          scores: draft.scores,
+        ),
       );
     }
+    setState(() {
+      _playerEditsDraft = null;
+      _playerEditsDraftIds = null;
+      _newPlayerIndex = null;
+      _editingPlayers = false;
+      _selectedCell = null;
+    });
   }
 
   /// Builds controls for adding/removing rounds and current round count.
@@ -322,8 +450,12 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
   /// Builds the player header row with rank, score, and player actions.
   Widget _buildPlayersHeader(
     final GolfScoreModel scoreModel,
-    final dynamic ranks,
+    final List<int> ranks,
   ) {
+    if (_editingPlayers) {
+      return _buildEditablePlayersHeader(scoreModel);
+    }
+
     return Padding(
       padding: const EdgeInsets.only(top: ConstLayout.paddingM),
       child: Row(
@@ -333,50 +465,229 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
           for (int i = 0; i < scoreModel.playerNames.length; i++)
             SizedBox(
               width: columnWidth,
-              child: PlayerHeader(
-                key: Key('\$i\${scoreModel.playerNames[i]}'),
-                playerName: scoreModel.playerNames[i],
-                playerIndex: i,
-                rank: ranks[i],
-                numberOfPlayers: scoreModel.playerNames.length,
-                totalScore: scoreModel.getPlayerTotalScore(i),
-                onNameChanged: (newName) {
-                  setState(() {
-                    scoreModel.playerNames[i] = newName;
-                  });
-                  final ScoreSession? session = _activeScoreSession;
-                  if (session != null) {
-                    unawaited(
-                      ScoreSessionService.updatePlayerName(
-                        session.id,
-                        i,
-                        newName,
-                      ),
-                    );
-                  }
-                },
-                onPlayerRemoved: () {
-                  setState(() {
-                    scoreModel.removePlayerAt(i);
-                    _selectedCell = null;
-                  });
-                  final ScoreSession? session = _activeScoreSession;
-                  if (session != null) {
-                    unawaited(ScoreSessionService.removePlayer(session.id, i));
-                  }
-                },
-                onPlayerAdded: () {
-                  _addPlayer(scoreModel);
-                },
-                participantFirebaseId: _participantAt(i)?.firebaseId,
-                participantAvatarUrl: _participantAt(i)?.avatarUrl,
-                participantEmail: _participantAt(i)?.email,
-                participantOAuthType: _participantAt(i)?.oAuthType,
-                participantTitle: _participantAt(i)?.title,
-              ),
+              child: _playerHeader(scoreModel, ranks, i),
             ),
         ],
       ),
+    );
+  }
+
+  Widget _buildEditablePlayersHeader(GolfScoreModel scoreModel) {
+    final AppLocalizations localizations = AppLocalizations.of(context);
+    return LayoutBuilder(
+      builder: (BuildContext context, BoxConstraints constraints) {
+        final int playerCount = scoreModel.playerNames.length;
+        final double availablePlayerWidth = playerCount == 0
+            ? PlayerEditTile.maxWidth
+            : (constraints.maxWidth -
+                      ConstLayout.paddingM -
+                      ConstLayout.paddingM -
+                      columnGap * playerCount) /
+                  playerCount;
+        final double tileWidth = availablePlayerWidth
+            .clamp(PlayerEditTile.minWidth, PlayerEditTile.maxWidth)
+            .toDouble();
+        final double rowWidth = playerCount == 0
+            ? constraints.maxWidth
+            : (tileWidth * playerCount +
+                      columnGap * playerCount +
+                      ConstLayout.paddingM +
+                      ConstLayout.paddingM)
+                  .clamp(0.0, constraints.maxWidth)
+                  .toDouble();
+
+        return Align(
+          alignment: Alignment.topCenter,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            spacing: ConstLayout.paddingM,
+            children: [
+              SizedBox(
+                width: rowWidth,
+                height: ConstLayout.playerZoneCTAHeight,
+                child: ReorderableListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  buildDefaultDragHandles: false,
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: ConstLayout.paddingM,
+                  ),
+                  itemCount: playerCount,
+                  itemExtent: tileWidth + columnGap,
+                  onReorder: (int oldIndex, int newIndex) {
+                    final int targetIndex = newIndex > oldIndex
+                        ? newIndex - 1
+                        : newIndex;
+                    _movePlayer(scoreModel, oldIndex, targetIndex);
+                  },
+                  itemBuilder: (BuildContext _, int index) {
+                    final List<String> ids = _playerEditsDraftIds ?? [];
+                    final String itemId = ids[index];
+                    return ReorderableDelayedDragStartListener(
+                      key: ValueKey<String>('scoreKeeper.editPlayer.$itemId'),
+                      index: index,
+                      child: Padding(
+                        padding: EdgeInsets.only(right: columnGap),
+                        child: _buildPlayerEditTile(
+                          scoreModel,
+                          index,
+                          localizations,
+                          tileWidth,
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+              SizedBox(
+                width: tileWidth,
+                height: ConstLayout.playerZoneCTAHeight,
+                child: CustomPaint(
+                  painter: _DashedBorderPainter(
+                    color: Theme.of(context).colorScheme.outline,
+                  ),
+                  child: IconButton(
+                    key: const Key('scoreKeeper.addPlayer'),
+                    tooltip: localizations.addAnotherPlayer,
+                    icon: const Icon(Icons.add),
+                    onPressed: () => _addPlayer(scoreModel),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  Future<void> _editPlayerInitials(
+    GolfScoreModel model,
+    int playerIndex,
+  ) async {
+    final AppLocalizations localizations = AppLocalizations.of(context);
+    final TextEditingController controller = TextEditingController(
+      text: model.playerNames[playerIndex],
+    );
+    final String? initials = await showDialog<String>(
+      context: context,
+      builder: (BuildContext dialogContext) => AlertDialog(
+        title: Text(localizations.editInitials),
+        content: TextField(
+          controller: controller,
+          autofocus: true,
+          textCapitalization: TextCapitalization.characters,
+          maxLength: PlayerHeaderConstants.playerAcronymLength,
+          inputFormatters: [
+            FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9]')),
+            LengthLimitingTextInputFormatter(
+              PlayerHeaderConstants.playerAcronymLength,
+            ),
+          ],
+        ),
+        actions: [
+          MyButtonRectangle.secondary(
+            width: ConstLayout.dialogButtonWidth,
+            height: ConstLayout.dialogButtonHeight,
+            onTap: () => Navigator.of(dialogContext).pop(),
+            child: Text(localizations.cancel),
+          ),
+          MyButtonRectangle.primary(
+            width: ConstLayout.dialogButtonWidth,
+            height: ConstLayout.dialogButtonHeight,
+            onTap: () =>
+                Navigator.of(dialogContext).pop(controller.text.toUpperCase()),
+            child: Text(localizations.done),
+          ),
+        ],
+      ),
+    );
+    controller.dispose();
+    if (!mounted || initials == null) {
+      return;
+    }
+    setState(() => model.renamePlayer(playerIndex, initials));
+  }
+
+  Widget _buildPlayerEditTile(
+    GolfScoreModel scoreModel,
+    int index,
+    AppLocalizations localizations,
+    double tileWidth,
+  ) {
+    final ScoreSessionParticipant? participant = _participantAt(index);
+    return PlayerEditTile(
+      initials: _playerInitials(scoreModel.playerNames[index], participant),
+      width: tileWidth,
+      avatarUrl: participant?.avatarUrl,
+      email: participant?.email,
+      editLabel: localizations.editInitials,
+      removeTooltip: localizations.remove,
+      onEditInitials: () => _editPlayerInitials(scoreModel, index),
+      onRemove: () => _confirmRemovePlayer(scoreModel, index),
+    );
+  }
+
+  String _playerInitials(
+    String playerName,
+    ScoreSessionParticipant? participant,
+  ) {
+    final String storedName = playerName.trim();
+    if (storedName.length <= PlayerHeaderConstants.playerAcronymLength) {
+      return storedName.toUpperCase();
+    }
+    final String fullName = participant?.fullName.trim() ?? '';
+    final String name = fullName.isEmpty ? storedName : fullName;
+    final List<String> parts = name
+        .split(RegExp(r'\s+'))
+        .where((String part) => part.isNotEmpty)
+        .toList();
+    if (parts.length > 1) {
+      return parts
+          .take(PlayerHeaderConstants.playerAcronymLength)
+          .map((String part) => part.characters.first)
+          .join()
+          .toUpperCase();
+    }
+    return name.characters
+        .take(PlayerHeaderConstants.playerAcronymLength)
+        .toString()
+        .toUpperCase();
+  }
+
+  Widget _playerHeader(
+    GolfScoreModel scoreModel,
+    List<int> ranks,
+    int i, {
+    bool? editOnCreate,
+  }) {
+    return PlayerHeader(
+      key: ValueKey('scoreKeeper.player.$i'),
+      playerName: scoreModel.playerNames[i],
+      playerIndex: i,
+      rank: ranks[i],
+      numberOfPlayers: scoreModel.playerNames.length,
+      totalScore: scoreModel.getPlayerTotalScore(i),
+      editingEnabled: _editingPlayers,
+      editOnCreate: editOnCreate ?? _newPlayerIndex == i,
+      onNameChanged: (newName) {
+        setState(() {
+          scoreModel.renamePlayer(i, newName);
+        });
+      },
+      onPlayerRemoved: () {
+        setState(() {
+          scoreModel.removePlayerAt(i);
+          _playerEditsDraftIds?.removeAt(i);
+          _newPlayerIndex = null;
+          _selectedCell = null;
+        });
+      },
+      onPlayerAdded: () => _addPlayer(scoreModel),
+      participantFirebaseId: _participantAt(i)?.firebaseId,
+      participantAvatarUrl: _participantAt(i)?.avatarUrl,
+      participantEmail: _participantAt(i)?.email,
+      participantOAuthType: _participantAt(i)?.oAuthType,
+      participantTitle: _participantAt(i)?.title,
     );
   }
 
@@ -486,12 +797,23 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
     GolfScoreModel scoreModel,
     List<int> ranks,
     AppLocalizations l10n,
+    GolfScoreModel storedModel,
   ) {
     final colorScheme = Theme.of(context).colorScheme;
     return Screen(
       title: l10n.golfScoreKeeper,
       isWaiting: false,
-      onRefresh: () => confirmNewGame(scoreModel),
+      onRefresh: _editingPlayers ? null : () => confirmNewGame(storedModel),
+      toolbarActions: _editingPlayers
+          ? const []
+          : [
+              IconButton(
+                key: const Key('scoreKeeper.editPlayers'),
+                tooltip: l10n.editPlayers,
+                icon: const Icon(Icons.edit),
+                onPressed: () => _beginPlayerEditing(scoreModel),
+              ),
+            ],
       child: RawKeyboardListener(
         focusNode: _keyboardFocusNode,
         onKey: _handleKeyEvent,
@@ -532,27 +854,61 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
                       ),
                     ),
                   ),
-                FittedBox(child: _buildPlayersHeader(scoreModel, ranks)),
+                if (_editingPlayers)
+                  _buildPlayersHeader(scoreModel, ranks)
+                else
+                  FittedBox(child: _buildPlayersHeader(scoreModel, ranks)),
                 Expanded(
-                  child: SingleChildScrollView(
-                    controller: _scrollController,
-                    child: FittedBox(
-                      child: Column(
-                        children: [
-                          _buildRounds(context, scoreModel, ranks, colorScheme),
-                          if (_selectedCell == null)
-                            _buildAddOrRemoveRow(
-                              context,
-                              scoreModel,
-                              colorScheme,
+                  child: _editingPlayers
+                      ? const SizedBox.expand()
+                      : SingleChildScrollView(
+                          controller: _scrollController,
+                          child: FittedBox(
+                            child: Column(
+                              children: [
+                                _buildRounds(
+                                  context,
+                                  scoreModel,
+                                  ranks,
+                                  colorScheme,
+                                ),
+                                if (_selectedCell == null)
+                                  _buildAddOrRemoveRow(
+                                    context,
+                                    scoreModel,
+                                    colorScheme,
+                                  ),
+                                if (_selectedCell != null)
+                                  _buildKeyboardAndCameraSection(scoreModel),
+                              ],
                             ),
-                          if (_selectedCell != null)
-                            _buildKeyboardAndCameraSection(scoreModel),
-                        ],
-                      ),
+                          ),
+                        ),
+                ),
+                if (_editingPlayers)
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      bottom: ConstLayout.paddingL,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      spacing: ConstLayout.sizeM,
+                      children: [
+                        MyButtonRectangle.secondary(
+                          width: ConstLayout.dialogButtonWidth,
+                          height: ConstLayout.dialogButtonHeight,
+                          onTap: _cancelPlayerEditing,
+                          child: Text(l10n.cancel),
+                        ),
+                        MyButtonRectangle.primary(
+                          width: ConstLayout.dialogButtonWidth,
+                          height: ConstLayout.dialogButtonHeight,
+                          onTap: () => _applyPlayerEditing(storedModel),
+                          child: Text(l10n.apply),
+                        ),
+                      ],
                     ),
                   ),
-                ),
               ],
             ),
           ),
@@ -702,10 +1058,12 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
   }
 
   ScoreSessionParticipant? _participantAt(int playerIndex) {
-    if (playerIndex >= _scoreSessionPlayerIds.length) {
+    final List<String> playerIds =
+        _playerEditsDraftIds ?? _scoreSessionPlayerIds;
+    if (playerIndex >= playerIds.length) {
       return null;
     }
-    final String playerId = _scoreSessionPlayerIds[playerIndex];
+    final String playerId = playerIds[playerIndex];
     for (final ScoreSessionParticipant participant
         in _scoreSessionParticipants) {
       if (participant.firebaseId == playerId) {
@@ -841,4 +1199,41 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
       unawaited(ScoreSessionService.updateScore(session.id, row, col, value));
     }
   }
+}
+
+class _DashedBorderPainter extends CustomPainter {
+  const _DashedBorderPainter({required this.color});
+
+  final Color color;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final Paint paint = Paint()
+      ..color = color
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = ConstLayout.strokeS;
+    final Path border = Path()
+      ..addRRect(
+        RRect.fromRectAndRadius(
+          Offset.zero & size,
+          const Radius.circular(ConstLayout.radiusS),
+        ),
+      );
+    for (final metric in border.computeMetrics()) {
+      for (
+        double start = 0;
+        start < metric.length;
+        start += ConstLayout.sizeM
+      ) {
+        canvas.drawPath(
+          metric.extractPath(start, start + ConstLayout.sizeS),
+          paint,
+        );
+      }
+    }
+  }
+
+  @override
+  bool shouldRepaint(_DashedBorderPainter oldDelegate) =>
+      color != oldDelegate.color;
 }

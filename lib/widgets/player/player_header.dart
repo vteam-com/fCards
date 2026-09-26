@@ -85,6 +85,8 @@ class PlayerHeader extends StatefulWidget {
     required this.onNameChanged,
     required this.onPlayerRemoved,
     this.onPlayerAdded,
+    this.editingEnabled = true,
+    this.editOnCreate = false,
     this.participantAvatarUrl,
     this.participantEmail,
     this.participantFirebaseId,
@@ -95,6 +97,12 @@ class PlayerHeader extends StatefulWidget {
     required this.numberOfPlayers,
     required this.totalScore,
   });
+
+  /// Opens the initials editor when a manually added player first appears.
+  final bool editOnCreate;
+
+  /// Whether tapping the header opens the player editor and shows remove.
+  final bool editingEnabled;
 
   /// The total number of players.
   final int numberOfPlayers;
@@ -142,103 +150,142 @@ class _PlayerHeaderState extends State<PlayerHeader> {
   int _activePinSlotIndex = 0;
 
   @override
+  void initState() {
+    super.initState();
+    if (widget.editOnCreate) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted) {
+          _showEditPlayerDialog();
+        }
+      });
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        backgroundColor: _getScoreColor(
-          widget.rank,
-          widget.numberOfPlayers,
-        ).withAlpha(PlayerHeaderConstants.selectionColorAlpha),
-      ),
-      onPressed: _showEditPlayerDialog,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        spacing: PlayerHeaderConstants.columnSpacing,
-        children: [
-          //
-          // Running place King,2,3,4,Last
-          //
-          SizedBox(
-            height: PlayerHeaderConstants.winningPositionHeight,
-            child: Center(
-              child: _buildWiningPosition(widget.rank, widget.numberOfPlayers),
+    return Stack(
+      clipBehavior: Clip.none,
+      children: [
+        IgnorePointer(
+          ignoring: !widget.editingEnabled,
+          child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: _getScoreColor(
+                widget.rank,
+                widget.numberOfPlayers,
+              ).withAlpha(PlayerHeaderConstants.selectionColorAlpha),
             ),
-          ),
-
-          //
-          // Name of the Player
-          //
-          if (widget.playerName.length >
-              PlayerHeaderConstants.playerAcronymLength)
-            SizedBox(
-              height: ConstLayout.textM,
-              width: double.infinity,
-              child: FittedBox(
-                fit: BoxFit.scaleDown,
-                child: Text(
-                  widget.playerName,
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: ConstLayout.textM,
+            onPressed: _showEditPlayerDialog,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              spacing: PlayerHeaderConstants.columnSpacing,
+              children: [
+                //
+                // Running place King,2,3,4,Last
+                //
+                SizedBox(
+                  height: PlayerHeaderConstants.winningPositionHeight,
+                  child: Center(
+                    child: _buildWiningPosition(
+                      widget.rank,
+                      widget.numberOfPlayers,
+                    ),
                   ),
                 ),
-              ),
-            )
-          else
-            Text(
-              widget.playerName,
-              textAlign: TextAlign.center,
-              maxLines: 1,
-              softWrap: false,
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: ConstLayout.textM,
-              ),
-            ),
 
-          //
-          // Score
-          //
-          SizedBox(
-            height: PlayerHeaderConstants.scoreHeight,
-            child: FittedBox(
-              child: Text(
-                widget.totalScore.toString(),
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: ConstLayout.textM,
-                  // Make the score color brighter by blending with white
-                  color: Color.alphaBlend(
-                    colorScheme.onSurface,
-                    _getScoreColor(widget.rank, widget.numberOfPlayers),
+                //
+                // Name of the Player
+                //
+                if (widget.playerName.length >
+                    PlayerHeaderConstants.playerAcronymLength)
+                  SizedBox(
+                    height: ConstLayout.textM,
+                    width: double.infinity,
+                    child: FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Text(
+                        widget.playerName,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: ConstLayout.textM,
+                        ),
+                      ),
+                    ),
+                  )
+                else
+                  Text(
+                    widget.playerName,
+                    textAlign: TextAlign.center,
+                    maxLines: 1,
+                    softWrap: false,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: ConstLayout.textM,
+                    ),
                   ),
-                  shadows: <Shadow>[
-                    const Shadow(
-                      color: Colors.white54,
-                      offset: Offset(
-                        -PlayerHeaderConstants.scoreShadowOffset,
-                        -PlayerHeaderConstants.scoreShadowOffset,
+
+                //
+                // Score
+                //
+                SizedBox(
+                  height: PlayerHeaderConstants.scoreHeight,
+                  child: FittedBox(
+                    child: Text(
+                      widget.totalScore.toString(),
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: ConstLayout.textM,
+                        // Make the score color brighter by blending with white
+                        color: Color.alphaBlend(
+                          colorScheme.onSurface,
+                          _getScoreColor(widget.rank, widget.numberOfPlayers),
+                        ),
+                        shadows: <Shadow>[
+                          const Shadow(
+                            color: Colors.white54,
+                            offset: Offset(
+                              -PlayerHeaderConstants.scoreShadowOffset,
+                              -PlayerHeaderConstants.scoreShadowOffset,
+                            ),
+                            blurRadius:
+                                PlayerHeaderConstants.scoreShadowBlurRadius,
+                          ),
+                          const Shadow(
+                            color: Colors.black54,
+                            offset: Offset(
+                              PlayerHeaderConstants.scoreShadowOffset,
+                              PlayerHeaderConstants.scoreShadowOffset,
+                            ),
+                            blurRadius:
+                                PlayerHeaderConstants.scoreShadowBlurRadius,
+                          ),
+                        ],
                       ),
-                      blurRadius: PlayerHeaderConstants.scoreShadowBlurRadius,
+                      textAlign: TextAlign.center,
                     ),
-                    const Shadow(
-                      color: Colors.black54,
-                      offset: Offset(
-                        PlayerHeaderConstants.scoreShadowOffset,
-                        PlayerHeaderConstants.scoreShadowOffset,
-                      ),
-                      blurRadius: PlayerHeaderConstants.scoreShadowBlurRadius,
-                    ),
-                  ],
+                  ),
                 ),
-                textAlign: TextAlign.center,
+              ],
+            ),
+          ),
+        ),
+        if (widget.editingEnabled)
+          Positioned(
+            top: 0,
+            right: 0,
+            child: IconButton(
+              tooltip: AppLocalizations.of(context).removeThisPlayer,
+              icon: const Icon(Icons.close, size: ConstLayout.iconXS),
+              onPressed: _showRemoveConfirmationDialog,
+              constraints: const BoxConstraints(
+                minWidth: ConstLayout.sizeXL,
+                minHeight: ConstLayout.sizeXL,
               ),
             ),
           ),
-        ],
-      ),
+      ],
     );
   }
 
@@ -807,7 +854,7 @@ class _PlayerHeaderState extends State<PlayerHeader> {
               ],
             ),
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(ConstLayout.paddingM),
               child: CircleAvatar(
                 radius: ConstLayout.iconL,
                 foregroundImage: avatarUrl.isNotEmpty

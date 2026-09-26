@@ -2,6 +2,7 @@
   "account": "Account",
   "addAnotherPlayer": "Add another player",
   "appleSignInFailed": "Apple sign-in failed.",
+  "apply": "Apply",
   "appTitle": "VTeam Cards",
   "@appTitle": {
     "description": "DO NOT TRANSLATE. This is the official brand name."
@@ -71,6 +72,7 @@
   "done": "Done",
   "drawCardHere": "Draw\na card\nhere\n→",
   "editInitials": "Edit initials",
+  "editPlayers": "Edit players",
   "email": "Email",
   "enterTableName": "Enter name of the new table.",
   "errorLoadingScores": "Error loading scores: {error}",
