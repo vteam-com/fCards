@@ -16,6 +16,7 @@ import 'package:cards/screens/game/card_scan_screen.dart';
 import 'package:cards/widgets/buttons/my_button_rectangle.dart';
 import 'package:cards/widgets/buttons/my_button_round.dart';
 import 'package:cards/widgets/helpers/app_bottom_sheet.dart';
+import 'package:cards/widgets/helpers/initials_dialog.dart';
 import 'package:cards/widgets/helpers/input_keyboard.dart';
 import 'package:cards/widgets/helpers/screen.dart';
 import 'package:cards/widgets/player/player_edit_tile.dart';
@@ -504,7 +505,7 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
             children: [
               SizedBox(
                 width: rowWidth,
-                height: ConstLayout.playerZoneCTAHeight,
+                height: PlayerEditTile.tileHeight,
                 child: ReorderableListView.builder(
                   scrollDirection: Axis.horizontal,
                   buildDefaultDragHandles: false,
@@ -540,7 +541,7 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
               ),
               SizedBox(
                 width: tileWidth,
-                height: ConstLayout.playerZoneCTAHeight,
+                height: PlayerEditTile.tileHeight,
                 child: CustomPaint(
                   painter: _DashedBorderPainter(
                     color: Theme.of(context).colorScheme.outline,
@@ -564,44 +565,11 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
     GolfScoreModel model,
     int playerIndex,
   ) async {
-    final AppLocalizations localizations = AppLocalizations.of(context);
-    final TextEditingController controller = TextEditingController(
-      text: model.playerNames[playerIndex],
-    );
-    final String? initials = await showDialog<String>(
+    final String? initials = await showAppBottomSheet<String>(
       context: context,
-      builder: (BuildContext dialogContext) => AlertDialog(
-        title: Text(localizations.editInitials),
-        content: TextField(
-          controller: controller,
-          autofocus: true,
-          textCapitalization: TextCapitalization.characters,
-          maxLength: PlayerHeaderConstants.playerAcronymLength,
-          inputFormatters: [
-            FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9]')),
-            LengthLimitingTextInputFormatter(
-              PlayerHeaderConstants.playerAcronymLength,
-            ),
-          ],
-        ),
-        actions: [
-          MyButtonRectangle.secondary(
-            width: ConstLayout.dialogButtonWidth,
-            height: ConstLayout.dialogButtonHeight,
-            onTap: () => Navigator.of(dialogContext).pop(),
-            child: Text(localizations.cancel),
-          ),
-          MyButtonRectangle.primary(
-            width: ConstLayout.dialogButtonWidth,
-            height: ConstLayout.dialogButtonHeight,
-            onTap: () =>
-                Navigator.of(dialogContext).pop(controller.text.toUpperCase()),
-            child: Text(localizations.done),
-          ),
-        ],
-      ),
+      builder: (_) =>
+          InitialsDialog(initialValue: model.playerNames[playerIndex]),
     );
-    controller.dispose();
     if (!mounted || initials == null) {
       return;
     }

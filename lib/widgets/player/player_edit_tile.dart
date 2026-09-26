@@ -1,6 +1,5 @@
 import 'package:cards/models/app/app_theme.dart';
 import 'package:cards/models/app/constants_layout.dart';
-import 'package:cards/widgets/buttons/my_button_rectangle.dart';
 import 'package:flutter/material.dart';
 
 /// Compact player tile used while editing the Score Keeper player list.
@@ -46,6 +45,10 @@ class PlayerEditTile extends StatelessWidget {
   /// Accessible tooltip for the icon-only remove button.
   final String removeTooltip;
 
+  /// Height shared by editable player and add-player cards.
+  static const double tileHeight =
+      ConstLayout.sizeXXL + ConstLayout.playerZoneCTAHeight;
+
   /// Responsive width selected by the parent player row.
   final double width;
   @override
@@ -56,7 +59,7 @@ class PlayerEditTile extends StatelessWidget {
 
     return Container(
       width: width,
-      height: ConstLayout.playerZoneCTAHeight,
+      height: tileHeight,
       padding: const EdgeInsets.all(ConstLayout.paddingM),
       decoration: BoxDecoration(
         color: AppTheme.panelInputZone,
@@ -127,14 +130,17 @@ class PlayerEditTile extends StatelessWidget {
               ),
             ),
           ),
-          MyButtonRectangle.danger(
-            width: width - ConstLayout.paddingM - ConstLayout.paddingM,
-            height: ConstLayout.height40,
-            onTap: onRemove,
-            child: Tooltip(
-              message: removeTooltip,
-              child: const Icon(Icons.close, size: ConstLayout.iconM),
+          IconButton(
+            tooltip: removeTooltip,
+            color: colorScheme.error,
+            constraints: const BoxConstraints.tightFor(
+              width: ConstLayout.sizeXXL,
+              height: ConstLayout.sizeXXL,
             ),
+            iconSize: ConstLayout.iconM,
+            padding: EdgeInsets.zero,
+            onPressed: onRemove,
+            icon: const Icon(Icons.close),
           ),
         ],
       ),
