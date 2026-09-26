@@ -476,7 +476,7 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
   Widget _buildEditablePlayersHeader(GolfScoreModel scoreModel) {
     final AppLocalizations localizations = AppLocalizations.of(context);
     return LayoutBuilder(
-      builder: (BuildContext context, BoxConstraints constraints) {
+      builder: (BuildContext _, BoxConstraints constraints) {
         final int playerCount = scoreModel.playerNames.length;
         final double availablePlayerWidth = playerCount == 0
             ? PlayerEditTile.maxWidth
@@ -539,26 +539,105 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
                   },
                 ),
               ),
-              SizedBox(
-                width: tileWidth,
-                height: PlayerEditTile.tileHeight,
-                child: CustomPaint(
-                  painter: _DashedBorderPainter(
-                    color: Theme.of(context).colorScheme.outline,
-                  ),
-                  child: IconButton(
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                spacing: columnGap,
+                children: [
+                  _buildAddPlayerTile(
                     key: const Key('scoreKeeper.addPlayer'),
                     tooltip: localizations.addAnotherPlayer,
-                    icon: const Icon(Icons.add),
+                    icon: Icons.add,
+                    width: tileWidth,
                     onPressed: () => _addPlayer(scoreModel),
                   ),
-                ),
+                  _buildAddPlayerTile(
+                    key: const Key('scoreKeeper.invitePlayerWithQr'),
+                    tooltip: localizations.invitePlayerWithQr,
+                    icon: Icons.qr_code,
+                    width: tileWidth,
+                    onPressed: () => _invitePlayerWithQr(scoreModel),
+                  ),
+                ],
               ),
             ],
           ),
         );
       },
     );
+  }
+
+  /// Builds a dashed placeholder tile used for the add-player actions.
+  Widget _buildAddPlayerTile({
+    required Key key,
+    required String tooltip,
+    required IconData icon,
+    required double width,
+    required VoidCallback onPressed,
+  }) {
+    return SizedBox(
+      width: width,
+      height: PlayerEditTile.tileHeight,
+      child: CustomPaint(
+        painter: _DashedBorderPainter(
+          color: Theme.of(context).colorScheme.outline,
+        ),
+        child: IconButton(
+          key: key,
+          tooltip: tooltip,
+          icon: Icon(icon),
+          onPressed: onPressed,
+        ),
+      ),
+    );
+  }
+
+  /// Shows the table QR code so players can join the draft being edited.
+  ///
+  /// Creates a shared table seeded with the draft players when none is active.
+  Future<void> _invitePlayerWithQr(GolfScoreModel draft) async {
+    ScoreSession? session = _activeScoreSession;
+    if (session == null) {
+      final GolfScoreModel storedModel = await _scoreModelFuture;
+      final String? identity = await IdentityService.resolveIdentityName();
+      final List<String> draftIds = _playerEditsDraftIds ?? [];
+      session = await ScoreSessionService.createSession(
+        identity ?? '',
+        initialState: draftIds.length == draft.playerNames.length
+            ? ScoreSessionState(
+                playerIds: List<String>.from(draftIds),
+                playerNames: List<String>.from(draft.playerNames),
+                scores: draft.scores
+                    .map((List<int> round) => List<int>.from(round))
+                    .toList(),
+              )
+            : null,
+      );
+      if (!mounted || session == null) {
+        return;
+      }
+      _watchScoreSession(session, storedModel);
+    }
+    await _showScoreSessionQrCode(session);
+  }
+
+  /// Appends players who joined the shared table while the draft is open.
+  void _mergeJoinedPlayersIntoDraft(
+    ScoreSessionState state,
+    List<String> previousPlayerIds,
+  ) {
+    final GolfScoreModel? draft = _playerEditsDraft;
+    final List<String>? draftIds = _playerEditsDraftIds;
+    if (draft == null || draftIds == null) {
+      return;
+    }
+    for (int index = 0; index < state.playerIds.length; index++) {
+      final String playerId = state.playerIds[index];
+      if (previousPlayerIds.contains(playerId) || draftIds.contains(playerId)) {
+        continue;
+      }
+      draft.addPlayer(state.playerNames[index]);
+      draftIds.add(playerId);
+    }
   }
 
   Future<void> _editPlayerInitials(
@@ -574,6 +653,18 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
       return;
     }
     setState(() => model.renamePlayer(playerIndex, initials));
+    final ScoreSession? session = _activeScoreSession;
+    if (!_editingPlayers &&
+        session != null &&
+        playerIndex < _scoreSessionPlayerIds.length) {
+      unawaited(
+        ScoreSessionService.renamePlayer(
+          session.id,
+          _scoreSessionPlayerIds[playerIndex],
+          initials,
+        ),
+      );
+    }
   }
 
   Widget _buildPlayerEditTile(
@@ -651,6 +742,7 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
         });
       },
       onPlayerAdded: () => _addPlayer(scoreModel),
+      onLongPress: () => _editPlayerInitials(scoreModel, i),
       participantFirebaseId: _participantAt(i)?.firebaseId,
       participantAvatarUrl: _participantAt(i)?.avatarUrl,
       participantEmail: _participantAt(i)?.email,
@@ -1009,6 +1101,10 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
             return;
           }
           setState(() {
+            _mergeJoinedPlayersIntoDraft(
+              state,
+              List<String>.from(_scoreSessionPlayerIds),
+            );
             _scoreSessionPlayerIds
               ..clear()
               ..addAll(state.playerIds);

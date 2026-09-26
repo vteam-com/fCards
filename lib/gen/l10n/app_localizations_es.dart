@@ -250,6 +250,9 @@ class AppLocalizationsEs extends AppLocalizations {
       '- Intenta conseguir la puntuacion mas baja.\n- Elige una carta del mazo o del descarte.\n- Intercambia la carta elegida con una carta de tu cuadrícula de 4x3, o descartala y da la vuelta a una de tus cartas boca abajo.\n- Cuando 3 cartas del mismo valor se alinean en una columna, se mueven a la pila de descarte.\n- El primer jugador que revele todas sus cartas desafia al resto y afirma tener la puntuacion mas baja.\n\n\nMas informacion [Skyjo](https://www.geekyhobbies.com/how-to-play-skyjo-card-game-rules-and-instructions/)';
 
   @override
+  String get invitePlayerWithQr => 'Invitar a un jugador con QR';
+
+  @override
   String itsPlayersTurn(String player) {
     return 'Es el turno de $player';
   }

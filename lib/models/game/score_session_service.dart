@@ -18,10 +18,7 @@ const String _firebaseIdNode = 'firebase_id';
 const String _fullNameNode = 'full_name';
 const String _avatarUrlNode = 'avatar_url';
 const String _oAuthTypeNode = 'oauth_type';
-const String _playerIdsNode = 'player_ids';
-const String _playerNamesNode = 'player_names';
 const String _scoreStateNode = 'score_state';
-const String _scoresNode = 'scores';
 const String _defaultParticipantName = 'HOST';
 const String _scoreInviteParameter = 'scoreSession';
 const int _sessionIdRadix = 36;
@@ -29,7 +26,13 @@ const int _sessionIdRadix = 36;
 /// Coordinates authenticated Score Keeper QR sessions through Firebase.
 class ScoreSessionService {
   /// Creates a fresh table with a generated default name and its host.
-  static Future<ScoreSession?> createSession(String participantName) async {
+  ///
+  /// When [initialState] has players, the table starts from those columns
+  /// instead of a single host column.
+  static Future<ScoreSession?> createSession(
+    String participantName, {
+    ScoreSessionState? initialState,
+  }) async {
     await useFirebase();
     final String? uid = AuthService.currentUser?.uid;
     if (!backendReady || uid == null) {
@@ -41,17 +44,21 @@ class ScoreSessionService {
       id: id,
       tableName: 'SCORE-${id.toUpperCase()}',
     );
+    final ScoreSessionState state =
+        initialState != null && initialState.playerIds.isNotEmpty
+        ? initialState
+        : ScoreSessionState(
+            playerIds: [uid],
+            playerNames: [_participantName(participantName)],
+            scores: const [
+              [0],
+            ],
+          );
     try {
       await FirebaseDatabase.instance.ref('$_scoreSessionsNode/$id').set({
         _tableNameNode: session.tableName,
         _participantsNode: {uid: _participantValue(uid, participantName)},
-        _scoreStateNode: {
-          _playerIdsNode: [uid],
-          _playerNamesNode: [_participantName(participantName)],
-          _scoresNode: [
-            [0],
-          ],
-        },
+        _scoreStateNode: state.toValue(),
       });
       return session;
     } on FirebaseException catch (error) {
@@ -271,6 +278,23 @@ class ScoreSessionService {
           }).toList(),
         );
       });
+
+  /// Renames a player column by ID so concurrent reorders keep the right name.
+  static Future<void> renamePlayer(
+    String sessionId,
+    String playerId,
+    String playerName,
+  ) => _updateState(sessionId, (ScoreSessionState state) {
+    final int playerIndex = state.playerIds.indexOf(playerId);
+    if (playerIndex < 0 || playerIndex >= state.playerNames.length) {
+      return state;
+    }
+    return ScoreSessionState(
+      playerIds: state.playerIds,
+      playerNames: [...state.playerNames]..[playerIndex] = playerName,
+      scores: state.scores,
+    );
+  });
 
   /// Moves a player column by ID so a concurrent edit cannot move another player.
   static Future<void> movePlayer(

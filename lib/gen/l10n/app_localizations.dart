@@ -541,6 +541,12 @@ abstract class AppLocalizations {
   /// **'- Aim for the lowest score.\n- Choose a card from either the Deck or Discard pile.\n- Swap the chosen card with a card in your 4x3 grid, or discard it and flip over one of your face-down cards.\n- When 3 cards of the same rank are lined up in a column they are moved to the discard pile.\n- The first player to reveal all their cards challenges others, claiming the lowest score.\n\n\nLearn more [Skyjo](https://www.geekyhobbies.com/how-to-play-skyjo-card-game-rules-and-instructions/)'**
   String get instructionsSkyjo;
 
+  /// No description provided for @invitePlayerWithQr.
+  ///
+  /// In en, this message translates to:
+  /// **'Invite a player with QR'**
+  String get invitePlayerWithQr;
+
   /// No description provided for @itsPlayersTurn.
   ///
   /// In en, this message translates to:

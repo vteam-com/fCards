@@ -246,6 +246,9 @@ class AppLocalizationsFr extends AppLocalizations {
       '- Visez le score le plus bas.\n- Choisissez une carte depuis le paquet ou la défausse.\n- Échangez la carte choisie avec une carte de votre grille 4x3, ou défaussez-la et retournez une de vos cartes cachées.\n- Quand 3 cartes de même rang sont alignées dans une colonne, elles sont déplacées vers la défausse.\n- Le premier joueur à révéler toutes ses cartes défie les autres et revendique le meilleur score.\n\n\nEn savoir plus [Skyjo](https://www.geekyhobbies.com/how-to-play-skyjo-card-game-rules-and-instructions/)';
 
   @override
+  String get invitePlayerWithQr => 'Inviter un joueur avec QR';
+
+  @override
   String itsPlayersTurn(String player) {
     return 'C\'est au tour de $player';
   }
