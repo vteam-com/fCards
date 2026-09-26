@@ -93,6 +93,7 @@
       }
     }
   },
+  "firebaseId": "Firebase ID",
   "flipOpenOneHiddenCard": "↓ Flip open one of your hidden cards ↓",
   "fullName": "Full Name",
   "gameOver": "Game Over",
@@ -111,6 +112,7 @@
   "identityJoinHint": "You have a link or table name.",
   "identitySignInWithApple": "Sign in with Apple",
   "identitySignInWithGoogle": "Sign in with Google",
+  "info": "Info",
   "instructionsCustom": "Custom rules",
   "instructionsFrenchCards9": "- Aim for the lowest score.\n- Choose a card from either the Deck or Discard pile.\n- Swap the chosen card with a card in your 3x3 grid, or discard it and flip over one of your face-down cards.\n- Three cards of the same rank in a row or column score zero.\n- The first player to reveal all nine cards challenges others, claiming the lowest score.\n- If someone else has an equal or lower score, the challenger doubles their points!\n- Players are eliminated after busting 100 points.\n\n\nLearn more [Wikipedia](https://en.wikipedia.org/wiki/Golf_(card_game))",
   "instructionsMiniPut": "- Aim for the lowest score.\n- Choose a card from either the Deck or Discard pile.\n- Swap the chosen card with a card in your 2x2 grid, or discard it and flip over one of your face-down cards.\n- Three cards of the same rank in a row or column score zero.\n- The first player to reveal all nine cards challenges others, claiming the lowest score.\n- If someone else has an equal or lower score, the challenger doubles their points!\n- Players are eliminated after busting 100 points.\n\n\nLearn more [Wikipedia](https://en.wikipedia.org/wiki/Golf_(card_game))",
@@ -180,6 +182,7 @@
   "otherTools": "Other Tools",
   "pickTableOrCreateHint": "Pick an existing table, or create a new one.",
   "playAgain": "Play Again",
+  "player": "Player",
   "playerName": "Player Initials",
   "players": "Players",
   "playerWonTimesAtTable": "{player} won {count} times at table {table}",
@@ -282,6 +285,7 @@
   },
   "thisGame": "This Game",
   "thisTableAlreadyHasPlayers": "This table already exists. Join this table or enter a different name.",
+  "typeOfOAuthUsed": "Type of OAuth used",
   "useSearchBox": "Use the search box to quickly find a table",
   "waitForYourTurnSmiley": "Wait for your turn :)",
   "waitingForMorePlayers": "Waiting for more players to join...",

@@ -67,11 +67,18 @@ class GolfScoreModel {
     _save();
   }
 
-  /// Starts a fresh score card using the current table participants.
-  void startNewGame(List<String> participants) {
-    playerNames = List<String>.from(participants);
-    scores = [];
-    addRound();
+  /// Replaces local data with a shared score-session snapshot.
+  void applySharedState({
+    required List<String> names,
+    required List<List<int>> sharedScores,
+  }) {
+    playerNames = List<String>.from(names);
+    scores = sharedScores
+        .map((List<int> round) => List<int>.from(round, growable: true))
+        .toList(growable: true);
+    if (scores.isEmpty) {
+      scores.add(List<int>.filled(playerNames.length, 0, growable: true));
+    }
     _save();
   }
 

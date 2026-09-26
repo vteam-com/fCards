@@ -74,16 +74,21 @@ void main() {
       expect(scoreModel.scores[0], equals([0, 0, 0]));
     });
 
-    test('should start a fresh score card for QR participants', () {
-      scoreModel.updateScore(0, 0, 10);
+    test('should apply a shared score snapshot without resetting values', () {
+      scoreModel.applySharedState(
+        names: ['JP', 'AB'],
+        sharedScores: [
+          [12, 7],
+          [3, 9],
+        ],
+      );
 
-      scoreModel.startNewGame(['Host', 'Guest']);
-
-      expect(scoreModel.playerNames, equals(['Host', 'Guest']));
+      expect(scoreModel.playerNames, equals(['JP', 'AB']));
       expect(
         scoreModel.scores,
         equals([
-          [0, 0],
+          [12, 7],
+          [3, 9],
         ]),
       );
     });

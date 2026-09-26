@@ -1,6 +1,7 @@
 import 'package:cards/gen/l10n/app_localizations.dart';
 import 'package:cards/models/app/constants_layout.dart';
 import 'package:cards/widgets/buttons/my_button_rectangle.dart';
+import 'package:cards/widgets/helpers/app_bottom_sheet.dart';
 import 'package:cards/widgets/helpers/input_keyboard.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -84,6 +85,11 @@ class PlayerHeader extends StatefulWidget {
     required this.onNameChanged,
     required this.onPlayerRemoved,
     this.onPlayerAdded,
+    this.participantAvatarUrl,
+    this.participantEmail,
+    this.participantFirebaseId,
+    this.participantOAuthType,
+    this.participantTitle,
     this.playerIndex,
     required this.rank,
     required this.numberOfPlayers,
@@ -102,6 +108,21 @@ class PlayerHeader extends StatefulWidget {
   /// A callback that is called when the player is removed.
   final void Function() onPlayerRemoved;
 
+  /// Account profile image URL available from the QR session.
+  final String? participantAvatarUrl;
+
+  /// Account email available from the QR session.
+  final String? participantEmail;
+
+  /// Firebase account ID available from the QR session.
+  final String? participantFirebaseId;
+
+  /// OAuth provider type available from the QR session.
+  final String? participantOAuthType;
+
+  /// Full name or email shown as the QR participant sheet title.
+  final String? participantTitle;
+
   /// The index of the player.
   final int? playerIndex;
 
@@ -113,7 +134,6 @@ class PlayerHeader extends StatefulWidget {
 
   /// The total score of the player.
   final int totalScore;
-
   @override
   State<PlayerHeader> createState() => _PlayerHeaderState();
 }
@@ -150,17 +170,33 @@ class _PlayerHeaderState extends State<PlayerHeader> {
           //
           // Name of the Player
           //
-          Text(
-            widget.playerName,
-            textAlign: TextAlign.center,
-            maxLines: 1,
-            softWrap: false,
-            overflow: TextOverflow.fade,
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: ConstLayout.textM,
+          if (widget.playerName.length >
+              PlayerHeaderConstants.playerAcronymLength)
+            SizedBox(
+              height: ConstLayout.textM,
+              width: double.infinity,
+              child: FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Text(
+                  widget.playerName,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: ConstLayout.textM,
+                  ),
+                ),
+              ),
+            )
+          else
+            Text(
+              widget.playerName,
+              textAlign: TextAlign.center,
+              maxLines: 1,
+              softWrap: false,
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: ConstLayout.textM,
+              ),
             ),
-          ),
 
           //
           // Score
@@ -322,6 +358,7 @@ class _PlayerHeaderState extends State<PlayerHeader> {
     required FocusNode focusNode,
     required AppLocalizations localizations,
     required VoidCallback onAccepted,
+    bool showLabel = true,
   }) {
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
     final TargetPlatform platform = Theme.of(context).platform;
@@ -337,11 +374,13 @@ class _PlayerHeaderState extends State<PlayerHeader> {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Padding(
-          padding: const EdgeInsets.all(ConstLayout.paddingS),
-          child: Text(localizations.playerName),
-        ),
-        const SizedBox(height: ConstLayout.sizeS),
+        if (showLabel) ...[
+          Padding(
+            padding: const EdgeInsets.all(ConstLayout.paddingS),
+            child: Text(localizations.playerName),
+          ),
+          const SizedBox(height: ConstLayout.sizeS),
+        ],
         ListenableBuilder(
           listenable: Listenable.merge([controller, focusNode]),
           builder: (_, _) {
@@ -652,112 +691,138 @@ class _PlayerHeaderState extends State<PlayerHeader> {
     final focusNode = FocusNode();
     final colorScheme = Theme.of(context).colorScheme;
     final AppLocalizations localizations = AppLocalizations.of(context);
-    final bool isSmallScreen =
-        MediaQuery.of(context).size.width < ConstLayout.breakpointPhone;
-    showDialog(
+    showAppBottomSheet<void>(
       context: context,
-      builder: (context) {
-        final editContent = Column(
-          mainAxisSize: MainAxisSize.min,
-          spacing: PlayerHeaderConstants.dialogContentSpacing,
-          children: [
-            _buildTwoCharacterPinInput(
-              context: context,
-              controller: controller,
-              focusNode: focusNode,
-              localizations: localizations,
-              onAccepted: () => _acceptPlayerAcronym(context, controller),
+      builder: (BuildContext sheetContext) => SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(ConstLayout.paddingL),
+          child: Theme(
+            data: Theme.of(context).copyWith(
+              textSelectionTheme: TextSelectionThemeData(
+                selectionColor: colorScheme.primaryContainer,
+              ),
             ),
-            _buildEditDialogActionButtons(localizations),
-          ],
-        );
-
-        final themedContent = Theme(
-          data: Theme.of(context).copyWith(
-            textSelectionTheme: TextSelectionThemeData(
-              selectionColor: colorScheme.primaryContainer,
-            ),
-          ),
-          child: editContent,
-        );
-
-        if (isSmallScreen) {
-          return Dialog.fullscreen(
-            backgroundColor: colorScheme.surface,
-            child: Scaffold(
-              resizeToAvoidBottomInset: true,
-              backgroundColor: colorScheme.surface,
-              body: SafeArea(
-                child: Padding(
-                  padding: const EdgeInsets.all(ConstLayout.paddingL),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    spacing: PlayerHeaderConstants.dialogContentSpacing,
-                    children: [
-                      themedContent,
-                      Align(
-                        alignment: Alignment.center,
-                        child: ConstrainedBox(
-                          constraints: const BoxConstraints(
-                            maxWidth:
-                                PlayerHeaderConstants.textActionButtonMaxWidth,
-                          ),
-                          child: MyButtonRectangle(
-                            width: double.infinity,
-                            height: PlayerHeaderConstants.inputHeight,
-                            onTap: () =>
-                                _acceptPlayerAcronym(context, controller),
-                            child: Text(
-                              localizations.done,
-                              style: const TextStyle(
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              spacing: PlayerHeaderConstants.dialogContentSpacing,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      child: FittedBox(
+                        alignment: Alignment.centerLeft,
+                        fit: BoxFit.scaleDown,
+                        child: Text(
+                          widget.participantTitle ?? localizations.player,
+                          style: TextStyle(
+                            fontSize: ConstLayout.textL,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        if (widget.participantFirebaseId != null)
+                          IconButton(
+                            tooltip: localizations.info,
+                            icon: const Icon(Icons.info_outline),
+                            onPressed: () => _showParticipantInfo(
+                              sheetContext,
+                              widget.participantAvatarUrl ?? '',
+                              widget.participantEmail ?? '',
+                              widget.participantFirebaseId!,
+                              widget.participantOAuthType ?? '',
+                            ),
+                          ),
+                        IconButton(
+                          tooltip: localizations.done,
+                          icon: const Icon(Icons.close),
+                          onPressed: () =>
+                              _acceptPlayerAcronym(sheetContext, controller),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
-              ),
-            ),
-          );
-        }
-
-        return Theme(
-          data: Theme.of(context).copyWith(
-            textSelectionTheme: TextSelectionThemeData(
-              selectionColor: colorScheme.primaryContainer,
+                _buildTwoCharacterPinInput(
+                  context: sheetContext,
+                  controller: controller,
+                  focusNode: focusNode,
+                  localizations: localizations,
+                  onAccepted: () =>
+                      _acceptPlayerAcronym(sheetContext, controller),
+                  showLabel: false,
+                ),
+                _buildEditDialogActionButtons(localizations),
+              ],
             ),
           ),
-          child: AlertDialog(
-            constraints: const BoxConstraints(
-              maxWidth: PlayerHeaderConstants.editDialogMaxWidth,
-            ),
-            backgroundColor: colorScheme.surface,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(
-                PlayerHeaderConstants.dialogBorderRadius,
-              ),
-              side: BorderSide(
-                color: colorScheme.primary,
-                width: PlayerHeaderConstants.dialogBorderWidth,
-              ),
-            ),
-            content: SingleChildScrollView(child: editContent),
-          ),
-        );
-      },
+        ),
+      ),
     ).then((_) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         controller.dispose();
         focusNode.dispose();
       });
     });
-
-    // On open, activate slot 1 so users can type two initials immediately.
     _setActivePinSlot(controller, focusNode, 0);
+    return;
+  }
+
+  /// Shows account details for a QR-session participant on demand.
+  void _showParticipantInfo(
+    BuildContext context,
+    String avatarUrl,
+    String email,
+    String firebaseId,
+    String oAuthType,
+  ) {
+    final AppLocalizations localizations = AppLocalizations.of(context);
+    showAppBottomSheet<void>(
+      context: context,
+      builder: (BuildContext infoSheetContext) => Padding(
+        padding: const EdgeInsets.all(ConstLayout.paddingL),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          spacing: ConstLayout.sizeM,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  localizations.info,
+                  style: TextStyle(
+                    fontSize: ConstLayout.textL,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                IconButton(
+                  tooltip: localizations.done,
+                  icon: const Icon(Icons.close),
+                  onPressed: () => Navigator.of(infoSheetContext).pop(),
+                ),
+              ],
+            ),
+            CircleAvatar(
+              radius: ConstLayout.iconL,
+              foregroundImage: avatarUrl.isNotEmpty
+                  ? NetworkImage(avatarUrl)
+                  : null,
+              child: Text(widget.playerName),
+            ),
+            Text(localizations.email),
+            SelectableText(email),
+            Text(localizations.firebaseId),
+            SelectableText(firebaseId),
+            Text(localizations.typeOfOAuthUsed),
+            Text(oAuthType),
+          ],
+        ),
+      ),
+    );
   }
 
   /// Shows a confirmation dialog before removing the current player.
