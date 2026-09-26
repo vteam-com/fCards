@@ -52,10 +52,33 @@ Future<T?> showAppBottomSheet<T>({
                   color: AppTheme.panelInputZone.withAlpha(ConstLayout.alphaL),
                   borderRadius: borderRadius,
                 ),
-                child: builder(sheetContext),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    _buildGrabber(colorScheme),
+                    Flexible(child: builder(sheetContext)),
+                  ],
+                ),
               ),
             ),
           ),
+        ),
+      ),
+    ),
+  );
+}
+
+/// Builds the iOS-style handle that hints the sheet can be swiped away.
+Widget _buildGrabber(ColorScheme colorScheme) {
+  return Padding(
+    padding: const EdgeInsets.only(top: ConstLayout.paddingS),
+    child: Container(
+      width: ConstLayout.sizeXL,
+      height: ConstLayout.sizeS,
+      decoration: BoxDecoration(
+        color: colorScheme.onSurface.withAlpha(ConstLayout.alphaM),
+        borderRadius: const BorderRadius.all(
+          Radius.circular(ConstLayout.radiusXS),
         ),
       ),
     ),

@@ -111,14 +111,14 @@ class PlayerHeader extends StatefulWidget {
   /// The total number of players.
   final int numberOfPlayers;
 
+  /// Called when the header is long-pressed, even while editing is disabled.
+  final VoidCallback? onLongPress;
+
   /// A callback that is called when the player's name is changed.
   final void Function(String) onNameChanged;
 
   /// A callback that is called when a new player should be added.
   final void Function()? onPlayerAdded;
-
-  /// Called when the header is long-pressed, even while editing is disabled.
-  final VoidCallback? onLongPress;
 
   /// A callback that is called when the player is removed.
   final void Function() onPlayerRemoved;
