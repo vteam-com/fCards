@@ -41,6 +41,7 @@ class AvatarProfileDialog extends StatefulWidget {
     required this.onSignInTap,
     required this.onSignOutTap,
     required this.onEditInitialsTap,
+    this.onCorrectionsTap,
     super.key,
   });
   static const double avatarRadius = 55.0;
@@ -50,6 +51,9 @@ class AvatarProfileDialog extends StatefulWidget {
 
   /// Guest initials (for anonymous users).
   final String? guestInitials;
+
+  /// Opens the corrections reviewer screen; the entry is hidden when null.
+  final VoidCallback? onCorrectionsTap;
 
   /// Callback when edit initials button is tapped.
   final VoidCallback onEditInitialsTap;
@@ -138,34 +142,30 @@ class _AvatarProfileDialogState extends State<AvatarProfileDialog> {
 
                 SizedBox(height: _AvatarProfileDialogConstants.contentSpacing),
 
+                // Admin-only tools
+                if (widget.onCorrectionsTap != null)
+                  MyButtonRectangle.secondary(
+                    width: double.infinity,
+                    height: _AvatarProfileDialogConstants.buttonHeight,
+                    onTap: widget.onCorrectionsTap,
+                    child: _buildButtonLabel(
+                      colorScheme,
+                      icon: Icons.fact_check,
+                      label: localizations.corrections,
+                    ),
+                  ),
+
                 // Sign in/out button
                 MyButtonRectangle.secondary(
                   width: double.infinity,
                   height: _AvatarProfileDialogConstants.buttonHeight,
                   onTap: isSignedIn ? widget.onSignOutTap : widget.onSignInTap,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    spacing: ConstLayout.sizeS,
-                    children: [
-                      Icon(
-                        isSignedIn ? Icons.logout : Icons.login,
-                        color: colorScheme.onPrimaryContainer,
-                        size: ConstLayout.iconXS,
-                      ),
-                      Flexible(
-                        child: Text(
-                          isSignedIn
-                              ? localizations.signOut
-                              : localizations.signIn,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: ConstLayout.textS,
-                            fontWeight: FontWeight.bold,
-                            color: colorScheme.onPrimaryContainer,
-                          ),
-                        ),
-                      ),
-                    ],
+                  child: _buildButtonLabel(
+                    colorScheme,
+                    icon: isSignedIn ? Icons.logout : Icons.login,
+                    label: isSignedIn
+                        ? localizations.signOut
+                        : localizations.signIn,
                   ),
                 ),
 
@@ -177,6 +177,36 @@ class _AvatarProfileDialogState extends State<AvatarProfileDialog> {
           ),
         ],
       ),
+    );
+  }
+
+  /// Builds the icon and label row shown inside the dialog action buttons.
+  Widget _buildButtonLabel(
+    ColorScheme colorScheme, {
+    required IconData icon,
+    required String label,
+  }) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      spacing: ConstLayout.sizeS,
+      children: [
+        Icon(
+          icon,
+          color: colorScheme.onPrimaryContainer,
+          size: ConstLayout.iconXS,
+        ),
+        Flexible(
+          child: Text(
+            label,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: ConstLayout.textS,
+              fontWeight: FontWeight.bold,
+              color: colorScheme.onPrimaryContainer,
+            ),
+          ),
+        ),
+      ],
     );
   }
 
