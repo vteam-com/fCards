@@ -4,6 +4,7 @@ import 'package:cards/models/game/backend_model.dart';
 import 'package:cards/models/game/game_history.dart';
 import 'package:cards/models/game/game_model.dart';
 import 'package:cards/models/game/game_styles.dart';
+import 'package:cards/models/game/leaderboard_service.dart';
 import 'package:cards/screens/game/start_screen_table_name_check_result.dart';
 import 'package:cards/screens/game/table_name_flow_helpers.dart';
 import 'package:cards/utils/logger.dart';
@@ -112,7 +113,9 @@ class StartScreenGameHandler {
     }
 
     try {
-      final List<GameHistory> history = await getGameHistory(roomName);
+      final List<GameHistory> history = await LeaderboardService.roomWinHistory(
+        roomName,
+      );
       logger.d(history.join('|'));
 
       final config = getGameStyleConfig(gameStyle, playerNames.length);

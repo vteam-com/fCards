@@ -3,6 +3,7 @@ import 'package:cards/models/app/app_theme.dart';
 import 'package:cards/models/app/auth_service.dart';
 import 'package:cards/models/app/constants_layout.dart';
 import 'package:cards/models/app/locale_controller.dart';
+import 'package:cards/models/game/leaderboard_service.dart';
 import 'package:cards/widgets/buttons/my_button_rectangle.dart';
 import 'package:cards/widgets/helpers/player_avatar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -20,6 +21,7 @@ class _AvatarProfileDialogConstants {
   static const double languageSegmentMinWidth = 55.0;
   static const int infoValueMaxLines = 2;
   static const int initialsSourcePartCount = 2;
+  static const int percentScale = 100;
 }
 
 /// A comprehensive profile dialog showing user information and editable settings.
@@ -29,6 +31,7 @@ class _AvatarProfileDialogConstants {
 /// - Full name (if available)
 /// - Email (if signed in)
 /// - Editable initials
+/// - Leaderboard stats and shortcut
 /// - Language selection
 /// - Sign in/out button
 class AvatarProfileDialog extends StatefulWidget {
@@ -43,6 +46,8 @@ class AvatarProfileDialog extends StatefulWidget {
     required this.onSignOutTap,
     required this.onEditInitialsTap,
     this.onCorrectionsTap,
+    this.onLeaderboardTap,
+    this.standing,
     super.key,
   });
   static const double avatarRadius = 55.0;
@@ -62,12 +67,18 @@ class AvatarProfileDialog extends StatefulWidget {
   /// Callback when initials are changed.
   final ValueChanged<String> onInitialsChanged;
 
+  /// Opens the leaderboard screen; the section is hidden when null.
+  final VoidCallback? onLeaderboardTap;
+
   /// Callback when locale is changed.
   final ValueChanged<String> onLocaleChanged;
   final VoidCallback onSignInTap;
 
   /// Callback when sign out is tapped.
   final VoidCallback onSignOutTap;
+
+  /// The player's global leaderboard totals, loaded by the caller.
+  final Future<LeaderboardStanding?>? standing;
 
   /// The Firebase user object.
   final User user;
@@ -137,6 +148,10 @@ class _AvatarProfileDialogState extends State<AvatarProfileDialog> {
                 ),
 
                 SizedBox(height: _AvatarProfileDialogConstants.contentSpacing),
+
+                // Leaderboard stats
+                if (widget.onLeaderboardTap != null)
+                  _buildStatsSection(colorScheme, localizations),
 
                 // Language selection
                 _buildLanguageSection(colorScheme, localizations),
@@ -431,6 +446,119 @@ class _AvatarProfileDialogState extends State<AvatarProfileDialog> {
 
               return Colors.transparent;
             }),
+          ),
+        ),
+      ],
+    );
+  }
+
+  /// Builds the player's global stats with a shortcut to the leaderboard.
+  Widget _buildStatsSection(
+    ColorScheme colorScheme,
+    AppLocalizations localizations,
+  ) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      spacing: ConstLayout.sizeM,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          spacing: ConstLayout.sizeS,
+          children: [
+            Icon(
+              Icons.emoji_events,
+              color: colorScheme.secondary,
+              size: ConstLayout.iconXS,
+            ),
+            Text(
+              localizations.leaderboardMyStats,
+              style: TextStyle(
+                fontSize: ConstLayout.textS,
+                fontWeight: FontWeight.bold,
+                color: colorScheme.secondary,
+              ),
+            ),
+          ],
+        ),
+        FutureBuilder<LeaderboardStanding?>(
+          future: widget.standing,
+          builder: (BuildContext _, AsyncSnapshot<LeaderboardStanding?> snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const CircularProgressIndicator();
+            }
+            final LeaderboardStanding? standing = snapshot.data;
+            if (standing == null || standing.entry.gamesPlayed == 0) {
+              return Text(
+                localizations.leaderboardNoStats,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: ConstLayout.textS,
+                  color: colorScheme.onSurface,
+                ),
+              );
+            }
+            final int? rank = standing.rank;
+            return Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              spacing: ConstLayout.sizeM,
+              children: [
+                Column(
+                  children: [
+                    Text(
+                      '${standing.entry.wins}',
+                      style: TextStyle(
+                        fontSize: ConstLayout.textL,
+                        fontWeight: FontWeight.bold,
+                        color: colorScheme.primary,
+                      ),
+                    ),
+                    Text(
+                      localizations.leaderboardWins,
+                      style: TextStyle(
+                        fontSize: ConstLayout.textS,
+                        color: colorScheme.onSurface,
+                      ),
+                    ),
+                  ],
+                ),
+                Flexible(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    spacing: ConstLayout.sizeXS,
+                    children: [
+                      if (rank != null)
+                        Text(
+                          localizations.leaderboardRank(rank),
+                          style: TextStyle(
+                            fontSize: ConstLayout.textM,
+                            fontWeight: FontWeight.bold,
+                            color: colorScheme.onSurface,
+                          ),
+                        ),
+                      Text(
+                        '${localizations.leaderboardGamesPlayed(standing.entry.gamesPlayed)}'
+                        ' · '
+                        '${localizations.leaderboardWinRate((standing.entry.winRate * _AvatarProfileDialogConstants.percentScale).round())}',
+                        style: TextStyle(
+                          fontSize: ConstLayout.textS,
+                          color: colorScheme.onSurface,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            );
+          },
+        ),
+        MyButtonRectangle.secondary(
+          width: double.infinity,
+          height: _AvatarProfileDialogConstants.buttonHeight,
+          onTap: widget.onLeaderboardTap,
+          child: _buildButtonLabel(
+            colorScheme,
+            icon: Icons.leaderboard,
+            label: localizations.leaderboard,
           ),
         ),
       ],

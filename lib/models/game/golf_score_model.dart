@@ -4,6 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 const String _prefsKeyPlayerNames = 'playerNames';
 const String _prefsKeyScores = 'scores';
+const int _minimumPlayersToClose = 2;
 
 // ignore: sort_constructors_first
 /// Represents the score data for a 9 Cards Golf game.
@@ -48,6 +49,30 @@ class GolfScoreModel {
       }
     }
     return total;
+  }
+
+  /// Whether the game can be closed with a result: at least two players and
+  /// at least one score entered.
+  bool get canClose =>
+      playerNames.length >= _minimumPlayersToClose &&
+      scores.any((List<int> round) => round.any((int score) => score != 0));
+
+  /// Indexes of the players tied for the lowest total, in seat order.
+  ///
+  /// More than one index means the host must pick the single winner.
+  List<int> leaderIndexes() {
+    if (playerNames.isEmpty) {
+      return <int>[];
+    }
+    final List<int> totals = List<int>.generate(
+      playerNames.length,
+      getPlayerTotalScore,
+    );
+    final int lowest = totals.reduce((int a, int b) => a < b ? a : b);
+    return <int>[
+      for (int index = 0; index < totals.length; index++)
+        if (totals[index] == lowest) index,
+    ];
   }
 
   /// Updates the score for a specific player in a specific round.

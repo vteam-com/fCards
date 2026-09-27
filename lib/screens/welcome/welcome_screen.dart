@@ -297,6 +297,14 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           subLabel: localizations.playInPersonHint,
           onTap: () => _showStep(_WelcomeStep.playInPerson),
         ),
+        SizedBox(height: ConstLayout.sizeM),
+        MyButtonRectangle.menu(
+          key: const Key('welcome.leaderboard'),
+          label: localizations.leaderboard,
+          icon: Icons.emoji_events,
+          subLabel: localizations.leaderboardHint,
+          onTap: () => Navigator.pushNamed(context, '/leaderboard'),
+        ),
         SizedBox(height: ConstLayout.sizeL),
         Text(
           localizations.playModeHint,

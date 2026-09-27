@@ -175,6 +175,36 @@ abstract class AppLocalizations {
   /// **'Clear scores'**
   String get clearScores;
 
+  /// No description provided for @closeGame.
+  ///
+  /// In en, this message translates to:
+  /// **'Close Game'**
+  String get closeGame;
+
+  /// No description provided for @closeGameHint.
+  ///
+  /// In en, this message translates to:
+  /// **'The winner is saved to the leaderboard and a new game starts.'**
+  String get closeGameHint;
+
+  /// No description provided for @closeGameNeedsScores.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter scores for at least 2 players before closing the game.'**
+  String get closeGameNeedsScores;
+
+  /// No description provided for @closeGamePickWinner.
+  ///
+  /// In en, this message translates to:
+  /// **'Tied for the lowest score. Tap the winner.'**
+  String get closeGamePickWinner;
+
+  /// No description provided for @closeGameTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Close this game?'**
+  String get closeGameTitle;
+
   /// No description provided for @columnsByRows.
   ///
   /// In en, this message translates to:
@@ -421,6 +451,18 @@ abstract class AppLocalizations {
   /// **'Full Name'**
   String get fullName;
 
+  /// No description provided for @gameClosed.
+  ///
+  /// In en, this message translates to:
+  /// **'Game Closed'**
+  String get gameClosed;
+
+  /// No description provided for @gameClosedWinner.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} wins!'**
+  String gameClosedWinner(String name);
+
   /// No description provided for @gameOver.
   ///
   /// In en, this message translates to:
@@ -649,6 +691,120 @@ abstract class AppLocalizations {
   /// **'LAST'**
   String get last;
 
+  /// No description provided for @leaderboard.
+  ///
+  /// In en, this message translates to:
+  /// **'Leaderboard'**
+  String get leaderboard;
+
+  /// No description provided for @leaderboardAllGames.
+  ///
+  /// In en, this message translates to:
+  /// **'All Games'**
+  String get leaderboardAllGames;
+
+  /// No description provided for @leaderboardAverage.
+  ///
+  /// In en, this message translates to:
+  /// **'Avg {score}'**
+  String leaderboardAverage(String score);
+
+  /// No description provided for @leaderboardBest.
+  ///
+  /// In en, this message translates to:
+  /// **'Best {score}'**
+  String leaderboardBest(int score);
+
+  /// No description provided for @leaderboardChooseTable.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a Table'**
+  String get leaderboardChooseTable;
+
+  /// No description provided for @leaderboardCustom.
+  ///
+  /// In en, this message translates to:
+  /// **'Custom'**
+  String get leaderboardCustom;
+
+  /// No description provided for @leaderboardEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No games recorded yet. Finish a game to get on the board.'**
+  String get leaderboardEmpty;
+
+  /// No description provided for @leaderboardGamesPlayed.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} played'**
+  String leaderboardGamesPlayed(int count);
+
+  /// No description provided for @leaderboardGlobal.
+  ///
+  /// In en, this message translates to:
+  /// **'Global'**
+  String get leaderboardGlobal;
+
+  /// No description provided for @leaderboardHint.
+  ///
+  /// In en, this message translates to:
+  /// **'See who wins the most'**
+  String get leaderboardHint;
+
+  /// No description provided for @leaderboardMyStats.
+  ///
+  /// In en, this message translates to:
+  /// **'My Stats'**
+  String get leaderboardMyStats;
+
+  /// No description provided for @leaderboardNoStats.
+  ///
+  /// In en, this message translates to:
+  /// **'Finish a game to start your stats.'**
+  String get leaderboardNoStats;
+
+  /// No description provided for @leaderboardNoTables.
+  ///
+  /// In en, this message translates to:
+  /// **'Your tables show up here after you finish a game.'**
+  String get leaderboardNoTables;
+
+  /// No description provided for @leaderboardRank.
+  ///
+  /// In en, this message translates to:
+  /// **'Rank #{rank}'**
+  String leaderboardRank(int rank);
+
+  /// No description provided for @leaderboardScoreKeeper.
+  ///
+  /// In en, this message translates to:
+  /// **'Score Keeper'**
+  String get leaderboardScoreKeeper;
+
+  /// No description provided for @leaderboardTables.
+  ///
+  /// In en, this message translates to:
+  /// **'My Tables'**
+  String get leaderboardTables;
+
+  /// No description provided for @leaderboardWinRate.
+  ///
+  /// In en, this message translates to:
+  /// **'{percent}% won'**
+  String leaderboardWinRate(int percent);
+
+  /// No description provided for @leaderboardWins.
+  ///
+  /// In en, this message translates to:
+  /// **'Wins'**
+  String get leaderboardWins;
+
+  /// No description provided for @localScoreSheet.
+  ///
+  /// In en, this message translates to:
+  /// **'This Device'**
+  String get localScoreSheet;
+
   /// DO NOT TRANSLATE.
   ///
   /// In en, this message translates to:
@@ -846,6 +1002,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{count} Rounds'**
   String rounds(int count);
+
+  /// No description provided for @saveResultAndNewGame.
+  ///
+  /// In en, this message translates to:
+  /// **'Close Game & Save Result'**
+  String get saveResultAndNewGame;
 
   /// No description provided for @scanCameraError.
   ///

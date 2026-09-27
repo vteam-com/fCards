@@ -94,19 +94,6 @@ void main() {
       setPlayersInRoom('TEST_ROOM', {'BOB', 'SUE', 'JOHN', 'MARY'});
     });
 
-    test('game history', () async {
-      isRunningOffLine = true;
-      // this does nothing in offline mode, but we still want to test that the function exist
-      final history = await getGameHistory('TEST_ROOM');
-      expect(history, []);
-    });
-
-    test('game recordPlayerWin', () async {
-      isRunningOffLine = true;
-      // this does nothing in offline mode, but we still want to test that the function exist
-      await recordPlayerWin('TEST_ROOM', DateTime.now(), 'BOB');
-    });
-
     test('game getAllRooms', () async {
       isRunningOffLine = true;
       // this does nothing in offline mode, but we still want to test that the function exist

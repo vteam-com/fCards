@@ -9,6 +9,7 @@ import 'package:cards/models/game/game_constants.dart';
 import 'package:cards/models/game/game_history.dart';
 import 'package:cards/models/game/game_model.dart';
 import 'package:cards/models/game/game_styles.dart';
+import 'package:cards/models/game/leaderboard_service.dart';
 import 'package:cards/models/version.dart';
 import 'package:cards/screens/game/game_screen.dart';
 import 'package:cards/utils/logger.dart';
@@ -641,7 +642,9 @@ class JoinGameScreenState extends State<JoinGameScreen> {
 
   /// Builds a new [GameModel] from selected room settings and navigates.
   Future<void> _startGame(BuildContext context) async {
-    final List<GameHistory> history = await getGameHistory(_selectedRoom);
+    final List<GameHistory> history = await LeaderboardService.roomWinHistory(
+      _selectedRoom,
+    );
 
     final config = getGameStyleConfig(_selectedGameStyle, _playerNames.length);
 

@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:cards/models/app/auth_service.dart';
 import 'package:cards/models/game/backend_model.dart';
 import 'package:cards/models/game/score_session.dart';
+import 'package:cards/models/game/score_session_closure.dart';
 import 'package:cards/models/game/score_session_participant.dart';
 import 'package:cards/models/game/score_session_state.dart';
 import 'package:cards/utils/logger.dart';
@@ -19,6 +20,7 @@ const String _fullNameNode = 'full_name';
 const String _avatarUrlNode = 'avatar_url';
 const String _oAuthTypeNode = 'oauth_type';
 const String _scoreStateNode = 'score_state';
+const String _closedGameNode = 'closed_game';
 const String _defaultParticipantName = 'HOST';
 const String _scoreInviteParameter = 'scoreSession';
 const String _scoreTableNamePrefix = 'SCORE-';
@@ -208,6 +210,33 @@ class ScoreSessionService {
       (DatabaseEvent event) =>
           ScoreSessionState.fromValue(event.snapshot.value),
     );
+  }
+
+  /// Announces to every participant that the host closed a game.
+  static Future<void> publishClosure(
+    String sessionId,
+    ScoreSessionClosure closure,
+  ) async {
+    try {
+      await FirebaseDatabase.instance
+          .ref('$_scoreSessionsNode/$sessionId/$_closedGameNode')
+          .set(closure.toValue());
+    } on FirebaseException catch (error) {
+      logger.w('publishClosure failed: $error');
+    } catch (error) {
+      logger.w('publishClosure failed: $error');
+    }
+  }
+
+  /// Streams the latest closed game of [sessionId], or null before the first.
+  static Stream<ScoreSessionClosure?> closures(String sessionId) {
+    return FirebaseDatabase.instance
+        .ref('$_scoreSessionsNode/$sessionId/$_closedGameNode')
+        .onValue
+        .map(
+          (DatabaseEvent event) =>
+              ScoreSessionClosure.fromValue(event.snapshot.value),
+        );
   }
 
   /// Updates one score cell without replacing unrelated concurrent edits.

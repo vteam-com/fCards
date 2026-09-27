@@ -4,15 +4,20 @@ import 'dart:async';
 
 import 'package:cards/gen/l10n/app_localizations.dart';
 import 'package:cards/models/app/app_theme.dart';
+import 'package:cards/models/app/auth_service.dart';
 import 'package:cards/models/app/constants_layout.dart';
 import 'package:cards/models/app/identity_service.dart';
 import 'package:cards/models/game/game_constants.dart';
+import 'package:cards/models/game/game_result.dart';
 import 'package:cards/models/game/golf_score_model.dart';
+import 'package:cards/models/game/leaderboard_service.dart';
 import 'package:cards/models/game/score_session.dart';
+import 'package:cards/models/game/score_session_closure.dart';
 import 'package:cards/models/game/score_session_participant.dart';
 import 'package:cards/models/game/score_session_service.dart';
 import 'package:cards/models/game/score_session_state.dart';
 import 'package:cards/screens/game/card_scan_screen.dart';
+import 'package:cards/screens/keepscore/close_game_sheet.dart';
 import 'package:cards/widgets/buttons/my_button_rectangle.dart';
 import 'package:cards/widgets/buttons/my_button_round.dart';
 import 'package:cards/widgets/helpers/app_bottom_sheet.dart';
@@ -25,9 +30,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
-enum _NewGameAction { clearScores, startWithQr }
+enum _NewGameAction { saveResult, clearScores, startWithQr }
 
 const String _manualScorePlayerIdPrefix = 'manual';
+const String _localScoreTablePrefix = 'local_';
 
 /// A screen for keeping score of 9 Cards Golf games.
 class GolfScoreScreen extends StatefulWidget {
@@ -58,6 +64,11 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
   StreamSubscription<List<ScoreSessionParticipant>>?
   _scoreSessionParticipantsSubscription;
   StreamSubscription<ScoreSessionState>? _scoreSessionStateSubscription;
+  StreamSubscription<ScoreSessionClosure?>? _scoreSessionClosureSubscription;
+
+  /// Closure already shown (or present when joining), so it is not re-shown.
+  String? _announcedClosureId;
+  bool _closureStreamPrimed = false;
   final double columnGap = ConstLayout.sizeS;
   final double columnWidth = ConstLayout.golfColumnWidth;
   @override
@@ -83,6 +94,7 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
   void dispose() {
     _scoreSessionParticipantsSubscription?.cancel();
     _scoreSessionStateSubscription?.cancel();
+    _scoreSessionClosureSubscription?.cancel();
     _keyboardFocusNode.dispose();
     _scrollController.dispose();
     super.dispose();
@@ -170,6 +182,13 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
               textAlign: TextAlign.center,
             ),
             Text(localizations.confirmNewGame, textAlign: TextAlign.center),
+            if (model.playerNames.isNotEmpty)
+              MyButtonRectangle.menu(
+                label: localizations.saveResultAndNewGame,
+                icon: Icons.emoji_events,
+                onTap: () =>
+                    Navigator.of(sheetContext).pop(_NewGameAction.saveResult),
+              ),
             MyButtonRectangle.menu(
               label: localizations.clearScores,
               icon: Icons.clear,
@@ -191,10 +210,13 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
       return;
     }
 
-    if (action == _NewGameAction.clearScores) {
-      _clearScores(model);
-    } else {
-      await _startNewGameWithQr(model);
+    switch (action) {
+      case _NewGameAction.saveResult:
+        await _confirmAndCloseGame(model);
+      case _NewGameAction.clearScores:
+        _clearScores(model);
+      case _NewGameAction.startWithQr:
+        await _startNewGameWithQr(model);
     }
   }
 
@@ -980,6 +1002,95 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
     );
   }
 
+  /// Confirms the closed game's single winner, saves it to the leaderboards,
+  /// tells everyone at the table, then starts a new game.
+  ///
+  /// Shared sheets credit every joined account; a local sheet is recorded
+  /// under the host's own table so it still shows on their table board.
+  Future<void> _confirmAndCloseGame(GolfScoreModel model) async {
+    final AppLocalizations localizations = AppLocalizations.of(context);
+    if (!model.canClose) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(localizations.closeGameNeedsScores)),
+      );
+      return;
+    }
+    final List<String> names = List<String>.from(model.playerNames);
+    final List<int> totals = List<int>.generate(
+      names.length,
+      model.getPlayerTotalScore,
+    );
+    final int? winnerIndex = await showCloseGameSheet(
+      context: context,
+      names: names,
+      totals: totals,
+      leaders: model.leaderIndexes(),
+    );
+    if (!mounted || winnerIndex == null) {
+      return;
+    }
+
+    final String? recorderUid = AuthService.currentUser?.uid;
+    final ScoreSession? session = _activeScoreSession;
+    final String tableKey = session != null
+        ? session.id
+        : recorderUid != null
+        ? '$_localScoreTablePrefix$recorderUid'
+        : '';
+    final DateTime endedAt = DateTime.now();
+    final String gameId = '${tableKey}_${endedAt.millisecondsSinceEpoch}';
+    if (tableKey.isNotEmpty) {
+      final List<String> uids = session == null
+          ? const <String>[]
+          : List<String>.generate(names.length, (int index) {
+              final String playerId = index < _scoreSessionPlayerIds.length
+                  ? _scoreSessionPlayerIds[index]
+                  : '';
+              return playerId.startsWith(_manualScorePlayerIdPrefix)
+                  ? ''
+                  : playerId;
+            });
+      final GameResult result = GameResult.fromScores(
+        id: gameId,
+        tableKey: tableKey,
+        tableName: session?.tableName ?? localizations.localScoreSheet,
+        style: scoreKeeperStyleKey,
+        endedAt: endedAt,
+        names: names,
+        scores: totals,
+        uids: uids,
+        winnerIndex: winnerIndex,
+      );
+      unawaited(
+        LeaderboardService.recordResult(
+          result,
+          avatarUrls: <String, String>{
+            for (final ScoreSessionParticipant participant
+                in _scoreSessionParticipants)
+              if (participant.avatarUrl.isNotEmpty)
+                participant.firebaseId: participant.avatarUrl,
+          },
+          recorderUid: recorderUid,
+        ),
+      );
+    }
+    if (session != null) {
+      _announcedClosureId = gameId;
+      unawaited(
+        ScoreSessionService.publishClosure(
+          session.id,
+          ScoreSessionClosure(
+            gameId: gameId,
+            winnerName: names[winnerIndex],
+            endedAt: endedAt,
+          ),
+        ),
+      );
+    }
+    _clearScores(model);
+    showGameClosedDialog(context, names[winnerIndex]);
+  }
+
   void _clearScores(GolfScoreModel model) {
     setState(() {
       model.clearScores();
@@ -1081,6 +1192,11 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
   void _watchScoreSession(ScoreSession session, GolfScoreModel model) {
     _scoreSessionParticipantsSubscription?.cancel();
     _scoreSessionStateSubscription?.cancel();
+    _scoreSessionClosureSubscription?.cancel();
+    _closureStreamPrimed = false;
+    _scoreSessionClosureSubscription = ScoreSessionService.closures(
+      session.id,
+    ).listen(_onScoreSessionClosure);
     setState(() {
       _activeScoreSession = session;
       _scoreSessionParticipants.clear();
@@ -1123,6 +1239,20 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
             }
           });
         });
+  }
+
+  /// Shows another participant's closed game once; the closure already
+  /// present when joining is only remembered.
+  void _onScoreSessionClosure(ScoreSessionClosure? closure) {
+    final bool primed = _closureStreamPrimed;
+    _closureStreamPrimed = true;
+    if (closure == null || closure.gameId == _announcedClosureId) {
+      return;
+    }
+    _announcedClosureId = closure.gameId;
+    if (primed && mounted) {
+      showGameClosedDialog(context, closure.winnerName);
+    }
   }
 
   ScoreSessionParticipant? _participantAt(int playerIndex) {
