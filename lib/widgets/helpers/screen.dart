@@ -15,6 +15,7 @@ import 'package:cards/widgets/helpers/app_bottom_sheet.dart';
 import 'package:cards/widgets/helpers/avatar_profile_dialog.dart';
 import 'package:cards/widgets/helpers/google_mark_icon.dart';
 import 'package:cards/widgets/helpers/initials_dialog.dart';
+import 'package:cards/widgets/helpers/player_avatar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
@@ -347,59 +348,33 @@ class _ScreenState extends State<Screen> with SingleTickerProviderStateMixin {
 
   /// Builds an avatar for authenticated users with guest and fallback handling.
   Widget _buildAvatar(User user) {
-    if (user.isAnonymous) {
-      final String? initials =
-          (_guestInitials != null && _guestInitials!.isNotEmpty)
-          ? _guestInitials
-          : null;
-      return GestureDetector(
-        onTap: () => _showAccountMenu(user),
-        child: CircleAvatar(
-          radius: ConstLayout.radiusXL,
-          backgroundColor: initials != null
-              ? Theme.of(context).colorScheme.primary
-              : Theme.of(context).colorScheme.surface,
-          foregroundColor: initials != null
-              ? Theme.of(context).colorScheme.onPrimary
-              : Theme.of(context).colorScheme.onSurface,
-          child: initials != null
-              ? Text(initials)
-              : const Icon(Icons.person_outline),
-        ),
-      );
-    }
-
-    final String fallbackInitials = Screen.avatarFallbackInitials(
-      displayName: user.displayName,
-      email: user.email,
-    );
-    final String displayInitials =
+    final ColorScheme colorScheme = Theme.of(context).colorScheme;
+    final String? guestInitials =
         (_guestInitials != null && _guestInitials!.isNotEmpty)
-        ? _guestInitials!
-        : fallbackInitials;
-
-    final photoUrl = user.photoURL;
-    if (photoUrl != null && photoUrl.isNotEmpty) {
-      return GestureDetector(
-        onTap: () => _showAccountMenu(user),
-        child: CircleAvatar(
-          radius: ConstLayout.radiusXL,
-          foregroundImage: NetworkImage(photoUrl),
-          onForegroundImageError: (_, _) {},
-          backgroundColor: Theme.of(context).colorScheme.primary,
-          foregroundColor: Theme.of(context).colorScheme.onPrimary,
-          child: Text(displayInitials),
-        ),
-      );
-    }
+        ? _guestInitials
+        : null;
+    final String? initials = user.isAnonymous
+        ? guestInitials
+        : guestInitials ??
+              Screen.avatarFallbackInitials(
+                displayName: user.displayName,
+                email: user.email,
+              );
+    final bool hasInitials = initials != null;
 
     return GestureDetector(
       onTap: () => _showAccountMenu(user),
-      child: CircleAvatar(
-        radius: ConstLayout.radiusXL,
-        backgroundColor: Theme.of(context).colorScheme.primary,
-        foregroundColor: Theme.of(context).colorScheme.onPrimary,
-        child: Text(displayInitials),
+      child: PlayerAvatar(
+        radius: ConstLayout.radiusL,
+        photoUrl: user.isAnonymous ? null : user.photoURL,
+        initials: initials,
+        fallbackIcon: Icons.person_outline,
+        backgroundColor: hasInitials
+            ? colorScheme.primary
+            : colorScheme.surface,
+        foregroundColor: hasInitials
+            ? colorScheme.onPrimary
+            : colorScheme.onSurface,
       ),
     );
   }
