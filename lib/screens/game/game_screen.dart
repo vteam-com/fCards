@@ -160,7 +160,7 @@ class GameScreenState extends State<GameScreen> {
         localizations.itsPlayersTurn,
         localizations.finalRoundYouHaveToBeat,
       ),
-      rightText: widget.gameModel.roomName,
+      rightText: widget.gameModel.tableName,
       onRefresh: _onRefresh,
       getLinkToShare: () {
         return widget.gameModel.getLinkToGame();

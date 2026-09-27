@@ -4,14 +4,15 @@ import 'package:cards/models/app/auth_service.dart';
 import 'package:cards/models/app/firebase_options.dart';
 import 'package:cards/models/app/locale_controller.dart';
 import 'package:cards/models/game/backend_model.dart';
-import 'package:cards/models/game/game_styles.dart';
+import 'package:cards/models/game/card_medium.dart';
+import 'package:cards/models/game/score_sheet_setup.dart';
 import 'package:cards/screens/game/card_scan_screen.dart';
 import 'package:cards/screens/game/corrections_review_screen.dart';
-import 'package:cards/screens/game/create_table_name_screen.dart';
-import 'package:cards/screens/game/join_game_screen.dart';
-import 'package:cards/screens/game/start_game_screen.dart';
 import 'package:cards/screens/keepscore/golf_score_screen.dart';
 import 'package:cards/screens/leaderboard/leaderboard_screen.dart';
+import 'package:cards/screens/tables/join_table_screen.dart';
+import 'package:cards/screens/tables/lobby_screen.dart';
+import 'package:cards/screens/tables/start_table_screen.dart';
 import 'package:cards/screens/welcome/welcome_screen.dart';
 import 'package:cards/utils/logger.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -84,12 +85,25 @@ class MyApp extends StatelessWidget {
             '/': (BuildContext _) => const WelcomeScreen(),
             '/scan': (BuildContext _) => const CardScanScreen(),
             '/start': (BuildContext _) =>
-                const JoinGameScreen(canCreateTable: true),
-            '/game': (BuildContext _) => const StartScreen(joinMode: false),
-            '/join': (BuildContext _) => const JoinGameScreen(),
-            '/score': (BuildContext context) => GolfScoreScreen(
-              sessionId: ModalRoute.of(context)?.settings.arguments as String?,
+                const StartTableScreen(cards: CardMedium.virtual),
+            '/join': (BuildContext _) => const JoinTableScreen(),
+            '/lobby': (BuildContext context) => LobbyScreen(
+              lobbyId:
+                  ModalRoute.of(context)?.settings.arguments as String? ??
+                  Uri.base.queryParameters[lobbyLinkParameter] ??
+                  '',
             ),
+            '/score/start': (BuildContext _) =>
+                const StartTableScreen(cards: CardMedium.physical),
+            '/score': (BuildContext context) {
+              final Object? arguments = ModalRoute.of(
+                context,
+              )?.settings.arguments;
+              return GolfScoreScreen(
+                sessionId: arguments is String ? arguments : null,
+                setup: arguments is ScoreSheetSetup ? arguments : null,
+              );
+            },
             '/corrections': (BuildContext _) => const CorrectionsReviewScreen(),
             '/leaderboard': (BuildContext context) => LeaderboardScreen(
               initialTableKey:
@@ -105,14 +119,6 @@ class MyApp extends StatelessWidget {
 
   /// Swallows Firebase auth callback routes so they do not break navigation.
   static Route<dynamic>? _handleGeneratedRoute(RouteSettings settings) {
-    if (settings.name == '/create-table') {
-      final gameStyle = settings.arguments as GameStyles;
-      return MaterialPageRoute(
-        settings: settings,
-        builder: (BuildContext _) =>
-            CreateTableNameScreen(gameStyle: gameStyle),
-      );
-    }
     if (!_isFirebaseAuthCallbackRoute(settings.name)) {
       return null;
     }

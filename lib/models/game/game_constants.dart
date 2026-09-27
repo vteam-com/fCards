@@ -1,7 +1,7 @@
 /// Configuration constants for varied game styles.
 ///
 /// This class defines rules and layout parameters for different
-/// supported game modes (Skyjo, 9-Card Golf, MiniPut).
+/// supported game modes (Skyjo, 9-Card Golf).
 class GameConstants {
   const GameConstants();
 
@@ -25,9 +25,6 @@ class GameConstants {
 
   /// Number of cards for a 4x3 Skyjo game.
   static const int skyjoCardCount = 12;
-
-  /// Number of cards for a 2x2 MiniPut game.
-  static const int miniPutCardCount = 4;
 
   // Deck Management
   /// Divider used to calculate number of decks needed based on player count.

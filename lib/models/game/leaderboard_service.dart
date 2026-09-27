@@ -3,19 +3,15 @@ import 'package:cards/models/game/game_history.dart';
 import 'package:cards/models/game/game_result.dart';
 import 'package:cards/models/game/leaderboard_entry.dart';
 import 'package:cards/models/game/leaderboard_standing.dart';
-import 'package:cards/models/game/leaderboard_table.dart';
+import 'package:cards/models/game/table_service.dart';
 import 'package:cards/utils/logger.dart';
 import 'package:firebase_database/firebase_database.dart';
 
 export 'package:cards/models/game/leaderboard_standing.dart';
-export 'package:cards/models/game/leaderboard_table.dart';
 
 const String _tableResultsNode = 'table_results';
 const String _leaderboardNode = 'leaderboard';
 const String _leaderboardGamesNode = 'leaderboard_games';
-const String _leaderboardTablesNode = 'leaderboard_tables';
-const String _tableNameNode = 'table_name';
-const String _lastPlayedNode = 'last_played';
 
 /// Maximum number of rows loaded for the global leaderboard (Fibonacci).
 const int globalLeaderboardLimit = 89;
@@ -27,7 +23,8 @@ class LeaderboardService {
   /// Safe to call repeatedly and from several devices for the same game: a
   /// create-only marker per player and game keeps totals from double counting.
   /// [avatarUrls] maps uids to profile photos. [recorderUid] also gets the
-  /// table listed, so the host of a name-only score sheet can find it.
+  /// table in their "My tables", so the host of a name-only score sheet can
+  /// find it.
   static Future<void> recordResult(
     GameResult result, {
     Map<String, String> avatarUrls = const <String, String>{},
@@ -61,14 +58,11 @@ class LeaderboardService {
           if (player.hasAccount) player.uid,
         if (recorderUid != null && recorderUid.isNotEmpty) recorderUid,
       };
-      for (final String uid in tableUids) {
-        await FirebaseDatabase.instance
-            .ref('$_leaderboardTablesNode/$uid/${result.tableKey}')
-            .set(<String, Object>{
-              _tableNameNode: result.tableName,
-              _lastPlayedNode: result.endedAt.millisecondsSinceEpoch,
-            });
-      }
+      await TableService.markPlayed(
+        result.tableKey,
+        result.endedAt,
+        uids: tableUids,
+      );
 
       for (final GameResultPlayer player in result.players) {
         if (player.hasAccount) {
@@ -80,14 +74,16 @@ class LeaderboardService {
     }
   }
 
-  /// Loads the top global rows for [style], best first.
-  static Future<List<LeaderboardEntry>> globalLeaderboard(String style) async {
+  /// Loads the top global rows for [gameType], best first.
+  static Future<List<LeaderboardEntry>> globalLeaderboard(
+    GameStyles gameType,
+  ) async {
     if (!await _ready()) {
       return <LeaderboardEntry>[];
     }
     try {
       final DataSnapshot snapshot = await FirebaseDatabase.instance
-          .ref('$_leaderboardNode/${firebaseSafeKey(style)}')
+          .ref('$_leaderboardNode/${gameType.name}')
           .orderByChild(leaderboardWinsNode)
           .limitToLast(globalLeaderboardLimit)
           .get();
@@ -109,14 +105,8 @@ class LeaderboardService {
 
   /// Loads the ranked board for everyone who played at [tableKey].
   static Future<List<LeaderboardEntry>> tableLeaderboard(
-    String tableKey, {
-    String? style,
-  }) async {
-    return LeaderboardEntry.aggregate(
-      await _tableResults(tableKey),
-      style: style,
-    );
-  }
+    String tableKey,
+  ) async => LeaderboardEntry.aggregate(await _tableResults(tableKey));
 
   /// Loads every result recorded at [tableKey].
   static Future<List<GameResult>> _tableResults(String tableKey) async {
@@ -158,71 +148,40 @@ class LeaderboardService {
     ];
   }
 
-  /// Lists the tables [uid] has results at, most recent first.
-  static Future<List<LeaderboardTable>> tablesForPlayer(String uid) async {
+  /// Loads [uid]'s totals and global position for each game type they
+  /// played, in game type order.
+  static Future<List<LeaderboardStanding>> standings(String uid) async {
     if (!await _ready() || uid.isEmpty) {
-      return <LeaderboardTable>[];
+      return <LeaderboardStanding>[];
     }
-    try {
-      final DataSnapshot snapshot = await FirebaseDatabase.instance
-          .ref('$_leaderboardTablesNode/$uid')
-          .get();
-      final Object? value = snapshot.value;
-      if (value is! Map) {
-        return <LeaderboardTable>[];
-      }
-      return value.entries.map((MapEntry<dynamic, dynamic> entry) {
-        final Object? table = entry.value;
-        final Object? name = table is Map ? table[_tableNameNode] : null;
-        final Object? lastPlayed = table is Map ? table[_lastPlayedNode] : null;
-        return LeaderboardTable(
-          key: entry.key.toString(),
-          name: name is String && name.isNotEmpty ? name : entry.key.toString(),
-          lastPlayed: DateTime.fromMillisecondsSinceEpoch(
-            lastPlayed is num ? lastPlayed.toInt() : 0,
+    final List<LeaderboardStanding> standings = <LeaderboardStanding>[];
+    for (final GameStyles gameType in GameStyles.values) {
+      try {
+        final DataSnapshot snapshot = await FirebaseDatabase.instance
+            .ref('$_leaderboardNode/${gameType.name}/$uid')
+            .get();
+        if (!snapshot.exists) {
+          continue;
+        }
+        final List<LeaderboardEntry> top = await globalLeaderboard(gameType);
+        final int index = top.indexWhere(
+          (LeaderboardEntry row) => row.playerKey == uid,
+        );
+        standings.add(
+          LeaderboardStanding(
+            gameType: gameType,
+            entry: LeaderboardEntry.fromValue(uid, snapshot.value),
+            rank: index < 0 ? null : index + 1,
           ),
         );
-      }).toList()..sort(
-        (LeaderboardTable a, LeaderboardTable b) =>
-            b.lastPlayed.compareTo(a.lastPlayed),
-      );
-    } catch (error) {
-      logger.w('tablesForPlayer failed: $error');
-      return <LeaderboardTable>[];
-    }
-  }
-
-  /// Loads [uid]'s totals across every style and their global position.
-  static Future<LeaderboardStanding?> standing(String uid) async {
-    if (!await _ready() || uid.isEmpty) {
-      return null;
-    }
-    try {
-      final DataSnapshot snapshot = await FirebaseDatabase.instance
-          .ref('$_leaderboardNode/$allStylesKey/$uid')
-          .get();
-      if (!snapshot.exists) {
-        return null;
+      } catch (error) {
+        logger.w('leaderboard standing failed: $error');
       }
-      final LeaderboardEntry entry = LeaderboardEntry.fromValue(
-        uid,
-        snapshot.value,
-      );
-      final List<LeaderboardEntry> top = await globalLeaderboard(allStylesKey);
-      final int index = top.indexWhere(
-        (LeaderboardEntry row) => row.playerKey == uid,
-      );
-      return LeaderboardStanding(
-        entry: entry,
-        rank: index < 0 ? null : index + 1,
-      );
-    } catch (error) {
-      logger.w('leaderboard standing failed: $error');
-      return null;
     }
+    return standings;
   }
 
-  /// Adds [player]'s outcome to their overall and per-style totals once.
+  /// Adds [player]'s outcome to their totals for the game type, once.
   static Future<void> _addToTotals(
     GameResult result,
     GameResultPlayer player,
@@ -238,25 +197,19 @@ class LeaderboardService {
       return;
     }
 
-    final Set<String> styles = <String>{
-      allStylesKey,
-      if (result.style.isNotEmpty) firebaseSafeKey(result.style),
-    };
-    for (final String style in styles) {
-      await FirebaseDatabase.instance
-          .ref('$_leaderboardNode/$style/${player.uid}')
-          .runTransaction((Object? value) {
-            final LeaderboardEntry current = LeaderboardEntry.fromValue(
-              player.uid,
-              value,
-            );
-            return Transaction.success(
-              current
-                  .withResult(player, result.endedAt, avatarUrl: avatarUrl)
-                  .toValue(),
-            );
-          });
-    }
+    await FirebaseDatabase.instance
+        .ref('$_leaderboardNode/${result.style.name}/${player.uid}')
+        .runTransaction((Object? value) {
+          final LeaderboardEntry current = LeaderboardEntry.fromValue(
+            player.uid,
+            value,
+          );
+          return Transaction.success(
+            current
+                .withResult(player, result.endedAt, avatarUrl: avatarUrl)
+                .toValue(),
+          );
+        });
   }
 
   static Future<bool> _ready() async {

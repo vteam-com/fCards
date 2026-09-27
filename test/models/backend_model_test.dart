@@ -93,12 +93,5 @@ void main() {
       // this does nothing in offline mode, but we still want to test that the function exist
       setPlayersInRoom('TEST_ROOM', {'BOB', 'SUE', 'JOHN', 'MARY'});
     });
-
-    test('game getAllRooms', () async {
-      isRunningOffLine = true;
-      // this does nothing in offline mode, but we still want to test that the function exist
-      final rooms = await getAllRooms();
-      expect(rooms, ['TEST_ROOM']);
-    });
   });
 }

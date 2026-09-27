@@ -3,12 +3,17 @@ import 'package:cards/models/app/app_theme.dart';
 import 'package:cards/models/app/auth_service.dart';
 import 'package:cards/models/app/constants_layout.dart';
 import 'package:cards/models/app/locale_controller.dart';
+import 'package:cards/models/game/leaderboard_entry.dart';
 import 'package:cards/models/game/leaderboard_service.dart';
 import 'package:cards/widgets/buttons/my_button_rectangle.dart';
 import 'package:cards/widgets/helpers/player_avatar.dart';
+import 'package:cards/widgets/tables/table_summary.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widget_previews.dart';
+
+/// Separates the parts of a stats line.
+const String _statsSeparator = ' · ';
 
 /// Constants for the avatar profile dialog.
 class _AvatarProfileDialogConstants {
@@ -47,7 +52,7 @@ class AvatarProfileDialog extends StatefulWidget {
     required this.onEditInitialsTap,
     this.onCorrectionsTap,
     this.onLeaderboardTap,
-    this.standing,
+    this.standings,
     super.key,
   });
   static const double avatarRadius = 55.0;
@@ -77,8 +82,8 @@ class AvatarProfileDialog extends StatefulWidget {
   /// Callback when sign out is tapped.
   final VoidCallback onSignOutTap;
 
-  /// The player's global leaderboard totals, loaded by the caller.
-  final Future<LeaderboardStanding?>? standing;
+  /// The player's global totals per game type, loaded by the caller.
+  final Future<List<LeaderboardStanding>>? standings;
 
   /// The Firebase user object.
   final User user;
@@ -452,6 +457,69 @@ class _AvatarProfileDialogState extends State<AvatarProfileDialog> {
     );
   }
 
+  /// Builds one game type's wins, rank, games played, and win rate.
+  Widget _buildStandingRow(
+    LeaderboardStanding standing,
+    ColorScheme colorScheme,
+    AppLocalizations localizations,
+  ) {
+    final int? rank = standing.rank;
+    final LeaderboardEntry entry = standing.entry;
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      spacing: ConstLayout.sizeM,
+      children: [
+        Column(
+          children: [
+            Text(
+              '${entry.wins}',
+              style: TextStyle(
+                fontSize: ConstLayout.textL,
+                fontWeight: FontWeight.bold,
+                color: colorScheme.primary,
+              ),
+            ),
+            Text(
+              localizations.leaderboardWins,
+              style: TextStyle(
+                fontSize: ConstLayout.textS,
+                color: colorScheme.onSurface,
+              ),
+            ),
+          ],
+        ),
+        Flexible(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            spacing: ConstLayout.sizeXS,
+            children: [
+              Text(
+                rank == null
+                    ? gameTypeLabel(standing.gameType, localizations)
+                    : '${gameTypeLabel(standing.gameType, localizations)}'
+                          '$_statsSeparator${localizations.leaderboardRank(rank)}',
+                style: TextStyle(
+                  fontSize: ConstLayout.textM,
+                  fontWeight: FontWeight.bold,
+                  color: colorScheme.onSurface,
+                ),
+              ),
+              Text(
+                '${localizations.leaderboardGamesPlayed(entry.gamesPlayed)}'
+                '$_statsSeparator'
+                '${localizations.leaderboardWinRate((entry.winRate * _AvatarProfileDialogConstants.percentScale).round())}',
+                style: TextStyle(
+                  fontSize: ConstLayout.textS,
+                  color: colorScheme.onSurface,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
   /// Builds the player's global stats with a shortcut to the leaderboard.
   Widget _buildStatsSection(
     ColorScheme colorScheme,
@@ -480,76 +548,41 @@ class _AvatarProfileDialogState extends State<AvatarProfileDialog> {
             ),
           ],
         ),
-        FutureBuilder<LeaderboardStanding?>(
-          future: widget.standing,
-          builder: (BuildContext _, AsyncSnapshot<LeaderboardStanding?> snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const CircularProgressIndicator();
-            }
-            final LeaderboardStanding? standing = snapshot.data;
-            if (standing == null || standing.entry.gamesPlayed == 0) {
-              return Text(
-                localizations.leaderboardNoStats,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: ConstLayout.textS,
-                  color: colorScheme.onSurface,
-                ),
-              );
-            }
-            final int? rank = standing.rank;
-            return Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              spacing: ConstLayout.sizeM,
-              children: [
-                Column(
+        FutureBuilder<List<LeaderboardStanding>>(
+          future: widget.standings,
+          builder:
+              (
+                BuildContext _,
+                AsyncSnapshot<List<LeaderboardStanding>> snapshot,
+              ) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const CircularProgressIndicator();
+                }
+                final List<LeaderboardStanding> standings =
+                    (snapshot.data ?? <LeaderboardStanding>[])
+                        .where(
+                          (LeaderboardStanding standing) =>
+                              standing.entry.gamesPlayed > 0,
+                        )
+                        .toList();
+                if (standings.isEmpty) {
+                  return Text(
+                    localizations.leaderboardNoStats,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: ConstLayout.textS,
+                      color: colorScheme.onSurface,
+                    ),
+                  );
+                }
+                return Column(
+                  spacing: ConstLayout.sizeM,
                   children: [
-                    Text(
-                      '${standing.entry.wins}',
-                      style: TextStyle(
-                        fontSize: ConstLayout.textL,
-                        fontWeight: FontWeight.bold,
-                        color: colorScheme.primary,
-                      ),
-                    ),
-                    Text(
-                      localizations.leaderboardWins,
-                      style: TextStyle(
-                        fontSize: ConstLayout.textS,
-                        color: colorScheme.onSurface,
-                      ),
-                    ),
+                    for (final LeaderboardStanding standing in standings)
+                      _buildStandingRow(standing, colorScheme, localizations),
                   ],
-                ),
-                Flexible(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    spacing: ConstLayout.sizeXS,
-                    children: [
-                      if (rank != null)
-                        Text(
-                          localizations.leaderboardRank(rank),
-                          style: TextStyle(
-                            fontSize: ConstLayout.textM,
-                            fontWeight: FontWeight.bold,
-                            color: colorScheme.onSurface,
-                          ),
-                        ),
-                      Text(
-                        '${localizations.leaderboardGamesPlayed(standing.entry.gamesPlayed)}'
-                        ' · '
-                        '${localizations.leaderboardWinRate((standing.entry.winRate * _AvatarProfileDialogConstants.percentScale).round())}',
-                        style: TextStyle(
-                          fontSize: ConstLayout.textS,
-                          color: colorScheme.onSurface,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            );
-          },
+                );
+              },
         ),
         MyButtonRectangle.secondary(
           width: double.infinity,

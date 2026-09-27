@@ -51,27 +51,21 @@
         }
       }
     },
-    "history": {
-      ".read": false,
-      ".write": false,
-      "$roomName": {
-        ".read": "auth != null",
-        ".write": "auth != null"
-      }
-    },
     "table_results": {
       "$tableKey": {
         ".read": "auth != null",
         "$gameId": {
           ".write": "auth != null",
-          ".validate": "newData.hasChildren(['table_name', 'style', 'ended_at', 'players'])"
+          ".validate": "newData.hasChildren(['table_name', 'style', 'cards', 'ended_at', 'players']) && (newData.child('style').val() === 'frenchCards9' || newData.child('style').val() === 'skyjo') && (newData.child('cards').val() === 'physical' || newData.child('cards').val() === 'virtual')"
         }
       }
     },
     "leaderboard": {
       "$style": {
         ".read": "auth != null",
-        ".indexOn": ["wins"],
+        ".indexOn": [
+          "wins"
+        ],
         "$uid": {
           ".write": "auth != null",
           ".validate": "newData.hasChildren(['name', 'games_played', 'wins']) && newData.child('games_played').isNumber() && newData.child('wins').isNumber() && newData.child('wins').val() <= newData.child('games_played').val() && (!data.exists() || newData.child('games_played').val() >= data.child('games_played').val())"
@@ -87,12 +81,33 @@
         }
       }
     },
-    "leaderboard_tables": {
+    "tables": {
+      ".read": "auth != null",
+      ".indexOn": [
+        "name"
+      ],
+      "$tableId": {
+        ".write": "auth != null",
+        ".validate": "newData.hasChildren(['name', 'game_type', 'players', 'created_at']) && newData.child('name').isString() && newData.child('name').val().length > 0 && (newData.child('game_type').val() === 'frenchCards9' || newData.child('game_type').val() === 'skyjo') && (!data.exists() || newData.child('game_type').val() === data.child('game_type').val())"
+      }
+    },
+    "lobbies": {
+      ".read": "auth != null",
+      ".indexOn": [
+        "name",
+        "created_at"
+      ],
+      "$lobbyId": {
+        ".write": "auth != null",
+        ".validate": "newData.hasChildren(['name', 'game_type', 'cards', 'created_at']) && newData.child('name').isString() && newData.child('name').val().length > 0 && (newData.child('game_type').val() === 'frenchCards9' || newData.child('game_type').val() === 'skyjo') && (newData.child('cards').val() === 'physical' || newData.child('cards').val() === 'virtual')"
+      }
+    },
+    "player_tables": {
       "$uid": {
         ".read": "auth != null && auth.uid === $uid",
-        "$tableKey": {
+        "$tableId": {
           ".write": "auth != null",
-          ".validate": "newData.hasChildren(['table_name', 'last_played'])"
+          ".validate": "newData.isNumber()"
         }
       }
     }

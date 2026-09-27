@@ -9,14 +9,6 @@ export 'package:cards/models/card/card_model.dart';
 /// with specified columns and rows. It provides various operations for
 /// manipulating and querying the cards in the hand.
 class HandModel {
-  /// Grid checking indices for 2x2 layout (rows and columns)
-  static const List<List<int>> _checkingIndices2x2 = [
-    [0, 1], // Row 1
-    [2, 3], // Row 2
-    [0, 2], // Column 1
-    [1, 3], // Column 2
-  ];
-
   /// Grid checking indices for 3x3 layout (rows and columns)
   static const List<List<int>> _checkingIndices3x3 = [
     [0, 1, 2], // Row 1
@@ -178,12 +170,10 @@ class HandModel {
   /// - Revealed cards are scored based on their face values
   /// - Cards that match in rank (same number/symbol) don't count toward the score
   ///   - In 3x3 grids: matches can be horizontal (rows) or vertical (columns)
-  ///   - In 2x2 grids: matches can be pairs in rows or columns
   /// - Only the unmatched revealed cards contribute to the final score
   ///
   /// **Used By:**
   /// - French Cards (3x3 grid)
-  /// - MiniPut (2x2 grid)
   /// - Any other Golf-style variant games
   ///
   /// **Called From UI:** When displaying final scores to players
@@ -197,12 +187,7 @@ class HandModel {
       card.partOfSet = false;
     }
 
-    final List<List<int>> checkingIndices =
-        _list.length == CardModel.golfGrid2x2Size
-        ? _checkingIndices2x2 // 2x2
-        : _checkingIndices3x3; // 3x3
-
-    for (final List<int> indices in checkingIndices) {
+    for (final List<int> indices in _checkingIndices3x3) {
       markIfSameRankForGolf(indices);
     }
 
@@ -219,7 +204,9 @@ class HandModel {
   ///
   /// Takes a list of [indices] specifying which card positions to check.
   ///
-  /// For 2 or 3 indices:
+  /// For 3 indices:
+  /// - Skips the line when the hand is too short to hold it (a hand loaded
+  ///   from a room of another game style), so scoring never throws
   /// - Checks if all cards at the specified positions are revealed
   /// - Checks if all cards have matching ranks
   /// - If they match, marks every non-Joker card as part of a set
@@ -230,9 +217,12 @@ class HandModel {
   /// This enforces the rule that a card used in one triple cannot be used again
   /// in another triple.
   void markIfSameRankForGolf(List<int> indices) {
-    // All cards must be revealed and not yet claimed by a previous set.
+    // All cards must exist, be revealed, and not yet be claimed by a set.
     final bool allCardsAvailable = indices.every(
-      (index) => _list[index].isRevealed && !_list[index].partOfSet,
+      (index) =>
+          index < _list.length &&
+          _list[index].isRevealed &&
+          !_list[index].partOfSet,
     );
 
     if (!allCardsAvailable) {
@@ -243,13 +233,11 @@ class HandModel {
     const cardIndexThird = 2;
 
     // Check if all cards have matching ranks
-    final bool haveSameRank = indices.length == CardModel.twoCardMatchSize
-        ? _list[indices[cardIndexFirst]].rank ==
-              _list[indices[cardIndexSecond]].rank
-        : _list[indices[cardIndexFirst]].rank ==
-                  _list[indices[cardIndexSecond]].rank &&
-              _list[indices[cardIndexSecond]].rank ==
-                  _list[indices[cardIndexThird]].rank;
+    final bool haveSameRank =
+        _list[indices[cardIndexFirst]].rank ==
+            _list[indices[cardIndexSecond]].rank &&
+        _list[indices[cardIndexSecond]].rank ==
+            _list[indices[cardIndexThird]].rank;
 
     if (haveSameRank) {
       // Mark matching cards as part of set if not special rank

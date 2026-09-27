@@ -546,9 +546,8 @@ class _ScreenState extends State<Screen> with SingleTickerProviderStateMixin {
     final String currentLocaleTag = LocaleController.localeTagFor(
       Localizations.localeOf(context),
     );
-    final Future<LeaderboardStanding?> standing = LeaderboardService.standing(
-      user.uid,
-    );
+    final Future<List<LeaderboardStanding>> standings =
+        LeaderboardService.standings(user.uid);
     await showAppBottomSheet<void>(
       context: context,
       builder: (BuildContext bottomSheetContext) => StreamBuilder<bool>(
@@ -575,7 +574,7 @@ class _ScreenState extends State<Screen> with SingleTickerProviderStateMixin {
                 Navigator.of(bottomSheetContext).pop();
                 _changeInitials(user: user);
               },
-              standing: standing,
+              standings: standings,
               onLeaderboardTap: () {
                 Navigator.of(bottomSheetContext).pop();
                 Navigator.pushNamed(context, '/leaderboard');

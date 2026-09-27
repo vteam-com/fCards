@@ -17,12 +17,13 @@
       }
     }
   },
-  "cardGamesTitle": "Juegos de cartas",
   "cardsTitle": "Cards",
   "@cardsTitle": {
     "description": "DO NOT TRANSLATE."
   },
   "changePlayMode": "Cambiar modo de juego",
+  "chooseTableHint": "Vuelve a abrir una mesa para jugar con el mismo grupo, o empieza una nueva.",
+  "chooseTableTitle": "¿Dónde jugáis?",
   "clearScores": "Borrar puntuaciones",
   "closeGame": "Cerrar partida",
   "closeGameHint": "El ganador se guarda en la clasificación y empieza una nueva partida.",
@@ -51,6 +52,7 @@
     }
   },
   "confirmNewGame": "Seguro que quieres empezar una nueva partida? Se perderan todas las puntuaciones.",
+  "continueSheet": "Continuar la hoja actual",
   "corrections": "Correcciones",
   "correctionsAll": "Todo",
   "correctionsApprove": "Aprobar",
@@ -72,8 +74,6 @@
   "correctionsSubmittedBy": "Enviado por",
   "correctionsTitle": "Correcciones de entrenamiento",
   "correctionsWebOnly": "La revision de correcciones esta disponible actualmente en la web.",
-  "createNewTable": "Crear mesa",
-  "createTableNameHint": "Elige un nombre de mesa sencillo. Si ya existe, te ayudaremos a unirte.",
   "deleteLastRow": "Eliminar ultima fila",
   "discardOrSwap": "Descartar →\\no\\n↓ cambiar",
   "done": "Hecho",
@@ -81,7 +81,6 @@
   "editInitials": "Editar iniciales",
   "editPlayers": "Editar jugadores",
   "email": "Correo electronico",
-  "enterTableName": "Introduce el nombre de la nueva mesa.",
   "errorLoadingScores": "Error al cargar las puntuaciones: {error}",
   "@errorLoadingScores": {
     "placeholders": {
@@ -102,6 +101,7 @@
       }
     }
   },
+  "findTableByName": "Buscar una mesa por nombre",
   "firebaseId": "ID de Firebase",
   "flipOpenOneHiddenCard": "↓ Da la vuelta a una de tus cartas ocultas ↓",
   "fullName": "Nombre completo",
@@ -113,7 +113,6 @@
   "gamesWon": "Partidas ganadas",
   "golf9Cards": "9 Cartas",
   "golf9CardsFull": "Golf 9 Cartas",
-  "golfScoreKeeper": "Marcador de Golf 9 Cartas",
   "googleSignInFailed": "Fallo el inicio de sesion con Google.",
   "identityChangeableLater": "Puedes cambiar esto mas tarde",
   "identityFirstSubtitle": "Los demas veran este nombre en la mesa.",
@@ -123,9 +122,7 @@
   "identitySignInWithApple": "Iniciar sesion con Apple",
   "identitySignInWithGoogle": "Iniciar sesion con Google",
   "info": "Informacion",
-  "instructionsCustom": "Reglas personalizadas",
   "instructionsFrenchCards9": "- Intenta conseguir la puntuacion mas baja.\n- Elige una carta del mazo o del descarte.\n- Intercambia la carta elegida con una carta de tu cuadrícula de 3x3, o descartala y da la vuelta a una de tus cartas boca abajo.\n- Tres cartas del mismo valor en una fila o columna valen cero.\n- El primer jugador que revele sus nueve cartas desafia al resto y afirma tener la puntuacion mas baja.\n- Si otra persona consigue una puntuacion igual o menor, el retador duplica sus puntos.\n- Los jugadores quedan eliminados al superar 100 puntos.\n\n\nMas informacion [Wikipedia](https://en.wikipedia.org/wiki/Golf_(card_game))",
-  "instructionsMiniPut": "- Intenta conseguir la puntuacion mas baja.\n- Elige una carta del mazo o del descarte.\n- Intercambia la carta elegida con una carta de tu cuadrícula de 2x2, o descartala y da la vuelta a una de tus cartas boca abajo.\n- Tres cartas del mismo valor en una fila o columna valen cero.\n- El primer jugador que revele sus cartas desafia al resto y afirma tener la puntuacion mas baja.\n- Si otra persona consigue una puntuacion igual o menor, el retador duplica sus puntos.\n- Los jugadores quedan eliminados al superar 100 puntos.\n\n\nMas informacion [Wikipedia](https://en.wikipedia.org/wiki/Golf_(card_game))",
   "instructionsSkyjo": "- Intenta conseguir la puntuacion mas baja.\n- Elige una carta del mazo o del descarte.\n- Intercambia la carta elegida con una carta de tu cuadrícula de 4x3, o descartala y da la vuelta a una de tus cartas boca abajo.\n- Cuando 3 cartas del mismo valor se alinean en una columna, se mueven a la pila de descarte.\n- El primer jugador que revele todas sus cartas desafia al resto y afirma tener la puntuacion mas baja.\n\n\nMas informacion [Skyjo](https://www.geekyhobbies.com/how-to-play-skyjo-card-game-rules-and-instructions/)",
   "invitePlayerWithQr": "Invitar a un jugador con QR",
   "itsPlayersTurn": "Es el turno de {player}",
@@ -146,13 +143,10 @@
   },
   "join": "Unirse",
   "joinExistingGame": "Unirse a una partida",
-  "joinGame": "Unirse a la partida",
   "joinGameTitle": "Unirse a la partida",
   "joinScoreSheet": "Unirse a una hoja",
   "joinScoreSheetHint": "Escanea el QR o escribe el nombre de la mesa",
   "joinScoreSheetPrompt": "Escanea el codigo QR del anfitrion con tu camara, o escribe el nombre de la mesa que aparece en su hoja.",
-  "joinTable": "Unirse a la mesa",
-  "joinThisTable": "Unirse a esta mesa",
   "language": "Idioma",
   "languageEnglish": "🇬🇧\nEN",
   "@languageEnglish": {
@@ -172,11 +166,9 @@
   },
   "last": "ULTIMO",
   "leaderboard": "Clasificación",
-  "leaderboardAllGames": "Todos los juegos",
   "leaderboardAverage": "Prom. {score}",
   "leaderboardBest": "Mejor {score}",
   "leaderboardChooseTable": "Elegir una mesa",
-  "leaderboardCustom": "Personalizado",
   "leaderboardEmpty": "Aún no hay partidas. Termina una partida para entrar en la clasificación.",
   "leaderboardGamesPlayed": "{count} jugadas",
   "leaderboardGlobal": "Mundial",
@@ -185,36 +177,24 @@
   "leaderboardNoStats": "Termina una partida para empezar tus estadísticas.",
   "leaderboardNoTables": "Tus mesas aparecen aquí cuando terminas una partida.",
   "leaderboardRank": "Puesto #{rank}",
-  "leaderboardScoreKeeper": "Hoja de puntos",
   "leaderboardTables": "Mis mesas",
   "leaderboardWinRate": "{percent} % ganadas",
   "leaderboardWins": "Victorias",
-  "localScoreSheet": "Este dispositivo",
-  "miniPut": "MiniPut",
-  "@miniPut": {
-    "description": "DO NOT TRANSLATE."
-  },
-  "miniPutFull": "MiniPut 4 Cartas",
+  "lobbyAddPlayer": "Añadir un jugador",
   "newGame": "Nueva partida",
+  "newTable": "Mesa nueva",
+  "newTableForThisGroup": "Mesa nueva para este grupo. Puedes cambiarle el nombre.",
   "next": "Siguiente",
   "noCardsAvailableToDraw": "No hay cartas disponibles para robar.",
-  "noMatchingTables": "No hay mesas coincidentes",
   "noOne": "Nadie",
-  "noTablesAvailable": "No hay mesas disponibles",
-  "noTablesFoundMatching": "No se encontraron mesas que coincidan con \"{searchText}\"",
-  "@noTablesFoundMatching": {
-    "placeholders": {
-      "searchText": {
-        "type": "String"
-      }
-    }
-  },
+  "noOpenTables": "No hay mesas abiertas ahora mismo.",
+  "noTablesYet": "Aún no tienes mesas para este juego.",
   "notAllowed": "No permitido!",
   "notYourTurn": "No es tu turno!",
   "orHereLeft": "\\no\\naqui\\n←",
-  "pickTableOrCreateHint": "Elige una mesa existente o crea una nueva.",
   "playAgain": "Jugar de nuevo",
   "player": "Jugador",
+  "playerCount": "{count, plural, =1{1 jugador} other{{count} jugadores}}",
   "playerName": "Iniciales del jugador",
   "players": "Jugadores",
   "playerWonTimesAtTable": "{player} gano {count} veces en la mesa {table}",
@@ -239,7 +219,6 @@
   "playOnline": "Jugar en linea",
   "playOnlineDescription": "Cada uno ve cartas virtuales en su dispositivo. Los puntos se cuentan solos.",
   "playOnlineHint": "Cartas virtuales, puntuacion automatica",
-  "pleaseEnterYourName": "Introduce tu nombre arriba ⬆",
   "readyToPlayPlayersAtTable": "Todo listo para jugar. {count} jugadores en la mesa.",
   "@readyToPlayPlayersAtTable": {
     "placeholders": {
@@ -267,6 +246,7 @@
       }
     }
   },
+  "save": "Guardar",
   "saveResultAndNewGame": "Cerrar y guardar resultado",
   "scanCameraError": "Error de camara: ",
   "scanCard": "Contar cartas",
@@ -296,6 +276,7 @@
   "scanTapToCorrect": "Toca una burbuja de valor de carta para corregirla",
   "scanWebPhotoHint": "Elige una foto de una carta de tu dispositivo para escanearla.",
   "scoreSheetNotFound": "No se encontro ninguna hoja con ese nombre de mesa.",
+  "scoreSheetTitle": "Hoja de puntos de {game}",
   "selectAStatus": "Selecciona un estado",
   "selectTableToJoin": "Selecciona una mesa",
   "signIn": "Iniciar sesion",
@@ -306,7 +287,6 @@
     "description": "DO NOT TRANSLATE. This is the official brand name."
   },
   "startGame": "Iniciar partida",
-  "startGameWizardSubtitle": "Elige el juego para esta mesa. Te ayudaremos a nombrarla despues.",
   "starting": "Iniciando",
   "startNewGameWithQr": "Iniciar con QR",
   "startScoreSheet": "Nueva hoja de puntos",
@@ -319,6 +299,7 @@
   "statusVoila": "Listo!",
   "swapThisWith": "cambia esto →\\n\\npor ↓",
   "table": "Mesa",
+  "tableForThisGroup": "Este grupo ya juega en esta mesa.",
   "tableLabel": "Mesa: {table}",
   "@tableLabel": {
     "placeholders": {
@@ -327,16 +308,18 @@
       }
     }
   },
+  "tableNameTaken": "Otra mesa ya usa ese nombre.",
+  "tableNotFound": "No hay ninguna mesa con ese nombre.",
+  "tableRename": "Renombrar mesa",
   "thisGame": "Esta partida",
-  "thisTableAlreadyHasPlayers": "Esta mesa ya existe. Unete a esta mesa o introduce otro nombre.",
   "typeOfOAuthUsed": "Tipo de OAuth usado",
-  "useSearchBox": "Usa la busqueda para encontrar una mesa rapidamente",
   "waitForYourTurnSmiley": "Espera tu turno :)",
   "waitingForMorePlayers": "Esperando a que se unan mas jugadores...",
-  "waitingForPlayers": "Esperando a que se unan jugadores",
   "waitYourTurn": "Espera tu turno!",
   "whatTypeOfGame": "Que tipo de juego?",
-  "whoAreYou": "Quien eres?\\nSelecciona arriba ⬆ o unete abajo ⬇",
+  "whoIsPlayingHint": "Añade a todos los jugadores. Buscaremos vuestra mesa para este juego o crearemos una nueva.",
+  "whoIsPlayingQrHint": "Quien escanee se une a esta hoja. También puedes escribir nombres abajo.",
+  "whoIsPlayingTitle": "¿Quién juega?",
   "wizardStepOneOfTwo": "Paso 1 de 2",
   "wizardStepTwoOfTwo": "Paso 2 de 2",
   "youAreDone": "Has terminado.",

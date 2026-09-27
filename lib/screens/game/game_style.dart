@@ -6,7 +6,6 @@ import 'package:cards/models/card/card_model_french.dart';
 import 'package:cards/models/game/game_constants.dart';
 import 'package:cards/models/game/game_model.dart';
 import 'package:cards/models/game/game_styles.dart';
-import 'package:cards/utils/logger.dart';
 import 'package:cards/widgets/cards/card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown_plus/flutter_markdown_plus.dart';
@@ -132,10 +131,6 @@ class GameStyle extends StatelessWidget {
         cards = getAllFrenchCards();
       case GameStyles.skyjo:
         cards = getAllSkyjoCards();
-      case GameStyles.miniPut:
-        cards = getAllFrenchCards(); // Similar to French Cards for simplicity
-      case GameStyles.custom:
-        cards = getAllFrenchCards(); // Similar to French Cards for simplicity
     }
     return Wrap(
       spacing: ConstLayout.sizeM,
@@ -153,21 +148,6 @@ class GameStyle extends StatelessWidget {
   }
 }
 
-/// Converts an integer index to a GameStyles enum.
-///
-/// Returns the corresponding [GameStyles] enum value for the given [gameStyleIndex].
-/// Falls back to [GameStyles.frenchCards9] if the index is invalid.
-GameStyles intToGameStyles(final int gameStyleIndex) {
-  if (gameStyleIndex >= 0 && gameStyleIndex < GameStyles.values.length) {
-    return GameStyles.values[gameStyleIndex];
-  } else {
-    logger.w(
-      'Invalid gameStyleIndex: $gameStyleIndex fall back to ${GameStyles.frenchCards9}',
-    );
-    return GameStyles.frenchCards9;
-  }
-}
-
 /// Returns the instructions for a given game style.
 ///
 /// Takes a [GameStyles] parameter and returns a formatted string containing
@@ -178,10 +158,5 @@ String gameInstructions(GameStyles style, AppLocalizations localizations) {
       return localizations.instructionsFrenchCards9;
     case GameStyles.skyjo:
       return localizations.instructionsSkyjo;
-    case GameStyles.miniPut:
-      return localizations.instructionsMiniPut;
-
-    case GameStyles.custom:
-      return localizations.instructionsCustom;
   }
 }

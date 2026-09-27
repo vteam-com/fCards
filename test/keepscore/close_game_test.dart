@@ -1,6 +1,7 @@
 import 'package:cards/gen/l10n/app_localizations.dart';
 import 'package:cards/models/game/game_result.dart';
 import 'package:cards/models/game/golf_score_model.dart';
+import 'package:cards/models/game/score_sheet_setup.dart';
 import 'package:cards/models/game/score_session_closure.dart';
 import 'package:cards/screens/keepscore/close_game_sheet.dart';
 import 'package:flutter/material.dart';
@@ -45,6 +46,35 @@ Future<List<int?>> _openSheet(
 
 void main() {
   setUp(() => SharedPreferences.setMockInitialValues(<String, Object>{}));
+
+  test(
+    'a new sheet takes the setup and is saved with its game and table',
+    () async {
+      final GolfScoreModel sheet = GolfScoreModel(
+        playerNames: <String>['OLD'],
+        scores: <List<int>>[
+          <int>[9],
+        ],
+      );
+      await sheet.startNew(
+        const ScoreSheetSetup(
+          gameType: GameStyles.skyjo,
+          tableName: 'LUCKY FOX',
+          players: <String>['BOB', 'SUE'],
+        ),
+      );
+
+      expect(sheet.playerNames, <String>['BOB', 'SUE']);
+      expect(sheet.scores, <List<int>>[
+        <int>[0, 0],
+      ]);
+
+      final GolfScoreModel reloaded = await GolfScoreModel.load();
+      expect(reloaded.gameType, GameStyles.skyjo);
+      expect(reloaded.tableName, 'LUCKY FOX');
+      expect(reloaded.playerNames, <String>['BOB', 'SUE']);
+    },
+  );
 
   group('GolfScoreModel closing', () {
     test('needs two players and at least one score', () {
@@ -95,7 +125,8 @@ void main() {
       id: 'g1',
       tableKey: 'T',
       tableName: 'T',
-      style: scoreKeeperStyleKey,
+      style: GameStyles.frenchCards9,
+      cards: CardMedium.physical,
       endedAt: DateTime.fromMillisecondsSinceEpoch(0),
       names: <String>['A', 'B', 'C'],
       scores: <int>[5, 5, 9],

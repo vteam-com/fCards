@@ -48,7 +48,10 @@ class GameModel with ChangeNotifier {
     required this.deck,
     bool isNewGame = false,
     this.version = '',
-  }) {
+    String? tableId,
+    String? tableName,
+  }) : tableId = tableId ?? roomName,
+       tableName = tableName ?? roomName {
     // Initialize players from the list of names
     for (var name in names) {
       addPlayer(name);
@@ -74,8 +77,14 @@ class GameModel with ChangeNotifier {
   /// The number of cards to deal to each player
   final int cardsToDeal;
 
-  /// The Name of the game room.
+  /// Id of the live room (the lobby) the devices sync through.
   final String roomName;
+
+  /// Table this group plays at; results and "games won" are kept per table.
+  final String tableId;
+
+  /// Display name of [tableId].
+  final String tableName;
 
   /// The name of the person running the app.
   final String loginUserName;
@@ -256,7 +265,6 @@ class GameModel with ChangeNotifier {
   /// The [json] parameter should contain the player data to be loaded.
   /// The [gameStyle] property of the current [GameModel] is used to determine the appropriate player configuration.
   /// For each supported game style, this method creates a [PlayerModel] instance with the corresponding columns, rows, and sky-jo logic settings.
-  /// If the [gameStyle] is [GameStyles.custom], the player is created with 0 columns and 0 rows, and sky-jo logic disabled.
   PlayerModel loadPlayer(Map<String, dynamic> json) {
     switch (gameStyle) {
       case GameStyles.skyjo:
@@ -271,20 +279,6 @@ class GameModel with ChangeNotifier {
           json: json,
           columns: CardModel.standardColumns,
           rows: CardModel.standardRows,
-          skyjoLogic: false,
-        );
-      case GameStyles.miniPut:
-        return PlayerModel.fromJson(
-          json: json,
-          columns: CardModel.miniPutColumns,
-          rows: CardModel.miniPutRows,
-          skyjoLogic: false,
-        );
-      case GameStyles.custom:
-        return PlayerModel.fromJson(
-          json: json,
-          columns: 0,
-          rows: 0,
           skyjoLogic: false,
         );
     }
@@ -705,7 +699,7 @@ class GameModel with ChangeNotifier {
       // Skyjo actively modifies the hand by removing completed sets
       evaluateHandSkyjo();
     }
-    // Golf-style games (French Cards, MiniPut) don't need hand evaluation
+    // Golf-style games (French Cards) don't need hand evaluation
     // They use passive scoring via HandModel.getSumOfCardsForGolf()
     // which calculates scores without modifying the hand
   }
@@ -840,53 +834,11 @@ class GameModel with ChangeNotifier {
     return turnText;
   }
 
-  /// Generates a link URI for the game based on the provided input parameters.
+  /// Link that opens this game's lobby, so others can join the table.
   ///
-  /// The link URI includes the game mode, room name, and a comma-separated list of player names.
-  /// This method is used to construct the URL for the game, which can be shared with other players.
-  ///
-  /// @param mode The game mode (as an integer string representing GameStyles enum index).
-  /// @param room The name of the game room.
-  /// @param names A list of player names.
-  /// @return The generated link URI.
-  static String getLinkToGameFromInput(
-    final String mode,
-    final String room,
-    final List<String> names,
-  ) {
-    return '?mode=$mode&room=${Uri.encodeComponent(room)}&players=${Uri.encodeComponent(names.join(","))}';
-  }
-
-  /// Generates a link URI for the game based on the provided input parameters.
-  ///
-  /// The link URI includes the game mode, room name, and a comma-separated list of player names.
-  /// This method is used to construct the URL for the game, which can be shared with other players.
-  ///
-  /// @param mode The game mode, e.g. "classic", "timed", etc.
-  /// @param room The name of the game room.
-  /// @param names A list of player names.
-  /// @return The generated link URI.
-  String get linkUri => getLinkToGameFromInput(
-    gameStyle.index.toString(),
-    roomName,
-    getPlayersNames(),
-  );
-
-  /// Generates a link URI for the game based on the provided input parameters.
-  ///
-  /// The link URI includes the game mode, room name, and a comma-separated list of player names.
-  /// This method is used to construct the URL for the game, which can be shared with other players.
-  ///
-  /// @param mode The game mode, e.g. "classic", "timed", etc.
-  /// @param room The name of the game room.
-  /// @param names A list of player names.
-  /// @return The generated link URI.
-  String getLinkToGame() {
-    if (kIsWeb) {
-      return Uri.base.origin + linkUri;
-    }
-    return '';
-  }
+  /// Empty outside the web, where there is no page URL to share.
+  String getLinkToGame() =>
+      kIsWeb ? '${Uri.base.origin}?lobby=${Uri.encodeComponent(roomName)}' : '';
 }
 
 /// Shows a snack bar notification with the provided message for a short duration.

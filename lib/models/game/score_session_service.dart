@@ -1,11 +1,10 @@
-import 'dart:math';
-
 import 'package:cards/models/app/auth_service.dart';
 import 'package:cards/models/game/backend_model.dart';
 import 'package:cards/models/game/score_session.dart';
 import 'package:cards/models/game/score_session_closure.dart';
 import 'package:cards/models/game/score_session_participant.dart';
 import 'package:cards/models/game/score_session_state.dart';
+import 'package:cards/models/game/table_service.dart';
 import 'package:cards/utils/logger.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -23,17 +22,21 @@ const String _scoreStateNode = 'score_state';
 const String _closedGameNode = 'closed_game';
 const String _defaultParticipantName = 'HOST';
 const String _scoreInviteParameter = 'scoreSession';
-const String _scoreTableNamePrefix = 'SCORE-';
-const int _sessionIdRadix = 36;
+
+/// Id prefix of score columns typed in by the scorekeeper rather than joined
+/// from a device.
+const String manualPlayerIdPrefix = 'manual';
 
 /// Coordinates authenticated Score Keeper QR sessions through Firebase.
 class ScoreSessionService {
-  /// Creates a fresh table with a generated default name and its host.
+  /// Creates the shared sheet of [lobby] with its host.
   ///
-  /// When [initialState] has players, the table starts from those columns
-  /// instead of a single host column.
+  /// The session shares the lobby's id, so a player who finds the lobby by
+  /// name joins this sheet. When [initialState] has players, the sheet starts
+  /// from those columns instead of a single host column.
   static Future<ScoreSession?> createSession(
     String participantName, {
+    required GameLobby lobby,
     ScoreSessionState? initialState,
   }) async {
     await useFirebase();
@@ -42,11 +45,8 @@ class ScoreSessionService {
       return null;
     }
 
-    final String id = _newSessionId();
-    final ScoreSession session = ScoreSession(
-      id: id,
-      tableName: '$_scoreTableNamePrefix${id.toUpperCase()}',
-    );
+    final String id = lobby.id;
+    final ScoreSession session = ScoreSession(id: id, tableName: lobby.name);
     final ScoreSessionState state =
         initialState != null && initialState.playerIds.isNotEmpty
         ? initialState
@@ -294,6 +294,42 @@ class ScoreSessionService {
     ),
   );
 
+  /// Returns a fresh id for a column typed in by the scorekeeper.
+  static String newManualPlayerId() =>
+      '${manualPlayerIdPrefix}_${DateTime.now().microsecondsSinceEpoch}';
+
+  /// Appends a typed-in player column, keeping players who joined meanwhile.
+  static Future<void> addManualPlayer(String sessionId, String playerName) =>
+      _updateState(sessionId, (ScoreSessionState state) {
+        final List<List<int>> scores = state.scores.isEmpty
+            ? <List<int>>[List<int>.filled(state.playerIds.length, 0)]
+            : state.scores;
+        return ScoreSessionState(
+          playerIds: <String>[...state.playerIds, newManualPlayerId()],
+          playerNames: <String>[
+            ...state.playerNames,
+            _participantName(playerName),
+          ],
+          scores: scores.map((List<int> round) => <int>[...round, 0]).toList(),
+        );
+      });
+
+  /// Removes the column of [playerId], wherever concurrent edits moved it.
+  static Future<void> removePlayerById(String sessionId, String playerId) =>
+      _updateState(sessionId, (ScoreSessionState state) {
+        final int playerIndex = state.playerIds.indexOf(playerId);
+        if (playerIndex < 0) {
+          return state;
+        }
+        return ScoreSessionState(
+          playerIds: [...state.playerIds]..removeAt(playerIndex),
+          playerNames: [...state.playerNames]..removeAt(playerIndex),
+          scores: state.scores.map((List<int> round) {
+            return [...round]..removeAt(playerIndex);
+          }).toList(),
+        );
+      });
+
   /// Removes one player column from the shared table.
   static Future<void> removePlayer(String sessionId, int playerIndex) =>
       _updateState(sessionId, (ScoreSessionState state) {
@@ -354,27 +390,6 @@ class ScoreSessionService {
   /// Extracts a score-session ID from a web invitation URL.
   static String? sessionIdFromUri(Uri uri) =>
       uri.queryParameters[_scoreInviteParameter];
-
-  /// Converts a typed table name such as `SCORE-ABC123` into a session ID.
-  ///
-  /// The `SCORE-` prefix is optional; returns null when nothing usable is left.
-  static String? sessionIdFromTableName(String tableName) {
-    final String normalized = tableName.trim().toUpperCase();
-    final String id = normalized.startsWith(_scoreTableNamePrefix)
-        ? normalized.substring(_scoreTableNamePrefix.length)
-        : normalized;
-    return id.isEmpty ? null : id.toLowerCase();
-  }
-
-  static String _newSessionId() {
-    final String time = DateTime.now().microsecondsSinceEpoch.toRadixString(
-      _sessionIdRadix,
-    );
-    final String random = Random.secure()
-        .nextInt(_sessionIdRadix)
-        .toRadixString(_sessionIdRadix);
-    return '$time$random';
-  }
 
   static DatabaseReference _scoreStateReference(String sessionId) =>
       FirebaseDatabase.instance.ref(

@@ -35,13 +35,17 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
-  String get cardGamesTitle => 'Juegos de cartas';
-
-  @override
   String get cardsTitle => 'Cards';
 
   @override
   String get changePlayMode => 'Cambiar modo de juego';
+
+  @override
+  String get chooseTableHint =>
+      'Vuelve a abrir una mesa para jugar con el mismo grupo, o empieza una nueva.';
+
+  @override
+  String get chooseTableTitle => '¿Dónde jugáis?';
 
   @override
   String get clearScores => 'Borrar puntuaciones';
@@ -80,6 +84,9 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get confirmNewGame =>
       'Seguro que quieres empezar una nueva partida? Se perderan todas las puntuaciones.';
+
+  @override
+  String get continueSheet => 'Continuar la hoja actual';
 
   @override
   String get corrections => 'Correcciones';
@@ -151,13 +158,6 @@ class AppLocalizationsEs extends AppLocalizations {
       'La revision de correcciones esta disponible actualmente en la web.';
 
   @override
-  String get createNewTable => 'Crear mesa';
-
-  @override
-  String get createTableNameHint =>
-      'Elige un nombre de mesa sencillo. Si ya existe, te ayudaremos a unirte.';
-
-  @override
   String get deleteLastRow => 'Eliminar ultima fila';
 
   @override
@@ -179,9 +179,6 @@ class AppLocalizationsEs extends AppLocalizations {
   String get email => 'Correo electronico';
 
   @override
-  String get enterTableName => 'Introduce el nombre de la nueva mesa.';
-
-  @override
   String errorLoadingScores(String error) {
     return 'Error al cargar las puntuaciones: $error';
   }
@@ -193,6 +190,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String finalRoundYouHaveToBeat(String turnText, String attacker) {
     return 'Ronda final. $turnText. Tienes que vencer a $attacker';
   }
+
+  @override
+  String get findTableByName => 'Buscar una mesa por nombre';
 
   @override
   String get firebaseId => 'ID de Firebase';
@@ -231,9 +231,6 @@ class AppLocalizationsEs extends AppLocalizations {
   String get golf9CardsFull => 'Golf 9 Cartas';
 
   @override
-  String get golfScoreKeeper => 'Marcador de Golf 9 Cartas';
-
-  @override
   String get googleSignInFailed => 'Fallo el inicio de sesion con Google.';
 
   @override
@@ -261,15 +258,8 @@ class AppLocalizationsEs extends AppLocalizations {
   String get info => 'Informacion';
 
   @override
-  String get instructionsCustom => 'Reglas personalizadas';
-
-  @override
   String get instructionsFrenchCards9 =>
       '- Intenta conseguir la puntuacion mas baja.\n- Elige una carta del mazo o del descarte.\n- Intercambia la carta elegida con una carta de tu cuadrícula de 3x3, o descartala y da la vuelta a una de tus cartas boca abajo.\n- Tres cartas del mismo valor en una fila o columna valen cero.\n- El primer jugador que revele sus nueve cartas desafia al resto y afirma tener la puntuacion mas baja.\n- Si otra persona consigue una puntuacion igual o menor, el retador duplica sus puntos.\n- Los jugadores quedan eliminados al superar 100 puntos.\n\n\nMas informacion [Wikipedia](https://en.wikipedia.org/wiki/Golf_(card_game))';
-
-  @override
-  String get instructionsMiniPut =>
-      '- Intenta conseguir la puntuacion mas baja.\n- Elige una carta del mazo o del descarte.\n- Intercambia la carta elegida con una carta de tu cuadrícula de 2x2, o descartala y da la vuelta a una de tus cartas boca abajo.\n- Tres cartas del mismo valor en una fila o columna valen cero.\n- El primer jugador que revele sus cartas desafia al resto y afirma tener la puntuacion mas baja.\n- Si otra persona consigue una puntuacion igual o menor, el retador duplica sus puntos.\n- Los jugadores quedan eliminados al superar 100 puntos.\n\n\nMas informacion [Wikipedia](https://en.wikipedia.org/wiki/Golf_(card_game))';
 
   @override
   String get instructionsSkyjo =>
@@ -295,9 +285,6 @@ class AppLocalizationsEs extends AppLocalizations {
   String get joinExistingGame => 'Unirse a una partida';
 
   @override
-  String get joinGame => 'Unirse a la partida';
-
-  @override
   String get joinGameTitle => 'Unirse a la partida';
 
   @override
@@ -310,12 +297,6 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get joinScoreSheetPrompt =>
       'Escanea el codigo QR del anfitrion con tu camara, o escribe el nombre de la mesa que aparece en su hoja.';
-
-  @override
-  String get joinTable => 'Unirse a la mesa';
-
-  @override
-  String get joinThisTable => 'Unirse a esta mesa';
 
   @override
   String get language => 'Idioma';
@@ -339,9 +320,6 @@ class AppLocalizationsEs extends AppLocalizations {
   String get leaderboard => 'Clasificación';
 
   @override
-  String get leaderboardAllGames => 'Todos los juegos';
-
-  @override
   String leaderboardAverage(String score) {
     return 'Prom. $score';
   }
@@ -353,9 +331,6 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get leaderboardChooseTable => 'Elegir una mesa';
-
-  @override
-  String get leaderboardCustom => 'Personalizado';
 
   @override
   String get leaderboardEmpty =>
@@ -389,9 +364,6 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
-  String get leaderboardScoreKeeper => 'Hoja de puntos';
-
-  @override
   String get leaderboardTables => 'Mis mesas';
 
   @override
@@ -403,16 +375,17 @@ class AppLocalizationsEs extends AppLocalizations {
   String get leaderboardWins => 'Victorias';
 
   @override
-  String get localScoreSheet => 'Este dispositivo';
-
-  @override
-  String get miniPut => 'MiniPut';
-
-  @override
-  String get miniPutFull => 'MiniPut 4 Cartas';
+  String get lobbyAddPlayer => 'Añadir un jugador';
 
   @override
   String get newGame => 'Nueva partida';
+
+  @override
+  String get newTable => 'Mesa nueva';
+
+  @override
+  String get newTableForThisGroup =>
+      'Mesa nueva para este grupo. Puedes cambiarle el nombre.';
 
   @override
   String get next => 'Siguiente';
@@ -421,18 +394,13 @@ class AppLocalizationsEs extends AppLocalizations {
   String get noCardsAvailableToDraw => 'No hay cartas disponibles para robar.';
 
   @override
-  String get noMatchingTables => 'No hay mesas coincidentes';
-
-  @override
   String get noOne => 'Nadie';
 
   @override
-  String get noTablesAvailable => 'No hay mesas disponibles';
+  String get noOpenTables => 'No hay mesas abiertas ahora mismo.';
 
   @override
-  String noTablesFoundMatching(String searchText) {
-    return 'No se encontraron mesas que coincidan con \"$searchText\"';
-  }
+  String get noTablesYet => 'Aún no tienes mesas para este juego.';
 
   @override
   String get notAllowed => 'No permitido!';
@@ -444,14 +412,21 @@ class AppLocalizationsEs extends AppLocalizations {
   String get orHereLeft => '\\no\\naqui\\n←';
 
   @override
-  String get pickTableOrCreateHint =>
-      'Elige una mesa existente o crea una nueva.';
-
-  @override
   String get playAgain => 'Jugar de nuevo';
 
   @override
   String get player => 'Jugador';
+
+  @override
+  String playerCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count jugadores',
+      one: '1 jugador',
+    );
+    return '$_temp0';
+  }
 
   @override
   String get playerName => 'Iniciales del jugador';
@@ -491,9 +466,6 @@ class AppLocalizationsEs extends AppLocalizations {
   String get playOnlineHint => 'Cartas virtuales, puntuacion automatica';
 
   @override
-  String get pleaseEnterYourName => 'Introduce tu nombre arriba ⬆';
-
-  @override
   String readyToPlayPlayersAtTable(int count) {
     return 'Todo listo para jugar. $count jugadores en la mesa.';
   }
@@ -516,6 +488,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String rounds(int count) {
     return '$count Rondas';
   }
+
+  @override
+  String get save => 'Guardar';
 
   @override
   String get saveResultAndNewGame => 'Cerrar y guardar resultado';
@@ -605,6 +580,11 @@ class AppLocalizationsEs extends AppLocalizations {
       'No se encontro ninguna hoja con ese nombre de mesa.';
 
   @override
+  String scoreSheetTitle(String game) {
+    return 'Hoja de puntos de $game';
+  }
+
+  @override
   String get selectAStatus => 'Selecciona un estado';
 
   @override
@@ -624,10 +604,6 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get startGame => 'Iniciar partida';
-
-  @override
-  String get startGameWizardSubtitle =>
-      'Elige el juego para esta mesa. Te ayudaremos a nombrarla despues.';
 
   @override
   String get starting => 'Iniciando';
@@ -666,23 +642,27 @@ class AppLocalizationsEs extends AppLocalizations {
   String get table => 'Mesa';
 
   @override
+  String get tableForThisGroup => 'Este grupo ya juega en esta mesa.';
+
+  @override
   String tableLabel(String table) {
     return 'Mesa: $table';
   }
 
   @override
+  String get tableNameTaken => 'Otra mesa ya usa ese nombre.';
+
+  @override
+  String get tableNotFound => 'No hay ninguna mesa con ese nombre.';
+
+  @override
+  String get tableRename => 'Renombrar mesa';
+
+  @override
   String get thisGame => 'Esta partida';
 
   @override
-  String get thisTableAlreadyHasPlayers =>
-      'Esta mesa ya existe. Unete a esta mesa o introduce otro nombre.';
-
-  @override
   String get typeOfOAuthUsed => 'Tipo de OAuth usado';
-
-  @override
-  String get useSearchBox =>
-      'Usa la busqueda para encontrar una mesa rapidamente';
 
   @override
   String get waitForYourTurnSmiley => 'Espera tu turno :)';
@@ -692,16 +672,21 @@ class AppLocalizationsEs extends AppLocalizations {
       'Esperando a que se unan mas jugadores...';
 
   @override
-  String get waitingForPlayers => 'Esperando a que se unan jugadores';
-
-  @override
   String get waitYourTurn => 'Espera tu turno!';
 
   @override
   String get whatTypeOfGame => 'Que tipo de juego?';
 
   @override
-  String get whoAreYou => 'Quien eres?\\nSelecciona arriba ⬆ o unete abajo ⬇';
+  String get whoIsPlayingHint =>
+      'Añade a todos los jugadores. Buscaremos vuestra mesa para este juego o crearemos una nueva.';
+
+  @override
+  String get whoIsPlayingQrHint =>
+      'Quien escanee se une a esta hoja. También puedes escribir nombres abajo.';
+
+  @override
+  String get whoIsPlayingTitle => '¿Quién juega?';
 
   @override
   String get wizardStepOneOfTwo => 'Paso 1 de 2';

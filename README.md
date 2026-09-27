@@ -12,19 +12,11 @@ A Flutter-based multiplayer card game application featuring multiple game modes 
   - 1 or 2 decks of cards
   - Match cards within rows or columns to reduce score
 
-- **MiniPut Golf Game**
-  - 2 to 8 players
-  - 2x2 card grid layout
-  - Simplified version of Golf game
-
 - **Skyjo Game**
   - 2 to 8 players
   - 4x3 card grid layout (12 cards)
   - Custom card deck with unique scoring
   - 3-of-a-kind sets are discarded during play
-
-- **Custom Game Mode**
-  - Flexible configuration options
 
 ### 📝 Score Keeper
 
@@ -82,24 +74,12 @@ A Flutter-based multiplayer card game application featuring multiple game modes 
 - Matched set cards are not counted in final score
 - 2 cards revealed at startup
 
-#### MiniPut
-
-- 2x2 grid (4 cards per player)
-- Matches within rows and columns reduce score
-- Simplified version of Golf game
-- 1 card revealed at startup
-
 #### Skyjo
 
 - 4x3 grid (12 cards per player)
 - 3-of-a-kind sets are discarded during play
 - 2 cards revealed at startup
 - Active scoring system
-
-#### Custom
-
-- Flexible configuration
-- Customizable reveal counts and grid sizes
 
 ## Getting Started
 
