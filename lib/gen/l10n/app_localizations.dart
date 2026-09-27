@@ -163,6 +163,12 @@ abstract class AppLocalizations {
   /// **'Cards'**
   String get cardsTitle;
 
+  /// No description provided for @changePlayMode.
+  ///
+  /// In en, this message translates to:
+  /// **'Change how you play'**
+  String get changePlayMode;
+
   /// No description provided for @clearScores.
   ///
   /// In en, this message translates to:
@@ -469,12 +475,6 @@ abstract class AppLocalizations {
   /// **'You can change this later'**
   String get identityChangeableLater;
 
-  /// No description provided for @identityChooseActionTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'What do you want to do?'**
-  String get identityChooseActionTitle;
-
   /// No description provided for @identityFirstSubtitle.
   ///
   /// In en, this message translates to:
@@ -582,6 +582,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Join Game'**
   String get joinGameTitle;
+
+  /// No description provided for @joinScoreSheet.
+  ///
+  /// In en, this message translates to:
+  /// **'Join a Score Sheet'**
+  String get joinScoreSheet;
+
+  /// No description provided for @joinScoreSheetHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Scan the QR code or enter the table name'**
+  String get joinScoreSheetHint;
+
+  /// No description provided for @joinScoreSheetPrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'Scan the host\'s QR code with your camera, or enter the table name shown on their score sheet.'**
+  String get joinScoreSheetPrompt;
 
   /// No description provided for @joinTable.
   ///
@@ -703,12 +721,6 @@ abstract class AppLocalizations {
   /// **'\nor\nhere\n←'**
   String get orHereLeft;
 
-  /// No description provided for @otherTools.
-  ///
-  /// In en, this message translates to:
-  /// **'Other Tools'**
-  String get otherTools;
-
   /// No description provided for @pickTableOrCreateHint.
   ///
   /// In en, this message translates to:
@@ -744,6 +756,54 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{player} won {count} times at table {table}'**
   String playerWonTimesAtTable(String player, int count, String table);
+
+  /// No description provided for @playInPerson.
+  ///
+  /// In en, this message translates to:
+  /// **'Play in Person'**
+  String get playInPerson;
+
+  /// No description provided for @playInPersonDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Play with real cards. One person keeps score, or everyone updates the same score sheet.'**
+  String get playInPersonDescription;
+
+  /// No description provided for @playInPersonHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Real cards, the app keeps score'**
+  String get playInPersonHint;
+
+  /// No description provided for @playModeHint.
+  ///
+  /// In en, this message translates to:
+  /// **'One player starts, everyone else joins.'**
+  String get playModeHint;
+
+  /// No description provided for @playModeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'How are you playing?'**
+  String get playModeTitle;
+
+  /// No description provided for @playOnline.
+  ///
+  /// In en, this message translates to:
+  /// **'Play Online'**
+  String get playOnline;
+
+  /// No description provided for @playOnlineDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Everyone sees virtual cards on their own device. Scores are counted for you.'**
+  String get playOnlineDescription;
+
+  /// No description provided for @playOnlineHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Virtual cards, automatic scoring'**
+  String get playOnlineHint;
 
   /// No description provided for @pleaseEnterYourName.
   ///
@@ -798,6 +858,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Count Cards'**
   String get scanCard;
+
+  /// No description provided for @scanCardHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Total a hand with the camera'**
+  String get scanCardHint;
 
   /// No description provided for @scanCardTitle.
   ///
@@ -925,11 +991,11 @@ abstract class AppLocalizations {
   /// **'Choose a card photo from your device to scan.'**
   String get scanWebPhotoHint;
 
-  /// No description provided for @scoreKeeper.
+  /// No description provided for @scoreSheetNotFound.
   ///
   /// In en, this message translates to:
-  /// **'Score Keeper'**
-  String get scoreKeeper;
+  /// **'No score sheet found for that table name.'**
+  String get scoreSheetNotFound;
 
   /// No description provided for @selectAStatus.
   ///
@@ -990,6 +1056,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Start with QR'**
   String get startNewGameWithQr;
+
+  /// No description provided for @startScoreSheet.
+  ///
+  /// In en, this message translates to:
+  /// **'Start a Score Sheet'**
+  String get startScoreSheet;
+
+  /// No description provided for @startScoreSheetHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep score alone or share a QR code'**
+  String get startScoreSheetHint;
 
   /// No description provided for @startTable.
   ///

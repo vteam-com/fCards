@@ -32,7 +32,10 @@ const String _manualScorePlayerIdPrefix = 'manual';
 /// A screen for keeping score of 9 Cards Golf games.
 class GolfScoreScreen extends StatefulWidget {
   /// Creates the Golf Score Screen widget.
-  const GolfScoreScreen({super.key});
+  const GolfScoreScreen({super.key, this.sessionId});
+
+  /// Shared score sheet to join on open; falls back to the web invite link.
+  final String? sessionId;
 
   @override
   State<GolfScoreScreen> createState() => _GolfScoreScreenState();
@@ -989,7 +992,8 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
   }
 
   Future<void> _joinScoreSessionFromLink(GolfScoreModel model) async {
-    final String? sessionId = ScoreSessionService.sessionIdFromUri(Uri.base);
+    final String? sessionId =
+        widget.sessionId ?? ScoreSessionService.sessionIdFromUri(Uri.base);
     if (sessionId == null || sessionId.isEmpty) {
       return;
     }

@@ -41,6 +41,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get cardsTitle => 'Cards';
 
   @override
+  String get changePlayMode => 'Cambiar modo de juego';
+
+  @override
   String get clearScores => 'Borrar puntuaciones';
 
   @override
@@ -211,9 +214,6 @@ class AppLocalizationsEs extends AppLocalizations {
   String get identityChangeableLater => 'Puedes cambiar esto mas tarde';
 
   @override
-  String get identityChooseActionTitle => 'Que quieres hacer?';
-
-  @override
   String get identityFirstSubtitle => 'Los demas veran este nombre en la mesa.';
 
   @override
@@ -273,6 +273,17 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get joinGameTitle => 'Unirse a la partida';
+
+  @override
+  String get joinScoreSheet => 'Unirse a una hoja';
+
+  @override
+  String get joinScoreSheetHint =>
+      'Escanea el QR o escribe el nombre de la mesa';
+
+  @override
+  String get joinScoreSheetPrompt =>
+      'Escanea el codigo QR del anfitrion con tu camara, o escribe el nombre de la mesa que aparece en su hoja.';
 
   @override
   String get joinTable => 'Unirse a la mesa';
@@ -337,9 +348,6 @@ class AppLocalizationsEs extends AppLocalizations {
   String get orHereLeft => '\\no\\naqui\\n←';
 
   @override
-  String get otherTools => 'Otras herramientas';
-
-  @override
   String get pickTableOrCreateHint =>
       'Elige una mesa existente o crea una nueva.';
 
@@ -359,6 +367,32 @@ class AppLocalizationsEs extends AppLocalizations {
   String playerWonTimesAtTable(String player, int count, String table) {
     return '$player gano $count veces en la mesa $table';
   }
+
+  @override
+  String get playInPerson => 'Jugar en persona';
+
+  @override
+  String get playInPersonDescription =>
+      'Jueguen con cartas reales. Una persona anota, o todos actualizan la misma hoja.';
+
+  @override
+  String get playInPersonHint => 'Cartas reales, la app lleva los puntos';
+
+  @override
+  String get playModeHint => 'Un jugador empieza, los demas se unen.';
+
+  @override
+  String get playModeTitle => 'Como van a jugar?';
+
+  @override
+  String get playOnline => 'Jugar en linea';
+
+  @override
+  String get playOnlineDescription =>
+      'Cada uno ve cartas virtuales en su dispositivo. Los puntos se cuentan solos.';
+
+  @override
+  String get playOnlineHint => 'Cartas virtuales, puntuacion automatica';
 
   @override
   String get pleaseEnterYourName => 'Introduce tu nombre arriba ⬆';
@@ -392,6 +426,9 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get scanCard => 'Contar cartas';
+
+  @override
+  String get scanCardHint => 'Suma una mano con la camara';
 
   @override
   String get scanCardTitle => 'Contar cartas';
@@ -465,7 +502,8 @@ class AppLocalizationsEs extends AppLocalizations {
       'Elige una foto de una carta de tu dispositivo para escanearla.';
 
   @override
-  String get scoreKeeper => 'Marcador';
+  String get scoreSheetNotFound =>
+      'No se encontro ninguna hoja con ese nombre de mesa.';
 
   @override
   String get selectAStatus => 'Selecciona un estado';
@@ -497,6 +535,12 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get startNewGameWithQr => 'Iniciar con QR';
+
+  @override
+  String get startScoreSheet => 'Nueva hoja de puntos';
+
+  @override
+  String get startScoreSheetHint => 'Anota solo o comparte un codigo QR';
 
   @override
   String get startTable => 'Crear mesa';

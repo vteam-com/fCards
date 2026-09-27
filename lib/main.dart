@@ -86,7 +86,9 @@ class MyApp extends StatelessWidget {
                 const JoinGameScreen(canCreateTable: true),
             '/game': (BuildContext _) => const StartScreen(joinMode: false),
             '/join': (BuildContext _) => const JoinGameScreen(),
-            '/score': (BuildContext _) => const GolfScoreScreen(),
+            '/score': (BuildContext context) => GolfScoreScreen(
+              sessionId: ModalRoute.of(context)?.settings.arguments as String?,
+            ),
             '/corrections': (BuildContext _) => const CorrectionsReviewScreen(),
           },
           onGenerateRoute: _handleGeneratedRoute,
