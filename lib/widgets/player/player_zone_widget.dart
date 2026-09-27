@@ -59,7 +59,7 @@ class PlayerZoneWidget extends StatelessWidget {
             color: colorScheme.primaryContainer,
             border: Border.all(
               color: Colors.transparent,
-              width: CardModel.golfGrid2x2Size,
+              width: ConstLayout.strokeL,
             ),
             borderRadius: BorderRadius.circular(ConstLayout.radiusM),
             // No shadow.
@@ -169,9 +169,7 @@ class PlayerZoneWidget extends StatelessWidget {
     PlayerModel player,
   ) {
     List row = List.empty(growable: true);
-    int columns = player.hand.length == CardModel.golfGrid2x2Size
-        ? CardModel.miniPutColumns
-        : CardModel.standardColumns;
+    const int columns = CardModel.standardColumns;
 
     for (int i = 0; i < player.hand.length; i += columns) {
       List<Widget> columnChildren = [];

@@ -38,6 +38,19 @@ void main() {
       player.revealRandomCardsInHand(2);
     });
 
+    test('sumOfRevealedCards sums a short hand without throwing', () {
+      for (final int value in <int>[1, 2, 3, 4]) {
+        final CardModel card = CardModel(
+          suit: '♥️',
+          rank: '$value',
+          value: value,
+        )..isRevealed = true;
+        player.addCardToHand(card);
+      }
+
+      expect(player.sumOfRevealedCards, 10);
+    });
+
     test('sumOfRevealedCards identifies vertical sets', () {
       player.hand = HandModel(3, 3, []);
       player.addCardToHand(

@@ -4,6 +4,7 @@ import 'package:cards/models/app/constants_layout.dart';
 import 'package:cards/models/app/identity_service.dart';
 import 'package:cards/models/game/score_session.dart';
 import 'package:cards/models/game/score_session_service.dart';
+import 'package:cards/models/game/table_service.dart';
 import 'package:cards/screens/welcome/join_score_sheet_dialog.dart';
 import 'package:cards/utils/logger.dart';
 import 'package:cards/widgets/buttons/my_button_rectangle.dart';
@@ -19,7 +20,7 @@ const String _scoreSessionParameter = 'scoreSession';
 String _deepLinkDestination() {
   return Uri.base.queryParameters.containsKey(_scoreSessionParameter)
       ? '/score'
-      : '/game';
+      : '/lobby';
 }
 
 /// Progress through the welcome flow.
@@ -250,7 +251,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           label: localizations.startScoreSheet,
           icon: Icons.scoreboard,
           subLabel: localizations.startScoreSheetHint,
-          onTap: () => Navigator.pushNamed(context, '/score'),
+          onTap: () => Navigator.pushNamed(context, '/score/start'),
         ),
         SizedBox(height: ConstLayout.sizeM),
         MyButtonRectangle.menu(
@@ -471,15 +472,15 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
       builder: (BuildContext _) => const JoinScoreSheetDialog(),
     );
     if (!mounted || tableName == null) return;
-    final String? sessionId = ScoreSessionService.sessionIdFromTableName(
-      tableName,
-    );
-    if (sessionId == null) return;
 
     setState(() => _isBusy = true);
-    final ScoreSession? session = await ScoreSessionService.getSession(
-      sessionId,
+    final List<GameLobby> lobbies = await TableService.findLobbies(
+      tableName,
+      cards: CardMedium.physical,
     );
+    final ScoreSession? session = lobbies.isEmpty
+        ? null
+        : await ScoreSessionService.getSession(lobbies.first.id);
     if (!mounted) return;
     setState(() => _isBusy = false);
     if (session == null) {

@@ -1,7 +1,6 @@
 import 'package:cards/models/game/backend_model.dart';
 import 'package:cards/models/game/game_model.dart';
 import 'package:cards/models/game/game_result.dart';
-import 'package:cards/models/game/game_styles.dart';
 import 'package:cards/models/game/leaderboard_entry.dart';
 import 'package:cards/models/game/leaderboard_service.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -11,13 +10,15 @@ GameResult _result({
   required List<String> names,
   required List<int> scores,
   List<String> uids = const <String>[],
-  String style = 'skyjo',
+  GameStyles style = GameStyles.skyjo,
+  CardMedium cards = CardMedium.virtual,
   int endedAt = 1000,
 }) => GameResult.fromScores(
   id: id,
   tableKey: 'ROOM',
   tableName: 'ROOM',
   style: style,
+  cards: cards,
   endedAt: DateTime.fromMillisecondsSinceEpoch(endedAt),
   names: names,
   scores: scores,
@@ -56,7 +57,8 @@ void main() {
         id: 'a.b#c',
         tableKey: 'my/room\$',
         tableName: 'my/room\$',
-        style: 'skyjo',
+        style: GameStyles.skyjo,
+        cards: CardMedium.virtual,
         endedAt: DateTime.fromMillisecondsSinceEpoch(0),
         names: <String>['BOB'],
         scores: <int>[0],
@@ -80,7 +82,8 @@ void main() {
         original.toValue(),
       );
 
-      expect(parsed.style, 'skyjo');
+      expect(parsed.style, GameStyles.skyjo);
+      expect(parsed.cards, CardMedium.virtual);
       expect(parsed.endedAt, original.endedAt);
       expect(parsed.players.map((GameResultPlayer p) => p.name), <String>[
         'BOB',
@@ -193,52 +196,42 @@ void main() {
       );
     });
 
-    test('aggregates a table by uid, or by name for name-only players', () {
-      final List<GameResult> results = <GameResult>[
-        _result(
-          id: 'g1',
-          names: <String>['BOB', 'sue'],
-          scores: <int>[2, 9],
-          uids: <String>['uid-bob', ''],
-        ),
-        _result(
-          id: 'g2',
-          names: <String>['ROBERT', 'SUE'],
-          scores: <int>[7, 1],
-          uids: <String>['uid-bob', ''],
-          endedAt: 2000,
-        ),
-        _result(
-          id: 'g3',
-          names: <String>['SUE'],
-          scores: <int>[4],
-          style: scoreKeeperStyleKey,
-        ),
-      ];
+    test(
+      'aggregates a table by uid or name, across physical and virtual cards',
+      () {
+        final List<GameResult> results = <GameResult>[
+          _result(
+            id: 'g1',
+            names: <String>['BOB', 'sue'],
+            scores: <int>[2, 9],
+            uids: <String>['uid-bob', ''],
+          ),
+          _result(
+            id: 'g2',
+            names: <String>['ROBERT', 'SUE'],
+            scores: <int>[7, 1],
+            uids: <String>['uid-bob', ''],
+            endedAt: 2000,
+          ),
+          _result(
+            id: 'g3',
+            names: <String>['SUE'],
+            scores: <int>[4],
+            cards: CardMedium.physical,
+          ),
+        ];
 
-      final List<LeaderboardEntry> all = LeaderboardEntry.aggregate(results);
-      expect(all.map((LeaderboardEntry e) => e.name), <String>[
-        'SUE',
-        'ROBERT',
-      ]);
-      expect(all.first.gamesPlayed, 3);
-      expect(all.first.wins, 2);
-
-      final List<LeaderboardEntry> skyjo = LeaderboardEntry.aggregate(
-        results,
-        style: 'skyjo',
-      );
-      expect(
-        skyjo
-            .firstWhere((LeaderboardEntry e) => e.playerKey == 'uid-bob')
-            .gamesPlayed,
-        2,
-      );
-      expect(
-        skyjo.firstWhere((LeaderboardEntry e) => e.name == 'SUE').gamesPlayed,
-        2,
-      );
-    });
+        final List<LeaderboardEntry> all = LeaderboardEntry.aggregate(results);
+        expect(all.map((LeaderboardEntry e) => e.name), <String>[
+          'SUE',
+          'ROBERT',
+        ]);
+        expect(all.first.gamesPlayed, 3);
+        expect(all.first.wins, 2);
+        expect(all.last.playerKey, 'uid-bob');
+        expect(all.last.gamesPlayed, 2);
+      },
+    );
   });
 
   group('LeaderboardService offline', () {
@@ -246,10 +239,11 @@ void main() {
     tearDown(() => isRunningOffLine = false);
 
     test('returns empty boards without touching Firebase', () async {
-      expect(await LeaderboardService.globalLeaderboard(allStylesKey), isEmpty);
+      for (final GameStyles gameType in GameStyles.values) {
+        expect(await LeaderboardService.globalLeaderboard(gameType), isEmpty);
+      }
       expect(await LeaderboardService.tableLeaderboard('ROOM'), isEmpty);
-      expect(await LeaderboardService.tablesForPlayer('uid'), isEmpty);
-      expect(await LeaderboardService.standing('uid'), isNull);
+      expect(await LeaderboardService.standings('uid'), isEmpty);
       expect(await LeaderboardService.roomWinHistory('ROOM'), isEmpty);
       await LeaderboardService.recordResult(
         _result(id: 'g1', names: <String>['BOB'], scores: <int>[0]),

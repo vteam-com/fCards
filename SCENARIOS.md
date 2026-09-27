@@ -2,59 +2,47 @@
 
 This document lists the user-facing scenarios implemented in the app, described from the player's perspective and focused on benefits.
 
-## 1) Start A New Game (Wizard)
+## 1) Tables
 
-As a player, I can tap **Start a New Game**, choose the game type (Golf 9 Cards, MiniPut, Skyjo), and then choose whether to create a table or join an existing one.
+A table is one game type (Golf 9 Cards or Skyjo) played by an exact group of players. It gets a friendly two-word name (for example **LUCKY OTTER**) that anyone can rename. A different group, or the same group playing the other game, is a different table.
 
-Benefit to me: I can set up the exact game style I want before inviting or joining others.
+Benefit to me: each group has its own place, history, and leaderboard, which I can find again by name or just by playing with the same people.
 
-## 2) Create New Table
+## 2) Start A Table (Virtual Cards)
 
-As a player, I start by tapping **Start a New Game**, then create a table by entering a table name in the create flow.
+As a player, I tap **Start a Table**, choose the game type, then either reopen one of my tables of that type (listed with their players) or start a **New Table** with a proposed name I can change.
 
-Expected flow:
+Benefit to me: replaying with my usual group takes two taps, and a new group never has to invent a unique name.
 
-1. From Welcome, I tap **Start a New Game**.
-2. I choose a game type.
-3. I choose **Create New Table**.
-4. The next screen is only for **Enter name of the new table**.
-5. The app checks whether that table already exists.
-6. If it already exists, I am asked to either **Join This Table** or enter a different table name.
-7. The **Continue** button stays disabled until the entered table name is unique/new.
-8. After Continue, I enter my player name, become the first player, and create the table.
-9. Once enough players are in the table, I can start the game.
+## 3) Lobby
 
-Benefit to me: I can quickly open a fresh table for my group while avoiding accidental duplicate tables.
+As a player in the lobby, I see the table name, the game, and who has joined; I can add players or remove them. While the group changes, the lobby tells me whether this exact group already has a table (and shows its name) or will get a new one. **Start Game** is enabled once enough players are in.
 
-## 3) Join Existing Table From Start Wizard
+Benefit to me: the game is always recorded at the right table, even if someone joins at the last minute.
 
-As a player, I can pick an existing table directly from the start wizard and continue into the join flow with the selected game type.
+## 4) Join A Table (Virtual Cards)
 
-Benefit to me: I avoid re-entering the table name and join active tables faster.
+As a player, I open **Join a Game** and either type the table's name or pick it from the tables opened recently.
 
-## 4) Join Existing Game (Dedicated Join Flow)
+Benefit to me: I can find my friends' table without a code.
 
-As a player, I can open **Join an Existing Game**, search/filter tables, select one, enter my name, and join.
+## 5) Shareable Invite Link
 
-Benefit to me: I can find active games quickly and get into a room with minimal steps.
+As a player on the web, I can share a link (`?lobby=…`) from the lobby or the game that opens the lobby directly.
 
-## 5) Wait Room / Pre-Game Lobby
+Benefit to me: inviting friends is one tap instead of explaining which table to pick.
 
-As a player in a table, I can see who is already in the room and wait until minimum players are present before starting.
+## 6) Score Sheet (Physical Cards)
 
-Benefit to me: I can coordinate with friends in one place and start only when everyone is ready.
+As a player with real cards, I tap **Start a Score Sheet**, choose the game type, then gather who is playing: the screen shows a QR code that players scan to join the sheet from their phones (they appear in the list as they join), and I can still type names for anyone without the app. I'm already in the list. The app finds our table for that game from exactly those players, or creates a new one, and opens the sheet there. I can also continue a sheet in progress. The sheet shows the table that matches the current players and lets me rename it.
 
-## 6) Shareable Invite Link
+Benefit to me: in-person games land on the same tables and leaderboards as online ones.
 
-As a player, I can share a link from setup/game screens so others can join my table with room/game context.
+## 7) Close A Game
 
-Benefit to me: inviting friends is one tap instead of manually explaining room details.
+As the host of a score sheet, I close the game from **New Game → Close Game & Save Result**. I confirm the final standings and the single winner (breaking a tie by tapping the winner). Everyone at the table sees who won, and the result is saved to the table of exactly those players.
 
-## 7) Deep-Link Entry
-
-As a player opening a shared URL containing game parameters (`mode`, `room`, `players`), I am redirected into the game setup flow with those values prefilled.
-
-Benefit to me: shared links drop me into the right context immediately.
+Benefit to me: every game ends with one clear, agreed winner.
 
 ## 8) Real-Time Multiplayer Sync
 
@@ -85,11 +73,11 @@ As a player, I get final-round behavior, then a game-over summary showing player
 
 Benefit to me: I can close a round cleanly and immediately continue if the group wants another game.
 
-## 12) Table Win History Tracking
+## 12) Leaderboards
 
-As a player, my wins are recorded per table and shown in history (including per-player historical wins in that table).
+As a player, every finished game (virtual or physical cards) is saved to its table. The **Leaderboard** ranks players globally (filtered by game type) or per table, with games played, wins, win rate, and best/average score; my own stats and rank are in my profile.
 
-Benefit to me: I can track long-term bragging rights at each table.
+Benefit to me: I can track long-term bragging rights, overall and at each table.
 
 ## 13) Player Status Signals
 
@@ -97,11 +85,11 @@ As a player, I can set a quick status (for example: thinking, BRB, feeling good)
 
 Benefit to me: I can communicate my current state without chat overhead.
 
-## 14) Score Keeper (9-Card Golf)
+## 14) Score Keeper
 
-As a player, I can use the dedicated scorekeeper to track rounds and totals independently from the live card room.
+As a player, I can use the score sheet to track rounds and totals for a physical-card game of Golf 9 Cards or Skyjo; lowest total wins.
 
-Benefit to me: I can run in-person or manual games while still using the app for score management.
+Benefit to me: I can run in-person games while still using the app for score management.
 
 ## 15) Score Keeper Fast Input
 

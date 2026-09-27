@@ -29,7 +29,7 @@ void showGameOverDialog(
 
   gameModel.roomHistory.clear();
   gameModel.roomHistory.addAll(
-    await LeaderboardService.roomWinHistory(gameModel.roomName),
+    await LeaderboardService.roomWinHistory(gameModel.tableId),
   );
 
   Widget columnHeaders(AppLocalizations localizations) {
@@ -129,12 +129,12 @@ void showGameOverDialog(
 Future<void> _recordLeaderboardResult(final GameModel gameModel) async {
   final String? uid = AuthService.currentUser?.uid;
   final List<String> names = gameModel.getPlayersNames();
-  final String tableKey = firebaseSafeKey(gameModel.roomName);
   final GameResult result = GameResult.fromScores(
-    id: '${tableKey}_${gameModel.gameStartDate.millisecondsSinceEpoch}',
-    tableKey: tableKey,
-    tableName: gameModel.roomName,
-    style: gameModel.gameStyle.name,
+    id: '${gameModel.tableId}_${gameModel.gameStartDate.millisecondsSinceEpoch}',
+    tableKey: gameModel.tableId,
+    tableName: gameModel.tableName,
+    style: gameModel.gameStyle,
+    cards: CardMedium.virtual,
     endedAt: gameModel.endedOn.millisecondsSinceEpoch == 0
         ? DateTime.now()
         : gameModel.endedOn,

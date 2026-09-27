@@ -26,22 +26,26 @@ import 'package:cards/widgets/helpers/input_keyboard.dart';
 import 'package:cards/widgets/helpers/screen.dart';
 import 'package:cards/widgets/player/player_edit_tile.dart';
 import 'package:cards/widgets/player/player_header.dart';
+import 'package:cards/models/game/score_sheet_setup.dart';
+import 'package:cards/models/game/table_service.dart';
+import 'package:cards/widgets/tables/rename_table_dialog.dart';
+import 'package:cards/widgets/tables/table_summary.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 enum _NewGameAction { saveResult, clearScores, startWithQr }
 
-const String _manualScorePlayerIdPrefix = 'manual';
-const String _localScoreTablePrefix = 'local_';
-
-/// A screen for keeping score of 9 Cards Golf games.
+/// Score sheet for a physical-card game of 9 Cards or Skyjo.
 class GolfScoreScreen extends StatefulWidget {
-  /// Creates the Golf Score Screen widget.
-  const GolfScoreScreen({super.key, this.sessionId});
+  /// Creates the score sheet screen.
+  const GolfScoreScreen({super.key, this.sessionId, this.setup});
 
   /// Shared score sheet to join on open; falls back to the web invite link.
   final String? sessionId;
+
+  /// Starts a fresh sheet; null resumes the saved one.
+  final ScoreSheetSetup? setup;
 
   @override
   State<GolfScoreScreen> createState() => _GolfScoreScreenState();
@@ -69,12 +73,22 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
   /// Closure already shown (or present when joining), so it is not re-shown.
   String? _announcedClosureId;
   bool _closureStreamPrimed = false;
+
+  /// Table where exactly the sheet's players play its game, when one exists.
+  GameTable? _groupTable;
+
+  /// Table id [_groupTable] was looked up for.
+  String? _groupTableLookupId;
   final double columnGap = ConstLayout.sizeS;
   final double columnWidth = ConstLayout.golfColumnWidth;
   @override
   void initState() {
     super.initState();
-    _scoreModelFuture = GolfScoreModel.load().then((model) {
+    _scoreModelFuture = GolfScoreModel.load().then((model) async {
+      final ScoreSheetSetup? setup = widget.setup;
+      if (setup != null) {
+        await model.startNew(setup);
+      }
       if (!mounted) {
         return model;
       }
@@ -224,7 +238,7 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
     final String playerName =
         '${GameConstants.playerNumberPrefix}${model.playerNames.length + 1}';
     final String playerId =
-        '${_manualScorePlayerIdPrefix}_${DateTime.now().microsecondsSinceEpoch}';
+        '${manualPlayerIdPrefix}_${DateTime.now().microsecondsSinceEpoch}';
     setState(() {
       model.addPlayer(playerName);
       _newPlayerIndex = model.playerNames.length - 1;
@@ -303,7 +317,7 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
         index++
       ) {
         _playerEditsDraftIds!.add(
-          '${_manualScorePlayerIdPrefix}_${DateTime.now().microsecondsSinceEpoch}_$index',
+          '${manualPlayerIdPrefix}_${DateTime.now().microsecondsSinceEpoch}_$index',
         );
       }
       _editingPlayers = true;
@@ -463,7 +477,7 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
     final bool isWaiting = snapshot.connectionState == ConnectionState.waiting;
 
     return Screen(
-      title: l10n.golfScoreKeeper,
+      title: l10n.startScoreSheet,
       isWaiting: isWaiting,
       child: Center(
         child: isWaiting
@@ -625,8 +639,15 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
       final GolfScoreModel storedModel = await _scoreModelFuture;
       final String? identity = await IdentityService.resolveIdentityName();
       final List<String> draftIds = _playerEditsDraftIds ?? [];
+      final GameLobby lobby = await TableService.openLobby(
+        gameType: storedModel.gameType,
+        cards: CardMedium.physical,
+        table: _groupTable,
+        name: storedModel.tableName,
+      );
       session = await ScoreSessionService.createSession(
         identity ?? '',
+        lobby: lobby,
         initialState: draftIds.length == draft.playerNames.length
             ? ScoreSessionState(
                 playerIds: List<String>.from(draftIds),
@@ -885,8 +906,9 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
     GolfScoreModel storedModel,
   ) {
     final colorScheme = Theme.of(context).colorScheme;
+    _followGroupTable(storedModel);
     return Screen(
-      title: l10n.golfScoreKeeper,
+      title: l10n.scoreSheetTitle(gameTypeLabel(storedModel.gameType, l10n)),
       isWaiting: false,
       onRefresh: _editingPlayers ? null : () => confirmNewGame(storedModel),
       toolbarActions: _editingPlayers
@@ -914,31 +936,7 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                if (_activeScoreSession != null)
-                  Padding(
-                    padding: const EdgeInsets.only(top: ConstLayout.paddingM),
-                    child: Semantics(
-                      button: true,
-                      child: InkWell(
-                        onTap: () {
-                          _showScoreSessionQrCode(_activeScoreSession!);
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.all(ConstLayout.paddingS),
-                          child: FittedBox(
-                            child: Text(
-                              l10n.tableLabel(_activeScoreSession!.tableName),
-                              style: TextStyle(
-                                fontSize: ConstLayout.textS,
-                                fontWeight: FontWeight.bold,
-                                color: colorScheme.tertiary,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
+                _buildTableHeader(storedModel, l10n, colorScheme),
                 if (_editingPlayers)
                   _buildPlayersHeader(scoreModel, ranks)
                 else
@@ -1005,8 +1003,9 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
   /// Confirms the closed game's single winner, saves it to the leaderboards,
   /// tells everyone at the table, then starts a new game.
   ///
-  /// Shared sheets credit every joined account; a local sheet is recorded
-  /// under the host's own table so it still shows on their table board.
+  /// The result goes to the table where exactly these players play this game;
+  /// a new group gets a new table named after the sheet. Shared sheets credit
+  /// every joined account.
   Future<void> _confirmAndCloseGame(GolfScoreModel model) async {
     final AppLocalizations localizations = AppLocalizations.of(context);
     if (!model.canClose) {
@@ -1030,50 +1029,53 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
       return;
     }
 
-    final String? recorderUid = AuthService.currentUser?.uid;
     final ScoreSession? session = _activeScoreSession;
-    final String tableKey = session != null
-        ? session.id
-        : recorderUid != null
-        ? '$_localScoreTablePrefix$recorderUid'
-        : '';
-    final DateTime endedAt = DateTime.now();
-    final String gameId = '${tableKey}_${endedAt.millisecondsSinceEpoch}';
-    if (tableKey.isNotEmpty) {
-      final List<String> uids = session == null
-          ? const <String>[]
-          : List<String>.generate(names.length, (int index) {
-              final String playerId = index < _scoreSessionPlayerIds.length
-                  ? _scoreSessionPlayerIds[index]
-                  : '';
-              return playerId.startsWith(_manualScorePlayerIdPrefix)
-                  ? ''
-                  : playerId;
-            });
-      final GameResult result = GameResult.fromScores(
-        id: gameId,
-        tableKey: tableKey,
-        tableName: session?.tableName ?? localizations.localScoreSheet,
-        style: scoreKeeperStyleKey,
-        endedAt: endedAt,
-        names: names,
-        scores: totals,
-        uids: uids,
-        winnerIndex: winnerIndex,
-      );
-      unawaited(
-        LeaderboardService.recordResult(
-          result,
-          avatarUrls: <String, String>{
-            for (final ScoreSessionParticipant participant
-                in _scoreSessionParticipants)
-              if (participant.avatarUrl.isNotEmpty)
-                participant.firebaseId: participant.avatarUrl,
-          },
-          recorderUid: recorderUid,
-        ),
-      );
+    final GameTable table = await TableService.resolveTable(
+      gameType: model.gameType,
+      players: names,
+      proposedName: model.tableName,
+    );
+    if (!mounted) {
+      return;
     }
+    final DateTime endedAt = DateTime.now();
+    final String gameId = '${table.id}_${endedAt.millisecondsSinceEpoch}';
+    final List<String> uids = session == null
+        ? const <String>[]
+        : List<String>.generate(names.length, (int index) {
+            final String playerId = index < _scoreSessionPlayerIds.length
+                ? _scoreSessionPlayerIds[index]
+                : '';
+            return playerId.startsWith(manualPlayerIdPrefix) ? '' : playerId;
+          });
+    unawaited(
+      LeaderboardService.recordResult(
+        GameResult.fromScores(
+          id: gameId,
+          tableKey: table.id,
+          tableName: table.name,
+          style: model.gameType,
+          cards: CardMedium.physical,
+          endedAt: endedAt,
+          names: names,
+          scores: totals,
+          uids: uids,
+          winnerIndex: winnerIndex,
+        ),
+        avatarUrls: <String, String>{
+          for (final ScoreSessionParticipant participant
+              in _scoreSessionParticipants)
+            if (participant.avatarUrl.isNotEmpty)
+              participant.firebaseId: participant.avatarUrl,
+        },
+        recorderUid: AuthService.currentUser?.uid,
+      ),
+    );
+    setState(() {
+      _groupTable = table;
+      _groupTableLookupId = table.id;
+    });
+    model.setTableName(table.name);
     if (session != null) {
       _announcedClosureId = gameId;
       unawaited(
@@ -1091,6 +1093,98 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
     showGameClosedDialog(context, names[winnerIndex]);
   }
 
+  /// Table name with a rename button; on a shared sheet, tapping the name
+  /// shows the QR invitation again.
+  Widget _buildTableHeader(
+    GolfScoreModel model,
+    AppLocalizations l10n,
+    ColorScheme colorScheme,
+  ) {
+    final ScoreSession? session = _activeScoreSession;
+    final String name = _groupTable?.name ?? model.tableName;
+    return Padding(
+      padding: const EdgeInsets.only(top: ConstLayout.paddingM),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        spacing: ConstLayout.sizeS,
+        children: [
+          Flexible(
+            child: InkWell(
+              onTap: session == null
+                  ? null
+                  : () => _showScoreSessionQrCode(session),
+              child: Padding(
+                padding: const EdgeInsets.all(ConstLayout.paddingS),
+                child: Text(
+                  name.isEmpty ? l10n.newTable : l10n.tableLabel(name),
+                  key: const Key('scoreKeeper.tableName'),
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    fontSize: ConstLayout.textS,
+                    fontWeight: FontWeight.bold,
+                    color: colorScheme.tertiary,
+                  ),
+                ),
+              ),
+            ),
+          ),
+          if (!_editingPlayers)
+            IconButton(
+              key: const Key('scoreKeeper.renameTable'),
+              tooltip: l10n.tableRename,
+              icon: const Icon(Icons.edit, size: ConstLayout.iconXS),
+              onPressed: () => _renameTable(model),
+            ),
+        ],
+      ),
+    );
+  }
+
+  /// Looks up the table for the sheet's current players when they change.
+  void _followGroupTable(GolfScoreModel model) {
+    final String id = GameTable.idFor(model.gameType, model.playerNames);
+    if (id == _groupTableLookupId) {
+      return;
+    }
+    _groupTableLookupId = id;
+    TableService.findTable(model.gameType, model.playerNames).then((
+      GameTable? table,
+    ) {
+      if (mounted && _groupTableLookupId == id) {
+        setState(() => _groupTable = table);
+      }
+    });
+  }
+
+  /// Renames the players' table when it exists, otherwise the sheet's
+  /// proposed name (and its shared lobby).
+  Future<void> _renameTable(GolfScoreModel model) async {
+    final GameTable? table = _groupTable;
+    final ScoreSession? session = _activeScoreSession;
+    final String? name = await renameTableWithFeedback(
+      context: context,
+      currentName: table?.name ?? model.tableName,
+      rename: (String name) async {
+        if (table != null) {
+          return TableService.renameTable(table.id, name);
+        }
+        final GameLobby? lobby = session == null
+            ? null
+            : await TableService.getLobby(session.id);
+        return lobby != null
+            ? TableService.renameLobby(lobby, name)
+            : TableService.checkNewName(name);
+      },
+    );
+    if (name == null || !mounted) {
+      return;
+    }
+    setState(() {
+      model.setTableName(name);
+      _groupTableLookupId = null;
+    });
+  }
+
   void _clearScores(GolfScoreModel model) {
     setState(() {
       model.clearScores();
@@ -1104,7 +1198,9 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
 
   Future<void> _joinScoreSessionFromLink(GolfScoreModel model) async {
     final String? sessionId =
-        widget.sessionId ?? ScoreSessionService.sessionIdFromUri(Uri.base);
+        widget.sessionId ??
+        widget.setup?.sessionId ??
+        ScoreSessionService.sessionIdFromUri(Uri.base);
     if (sessionId == null || sessionId.isEmpty) {
       return;
     }
@@ -1113,6 +1209,12 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
     );
     if (session == null) {
       return;
+    }
+    final GameLobby? lobby = await TableService.getLobby(sessionId);
+    if (lobby != null) {
+      model
+        ..gameType = lobby.gameType
+        ..setTableName(lobby.name);
     }
     final String? identity = await IdentityService.resolveIdentityName();
     await ScoreSessionService.joinSession(sessionId, identity ?? '');
@@ -1123,8 +1225,15 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
 
   Future<void> _startNewGameWithQr(GolfScoreModel model) async {
     final String? identity = await IdentityService.resolveIdentityName();
+    final GameLobby lobby = await TableService.openLobby(
+      gameType: model.gameType,
+      cards: CardMedium.physical,
+      table: _groupTable,
+      name: model.tableName,
+    );
     final ScoreSession? session = await ScoreSessionService.createSession(
       identity ?? '',
+      lobby: lobby,
     );
     if (!mounted || session == null) {
       return;

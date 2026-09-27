@@ -7,12 +7,6 @@ enum GameStyles {
 
   /// Skyjo card game style with specific rules.
   skyjo,
-
-  /// Mini Putt card game style with a smaller grid.
-  miniPut,
-
-  /// Custom game style that allows for any configuration.
-  custom,
 }
 
 /// Configuration for a specific game style
@@ -51,18 +45,6 @@ GameStyleConfig getGameStyleConfig(GameStyles style, int numberOfPlayers) {
         cardsToDeal: GameConstants.skyjoCardCount,
         decks: 1,
       );
-    case GameStyles.miniPut:
-      return GameStyleConfig(
-        cardsToReveal: CardModel.miniPutRevealCount,
-        cardsToDeal: GameConstants.miniPutCardCount,
-        decks: 1,
-      );
-    case GameStyles.custom:
-      return GameStyleConfig(
-        cardsToReveal: CardModel.customRevealCount,
-        cardsToDeal: GameConstants.standardCardCount,
-        decks: 1,
-      );
   }
 }
 
@@ -76,10 +58,6 @@ int numberOfDecks(GameStyles style, int numberOfPlayers) {
     case GameStyles.frenchCards9:
       return GameConstants.calculateDecks(numberOfPlayers);
     case GameStyles.skyjo:
-      return 1;
-    case GameStyles.miniPut:
-      return 1;
-    case GameStyles.custom:
       return 1;
   }
 }

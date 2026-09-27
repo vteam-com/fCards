@@ -11,9 +11,6 @@ const String _lastPlayedNode = 'last_played';
 /// Firebase child ordered on when querying the global leaderboard.
 const String leaderboardWinsNode = _winsNode;
 
-/// Leaderboard style key covering every game style.
-const String allStylesKey = 'all';
-
 /// Prefix for table-board keys of players without an account.
 const String _namePlayerKeyPrefix = 'name:';
 
@@ -138,21 +135,13 @@ class LeaderboardEntry {
       });
   }
 
-  /// Builds a ranked table board from [results], optionally limited to one
-  /// [style] (null or [allStylesKey] keeps every style).
+  /// Builds a ranked table board from [results].
   ///
   /// Account players are grouped by uid; name-only players by upper-cased
   /// name, so the same person typing their name each game still adds up.
-  static List<LeaderboardEntry> aggregate(
-    Iterable<GameResult> results, {
-    String? style,
-  }) {
-    final bool allStyles = style == null || style == allStylesKey;
+  static List<LeaderboardEntry> aggregate(Iterable<GameResult> results) {
     final Map<String, LeaderboardEntry> entries = <String, LeaderboardEntry>{};
     for (final GameResult result in results) {
-      if (!allStyles && result.style != style) {
-        continue;
-      }
       for (final GameResultPlayer player in result.players) {
         final String key = player.hasAccount
             ? player.uid

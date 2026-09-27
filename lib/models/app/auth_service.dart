@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -21,11 +22,13 @@ class AuthService {
   static Stream<User?> authStateChanges() => _auth.authStateChanges();
 
   /// Returns the currently signed-in Firebase user, if available.
-  static User? get currentUser => _auth.currentUser;
+  /// Null while Firebase is not initialized (offline demo, tests).
+  static User? get currentUser =>
+      Firebase.apps.isEmpty ? null : _auth.currentUser;
 
   /// Returns true when the current auth session belongs to a non-anonymous user.
   static bool get isSignedInWithAccount {
-    final user = _auth.currentUser;
+    final user = currentUser;
     return user != null && !user.isAnonymous;
   }
 

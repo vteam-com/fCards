@@ -8,10 +8,14 @@ import 'package:cards/models/game/game_result.dart';
 import 'package:cards/models/game/game_styles.dart';
 import 'package:cards/models/game/leaderboard_entry.dart';
 import 'package:cards/models/game/leaderboard_service.dart';
+import 'package:cards/models/game/table_service.dart';
 import 'package:cards/widgets/buttons/my_button_rectangle.dart';
+import 'package:cards/widgets/buttons/my_button_round.dart';
 import 'package:cards/widgets/helpers/app_bottom_sheet.dart';
 import 'package:cards/widgets/helpers/player_avatar.dart';
 import 'package:cards/widgets/helpers/screen.dart';
+import 'package:cards/widgets/tables/rename_table_dialog.dart';
+import 'package:cards/widgets/tables/table_summary.dart';
 import 'package:flutter/material.dart';
 
 /// Layout values for the leaderboard screen (Fibonacci).
@@ -21,9 +25,6 @@ class LeaderboardScreenConstants {
 
   /// Height of the scope and style toggle buttons.
   static const double toggleHeight = 34.0;
-
-  /// Width of one style filter button.
-  static const double styleButtonWidth = 144.0;
 
   /// Width reserved for the rank or medal column.
   static const double rankWidth = 34.0;
@@ -66,18 +67,10 @@ class LeaderboardScreen extends StatefulWidget {
 
 class _LeaderboardScreenState extends State<LeaderboardScreen> {
   late Future<List<LeaderboardEntry>> _entries;
+  GameStyles _gameType = GameStyles.frenchCards9;
   late _LeaderboardScope _scope;
-  String _style = allStylesKey;
-  static const List<String> _styles = <String>[
-    allStylesKey,
-    'frenchCards9',
-    'skyjo',
-    'miniPut',
-    scoreKeeperStyleKey,
-    'custom',
-  ];
   String? _tableKey;
-  List<LeaderboardTable> _tables = <LeaderboardTable>[];
+  List<GameTable> _tables = <GameTable>[];
   @override
   void initState() {
     super.initState();
@@ -107,7 +100,8 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
               spacing: ConstLayout.sizeM,
               children: [
                 _buildScopeToggle(localizations),
-                _buildStyleFilter(localizations),
+                if (_scope == _LeaderboardScope.global)
+                  _buildStyleFilter(localizations),
                 if (_scope == _LeaderboardScope.tables && _tables.isNotEmpty)
                   _buildTablePicker(localizations),
                 Expanded(child: _buildBoard(localizations)),
@@ -290,41 +284,59 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
     );
   }
 
-  /// Builds the horizontally scrolling game-style filter.
+  /// Builds the game type switch; the global board is always one game type.
   Widget _buildStyleFilter(AppLocalizations localizations) {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Row(
-        spacing: ConstLayout.sizeS,
-        children: _styles
-            .map(
-              (String style) => _buildToggle(
-                label: _styleLabel(style, localizations),
-                width: LeaderboardScreenConstants.styleButtonWidth,
-                selected: _style == style,
-                onTap: () => _update(() => _style = style),
-              ),
-            )
-            .toList(),
-      ),
+    return Row(
+      spacing: ConstLayout.sizeS,
+      children: [
+        for (final GameStyles gameType in GameStyles.values)
+          Expanded(
+            child: _buildToggle(
+              key: Key('leaderboard.gameType.${gameType.name}'),
+              label: gameTypeLabel(gameType, localizations),
+              selected: _gameType == gameType,
+              onTap: () => _update(() => _gameType = gameType),
+            ),
+          ),
+      ],
     );
   }
 
-  /// Builds the button showing the selected table, which opens the picker.
+  /// Builds the selected table (which opens the picker) and its rename button.
   Widget _buildTablePicker(AppLocalizations localizations) {
-    final LeaderboardTable? selected = _tables
-        .where((LeaderboardTable table) => table.key == _tableKey)
+    final GameTable? selected = _tables
+        .where((GameTable table) => table.id == _tableKey)
         .firstOrNull;
-    return MyButtonRectangle.menu(
-      icon: Icons.table_restaurant,
-      label: selected?.name ?? localizations.leaderboardChooseTable,
-      subLabel: selected == null ? null : localizations.leaderboardChooseTable,
-      onTap: () => _chooseTable(localizations),
+    return Row(
+      spacing: ConstLayout.sizeS,
+      children: [
+        Expanded(
+          child: MyButtonRectangle.menu(
+            icon: Icons.table_restaurant,
+            label: selected?.name ?? localizations.leaderboardChooseTable,
+            subLabel: selected == null
+                ? null
+                : tableSummary(
+                    selected.gameType,
+                    selected.players,
+                    localizations,
+                  ),
+            onTap: () => _chooseTable(localizations),
+          ),
+        ),
+        if (selected != null)
+          MyButtonRound(
+            key: const Key('leaderboard.renameTable'),
+            onTap: () => _renameTable(selected),
+            child: const Icon(Icons.edit, size: ConstLayout.iconS),
+          ),
+      ],
     );
   }
 
   /// Builds a toggle button that is primary while [selected].
   Widget _buildToggle({
+    Key? key,
     required String label,
     required bool selected,
     required VoidCallback onTap,
@@ -350,12 +362,14 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
     );
     return selected
         ? MyButtonRectangle.primary(
+            key: key,
             width: width,
             height: LeaderboardScreenConstants.toggleHeight,
             onTap: onTap,
             child: child,
           )
         : MyButtonRectangle.secondary(
+            key: key,
             width: width,
             height: LeaderboardScreenConstants.toggleHeight,
             onTap: onTap,
@@ -383,15 +397,17 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
               ),
             ),
             ..._tables.map(
-              (LeaderboardTable table) => MyButtonRectangle.menu(
-                icon: table.key == _tableKey
+              (GameTable table) => MyButtonRectangle.menu(
+                icon: table.id == _tableKey
                     ? Icons.check_circle
                     : Icons.table_restaurant,
                 label: table.name,
-                subLabel: MaterialLocalizations.of(
-                  sheetContext,
-                ).formatMediumDate(table.lastPlayed),
-                onTap: () => Navigator.of(sheetContext).pop(table.key),
+                subLabel: tableSummary(
+                  table.gameType,
+                  table.players,
+                  localizations,
+                ),
+                onTap: () => Navigator.of(sheetContext).pop(table.id),
               ),
             ),
           ],
@@ -414,26 +430,25 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
   /// Loads the board for the current scope, style, and table.
   Future<List<LeaderboardEntry>> _load() {
     if (_scope == _LeaderboardScope.global) {
-      return LeaderboardService.globalLeaderboard(_style);
+      return LeaderboardService.globalLeaderboard(_gameType);
     }
     final String? tableKey = _tableKey;
     if (tableKey == null) {
       return Future<List<LeaderboardEntry>>.value(<LeaderboardEntry>[]);
     }
-    return LeaderboardService.tableLeaderboard(tableKey, style: _style);
+    return LeaderboardService.tableLeaderboard(tableKey);
   }
 
   /// Loads the player's tables and selects the latest when none is chosen.
   Future<void> _loadTables() async {
-    final List<LeaderboardTable> tables =
-        await LeaderboardService.tablesForPlayer(_uid);
+    final List<GameTable> tables = await TableService.tablesForPlayer(_uid);
     if (!mounted) {
       return;
     }
     setState(() {
       _tables = tables;
       if (_tableKey == null && tables.isNotEmpty) {
-        _tableKey = tables.first.key;
+        _tableKey = tables.first.id;
         if (_scope == _LeaderboardScope.tables) {
           _entries = _load();
         }
@@ -447,8 +462,20 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
     _loadTables();
   }
 
-  /// Played and win rate always; best and average only within one style,
-  /// since scores from different games are not comparable.
+  /// Renames [table] and refreshes the table list.
+  Future<void> _renameTable(GameTable table) async {
+    final String? name = await renameTableWithFeedback(
+      context: context,
+      currentName: table.name,
+      rename: (String name) => TableService.renameTable(table.id, name),
+    );
+    if (name != null && mounted) {
+      await _loadTables();
+    }
+  }
+
+  /// Played, win rate, best and average; every board is a single game type,
+  /// so scores are comparable.
   String _statsLine(LeaderboardEntry entry, AppLocalizations localizations) {
     final List<String> parts = <String>[
       localizations.leaderboardGamesPlayed(entry.gamesPlayed),
@@ -458,7 +485,7 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
     ];
     final int? best = entry.bestScore;
     final double? average = entry.averageScore;
-    if (_style != allStylesKey && best != null && average != null) {
+    if (best != null && average != null) {
       parts
         ..add(localizations.leaderboardBest(best))
         ..add(
@@ -468,18 +495,6 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
         );
     }
     return parts.join(' · ');
-  }
-
-  /// Returns the localized filter label for a leaderboard [style] key.
-  String _styleLabel(String style, AppLocalizations localizations) {
-    if (style == allStylesKey) return localizations.leaderboardAllGames;
-    if (style == scoreKeeperStyleKey) {
-      return localizations.leaderboardScoreKeeper;
-    }
-    if (style == GameStyles.frenchCards9.name) return localizations.golf9Cards;
-    if (style == GameStyles.skyjo.name) return localizations.skyjo;
-    if (style == GameStyles.miniPut.name) return localizations.miniPut;
-    return localizations.leaderboardCustom;
   }
 
   String get _uid => AuthService.currentUser?.uid ?? '';

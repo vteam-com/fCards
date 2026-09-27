@@ -9,21 +9,17 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   group('GameStyles', () {
     test('has correct number of values', () {
-      expect(GameStyles.values.length, equals(4));
+      expect(GameStyles.values.length, equals(2));
     });
 
     test('contains expected values', () {
       expect(GameStyles.values, contains(GameStyles.frenchCards9));
       expect(GameStyles.values, contains(GameStyles.skyjo));
-      expect(GameStyles.values, contains(GameStyles.miniPut));
-      expect(GameStyles.values, contains(GameStyles.custom));
     });
 
     test('values are in expected order', () {
       expect(GameStyles.values[0], equals(GameStyles.frenchCards9));
       expect(GameStyles.values[1], equals(GameStyles.skyjo));
-      expect(GameStyles.values[2], equals(GameStyles.miniPut));
-      expect(GameStyles.values[3], equals(GameStyles.custom));
     });
 
     test('can compare enum values', () {
@@ -34,8 +30,6 @@ void main() {
     test('can convert to string', () {
       expect(GameStyles.frenchCards9.toString(), contains('frenchCards9'));
       expect(GameStyles.skyjo.toString(), contains('skyjo'));
-      expect(GameStyles.miniPut.toString(), contains('miniPut'));
-      expect(GameStyles.custom.toString(), contains('custom'));
     });
 
     test('Instructions', () {
@@ -45,20 +39,6 @@ void main() {
         false,
       );
       expect(gameInstructions(GameStyles.skyjo, localizations).isEmpty, false);
-      expect(
-        gameInstructions(GameStyles.miniPut, localizations).isEmpty,
-        false,
-      );
-      expect(gameInstructions(GameStyles.custom, localizations).isEmpty, false);
-    });
-
-    test('from Json', () {
-      expect(intToGameStyles(-1), GameStyles.frenchCards9);
-      expect(intToGameStyles(0), GameStyles.frenchCards9);
-      expect(intToGameStyles(1), GameStyles.skyjo);
-      expect(intToGameStyles(2), GameStyles.miniPut);
-      expect(intToGameStyles(3), GameStyles.custom);
-      expect(intToGameStyles(99), GameStyles.frenchCards9);
     });
   });
 
@@ -78,30 +58,6 @@ void main() {
   testWidgets('GameStyle Skyjo widget test', (WidgetTester tester) async {
     await tester.pumpWidget(
       MaterialApp(home: GameStyle(style: GameStyles.skyjo)),
-    );
-
-    // Verify Markdown widget is present
-    expect(find.byType(Markdown), findsOneWidget);
-
-    // Verify cards are displayed
-    expect(find.byType(CardWidget), findsWidgets);
-  });
-  testWidgets('GameStyle French MiniPut 4 widget test', (
-    WidgetTester tester,
-  ) async {
-    await tester.pumpWidget(
-      MaterialApp(home: GameStyle(style: GameStyles.miniPut)),
-    );
-
-    // Verify Markdown widget is present
-    expect(find.byType(Markdown), findsOneWidget);
-
-    // Verify cards are displayed
-    expect(find.byType(CardWidget), findsWidgets);
-  });
-  testWidgets('GameStyle Custom widget test', (WidgetTester tester) async {
-    await tester.pumpWidget(
-      MaterialApp(home: GameStyle(style: GameStyles.custom)),
     );
 
     // Verify Markdown widget is present

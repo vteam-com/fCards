@@ -12,7 +12,6 @@ void main() {
 
   late GameModel gameModelSkyjo;
   late GameModel gameModelFrench9Cards;
-  late GameModel gameModelMiniPut;
   List<String> playersNames = ['Player 1', 'Player 2'];
   setUp(() {
     mockContext = MockBuildContext();
@@ -35,17 +34,6 @@ void main() {
       names: playersNames,
       cardsToDeal: 9,
       deck: DeckModel(numberOfDecks: 1, gameStyle: GameStyles.frenchCards9),
-      isNewGame: true,
-    );
-
-    gameModelMiniPut = GameModel(
-      gameStyle: GameStyles.miniPut,
-      roomName: 'TEST_ROOM_FRENCH_MINI_PUT',
-      roomHistory: [],
-      loginUserName: playersNames.first,
-      names: playersNames,
-      cardsToDeal: 4,
-      deck: DeckModel(numberOfDecks: 1, gameStyle: GameStyles.miniPut),
       isNewGame: true,
     );
   });
@@ -99,7 +87,6 @@ void main() {
 
     // remaining cards in the deck piles
     expect(gameModelFrench9Cards.deck.cardsDeckPile.length, 35);
-    expect(gameModelMiniPut.deck.cardsDeckPile.length, 45);
   });
 
   test('moveToNextPlayer correctly handles final turn', () {
@@ -241,48 +228,6 @@ void main() {
         names: playersNames,
         cardsToDeal: 9,
         deck: DeckModel(numberOfDecks: 1, gameStyle: GameStyles.frenchCards9),
-        isNewGame: true,
-      );
-
-      gameModel.fromJson(jsonData);
-
-      expect(gameModel.playerIdPlaying, 1);
-      expect(gameModel.playerIdAttacking, 0);
-      expect(gameModel.gameState, GameStates.gameOver);
-      expect(gameModel.players.length, 2);
-    }
-
-    // French MiniPut 4 Cards
-    {
-      final gameModel = GameModel(
-        gameStyle: GameStyles.miniPut,
-        roomName: 'testRoom',
-        roomHistory: [],
-        loginUserName: playersNames.first,
-        names: playersNames,
-        cardsToDeal: 4,
-        deck: DeckModel(numberOfDecks: 1, gameStyle: GameStyles.miniPut),
-        isNewGame: true,
-      );
-
-      gameModel.fromJson(jsonData);
-
-      expect(gameModel.playerIdPlaying, 1);
-      expect(gameModel.playerIdAttacking, 0);
-      expect(gameModel.gameState, GameStates.gameOver);
-      expect(gameModel.players.length, 2);
-    }
-
-    // Custom
-    {
-      final gameModel = GameModel(
-        gameStyle: GameStyles.custom,
-        roomName: 'testRoom',
-        roomHistory: [],
-        loginUserName: playersNames.first,
-        names: playersNames,
-        cardsToDeal: 9,
-        deck: DeckModel(numberOfDecks: 1, gameStyle: GameStyles.custom),
         isNewGame: true,
       );
 

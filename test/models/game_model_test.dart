@@ -35,19 +35,6 @@ void main() {
     );
   }
 
-  GameModel getNewInstanceFrenchMiniPut() {
-    return GameModel(
-      gameStyle: GameStyles.miniPut,
-      roomName: 'testRoom',
-      roomHistory: [],
-      loginUserName: testPlayers.first,
-      names: testPlayers,
-      cardsToDeal: 4,
-      deck: DeckModel(numberOfDecks: 1, gameStyle: GameStyles.miniPut),
-      isNewGame: true,
-    );
-  }
-
   group('GameModel Initialization', () {
     test('should initialize with correct number of players', () {
       final gameModel = getNewSkyjoInstance();
@@ -71,9 +58,6 @@ void main() {
       final gameModel1 = getNewSkyjoInstance();
       final gameModel2 = getNewInstanceFrench9Cards();
 
-      final gameModel3 = getNewInstanceFrenchMiniPut();
-      gameModel3.players.first.hand.getSumOfCardsForGolf();
-
       expect(gameModel1 == gameModel1, true);
       expect(gameModel2 == gameModel2, true);
       expect(gameModel1 == gameModel2, false);
@@ -81,28 +65,11 @@ void main() {
       expect(gameModel1.hashCode == gameModel1.hashCode, true);
       expect(gameModel2.hashCode == gameModel2.hashCode, true);
       expect(gameModel1.hashCode == gameModel2.hashCode, false);
-      expect(gameModel2.hashCode == gameModel3.hashCode, false);
 
       expect(gameModel1.toString() == gameModel1.toString(), true);
       expect(gameModel2.toString() == gameModel2.toString(), true);
       expect(gameModel1.toString() == gameModel2.toString(), false);
     });
-  });
-
-  test('MiniPut', () {
-    // note that there is a chance that all reveal cards adds up to zero
-    // so retry until we get a non-zero hand (high probability succeeds quickly)
-    for (int attempt = 0; attempt < 10; attempt++) {
-      final gameModel3 = getNewInstanceFrenchMiniPut();
-      gameModel3.players.first.hand.revealAllCards();
-      final int count = gameModel3.players.first.hand.getSumOfCardsForGolf();
-      if (count > 0) {
-        expect(count > 0, true);
-        return;
-      }
-    }
-    // If we reach here, all 10 attempts failed - this is extremely unlikely
-    fail('Unable to generate a non-zero hand after 10 attempts');
   });
 
   group('Game State Management', () {
@@ -307,9 +274,6 @@ void main() {
   group('Game Link Generation', () {
     test('should generate correct game link', () {
       final gameModel = getNewSkyjoInstance();
-      final expectedLink = '?mode=1&room=testRoom&players=Player1%2CPlayer2';
-      expect(gameModel.linkUri, equals(expectedLink));
-
       // because this is running in a none-browser mode the expected url will be empty
       expect(gameModel.getLinkToGame(), equals(''));
     });

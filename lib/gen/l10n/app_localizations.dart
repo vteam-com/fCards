@@ -151,12 +151,6 @@ abstract class AppLocalizations {
   /// **'{count}\\ncards'**
   String cardCountTooltip(int count);
 
-  /// No description provided for @cardGamesTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Card Games'**
-  String get cardGamesTitle;
-
   /// DO NOT TRANSLATE.
   ///
   /// In en, this message translates to:
@@ -168,6 +162,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Change how you play'**
   String get changePlayMode;
+
+  /// No description provided for @chooseTableHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Reopen a table to play with the same group, or start a new one.'**
+  String get chooseTableHint;
+
+  /// No description provided for @chooseTableTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Where are you playing?'**
+  String get chooseTableTitle;
 
   /// No description provided for @clearScores.
   ///
@@ -228,6 +234,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Are you sure you want to start a new game? All scores will be lost.'**
   String get confirmNewGame;
+
+  /// No description provided for @continueSheet.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue Current Sheet'**
+  String get continueSheet;
 
   /// No description provided for @corrections.
   ///
@@ -355,18 +367,6 @@ abstract class AppLocalizations {
   /// **'Corrections review is currently available on web.'**
   String get correctionsWebOnly;
 
-  /// No description provided for @createNewTable.
-  ///
-  /// In en, this message translates to:
-  /// **'Create New Table'**
-  String get createNewTable;
-
-  /// No description provided for @createTableNameHint.
-  ///
-  /// In en, this message translates to:
-  /// **'Choose a simple table name. If it already exists, we\'ll help you join it instead.'**
-  String get createTableNameHint;
-
   /// No description provided for @deleteLastRow.
   ///
   /// In en, this message translates to:
@@ -409,12 +409,6 @@ abstract class AppLocalizations {
   /// **'Email'**
   String get email;
 
-  /// No description provided for @enterTableName.
-  ///
-  /// In en, this message translates to:
-  /// **'Enter name of the new table.'**
-  String get enterTableName;
-
   /// No description provided for @errorLoadingScores.
   ///
   /// In en, this message translates to:
@@ -432,6 +426,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Final Round. {turnText}. You have to beat {attacker}'**
   String finalRoundYouHaveToBeat(String turnText, String attacker);
+
+  /// No description provided for @findTableByName.
+  ///
+  /// In en, this message translates to:
+  /// **'Find a table by name'**
+  String get findTableByName;
 
   /// No description provided for @firebaseId.
   ///
@@ -499,12 +499,6 @@ abstract class AppLocalizations {
   /// **'Golf 9 Cards'**
   String get golf9CardsFull;
 
-  /// No description provided for @golfScoreKeeper.
-  ///
-  /// In en, this message translates to:
-  /// **'9 Cards Golf Scorekeeper'**
-  String get golfScoreKeeper;
-
   /// No description provided for @googleSignInFailed.
   ///
   /// In en, this message translates to:
@@ -559,23 +553,11 @@ abstract class AppLocalizations {
   /// **'Info'**
   String get info;
 
-  /// No description provided for @instructionsCustom.
-  ///
-  /// In en, this message translates to:
-  /// **'Custom rules'**
-  String get instructionsCustom;
-
   /// No description provided for @instructionsFrenchCards9.
   ///
   /// In en, this message translates to:
   /// **'- Aim for the lowest score.\n- Choose a card from either the Deck or Discard pile.\n- Swap the chosen card with a card in your 3x3 grid, or discard it and flip over one of your face-down cards.\n- Three cards of the same rank in a row or column score zero.\n- The first player to reveal all nine cards challenges others, claiming the lowest score.\n- If someone else has an equal or lower score, the challenger doubles their points!\n- Players are eliminated after busting 100 points.\n\n\nLearn more [Wikipedia](https://en.wikipedia.org/wiki/Golf_(card_game))'**
   String get instructionsFrenchCards9;
-
-  /// No description provided for @instructionsMiniPut.
-  ///
-  /// In en, this message translates to:
-  /// **'- Aim for the lowest score.\n- Choose a card from either the Deck or Discard pile.\n- Swap the chosen card with a card in your 2x2 grid, or discard it and flip over one of your face-down cards.\n- Three cards of the same rank in a row or column score zero.\n- The first player to reveal all nine cards challenges others, claiming the lowest score.\n- If someone else has an equal or lower score, the challenger doubles their points!\n- Players are eliminated after busting 100 points.\n\n\nLearn more [Wikipedia](https://en.wikipedia.org/wiki/Golf_(card_game))'**
-  String get instructionsMiniPut;
 
   /// No description provided for @instructionsSkyjo.
   ///
@@ -613,12 +595,6 @@ abstract class AppLocalizations {
   /// **'Join a Game'**
   String get joinExistingGame;
 
-  /// No description provided for @joinGame.
-  ///
-  /// In en, this message translates to:
-  /// **'Join Game'**
-  String get joinGame;
-
   /// No description provided for @joinGameTitle.
   ///
   /// In en, this message translates to:
@@ -642,18 +618,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Scan the host\'s QR code with your camera, or enter the table name shown on their score sheet.'**
   String get joinScoreSheetPrompt;
-
-  /// No description provided for @joinTable.
-  ///
-  /// In en, this message translates to:
-  /// **'Join Table'**
-  String get joinTable;
-
-  /// No description provided for @joinThisTable.
-  ///
-  /// In en, this message translates to:
-  /// **'Join This Table'**
-  String get joinThisTable;
 
   /// No description provided for @language.
   ///
@@ -697,12 +661,6 @@ abstract class AppLocalizations {
   /// **'Leaderboard'**
   String get leaderboard;
 
-  /// No description provided for @leaderboardAllGames.
-  ///
-  /// In en, this message translates to:
-  /// **'All Games'**
-  String get leaderboardAllGames;
-
   /// No description provided for @leaderboardAverage.
   ///
   /// In en, this message translates to:
@@ -720,12 +678,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Choose a Table'**
   String get leaderboardChooseTable;
-
-  /// No description provided for @leaderboardCustom.
-  ///
-  /// In en, this message translates to:
-  /// **'Custom'**
-  String get leaderboardCustom;
 
   /// No description provided for @leaderboardEmpty.
   ///
@@ -775,12 +727,6 @@ abstract class AppLocalizations {
   /// **'Rank #{rank}'**
   String leaderboardRank(int rank);
 
-  /// No description provided for @leaderboardScoreKeeper.
-  ///
-  /// In en, this message translates to:
-  /// **'Score Keeper'**
-  String get leaderboardScoreKeeper;
-
   /// No description provided for @leaderboardTables.
   ///
   /// In en, this message translates to:
@@ -799,29 +745,29 @@ abstract class AppLocalizations {
   /// **'Wins'**
   String get leaderboardWins;
 
-  /// No description provided for @localScoreSheet.
+  /// No description provided for @lobbyAddPlayer.
   ///
   /// In en, this message translates to:
-  /// **'This Device'**
-  String get localScoreSheet;
-
-  /// DO NOT TRANSLATE.
-  ///
-  /// In en, this message translates to:
-  /// **'MiniPut'**
-  String get miniPut;
-
-  /// No description provided for @miniPutFull.
-  ///
-  /// In en, this message translates to:
-  /// **'MiniPut 4 Cards'**
-  String get miniPutFull;
+  /// **'Add a player'**
+  String get lobbyAddPlayer;
 
   /// No description provided for @newGame.
   ///
   /// In en, this message translates to:
   /// **'New Game'**
   String get newGame;
+
+  /// No description provided for @newTable.
+  ///
+  /// In en, this message translates to:
+  /// **'New Table'**
+  String get newTable;
+
+  /// No description provided for @newTableForThisGroup.
+  ///
+  /// In en, this message translates to:
+  /// **'New table for this group. Its name is yours to change.'**
+  String get newTableForThisGroup;
 
   /// No description provided for @next.
   ///
@@ -835,29 +781,23 @@ abstract class AppLocalizations {
   /// **'No cards available to draw!'**
   String get noCardsAvailableToDraw;
 
-  /// No description provided for @noMatchingTables.
-  ///
-  /// In en, this message translates to:
-  /// **'No matching tables'**
-  String get noMatchingTables;
-
   /// No description provided for @noOne.
   ///
   /// In en, this message translates to:
   /// **'No one'**
   String get noOne;
 
-  /// No description provided for @noTablesAvailable.
+  /// No description provided for @noOpenTables.
   ///
   /// In en, this message translates to:
-  /// **'No tables available'**
-  String get noTablesAvailable;
+  /// **'No open tables right now.'**
+  String get noOpenTables;
 
-  /// No description provided for @noTablesFoundMatching.
+  /// No description provided for @noTablesYet.
   ///
   /// In en, this message translates to:
-  /// **'No tables found matching \"{searchText}\"'**
-  String noTablesFoundMatching(String searchText);
+  /// **'You have no tables for this game yet.'**
+  String get noTablesYet;
 
   /// No description provided for @notAllowed.
   ///
@@ -877,12 +817,6 @@ abstract class AppLocalizations {
   /// **'\nor\nhere\n←'**
   String get orHereLeft;
 
-  /// No description provided for @pickTableOrCreateHint.
-  ///
-  /// In en, this message translates to:
-  /// **'Pick an existing table, or create a new one.'**
-  String get pickTableOrCreateHint;
-
   /// No description provided for @playAgain.
   ///
   /// In en, this message translates to:
@@ -894,6 +828,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Player'**
   String get player;
+
+  /// No description provided for @playerCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 player} other{{count} players}}'**
+  String playerCount(int count);
 
   /// No description provided for @playerName.
   ///
@@ -961,12 +901,6 @@ abstract class AppLocalizations {
   /// **'Virtual cards, automatic scoring'**
   String get playOnlineHint;
 
-  /// No description provided for @pleaseEnterYourName.
-  ///
-  /// In en, this message translates to:
-  /// **'Please enter your name above ⬆'**
-  String get pleaseEnterYourName;
-
   /// No description provided for @readyToPlayPlayersAtTable.
   ///
   /// In en, this message translates to:
@@ -1002,6 +936,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{count} Rounds'**
   String rounds(int count);
+
+  /// No description provided for @save.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get save;
 
   /// No description provided for @saveResultAndNewGame.
   ///
@@ -1159,6 +1099,12 @@ abstract class AppLocalizations {
   /// **'No score sheet found for that table name.'**
   String get scoreSheetNotFound;
 
+  /// No description provided for @scoreSheetTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{game} Score Sheet'**
+  String scoreSheetTitle(String game);
+
   /// No description provided for @selectAStatus.
   ///
   /// In en, this message translates to:
@@ -1200,12 +1146,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Start Game'**
   String get startGame;
-
-  /// No description provided for @startGameWizardSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Choose the game for this table. We\'ll help you name it next.'**
-  String get startGameWizardSubtitle;
 
   /// No description provided for @starting.
   ///
@@ -1279,11 +1219,35 @@ abstract class AppLocalizations {
   /// **'Table'**
   String get table;
 
+  /// No description provided for @tableForThisGroup.
+  ///
+  /// In en, this message translates to:
+  /// **'This group already plays at this table.'**
+  String get tableForThisGroup;
+
   /// No description provided for @tableLabel.
   ///
   /// In en, this message translates to:
   /// **'Table: {table}'**
   String tableLabel(String table);
+
+  /// No description provided for @tableNameTaken.
+  ///
+  /// In en, this message translates to:
+  /// **'Another table already uses that name.'**
+  String get tableNameTaken;
+
+  /// No description provided for @tableNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'No table found with that name.'**
+  String get tableNotFound;
+
+  /// No description provided for @tableRename.
+  ///
+  /// In en, this message translates to:
+  /// **'Rename Table'**
+  String get tableRename;
 
   /// No description provided for @thisGame.
   ///
@@ -1291,23 +1255,11 @@ abstract class AppLocalizations {
   /// **'This Game'**
   String get thisGame;
 
-  /// No description provided for @thisTableAlreadyHasPlayers.
-  ///
-  /// In en, this message translates to:
-  /// **'This table already exists. Join this table or enter a different name.'**
-  String get thisTableAlreadyHasPlayers;
-
   /// No description provided for @typeOfOAuthUsed.
   ///
   /// In en, this message translates to:
   /// **'Type of OAuth used'**
   String get typeOfOAuthUsed;
-
-  /// No description provided for @useSearchBox.
-  ///
-  /// In en, this message translates to:
-  /// **'Use the search box to quickly find a table'**
-  String get useSearchBox;
 
   /// No description provided for @waitForYourTurnSmiley.
   ///
@@ -1321,12 +1273,6 @@ abstract class AppLocalizations {
   /// **'Waiting for more players to join...'**
   String get waitingForMorePlayers;
 
-  /// No description provided for @waitingForPlayers.
-  ///
-  /// In en, this message translates to:
-  /// **'Waiting for players to join'**
-  String get waitingForPlayers;
-
   /// No description provided for @waitYourTurn.
   ///
   /// In en, this message translates to:
@@ -1339,11 +1285,23 @@ abstract class AppLocalizations {
   /// **'What type of game?'**
   String get whatTypeOfGame;
 
-  /// No description provided for @whoAreYou.
+  /// No description provided for @whoIsPlayingHint.
   ///
   /// In en, this message translates to:
-  /// **'Who Are You?\nSelect above ⬆ or join below ⬇'**
-  String get whoAreYou;
+  /// **'Add everyone at the table. We\'ll find your table for this game, or start a new one.'**
+  String get whoIsPlayingHint;
+
+  /// No description provided for @whoIsPlayingQrHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Players who scan join this sheet. You can also type names below.'**
+  String get whoIsPlayingQrHint;
+
+  /// No description provided for @whoIsPlayingTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Who is playing?'**
+  String get whoIsPlayingTitle;
 
   /// No description provided for @wizardStepOneOfTwo.
   ///

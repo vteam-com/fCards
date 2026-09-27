@@ -1,14 +1,16 @@
+import 'package:cards/models/game/card_medium.dart';
 import 'package:cards/models/game/game_result_player.dart';
+import 'package:cards/models/game/game_styles.dart';
 
 export 'package:cards/models/game/game_result_player.dart';
+export 'package:cards/models/game/game_styles.dart';
+export 'package:cards/models/game/card_medium.dart';
 
 const String _tableNameNode = 'table_name';
 const String _styleNode = 'style';
 const String _endedAtNode = 'ended_at';
 const String _playersNode = 'players';
-
-/// Leaderboard style key for Score Keeper sheets.
-const String scoreKeeperStyleKey = 'scoreKeeper';
+const String _cardsNode = 'cards';
 
 /// Characters Firebase Realtime Database does not allow in keys.
 final RegExp _invalidKeyCharacters = RegExp(r'[.#$\[\]/]');
@@ -25,6 +27,7 @@ class GameResult {
     required this.tableKey,
     required this.tableName,
     required this.style,
+    required this.cards,
     required this.endedAt,
     required this.players,
   });
@@ -38,7 +41,8 @@ class GameResult {
     required String id,
     required String tableKey,
     required String tableName,
-    required String style,
+    required GameStyles style,
+    required CardMedium cards,
     required DateTime endedAt,
     required List<String> names,
     required List<int> scores,
@@ -56,6 +60,7 @@ class GameResult {
       tableKey: firebaseSafeKey(tableKey),
       tableName: tableName,
       style: style,
+      cards: cards,
       endedAt: endedAt,
       players: List<GameResultPlayer>.generate(
         count,
@@ -78,13 +83,15 @@ class GameResult {
         id: id,
         tableKey: tableKey,
         tableName: tableKey,
-        style: '',
+        style: GameStyles.frenchCards9,
+        cards: CardMedium.virtual,
         endedAt: DateTime.fromMillisecondsSinceEpoch(0),
         players: const <GameResultPlayer>[],
       );
     }
     final Object? tableName = value[_tableNameNode];
     final Object? style = value[_styleNode];
+    final Object? cards = value[_cardsNode];
     final Object? endedAt = value[_endedAtNode];
     final Object? players = value[_playersNode];
     final Iterable<Object?> playerValues = players is List
@@ -96,7 +103,8 @@ class GameResult {
       id: id,
       tableKey: tableKey,
       tableName: tableName is String ? tableName : tableKey,
-      style: style is String ? style : '',
+      style: GameStyles.values.asNameMap()[style] ?? GameStyles.frenchCards9,
+      cards: CardMedium.values.asNameMap()[cards] ?? CardMedium.virtual,
       endedAt: DateTime.fromMillisecondsSinceEpoch(
         endedAt is num ? endedAt.toInt() : 0,
       ),
@@ -117,8 +125,11 @@ class GameResult {
   /// Human-readable room or score sheet name.
   final String tableName;
 
-  /// Game style key, such as `skyjo` or [scoreKeeperStyleKey].
-  final String style;
+  /// Which game was played.
+  final GameStyles style;
+
+  /// Whether the game used physical or virtual cards.
+  final CardMedium cards;
 
   /// When the game finished.
   final DateTime endedAt;
@@ -145,6 +156,7 @@ class GameResult {
       tableKey: tableKey,
       tableName: tableName,
       style: style,
+      cards: cards,
       endedAt: endedAt,
       players: players.map((GameResultPlayer player) {
         final String? uid = uidsByName[player.name];
@@ -156,7 +168,8 @@ class GameResult {
   /// Serializes the result for Firebase.
   Map<String, Object> toValue() => <String, Object>{
     _tableNameNode: tableName,
-    _styleNode: style,
+    _styleNode: style.name,
+    _cardsNode: cards.name,
     _endedAtNode: endedAt.millisecondsSinceEpoch,
     _playersNode: players
         .map((GameResultPlayer player) => player.toValue())

@@ -1,13 +1,19 @@
 import 'dart:convert';
 
+import 'package:cards/models/game/game_styles.dart';
+import 'package:cards/models/game/score_sheet_setup.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 const String _prefsKeyPlayerNames = 'playerNames';
 const String _prefsKeyScores = 'scores';
+const String _prefsKeyGameType = 'scoreSheetGameType';
+const String _prefsKeyTableName = 'scoreSheetTableName';
+const List<String> _defaultPlayers = <String>['P1', 'P2', 'P3'];
 const int _minimumPlayersToClose = 2;
 
 // ignore: sort_constructors_first
-/// Represents the score data for a 9 Cards Golf game.
+/// A physical-card score sheet: players, round scores, game type, and the
+/// name of the table it will be saved to. Lowest total wins.
 class GolfScoreModel {
   // ignore: sort_constructors_first
   /// Creates a [GolfScoreModel] instance.
@@ -15,6 +21,8 @@ class GolfScoreModel {
     required this.playerNames,
     List<List<int>>? scores,
     this.persistChanges = true,
+    this.gameType = GameStyles.frenchCards9,
+    this.tableName = '',
   }) : scores = scores ?? [] {
     if (this.scores.isEmpty) {
       addRound();
@@ -30,6 +38,34 @@ class GolfScoreModel {
 
   /// Whether mutations should be written to local storage.
   final bool persistChanges;
+
+  /// Game being scored.
+  GameStyles gameType;
+
+  /// Name of the table this sheet belongs to: a reopened table's name, or the
+  /// proposed name of a new table.
+  String tableName;
+
+  /// Starts a fresh sheet from [setup], dropping the previous scores.
+  ///
+  /// Completes once the new sheet is saved.
+  Future<void> startNew(ScoreSheetSetup setup) {
+    gameType = setup.gameType;
+    tableName = setup.tableName;
+    playerNames = setup.players.isEmpty
+        ? List<String>.from(_defaultPlayers)
+        : List<String>.from(setup.players);
+    scores = <List<int>>[
+      List<int>.filled(playerNames.length, 0, growable: true),
+    ];
+    return _save();
+  }
+
+  /// Changes the sheet's table name and persists it.
+  void setTableName(String name) {
+    tableName = name;
+    _save();
+  }
 
   /// Adds a new round to the game with initial scores (e.g., all zeros).
   void addRound() {
@@ -240,6 +276,8 @@ class GolfScoreModel {
     final prefs = await SharedPreferences.getInstance();
     prefs.setString(_prefsKeyPlayerNames, jsonEncode(playerNames));
     prefs.setString(_prefsKeyScores, jsonEncode(scores));
+    prefs.setString(_prefsKeyGameType, gameType.name);
+    prefs.setString(_prefsKeyTableName, tableName);
   }
 
   ///
@@ -255,13 +293,22 @@ class GolfScoreModel {
         final scores = (jsonDecode(scoresJson) as List)
             .map((list) => (list as List).cast<int>())
             .toList();
-        return GolfScoreModel(playerNames: playerNames, scores: scores);
+        return GolfScoreModel(
+          playerNames: playerNames,
+          scores: scores,
+          gameType:
+              GameStyles.values.asNameMap()[prefs.getString(
+                _prefsKeyGameType,
+              )] ??
+              GameStyles.frenchCards9,
+          tableName: prefs.getString(_prefsKeyTableName) ?? '',
+        );
       } catch (_) {
         // Handle corrupted JSON data by returning default model
-        return GolfScoreModel(playerNames: ['P1', 'P2', 'P3']);
+        return GolfScoreModel(playerNames: List<String>.from(_defaultPlayers));
       }
     } else {
-      return GolfScoreModel(playerNames: ['P1', 'P2', 'P3']);
+      return GolfScoreModel(playerNames: List<String>.from(_defaultPlayers));
     }
   }
 }

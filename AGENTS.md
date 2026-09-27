@@ -26,7 +26,6 @@ The visual identity of this app relies heavily on a classic casino table top car
   - `lib/models/app/constants_layout.dart` - `ConstLayout` class for layout, spacing, sizing
   - `lib/models/app/constants_animation.dart` - `ConstAnimation` class for animation and visual effects
   - `lib/models/app/constants_card_value.dart` - `ConstCardValue` class for card values and offsets
-  - `lib/screens/game/start_screen_constants.dart` - `StartScreenConstants` class for start flow values
 - **Usage Examples**:
   - `ConstLayout.sizeS`, `sizeM`, `sizeL` for spacing/sizing
   - `ConstLayout.radiusL`, `radiusM` for border radius
