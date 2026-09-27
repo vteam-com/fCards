@@ -4,6 +4,7 @@ import 'package:cards/models/app/auth_service.dart';
 import 'package:cards/models/app/constants_layout.dart';
 import 'package:cards/models/app/locale_controller.dart';
 import 'package:cards/widgets/buttons/my_button_rectangle.dart';
+import 'package:cards/widgets/helpers/player_avatar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widget_previews.dart';
@@ -227,27 +228,16 @@ class _AvatarProfileDialogState extends State<AvatarProfileDialog> {
           Stack(
             clipBehavior: Clip.none,
             children: [
-              CircleAvatar(
+              PlayerAvatar(
                 radius: _AvatarProfileDialogConstants.avatarRadius,
-                foregroundImage:
-                    widget.user.photoURL != null &&
-                        widget.user.photoURL!.isNotEmpty
-                    ? NetworkImage(widget.user.photoURL!)
-                    : null,
-                onForegroundImageError:
-                    widget.user.photoURL != null &&
-                        widget.user.photoURL!.isNotEmpty
-                    ? (_, _) {}
-                    : null,
+                photoUrl: widget.user.photoURL,
+                initials: _displayInitials,
+                initialsStyle: TextStyle(
+                  fontSize: ConstLayout.textL,
+                  fontWeight: FontWeight.bold,
+                ),
                 backgroundColor: colorScheme.primary,
                 foregroundColor: colorScheme.onPrimary,
-                child: Text(
-                  _displayInitials,
-                  style: TextStyle(
-                    fontSize: ConstLayout.textL,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
               ),
               Positioned(
                 bottom: ConstLayout.sizeXS,

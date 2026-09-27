@@ -3,6 +3,7 @@ import 'package:cards/models/app/constants_layout.dart';
 import 'package:cards/widgets/buttons/my_button_rectangle.dart';
 import 'package:cards/widgets/helpers/app_bottom_sheet.dart';
 import 'package:cards/widgets/helpers/input_keyboard.dart';
+import 'package:cards/widgets/helpers/player_avatar.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -860,12 +861,10 @@ class _PlayerHeaderState extends State<PlayerHeader> {
             ),
             Padding(
               padding: const EdgeInsets.all(ConstLayout.paddingM),
-              child: CircleAvatar(
+              child: PlayerAvatar(
                 radius: ConstLayout.iconL,
-                foregroundImage: avatarUrl.isNotEmpty
-                    ? NetworkImage(avatarUrl)
-                    : null,
-                child: Text(widget.playerName),
+                photoUrl: avatarUrl,
+                initials: widget.playerName,
               ),
             ),
             Text(localizations.email),

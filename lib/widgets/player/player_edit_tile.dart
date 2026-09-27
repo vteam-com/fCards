@@ -1,5 +1,6 @@
 import 'package:cards/models/app/app_theme.dart';
 import 'package:cards/models/app/constants_layout.dart';
+import 'package:cards/widgets/helpers/player_avatar.dart';
 import 'package:flutter/material.dart';
 
 /// Compact player tile used while editing the Score Keeper player list.
@@ -54,7 +55,6 @@ class PlayerEditTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
-    final String? imageUrl = avatarUrl;
     final String? playerEmail = email;
 
     return Container(
@@ -81,21 +81,10 @@ class PlayerEditTile extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         spacing: ConstLayout.sizeXS,
                         children: [
-                          CircleAvatar(
+                          PlayerAvatar(
                             radius: ConstLayout.sizeL,
-                            foregroundImage:
-                                imageUrl == null || imageUrl.isEmpty
-                                ? null
-                                : NetworkImage(imageUrl),
-                            child: FittedBox(
-                              fit: BoxFit.scaleDown,
-                              child: Text(
-                                initials,
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
+                            photoUrl: avatarUrl,
+                            initials: initials,
                           ),
                           if (playerEmail != null && playerEmail.isNotEmpty)
                             Tooltip(
