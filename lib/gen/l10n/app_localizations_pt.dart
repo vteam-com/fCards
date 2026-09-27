@@ -47,6 +47,24 @@ class AppLocalizationsPt extends AppLocalizations {
   String get clearScores => 'Limpar pontuacoes';
 
   @override
+  String get closeGame => 'Terminar jogo';
+
+  @override
+  String get closeGameHint =>
+      'O vencedor é salvo na classificação e começa um novo jogo.';
+
+  @override
+  String get closeGameNeedsScores =>
+      'Insira pontuações de pelo menos 2 jogadores antes de terminar o jogo.';
+
+  @override
+  String get closeGamePickWinner =>
+      'Empate na pontuação mais baixa. Toque no vencedor.';
+
+  @override
+  String get closeGameTitle => 'Terminar este jogo?';
+
+  @override
   String columnsByRows(int columns, int rows) {
     return '$columns x $rows';
   }
@@ -185,6 +203,14 @@ class AppLocalizationsPt extends AppLocalizations {
   String get fullName => 'Nome completo';
 
   @override
+  String get gameClosed => 'Jogo terminado';
+
+  @override
+  String gameClosedWinner(String name) {
+    return '$name ganha!';
+  }
+
+  @override
   String get gameOver => 'Fim do jogo';
 
   @override
@@ -307,6 +333,76 @@ class AppLocalizationsPt extends AppLocalizations {
   String get last => 'ULTIMO';
 
   @override
+  String get leaderboard => 'Classificação';
+
+  @override
+  String get leaderboardAllGames => 'Todos os jogos';
+
+  @override
+  String leaderboardAverage(String score) {
+    return 'Média $score';
+  }
+
+  @override
+  String leaderboardBest(int score) {
+    return 'Melhor $score';
+  }
+
+  @override
+  String get leaderboardChooseTable => 'Escolher uma mesa';
+
+  @override
+  String get leaderboardCustom => 'Personalizado';
+
+  @override
+  String get leaderboardEmpty =>
+      'Ainda não há jogos registrados. Termine um jogo para entrar na classificação.';
+
+  @override
+  String leaderboardGamesPlayed(int count) {
+    return '$count jogados';
+  }
+
+  @override
+  String get leaderboardGlobal => 'Mundial';
+
+  @override
+  String get leaderboardHint => 'Veja quem ganha mais';
+
+  @override
+  String get leaderboardMyStats => 'Minhas estatísticas';
+
+  @override
+  String get leaderboardNoStats =>
+      'Termine um jogo para começar suas estatísticas.';
+
+  @override
+  String get leaderboardNoTables =>
+      'Suas mesas aparecem aqui depois de terminar um jogo.';
+
+  @override
+  String leaderboardRank(int rank) {
+    return 'Posição #$rank';
+  }
+
+  @override
+  String get leaderboardScoreKeeper => 'Folha de pontos';
+
+  @override
+  String get leaderboardTables => 'Minhas mesas';
+
+  @override
+  String leaderboardWinRate(int percent) {
+    return '$percent% ganhos';
+  }
+
+  @override
+  String get leaderboardWins => 'Vitórias';
+
+  @override
+  String get localScoreSheet => 'Este dispositivo';
+
+  @override
   String get miniPut => 'MiniPut';
 
   @override
@@ -417,6 +513,9 @@ class AppLocalizationsPt extends AppLocalizations {
   String rounds(int count) {
     return '$count Rondas';
   }
+
+  @override
+  String get saveResultAndNewGame => 'Terminar e salvar resultado';
 
   @override
   String get scanCameraError => 'Erro da camara: ';
@@ -655,6 +754,24 @@ class AppLocalizationsPtPt extends AppLocalizationsPt {
   String get clearScores => 'Limpar pontuacoes';
 
   @override
+  String get closeGame => 'Terminar jogo';
+
+  @override
+  String get closeGameHint =>
+      'O vencedor é guardado na classificação e começa um novo jogo.';
+
+  @override
+  String get closeGameNeedsScores =>
+      'Introduza pontuações de pelo menos 2 jogadores antes de terminar o jogo.';
+
+  @override
+  String get closeGamePickWinner =>
+      'Empate na pontuação mais baixa. Toque no vencedor.';
+
+  @override
+  String get closeGameTitle => 'Terminar este jogo?';
+
+  @override
   String columnsByRows(int columns, int rows) {
     return '$columns x $rows';
   }
@@ -793,6 +910,14 @@ class AppLocalizationsPtPt extends AppLocalizationsPt {
   String get fullName => 'Nome completo';
 
   @override
+  String get gameClosed => 'Jogo terminado';
+
+  @override
+  String gameClosedWinner(String name) {
+    return '$name ganha!';
+  }
+
+  @override
   String get gameOver => 'Fim do jogo';
 
   @override
@@ -915,6 +1040,76 @@ class AppLocalizationsPtPt extends AppLocalizationsPt {
   String get last => 'ULTIMO';
 
   @override
+  String get leaderboard => 'Classificação';
+
+  @override
+  String get leaderboardAllGames => 'Todos os jogos';
+
+  @override
+  String leaderboardAverage(String score) {
+    return 'Média $score';
+  }
+
+  @override
+  String leaderboardBest(int score) {
+    return 'Melhor $score';
+  }
+
+  @override
+  String get leaderboardChooseTable => 'Escolher uma mesa';
+
+  @override
+  String get leaderboardCustom => 'Personalizado';
+
+  @override
+  String get leaderboardEmpty =>
+      'Ainda não há jogos registados. Termine um jogo para entrar na classificação.';
+
+  @override
+  String leaderboardGamesPlayed(int count) {
+    return '$count jogados';
+  }
+
+  @override
+  String get leaderboardGlobal => 'Mundial';
+
+  @override
+  String get leaderboardHint => 'Veja quem ganha mais';
+
+  @override
+  String get leaderboardMyStats => 'As minhas estatísticas';
+
+  @override
+  String get leaderboardNoStats =>
+      'Termine um jogo para começar as suas estatísticas.';
+
+  @override
+  String get leaderboardNoTables =>
+      'As suas mesas aparecem aqui depois de terminar um jogo.';
+
+  @override
+  String leaderboardRank(int rank) {
+    return 'Posição #$rank';
+  }
+
+  @override
+  String get leaderboardScoreKeeper => 'Folha de pontos';
+
+  @override
+  String get leaderboardTables => 'As minhas mesas';
+
+  @override
+  String leaderboardWinRate(int percent) {
+    return '$percent% ganhos';
+  }
+
+  @override
+  String get leaderboardWins => 'Vitórias';
+
+  @override
+  String get localScoreSheet => 'Este dispositivo';
+
+  @override
   String get miniPut => 'MiniPut';
 
   @override
@@ -1025,6 +1220,9 @@ class AppLocalizationsPtPt extends AppLocalizationsPt {
   String rounds(int count) {
     return '$count Rondas';
   }
+
+  @override
+  String get saveResultAndNewGame => 'Terminar e guardar resultado';
 
   @override
   String get scanCameraError => 'Erro da camara: ';

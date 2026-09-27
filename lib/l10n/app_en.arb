@@ -24,6 +24,11 @@
   },
   "changePlayMode": "Change how you play",
   "clearScores": "Clear scores",
+  "closeGame": "Close Game",
+  "closeGameHint": "The winner is saved to the leaderboard and a new game starts.",
+  "closeGameNeedsScores": "Enter scores for at least 2 players before closing the game.",
+  "closeGamePickWinner": "Tied for the lowest score. Tap the winner.",
+  "closeGameTitle": "Close this game?",
   "columnsByRows": "{columns} x {rows}",
   "@columnsByRows": {
     "placeholders": {
@@ -99,6 +104,15 @@
   "firebaseId": "Firebase ID",
   "flipOpenOneHiddenCard": "↓ Flip open one of your hidden cards ↓",
   "fullName": "Full Name",
+  "gameClosed": "Game Closed",
+  "gameClosedWinner": "{name} wins!",
+  "@gameClosedWinner": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
   "gameOver": "Game Over",
   "gameOverTitle": "GAME OVER",
   "gameRules": "Game Rules",
@@ -163,6 +177,60 @@
     "description": "DO NOT TRANSLATE. Language selector badge with representative flag and locale code."
   },
   "last": "LAST",
+  "leaderboard": "Leaderboard",
+  "leaderboardAllGames": "All Games",
+  "leaderboardAverage": "Avg {score}",
+  "@leaderboardAverage": {
+    "placeholders": {
+      "score": {
+        "type": "String"
+      }
+    }
+  },
+  "leaderboardBest": "Best {score}",
+  "@leaderboardBest": {
+    "placeholders": {
+      "score": {
+        "type": "int"
+      }
+    }
+  },
+  "leaderboardChooseTable": "Choose a Table",
+  "leaderboardCustom": "Custom",
+  "leaderboardEmpty": "No games recorded yet. Finish a game to get on the board.",
+  "leaderboardGamesPlayed": "{count} played",
+  "@leaderboardGamesPlayed": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "leaderboardGlobal": "Global",
+  "leaderboardHint": "See who wins the most",
+  "leaderboardMyStats": "My Stats",
+  "leaderboardNoStats": "Finish a game to start your stats.",
+  "leaderboardNoTables": "Your tables show up here after you finish a game.",
+  "leaderboardRank": "Rank #{rank}",
+  "@leaderboardRank": {
+    "placeholders": {
+      "rank": {
+        "type": "int"
+      }
+    }
+  },
+  "leaderboardScoreKeeper": "Score Keeper",
+  "leaderboardTables": "My Tables",
+  "leaderboardWinRate": "{percent}% won",
+  "@leaderboardWinRate": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "leaderboardWins": "Wins",
+  "localScoreSheet": "This Device",
   "miniPut": "MiniPut",
   "@miniPut": {
     "description": "DO NOT TRANSLATE."
@@ -240,6 +308,7 @@
       }
     }
   },
+  "saveResultAndNewGame": "Close Game & Save Result",
   "scanCameraError": "Camera error: ",
   "scanCard": "Count Cards",
   "scanCardHint": "Total a hand with the camera",

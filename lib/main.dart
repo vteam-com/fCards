@@ -11,6 +11,7 @@ import 'package:cards/screens/game/create_table_name_screen.dart';
 import 'package:cards/screens/game/join_game_screen.dart';
 import 'package:cards/screens/game/start_game_screen.dart';
 import 'package:cards/screens/keepscore/golf_score_screen.dart';
+import 'package:cards/screens/leaderboard/leaderboard_screen.dart';
 import 'package:cards/screens/welcome/welcome_screen.dart';
 import 'package:cards/utils/logger.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -90,6 +91,10 @@ class MyApp extends StatelessWidget {
               sessionId: ModalRoute.of(context)?.settings.arguments as String?,
             ),
             '/corrections': (BuildContext _) => const CorrectionsReviewScreen(),
+            '/leaderboard': (BuildContext context) => LeaderboardScreen(
+              initialTableKey:
+                  ModalRoute.of(context)?.settings.arguments as String?,
+            ),
           },
           onGenerateRoute: _handleGeneratedRoute,
           debugShowCheckedModeBanner: false,

@@ -206,7 +206,15 @@ class GameModel with ChangeNotifier {
   /// - 'playerIdPlaying': index of active player
   /// - 'playerIdAttacking': index of player being attacked (-1 if not in final turn)
   /// - 'state': string representation of game state
+  /// - 'gameStartedAt': host start time, shared so every device uses one game id
   void _loadGameState(Map<String, dynamic> json) {
+    final gameStartedAtValue = json['gameStartedAt'];
+    if (gameStartedAtValue is num) {
+      gameStartDate = DateTime.fromMillisecondsSinceEpoch(
+        gameStartedAtValue.toInt(),
+      );
+    }
+
     final deckJson = json['deck'];
     if (deckJson != null && deckJson is Map<String, dynamic>) {
       deck = loadDeck(deckJson);
@@ -343,6 +351,7 @@ class GameModel with ChangeNotifier {
       'scores': <dynamic>[],
       'discard': deck.cardsDeckDiscarded.map((card) => card.toJson()).toList(),
       'turn': playerIdPlaying,
+      'gameStartedAt': gameStartDate.millisecondsSinceEpoch,
     };
   }
 

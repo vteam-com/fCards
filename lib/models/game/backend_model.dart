@@ -3,7 +3,6 @@ import 'dart:core';
 
 import 'package:cards/models/app/auth_service.dart';
 import 'package:cards/models/app/firebase_options.dart';
-import 'package:cards/models/game/game_history.dart';
 import 'package:cards/utils/logger.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -160,90 +159,6 @@ void setPlayersInRoom(final String room, final Set<String> playersNames) {
           logger.w('setPlayersInRoom init failed: $error');
         }
       });
-}
-
-/// Retrieves the game history for a specific room.
-///
-/// If the app is running offline, this method returns an empty list.
-/// Otherwise, it fetches the game history from Firebase Realtime Database.
-///
-/// @param roomName The name of the room to retrieve the game history for.
-/// @return A Future that completes with a list of [GameHistory] objects.
-Future<List<GameHistory>> getGameHistory(final String roomName) async {
-  List<GameHistory> list = [];
-  if (!isRunningOffLine) {
-    try {
-      await useFirebase();
-      if (!backendReady) {
-        logger.e('getGameHistory: backend not ready');
-        return list;
-      }
-
-      final DataSnapshot dataSnapshot = await FirebaseDatabase.instance
-          .ref('history/$roomName/')
-          .get();
-
-      if (dataSnapshot.exists && dataSnapshot.value is Map) {
-        final Map data = dataSnapshot.value as Map;
-
-        data.forEach((key, value) {
-          final gameHistory = GameHistory();
-          gameHistory.date = DateTime.fromMillisecondsSinceEpoch(
-            int.parse(key),
-          );
-          gameHistory.playersNames = [value];
-
-          list.add(gameHistory);
-        });
-      }
-    } catch (error) {
-      logger.e('getGameHistory: ${error.toString()}');
-    }
-  }
-
-  return list;
-}
-
-/// Records a player's win in the game history.
-///
-/// If the app is running offline, this method does nothing.
-/// Otherwise, it records the player's win in the Firebase Realtime Database.
-///
-/// @param roomName The name of the room where the game was played.
-/// @param gameStartDate The start date and time of the game.
-/// @param playerName The name of the winning player.
-Future<void> recordPlayerWin(
-  final String roomName,
-  final DateTime gameStartDate,
-  final String playerName,
-) async {
-  if (isRunningOffLine) {
-    return;
-  }
-
-  try {
-    await useFirebase();
-    if (!backendReady) {
-      logger.e('recordPlayerWin: backend not ready');
-      return;
-    }
-
-    final String dateTimeAsKey = gameStartDate.millisecondsSinceEpoch
-        .toString();
-
-    final DatabaseEvent dataFound = await FirebaseDatabase.instance
-        .ref('history/$roomName/$dateTimeAsKey')
-        .once();
-
-    // only record it once
-    if (!dataFound.snapshot.exists) {
-      await FirebaseDatabase.instance
-          .ref('history/$roomName/$dateTimeAsKey')
-          .set(playerName);
-    }
-  } catch (error) {
-    logger.e('Error recording player win: ${error.toString()}');
-  }
 }
 
 /// Sets up a listener for updates to the list of invitees in a room.

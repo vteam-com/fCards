@@ -47,6 +47,24 @@ class AppLocalizationsEn extends AppLocalizations {
   String get clearScores => 'Clear scores';
 
   @override
+  String get closeGame => 'Close Game';
+
+  @override
+  String get closeGameHint =>
+      'The winner is saved to the leaderboard and a new game starts.';
+
+  @override
+  String get closeGameNeedsScores =>
+      'Enter scores for at least 2 players before closing the game.';
+
+  @override
+  String get closeGamePickWinner =>
+      'Tied for the lowest score. Tap the winner.';
+
+  @override
+  String get closeGameTitle => 'Close this game?';
+
+  @override
   String columnsByRows(int columns, int rows) {
     return '$columns x $rows';
   }
@@ -183,6 +201,14 @@ class AppLocalizationsEn extends AppLocalizations {
   String get fullName => 'Full Name';
 
   @override
+  String get gameClosed => 'Game Closed';
+
+  @override
+  String gameClosedWinner(String name) {
+    return '$name wins!';
+  }
+
+  @override
   String get gameOver => 'Game Over';
 
   @override
@@ -305,6 +331,75 @@ class AppLocalizationsEn extends AppLocalizations {
   String get last => 'LAST';
 
   @override
+  String get leaderboard => 'Leaderboard';
+
+  @override
+  String get leaderboardAllGames => 'All Games';
+
+  @override
+  String leaderboardAverage(String score) {
+    return 'Avg $score';
+  }
+
+  @override
+  String leaderboardBest(int score) {
+    return 'Best $score';
+  }
+
+  @override
+  String get leaderboardChooseTable => 'Choose a Table';
+
+  @override
+  String get leaderboardCustom => 'Custom';
+
+  @override
+  String get leaderboardEmpty =>
+      'No games recorded yet. Finish a game to get on the board.';
+
+  @override
+  String leaderboardGamesPlayed(int count) {
+    return '$count played';
+  }
+
+  @override
+  String get leaderboardGlobal => 'Global';
+
+  @override
+  String get leaderboardHint => 'See who wins the most';
+
+  @override
+  String get leaderboardMyStats => 'My Stats';
+
+  @override
+  String get leaderboardNoStats => 'Finish a game to start your stats.';
+
+  @override
+  String get leaderboardNoTables =>
+      'Your tables show up here after you finish a game.';
+
+  @override
+  String leaderboardRank(int rank) {
+    return 'Rank #$rank';
+  }
+
+  @override
+  String get leaderboardScoreKeeper => 'Score Keeper';
+
+  @override
+  String get leaderboardTables => 'My Tables';
+
+  @override
+  String leaderboardWinRate(int percent) {
+    return '$percent% won';
+  }
+
+  @override
+  String get leaderboardWins => 'Wins';
+
+  @override
+  String get localScoreSheet => 'This Device';
+
+  @override
   String get miniPut => 'MiniPut';
 
   @override
@@ -415,6 +510,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String rounds(int count) {
     return '$count Rounds';
   }
+
+  @override
+  String get saveResultAndNewGame => 'Close Game & Save Result';
 
   @override
   String get scanCameraError => 'Camera error: ';

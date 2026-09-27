@@ -47,6 +47,24 @@ class AppLocalizationsEs extends AppLocalizations {
   String get clearScores => 'Borrar puntuaciones';
 
   @override
+  String get closeGame => 'Cerrar partida';
+
+  @override
+  String get closeGameHint =>
+      'El ganador se guarda en la clasificación y empieza una nueva partida.';
+
+  @override
+  String get closeGameNeedsScores =>
+      'Anota puntos de al menos 2 jugadores antes de cerrar la partida.';
+
+  @override
+  String get closeGamePickWinner =>
+      'Empate en la puntuación más baja. Toca al ganador.';
+
+  @override
+  String get closeGameTitle => '¿Cerrar esta partida?';
+
+  @override
   String columnsByRows(int columns, int rows) {
     return '$columns x $rows';
   }
@@ -187,6 +205,14 @@ class AppLocalizationsEs extends AppLocalizations {
   String get fullName => 'Nombre completo';
 
   @override
+  String get gameClosed => 'Partida cerrada';
+
+  @override
+  String gameClosedWinner(String name) {
+    return '¡$name gana!';
+  }
+
+  @override
   String get gameOver => 'Fin de la partida';
 
   @override
@@ -310,6 +336,76 @@ class AppLocalizationsEs extends AppLocalizations {
   String get last => 'ULTIMO';
 
   @override
+  String get leaderboard => 'Clasificación';
+
+  @override
+  String get leaderboardAllGames => 'Todos los juegos';
+
+  @override
+  String leaderboardAverage(String score) {
+    return 'Prom. $score';
+  }
+
+  @override
+  String leaderboardBest(int score) {
+    return 'Mejor $score';
+  }
+
+  @override
+  String get leaderboardChooseTable => 'Elegir una mesa';
+
+  @override
+  String get leaderboardCustom => 'Personalizado';
+
+  @override
+  String get leaderboardEmpty =>
+      'Aún no hay partidas. Termina una partida para entrar en la clasificación.';
+
+  @override
+  String leaderboardGamesPlayed(int count) {
+    return '$count jugadas';
+  }
+
+  @override
+  String get leaderboardGlobal => 'Mundial';
+
+  @override
+  String get leaderboardHint => 'Mira quién gana más';
+
+  @override
+  String get leaderboardMyStats => 'Mis estadísticas';
+
+  @override
+  String get leaderboardNoStats =>
+      'Termina una partida para empezar tus estadísticas.';
+
+  @override
+  String get leaderboardNoTables =>
+      'Tus mesas aparecen aquí cuando terminas una partida.';
+
+  @override
+  String leaderboardRank(int rank) {
+    return 'Puesto #$rank';
+  }
+
+  @override
+  String get leaderboardScoreKeeper => 'Hoja de puntos';
+
+  @override
+  String get leaderboardTables => 'Mis mesas';
+
+  @override
+  String leaderboardWinRate(int percent) {
+    return '$percent % ganadas';
+  }
+
+  @override
+  String get leaderboardWins => 'Victorias';
+
+  @override
+  String get localScoreSheet => 'Este dispositivo';
+
+  @override
   String get miniPut => 'MiniPut';
 
   @override
@@ -420,6 +516,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String rounds(int count) {
     return '$count Rondas';
   }
+
+  @override
+  String get saveResultAndNewGame => 'Cerrar y guardar resultado';
 
   @override
   String get scanCameraError => 'Error de camara: ';

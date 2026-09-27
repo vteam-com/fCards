@@ -1,7 +1,9 @@
 import 'package:cards/gen/l10n/app_localizations.dart';
+import 'package:cards/models/app/auth_service.dart';
 import 'package:cards/models/app/constants_layout.dart';
-import 'package:cards/models/game/backend_model.dart';
 import 'package:cards/models/game/game_model.dart';
+import 'package:cards/models/game/game_result.dart';
+import 'package:cards/models/game/leaderboard_service.dart';
 import 'package:cards/widgets/buttons/my_button_rectangle.dart';
 import 'package:cards/widgets/helpers/dialog.dart';
 import 'package:cards/widgets/helpers/my_text.dart';
@@ -23,14 +25,12 @@ void showGameOverDialog(
   }
   gameModel.players.first.isWinner = true;
 
-  await recordPlayerWin(
-    gameModel.roomName,
-    gameModel.gameStartDate,
-    gameModel.players.first.name,
-  );
+  await _recordLeaderboardResult(gameModel);
 
   gameModel.roomHistory.clear();
-  gameModel.roomHistory.addAll(await getGameHistory(gameModel.roomName));
+  gameModel.roomHistory.addAll(
+    await LeaderboardService.roomWinHistory(gameModel.roomName),
+  );
 
   Widget columnHeaders(AppLocalizations localizations) {
     return SizedBox(
@@ -120,4 +120,37 @@ void showGameOverDialog(
       ],
     );
   }
+}
+
+/// Saves the finished game to the leaderboards.
+///
+/// Every device in the room calls this; each one links only its own signed-in
+/// player to their account, and the service merges the reports.
+Future<void> _recordLeaderboardResult(final GameModel gameModel) async {
+  final String? uid = AuthService.currentUser?.uid;
+  final List<String> names = gameModel.getPlayersNames();
+  final String tableKey = firebaseSafeKey(gameModel.roomName);
+  final GameResult result = GameResult.fromScores(
+    id: '${tableKey}_${gameModel.gameStartDate.millisecondsSinceEpoch}',
+    tableKey: tableKey,
+    tableName: gameModel.roomName,
+    style: gameModel.gameStyle.name,
+    endedAt: gameModel.endedOn.millisecondsSinceEpoch == 0
+        ? DateTime.now()
+        : gameModel.endedOn,
+    names: names,
+    scores: gameModel.players
+        .map((PlayerModel player) => player.sumOfRevealedCards)
+        .toList(),
+    uids: names
+        .map(
+          (String name) =>
+              uid != null && name == gameModel.loginUserName ? uid : '',
+        )
+        .toList(),
+  );
+  await LeaderboardService.recordResult(
+    result,
+    avatarUrls: <String, String>{?uid: AuthService.currentUser?.photoURL ?? ''},
+  );
 }

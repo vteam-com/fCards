@@ -9,6 +9,7 @@ import 'package:cards/models/app/identity_service.dart';
 import 'package:cards/models/app/locale_controller.dart';
 import 'package:cards/models/app/reviewer_access.dart';
 import 'package:cards/models/game/backend_model.dart';
+import 'package:cards/models/game/leaderboard_service.dart';
 import 'package:cards/models/version.dart';
 import 'package:cards/utils/logger.dart';
 import 'package:cards/widgets/helpers/app_bottom_sheet.dart';
@@ -545,6 +546,9 @@ class _ScreenState extends State<Screen> with SingleTickerProviderStateMixin {
     final String currentLocaleTag = LocaleController.localeTagFor(
       Localizations.localeOf(context),
     );
+    final Future<LeaderboardStanding?> standing = LeaderboardService.standing(
+      user.uid,
+    );
     await showAppBottomSheet<void>(
       context: context,
       builder: (BuildContext bottomSheetContext) => StreamBuilder<bool>(
@@ -570,6 +574,11 @@ class _ScreenState extends State<Screen> with SingleTickerProviderStateMixin {
               onEditInitialsTap: () {
                 Navigator.of(bottomSheetContext).pop();
                 _changeInitials(user: user);
+              },
+              standing: standing,
+              onLeaderboardTap: () {
+                Navigator.of(bottomSheetContext).pop();
+                Navigator.pushNamed(context, '/leaderboard');
               },
               onCorrectionsTap: reviewerSnapshot.data == true
                   ? () {

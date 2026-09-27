@@ -58,6 +58,43 @@
         ".read": "auth != null",
         ".write": "auth != null"
       }
+    },
+    "table_results": {
+      "$tableKey": {
+        ".read": "auth != null",
+        "$gameId": {
+          ".write": "auth != null",
+          ".validate": "newData.hasChildren(['table_name', 'style', 'ended_at', 'players'])"
+        }
+      }
+    },
+    "leaderboard": {
+      "$style": {
+        ".read": "auth != null",
+        ".indexOn": ["wins"],
+        "$uid": {
+          ".write": "auth != null",
+          ".validate": "newData.hasChildren(['name', 'games_played', 'wins']) && newData.child('games_played').isNumber() && newData.child('wins').isNumber() && newData.child('wins').val() <= newData.child('games_played').val() && (!data.exists() || newData.child('games_played').val() >= data.child('games_played').val())"
+        }
+      }
+    },
+    "leaderboard_games": {
+      "$uid": {
+        "$gameId": {
+          ".read": "auth != null",
+          ".write": "auth != null && !data.exists()",
+          ".validate": "newData.val() === true"
+        }
+      }
+    },
+    "leaderboard_tables": {
+      "$uid": {
+        ".read": "auth != null && auth.uid === $uid",
+        "$tableKey": {
+          ".write": "auth != null",
+          ".validate": "newData.hasChildren(['table_name', 'last_played'])"
+        }
+      }
     }
   }
 }
