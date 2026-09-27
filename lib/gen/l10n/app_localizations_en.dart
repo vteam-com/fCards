@@ -41,6 +41,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get cardsTitle => 'Cards';
 
   @override
+  String get changePlayMode => 'Change how you play';
+
+  @override
   String get clearScores => 'Clear scores';
 
   @override
@@ -207,9 +210,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get identityChangeableLater => 'You can change this later';
 
   @override
-  String get identityChooseActionTitle => 'What do you want to do?';
-
-  @override
   String get identityFirstSubtitle => 'Others see this name at the table.';
 
   @override
@@ -269,6 +269,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get joinGameTitle => 'Join Game';
+
+  @override
+  String get joinScoreSheet => 'Join a Score Sheet';
+
+  @override
+  String get joinScoreSheetHint => 'Scan the QR code or enter the table name';
+
+  @override
+  String get joinScoreSheetPrompt =>
+      'Scan the host\'s QR code with your camera, or enter the table name shown on their score sheet.';
 
   @override
   String get joinTable => 'Join Table';
@@ -333,9 +343,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get orHereLeft => '\nor\nhere\n←';
 
   @override
-  String get otherTools => 'Other Tools';
-
-  @override
   String get pickTableOrCreateHint =>
       'Pick an existing table, or create a new one.';
 
@@ -355,6 +362,32 @@ class AppLocalizationsEn extends AppLocalizations {
   String playerWonTimesAtTable(String player, int count, String table) {
     return '$player won $count times at table $table';
   }
+
+  @override
+  String get playInPerson => 'Play in Person';
+
+  @override
+  String get playInPersonDescription =>
+      'Play with real cards. One person keeps score, or everyone updates the same score sheet.';
+
+  @override
+  String get playInPersonHint => 'Real cards, the app keeps score';
+
+  @override
+  String get playModeHint => 'One player starts, everyone else joins.';
+
+  @override
+  String get playModeTitle => 'How are you playing?';
+
+  @override
+  String get playOnline => 'Play Online';
+
+  @override
+  String get playOnlineDescription =>
+      'Everyone sees virtual cards on their own device. Scores are counted for you.';
+
+  @override
+  String get playOnlineHint => 'Virtual cards, automatic scoring';
 
   @override
   String get pleaseEnterYourName => 'Please enter your name above ⬆';
@@ -388,6 +421,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get scanCard => 'Count Cards';
+
+  @override
+  String get scanCardHint => 'Total a hand with the camera';
 
   @override
   String get scanCardTitle => 'Count Cards';
@@ -456,7 +492,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'Choose a card photo from your device to scan.';
 
   @override
-  String get scoreKeeper => 'Score Keeper';
+  String get scoreSheetNotFound => 'No score sheet found for that table name.';
 
   @override
   String get selectAStatus => 'Select a status';
@@ -488,6 +524,12 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get startNewGameWithQr => 'Start with QR';
+
+  @override
+  String get startScoreSheet => 'Start a Score Sheet';
+
+  @override
+  String get startScoreSheetHint => 'Keep score alone or share a QR code';
 
   @override
   String get startTable => 'Start a Table';

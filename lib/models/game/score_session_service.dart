@@ -21,6 +21,7 @@ const String _oAuthTypeNode = 'oauth_type';
 const String _scoreStateNode = 'score_state';
 const String _defaultParticipantName = 'HOST';
 const String _scoreInviteParameter = 'scoreSession';
+const String _scoreTableNamePrefix = 'SCORE-';
 const int _sessionIdRadix = 36;
 
 /// Coordinates authenticated Score Keeper QR sessions through Firebase.
@@ -42,7 +43,7 @@ class ScoreSessionService {
     final String id = _newSessionId();
     final ScoreSession session = ScoreSession(
       id: id,
-      tableName: 'SCORE-${id.toUpperCase()}',
+      tableName: '$_scoreTableNamePrefix${id.toUpperCase()}',
     );
     final ScoreSessionState state =
         initialState != null && initialState.playerIds.isNotEmpty
@@ -324,6 +325,17 @@ class ScoreSessionService {
   /// Extracts a score-session ID from a web invitation URL.
   static String? sessionIdFromUri(Uri uri) =>
       uri.queryParameters[_scoreInviteParameter];
+
+  /// Converts a typed table name such as `SCORE-ABC123` into a session ID.
+  ///
+  /// The `SCORE-` prefix is optional; returns null when nothing usable is left.
+  static String? sessionIdFromTableName(String tableName) {
+    final String normalized = tableName.trim().toUpperCase();
+    final String id = normalized.startsWith(_scoreTableNamePrefix)
+        ? normalized.substring(_scoreTableNamePrefix.length)
+        : normalized;
+    return id.isEmpty ? null : id.toLowerCase();
+  }
 
   static String _newSessionId() {
     final String time = DateTime.now().microsecondsSinceEpoch.toRadixString(
