@@ -453,23 +453,17 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
     );
   }
 
-  /// Builds the inline keypad and camera tools for editing the selected score.
+  /// Builds the inline keypad, with the camera scanner as its last key, for
+  /// editing the selected score.
   Widget _buildKeyboardAndCameraSection(GolfScoreModel scoreModel) {
-    return Column(
-      children: [
-        InputKeyboard(onKeyPressed: (key) => _handleKeyPress(key, scoreModel)),
-        // AI Camera Scanner Button
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            MyButtonRound(
-              onTap: () => _openCameraScanner(scoreModel),
-              size: ConstLayout.iconL,
-              child: const Icon(Icons.camera_alt),
-            ),
-          ],
-        ),
-      ],
+    return InputKeyboard(
+      onKeyPressed: (key) => _handleKeyPress(key, scoreModel),
+      footer: MyButtonRound(
+        key: const Key('scoreKeeper.cameraScan'),
+        onTap: () => _openCameraScanner(scoreModel),
+        size: ConstLayout.iconL,
+        child: const Icon(Icons.camera_alt),
+      ),
     );
   }
 

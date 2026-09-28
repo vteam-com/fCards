@@ -221,6 +221,31 @@ void main() {
       });
     });
 
+    testWidgets('shows the footer key inside the numeric keypad', (
+      WidgetTester tester,
+    ) async {
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: InputKeyboard(
+              onKeyPressed: mockOnKeyPressed,
+              footer: const Icon(Icons.camera_alt),
+            ),
+          ),
+        ),
+      );
+
+      final Finder keypad = find.byType(InputKeyboard);
+      expect(
+        find.descendant(of: keypad, matching: find.byIcon(Icons.camera_alt)),
+        findsOneWidget,
+      );
+      expect(
+        tester.getTopLeft(find.byIcon(Icons.camera_alt)).dy,
+        greaterThan(tester.getTopLeft(find.text('0')).dy),
+      );
+    });
+
     group('Alpha Keyboard', () {
       testWidgets('should display all letter keys A–Z', (
         WidgetTester tester,
