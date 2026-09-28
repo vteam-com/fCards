@@ -36,12 +36,18 @@ enum InputKeyboardMode {
 /// Use [InputKeyboard.alpha] for text entry (names, table names).
 class InputKeyboard extends StatelessWidget {
   /// Creates a numeric [InputKeyboard] (default mode).
-  const InputKeyboard({super.key, required this.onKeyPressed})
+  ///
+  /// [footer] is shown inside the keypad, centered below the last key row.
+  const InputKeyboard({super.key, required this.onKeyPressed, this.footer})
     : mode = InputKeyboardMode.numeric;
 
   /// Creates an alpha [InputKeyboard] (A–Z, space, backspace).
   const InputKeyboard.alpha({super.key, required this.onKeyPressed})
-    : mode = InputKeyboardMode.alpha;
+    : mode = InputKeyboardMode.alpha,
+      footer = null;
+
+  /// Optional extra key row inside the numeric keypad (e.g. a camera key).
+  final Widget? footer;
 
   /// The keyboard mode (set by constructor).
   final InputKeyboardMode mode;
@@ -137,6 +143,11 @@ class InputKeyboard extends StatelessWidget {
             _buildButton(keyBackspace),
           ],
         ),
+        if (footer != null)
+          Padding(
+            padding: const EdgeInsets.all(ConstLayout.paddingS),
+            child: footer,
+          ),
       ],
     );
   }
