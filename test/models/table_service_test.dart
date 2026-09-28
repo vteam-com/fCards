@@ -110,6 +110,41 @@ void main() {
       expect((await TableService.getTable(a.id))?.name, 'BEACH HOUSE');
     });
 
+    test(
+      'a shared sheet keeps its own name until the host attaches the table',
+      () async {
+        // Host and a first joiner already share a table.
+        final GameTable pair = await TableService.resolveTable(
+          gameType: GameStyles.frenchCards9,
+          players: <String>['HOST', 'SUE'],
+          proposedName: 'OLD PAIR',
+        );
+        final GameLobby lobby = await TableService.openLobby(
+          gameType: GameStyles.frenchCards9,
+          cards: CardMedium.physical,
+          name: 'NEW CREW',
+        );
+
+        // While players join, the lobby names no table.
+        final GameLobby? gathering = await TableService.getLobby(lobby.id);
+        expect(gathering?.tableId, isNull);
+        expect(gathering?.name, 'NEW CREW');
+
+        // The host starts with the whole group: its table, not the pair's.
+        final GameTable group = await TableService.resolveTable(
+          gameType: GameStyles.frenchCards9,
+          players: <String>['HOST', 'SUE', 'BOB'],
+          proposedName: lobby.name,
+        );
+        await TableService.attachLobby(lobby, group);
+
+        final GameLobby? started = await TableService.getLobby(lobby.id);
+        expect(started?.tableId, group.id);
+        expect(started?.tableId, isNot(pair.id));
+        expect(started?.name, 'NEW CREW');
+      },
+    );
+
     test('lobbies reopen a table name and are found by name', () async {
       final GameTable table = await TableService.resolveTable(
         gameType: GameStyles.frenchCards9,
