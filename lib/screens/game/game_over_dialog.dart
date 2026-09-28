@@ -142,7 +142,7 @@ Future<void> _recordLeaderboardResult(final GameModel gameModel) async {
     scores: gameModel.players
         .map((PlayerModel player) => player.sumOfRevealedCards)
         .toList(),
-    uids: names
+    userIds: names
         .map(
           (String name) =>
               uid != null && name == gameModel.loginUserName ? uid : '',

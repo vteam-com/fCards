@@ -70,6 +70,9 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
   StreamSubscription<ScoreSessionState>? _scoreSessionStateSubscription;
   StreamSubscription<ScoreSessionClosure?>? _scoreSessionClosureSubscription;
 
+  /// Follows the shared sheet's lobby, whose table the host decides.
+  StreamSubscription<GameLobby?>? _lobbySubscription;
+
   /// Closure already shown (or present when joining), so it is not re-shown.
   String? _announcedClosureId;
   bool _closureStreamPrimed = false;
@@ -109,6 +112,7 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
     _scoreSessionParticipantsSubscription?.cancel();
     _scoreSessionStateSubscription?.cancel();
     _scoreSessionClosureSubscription?.cancel();
+    _lobbySubscription?.cancel();
     _keyboardFocusNode.dispose();
     _scrollController.dispose();
     super.dispose();
@@ -955,14 +959,13 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
                                   ranks,
                                   colorScheme,
                                 ),
-                                if (_selectedCell == null)
-                                  _buildAddOrRemoveRow(
-                                    context,
-                                    scoreModel,
-                                    colorScheme,
-                                  ),
                                 if (_selectedCell != null)
                                   _buildKeyboardAndCameraSection(scoreModel),
+                                _buildAddOrRemoveRow(
+                                  context,
+                                  scoreModel,
+                                  colorScheme,
+                                ),
                               ],
                             ),
                           ),
@@ -1040,7 +1043,7 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
     }
     final DateTime endedAt = DateTime.now();
     final String gameId = '${table.id}_${endedAt.millisecondsSinceEpoch}';
-    final List<String> uids = session == null
+    final List<String> userIds = session == null
         ? const <String>[]
         : List<String>.generate(names.length, (int index) {
             final String playerId = index < _scoreSessionPlayerIds.length
@@ -1059,7 +1062,7 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
           endedAt: endedAt,
           names: names,
           scores: totals,
-          uids: uids,
+          userIds: userIds,
           winnerIndex: winnerIndex,
         ),
         avatarUrls: <String, String>{
@@ -1078,6 +1081,13 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
     model.setTableName(table.name);
     if (session != null) {
       _announcedClosureId = gameId;
+      unawaited(
+        TableService.getLobby(session.id).then((GameLobby? lobby) async {
+          if (lobby != null) {
+            await TableService.attachLobby(lobby, table);
+          }
+        }),
+      );
       unawaited(
         ScoreSessionService.publishClosure(
           session.id,
@@ -1141,7 +1151,14 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
   }
 
   /// Looks up the table for the sheet's current players when they change.
+  ///
+  /// A shared sheet follows its lobby instead (see [_followLobby]): players
+  /// join one by one, so matching them early would pick the table of whoever
+  /// joined first rather than of the whole group the host gathers.
   void _followGroupTable(GolfScoreModel model) {
+    if (_activeScoreSession != null) {
+      return;
+    }
     final String id = GameTable.idFor(model.gameType, model.playerNames);
     if (id == _groupTableLookupId) {
       return;
@@ -1298,6 +1315,31 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
     );
   }
 
+  /// Shows the table the host attached to the shared sheet's lobby, or the
+  /// lobby's proposed name while the host is still gathering players.
+  void _followLobby(ScoreSession session, GolfScoreModel model) {
+    _lobbySubscription?.cancel();
+    _lobbySubscription = TableService.watchLobby(session.id).listen((
+      GameLobby? lobby,
+    ) async {
+      if (lobby == null) {
+        return;
+      }
+      final String? tableId = lobby.tableId;
+      final GameTable? table = tableId == null
+          ? null
+          : await TableService.getTable(tableId);
+      if (!mounted || _activeScoreSession?.id != session.id) {
+        return;
+      }
+      setState(() {
+        _groupTable = table;
+        _groupTableLookupId = table?.id;
+        model.setTableName(table?.name ?? lobby.name);
+      });
+    });
+  }
+
   void _watchScoreSession(ScoreSession session, GolfScoreModel model) {
     _scoreSessionParticipantsSubscription?.cancel();
     _scoreSessionStateSubscription?.cancel();
@@ -1310,7 +1352,10 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
       _activeScoreSession = session;
       _scoreSessionParticipants.clear();
       _scoreSessionPlayerIds.clear();
+      _groupTable = null;
+      _groupTableLookupId = null;
     });
+    _followLobby(session, model);
     _scoreSessionParticipantsSubscription =
         ScoreSessionService.participants(session.id).listen((
           List<ScoreSessionParticipant> participants,

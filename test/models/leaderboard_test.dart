@@ -22,7 +22,7 @@ GameResult _result({
   endedAt: DateTime.fromMillisecondsSinceEpoch(endedAt),
   names: names,
   scores: scores,
-  uids: uids,
+  userIds: uids,
 );
 
 void main() {

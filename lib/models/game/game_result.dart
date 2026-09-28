@@ -35,7 +35,7 @@ class GameResult {
   /// Builds a result from final scores; every lowest score is a win unless
   /// [winnerIndex] names the single winner (for example, a host-broken tie).
   ///
-  /// [uids] follows [names] order; a missing or empty entry marks a
+  /// [userIds] follows [names] order; a missing or empty entry marks a
   /// name-only player.
   factory GameResult.fromScores({
     required String id,
@@ -46,7 +46,7 @@ class GameResult {
     required DateTime endedAt,
     required List<String> names,
     required List<int> scores,
-    List<String> uids = const <String>[],
+    List<String> userIds = const <String>[],
     int? winnerIndex,
   }) {
     final int count = names.length < scores.length
@@ -66,7 +66,7 @@ class GameResult {
         count,
         (int index) => GameResultPlayer(
           name: names[index],
-          uid: index < uids.length ? uids[index] : '',
+          uid: index < userIds.length ? userIds[index] : '',
           score: scores[index],
           isWinner: winnerIndex == null
               ? scores[index] == lowest
