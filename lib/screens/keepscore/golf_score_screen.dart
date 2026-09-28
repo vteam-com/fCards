@@ -398,6 +398,10 @@ class _GolfScoreScreenState extends State<GolfScoreScreen> {
               onTap: () {
                 setState(() {
                   scoreModel.addRound();
+                  // Ready to type the new round's first score.
+                  _selectedCell = scoreModel.playerNames.isEmpty
+                      ? null
+                      : {'row': scoreModel.scores.length - 1, 'col': 0};
                 });
                 final ScoreSession? session = _activeScoreSession;
                 if (session != null) {
