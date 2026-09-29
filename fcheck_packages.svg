@@ -454,7 +454,7 @@
 </g>
 <g>
   <path d="M 379.0 934.0 H 298.0 Q 292.0 934.0 292.0 940.0 V 4162.0 Q 292.0 4168.0 298.0 4168.0 H 559.0" class="edgeVertical"/>
-  <title>google_sign_in -> google_sign_in_ios v6.3.5</title>
+  <title>google_sign_in -> google_sign_in_ios v6.3.6</title>
 </g>
 <g>
   <path d="M 379.0 406.0 H 295.0 Q 289.0 406.0 289.0 412.0 V 3650.0 Q 289.0 3656.0 295.0 3656.0 H 559.0" class="edgeVertical"/>
@@ -966,7 +966,7 @@
 </g>
 <g>
   <path d="M 839.0 3080.0 H 968.0 Q 974.0 3080.0 974.0 3086.0 V 8012.0 Q 974.0 8018.0 968.0 8018.0 H 559.0" class="edgeVertical"/>
-  <title>code_builder -> built_collection v5.1.1</title>
+  <title>code_builder -> built_collection v5.1.2</title>
 </g>
 <g>
   <path d="M 839.0 3080.0 H 971.0 Q 977.0 3080.0 977.0 3086.0 V 8076.0 Q 977.0 8082.0 971.0 8082.0 H 559.0" class="edgeVertical"/>
@@ -1781,11 +1781,11 @@
   <path d="M 565.0,4104.0 L 553.0,4097.0 Q 550.0,4097.0 550.0,4100.0 L 550.0,4108.0 Q 550.0,4111.0 553.0,4111.0 Z" fill="#3b82f6"/>
   <text x="554.68" y="4105.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. google_sign_in</title></g><g class="packageNode">
 <rect x="559.0" y="4142.0" width="280.0" height="52.0" rx="8.0" ry="8.0" fill="#f8fafc" stroke="#64748b" stroke-width="1" stroke-dasharray="4,2"/>
-<g class="packageMetadataPill"><title>Flutter &gt;=3.38.0</title><rect x="660.2" y="4181.0" width="77.6" height="9.0" rx="4.5" ry="4.5" class="packageMetadataPillShape"/><text x="699.0" y="4186" class="packageLabelMetadata" text-anchor="middle" dominant-baseline="middle">Flutter &gt;=3.38.0</text></g>
+<g class="packageMetadataPill"><title>Flutter &gt;=3.41.0</title><rect x="660.2" y="4181.0" width="77.6" height="9.0" rx="4.5" ry="4.5" class="packageMetadataPillShape"/><text x="699.0" y="4186" class="packageLabelMetadata" text-anchor="middle" dominant-baseline="middle">Flutter &gt;=3.41.0</text></g>
 <g class="platformBadge platformBadge--ios"><title>iOS</title><rect x="684.0" y="4165.0" width="13.0" height="13.0" rx="6.5" ry="6.5" fill="#111827" stroke="#0f172a" stroke-width="0.6"/><text x="690.5" y="4172.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">I</text></g>
 <g class="platformBadge platformBadge--macos"><title>macOS</title><rect x="701.0" y="4165.0" width="13.0" height="13.0" rx="6.5" ry="6.5" fill="#475569" stroke="#334155" stroke-width="0.6"/><text x="707.5" y="4172.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">M</text></g>
 <text x="567.0" y="4160.0" class="packageLabelDerivedName packageLabelCaption" text-anchor="start">google_sign_in_ios</text>
-<text x="831.0" y="4160.0" class="packageLabelDerivedVersion" text-anchor="end">^6.3.5</text>
+<text x="831.0" y="4160.0" class="packageLabelDerivedVersion" text-anchor="end">^6.3.6</text>
 </g>
 <g class="badge incomingBadge">
   <path d="M 565.0,4168.0 L 553.0,4161.0 Q 550.0,4161.0 550.0,4164.0 L 550.0,4172.0 Q 550.0,4175.0 553.0,4175.0 Z" fill="#3b82f6"/>
@@ -2407,10 +2407,10 @@
   <path d="M 833.0,7954.0 L 845.0,7947.0 Q 848.0,7947.0 848.0,7950.0 L 848.0,7958.0 Q 848.0,7961.0 845.0,7961.0 Z" fill="#3b82f6"/>
   <text x="843.32" y="7955.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. test_api</title></g><g class="packageNode">
 <rect x="559.0" y="7992.0" width="280.0" height="52.0" rx="8.0" ry="8.0" fill="#f8fafc" stroke="#64748b" stroke-width="1" stroke-dasharray="4,2"/>
-<g class="packageMetadataPill"><title>Dart &gt;=2.12.0-0 &lt;3.0.0</title><rect x="647.9" y="8031.0" width="102.19999999999999" height="9.0" rx="4.5" ry="4.5" class="packageMetadataPillShape"/><text x="699.0" y="8036" class="packageLabelMetadata" text-anchor="middle" dominant-baseline="middle">Dart &gt;=2.12.0-0 &lt;3.0.0</text></g>
-<g class="platformBadge platformBadge--dart"><title>Dart SDK &gt;=2.12.0-0 &lt;3.0.0</title><rect x="685.0" y="8015.0" width="28.0" height="13.0" rx="6.5" ry="6.5" fill="#0175c2" stroke="#0369a1" stroke-width="0.6"/><text x="699.0" y="8021.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">Dart</text></g>
+<g class="packageMetadataPill"><title>Dart ^3.11.0</title><rect x="668.4" y="8031.0" width="61.199999999999996" height="9.0" rx="4.5" ry="4.5" class="packageMetadataPillShape"/><text x="699.0" y="8036" class="packageLabelMetadata" text-anchor="middle" dominant-baseline="middle">Dart ^3.11.0</text></g>
+<g class="platformBadge platformBadge--dart"><title>Dart SDK ^3.11.0</title><rect x="685.0" y="8015.0" width="28.0" height="13.0" rx="6.5" ry="6.5" fill="#0175c2" stroke="#0369a1" stroke-width="0.6"/><text x="699.0" y="8021.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">Dart</text></g>
 <text x="567.0" y="8010.0" class="packageLabelDerivedName packageLabelCaption" text-anchor="start">built_collection</text>
-<text x="831.0" y="8010.0" class="packageLabelDerivedVersion" text-anchor="end">^5.1.1</text>
+<text x="831.0" y="8010.0" class="packageLabelDerivedVersion" text-anchor="end">^5.1.2</text>
 </g>
 <g class="badge incomingBadge">
   <path d="M 833.0,8018.0 L 845.0,8011.0 Q 848.0,8011.0 848.0,8014.0 L 848.0,8022.0 Q 848.0,8025.0 845.0,8025.0 Z" fill="#3b82f6"/>

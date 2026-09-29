@@ -594,7 +594,7 @@ DA:67,13
 DA:68,26
 DA:72,5
 DA:73,5
-DA:1333,2
+DA:1333,3
 DA:1335,5
 DA:1337,10
 DA:1340,5
@@ -2234,7 +2234,7 @@ LF:45
 LH:38
 end_of_record
 SF:lib/models/game/game_result_player.dart
-DA:9,3
+DA:9,4
 DA:17,1
 DA:18,1
 DA:21,1
@@ -3416,7 +3416,7 @@ LF:2
 LH:2
 end_of_record
 SF:lib/models/game/score_session_state.dart
-DA:4,2
+DA:4,3
 DA:20,1
 DA:21,2
 DA:22,2
@@ -6550,7 +6550,7 @@ LF:16
 LH:11
 end_of_record
 SF:lib/widgets/helpers/google_mark_icon.dart
-DA:8,2
+DA:8,3
 DA:13,0
 DA:15,0
 DA:16,0
