@@ -18,9 +18,15 @@ import 'package:cards/utils/logger.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:the_splash/the_splash.dart';
 
-const int _firebaseInitTimeoutSeconds = 30;
+/// Longest wait for the Firebase SDK to initialize before going offline.
+const int _firebaseInitTimeoutSeconds = 13;
+
+/// Longest wait for the (anonymous) sign-in before going offline.
+///
+/// Some browsers (e.g. Brave on iOS with strict shields) never settle Firebase
+/// Auth's storage, so without a limit the app would stay on its splash screen.
+const int _signInTimeoutSeconds = 8;
 
 /// The entry point of the application.
 ///
@@ -28,8 +34,6 @@ const int _firebaseInitTimeoutSeconds = 30;
 /// which is the root of the application's widget tree.
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
-  await SplashScreenData.preload();
 
   // Initialize Firebase for the entire app (if not offline)
   if (!isRunningOffLine) {
@@ -39,7 +43,9 @@ void main() async {
       await Firebase.initializeApp(
         options: DefaultFirebaseOptions.currentPlatform,
       ).timeout(const Duration(seconds: _firebaseInitTimeoutSeconds));
-      await AuthService.ensureSignedIn();
+      await AuthService.ensureSignedIn().timeout(
+        const Duration(seconds: _signInTimeoutSeconds),
+      );
       backendReady = true;
       logger.i('Firebase initialized successfully');
     } catch (e) {
