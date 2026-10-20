@@ -1,4 +1,5 @@
 import 'package:cards/models/app/auth_service.dart';
+import 'package:cards/models/game/backend_model.dart';
 import 'package:cards/utils/logger.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -46,9 +47,11 @@ class IdentityService {
         : null;
     if (uid != null) {
       try {
-        final DataSnapshot snapshot = await FirebaseDatabase.instance
-            .ref('$_firebaseUsersNode/$uid/$_firebaseInitialsNode')
-            .get();
+        final DataSnapshot snapshot = await withFirebaseRequestTimeout(
+          FirebaseDatabase.instance
+              .ref('$_firebaseUsersNode/$uid/$_firebaseInitialsNode')
+              .get(),
+        );
         final Object? backendInitials = snapshot.value;
         if (backendInitials is String) {
           final String normalizedBackend = _normalizeInitials(backendInitials);
@@ -91,9 +94,11 @@ class IdentityService {
     }
 
     try {
-      await FirebaseDatabase.instance
-          .ref('$_firebaseUsersNode/$uid/$_firebaseInitialsNode')
-          .set(normalized);
+      await withFirebaseRequestTimeout(
+        FirebaseDatabase.instance
+            .ref('$_firebaseUsersNode/$uid/$_firebaseInitialsNode')
+            .set(normalized),
+      );
     } on FirebaseException catch (error) {
       if (!_isPermissionDeniedError(error)) {
         logger.w('saveInitials backend save failed: $error');

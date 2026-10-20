@@ -7,25 +7,29 @@ class FirebaseTableStore implements TableStore {
   @override
   Future<Object?> read(String path) async {
     await _ready();
-    return (await FirebaseDatabase.instance.ref(path).get()).value;
+    return (await withFirebaseRequestTimeout(
+      FirebaseDatabase.instance.ref(path).get(),
+    )).value;
   }
 
   @override
   Future<void> write(String path, Object value) async {
     await _ready();
-    await FirebaseDatabase.instance.ref(path).set(value);
+    await withFirebaseRequestTimeout(
+      FirebaseDatabase.instance.ref(path).set(value),
+    );
   }
 
   @override
   Future<Object?> createIfAbsent(String path, Object value) async {
     await _ready();
-    final TransactionResult result = await FirebaseDatabase.instance
-        .ref(path)
-        .runTransaction(
-          (Object? current) => current == null
-              ? Transaction.success(value)
-              : Transaction.abort(),
-        );
+    final TransactionResult result = await withFirebaseRequestTimeout(
+      FirebaseDatabase.instance.ref(path).runTransaction(
+        (Object? current) => current == null
+            ? Transaction.success(value)
+            : Transaction.abort(),
+      ),
+    );
     return result.snapshot.value;
   }
 
@@ -37,11 +41,13 @@ class FirebaseTableStore implements TableStore {
   ) async {
     await _ready();
     return _children(
-      await FirebaseDatabase.instance
-          .ref(path)
-          .orderByChild(child)
-          .equalTo(value)
-          .get(),
+      await withFirebaseRequestTimeout(
+        FirebaseDatabase.instance
+            .ref(path)
+            .orderByChild(child)
+            .equalTo(value)
+            .get(),
+      ),
     );
   }
 
@@ -53,11 +59,13 @@ class FirebaseTableStore implements TableStore {
   ) async {
     await _ready();
     return _children(
-      await FirebaseDatabase.instance
-          .ref(path)
-          .orderByChild(child)
-          .limitToLast(limit)
-          .get(),
+      await withFirebaseRequestTimeout(
+        FirebaseDatabase.instance
+            .ref(path)
+            .orderByChild(child)
+            .limitToLast(limit)
+            .get(),
+      ),
     );
   }
 
