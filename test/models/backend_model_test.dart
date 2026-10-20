@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cards/models/game/backend_model.dart';
 import 'package:cards/models/app/firebase_options.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -75,6 +77,19 @@ void main() {
       backendReady = false;
       await useFirebase();
       expect(backendReady, true);
+    });
+  });
+
+  group('withFirebaseRequestTimeout', () {
+    test('completes with a timeout when the request does not finish', () async {
+      final Completer<void> request = Completer<void>();
+      await expectLater(
+        withFirebaseRequestTimeout(
+          request.future,
+          timeout: const Duration(milliseconds: 1),
+        ),
+        throwsA(isA<TimeoutException>()),
+      );
     });
   });
 
