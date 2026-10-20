@@ -11,6 +11,15 @@ import 'package:firebase_database/firebase_database.dart';
 const String _firebaseRoomsNode = 'rooms';
 const List<String> _offlineDemoPlayerNames = ['BOB', 'SUE', 'JOHN', 'MARY'];
 
+/// Maximum time to wait for a Firebase Realtime Database request.
+const Duration firebaseRequestTimeout = Duration(seconds: 13);
+
+/// Completes a Firebase request with a bounded wait.
+Future<T> withFirebaseRequestTimeout<T>(
+  Future<T> request, {
+  Duration timeout = firebaseRequestTimeout,
+}) => request.timeout(timeout);
+
 /// Returns true when [error] represents a Firebase permission denial.
 bool _isPermissionDeniedError(Object error) {
   final String text = error.toString().toLowerCase();
@@ -98,9 +107,11 @@ Future<List<String>> getPlayersInRoom(final String roomId) async {
   }
 
   try {
-    final DataSnapshot dataSnapshot = await FirebaseDatabase.instance
-        .ref('$_firebaseRoomsNode/$roomId/invitees')
-        .get();
+    final DataSnapshot dataSnapshot = await withFirebaseRequestTimeout(
+      FirebaseDatabase.instance
+          .ref('$_firebaseRoomsNode/$roomId/invitees')
+          .get(),
+    );
 
     final List? players = dataSnapshot.value as List?;
 
@@ -141,9 +152,11 @@ void setPlayersInRoom(final String room, final Set<String> playersNames) {
           return;
         }
         try {
-          await FirebaseDatabase.instance
-              .ref('$_firebaseRoomsNode/$room/invitees')
-              .set(playersNames.toList());
+          await withFirebaseRequestTimeout(
+            FirebaseDatabase.instance
+                .ref('$_firebaseRoomsNode/$room/invitees')
+                .set(playersNames.toList()),
+          );
         } on FirebaseException catch (error) {
           if (!_isPermissionDeniedError(error)) {
             logger.w('setPlayersInRoom failed: $error');
