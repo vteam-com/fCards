@@ -347,7 +347,7 @@
     font-weight: 900;
   }
 </style>
-<text x="699.0" y="28.0" class="packageLabelTitle" text-anchor="middle">cards v1.14.2+1</text>
+<text x="699.0" y="28.0" class="packageLabelTitle" text-anchor="middle">cards v1.14.3+1</text>
 <text x="379.0" y="70.0" class="packageLabelSection">dependencies (24 items)</text>
 <line x1="379.0" y1="76.0" x2="579.0" y2="76.0" stroke="#1d4ed8" stroke-width="2.0" opacity="0.9"/>
 <text x="819.0" y="70.0" class="packageLabelSection">dev_dependencies (3 items)</text>
@@ -418,7 +418,7 @@
 </g>
 <g>
   <path d="M 379.0 230.0 H 325.0 Q 319.0 230.0 319.0 236.0 V 2562.0 Q 319.0 2568.0 325.0 2568.0 H 559.0" class="edgeVertical"/>
-  <title>camera -> camera_android_camerax v0.7.5+1</title>
+  <title>camera -> camera_android_camerax v0.7.6</title>
 </g>
 <g>
   <path d="M 379.0 230.0 H 322.0 Q 316.0 230.0 316.0 236.0 V 2626.0 Q 316.0 2632.0 322.0 2632.0 H 559.0" class="edgeVertical"/>
@@ -1534,7 +1534,7 @@
 <g class="packageMetadataPill"><title>Flutter &gt;=3.44.0</title><rect x="660.2" y="2581.0" width="77.6" height="9.0" rx="4.5" ry="4.5" class="packageMetadataPillShape"/><text x="699.0" y="2586" class="packageLabelMetadata" text-anchor="middle" dominant-baseline="middle">Flutter &gt;=3.44.0</text></g>
 <g class="platformBadge platformBadge--android"><title>Android</title><rect x="692.5" y="2565.0" width="13.0" height="13.0" rx="6.5" ry="6.5" fill="#16a34a" stroke="#15803d" stroke-width="0.6"/><text x="699.0" y="2572.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">A</text></g>
 <text x="567.0" y="2560.0" class="packageLabelDerivedName packageLabelCaption" text-anchor="start">camera_android_camerax</text>
-<text x="831.0" y="2560.0" class="packageLabelDerivedVersion" text-anchor="end">^0.7.5+1</text>
+<text x="831.0" y="2560.0" class="packageLabelDerivedVersion" text-anchor="end">^0.7.6</text>
 </g>
 <g class="badge incomingBadge">
   <path d="M 565.0,2568.0 L 553.0,2561.0 Q 550.0,2561.0 550.0,2564.0 L 550.0,2572.0 Q 550.0,2575.0 553.0,2575.0 Z" fill="#3b82f6"/>

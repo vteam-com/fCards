@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 1.14.3
+
+- Wizard Back and Next buttons shrink to fit narrow screens instead of running off the edge
+- Web: serve the app's entry files with no-cache so a new release loads without a hard refresh
+
 ## 1.14.2
 
 - Handle backend downtime gracefully: every Firebase request and stream is bounded, one timeout trips a circuit breaker that fails fast for 34 seconds, and every screen shows a "Can't reach the game server" banner with a Retry button instead of an endless spinner
