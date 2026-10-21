@@ -1,5 +1,32 @@
 # CHANGELOG
 
+## 1.14.2
+
+- Handle backend downtime gracefully: every Firebase request and stream is bounded, one timeout trips a circuit breaker that fails fast for 34 seconds, and every screen shows a "Can't reach the game server" banner with a Retry button instead of an endless spinner
+- Move to a new Realtime Database instance after the original one stopped answering; rules target the named instance
+- Fix room rules so a lobby can save its invitees before a game is dealt (was rejected as permission denied)
+- Upgrade Firebase to firebase_core 5, firebase_auth 7 and firebase_database 13; vendor google_sign_in_ios with GoogleSignIn-iOS 10 so Swift Package Manager resolves (see packages/google_sign_in_ios/VTEAM_PATCH.md)
+- Replace the tflite_flutter git dependency with tflite_core from pub.dev (the package was renamed)
+- Select the TFLite web fallback by js_interop so wasm dry runs no longer flag dart:ffi
+- Deploy script releases Hosting only; database rules keep their own script
+- Auto-select the first cell of the next row on the score sheet
+- Faster startup
+- fcheck 1.5.1
+
+## 1.14.1
+
+- Continue a game in progress
+- Card counting button inside the digit pad
+
+## 1.14.0
+
+- New onboarding and a guided Start / Join table flow with QR code invitations
+- Leaderboard: global and per-table rankings, player stats in the profile dialog
+- Scores synced live across players on a shared score sheet
+- Player editing: long press to rename, better initials entry, bottom sheet with grabber
+- Avatar widget; Corrections menu moved to the profile dialog; version shown on the welcome screen
+- Minimum iOS and macOS version 26
+
 ## 1.13.5
 
 - Add Spanish and Portuguese (Portugal) localization support
