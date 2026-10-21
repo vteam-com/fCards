@@ -139,6 +139,12 @@ abstract class AppLocalizations {
   /// **'Back'**
   String get back;
 
+  /// Banner shown on every screen while the backend does not answer requests.
+  ///
+  /// In en, this message translates to:
+  /// **'Can\'t reach the game server. Showing what is available offline.'**
+  String get backendUnreachable;
+
   /// No description provided for @cancel.
   ///
   /// In en, this message translates to:
@@ -930,6 +936,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Remove this player'**
   String get removeThisPlayer;
+
+  /// Button on the backend banner that sends requests again.
+  ///
+  /// In en, this message translates to:
+  /// **'Retry'**
+  String get retry;
 
   /// No description provided for @rounds.
   ///

@@ -180,7 +180,7 @@ def _fetch_samples(project_id: str) -> list[dict]:
             cred = credentials.ApplicationDefault()
         firebase_admin.initialize_app(
             cred,
-            {"databaseURL": f"https://{project_id}-default-rtdb.europe-west1.firebasedatabase.app"},
+            {"databaseURL": f"https://{project_id}.firebaseio.com"},
         )
 
     ref = rtdb.reference("training_corrections")

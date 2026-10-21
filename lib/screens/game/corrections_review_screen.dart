@@ -63,16 +63,18 @@ class _CorrectionsReviewScreenState extends State<CorrectionsReviewScreen> {
     });
 
     try {
-      await FirebaseDatabase.instance
-          .ref(
-            '$trainingCorrectionsDbPath/${record.ownerUid}/${record.sampleKey}',
-          )
-          .update(<String, dynamic>{
-            'review_status': status.wireValue,
-            'reviewed_at': DateTime.now().toIso8601String(),
-            'reviewer_uid': user.uid,
-            'reviewer_email': user.email ?? user.displayName ?? '',
-          });
+      await withFirebaseRequestTimeout(
+        () => FirebaseDatabase.instance
+            .ref(
+              '$trainingCorrectionsDbPath/${record.ownerUid}/${record.sampleKey}',
+            )
+            .update(<String, dynamic>{
+              'review_status': status.wireValue,
+              'reviewed_at': DateTime.now().toIso8601String(),
+              'reviewer_uid': user.uid,
+              'reviewer_email': user.email ?? user.displayName ?? '',
+            }),
+      );
 
       _showMessage(l10n.correctionsDecisionSaved);
     } catch (error, stack) {
@@ -128,9 +130,11 @@ class _CorrectionsReviewScreenState extends State<CorrectionsReviewScreen> {
         }
 
         return StreamBuilder<DatabaseEvent>(
-          stream: FirebaseDatabase.instance
-              .ref(trainingCorrectionsDbPath)
-              .onValue,
+          stream: withFirebaseStreamTimeout(
+            () => FirebaseDatabase.instance
+                .ref(trainingCorrectionsDbPath)
+                .onValue,
+          ),
           builder: (BuildContext _, AsyncSnapshot<DatabaseEvent> snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(child: CircularProgressIndicator());

@@ -8,6 +8,7 @@
     "description": "DO NOT TRANSLATE. This is the official brand name."
   },
   "back": "Voltar",
+  "backendUnreachable": "Não foi possível ligar ao servidor do jogo. A mostrar o que está disponível offline.",
   "cancel": "Cancelar",
   "cardCountTooltip": "{count}\\ncartas",
   "@cardCountTooltip": {
@@ -238,6 +239,7 @@
     }
   },
   "removeThisPlayer": "Remover este jogador",
+  "retry": "Tentar novamente",
   "rounds": "{count} Rondas",
   "@rounds": {
     "placeholders": {

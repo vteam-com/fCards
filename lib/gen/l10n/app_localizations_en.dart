@@ -27,6 +27,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get back => 'Back';
 
   @override
+  String get backendUnreachable =>
+      'Can\'t reach the game server. Showing what is available offline.';
+
+  @override
   String get cancel => 'Cancel';
 
   @override
@@ -477,6 +481,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get removeThisPlayer => 'Remove this player';
+
+  @override
+  String get retry => 'Retry';
 
   @override
   String rounds(int count) {

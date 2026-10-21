@@ -1,4 +1,5 @@
 import 'dart:math' as math;
+import 'dart:ui';
 
 import 'package:cards/gen/l10n/app_localizations.dart';
 import 'package:cards/models/app/app_theme.dart';
@@ -12,6 +13,7 @@ import 'package:cards/models/game/backend_model.dart';
 import 'package:cards/models/game/leaderboard_service.dart';
 import 'package:cards/models/version.dart';
 import 'package:cards/utils/logger.dart';
+import 'package:cards/widgets/buttons/my_button_rectangle.dart';
 import 'package:cards/widgets/helpers/app_bottom_sheet.dart';
 import 'package:cards/widgets/helpers/avatar_profile_dialog.dart';
 import 'package:cards/widgets/helpers/google_mark_icon.dart';
@@ -305,8 +307,13 @@ class _ScreenState extends State<Screen> with SingleTickerProviderStateMixin {
           ),
           Positioned.fill(child: _buildTableTopAmbientOverlay()),
           SafeArea(
-            child: SizedBox.expand(
-              child: widget.isWaiting ? _displayWaiting() : widget.child,
+            child: Column(
+              children: [
+                if (!isRunningOffLine) _buildBackendBanner(),
+                Expanded(
+                  child: widget.isWaiting ? _displayWaiting() : widget.child,
+                ),
+              ],
             ),
           ),
         ],
@@ -377,6 +384,85 @@ class _ScreenState extends State<Screen> with SingleTickerProviderStateMixin {
             ? colorScheme.onPrimary
             : colorScheme.onSurface,
       ),
+    );
+  }
+
+  /// Builds the bar shown above the content while the backend does not
+  /// answer, with a button that sends requests again.
+  Widget _buildBackendBanner() {
+    return ListenableBuilder(
+      listenable: BackendHealth.instance,
+      builder: (BuildContext context, Widget? _) {
+        if (!BackendHealth.instance.isUnreachable) {
+          return const SizedBox.shrink();
+        }
+        final AppLocalizations localizations = AppLocalizations.of(context);
+        final ColorScheme colorScheme = Theme.of(context).colorScheme;
+        return Padding(
+          padding: const EdgeInsets.only(
+            left: ConstLayout.paddingM,
+            top: ConstLayout.paddingM,
+            right: ConstLayout.paddingM,
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(ConstLayout.radiusM),
+            child: BackdropFilter(
+              filter: ImageFilter.blur(
+                sigmaX: ConstAnimation.blurSigma,
+                sigmaY: ConstAnimation.blurSigma,
+              ),
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  color: colorScheme.surface.withAlpha(ConstLayout.alphaL),
+                  borderRadius: BorderRadius.circular(ConstLayout.radiusM),
+                  border: Border.all(
+                    color: Colors.white.withValues(
+                      alpha: ConstAnimation.borderOpacity,
+                    ),
+                    width: ConstLayout.strokeXS,
+                  ),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(ConstLayout.paddingM),
+                  child: Row(
+                    spacing: ConstLayout.sizeS,
+                    children: [
+                      Icon(
+                        Icons.cloud_off,
+                        size: ConstLayout.iconS,
+                        color: colorScheme.error,
+                      ),
+                      Expanded(
+                        child: Text(
+                          localizations.backendUnreachable,
+                          key: const Key('screen.backendBanner'),
+                          style: TextStyle(
+                            fontSize: ConstLayout.textS,
+                            color: colorScheme.onSurface,
+                          ),
+                        ),
+                      ),
+                      MyButtonRectangle.secondary(
+                        key: const Key('screen.backendRetry'),
+                        width: ConstLayout.iconXL,
+                        height: ConstLayout.sizeXL,
+                        onTap: _retryBackend,
+                        child: Text(
+                          localizations.retry,
+                          style: const TextStyle(
+                            fontSize: ConstLayout.textS,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        );
+      },
     );
   }
 
@@ -539,6 +625,12 @@ class _ScreenState extends State<Screen> with SingleTickerProviderStateMixin {
     final double x = math.sin((progress + phaseX) * fullTurn) * amplitudeX;
     final double y = math.cos((progress + phaseY) * fullTurn) * amplitudeY;
     return Alignment(x, y);
+  }
+
+  /// Lets requests through again and reloads the screen when it can.
+  void _retryBackend() {
+    BackendHealth.instance.reset();
+    widget.onRefresh?.call();
   }
 
   /// Opens the account profile dialog showing user info and settings.

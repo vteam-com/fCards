@@ -8,7 +8,7 @@ class FirebaseTableStore implements TableStore {
   Future<Object?> read(String path) async {
     await _ready();
     return (await withFirebaseRequestTimeout(
-      FirebaseDatabase.instance.ref(path).get(),
+      () => FirebaseDatabase.instance.ref(path).get(),
     )).value;
   }
 
@@ -16,7 +16,7 @@ class FirebaseTableStore implements TableStore {
   Future<void> write(String path, Object value) async {
     await _ready();
     await withFirebaseRequestTimeout(
-      FirebaseDatabase.instance.ref(path).set(value),
+      () => FirebaseDatabase.instance.ref(path).set(value),
     );
   }
 
@@ -24,11 +24,13 @@ class FirebaseTableStore implements TableStore {
   Future<Object?> createIfAbsent(String path, Object value) async {
     await _ready();
     final TransactionResult result = await withFirebaseRequestTimeout(
-      FirebaseDatabase.instance.ref(path).runTransaction(
-        (Object? current) => current == null
-            ? Transaction.success(value)
-            : Transaction.abort(),
-      ),
+      () => FirebaseDatabase.instance
+          .ref(path)
+          .runTransaction(
+            (Object? current) => current == null
+                ? Transaction.success(value)
+                : Transaction.abort(),
+          ),
     );
     return result.snapshot.value;
   }
@@ -42,7 +44,7 @@ class FirebaseTableStore implements TableStore {
     await _ready();
     return _children(
       await withFirebaseRequestTimeout(
-        FirebaseDatabase.instance
+        () => FirebaseDatabase.instance
             .ref(path)
             .orderByChild(child)
             .equalTo(value)
@@ -60,7 +62,7 @@ class FirebaseTableStore implements TableStore {
     await _ready();
     return _children(
       await withFirebaseRequestTimeout(
-        FirebaseDatabase.instance
+        () => FirebaseDatabase.instance
             .ref(path)
             .orderByChild(child)
             .limitToLast(limit)
@@ -70,10 +72,9 @@ class FirebaseTableStore implements TableStore {
   }
 
   @override
-  Stream<Object?> watch(String path) => FirebaseDatabase.instance
-      .ref(path)
-      .onValue
-      .map((DatabaseEvent event) => event.snapshot.value);
+  Stream<Object?> watch(String path) => withFirebaseStreamTimeout(
+    () => FirebaseDatabase.instance.ref(path).onValue,
+  ).map((DatabaseEvent event) => event.snapshot.value);
 
   static Map<String, Object?> _children(DataSnapshot snapshot) {
     final Object? value = snapshot.value;

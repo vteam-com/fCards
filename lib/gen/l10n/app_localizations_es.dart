@@ -27,6 +27,10 @@ class AppLocalizationsEs extends AppLocalizations {
   String get back => 'Atras';
 
   @override
+  String get backendUnreachable =>
+      'No se puede conectar con el servidor del juego. Se muestra lo disponible sin conexión.';
+
+  @override
   String get cancel => 'Cancelar';
 
   @override
@@ -483,6 +487,9 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get removeThisPlayer => 'Eliminar a este jugador';
+
+  @override
+  String get retry => 'Reintentar';
 
   @override
   String rounds(int count) {

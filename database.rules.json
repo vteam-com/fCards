@@ -8,7 +8,7 @@
       "$roomId": {
         ".read": "auth != null",
         ".write": "auth != null",
-        ".validate": "newData.hasChildren(['invitees', 'players', 'scores', 'gameType', 'deck', 'discard', 'turn'])",
+        ".validate": "!newData.hasChild('deck') || newData.hasChildren(['invitees', 'players', 'scores', 'gameType', 'deck', 'discard', 'turn'])",
         "invitees": {
           ".read": "auth != null",
           ".write": "auth != null"

@@ -58,11 +58,13 @@ class ScoreSessionService {
             ],
           );
     try {
-      await FirebaseDatabase.instance.ref('$_scoreSessionsNode/$id').set({
-        _tableNameNode: session.tableName,
-        _participantsNode: {uid: _participantValue(uid, participantName)},
-        _scoreStateNode: state.toValue(),
-      });
+      await withFirebaseRequestTimeout(
+        () => FirebaseDatabase.instance.ref('$_scoreSessionsNode/$id').set({
+          _tableNameNode: session.tableName,
+          _participantsNode: {uid: _participantValue(uid, participantName)},
+          _scoreStateNode: state.toValue(),
+        }),
+      );
       return session;
     } on FirebaseException catch (error) {
       logger.w('createScoreSession failed: $error');
@@ -85,33 +87,37 @@ class ScoreSessionService {
     }
 
     try {
-      await FirebaseDatabase.instance
-          .ref('$_scoreSessionsNode/$sessionId/$_participantsNode/$uid')
-          .set(_participantValue(uid, participantName));
-      await _scoreStateReference(sessionId).runTransaction((Object? value) {
-        final ScoreSessionState state = ScoreSessionState.fromValue(value);
-        if (state.playerIds.contains(uid)) {
-          return Transaction.success(value);
-        }
-        final List<String> playerIds = [...state.playerIds, uid];
-        final List<String> playerNames = [
-          ...state.playerNames,
-          _participantName(participantName),
-        ];
-        final List<List<int>> existingScores = state.scores.isEmpty
-            ? [List<int>.filled(state.playerIds.length, 0)]
-            : state.scores;
-        final List<List<int>> scores = existingScores
-            .map((List<int> round) => [...round, 0])
-            .toList();
-        return Transaction.success(
-          ScoreSessionState(
-            playerIds: playerIds,
-            playerNames: playerNames,
-            scores: scores,
-          ).toValue(),
-        );
-      });
+      await withFirebaseRequestTimeout(
+        () => FirebaseDatabase.instance
+            .ref('$_scoreSessionsNode/$sessionId/$_participantsNode/$uid')
+            .set(_participantValue(uid, participantName)),
+      );
+      await withFirebaseRequestTimeout(
+        () => _scoreStateReference(sessionId).runTransaction((Object? value) {
+          final ScoreSessionState state = ScoreSessionState.fromValue(value);
+          if (state.playerIds.contains(uid)) {
+            return Transaction.success(value);
+          }
+          final List<String> playerIds = [...state.playerIds, uid];
+          final List<String> playerNames = [
+            ...state.playerNames,
+            _participantName(participantName),
+          ];
+          final List<List<int>> existingScores = state.scores.isEmpty
+              ? [List<int>.filled(state.playerIds.length, 0)]
+              : state.scores;
+          final List<List<int>> scores = existingScores
+              .map((List<int> round) => [...round, 0])
+              .toList();
+          return Transaction.success(
+            ScoreSessionState(
+              playerIds: playerIds,
+              playerNames: playerNames,
+              scores: scores,
+            ).toValue(),
+          );
+        }),
+      );
     } on FirebaseException catch (error) {
       logger.w('joinScoreSession failed: $error');
     } catch (error) {
@@ -127,9 +133,11 @@ class ScoreSessionService {
     }
 
     try {
-      final DataSnapshot snapshot = await FirebaseDatabase.instance
-          .ref('$_scoreSessionsNode/$sessionId')
-          .get();
+      final DataSnapshot snapshot = await withFirebaseRequestTimeout(
+        () => FirebaseDatabase.instance
+            .ref('$_scoreSessionsNode/$sessionId')
+            .get(),
+      );
       final Object? value = snapshot.value;
       if (value is! Map || value[_tableNameNode] is! String) {
         return null;
@@ -149,64 +157,67 @@ class ScoreSessionService {
 
   /// Streams the current table participants with their account identifiers.
   static Stream<List<ScoreSessionParticipant>> participants(String sessionId) {
-    return FirebaseDatabase.instance
-        .ref('$_scoreSessionsNode/$sessionId/$_participantsNode')
-        .onValue
-        .map((DatabaseEvent event) {
-          final Object? value = event.snapshot.value;
-          if (value is! Map) {
-            return <ScoreSessionParticipant>[];
-          }
-          return value.entries.map((MapEntry<dynamic, dynamic> entry) {
-            final String uid = entry.key.toString();
-            final Object? participant = entry.value;
-            if (participant is String) {
-              return ScoreSessionParticipant(
-                avatarUrl: '',
-                displayName: participant,
-                email: '',
-                firebaseId: uid,
-                fullName: '',
-                oAuthType: anonymousOAuthProviderType,
-              );
-            }
-            if (participant is Map) {
-              final Object? avatarUrl = participant[_avatarUrlNode];
-              final Object? displayName = participant[_displayNameNode];
-              final Object? email = participant[_emailNode];
-              final Object? firebaseId = participant[_firebaseIdNode];
-              final Object? fullName = participant[_fullNameNode];
-              final Object? oAuthType = participant[_oAuthTypeNode];
-              return ScoreSessionParticipant(
-                avatarUrl: avatarUrl is String ? avatarUrl : '',
-                displayName: displayName is String
-                    ? displayName
-                    : _defaultParticipantName,
-                email: email is String && email.contains('@') ? email : '',
-                firebaseId: firebaseId is String && firebaseId.isNotEmpty
-                    ? firebaseId
-                    : uid,
-                fullName: fullName is String ? fullName : '',
-                oAuthType: oAuthType is String
-                    ? oAuthType
-                    : anonymousOAuthProviderType,
-              );
-            }
-            return ScoreSessionParticipant(
-              avatarUrl: '',
-              displayName: _defaultParticipantName,
-              email: '',
-              firebaseId: uid,
-              fullName: '',
-              oAuthType: anonymousOAuthProviderType,
-            );
-          }).toList();
-        });
+    return withFirebaseStreamTimeout(
+      () => FirebaseDatabase.instance
+          .ref('$_scoreSessionsNode/$sessionId/$_participantsNode')
+          .onValue,
+    ).map((DatabaseEvent event) {
+      final Object? value = event.snapshot.value;
+      if (value is! Map) {
+        return <ScoreSessionParticipant>[];
+      }
+      return value.entries.map((MapEntry<dynamic, dynamic> entry) {
+        final String uid = entry.key.toString();
+        final Object? participant = entry.value;
+        if (participant is String) {
+          return ScoreSessionParticipant(
+            avatarUrl: '',
+            displayName: participant,
+            email: '',
+            firebaseId: uid,
+            fullName: '',
+            oAuthType: anonymousOAuthProviderType,
+          );
+        }
+        if (participant is Map) {
+          final Object? avatarUrl = participant[_avatarUrlNode];
+          final Object? displayName = participant[_displayNameNode];
+          final Object? email = participant[_emailNode];
+          final Object? firebaseId = participant[_firebaseIdNode];
+          final Object? fullName = participant[_fullNameNode];
+          final Object? oAuthType = participant[_oAuthTypeNode];
+          return ScoreSessionParticipant(
+            avatarUrl: avatarUrl is String ? avatarUrl : '',
+            displayName: displayName is String
+                ? displayName
+                : _defaultParticipantName,
+            email: email is String && email.contains('@') ? email : '',
+            firebaseId: firebaseId is String && firebaseId.isNotEmpty
+                ? firebaseId
+                : uid,
+            fullName: fullName is String ? fullName : '',
+            oAuthType: oAuthType is String
+                ? oAuthType
+                : anonymousOAuthProviderType,
+          );
+        }
+        return ScoreSessionParticipant(
+          avatarUrl: '',
+          displayName: _defaultParticipantName,
+          email: '',
+          firebaseId: uid,
+          fullName: '',
+          oAuthType: anonymousOAuthProviderType,
+        );
+      }).toList();
+    });
   }
 
   /// Streams the shared score card for [sessionId].
   static Stream<ScoreSessionState> scoreState(String sessionId) {
-    return _scoreStateReference(sessionId).onValue.map(
+    return withFirebaseStreamTimeout(
+      () => _scoreStateReference(sessionId).onValue,
+    ).map(
       (DatabaseEvent event) =>
           ScoreSessionState.fromValue(event.snapshot.value),
     );
@@ -218,9 +229,11 @@ class ScoreSessionService {
     ScoreSessionClosure closure,
   ) async {
     try {
-      await FirebaseDatabase.instance
-          .ref('$_scoreSessionsNode/$sessionId/$_closedGameNode')
-          .set(closure.toValue());
+      await withFirebaseRequestTimeout(
+        () => FirebaseDatabase.instance
+            .ref('$_scoreSessionsNode/$sessionId/$_closedGameNode')
+            .set(closure.toValue()),
+      );
     } on FirebaseException catch (error) {
       logger.w('publishClosure failed: $error');
     } catch (error) {
@@ -230,13 +243,14 @@ class ScoreSessionService {
 
   /// Streams the latest closed game of [sessionId], or null before the first.
   static Stream<ScoreSessionClosure?> closures(String sessionId) {
-    return FirebaseDatabase.instance
-        .ref('$_scoreSessionsNode/$sessionId/$_closedGameNode')
-        .onValue
-        .map(
-          (DatabaseEvent event) =>
-              ScoreSessionClosure.fromValue(event.snapshot.value),
-        );
+    return withFirebaseStreamTimeout(
+      () => FirebaseDatabase.instance
+          .ref('$_scoreSessionsNode/$sessionId/$_closedGameNode')
+          .onValue,
+    ).map(
+      (DatabaseEvent event) =>
+          ScoreSessionClosure.fromValue(event.snapshot.value),
+    );
   }
 
   /// Updates one score cell without replacing unrelated concurrent edits.
@@ -402,12 +416,14 @@ class ScoreSessionService {
     ScoreSessionState Function(ScoreSessionState) update,
   ) async {
     try {
-      await _scoreStateReference(sessionId).runTransaction((Object? value) {
-        final ScoreSessionState next = update(
-          ScoreSessionState.fromValue(value),
-        );
-        return Transaction.success(next.toValue());
-      });
+      await withFirebaseRequestTimeout(
+        () => _scoreStateReference(sessionId).runTransaction((Object? value) {
+          final ScoreSessionState next = update(
+            ScoreSessionState.fromValue(value),
+          );
+          return Transaction.success(next.toValue());
+        }),
+      );
     } on FirebaseException catch (error) {
       logger.w('updateScoreSessionState failed: $error');
     } catch (error) {

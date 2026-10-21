@@ -4,7 +4,7 @@ import 'package:cards/models/app/card_detection.dart';
 import 'package:cards/models/app/tflite_rank_parser.dart';
 import 'package:cards/utils/logger.dart';
 import 'package:flutter/services.dart';
-import 'package:tflite_flutter/tflite_flutter.dart';
+import 'package:tflite_core/tflite_core.dart';
 
 /// Loads a YOLOv8 TFLite model and runs card detection inference.
 class TfliteService {

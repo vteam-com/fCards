@@ -27,6 +27,10 @@ class AppLocalizationsPt extends AppLocalizations {
   String get back => 'Voltar';
 
   @override
+  String get backendUnreachable =>
+      'Não foi possível ligar ao servidor do jogo. A mostrar o que está disponível offline.';
+
+  @override
   String get cancel => 'Cancelar';
 
   @override
@@ -482,6 +486,9 @@ class AppLocalizationsPt extends AppLocalizations {
   String get removeThisPlayer => 'Remover este jogador';
 
   @override
+  String get retry => 'Tentar novamente';
+
+  @override
   String rounds(int count) {
     return '$count Rondas';
   }
@@ -717,6 +724,10 @@ class AppLocalizationsPtPt extends AppLocalizationsPt {
 
   @override
   String get back => 'Voltar';
+
+  @override
+  String get backendUnreachable =>
+      'Não foi possível ligar ao servidor do jogo. A mostrar o que está disponível offline.';
 
   @override
   String get cancel => 'Cancelar';
@@ -1172,6 +1183,9 @@ class AppLocalizationsPtPt extends AppLocalizationsPt {
 
   @override
   String get removeThisPlayer => 'Remover este jogador';
+
+  @override
+  String get retry => 'Tentar novamente';
 
   @override
   String rounds(int count) {

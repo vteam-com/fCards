@@ -181,7 +181,9 @@ class GameModel with ChangeNotifier {
         final refPlayers = FirebaseDatabase.instance.ref().child(
           '$_preferenceStorageSectionRooms/$roomName',
         );
-        refPlayers.set(toJson()).catchError((Object error) {
+        withFirebaseRequestTimeout(() => refPlayers.set(toJson())).catchError((
+          Object error,
+        ) {
           if (!_isPermissionDeniedError(error)) {
             debugPrint('pushGameModelToBackend failed: $error');
           }

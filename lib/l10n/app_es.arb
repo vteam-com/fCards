@@ -8,6 +8,7 @@
     "description": "DO NOT TRANSLATE. This is the official brand name."
   },
   "back": "Atras",
+  "backendUnreachable": "No se puede conectar con el servidor del juego. Se muestra lo disponible sin conexión.",
   "cancel": "Cancelar",
   "cardCountTooltip": "{count}\\ncartas",
   "@cardCountTooltip": {
@@ -238,6 +239,7 @@
     }
   },
   "removeThisPlayer": "Eliminar a este jugador",
+  "retry": "Reintentar",
   "rounds": "{count} Rondas",
   "@rounds": {
     "placeholders": {

@@ -336,9 +336,9 @@ class GameScreenState extends State<GameScreen> {
       _jsonToGameModel(fakeData());
     } else {
       try {
-        final DataSnapshot snapshot = await FirebaseDatabase.instance
-            .ref(_getFirebaseRef())
-            .get();
+        final DataSnapshot snapshot = await withFirebaseRequestTimeout(
+          () => FirebaseDatabase.instance.ref(_getFirebaseRef()).get(),
+        );
         _dataSnapshotToGameModel(snapshot);
       } on FirebaseException catch (error) {
         if (!_isPermissionDeniedError(error)) {
@@ -362,10 +362,10 @@ class GameScreenState extends State<GameScreen> {
     if (isRunningOffLine) {
       _jsonToGameModel(fakeData());
     } else {
-      _streamSubscription = FirebaseDatabase.instance
-          .ref(_getFirebaseRef())
-          .onValue
-          .listen(
+      _streamSubscription =
+          withFirebaseStreamTimeout(
+            () => FirebaseDatabase.instance.ref(_getFirebaseRef()).onValue,
+          ).listen(
             (DatabaseEvent event) {
               _dataSnapshotToGameModel(event.snapshot);
             },

@@ -40,18 +40,20 @@ class LeaderboardService {
     }
 
     try {
-      await FirebaseDatabase.instance
-          .ref('$_tableResultsNode/${result.tableKey}/${result.id}')
-          .runTransaction((Object? value) {
-            final GameResult merged = value == null
-                ? result
-                : GameResult.fromValue(
-                    result.tableKey,
-                    result.id,
-                    value,
-                  ).mergeAccounts(result);
-            return Transaction.success(merged.toValue());
-          });
+      await withFirebaseRequestTimeout(
+        () => FirebaseDatabase.instance
+            .ref('$_tableResultsNode/${result.tableKey}/${result.id}')
+            .runTransaction((Object? value) {
+              final GameResult merged = value == null
+                  ? result
+                  : GameResult.fromValue(
+                      result.tableKey,
+                      result.id,
+                      value,
+                    ).mergeAccounts(result);
+              return Transaction.success(merged.toValue());
+            }),
+      );
 
       final Set<String> tableUids = <String>{
         for (final GameResultPlayer player in result.players)
@@ -82,11 +84,13 @@ class LeaderboardService {
       return <LeaderboardEntry>[];
     }
     try {
-      final DataSnapshot snapshot = await FirebaseDatabase.instance
-          .ref('$_leaderboardNode/${gameType.name}')
-          .orderByChild(leaderboardWinsNode)
-          .limitToLast(globalLeaderboardLimit)
-          .get();
+      final DataSnapshot snapshot = await withFirebaseRequestTimeout(
+        () => FirebaseDatabase.instance
+            .ref('$_leaderboardNode/${gameType.name}')
+            .orderByChild(leaderboardWinsNode)
+            .limitToLast(globalLeaderboardLimit)
+            .get(),
+      );
       final Object? value = snapshot.value;
       if (value is! Map) {
         return <LeaderboardEntry>[];
@@ -115,9 +119,9 @@ class LeaderboardService {
     }
     final String key = firebaseSafeKey(tableKey);
     try {
-      final DataSnapshot snapshot = await FirebaseDatabase.instance
-          .ref('$_tableResultsNode/$key')
-          .get();
+      final DataSnapshot snapshot = await withFirebaseRequestTimeout(
+        () => FirebaseDatabase.instance.ref('$_tableResultsNode/$key').get(),
+      );
       final Object? value = snapshot.value;
       if (value is! Map) {
         return <GameResult>[];
@@ -157,9 +161,11 @@ class LeaderboardService {
     final List<LeaderboardStanding> standings = <LeaderboardStanding>[];
     for (final GameStyles gameType in GameStyles.values) {
       try {
-        final DataSnapshot snapshot = await FirebaseDatabase.instance
-            .ref('$_leaderboardNode/${gameType.name}/$uid')
-            .get();
+        final DataSnapshot snapshot = await withFirebaseRequestTimeout(
+          () => FirebaseDatabase.instance
+              .ref('$_leaderboardNode/${gameType.name}/$uid')
+              .get(),
+        );
         if (!snapshot.exists) {
           continue;
         }
@@ -187,29 +193,33 @@ class LeaderboardService {
     GameResultPlayer player,
     String? avatarUrl,
   ) async {
-    final TransactionResult claim = await FirebaseDatabase.instance
-        .ref('$_leaderboardGamesNode/${player.uid}/${result.id}')
-        .runTransaction(
-          (Object? value) =>
-              value == null ? Transaction.success(true) : Transaction.abort(),
-        );
+    final TransactionResult claim = await withFirebaseRequestTimeout(
+      () => FirebaseDatabase.instance
+          .ref('$_leaderboardGamesNode/${player.uid}/${result.id}')
+          .runTransaction(
+            (Object? value) =>
+                value == null ? Transaction.success(true) : Transaction.abort(),
+          ),
+    );
     if (!claim.committed) {
       return;
     }
 
-    await FirebaseDatabase.instance
-        .ref('$_leaderboardNode/${result.style.name}/${player.uid}')
-        .runTransaction((Object? value) {
-          final LeaderboardEntry current = LeaderboardEntry.fromValue(
-            player.uid,
-            value,
-          );
-          return Transaction.success(
-            current
-                .withResult(player, result.endedAt, avatarUrl: avatarUrl)
-                .toValue(),
-          );
-        });
+    await withFirebaseRequestTimeout(
+      () => FirebaseDatabase.instance
+          .ref('$_leaderboardNode/${result.style.name}/${player.uid}')
+          .runTransaction((Object? value) {
+            final LeaderboardEntry current = LeaderboardEntry.fromValue(
+              player.uid,
+              value,
+            );
+            return Transaction.success(
+              current
+                  .withResult(player, result.endedAt, avatarUrl: avatarUrl)
+                  .toValue(),
+            );
+          }),
+    );
   }
 
   static Future<bool> _ready() async {

@@ -29,7 +29,7 @@ external JSPromise<JSString> _detectFromImageBytes(
 
 /// Web fallback for TFLite service.
 ///
-/// The `tflite_flutter` package depends on `dart:ffi`, which is not available
+/// The `tflite_core` package depends on `dart:ffi`, which is not available
 /// in web builds. This implementation uses ONNX Runtime Web via JS interop.
 class TfliteService {
   TfliteService._();

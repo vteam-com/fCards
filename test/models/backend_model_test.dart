@@ -81,15 +81,114 @@ void main() {
   });
 
   group('withFirebaseRequestTimeout', () {
+    late DateTime now;
+    late BackendHealth health;
+
+    setUp(() {
+      now = DateTime(2026, 10, 21, 9);
+      health = BackendHealth(now: () => now);
+    });
+
     test('completes with a timeout when the request does not finish', () async {
       final Completer<void> request = Completer<void>();
       await expectLater(
         withFirebaseRequestTimeout(
-          request.future,
+          () => request.future,
           timeout: const Duration(milliseconds: 1),
+          health: health,
         ),
         throwsA(isA<TimeoutException>()),
       );
+      expect(health.isUnreachable, isTrue);
+    });
+
+    test(
+      'fails fast without sending while the backend is unreachable',
+      () async {
+        health.recordFailure();
+        bool sent = false;
+        await expectLater(
+          withFirebaseRequestTimeout(() async {
+            sent = true;
+          }, health: health),
+          throwsA(isA<BackendUnavailableException>()),
+        );
+        expect(sent, isFalse);
+      },
+    );
+
+    test('sends one probe after the retry delay and recovers', () async {
+      health.recordFailure();
+      now = now.add(backendRetryAfter);
+      expect(
+        await withFirebaseRequestTimeout(() async => 'pong', health: health),
+        'pong',
+      );
+      expect(health.status, BackendStatus.reachable);
+    });
+
+    test('an error from the backend still counts as reachable', () async {
+      await expectLater(
+        withFirebaseRequestTimeout(
+          () => Future<void>.error(StateError('permission denied')),
+          health: health,
+        ),
+        throwsA(isA<StateError>()),
+      );
+      expect(health.status, BackendStatus.reachable);
+    });
+  });
+
+  group('withFirebaseStreamTimeout', () {
+    late DateTime now;
+    late BackendHealth health;
+
+    setUp(() {
+      now = DateTime(2026, 10, 21, 9);
+      health = BackendHealth(now: () => now);
+    });
+
+    test('fails when the first event does not arrive in time', () async {
+      final StreamController<int> source = StreamController<int>();
+      addTearDown(source.close);
+      await expectLater(
+        withFirebaseStreamTimeout(
+          () => source.stream,
+          timeout: const Duration(milliseconds: 1),
+          health: health,
+        ).first,
+        throwsA(isA<TimeoutException>()),
+      );
+      expect(health.isUnreachable, isTrue);
+      expect(source.hasListener, isFalse);
+    });
+
+    test('passes events through once the first one arrived', () async {
+      final StreamController<int> source = StreamController<int>();
+      addTearDown(source.close);
+      final Future<List<int>> events = withFirebaseStreamTimeout(
+        () => source.stream,
+        timeout: const Duration(milliseconds: 1),
+        health: health,
+      ).take(2).toList();
+      source.add(1);
+      await Future<void>.delayed(const Duration(milliseconds: 5));
+      source.add(2);
+      expect(await events, <int>[1, 2]);
+      expect(health.status, BackendStatus.reachable);
+    });
+
+    test('fails fast without subscribing while unreachable', () async {
+      health.recordFailure();
+      bool subscribed = false;
+      await expectLater(
+        withFirebaseStreamTimeout(() {
+          subscribed = true;
+          return const Stream<int>.empty();
+        }, health: health).first,
+        throwsA(isA<BackendUnavailableException>()),
+      );
+      expect(subscribed, isFalse);
     });
   });
 

@@ -8,6 +8,10 @@
     "description": "DO NOT TRANSLATE. This is the official brand name."
   },
   "back": "Back",
+  "backendUnreachable": "Can't reach the game server. Showing what is available offline.",
+  "@backendUnreachable": {
+    "description": "Banner shown on every screen while the backend does not answer requests."
+  },
   "cancel": "Cancel",
   "cardCountTooltip": "{count}\\ncards",
   "@cardCountTooltip": {
@@ -286,6 +290,10 @@
     }
   },
   "removeThisPlayer": "Remove this player",
+  "retry": "Retry",
+  "@retry": {
+    "description": "Button on the backend banner that sends requests again."
+  },
   "rounds": "{count} Rounds",
   "@rounds": {
     "placeholders": {

@@ -362,7 +362,7 @@
 <line x1="40.0" y1="10688.0" x2="1358.0" y2="10688.0" stroke="#64748b" stroke-width="1" opacity="0.35"/>
 <g>
   <path d="M 379.0 1374.0 H 367.0 Q 361.0 1374.0 361.0 1380.0 V 2306.0 Q 361.0 2312.0 367.0 2312.0 H 559.0" class="edgeVertical"/>
-  <title>mockito -> analyzer v14.4.0</title>
+  <title>mockito -> analyzer v14.6.0</title>
 </g>
 <g>
   <path d="M 379.0 1374.0 H 364.0 Q 358.0 1374.0 358.0 1380.0 V 2498.0 Q 358.0 2504.0 364.0 2504.0 H 559.0" class="edgeVertical"/>
@@ -370,7 +370,7 @@
 </g>
 <g>
   <path d="M 379.0 1022.0 H 361.0 Q 355.0 1022.0 355.0 1028.0 V 2370.0 Q 355.0 2376.0 361.0 2376.0 H 559.0" class="edgeVertical"/>
-  <title>image -> archive v4.3.0</title>
+  <title>image -> archive v4.5.2</title>
 </g>
 <g>
   <path d="M 379.0 1638.0 H 358.0 Q 352.0 1638.0 352.0 1644.0 V 3202.0 Q 352.0 3208.0 358.0 3208.0 H 559.0" class="edgeVertical"/>
@@ -378,11 +378,11 @@
 </g>
 <g>
   <path d="M 379.0 1814.0 H 355.0 Q 349.0 1814.0 349.0 1820.0 V 3394.0 Q 349.0 3400.0 355.0 3400.0 H 559.0" class="edgeVertical"/>
-  <title>tflite_flutter -> ffi v2.2.0</title>
+  <title>tflite_core -> ffi v2.2.0</title>
 </g>
 <g>
   <path d="M 379.0 1374.0 H 352.0 Q 346.0 1374.0 346.0 1380.0 V 3074.0 Q 346.0 3080.0 352.0 3080.0 H 559.0" class="edgeVertical"/>
-  <title>mockito -> code_builder v4.12.0</title>
+  <title>mockito -> code_builder v4.13.0</title>
 </g>
 <g>
   <path d="M 379.0 1286.0 H 349.0 Q 343.0 1286.0 343.0 1292.0 V 3010.0 Q 343.0 3016.0 349.0 3016.0 H 559.0" class="edgeVertical"/>
@@ -406,7 +406,7 @@
 </g>
 <g>
   <path d="M 379.0 1374.0 H 334.0 Q 328.0 1374.0 328.0 1380.0 V 3266.0 Q 328.0 3272.0 334.0 3272.0 H 559.0" class="edgeVertical"/>
-  <title>mockito -> dart_style v3.1.13</title>
+  <title>mockito -> dart_style v3.1.14</title>
 </g>
 <g>
   <path d="M 379.0 1902.0 H 331.0 Q 325.0 1902.0 325.0 1908.0 V 3906.0 Q 325.0 3912.0 331.0 3912.0 H 559.0" class="edgeVertical"/>
@@ -418,7 +418,7 @@
 </g>
 <g>
   <path d="M 379.0 230.0 H 325.0 Q 319.0 230.0 319.0 236.0 V 2562.0 Q 319.0 2568.0 325.0 2568.0 H 559.0" class="edgeVertical"/>
-  <title>camera -> camera_android_camerax v0.7.5</title>
+  <title>camera -> camera_android_camerax v0.7.5+1</title>
 </g>
 <g>
   <path d="M 379.0 230.0 H 322.0 Q 316.0 230.0 316.0 236.0 V 2626.0 Q 316.0 2632.0 322.0 2632.0 H 559.0" class="edgeVertical"/>
@@ -430,7 +430,7 @@
 </g>
 <g>
   <path d="M 379.0 230.0 H 316.0 Q 310.0 230.0 310.0 236.0 V 2690.0 Q 310.0 2696.0 316.0 2696.0 H 559.0" class="edgeVertical"/>
-  <title>camera -> camera_platform_interface v2.14.0</title>
+  <title>camera -> camera_platform_interface v2.15.0</title>
 </g>
 <g>
   <path d="M 379.0 230.0 H 313.0 Q 307.0 230.0 307.0 236.0 V 2754.0 Q 307.0 2760.0 313.0 2760.0 H 559.0" class="edgeVertical"/>
@@ -446,15 +446,15 @@
 </g>
 <g>
   <path d="M 379.0 934.0 H 304.0 Q 298.0 934.0 298.0 940.0 V 4098.0 Q 298.0 4104.0 304.0 4104.0 H 559.0" class="edgeVertical"/>
-  <title>google_sign_in -> google_sign_in_android v7.2.17</title>
+  <title>google_sign_in -> google_sign_in_android v7.2.18</title>
 </g>
 <g>
   <path d="M 379.0 318.0 H 301.0 Q 295.0 318.0 295.0 324.0 V 3522.0 Q 295.0 3528.0 301.0 3528.0 H 559.0" class="edgeVertical"/>
-  <title>firebase_auth -> firebase_auth_platform_interface v9.1.0</title>
+  <title>firebase_auth -> firebase_auth_platform_interface v9.1.1</title>
 </g>
 <g>
   <path d="M 379.0 934.0 H 298.0 Q 292.0 934.0 292.0 940.0 V 4162.0 Q 292.0 4168.0 298.0 4168.0 H 559.0" class="edgeVertical"/>
-  <title>google_sign_in -> google_sign_in_ios v6.3.6</title>
+  <title>google_sign_in -> google_sign_in_ios v6.3.8+vteam.1</title>
 </g>
 <g>
   <path d="M 379.0 406.0 H 295.0 Q 289.0 406.0 289.0 412.0 V 3650.0 Q 289.0 3656.0 295.0 3656.0 H 559.0" class="edgeVertical"/>
@@ -462,11 +462,11 @@
 </g>
 <g>
   <path d="M 379.0 318.0 H 292.0 Q 286.0 318.0 286.0 324.0 V 3586.0 Q 286.0 3592.0 292.0 3592.0 H 559.0" class="edgeVertical"/>
-  <title>firebase_auth -> firebase_auth_web v6.3.0</title>
+  <title>firebase_auth -> firebase_auth_web v6.3.1</title>
 </g>
 <g>
   <path d="M 379.0 494.0 H 289.0 Q 283.0 494.0 283.0 500.0 V 3778.0 Q 283.0 3784.0 289.0 3784.0 H 559.0" class="edgeVertical"/>
-  <title>firebase_database -> firebase_database_platform_interface v0.4.0+7</title>
+  <title>firebase_database -> firebase_database_platform_interface v0.4.1+8</title>
 </g>
 <g>
   <path d="M 379.0 934.0 H 286.0 Q 280.0 934.0 280.0 940.0 V 4226.0 Q 280.0 4232.0 286.0 4232.0 H 559.0" class="edgeVertical"/>
@@ -474,11 +474,11 @@
 </g>
 <g>
   <path d="M 379.0 406.0 H 283.0 Q 277.0 406.0 277.0 412.0 V 3714.0 Q 277.0 3720.0 283.0 3720.0 H 559.0" class="edgeVertical"/>
-  <title>firebase_core -> firebase_core_web v3.12.0</title>
+  <title>firebase_core -> firebase_core_web v4.0.0</title>
 </g>
 <g>
   <path d="M 379.0 1110.0 H 280.0 Q 274.0 1110.0 274.0 1116.0 V 4418.0 Q 274.0 4424.0 280.0 4424.0 H 559.0" class="edgeVertical"/>
-  <title>image_picker -> image_picker_android v0.8.13+23</title>
+  <title>image_picker -> image_picker_android v0.8.13+25</title>
 </g>
 <g>
   <path d="M 379.0 318.0 H 277.0 Q 271.0 318.0 271.0 324.0 V 3650.0 Q 271.0 3656.0 277.0 3656.0 H 559.0" class="edgeVertical"/>
@@ -486,7 +486,7 @@
 </g>
 <g>
   <path d="M 379.0 494.0 H 274.0 Q 268.0 494.0 268.0 500.0 V 3842.0 Q 268.0 3848.0 274.0 3848.0 H 559.0" class="edgeVertical"/>
-  <title>firebase_database -> firebase_database_web v0.2.7+14</title>
+  <title>firebase_database -> firebase_database_web v0.2.8+15</title>
 </g>
 <g>
   <path d="M 379.0 934.0 H 271.0 Q 265.0 934.0 265.0 940.0 V 4290.0 Q 265.0 4296.0 271.0 4296.0 H 559.0" class="edgeVertical"/>
@@ -498,7 +498,7 @@
 </g>
 <g>
   <path d="M 379.0 1110.0 H 265.0 Q 259.0 1110.0 259.0 1116.0 V 4546.0 Q 259.0 4552.0 265.0 4552.0 H 559.0" class="edgeVertical"/>
-  <title>image_picker -> image_picker_ios v0.8.13+8</title>
+  <title>image_picker -> image_picker_ios v0.8.13+12</title>
 </g>
 <g>
   <path d="M 379.0 1110.0 H 262.0 Q 256.0 1110.0 256.0 1116.0 V 4610.0 Q 256.0 4616.0 262.0 4616.0 H 559.0" class="edgeVertical"/>
@@ -514,7 +514,7 @@
 </g>
 <g>
   <path d="M 379.0 1814.0 H 253.0 Q 247.0 1814.0 247.0 1820.0 V 5378.0 Q 247.0 5384.0 253.0 5384.0 H 559.0" class="edgeVertical"/>
-  <title>tflite_flutter -> path v1.9.1</title>
+  <title>tflite_core -> path v1.9.1</title>
 </g>
 <g>
   <path d="M 379.0 1638.0 H 250.0 Q 244.0 1638.0 244.0 1644.0 V 5250.0 Q 244.0 5256.0 250.0 5256.0 H 559.0" class="edgeVertical"/>
@@ -522,7 +522,7 @@
 </g>
 <g>
   <path d="M 379.0 1110.0 H 247.0 Q 241.0 1110.0 241.0 1116.0 V 4738.0 Q 241.0 4744.0 247.0 4744.0 H 559.0" class="edgeVertical"/>
-  <title>image_picker -> image_picker_platform_interface v2.11.1</title>
+  <title>image_picker -> image_picker_platform_interface v2.11.2</title>
 </g>
 <g>
   <path d="M 379.0 1638.0 H 244.0 Q 238.0 1638.0 238.0 1644.0 V 5314.0 Q 238.0 5320.0 244.0 5320.0 H 559.0" class="edgeVertical"/>
@@ -546,7 +546,7 @@
 </g>
 <g>
   <path d="M 379.0 1814.0 H 229.0 Q 223.0 1814.0 223.0 1820.0 V 5762.0 Q 223.0 5768.0 229.0 5768.0 H 559.0" class="edgeVertical"/>
-  <title>tflite_flutter -> plugin_platform_interface v2.1.8</title>
+  <title>tflite_core -> plugin_platform_interface v2.1.8</title>
 </g>
 <g>
   <path d="M 379.0 1286.0 H 226.0 Q 220.0 1286.0 220.0 1292.0 V 5250.0 Q 220.0 5256.0 226.0 5256.0 H 559.0" class="edgeVertical"/>
@@ -570,7 +570,7 @@
 </g>
 <g>
   <path d="M 379.0 1814.0 H 211.0 Q 205.0 1814.0 205.0 1820.0 V 5890.0 Q 205.0 5896.0 211.0 5896.0 H 559.0" class="edgeVertical"/>
-  <title>tflite_flutter -> quiver v3.2.2</title>
+  <title>tflite_core -> quiver v3.2.2</title>
 </g>
 <g>
   <path d="M 379.0 1462.0 H 208.0 Q 202.0 1462.0 202.0 1468.0 V 5570.0 Q 202.0 5576.0 208.0 5576.0 H 559.0" class="edgeVertical"/>
@@ -594,7 +594,7 @@
 </g>
 <g>
   <path d="M 379.0 1726.0 H 193.0 Q 187.0 1726.0 187.0 1732.0 V 6018.0 Q 187.0 6024.0 193.0 6024.0 H 559.0" class="edgeVertical"/>
-  <title>shared_preferences -> shared_preferences_android v2.4.28</title>
+  <title>shared_preferences -> shared_preferences_android v2.5.1</title>
 </g>
 <g>
   <path d="M 379.0 758.0 H 190.0 Q 184.0 758.0 184.0 764.0 V 5058.0 Q 184.0 5064.0 190.0 5064.0 H 559.0" class="edgeVertical"/>
@@ -606,7 +606,7 @@
 </g>
 <g>
   <path d="M 379.0 1726.0 H 184.0 Q 178.0 1726.0 178.0 1732.0 V 6082.0 Q 178.0 6088.0 184.0 6088.0 H 559.0" class="edgeVertical"/>
-  <title>shared_preferences -> shared_preferences_foundation v2.5.7</title>
+  <title>shared_preferences -> shared_preferences_foundation v2.6.0</title>
 </g>
 <g>
   <path d="M 379.0 1726.0 H 181.0 Q 175.0 1726.0 175.0 1732.0 V 6146.0 Q 175.0 6152.0 181.0 6152.0 H 559.0" class="edgeVertical"/>
@@ -682,7 +682,7 @@
 </g>
 <g>
   <path d="M 379.0 1374.0 H 127.0 Q 121.0 1374.0 121.0 1380.0 V 6466.0 Q 121.0 6472.0 127.0 6472.0 H 559.0" class="edgeVertical"/>
-  <title>mockito -> source_gen v4.3.0</title>
+  <title>mockito -> source_gen v4.3.1</title>
 </g>
 <g>
   <path d="M 379.0 2078.0 H 124.0 Q 118.0 2078.0 118.0 2084.0 V 7170.0 Q 118.0 7176.0 124.0 7176.0 H 559.0" class="edgeVertical"/>
@@ -722,7 +722,7 @@
 </g>
 <g>
   <path d="M 379.0 846.0 H 97.0 Q 91.0 846.0 91.0 852.0 V 7234.0 Q 91.0 7240.0 97.0 7240.0 H 559.0" class="edgeVertical"/>
-  <title>flutter_svg -> vector_graphics v1.2.3</title>
+  <title>flutter_svg -> vector_graphics v1.2.4</title>
 </g>
 <g>
   <path d="M 379.0 846.0 H 94.0 Q 88.0 846.0 88.0 852.0 V 7298.0 Q 88.0 7304.0 94.0 7304.0 H 559.0" class="edgeVertical"/>
@@ -730,7 +730,7 @@
 </g>
 <g>
   <path d="M 379.0 846.0 H 91.0 Q 85.0 846.0 85.0 852.0 V 7362.0 Q 85.0 7368.0 91.0 7368.0 H 559.0" class="edgeVertical"/>
-  <title>flutter_svg -> vector_graphics_compiler v1.3.0</title>
+  <title>flutter_svg -> vector_graphics_compiler v1.3.2</title>
 </g>
 <g>
   <path d="M 379.0 582.0 H 88.0 Q 82.0 582.0 82.0 588.0 V 7426.0 Q 82.0 7432.0 88.0 7432.0 H 559.0" class="edgeVertical"/>
@@ -853,219 +853,227 @@
   <title>matcher -> async v2.13.1</title>
 </g>
 <g>
-  <path d="M 839.0 6670.0 H 884.0 Q 890.0 6670.0 890.0 6676.0 V 9548.0 Q 890.0 9554.0 884.0 9554.0 H 559.0" class="edgeVertical"/>
+  <path d="M 839.0 6024.0 H 884.0 Q 890.0 6024.0 890.0 6030.0 V 8844.0 Q 890.0 8850.0 884.0 8850.0 H 559.0" class="edgeVertical"/>
+  <title>shared_preferences_android -> jni v1.1.0</title>
+</g>
+<g>
+  <path d="M 839.0 6670.0 H 887.0 Q 893.0 6670.0 893.0 6676.0 V 9548.0 Q 893.0 9554.0 887.0 9554.0 H 559.0" class="edgeVertical"/>
   <title>test_api -> source_span v1.10.2</title>
 </g>
 <g>
-  <path d="M 839.0 6670.0 H 887.0 Q 893.0 6670.0 893.0 6676.0 V 9676.0 Q 893.0 9682.0 887.0 9682.0 H 559.0" class="edgeVertical"/>
+  <path d="M 839.0 6670.0 H 890.0 Q 896.0 6670.0 896.0 6676.0 V 9676.0 Q 896.0 9682.0 890.0 9682.0 H 559.0" class="edgeVertical"/>
   <title>test_api -> string_scanner v1.4.1</title>
 </g>
 <g>
-  <path d="M 839.0 6472.0 H 890.0 Q 896.0 6472.0 896.0 6478.0 V 9484.0 Q 896.0 9490.0 890.0 9490.0 H 559.0" class="edgeVertical"/>
+  <path d="M 839.0 6472.0 H 893.0 Q 899.0 6472.0 899.0 6478.0 V 9484.0 Q 899.0 9490.0 893.0 9490.0 H 559.0" class="edgeVertical"/>
   <title>source_gen -> pub_semver v2.2.1</title>
 </g>
 <g>
-  <path d="M 839.0 6670.0 H 893.0 Q 899.0 6670.0 899.0 6676.0 V 9740.0 Q 899.0 9746.0 893.0 9746.0 H 559.0" class="edgeVertical"/>
+  <path d="M 839.0 6670.0 H 896.0 Q 902.0 6670.0 902.0 6676.0 V 9740.0 Q 902.0 9746.0 896.0 9746.0 H 559.0" class="edgeVertical"/>
   <title>test_api -> term_glyph v1.2.2</title>
 </g>
 <g>
-  <path d="M 839.0 6472.0 H 896.0 Q 902.0 6472.0 902.0 6478.0 V 9548.0 Q 902.0 9554.0 896.0 9554.0 H 559.0" class="edgeVertical"/>
+  <path d="M 839.0 6088.0 H 899.0 Q 905.0 6088.0 905.0 6094.0 V 9164.0 Q 905.0 9170.0 899.0 9170.0 H 559.0" class="edgeVertical"/>
+  <title>shared_preferences_foundation -> objective_c v9.6.2</title>
+</g>
+<g>
+  <path d="M 839.0 6472.0 H 902.0 Q 908.0 6472.0 908.0 6478.0 V 9548.0 Q 908.0 9554.0 902.0 9554.0 H 559.0" class="edgeVertical"/>
   <title>source_gen -> source_span v1.10.2</title>
 </g>
 <g>
-  <path d="M 839.0 6728.0 H 899.0 Q 905.0 6728.0 905.0 6734.0 V 9804.0 Q 905.0 9810.0 899.0 9810.0 H 559.0" class="edgeVertical"/>
+  <path d="M 839.0 6728.0 H 905.0 Q 911.0 6728.0 911.0 6734.0 V 9804.0 Q 911.0 9810.0 905.0 9810.0 H 559.0" class="edgeVertical"/>
   <title>universal_io -> typed_data v1.4.0</title>
 </g>
 <g>
-  <path d="M 839.0 5448.0 H 902.0 Q 908.0 5448.0 908.0 5454.0 V 8844.0 Q 908.0 8850.0 902.0 8850.0 H 559.0" class="edgeVertical"/>
-  <title>path_provider_android -> jni v1.0.3</title>
+  <path d="M 839.0 5448.0 H 908.0 Q 914.0 5448.0 914.0 5454.0 V 8844.0 Q 914.0 8850.0 908.0 8850.0 H 559.0" class="edgeVertical"/>
+  <title>path_provider_android -> jni v1.1.0</title>
 </g>
 <g>
-  <path d="M 839.0 5448.0 H 905.0 Q 911.0 5448.0 911.0 5454.0 V 8908.0 Q 911.0 8914.0 905.0 8914.0 H 559.0" class="edgeVertical"/>
-  <title>path_provider_android -> jni_flutter v1.0.3</title>
+  <path d="M 839.0 5448.0 H 911.0 Q 917.0 5448.0 917.0 5454.0 V 8908.0 Q 917.0 8914.0 911.0 8914.0 H 559.0" class="edgeVertical"/>
+  <title>path_provider_android -> jni_flutter v1.0.4+1</title>
 </g>
 <g>
-  <path d="M 839.0 4360.0 H 908.0 Q 914.0 4360.0 914.0 4366.0 V 7884.0 Q 914.0 7890.0 908.0 7890.0 H 559.0" class="edgeVertical"/>
+  <path d="M 839.0 4360.0 H 914.0 Q 920.0 4360.0 920.0 4366.0 V 7884.0 Q 920.0 7890.0 914.0 7890.0 H 559.0" class="edgeVertical"/>
   <title>http -> async v2.13.1</title>
 </g>
 <g>
-  <path d="M 839.0 4808.0 H 911.0 Q 917.0 4808.0 917.0 4814.0 V 8460.0 Q 917.0 8466.0 911.0 8466.0 H 559.0" class="edgeVertical"/>
+  <path d="M 839.0 4808.0 H 917.0 Q 923.0 4808.0 923.0 4814.0 V 8460.0 Q 923.0 8466.0 917.0 8466.0 H 559.0" class="edgeVertical"/>
   <title>image_picker_windows -> file_selector_platform_interface v2.7.0</title>
 </g>
 <g>
-  <path d="M 839.0 5512.0 H 914.0 Q 920.0 5512.0 920.0 5518.0 V 9164.0 Q 920.0 9170.0 914.0 9170.0 H 559.0" class="edgeVertical"/>
-  <title>path_provider_foundation -> objective_c v9.6.0</title>
+  <path d="M 839.0 5512.0 H 920.0 Q 926.0 5512.0 926.0 5518.0 V 9164.0 Q 926.0 9170.0 920.0 9170.0 H 559.0" class="edgeVertical"/>
+  <title>path_provider_foundation -> objective_c v9.6.2</title>
 </g>
 <g>
-  <path d="M 839.0 4616.0 H 917.0 Q 923.0 4616.0 923.0 4622.0 V 8332.0 Q 923.0 8338.0 917.0 8338.0 H 559.0" class="edgeVertical"/>
+  <path d="M 839.0 4616.0 H 923.0 Q 929.0 4616.0 929.0 4622.0 V 8332.0 Q 929.0 8338.0 923.0 8338.0 H 559.0" class="edgeVertical"/>
   <title>image_picker_linux -> file_selector_linux v0.9.4+1</title>
 </g>
 <g>
-  <path d="M 839.0 4680.0 H 920.0 Q 926.0 4680.0 926.0 4686.0 V 8396.0 Q 926.0 8402.0 920.0 8402.0 H 559.0" class="edgeVertical"/>
-  <title>image_picker_macos -> file_selector_macos v0.9.5+1</title>
+  <path d="M 839.0 4680.0 H 926.0 Q 932.0 4680.0 932.0 4686.0 V 8396.0 Q 932.0 8402.0 926.0 8402.0 H 559.0" class="edgeVertical"/>
+  <title>image_picker_macos -> file_selector_macos v0.9.5+2</title>
 </g>
 <g>
-  <path d="M 839.0 4808.0 H 923.0 Q 929.0 4808.0 929.0 4814.0 V 8524.0 Q 929.0 8530.0 923.0 8530.0 H 559.0" class="edgeVertical"/>
+  <path d="M 839.0 4808.0 H 929.0 Q 935.0 4808.0 935.0 4814.0 V 8524.0 Q 935.0 8530.0 929.0 8530.0 H 559.0" class="edgeVertical"/>
   <title>image_picker_windows -> file_selector_windows v0.9.3+6</title>
 </g>
 <g>
-  <path d="M 839.0 5640.0 H 926.0 Q 932.0 5640.0 932.0 5646.0 V 9356.0 Q 932.0 9362.0 926.0 9362.0 H 559.0" class="edgeVertical"/>
+  <path d="M 839.0 5640.0 H 932.0 Q 938.0 5640.0 938.0 5646.0 V 9356.0 Q 938.0 9362.0 932.0 9362.0 H 559.0" class="edgeVertical"/>
   <title>path_provider_platform_interface -> platform v3.2.0</title>
 </g>
 <g>
-  <path d="M 839.0 4680.0 H 929.0 Q 935.0 4680.0 935.0 4686.0 V 8460.0 Q 935.0 8466.0 929.0 8466.0 H 559.0" class="edgeVertical"/>
+  <path d="M 839.0 4680.0 H 935.0 Q 941.0 4680.0 941.0 4686.0 V 8460.0 Q 941.0 8466.0 935.0 8466.0 H 559.0" class="edgeVertical"/>
   <title>image_picker_macos -> file_selector_platform_interface v2.7.0</title>
 </g>
 <g>
-  <path d="M 839.0 4616.0 H 932.0 Q 938.0 4616.0 938.0 4622.0 V 8460.0 Q 938.0 8466.0 932.0 8466.0 H 559.0" class="edgeVertical"/>
+  <path d="M 839.0 4616.0 H 938.0 Q 944.0 4616.0 944.0 4622.0 V 8460.0 Q 944.0 8466.0 938.0 8466.0 H 559.0" class="edgeVertical"/>
   <title>image_picker_linux -> file_selector_platform_interface v2.7.0</title>
 </g>
 <g>
-  <path d="M 839.0 3912.0 H 935.0 Q 941.0 3912.0 941.0 3918.0 V 7820.0 Q 941.0 7826.0 935.0 7826.0 H 559.0" class="edgeVertical"/>
+  <path d="M 839.0 3912.0 H 941.0 Q 947.0 3912.0 947.0 3918.0 V 7820.0 Q 947.0 7826.0 941.0 7826.0 H 559.0" class="edgeVertical"/>
   <title>flutter_native_splash -> ansicolor v2.0.3</title>
 </g>
 <g>
-  <path d="M 839.0 5960.0 H 938.0 Q 944.0 5960.0 944.0 5966.0 V 9868.0 Q 944.0 9874.0 938.0 9874.0 H 559.0" class="edgeVertical"/>
+  <path d="M 839.0 5960.0 H 944.0 Q 950.0 5960.0 950.0 5966.0 V 9868.0 Q 950.0 9874.0 944.0 9874.0 H 559.0" class="edgeVertical"/>
   <title>share_plus_platform_interface -> uuid v4.6.0</title>
 </g>
 <g>
-  <path d="M 839.0 3784.0 H 941.0 Q 947.0 3784.0 947.0 3790.0 V 7756.0 Q 947.0 7762.0 941.0 7762.0 H 559.0" class="edgeVertical"/>
-  <title>firebase_database_platform_interface -> _flutterfire_internals v1.3.77</title>
+  <path d="M 839.0 3784.0 H 947.0 Q 953.0 3784.0 953.0 3790.0 V 7756.0 Q 953.0 7762.0 947.0 7762.0 H 559.0" class="edgeVertical"/>
+  <title>firebase_database_platform_interface -> _flutterfire_internals v1.3.78</title>
 </g>
 <g>
-  <path d="M 839.0 4942.0 H 944.0 Q 950.0 4942.0 950.0 4948.0 V 8972.0 Q 950.0 8978.0 944.0 8978.0 H 559.0" class="edgeVertical"/>
+  <path d="M 839.0 4942.0 H 950.0 Q 956.0 4942.0 956.0 4948.0 V 8972.0 Q 956.0 8978.0 950.0 8978.0 H 559.0" class="edgeVertical"/>
   <title>leak_tracker_flutter_testing -> leak_tracker v11.0.2</title>
 </g>
 <g>
-  <path d="M 839.0 4942.0 H 947.0 Q 953.0 4942.0 953.0 4948.0 V 9036.0 Q 953.0 9042.0 947.0 9042.0 H 559.0" class="edgeVertical"/>
+  <path d="M 839.0 4942.0 H 953.0 Q 959.0 4942.0 959.0 4948.0 V 9036.0 Q 959.0 9042.0 953.0 9042.0 H 559.0" class="edgeVertical"/>
   <title>leak_tracker_flutter_testing -> leak_tracker_testing v3.0.2</title>
 </g>
 <g>
-  <path d="M 839.0 3528.0 H 950.0 Q 956.0 3528.0 956.0 3534.0 V 7756.0 Q 956.0 7762.0 950.0 7762.0 H 559.0" class="edgeVertical"/>
-  <title>firebase_auth_platform_interface -> _flutterfire_internals v1.3.77</title>
+  <path d="M 839.0 3528.0 H 956.0 Q 962.0 3528.0 962.0 3534.0 V 7756.0 Q 962.0 7762.0 956.0 7762.0 H 559.0" class="edgeVertical"/>
+  <title>firebase_auth_platform_interface -> _flutterfire_internals v1.3.78</title>
 </g>
 <g>
-  <path d="M 839.0 4296.0 H 953.0 Q 959.0 4296.0 959.0 4302.0 V 8652.0 Q 959.0 8658.0 953.0 8658.0 H 559.0" class="edgeVertical"/>
+  <path d="M 839.0 4296.0 H 959.0 Q 965.0 4296.0 965.0 4302.0 V 8652.0 Q 965.0 8658.0 959.0 8658.0 H 559.0" class="edgeVertical"/>
   <title>google_sign_in_web -> google_identity_services_web v0.3.3+1</title>
 </g>
 <g>
-  <path d="M 839.0 4360.0 H 956.0 Q 962.0 4360.0 962.0 4366.0 V 8780.0 Q 962.0 8786.0 956.0 8786.0 H 559.0" class="edgeVertical"/>
+  <path d="M 839.0 4360.0 H 962.0 Q 968.0 4360.0 968.0 4366.0 V 8780.0 Q 968.0 8786.0 962.0 8786.0 H 559.0" class="edgeVertical"/>
   <title>http -> http_parser v4.1.2</title>
 </g>
 <g>
-  <path d="M 839.0 5576.0 H 959.0 Q 965.0 5576.0 965.0 5582.0 V 9996.0 Q 965.0 10002.0 959.0 10002.0 H 559.0" class="edgeVertical"/>
+  <path d="M 839.0 5576.0 H 965.0 Q 971.0 5576.0 971.0 5582.0 V 9996.0 Q 971.0 10002.0 965.0 10002.0 H 559.0" class="edgeVertical"/>
   <title>path_provider_linux -> xdg_directories v1.1.0</title>
 </g>
 <g>
-  <path d="M 839.0 5134.0 H 962.0 Q 968.0 5134.0 968.0 5140.0 V 9740.0 Q 968.0 9746.0 962.0 9746.0 H 559.0" class="edgeVertical"/>
+  <path d="M 839.0 5134.0 H 968.0 Q 974.0 5134.0 974.0 5140.0 V 9740.0 Q 974.0 9746.0 968.0 9746.0 H 559.0" class="edgeVertical"/>
   <title>matcher -> term_glyph v1.2.2</title>
 </g>
 <g>
-  <path d="M 839.0 3912.0 H 965.0 Q 971.0 3912.0 971.0 3918.0 V 8716.0 Q 971.0 8722.0 965.0 8722.0 H 559.0" class="edgeVertical"/>
+  <path d="M 839.0 3912.0 H 971.0 Q 977.0 3912.0 977.0 3918.0 V 8716.0 Q 977.0 8722.0 971.0 8722.0 H 559.0" class="edgeVertical"/>
   <title>flutter_native_splash -> html v0.15.7</title>
 </g>
 <g>
-  <path d="M 839.0 3080.0 H 968.0 Q 974.0 3080.0 974.0 3086.0 V 8012.0 Q 974.0 8018.0 968.0 8018.0 H 559.0" class="edgeVertical"/>
+  <path d="M 839.0 3080.0 H 974.0 Q 980.0 3080.0 980.0 3086.0 V 8012.0 Q 980.0 8018.0 974.0 8018.0 H 559.0" class="edgeVertical"/>
   <title>code_builder -> built_collection v5.1.2</title>
 </g>
 <g>
-  <path d="M 839.0 3080.0 H 971.0 Q 977.0 3080.0 977.0 3086.0 V 8076.0 Q 977.0 8082.0 971.0 8082.0 H 559.0" class="edgeVertical"/>
+  <path d="M 839.0 3080.0 H 977.0 Q 983.0 3080.0 983.0 3086.0 V 8076.0 Q 983.0 8082.0 977.0 8082.0 H 559.0" class="edgeVertical"/>
   <title>code_builder -> built_value v8.13.0</title>
 </g>
 <g>
-  <path d="M 839.0 3592.0 H 974.0 Q 980.0 3592.0 980.0 3598.0 V 8780.0 Q 980.0 8786.0 974.0 8786.0 H 559.0" class="edgeVertical"/>
+  <path d="M 839.0 3592.0 H 980.0 Q 986.0 3592.0 986.0 3598.0 V 8780.0 Q 986.0 8786.0 980.0 8786.0 H 559.0" class="edgeVertical"/>
   <title>firebase_auth_web -> http_parser v4.1.2</title>
 </g>
 <g>
-  <path d="M 839.0 2568.0 H 977.0 Q 983.0 2568.0 983.0 2574.0 V 7884.0 Q 983.0 7890.0 977.0 7890.0 H 559.0" class="edgeVertical"/>
+  <path d="M 839.0 2568.0 H 983.0 Q 989.0 2568.0 989.0 2574.0 V 7884.0 Q 989.0 7890.0 983.0 7890.0 H 559.0" class="edgeVertical"/>
   <title>camera_android_camerax -> async v2.13.1</title>
 </g>
 <g>
-  <path d="M 839.0 2312.0 H 980.0 Q 986.0 2312.0 986.0 2318.0 V 7692.0 Q 986.0 7698.0 980.0 7698.0 H 559.0" class="edgeVertical"/>
-  <title>analyzer -> _fe_analyzer_shared v108.0.0</title>
+  <path d="M 839.0 2312.0 H 986.0 Q 992.0 2312.0 992.0 2318.0 V 7692.0 Q 992.0 7698.0 986.0 7698.0 H 559.0" class="edgeVertical"/>
+  <title>analyzer -> _fe_analyzer_shared v110.0.0</title>
 </g>
 <g>
-  <path d="M 839.0 2504.0 H 983.0 Q 989.0 2504.0 989.0 2510.0 V 8204.0 Q 989.0 8210.0 983.0 8210.0 H 559.0" class="edgeVertical"/>
+  <path d="M 839.0 2504.0 H 989.0 Q 995.0 2504.0 995.0 2510.0 V 8204.0 Q 995.0 8210.0 989.0 8210.0 H 559.0" class="edgeVertical"/>
   <title>build -> crypto v3.0.7</title>
 </g>
 <g>
-  <path d="M 839.0 2312.0 H 986.0 Q 992.0 2312.0 992.0 2318.0 V 8140.0 Q 992.0 8146.0 986.0 8146.0 H 559.0" class="edgeVertical"/>
+  <path d="M 839.0 2312.0 H 992.0 Q 998.0 2312.0 998.0 2318.0 V 8140.0 Q 998.0 8146.0 992.0 8146.0 H 559.0" class="edgeVertical"/>
   <title>analyzer -> convert v3.1.2</title>
 </g>
 <g>
-  <path d="M 839.0 2312.0 H 989.0 Q 995.0 2312.0 995.0 2318.0 V 8204.0 Q 995.0 8210.0 989.0 8210.0 H 559.0" class="edgeVertical"/>
+  <path d="M 839.0 2312.0 H 995.0 Q 1001.0 2312.0 1001.0 2318.0 V 8204.0 Q 1001.0 8210.0 995.0 8210.0 H 559.0" class="edgeVertical"/>
   <title>analyzer -> crypto v3.0.7</title>
 </g>
 <g>
-  <path d="M 839.0 3272.0 H 992.0 Q 998.0 3272.0 998.0 3278.0 V 9228.0 Q 998.0 9234.0 992.0 9234.0 H 559.0" class="edgeVertical"/>
+  <path d="M 839.0 3272.0 H 998.0 Q 1004.0 3272.0 1004.0 3278.0 V 9228.0 Q 1004.0 9234.0 998.0 9234.0 H 559.0" class="edgeVertical"/>
   <title>dart_style -> package_config v3.0.0</title>
 </g>
 <g>
-  <path d="M 839.0 2504.0 H 995.0 Q 1001.0 2504.0 1001.0 2510.0 V 8588.0 Q 1001.0 8594.0 995.0 8594.0 H 559.0" class="edgeVertical"/>
+  <path d="M 839.0 2504.0 H 1001.0 Q 1007.0 2504.0 1007.0 2510.0 V 8588.0 Q 1007.0 8594.0 1001.0 8594.0 H 559.0" class="edgeVertical"/>
   <title>build -> glob v2.2.0</title>
 </g>
 <g>
-  <path d="M 839.0 3912.0 H 998.0 Q 1004.0 3912.0 1004.0 3918.0 V 10060.0 Q 1004.0 10066.0 998.0 10066.0 H 559.0" class="edgeVertical"/>
+  <path d="M 839.0 3912.0 H 1004.0 Q 1010.0 3912.0 1010.0 3918.0 V 10060.0 Q 1010.0 10066.0 1004.0 10066.0 H 559.0" class="edgeVertical"/>
   <title>flutter_native_splash -> xml v7.0.1</title>
 </g>
 <g>
-  <path d="M 839.0 3272.0 H 1001.0 Q 1007.0 3272.0 1007.0 3278.0 V 9484.0 Q 1007.0 9490.0 1001.0 9490.0 H 559.0" class="edgeVertical"/>
+  <path d="M 839.0 3272.0 H 1007.0 Q 1013.0 3272.0 1013.0 3278.0 V 9484.0 Q 1013.0 9490.0 1007.0 9490.0 H 559.0" class="edgeVertical"/>
   <title>dart_style -> pub_semver v2.2.1</title>
 </g>
 <g>
-  <path d="M 839.0 2312.0 H 1004.0 Q 1010.0 2312.0 1010.0 2318.0 V 8588.0 Q 1010.0 8594.0 1004.0 8594.0 H 559.0" class="edgeVertical"/>
+  <path d="M 839.0 2312.0 H 1010.0 Q 1016.0 2312.0 1016.0 2318.0 V 8588.0 Q 1016.0 8594.0 1010.0 8594.0 H 559.0" class="edgeVertical"/>
   <title>analyzer -> glob v2.2.0</title>
 </g>
 <g>
-  <path d="M 839.0 3272.0 H 1007.0 Q 1013.0 3272.0 1013.0 3278.0 V 9548.0 Q 1013.0 9554.0 1007.0 9554.0 H 559.0" class="edgeVertical"/>
+  <path d="M 839.0 3272.0 H 1013.0 Q 1019.0 3272.0 1019.0 3278.0 V 9548.0 Q 1019.0 9554.0 1013.0 9554.0 H 559.0" class="edgeVertical"/>
   <title>dart_style -> source_span v1.10.2</title>
 </g>
 <g>
-  <path d="M 839.0 2504.0 H 1010.0 Q 1016.0 2504.0 1016.0 2510.0 V 9100.0 Q 1016.0 9106.0 1010.0 9106.0 H 559.0" class="edgeVertical"/>
+  <path d="M 839.0 2504.0 H 1016.0 Q 1022.0 2504.0 1022.0 2510.0 V 9100.0 Q 1022.0 9106.0 1016.0 9106.0 H 559.0" class="edgeVertical"/>
   <title>build -> logging v1.3.0</title>
 </g>
 <g>
-  <path d="M 839.0 2894.0 H 1013.0 Q 1019.0 2894.0 1019.0 2900.0 V 9548.0 Q 1019.0 9554.0 1013.0 9554.0 H 559.0" class="edgeVertical"/>
+  <path d="M 839.0 2894.0 H 1019.0 Q 1025.0 2894.0 1025.0 2900.0 V 9548.0 Q 1025.0 9554.0 1019.0 9554.0 H 559.0" class="edgeVertical"/>
   <title>checked_yaml -> source_span v1.10.2</title>
 </g>
 <g>
-  <path d="M 839.0 2504.0 H 1016.0 Q 1022.0 2504.0 1022.0 2510.0 V 9228.0 Q 1022.0 9234.0 1016.0 9234.0 H 559.0" class="edgeVertical"/>
+  <path d="M 839.0 2504.0 H 1022.0 Q 1028.0 2504.0 1028.0 2510.0 V 9228.0 Q 1028.0 9234.0 1022.0 9234.0 H 559.0" class="edgeVertical"/>
   <title>build -> package_config v3.0.0</title>
 </g>
 <g>
-  <path d="M 839.0 2760.0 H 1019.0 Q 1025.0 2760.0 1025.0 2766.0 V 9612.0 Q 1025.0 9618.0 1019.0 9618.0 H 559.0" class="edgeVertical"/>
+  <path d="M 839.0 2760.0 H 1025.0 Q 1031.0 2760.0 1031.0 2766.0 V 9612.0 Q 1031.0 9618.0 1025.0 9618.0 H 559.0" class="edgeVertical"/>
   <title>camera_web -> stream_transform v2.1.2</title>
 </g>
 <g>
-  <path d="M 839.0 2312.0 H 1022.0 Q 1028.0 2312.0 1028.0 2318.0 V 9228.0 Q 1028.0 9234.0 1022.0 9234.0 H 559.0" class="edgeVertical"/>
+  <path d="M 839.0 2312.0 H 1028.0 Q 1034.0 2312.0 1034.0 2318.0 V 9228.0 Q 1034.0 9234.0 1028.0 9234.0 H 559.0" class="edgeVertical"/>
   <title>analyzer -> package_config v3.0.0</title>
 </g>
 <g>
-  <path d="M 839.0 2696.0 H 1025.0 Q 1031.0 2696.0 1031.0 2702.0 V 9612.0 Q 1031.0 9618.0 1025.0 9618.0 H 559.0" class="edgeVertical"/>
+  <path d="M 839.0 2696.0 H 1031.0 Q 1037.0 2696.0 1037.0 2702.0 V 9612.0 Q 1037.0 9618.0 1031.0 9618.0 H 559.0" class="edgeVertical"/>
   <title>camera_platform_interface -> stream_transform v2.1.2</title>
 </g>
 <g>
-  <path d="M 839.0 2632.0 H 1028.0 Q 1034.0 2632.0 1034.0 2638.0 V 9612.0 Q 1034.0 9618.0 1028.0 9618.0 H 559.0" class="edgeVertical"/>
+  <path d="M 839.0 2632.0 H 1034.0 Q 1040.0 2632.0 1040.0 2638.0 V 9612.0 Q 1040.0 9618.0 1034.0 9618.0 H 559.0" class="edgeVertical"/>
   <title>camera_avfoundation -> stream_transform v2.1.2</title>
 </g>
 <g>
-  <path d="M 839.0 2376.0 H 1031.0 Q 1037.0 2376.0 1037.0 2382.0 V 9420.0 Q 1037.0 9426.0 1031.0 9426.0 H 559.0" class="edgeVertical"/>
+  <path d="M 839.0 2376.0 H 1037.0 Q 1043.0 2376.0 1043.0 2382.0 V 9420.0 Q 1043.0 9426.0 1037.0 9426.0 H 559.0" class="edgeVertical"/>
   <title>archive -> posix v6.5.2</title>
 </g>
 <g>
-  <path d="M 839.0 2568.0 H 1034.0 Q 1040.0 2568.0 1040.0 2574.0 V 9612.0 Q 1040.0 9618.0 1034.0 9618.0 H 559.0" class="edgeVertical"/>
+  <path d="M 839.0 2568.0 H 1040.0 Q 1046.0 2568.0 1046.0 2574.0 V 9612.0 Q 1046.0 9618.0 1040.0 9618.0 H 559.0" class="edgeVertical"/>
   <title>camera_android_camerax -> stream_transform v2.1.2</title>
 </g>
 <g>
-  <path d="M 839.0 2312.0 H 1037.0 Q 1043.0 2312.0 1043.0 2318.0 V 9484.0 Q 1043.0 9490.0 1037.0 9490.0 H 559.0" class="edgeVertical"/>
+  <path d="M 839.0 2312.0 H 1043.0 Q 1049.0 2312.0 1049.0 2318.0 V 9484.0 Q 1049.0 9490.0 1043.0 9490.0 H 559.0" class="edgeVertical"/>
   <title>analyzer -> pub_semver v2.2.1</title>
 </g>
 <g>
-  <path d="M 839.0 2312.0 H 1040.0 Q 1046.0 2312.0 1046.0 2318.0 V 9548.0 Q 1046.0 9554.0 1040.0 9554.0 H 559.0" class="edgeVertical"/>
+  <path d="M 839.0 2312.0 H 1046.0 Q 1052.0 2312.0 1052.0 2318.0 V 9548.0 Q 1052.0 9554.0 1046.0 9554.0 H 559.0" class="edgeVertical"/>
   <title>analyzer -> source_span v1.10.2</title>
 </g>
 <g>
-  <path d="M 839.0 2312.0 H 1043.0 Q 1049.0 2312.0 1049.0 2318.0 V 9932.0 Q 1049.0 9938.0 1043.0 9938.0 H 559.0" class="edgeVertical"/>
+  <path d="M 839.0 2312.0 H 1049.0 Q 1055.0 2312.0 1055.0 2318.0 V 9932.0 Q 1055.0 9938.0 1049.0 9938.0 H 559.0" class="edgeVertical"/>
   <title>analyzer -> watcher v1.2.1</title>
 </g>
 <g>
@@ -1094,7 +1102,7 @@
 </g>
 <g>
   <path d="M 839.0 8984.0 H 869.0 Q 875.0 8984.0 875.0 8990.0 V 10582.0 Q 875.0 10588.0 869.0 10588.0 H 559.0" class="edgeVertical"/>
-  <title>leak_tracker -> vm_service v15.3.0</title>
+  <title>leak_tracker -> vm_service v15.4.0</title>
 </g>
 <g>
   <path d="M 839.0 8088.0 H 872.0 Q 878.0 8088.0 878.0 8094.0 V 10326.0 Q 878.0 10332.0 872.0 10332.0 H 559.0" class="edgeVertical"/>
@@ -1134,7 +1142,7 @@
 <g class="platformBadge platformBadge--windows"><title>Windows</title><rect x="489.5" y="323.0" width="13.0" height="13.0" rx="6.5" ry="6.5" fill="#2563eb" stroke="#1d4ed8" stroke-width="0.6"/><text x="496.0" y="330.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">W</text></g>
 <g class="platformBadge platformBadge--web"><title>Browser</title><rect x="506.5" y="323.0" width="13.0" height="13.0" rx="6.5" ry="6.5" fill="#0891b2" stroke="#0e7490" stroke-width="0.6"/><text x="513.0" y="330.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">B</text></g>
 <text x="479.0" y="304.0" class="packageLabelNodeName packageLabelCaption" text-anchor="middle">firebase_auth</text>
-<text x="479.0" y="317.0" class="packageLabelNodeVersion" text-anchor="middle">v6.7.0</text>
+<text x="479.0" y="317.0" class="packageLabelNodeVersion" text-anchor="middle">v7.0.0</text>
 </g>
 <g class="badge outgoingBadge">
   <path d="M 373.0,318.0 L 385.0,311.0 Q 388.0,311.0 388.0,314.0 L 388.0,322.0 Q 388.0,325.0 385.0,325.0 Z" fill="#10b981"/>
@@ -1150,7 +1158,7 @@
 <g class="platformBadge platformBadge--windows"><title>Windows</title><rect x="489.5" y="411.0" width="13.0" height="13.0" rx="6.5" ry="6.5" fill="#2563eb" stroke="#1d4ed8" stroke-width="0.6"/><text x="496.0" y="418.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">W</text></g>
 <g class="platformBadge platformBadge--web"><title>Browser</title><rect x="506.5" y="411.0" width="13.0" height="13.0" rx="6.5" ry="6.5" fill="#0891b2" stroke="#0e7490" stroke-width="0.6"/><text x="513.0" y="418.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">B</text></g>
 <text x="479.0" y="392.0" class="packageLabelNodeName packageLabelCaption" text-anchor="middle">firebase_core</text>
-<text x="479.0" y="405.0" class="packageLabelNodeVersion" text-anchor="middle">v4.15.0</text>
+<text x="479.0" y="405.0" class="packageLabelNodeVersion" text-anchor="middle">v5.0.0</text>
 </g>
 <g class="badge outgoingBadge">
   <path d="M 373.0,406.0 L 385.0,399.0 Q 388.0,399.0 388.0,402.0 L 388.0,410.0 Q 388.0,413.0 385.0,413.0 Z" fill="#10b981"/>
@@ -1165,7 +1173,7 @@
 <g class="platformBadge platformBadge--windows"><title>Windows</title><rect x="489.5" y="499.0" width="13.0" height="13.0" rx="6.5" ry="6.5" fill="#2563eb" stroke="#1d4ed8" stroke-width="0.6"/><text x="496.0" y="506.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">W</text></g>
 <g class="platformBadge platformBadge--web"><title>Browser</title><rect x="506.5" y="499.0" width="13.0" height="13.0" rx="6.5" ry="6.5" fill="#0891b2" stroke="#0e7490" stroke-width="0.6"/><text x="513.0" y="506.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">B</text></g>
 <text x="479.0" y="480.0" class="packageLabelNodeName packageLabelCaption" text-anchor="middle">firebase_database</text>
-<text x="479.0" y="493.0" class="packageLabelNodeVersion" text-anchor="middle">v12.6.0</text>
+<text x="479.0" y="493.0" class="packageLabelNodeVersion" text-anchor="middle">v13.0.0</text>
 </g>
 <g class="badge outgoingBadge">
   <path d="M 373.0,494.0 L 385.0,487.0 Q 388.0,487.0 388.0,490.0 L 388.0,498.0 Q 388.0,501.0 385.0,501.0 Z" fill="#10b981"/>
@@ -1233,13 +1241,13 @@
 <g class="packageMetadataPill"><title>Dart ^3.0.0</title><rect x="450.45" y="1043.0" width="57.099999999999994" height="9.0" rx="4.5" ry="4.5" class="packageMetadataPillShape"/><text x="479.0" y="1048" class="packageLabelMetadata" text-anchor="middle" dominant-baseline="middle">Dart ^3.0.0</text></g>
 <g class="platformBadge platformBadge--dart"><title>Dart SDK ^3.0.0</title><rect x="465.0" y="1027.0" width="28.0" height="13.0" rx="6.5" ry="6.5" fill="#0175c2" stroke="#0369a1" stroke-width="0.6"/><text x="479.0" y="1033.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">Dart</text></g>
 <text x="479.0" y="1008.0" class="packageLabelNodeName packageLabelCaption" text-anchor="middle">image</text>
-<text x="479.0" y="1021.0" class="packageLabelNodeVersion" text-anchor="middle">v4.10.1</text>
+<text x="479.0" y="1021.0" class="packageLabelNodeVersion" text-anchor="middle">v4.12.0</text>
 </g>
 <g class="badge outgoingBadge">
   <path d="M 373.0,1022.0 L 385.0,1015.0 Q 388.0,1015.0 388.0,1018.0 L 388.0,1026.0 Q 388.0,1029.0 385.0,1029.0 Z" fill="#10b981"/>
   <text x="383.32" y="1023.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. archive</title></g><g class="packageNode">
 <rect x="379.0" y="1076.0" width="200.0" height="68.0" rx="8.0" ry="8.0" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1"/>
-<g class="packageMetadataPill"><title>Flutter &gt;=3.38.0</title><rect x="440.2" y="1131.0" width="77.6" height="9.0" rx="4.5" ry="4.5" class="packageMetadataPillShape"/><text x="479.0" y="1136" class="packageLabelMetadata" text-anchor="middle" dominant-baseline="middle">Flutter &gt;=3.38.0</text></g>
+<g class="packageMetadataPill"><title>Flutter &gt;=3.41.0</title><rect x="440.2" y="1131.0" width="77.6" height="9.0" rx="4.5" ry="4.5" class="packageMetadataPillShape"/><text x="479.0" y="1136" class="packageLabelMetadata" text-anchor="middle" dominant-baseline="middle">Flutter &gt;=3.41.0</text></g>
 <g class="platformBadge platformBadge--android"><title>Android</title><rect x="430.0" y="1115.0" width="13.0" height="13.0" rx="6.5" ry="6.5" fill="#16a34a" stroke="#15803d" stroke-width="0.6"/><text x="436.5" y="1122.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">A</text></g>
 <g class="platformBadge platformBadge--ios"><title>iOS</title><rect x="447.0" y="1115.0" width="13.0" height="13.0" rx="6.5" ry="6.5" fill="#111827" stroke="#0f172a" stroke-width="0.6"/><text x="453.5" y="1122.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">I</text></g>
 <g class="platformBadge platformBadge--linux"><title>Linux</title><rect x="464.0" y="1115.0" width="13.0" height="13.0" rx="6.5" ry="6.5" fill="#7c3aed" stroke="#6d28d9" stroke-width="0.6"/><text x="470.5" y="1122.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">L</text></g>
@@ -1247,7 +1255,7 @@
 <g class="platformBadge platformBadge--windows"><title>Windows</title><rect x="498.0" y="1115.0" width="13.0" height="13.0" rx="6.5" ry="6.5" fill="#2563eb" stroke="#1d4ed8" stroke-width="0.6"/><text x="504.5" y="1122.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">W</text></g>
 <g class="platformBadge platformBadge--web"><title>Browser</title><rect x="515.0" y="1115.0" width="13.0" height="13.0" rx="6.5" ry="6.5" fill="#0891b2" stroke="#0e7490" stroke-width="0.6"/><text x="521.5" y="1122.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">B</text></g>
 <text x="479.0" y="1096.0" class="packageLabelNodeName packageLabelCaption" text-anchor="middle">image_picker</text>
-<text x="479.0" y="1109.0" class="packageLabelNodeVersion" text-anchor="middle">v1.2.3</text>
+<text x="479.0" y="1109.0" class="packageLabelNodeVersion" text-anchor="middle">v1.2.4</text>
 </g>
 <g class="badge outgoingBadge">
   <path d="M 373.0,1110.0 L 385.0,1103.0 Q 388.0,1103.0 388.0,1106.0 L 388.0,1114.0 Q 388.0,1117.0 385.0,1117.0 Z" fill="#10b981"/>
@@ -1335,7 +1343,7 @@
 <g class="platformBadge platformBadge--windows"><title>Windows</title><rect x="498.0" y="1643.0" width="13.0" height="13.0" rx="6.5" ry="6.5" fill="#2563eb" stroke="#1d4ed8" stroke-width="0.6"/><text x="504.5" y="1650.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">W</text></g>
 <g class="platformBadge platformBadge--web"><title>Browser</title><rect x="515.0" y="1643.0" width="13.0" height="13.0" rx="6.5" ry="6.5" fill="#0891b2" stroke="#0e7490" stroke-width="0.6"/><text x="521.5" y="1650.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">B</text></g>
 <text x="479.0" y="1624.0" class="packageLabelNodeName packageLabelCaption" text-anchor="middle">share_plus</text>
-<text x="479.0" y="1637.0" class="packageLabelNodeVersion" text-anchor="middle">v13.3.0</text>
+<text x="479.0" y="1637.0" class="packageLabelNodeVersion" text-anchor="middle">v13.3.1</text>
 </g>
 <g class="badge outgoingBadge">
   <path d="M 371.0,1638.0 L 387.0,1630.4 Q 390.0,1630.4 390.0,1633.4 L 390.0,1642.6 Q 390.0,1645.6 387.0,1645.6 Z" fill="#10b981"/>
@@ -1352,7 +1360,7 @@
 11. url_launcher_windows
 12. win32</title></g><g class="packageNode">
 <rect x="379.0" y="1692.0" width="200.0" height="68.0" rx="8.0" ry="8.0" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1"/>
-<g class="packageMetadataPill"><title>Flutter &gt;=3.35.0</title><rect x="440.2" y="1747.0" width="77.6" height="9.0" rx="4.5" ry="4.5" class="packageMetadataPillShape"/><text x="479.0" y="1752" class="packageLabelMetadata" text-anchor="middle" dominant-baseline="middle">Flutter &gt;=3.35.0</text></g>
+<g class="packageMetadataPill"><title>Flutter &gt;=3.41.0</title><rect x="440.2" y="1747.0" width="77.6" height="9.0" rx="4.5" ry="4.5" class="packageMetadataPillShape"/><text x="479.0" y="1752" class="packageLabelMetadata" text-anchor="middle" dominant-baseline="middle">Flutter &gt;=3.41.0</text></g>
 <g class="platformBadge platformBadge--android"><title>Android</title><rect x="430.0" y="1731.0" width="13.0" height="13.0" rx="6.5" ry="6.5" fill="#16a34a" stroke="#15803d" stroke-width="0.6"/><text x="436.5" y="1738.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">A</text></g>
 <g class="platformBadge platformBadge--ios"><title>iOS</title><rect x="447.0" y="1731.0" width="13.0" height="13.0" rx="6.5" ry="6.5" fill="#111827" stroke="#0f172a" stroke-width="0.6"/><text x="453.5" y="1738.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">I</text></g>
 <g class="platformBadge platformBadge--linux"><title>Linux</title><rect x="464.0" y="1731.0" width="13.0" height="13.0" rx="6.5" ry="6.5" fill="#7c3aed" stroke="#6d28d9" stroke-width="0.6"/><text x="470.5" y="1738.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">L</text></g>
@@ -1360,7 +1368,7 @@
 <g class="platformBadge platformBadge--windows"><title>Windows</title><rect x="498.0" y="1731.0" width="13.0" height="13.0" rx="6.5" ry="6.5" fill="#2563eb" stroke="#1d4ed8" stroke-width="0.6"/><text x="504.5" y="1738.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">W</text></g>
 <g class="platformBadge platformBadge--web"><title>Browser</title><rect x="515.0" y="1731.0" width="13.0" height="13.0" rx="6.5" ry="6.5" fill="#0891b2" stroke="#0e7490" stroke-width="0.6"/><text x="521.5" y="1738.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">B</text></g>
 <text x="479.0" y="1712.0" class="packageLabelNodeName packageLabelCaption" text-anchor="middle">shared_preferences</text>
-<text x="479.0" y="1725.0" class="packageLabelNodeVersion" text-anchor="middle">v2.5.5</text>
+<text x="479.0" y="1725.0" class="packageLabelNodeVersion" text-anchor="middle">v2.5.6</text>
 </g>
 <g class="badge outgoingBadge">
   <path d="M 373.0,1726.0 L 385.0,1719.0 Q 388.0,1719.0 388.0,1722.0 L 388.0,1730.0 Q 388.0,1733.0 385.0,1733.0 Z" fill="#10b981"/>
@@ -1377,8 +1385,8 @@
 <g class="platformBadge platformBadge--linux"><title>Linux</title><rect x="472.5" y="1819.0" width="13.0" height="13.0" rx="6.5" ry="6.5" fill="#7c3aed" stroke="#6d28d9" stroke-width="0.6"/><text x="479.0" y="1826.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">L</text></g>
 <g class="platformBadge platformBadge--macos"><title>macOS</title><rect x="489.5" y="1819.0" width="13.0" height="13.0" rx="6.5" ry="6.5" fill="#475569" stroke="#334155" stroke-width="0.6"/><text x="496.0" y="1826.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">M</text></g>
 <g class="platformBadge platformBadge--windows"><title>Windows</title><rect x="506.5" y="1819.0" width="13.0" height="13.0" rx="6.5" ry="6.5" fill="#2563eb" stroke="#1d4ed8" stroke-width="0.6"/><text x="513.0" y="1826.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">W</text></g>
-<text x="479.0" y="1800.0" class="packageLabelNodeName packageLabelCaption" text-anchor="middle">tflite_flutter</text>
-<text x="479.0" y="1813.0" class="packageLabelNodeVersion" text-anchor="middle">v0.12.4</text>
+<text x="479.0" y="1800.0" class="packageLabelNodeName packageLabelCaption" text-anchor="middle">tflite_core</text>
+<text x="479.0" y="1813.0" class="packageLabelNodeVersion" text-anchor="middle">v0.12.11</text>
 </g>
 <g class="badge outgoingBadge">
   <path d="M 373.0,1814.0 L 385.0,1807.0 Q 388.0,1807.0 388.0,1810.0 L 388.0,1818.0 Q 388.0,1821.0 385.0,1821.0 Z" fill="#10b981"/>
@@ -1404,7 +1412,7 @@
 </g>
 <g class="packageNode">
 <rect x="379.0" y="2044.0" width="200.0" height="68.0" rx="8.0" ry="8.0" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1"/>
-<g class="packageMetadataPill"><title>Flutter &gt;=3.27.0</title><rect x="440.2" y="2099.0" width="77.6" height="9.0" rx="4.5" ry="4.5" class="packageMetadataPillShape"/><text x="479.0" y="2104" class="packageLabelMetadata" text-anchor="middle" dominant-baseline="middle">Flutter &gt;=3.27.0</text></g>
+<g class="packageMetadataPill"><title>Flutter &gt;=3.41.0</title><rect x="440.2" y="2099.0" width="77.6" height="9.0" rx="4.5" ry="4.5" class="packageMetadataPillShape"/><text x="479.0" y="2104" class="packageLabelMetadata" text-anchor="middle" dominant-baseline="middle">Flutter &gt;=3.41.0</text></g>
 <g class="platformBadge platformBadge--android"><title>Android</title><rect x="430.0" y="2083.0" width="13.0" height="13.0" rx="6.5" ry="6.5" fill="#16a34a" stroke="#15803d" stroke-width="0.6"/><text x="436.5" y="2090.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">A</text></g>
 <g class="platformBadge platformBadge--ios"><title>iOS</title><rect x="447.0" y="2083.0" width="13.0" height="13.0" rx="6.5" ry="6.5" fill="#111827" stroke="#0f172a" stroke-width="0.6"/><text x="453.5" y="2090.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">I</text></g>
 <g class="platformBadge platformBadge--linux"><title>Linux</title><rect x="464.0" y="2083.0" width="13.0" height="13.0" rx="6.5" ry="6.5" fill="#7c3aed" stroke="#6d28d9" stroke-width="0.6"/><text x="470.5" y="2090.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">L</text></g>
@@ -1412,7 +1420,7 @@
 <g class="platformBadge platformBadge--windows"><title>Windows</title><rect x="498.0" y="2083.0" width="13.0" height="13.0" rx="6.5" ry="6.5" fill="#2563eb" stroke="#1d4ed8" stroke-width="0.6"/><text x="504.5" y="2090.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">W</text></g>
 <g class="platformBadge platformBadge--web"><title>Browser</title><rect x="515.0" y="2083.0" width="13.0" height="13.0" rx="6.5" ry="6.5" fill="#0891b2" stroke="#0e7490" stroke-width="0.6"/><text x="521.5" y="2090.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">B</text></g>
 <text x="479.0" y="2064.0" class="packageLabelNodeName packageLabelCaption" text-anchor="middle">url_launcher</text>
-<text x="479.0" y="2077.0" class="packageLabelNodeVersion" text-anchor="middle">v6.3.2</text>
+<text x="479.0" y="2077.0" class="packageLabelNodeVersion" text-anchor="middle">v6.3.3</text>
 </g>
 <g class="badge outgoingBadge">
   <path d="M 373.0,2078.0 L 385.0,2071.0 Q 388.0,2071.0 388.0,2074.0 L 388.0,2082.0 Q 388.0,2085.0 385.0,2085.0 Z" fill="#10b981"/>
@@ -1471,10 +1479,10 @@
 10. test_api
 11. vector_math</title></g><g class="packageNode">
 <rect x="559.0" y="2286.0" width="280.0" height="52.0" rx="8.0" ry="8.0" fill="#f8fafc" stroke="#64748b" stroke-width="1" stroke-dasharray="4,2"/>
-<g class="packageMetadataPill"><title>Dart ^3.11.0</title><rect x="668.4" y="2325.0" width="61.199999999999996" height="9.0" rx="4.5" ry="4.5" class="packageMetadataPillShape"/><text x="699.0" y="2330" class="packageLabelMetadata" text-anchor="middle" dominant-baseline="middle">Dart ^3.11.0</text></g>
-<g class="platformBadge platformBadge--dart"><title>Dart SDK ^3.11.0</title><rect x="685.0" y="2309.0" width="28.0" height="13.0" rx="6.5" ry="6.5" fill="#0175c2" stroke="#0369a1" stroke-width="0.6"/><text x="699.0" y="2315.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">Dart</text></g>
+<g class="packageMetadataPill"><title>Dart ^3.13.0</title><rect x="668.4" y="2325.0" width="61.199999999999996" height="9.0" rx="4.5" ry="4.5" class="packageMetadataPillShape"/><text x="699.0" y="2330" class="packageLabelMetadata" text-anchor="middle" dominant-baseline="middle">Dart ^3.13.0</text></g>
+<g class="platformBadge platformBadge--dart"><title>Dart SDK ^3.13.0</title><rect x="685.0" y="2309.0" width="28.0" height="13.0" rx="6.5" ry="6.5" fill="#0175c2" stroke="#0369a1" stroke-width="0.6"/><text x="699.0" y="2315.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">Dart</text></g>
 <text x="567.0" y="2304.0" class="packageLabelDerivedName packageLabelCaption" text-anchor="start">analyzer</text>
-<text x="831.0" y="2304.0" class="packageLabelDerivedVersion" text-anchor="end">^14.4.0</text>
+<text x="831.0" y="2304.0" class="packageLabelDerivedVersion" text-anchor="end">^14.6.0</text>
 </g>
 <g class="badge incomingBadge">
   <path d="M 565.0,2312.0 L 553.0,2305.0 Q 550.0,2305.0 550.0,2308.0 L 550.0,2316.0 Q 550.0,2319.0 553.0,2319.0 Z" fill="#3b82f6"/>
@@ -1492,7 +1500,7 @@
 <g class="packageMetadataPill"><title>Dart &gt;=3.0.0 &lt;4.0.0</title><rect x="654.05" y="2389.0" width="89.89999999999999" height="9.0" rx="4.5" ry="4.5" class="packageMetadataPillShape"/><text x="699.0" y="2394" class="packageLabelMetadata" text-anchor="middle" dominant-baseline="middle">Dart &gt;=3.0.0 &lt;4.0.0</text></g>
 <g class="platformBadge platformBadge--dart"><title>Dart SDK &gt;=3.0.0 &lt;4.0.0</title><rect x="685.0" y="2373.0" width="28.0" height="13.0" rx="6.5" ry="6.5" fill="#0175c2" stroke="#0369a1" stroke-width="0.6"/><text x="699.0" y="2379.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">Dart</text></g>
 <text x="567.0" y="2368.0" class="packageLabelDerivedName packageLabelCaption" text-anchor="start">archive</text>
-<text x="831.0" y="2368.0" class="packageLabelDerivedVersion" text-anchor="end">^4.3.0</text>
+<text x="831.0" y="2368.0" class="packageLabelDerivedVersion" text-anchor="end">^4.5.2</text>
 </g>
 <g class="badge incomingBadge">
   <path d="M 565.0,2376.0 L 553.0,2369.0 Q 550.0,2369.0 550.0,2372.0 L 550.0,2380.0 Q 550.0,2383.0 553.0,2383.0 Z" fill="#3b82f6"/>
@@ -1526,7 +1534,7 @@
 <g class="packageMetadataPill"><title>Flutter &gt;=3.44.0</title><rect x="660.2" y="2581.0" width="77.6" height="9.0" rx="4.5" ry="4.5" class="packageMetadataPillShape"/><text x="699.0" y="2586" class="packageLabelMetadata" text-anchor="middle" dominant-baseline="middle">Flutter &gt;=3.44.0</text></g>
 <g class="platformBadge platformBadge--android"><title>Android</title><rect x="692.5" y="2565.0" width="13.0" height="13.0" rx="6.5" ry="6.5" fill="#16a34a" stroke="#15803d" stroke-width="0.6"/><text x="699.0" y="2572.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">A</text></g>
 <text x="567.0" y="2560.0" class="packageLabelDerivedName packageLabelCaption" text-anchor="start">camera_android_camerax</text>
-<text x="831.0" y="2560.0" class="packageLabelDerivedVersion" text-anchor="end">^0.7.5</text>
+<text x="831.0" y="2560.0" class="packageLabelDerivedVersion" text-anchor="end">^0.7.5+1</text>
 </g>
 <g class="badge incomingBadge">
   <path d="M 565.0,2568.0 L 553.0,2561.0 Q 550.0,2561.0 550.0,2564.0 L 550.0,2572.0 Q 550.0,2575.0 553.0,2575.0 Z" fill="#3b82f6"/>
@@ -1546,9 +1554,9 @@
   <path d="M 845.0,2632.0 L 833.0,2625.0 Q 830.0,2625.0 830.0,2628.0 L 830.0,2636.0 Q 830.0,2639.0 833.0,2639.0 Z" fill="#10b981"/>
   <text x="834.68" y="2633.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. stream_transform</title></g><g class="packageNode">
 <rect x="559.0" y="2670.0" width="280.0" height="52.0" rx="8.0" ry="8.0" fill="#f8fafc" stroke="#64748b" stroke-width="1" stroke-dasharray="4,2"/>
-<g class="packageMetadataPill"><title>Flutter &gt;=3.38.0</title><rect x="660.2" y="2709.0" width="77.6" height="9.0" rx="4.5" ry="4.5" class="packageMetadataPillShape"/><text x="699.0" y="2714" class="packageLabelMetadata" text-anchor="middle" dominant-baseline="middle">Flutter &gt;=3.38.0</text></g>
+<g class="packageMetadataPill"><title>Flutter &gt;=3.41.0</title><rect x="660.2" y="2709.0" width="77.6" height="9.0" rx="4.5" ry="4.5" class="packageMetadataPillShape"/><text x="699.0" y="2714" class="packageLabelMetadata" text-anchor="middle" dominant-baseline="middle">Flutter &gt;=3.41.0</text></g>
 <text x="567.0" y="2688.0" class="packageLabelDerivedName packageLabelCaption" text-anchor="start">camera_platform_interface</text>
-<text x="831.0" y="2688.0" class="packageLabelDerivedVersion" text-anchor="end">^2.14.0</text>
+<text x="831.0" y="2688.0" class="packageLabelDerivedVersion" text-anchor="end">^2.15.0</text>
 </g>
 <g class="badge incomingBadge">
   <path d="M 565.0,2696.0 L 553.0,2689.0 Q 550.0,2689.0 550.0,2692.0 L 550.0,2700.0 Q 550.0,2703.0 553.0,2703.0 Z" fill="#3b82f6"/>
@@ -1611,7 +1619,7 @@
 <g class="packageMetadataPill"><title>Dart ^3.10.0</title><rect x="668.4" y="3093.0" width="61.199999999999996" height="9.0" rx="4.5" ry="4.5" class="packageMetadataPillShape"/><text x="699.0" y="3098" class="packageLabelMetadata" text-anchor="middle" dominant-baseline="middle">Dart ^3.10.0</text></g>
 <g class="platformBadge platformBadge--dart"><title>Dart SDK ^3.10.0</title><rect x="685.0" y="3077.0" width="28.0" height="13.0" rx="6.5" ry="6.5" fill="#0175c2" stroke="#0369a1" stroke-width="0.6"/><text x="699.0" y="3083.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">Dart</text></g>
 <text x="567.0" y="3072.0" class="packageLabelDerivedName packageLabelCaption" text-anchor="start">code_builder</text>
-<text x="831.0" y="3072.0" class="packageLabelDerivedVersion" text-anchor="end">^4.12.0</text>
+<text x="831.0" y="3072.0" class="packageLabelDerivedVersion" text-anchor="end">^4.13.0</text>
 </g>
 <g class="badge incomingBadge">
   <path d="M 565.0,3080.0 L 553.0,3073.0 Q 550.0,3073.0 550.0,3076.0 L 550.0,3084.0 Q 550.0,3087.0 553.0,3087.0 Z" fill="#3b82f6"/>
@@ -1644,7 +1652,7 @@
 <g class="packageMetadataPill"><title>Dart ^3.11.0</title><rect x="668.4" y="3285.0" width="61.199999999999996" height="9.0" rx="4.5" ry="4.5" class="packageMetadataPillShape"/><text x="699.0" y="3290" class="packageLabelMetadata" text-anchor="middle" dominant-baseline="middle">Dart ^3.11.0</text></g>
 <g class="platformBadge platformBadge--dart"><title>Dart SDK ^3.11.0</title><rect x="685.0" y="3269.0" width="28.0" height="13.0" rx="6.5" ry="6.5" fill="#0175c2" stroke="#0369a1" stroke-width="0.6"/><text x="699.0" y="3275.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">Dart</text></g>
 <text x="567.0" y="3264.0" class="packageLabelDerivedName packageLabelCaption" text-anchor="start">dart_style</text>
-<text x="831.0" y="3264.0" class="packageLabelDerivedVersion" text-anchor="end">^3.1.13</text>
+<text x="831.0" y="3264.0" class="packageLabelDerivedVersion" text-anchor="end">^3.1.14</text>
 </g>
 <g class="badge incomingBadge">
   <path d="M 565.0,3272.0 L 553.0,3265.0 Q 550.0,3265.0 550.0,3268.0 L 550.0,3276.0 Q 550.0,3279.0 553.0,3279.0 Z" fill="#3b82f6"/>
@@ -1671,7 +1679,7 @@
 <g class="badge incomingBadge">
   <path d="M 565.0,3400.0 L 553.0,3393.0 Q 550.0,3393.0 550.0,3396.0 L 550.0,3404.0 Q 550.0,3407.0 553.0,3407.0 Z" fill="#3b82f6"/>
   <text x="554.68" y="3401.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. share_plus
-2. tflite_flutter</title></g><g class="packageNode">
+2. tflite_core</title></g><g class="packageNode">
 <rect x="559.0" y="3438.0" width="280.0" height="52.0" rx="8.0" ry="8.0" fill="#f8fafc" stroke="#64748b" stroke-width="1" stroke-dasharray="4,2"/>
 <g class="packageMetadataPill"><title>Dart ^3.0.0</title><rect x="670.45" y="3477.0" width="57.099999999999994" height="9.0" rx="4.5" ry="4.5" class="packageMetadataPillShape"/><text x="699.0" y="3482" class="packageLabelMetadata" text-anchor="middle" dominant-baseline="middle">Dart ^3.0.0</text></g>
 <g class="platformBadge platformBadge--dart"><title>Dart SDK ^3.0.0</title><rect x="685.0" y="3461.0" width="28.0" height="13.0" rx="6.5" ry="6.5" fill="#0175c2" stroke="#0369a1" stroke-width="0.6"/><text x="699.0" y="3467.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">Dart</text></g>
@@ -1684,7 +1692,7 @@
 <rect x="559.0" y="3502.0" width="280.0" height="52.0" rx="8.0" ry="8.0" fill="#f8fafc" stroke="#64748b" stroke-width="1" stroke-dasharray="4,2"/>
 <g class="packageMetadataPill"><title>Flutter &gt;=3.16.0</title><rect x="660.2" y="3541.0" width="77.6" height="9.0" rx="4.5" ry="4.5" class="packageMetadataPillShape"/><text x="699.0" y="3546" class="packageLabelMetadata" text-anchor="middle" dominant-baseline="middle">Flutter &gt;=3.16.0</text></g>
 <text x="567.0" y="3520.0" class="packageLabelDerivedName packageLabelCaption" text-anchor="start">firebase_auth_platform_interface</text>
-<text x="831.0" y="3520.0" class="packageLabelDerivedVersion" text-anchor="end">^9.1.0</text>
+<text x="831.0" y="3520.0" class="packageLabelDerivedVersion" text-anchor="end">^9.1.1</text>
 </g>
 <g class="badge incomingBadge">
   <path d="M 565.0,3528.0 L 553.0,3521.0 Q 550.0,3521.0 550.0,3524.0 L 550.0,3532.0 Q 550.0,3535.0 553.0,3535.0 Z" fill="#3b82f6"/>
@@ -1695,7 +1703,7 @@
 <g class="packageMetadataPill"><title>Flutter &gt;=3.22.0</title><rect x="660.2" y="3605.0" width="77.6" height="9.0" rx="4.5" ry="4.5" class="packageMetadataPillShape"/><text x="699.0" y="3610" class="packageLabelMetadata" text-anchor="middle" dominant-baseline="middle">Flutter &gt;=3.22.0</text></g>
 <g class="platformBadge platformBadge--web"><title>Browser</title><rect x="692.5" y="3589.0" width="13.0" height="13.0" rx="6.5" ry="6.5" fill="#0891b2" stroke="#0e7490" stroke-width="0.6"/><text x="699.0" y="3596.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">B</text></g>
 <text x="567.0" y="3584.0" class="packageLabelDerivedName packageLabelCaption" text-anchor="start">firebase_auth_web</text>
-<text x="831.0" y="3584.0" class="packageLabelDerivedVersion" text-anchor="end">^6.3.0</text>
+<text x="831.0" y="3584.0" class="packageLabelDerivedVersion" text-anchor="end">^6.3.1</text>
 </g>
 <g class="badge incomingBadge">
   <path d="M 565.0,3592.0 L 553.0,3585.0 Q 550.0,3585.0 550.0,3588.0 L 550.0,3596.0 Q 550.0,3599.0 553.0,3599.0 Z" fill="#3b82f6"/>
@@ -1716,7 +1724,7 @@
 <g class="packageMetadataPill"><title>Flutter &gt;=3.22.0</title><rect x="660.2" y="3733.0" width="77.6" height="9.0" rx="4.5" ry="4.5" class="packageMetadataPillShape"/><text x="699.0" y="3738" class="packageLabelMetadata" text-anchor="middle" dominant-baseline="middle">Flutter &gt;=3.22.0</text></g>
 <g class="platformBadge platformBadge--web"><title>Browser</title><rect x="692.5" y="3717.0" width="13.0" height="13.0" rx="6.5" ry="6.5" fill="#0891b2" stroke="#0e7490" stroke-width="0.6"/><text x="699.0" y="3724.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">B</text></g>
 <text x="567.0" y="3712.0" class="packageLabelDerivedName packageLabelCaption" text-anchor="start">firebase_core_web</text>
-<text x="831.0" y="3712.0" class="packageLabelDerivedVersion" text-anchor="end">^3.12.0</text>
+<text x="831.0" y="3712.0" class="packageLabelDerivedVersion" text-anchor="end">^4.0.0</text>
 </g>
 <g class="badge incomingBadge">
   <path d="M 565.0,3720.0 L 553.0,3713.0 Q 550.0,3713.0 550.0,3716.0 L 550.0,3724.0 Q 550.0,3727.0 553.0,3727.0 Z" fill="#3b82f6"/>
@@ -1724,7 +1732,7 @@
 <rect x="559.0" y="3758.0" width="280.0" height="52.0" rx="8.0" ry="8.0" fill="#f8fafc" stroke="#64748b" stroke-width="1" stroke-dasharray="4,2"/>
 <g class="packageMetadataPill"><title>Flutter &gt;=3.27.0</title><rect x="660.2" y="3797.0" width="77.6" height="9.0" rx="4.5" ry="4.5" class="packageMetadataPillShape"/><text x="699.0" y="3802" class="packageLabelMetadata" text-anchor="middle" dominant-baseline="middle">Flutter &gt;=3.27.0</text></g>
 <text x="567.0" y="3776.0" class="packageLabelDerivedName packageLabelCaption" text-anchor="start">firebase_database_platform_interface</text>
-<text x="831.0" y="3776.0" class="packageLabelDerivedVersion" text-anchor="end">^0.4.0+7</text>
+<text x="831.0" y="3776.0" class="packageLabelDerivedVersion" text-anchor="end">^0.4.1+8</text>
 </g>
 <g class="badge incomingBadge">
   <path d="M 565.0,3784.0 L 553.0,3777.0 Q 550.0,3777.0 550.0,3780.0 L 550.0,3788.0 Q 550.0,3791.0 553.0,3791.0 Z" fill="#3b82f6"/>
@@ -1735,7 +1743,7 @@
 <g class="packageMetadataPill"><title>Flutter &gt;=3.22.0</title><rect x="660.2" y="3861.0" width="77.6" height="9.0" rx="4.5" ry="4.5" class="packageMetadataPillShape"/><text x="699.0" y="3866" class="packageLabelMetadata" text-anchor="middle" dominant-baseline="middle">Flutter &gt;=3.22.0</text></g>
 <g class="platformBadge platformBadge--web"><title>Browser</title><rect x="692.5" y="3845.0" width="13.0" height="13.0" rx="6.5" ry="6.5" fill="#0891b2" stroke="#0e7490" stroke-width="0.6"/><text x="699.0" y="3852.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">B</text></g>
 <text x="567.0" y="3840.0" class="packageLabelDerivedName packageLabelCaption" text-anchor="start">firebase_database_web</text>
-<text x="831.0" y="3840.0" class="packageLabelDerivedVersion" text-anchor="end">^0.2.7+14</text>
+<text x="831.0" y="3840.0" class="packageLabelDerivedVersion" text-anchor="end">^0.2.8+15</text>
 </g>
 <g class="badge incomingBadge">
   <path d="M 565.0,3848.0 L 553.0,3841.0 Q 550.0,3841.0 550.0,3844.0 L 550.0,3852.0 Q 550.0,3855.0 553.0,3855.0 Z" fill="#3b82f6"/>
@@ -1775,7 +1783,7 @@
 <g class="packageMetadataPill"><title>Flutter &gt;=3.44.0</title><rect x="660.2" y="4117.0" width="77.6" height="9.0" rx="4.5" ry="4.5" class="packageMetadataPillShape"/><text x="699.0" y="4122" class="packageLabelMetadata" text-anchor="middle" dominant-baseline="middle">Flutter &gt;=3.44.0</text></g>
 <g class="platformBadge platformBadge--android"><title>Android</title><rect x="692.5" y="4101.0" width="13.0" height="13.0" rx="6.5" ry="6.5" fill="#16a34a" stroke="#15803d" stroke-width="0.6"/><text x="699.0" y="4108.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">A</text></g>
 <text x="567.0" y="4096.0" class="packageLabelDerivedName packageLabelCaption" text-anchor="start">google_sign_in_android</text>
-<text x="831.0" y="4096.0" class="packageLabelDerivedVersion" text-anchor="end">^7.2.17</text>
+<text x="831.0" y="4096.0" class="packageLabelDerivedVersion" text-anchor="end">^7.2.18</text>
 </g>
 <g class="badge incomingBadge">
   <path d="M 565.0,4104.0 L 553.0,4097.0 Q 550.0,4097.0 550.0,4100.0 L 550.0,4108.0 Q 550.0,4111.0 553.0,4111.0 Z" fill="#3b82f6"/>
@@ -1785,7 +1793,7 @@
 <g class="platformBadge platformBadge--ios"><title>iOS</title><rect x="684.0" y="4165.0" width="13.0" height="13.0" rx="6.5" ry="6.5" fill="#111827" stroke="#0f172a" stroke-width="0.6"/><text x="690.5" y="4172.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">I</text></g>
 <g class="platformBadge platformBadge--macos"><title>macOS</title><rect x="701.0" y="4165.0" width="13.0" height="13.0" rx="6.5" ry="6.5" fill="#475569" stroke="#334155" stroke-width="0.6"/><text x="707.5" y="4172.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">M</text></g>
 <text x="567.0" y="4160.0" class="packageLabelDerivedName packageLabelCaption" text-anchor="start">google_sign_in_ios</text>
-<text x="831.0" y="4160.0" class="packageLabelDerivedVersion" text-anchor="end">^6.3.6</text>
+<text x="831.0" y="4160.0" class="packageLabelDerivedVersion" text-anchor="end">^6.3.8+vteam.1</text>
 </g>
 <g class="badge incomingBadge">
   <path d="M 565.0,4168.0 L 553.0,4161.0 Q 550.0,4161.0 550.0,4164.0 L 550.0,4172.0 Q 550.0,4175.0 553.0,4175.0 Z" fill="#3b82f6"/>
@@ -1825,7 +1833,7 @@
 <g class="packageMetadataPill"><title>Flutter &gt;=3.44.0</title><rect x="660.2" y="4437.0" width="77.6" height="9.0" rx="4.5" ry="4.5" class="packageMetadataPillShape"/><text x="699.0" y="4442" class="packageLabelMetadata" text-anchor="middle" dominant-baseline="middle">Flutter &gt;=3.44.0</text></g>
 <g class="platformBadge platformBadge--android"><title>Android</title><rect x="692.5" y="4421.0" width="13.0" height="13.0" rx="6.5" ry="6.5" fill="#16a34a" stroke="#15803d" stroke-width="0.6"/><text x="699.0" y="4428.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">A</text></g>
 <text x="567.0" y="4416.0" class="packageLabelDerivedName packageLabelCaption" text-anchor="start">image_picker_android</text>
-<text x="831.0" y="4416.0" class="packageLabelDerivedVersion" text-anchor="end">^0.8.13+23</text>
+<text x="831.0" y="4416.0" class="packageLabelDerivedVersion" text-anchor="end">^0.8.13+25</text>
 </g>
 <g class="badge incomingBadge">
   <path d="M 565.0,4424.0 L 553.0,4417.0 Q 550.0,4417.0 550.0,4420.0 L 550.0,4428.0 Q 550.0,4431.0 553.0,4431.0 Z" fill="#3b82f6"/>
@@ -1840,10 +1848,10 @@
   <path d="M 565.0,4488.0 L 553.0,4481.0 Q 550.0,4481.0 550.0,4484.0 L 550.0,4492.0 Q 550.0,4495.0 553.0,4495.0 Z" fill="#3b82f6"/>
   <text x="554.68" y="4489.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. image_picker</title></g><g class="packageNode">
 <rect x="559.0" y="4526.0" width="280.0" height="52.0" rx="8.0" ry="8.0" fill="#f8fafc" stroke="#64748b" stroke-width="1" stroke-dasharray="4,2"/>
-<g class="packageMetadataPill"><title>Flutter &gt;=3.41.0</title><rect x="660.2" y="4565.0" width="77.6" height="9.0" rx="4.5" ry="4.5" class="packageMetadataPillShape"/><text x="699.0" y="4570" class="packageLabelMetadata" text-anchor="middle" dominant-baseline="middle">Flutter &gt;=3.41.0</text></g>
+<g class="packageMetadataPill"><title>Flutter &gt;=3.47.0</title><rect x="660.2" y="4565.0" width="77.6" height="9.0" rx="4.5" ry="4.5" class="packageMetadataPillShape"/><text x="699.0" y="4570" class="packageLabelMetadata" text-anchor="middle" dominant-baseline="middle">Flutter &gt;=3.47.0</text></g>
 <g class="platformBadge platformBadge--ios"><title>iOS</title><rect x="692.5" y="4549.0" width="13.0" height="13.0" rx="6.5" ry="6.5" fill="#111827" stroke="#0f172a" stroke-width="0.6"/><text x="699.0" y="4556.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">I</text></g>
 <text x="567.0" y="4544.0" class="packageLabelDerivedName packageLabelCaption" text-anchor="start">image_picker_ios</text>
-<text x="831.0" y="4544.0" class="packageLabelDerivedVersion" text-anchor="end">^0.8.13+8</text>
+<text x="831.0" y="4544.0" class="packageLabelDerivedVersion" text-anchor="end">^0.8.13+12</text>
 </g>
 <g class="badge incomingBadge">
   <path d="M 565.0,4552.0 L 553.0,4545.0 Q 550.0,4545.0 550.0,4548.0 L 550.0,4556.0 Q 550.0,4559.0 553.0,4559.0 Z" fill="#3b82f6"/>
@@ -1873,9 +1881,9 @@
   <text x="834.68" y="4681.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. file_selector_macos
 2. file_selector_platform_interface</title></g><g class="packageNode">
 <rect x="559.0" y="4718.0" width="280.0" height="52.0" rx="8.0" ry="8.0" fill="#f8fafc" stroke="#64748b" stroke-width="1" stroke-dasharray="4,2"/>
-<g class="packageMetadataPill"><title>Flutter &gt;=3.29.0</title><rect x="660.2" y="4757.0" width="77.6" height="9.0" rx="4.5" ry="4.5" class="packageMetadataPillShape"/><text x="699.0" y="4762" class="packageLabelMetadata" text-anchor="middle" dominant-baseline="middle">Flutter &gt;=3.29.0</text></g>
+<g class="packageMetadataPill"><title>Flutter &gt;=3.41.0</title><rect x="660.2" y="4757.0" width="77.6" height="9.0" rx="4.5" ry="4.5" class="packageMetadataPillShape"/><text x="699.0" y="4762" class="packageLabelMetadata" text-anchor="middle" dominant-baseline="middle">Flutter &gt;=3.41.0</text></g>
 <text x="567.0" y="4736.0" class="packageLabelDerivedName packageLabelCaption" text-anchor="start">image_picker_platform_interface</text>
-<text x="831.0" y="4736.0" class="packageLabelDerivedVersion" text-anchor="end">^2.11.1</text>
+<text x="831.0" y="4736.0" class="packageLabelDerivedVersion" text-anchor="end">^2.11.2</text>
 </g>
 <g class="badge incomingBadge">
   <path d="M 565.0,4744.0 L 553.0,4737.0 Q 550.0,4737.0 550.0,4740.0 L 550.0,4748.0 Q 550.0,4751.0 553.0,4751.0 Z" fill="#3b82f6"/>
@@ -1992,7 +2000,7 @@
 2. flutter_markdown_plus
 3. intl
 4. mockito
-5. tflite_flutter</title></g><g class="badge incomingBadge">
+5. tflite_core</title></g><g class="badge incomingBadge">
   <path d="M 833.0,5384.0 L 845.0,5377.0 Q 848.0,5377.0 848.0,5380.0 L 848.0,5388.0 Q 848.0,5391.0 845.0,5391.0 Z" fill="#3b82f6"/>
   <text x="843.32" y="5385.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. flutter_launcher_icons
 2. flutter_test</title></g><g class="packageNode">
@@ -2058,7 +2066,7 @@
 </g>
 <g class="badge incomingBadge">
   <path d="M 565.0,5768.0 L 553.0,5761.0 Q 550.0,5761.0 550.0,5764.0 L 550.0,5772.0 Q 550.0,5775.0 553.0,5775.0 Z" fill="#3b82f6"/>
-  <text x="554.68" y="5769.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. tflite_flutter</title></g><g class="packageNode">
+  <text x="554.68" y="5769.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. tflite_core</title></g><g class="packageNode">
 <rect x="559.0" y="5806.0" width="280.0" height="52.0" rx="8.0" ry="8.0" fill="#f8fafc" stroke="#64748b" stroke-width="1" stroke-dasharray="4,2"/>
 <g class="packageMetadataPill"><title>Dart ^3.4.0</title><rect x="670.45" y="5845.0" width="57.099999999999994" height="9.0" rx="4.5" ry="4.5" class="packageMetadataPillShape"/><text x="699.0" y="5850" class="packageLabelMetadata" text-anchor="middle" dominant-baseline="middle">Dart ^3.4.0</text></g>
 <g class="platformBadge platformBadge--dart"><title>Dart SDK ^3.4.0</title><rect x="685.0" y="5829.0" width="28.0" height="13.0" rx="6.5" ry="6.5" fill="#0175c2" stroke="#0369a1" stroke-width="0.6"/><text x="699.0" y="5835.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">Dart</text></g>
@@ -2076,7 +2084,7 @@
 </g>
 <g class="badge incomingBadge">
   <path d="M 565.0,5896.0 L 553.0,5889.0 Q 550.0,5889.0 550.0,5892.0 L 550.0,5900.0 Q 550.0,5903.0 553.0,5903.0 Z" fill="#3b82f6"/>
-  <text x="554.68" y="5897.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. tflite_flutter</title></g><g class="packageNode">
+  <text x="554.68" y="5897.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. tflite_core</title></g><g class="packageNode">
 <rect x="559.0" y="5934.0" width="280.0" height="52.0" rx="8.0" ry="8.0" fill="#f8fafc" stroke="#64748b" stroke-width="1" stroke-dasharray="4,2"/>
 <g class="packageMetadataPill"><title>Flutter &gt;=3.38.1</title><rect x="660.2" y="5973.0" width="77.6" height="9.0" rx="4.5" ry="4.5" class="packageMetadataPillShape"/><text x="699.0" y="5978" class="packageLabelMetadata" text-anchor="middle" dominant-baseline="middle">Flutter &gt;=3.38.1</text></g>
 <text x="567.0" y="5952.0" class="packageLabelDerivedName packageLabelCaption" text-anchor="start">share_plus_platform_interface</text>
@@ -2091,21 +2099,25 @@
 <g class="packageMetadataPill"><title>Flutter &gt;=3.44.0</title><rect x="660.2" y="6037.0" width="77.6" height="9.0" rx="4.5" ry="4.5" class="packageMetadataPillShape"/><text x="699.0" y="6042" class="packageLabelMetadata" text-anchor="middle" dominant-baseline="middle">Flutter &gt;=3.44.0</text></g>
 <g class="platformBadge platformBadge--android"><title>Android</title><rect x="692.5" y="6021.0" width="13.0" height="13.0" rx="6.5" ry="6.5" fill="#16a34a" stroke="#15803d" stroke-width="0.6"/><text x="699.0" y="6028.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">A</text></g>
 <text x="567.0" y="6016.0" class="packageLabelDerivedName packageLabelCaption" text-anchor="start">shared_preferences_android</text>
-<text x="831.0" y="6016.0" class="packageLabelDerivedVersion" text-anchor="end">^2.4.28</text>
+<text x="831.0" y="6016.0" class="packageLabelDerivedVersion" text-anchor="end">^2.5.1</text>
 </g>
 <g class="badge incomingBadge">
   <path d="M 565.0,6024.0 L 553.0,6017.0 Q 550.0,6017.0 550.0,6020.0 L 550.0,6028.0 Q 550.0,6031.0 553.0,6031.0 Z" fill="#3b82f6"/>
-  <text x="554.68" y="6025.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. shared_preferences</title></g><g class="packageNode">
+  <text x="554.68" y="6025.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. shared_preferences</title></g><g class="badge outgoingBadge">
+  <path d="M 845.0,6024.0 L 833.0,6017.0 Q 830.0,6017.0 830.0,6020.0 L 830.0,6028.0 Q 830.0,6031.0 833.0,6031.0 Z" fill="#10b981"/>
+  <text x="834.68" y="6025.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. jni</title></g><g class="packageNode">
 <rect x="559.0" y="6062.0" width="280.0" height="52.0" rx="8.0" ry="8.0" fill="#f8fafc" stroke="#64748b" stroke-width="1" stroke-dasharray="4,2"/>
-<g class="packageMetadataPill"><title>Flutter &gt;=3.38.0</title><rect x="660.2" y="6101.0" width="77.6" height="9.0" rx="4.5" ry="4.5" class="packageMetadataPillShape"/><text x="699.0" y="6106" class="packageLabelMetadata" text-anchor="middle" dominant-baseline="middle">Flutter &gt;=3.38.0</text></g>
+<g class="packageMetadataPill"><title>Flutter &gt;=3.47.0</title><rect x="660.2" y="6101.0" width="77.6" height="9.0" rx="4.5" ry="4.5" class="packageMetadataPillShape"/><text x="699.0" y="6106" class="packageLabelMetadata" text-anchor="middle" dominant-baseline="middle">Flutter &gt;=3.47.0</text></g>
 <g class="platformBadge platformBadge--ios"><title>iOS</title><rect x="684.0" y="6085.0" width="13.0" height="13.0" rx="6.5" ry="6.5" fill="#111827" stroke="#0f172a" stroke-width="0.6"/><text x="690.5" y="6092.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">I</text></g>
 <g class="platformBadge platformBadge--macos"><title>macOS</title><rect x="701.0" y="6085.0" width="13.0" height="13.0" rx="6.5" ry="6.5" fill="#475569" stroke="#334155" stroke-width="0.6"/><text x="707.5" y="6092.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">M</text></g>
 <text x="567.0" y="6080.0" class="packageLabelDerivedName packageLabelCaption" text-anchor="start">shared_preferences_foundation</text>
-<text x="831.0" y="6080.0" class="packageLabelDerivedVersion" text-anchor="end">^2.5.7</text>
+<text x="831.0" y="6080.0" class="packageLabelDerivedVersion" text-anchor="end">^2.6.0</text>
 </g>
 <g class="badge incomingBadge">
   <path d="M 565.0,6088.0 L 553.0,6081.0 Q 550.0,6081.0 550.0,6084.0 L 550.0,6092.0 Q 550.0,6095.0 553.0,6095.0 Z" fill="#3b82f6"/>
-  <text x="554.68" y="6089.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. shared_preferences</title></g><g class="packageNode">
+  <text x="554.68" y="6089.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. shared_preferences</title></g><g class="badge outgoingBadge">
+  <path d="M 845.0,6088.0 L 833.0,6081.0 Q 830.0,6081.0 830.0,6084.0 L 830.0,6092.0 Q 830.0,6095.0 833.0,6095.0 Z" fill="#10b981"/>
+  <text x="834.68" y="6089.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. objective_c</title></g><g class="packageNode">
 <rect x="559.0" y="6126.0" width="280.0" height="52.0" rx="8.0" ry="8.0" fill="#f8fafc" stroke="#64748b" stroke-width="1" stroke-dasharray="4,2"/>
 <g class="packageMetadataPill"><title>Flutter &gt;=3.19.0</title><rect x="660.2" y="6165.0" width="77.6" height="9.0" rx="4.5" ry="4.5" class="packageMetadataPillShape"/><text x="699.0" y="6170" class="packageLabelMetadata" text-anchor="middle" dominant-baseline="middle">Flutter &gt;=3.19.0</text></g>
 <g class="platformBadge platformBadge--linux"><title>Linux</title><rect x="692.5" y="6149.0" width="13.0" height="13.0" rx="6.5" ry="6.5" fill="#7c3aed" stroke="#6d28d9" stroke-width="0.6"/><text x="699.0" y="6156.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">L</text></g>
@@ -2154,7 +2166,7 @@
 <g class="packageMetadataPill"><title>Dart ^3.11.0</title><rect x="668.4" y="6485.0" width="61.199999999999996" height="9.0" rx="4.5" ry="4.5" class="packageMetadataPillShape"/><text x="699.0" y="6490" class="packageLabelMetadata" text-anchor="middle" dominant-baseline="middle">Dart ^3.11.0</text></g>
 <g class="platformBadge platformBadge--dart"><title>Dart SDK ^3.11.0</title><rect x="685.0" y="6469.0" width="28.0" height="13.0" rx="6.5" ry="6.5" fill="#0175c2" stroke="#0369a1" stroke-width="0.6"/><text x="699.0" y="6475.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">Dart</text></g>
 <text x="567.0" y="6464.0" class="packageLabelDerivedName packageLabelCaption" text-anchor="start">source_gen</text>
-<text x="831.0" y="6464.0" class="packageLabelDerivedVersion" text-anchor="end">^4.3.0</text>
+<text x="831.0" y="6464.0" class="packageLabelDerivedVersion" text-anchor="end">^4.3.1</text>
 </g>
 <g class="badge incomingBadge">
   <path d="M 565.0,6472.0 L 553.0,6465.0 Q 550.0,6465.0 550.0,6468.0 L 550.0,6476.0 Q 550.0,6479.0 553.0,6479.0 Z" fill="#3b82f6"/>
@@ -2279,7 +2291,7 @@
   <text x="554.68" y="7177.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. share_plus
 2. url_launcher</title></g><g class="packageNode">
 <rect x="559.0" y="7214.0" width="280.0" height="52.0" rx="8.0" ry="8.0" fill="#f8fafc" stroke="#64748b" stroke-width="1" stroke-dasharray="4,2"/>
-<g class="packageMetadataPill"><title>Flutter &gt;=3.38.0</title><rect x="660.2" y="7253.0" width="77.6" height="9.0" rx="4.5" ry="4.5" class="packageMetadataPillShape"/><text x="699.0" y="7258" class="packageLabelMetadata" text-anchor="middle" dominant-baseline="middle">Flutter &gt;=3.38.0</text></g>
+<g class="packageMetadataPill"><title>Flutter &gt;=3.41.0</title><rect x="660.2" y="7253.0" width="77.6" height="9.0" rx="4.5" ry="4.5" class="packageMetadataPillShape"/><text x="699.0" y="7258" class="packageLabelMetadata" text-anchor="middle" dominant-baseline="middle">Flutter &gt;=3.41.0</text></g>
 <g class="platformBadge platformBadge--android"><title>Android</title><rect x="650.0" y="7237.0" width="13.0" height="13.0" rx="6.5" ry="6.5" fill="#16a34a" stroke="#15803d" stroke-width="0.6"/><text x="656.5" y="7244.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">A</text></g>
 <g class="platformBadge platformBadge--ios"><title>iOS</title><rect x="667.0" y="7237.0" width="13.0" height="13.0" rx="6.5" ry="6.5" fill="#111827" stroke="#0f172a" stroke-width="0.6"/><text x="673.5" y="7244.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">I</text></g>
 <g class="platformBadge platformBadge--linux"><title>Linux</title><rect x="684.0" y="7237.0" width="13.0" height="13.0" rx="6.5" ry="6.5" fill="#7c3aed" stroke="#6d28d9" stroke-width="0.6"/><text x="690.5" y="7244.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">L</text></g>
@@ -2287,7 +2299,7 @@
 <g class="platformBadge platformBadge--windows"><title>Windows</title><rect x="718.0" y="7237.0" width="13.0" height="13.0" rx="6.5" ry="6.5" fill="#2563eb" stroke="#1d4ed8" stroke-width="0.6"/><text x="724.5" y="7244.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">W</text></g>
 <g class="platformBadge platformBadge--web"><title>Browser</title><rect x="735.0" y="7237.0" width="13.0" height="13.0" rx="6.5" ry="6.5" fill="#0891b2" stroke="#0e7490" stroke-width="0.6"/><text x="741.5" y="7244.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">B</text></g>
 <text x="567.0" y="7232.0" class="packageLabelDerivedName packageLabelCaption" text-anchor="start">vector_graphics</text>
-<text x="831.0" y="7232.0" class="packageLabelDerivedVersion" text-anchor="end">^1.2.3</text>
+<text x="831.0" y="7232.0" class="packageLabelDerivedVersion" text-anchor="end">^1.2.4</text>
 </g>
 <g class="badge incomingBadge">
   <path d="M 565.0,7240.0 L 553.0,7233.0 Q 550.0,7233.0 550.0,7236.0 L 550.0,7244.0 Q 550.0,7247.0 553.0,7247.0 Z" fill="#3b82f6"/>
@@ -2313,7 +2325,7 @@
 <g class="platformBadge platformBadge--windows"><title>Windows</title><rect x="718.0" y="7377.0" width="13.0" height="13.0" rx="6.5" ry="6.5" fill="#2563eb" stroke="#1d4ed8" stroke-width="0.6"/><text x="724.5" y="7384.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">W</text></g>
 <g class="platformBadge platformBadge--web"><title>Browser</title><rect x="735.0" y="7377.0" width="13.0" height="13.0" rx="6.5" ry="6.5" fill="#0891b2" stroke="#0e7490" stroke-width="0.6"/><text x="741.5" y="7384.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">B</text></g>
 <text x="567.0" y="7360.0" class="packageLabelDerivedName packageLabelCaption" text-anchor="start">vector_graphics_compiler</text>
-<text x="831.0" y="7360.0" class="packageLabelDerivedVersion" text-anchor="end">^1.3.0</text>
+<text x="831.0" y="7360.0" class="packageLabelDerivedVersion" text-anchor="end">^1.3.2</text>
 </g>
 <g class="badge incomingBadge">
   <path d="M 565.0,7368.0 L 553.0,7361.0 Q 550.0,7361.0 550.0,7364.0 L 550.0,7372.0 Q 550.0,7375.0 553.0,7375.0 Z" fill="#3b82f6"/>
@@ -2357,10 +2369,10 @@
   <text x="834.68" y="7567.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. source_span
 2. string_scanner</title></g><g class="packageNode">
 <rect x="559.0" y="7672.0" width="280.0" height="52.0" rx="8.0" ry="8.0" fill="#f8fafc" stroke="#64748b" stroke-width="1" stroke-dasharray="4,2"/>
-<g class="packageMetadataPill"><title>Dart ^3.11.0</title><rect x="668.4" y="7711.0" width="61.199999999999996" height="9.0" rx="4.5" ry="4.5" class="packageMetadataPillShape"/><text x="699.0" y="7716" class="packageLabelMetadata" text-anchor="middle" dominant-baseline="middle">Dart ^3.11.0</text></g>
-<g class="platformBadge platformBadge--dart"><title>Dart SDK ^3.11.0</title><rect x="685.0" y="7695.0" width="28.0" height="13.0" rx="6.5" ry="6.5" fill="#0175c2" stroke="#0369a1" stroke-width="0.6"/><text x="699.0" y="7701.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">Dart</text></g>
+<g class="packageMetadataPill"><title>Dart ^3.13.0</title><rect x="668.4" y="7711.0" width="61.199999999999996" height="9.0" rx="4.5" ry="4.5" class="packageMetadataPillShape"/><text x="699.0" y="7716" class="packageLabelMetadata" text-anchor="middle" dominant-baseline="middle">Dart ^3.13.0</text></g>
+<g class="platformBadge platformBadge--dart"><title>Dart SDK ^3.13.0</title><rect x="685.0" y="7695.0" width="28.0" height="13.0" rx="6.5" ry="6.5" fill="#0175c2" stroke="#0369a1" stroke-width="0.6"/><text x="699.0" y="7701.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">Dart</text></g>
 <text x="567.0" y="7690.0" class="packageLabelDerivedName packageLabelCaption" text-anchor="start">_fe_analyzer_shared</text>
-<text x="831.0" y="7690.0" class="packageLabelDerivedVersion" text-anchor="end">^108.0.0</text>
+<text x="831.0" y="7690.0" class="packageLabelDerivedVersion" text-anchor="end">^110.0.0</text>
 </g>
 <g class="badge incomingBadge">
   <path d="M 833.0,7698.0 L 845.0,7691.0 Q 848.0,7691.0 848.0,7694.0 L 848.0,7702.0 Q 848.0,7705.0 845.0,7705.0 Z" fill="#3b82f6"/>
@@ -2368,7 +2380,7 @@
 <rect x="559.0" y="7736.0" width="280.0" height="52.0" rx="8.0" ry="8.0" fill="#f8fafc" stroke="#64748b" stroke-width="1" stroke-dasharray="4,2"/>
 <g class="packageMetadataPill"><title>Flutter &gt;=3.27.0</title><rect x="660.2" y="7775.0" width="77.6" height="9.0" rx="4.5" ry="4.5" class="packageMetadataPillShape"/><text x="699.0" y="7780" class="packageLabelMetadata" text-anchor="middle" dominant-baseline="middle">Flutter &gt;=3.27.0</text></g>
 <text x="567.0" y="7754.0" class="packageLabelDerivedName packageLabelCaption" text-anchor="start">_flutterfire_internals</text>
-<text x="831.0" y="7754.0" class="packageLabelDerivedVersion" text-anchor="end">^1.3.77</text>
+<text x="831.0" y="7754.0" class="packageLabelDerivedVersion" text-anchor="end">^1.3.78</text>
 </g>
 <g class="badge incomingBadge">
   <path d="M 833.0,7762.0 L 845.0,7755.0 Q 848.0,7755.0 848.0,7758.0 L 848.0,7766.0 Q 848.0,7769.0 845.0,7769.0 Z" fill="#3b82f6"/>
@@ -2464,10 +2476,10 @@
   <path d="M 833.0,8338.0 L 845.0,8331.0 Q 848.0,8331.0 848.0,8334.0 L 848.0,8342.0 Q 848.0,8345.0 845.0,8345.0 Z" fill="#3b82f6"/>
   <text x="843.32" y="8339.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. image_picker_linux</title></g><g class="packageNode">
 <rect x="559.0" y="8376.0" width="280.0" height="52.0" rx="8.0" ry="8.0" fill="#f8fafc" stroke="#64748b" stroke-width="1" stroke-dasharray="4,2"/>
-<g class="packageMetadataPill"><title>Flutter &gt;=3.38.0</title><rect x="660.2" y="8415.0" width="77.6" height="9.0" rx="4.5" ry="4.5" class="packageMetadataPillShape"/><text x="699.0" y="8420" class="packageLabelMetadata" text-anchor="middle" dominant-baseline="middle">Flutter &gt;=3.38.0</text></g>
+<g class="packageMetadataPill"><title>Flutter &gt;=3.47.0</title><rect x="660.2" y="8415.0" width="77.6" height="9.0" rx="4.5" ry="4.5" class="packageMetadataPillShape"/><text x="699.0" y="8420" class="packageLabelMetadata" text-anchor="middle" dominant-baseline="middle">Flutter &gt;=3.47.0</text></g>
 <g class="platformBadge platformBadge--macos"><title>macOS</title><rect x="692.5" y="8399.0" width="13.0" height="13.0" rx="6.5" ry="6.5" fill="#475569" stroke="#334155" stroke-width="0.6"/><text x="699.0" y="8406.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">M</text></g>
 <text x="567.0" y="8394.0" class="packageLabelDerivedName packageLabelCaption" text-anchor="start">file_selector_macos</text>
-<text x="831.0" y="8394.0" class="packageLabelDerivedVersion" text-anchor="end">^0.9.5+1</text>
+<text x="831.0" y="8394.0" class="packageLabelDerivedVersion" text-anchor="end">^0.9.5+2</text>
 </g>
 <g class="badge incomingBadge">
   <path d="M 833.0,8402.0 L 845.0,8395.0 Q 848.0,8395.0 848.0,8398.0 L 848.0,8406.0 Q 848.0,8409.0 845.0,8409.0 Z" fill="#3b82f6"/>
@@ -2538,18 +2550,19 @@
 <g class="platformBadge platformBadge--linux"><title>Linux</title><rect x="692.5" y="8847.0" width="13.0" height="13.0" rx="6.5" ry="6.5" fill="#7c3aed" stroke="#6d28d9" stroke-width="0.6"/><text x="699.0" y="8854.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">L</text></g>
 <g class="platformBadge platformBadge--windows"><title>Windows</title><rect x="709.5" y="8847.0" width="13.0" height="13.0" rx="6.5" ry="6.5" fill="#2563eb" stroke="#1d4ed8" stroke-width="0.6"/><text x="716.0" y="8854.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">W</text></g>
 <text x="567.0" y="8842.0" class="packageLabelDerivedName packageLabelCaption" text-anchor="start">jni</text>
-<text x="831.0" y="8842.0" class="packageLabelDerivedVersion" text-anchor="end">^1.0.3</text>
+<text x="831.0" y="8842.0" class="packageLabelDerivedVersion" text-anchor="end">^1.1.0</text>
 </g>
 <g class="badge incomingBadge">
   <path d="M 833.0,8845.0 L 845.0,8838.0 Q 848.0,8838.0 848.0,8841.0 L 848.0,8849.0 Q 848.0,8852.0 845.0,8852.0 Z" fill="#3b82f6"/>
-  <text x="843.32" y="8846.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. path_provider_android</title></g><g class="badge outgoingBadge">
+  <text x="843.32" y="8846.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. path_provider_android
+2. shared_preferences_android</title></g><g class="badge outgoingBadge">
   <path d="M 845.0,8856.0 L 833.0,8849.0 Q 830.0,8849.0 830.0,8852.0 L 830.0,8860.0 Q 830.0,8863.0 833.0,8863.0 Z" fill="#10b981"/>
   <text x="834.68" y="8857.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. jni_util</title></g><g class="packageNode">
 <rect x="559.0" y="8888.0" width="280.0" height="52.0" rx="8.0" ry="8.0" fill="#f8fafc" stroke="#64748b" stroke-width="1" stroke-dasharray="4,2"/>
 <g class="packageMetadataPill"><title>Flutter &gt;=3.35.6</title><rect x="660.2" y="8927.0" width="77.6" height="9.0" rx="4.5" ry="4.5" class="packageMetadataPillShape"/><text x="699.0" y="8932" class="packageLabelMetadata" text-anchor="middle" dominant-baseline="middle">Flutter &gt;=3.35.6</text></g>
 <g class="platformBadge platformBadge--android"><title>Android</title><rect x="692.5" y="8911.0" width="13.0" height="13.0" rx="6.5" ry="6.5" fill="#16a34a" stroke="#15803d" stroke-width="0.6"/><text x="699.0" y="8918.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">A</text></g>
 <text x="567.0" y="8906.0" class="packageLabelDerivedName packageLabelCaption" text-anchor="start">jni_flutter</text>
-<text x="831.0" y="8906.0" class="packageLabelDerivedVersion" text-anchor="end">^1.0.3</text>
+<text x="831.0" y="8906.0" class="packageLabelDerivedVersion" text-anchor="end">^1.0.4+1</text>
 </g>
 <g class="badge incomingBadge">
   <path d="M 833.0,8914.0 L 845.0,8907.0 Q 848.0,8907.0 848.0,8910.0 L 848.0,8918.0 Q 848.0,8921.0 845.0,8921.0 Z" fill="#3b82f6"/>
@@ -2587,11 +2600,12 @@
 <g class="packageMetadataPill"><title>Dart &gt;=3.10.0 &lt;4.0.0</title><rect x="652.0" y="9183.0" width="94.0" height="9.0" rx="4.5" ry="4.5" class="packageMetadataPillShape"/><text x="699.0" y="9188" class="packageLabelMetadata" text-anchor="middle" dominant-baseline="middle">Dart &gt;=3.10.0 &lt;4.0.0</text></g>
 <g class="platformBadge platformBadge--dart"><title>Dart SDK &gt;=3.10.0 &lt;4.0.0</title><rect x="685.0" y="9167.0" width="28.0" height="13.0" rx="6.5" ry="6.5" fill="#0175c2" stroke="#0369a1" stroke-width="0.6"/><text x="699.0" y="9173.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">Dart</text></g>
 <text x="567.0" y="9162.0" class="packageLabelDerivedName packageLabelCaption" text-anchor="start">objective_c</text>
-<text x="831.0" y="9162.0" class="packageLabelDerivedVersion" text-anchor="end">^9.6.0</text>
+<text x="831.0" y="9162.0" class="packageLabelDerivedVersion" text-anchor="end">^9.6.2</text>
 </g>
 <g class="badge incomingBadge">
   <path d="M 833.0,9165.0 L 845.0,9158.0 Q 848.0,9158.0 848.0,9161.0 L 848.0,9169.0 Q 848.0,9172.0 845.0,9172.0 Z" fill="#3b82f6"/>
-  <text x="843.32" y="9166.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">1</text><title>1. path_provider_foundation</title></g><g class="badge outgoingBadge">
+  <text x="843.32" y="9166.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. path_provider_foundation
+2. shared_preferences_foundation</title></g><g class="badge outgoingBadge">
   <path d="M 845.0,9176.0 L 833.0,9169.0 Q 830.0,9169.0 830.0,9172.0 L 830.0,9180.0 Q 830.0,9183.0 833.0,9183.0 Z" fill="#10b981"/>
   <text x="834.68" y="9177.0" text-anchor="middle" fill="white" font-size="8.0" font-weight="bold">2</text><title>1. code_assets
 2. hooks</title></g><g class="packageNode">
@@ -2800,7 +2814,7 @@
 <g class="packageMetadataPill"><title>Dart ^3.5.0</title><rect x="670.45" y="10601.0" width="57.099999999999994" height="9.0" rx="4.5" ry="4.5" class="packageMetadataPillShape"/><text x="699.0" y="10606" class="packageLabelMetadata" text-anchor="middle" dominant-baseline="middle">Dart ^3.5.0</text></g>
 <g class="platformBadge platformBadge--dart"><title>Dart SDK ^3.5.0</title><rect x="685.0" y="10585.0" width="28.0" height="13.0" rx="6.5" ry="6.5" fill="#0175c2" stroke="#0369a1" stroke-width="0.6"/><text x="699.0" y="10591.5" class="packageLabelPlatformBadge" text-anchor="middle" dominant-baseline="middle">Dart</text></g>
 <text x="567.0" y="10580.0" class="packageLabelDerivedName packageLabelCaption" text-anchor="start">vm_service</text>
-<text x="831.0" y="10580.0" class="packageLabelDerivedVersion" text-anchor="end">^15.3.0</text>
+<text x="831.0" y="10580.0" class="packageLabelDerivedVersion" text-anchor="end">^15.4.0</text>
 </g>
 <g class="badge incomingBadge">
   <path d="M 833.0,10588.0 L 845.0,10581.0 Q 848.0,10581.0 848.0,10584.0 L 848.0,10592.0 Q 848.0,10595.0 845.0,10595.0 Z" fill="#3b82f6"/>

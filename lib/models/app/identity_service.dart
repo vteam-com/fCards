@@ -1,5 +1,5 @@
 import 'package:cards/models/app/auth_service.dart';
-import 'package:cards/models/game/backend_model.dart';
+import 'package:cards/models/app/firebase_request.dart';
 import 'package:cards/utils/logger.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -48,7 +48,7 @@ class IdentityService {
     if (uid != null) {
       try {
         final DataSnapshot snapshot = await withFirebaseRequestTimeout(
-          FirebaseDatabase.instance
+          () => FirebaseDatabase.instance
               .ref('$_firebaseUsersNode/$uid/$_firebaseInitialsNode')
               .get(),
         );
@@ -95,7 +95,7 @@ class IdentityService {
 
     try {
       await withFirebaseRequestTimeout(
-        FirebaseDatabase.instance
+        () => FirebaseDatabase.instance
             .ref('$_firebaseUsersNode/$uid/$_firebaseInitialsNode')
             .set(normalized),
       );

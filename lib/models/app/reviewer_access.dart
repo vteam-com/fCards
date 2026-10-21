@@ -1,4 +1,5 @@
 import 'package:cards/models/app/auth_service.dart';
+import 'package:cards/models/app/firebase_request.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 
@@ -45,9 +46,11 @@ Stream<bool> reviewerAccessStream() {
       return Stream<bool>.value(false);
     }
 
-    return FirebaseDatabase.instance
-        .ref('$reviewersDbPath/${user.uid}')
-        .onValue
+    return withFirebaseStreamTimeout(
+          () => FirebaseDatabase.instance
+              .ref('$reviewersDbPath/${user.uid}')
+              .onValue,
+        )
         .map((DatabaseEvent event) {
           return parseReviewerAccess(event.snapshot.value);
         })
@@ -62,8 +65,8 @@ Future<bool> isCurrentUserReviewer() async {
     return false;
   }
 
-  final DataSnapshot snapshot = await FirebaseDatabase.instance
-      .ref('$reviewersDbPath/${user.uid}')
-      .get();
+  final DataSnapshot snapshot = await withFirebaseRequestTimeout(
+    () => FirebaseDatabase.instance.ref('$reviewersDbPath/${user.uid}').get(),
+  );
   return parseReviewerAccess(snapshot.value);
 }

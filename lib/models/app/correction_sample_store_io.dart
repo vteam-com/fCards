@@ -4,6 +4,7 @@ import 'dart:typed_data';
 
 import 'package:cards/models/app/auth_service.dart';
 import 'package:cards/models/app/correction_sample_store.dart';
+import 'package:cards/models/app/firebase_request.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -102,14 +103,16 @@ class _IoCorrectionSampleStore implements CorrectionSampleStore {
 
     final db = FirebaseDatabase.instance.ref();
     final key = filename.replaceAll('.', '_');
-    await db.child('$_dbPath/$uid/$key').set(<String, dynamic>{
-      'timestamp': timestamp,
-      'filename': filename,
-      'cell_index': cellIndex,
-      'wrong_value': wrongValue,
-      'corrected_value': correctedValue,
-      'image_base64': base64Encode(imageBytes),
-    });
+    await withFirebaseRequestTimeout(
+      () => db.child('$_dbPath/$uid/$key').set(<String, dynamic>{
+        'timestamp': timestamp,
+        'filename': filename,
+        'cell_index': cellIndex,
+        'wrong_value': wrongValue,
+        'corrected_value': correctedValue,
+        'image_base64': base64Encode(imageBytes),
+      }),
+    );
   }
 }
 

@@ -2,3 +2,4 @@ input:
   exclude:
     - "lib/gen/l10n/app_localization*.dart"
     - "lib/models/app/firebase_options*.dart"
+    - "packages/**"

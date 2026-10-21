@@ -3,22 +3,16 @@ import 'dart:core';
 
 import 'package:cards/models/app/auth_service.dart';
 import 'package:cards/models/app/firebase_options.dart';
+import 'package:cards/models/app/firebase_request.dart';
 import 'package:cards/utils/logger.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 
+export 'package:cards/models/app/firebase_request.dart';
+
 const String _firebaseRoomsNode = 'rooms';
 const List<String> _offlineDemoPlayerNames = ['BOB', 'SUE', 'JOHN', 'MARY'];
-
-/// Maximum time to wait for a Firebase Realtime Database request.
-const Duration firebaseRequestTimeout = Duration(seconds: 13);
-
-/// Completes a Firebase request with a bounded wait.
-Future<T> withFirebaseRequestTimeout<T>(
-  Future<T> request, {
-  Duration timeout = firebaseRequestTimeout,
-}) => request.timeout(timeout);
 
 /// Returns true when [error] represents a Firebase permission denial.
 bool _isPermissionDeniedError(Object error) {
@@ -108,7 +102,7 @@ Future<List<String>> getPlayersInRoom(final String roomId) async {
 
   try {
     final DataSnapshot dataSnapshot = await withFirebaseRequestTimeout(
-      FirebaseDatabase.instance
+      () => FirebaseDatabase.instance
           .ref('$_firebaseRoomsNode/$roomId/invitees')
           .get(),
     );
@@ -153,7 +147,7 @@ void setPlayersInRoom(final String room, final Set<String> playersNames) {
         }
         try {
           await withFirebaseRequestTimeout(
-            FirebaseDatabase.instance
+            () => FirebaseDatabase.instance
                 .ref('$_firebaseRoomsNode/$room/invitees')
                 .set(playersNames.toList()),
           );
@@ -187,17 +181,18 @@ StreamSubscription onBackendInviteesUpdated(
   final String roomId,
   void Function(List<String>) onInviteesNamesChanged,
 ) {
-  return FirebaseDatabase.instance
-      .ref('$_firebaseRoomsNode/$roomId/invitees')
-      .onValue
-      .listen(
-        (final DatabaseEvent event) {
-          onInviteesNamesChanged(getInviteesFromDataSnapshot(event.snapshot));
-        },
-        onError: (Object error) {
-          logger.w('onBackendInviteesUpdated listener error: $error');
-        },
-      );
+  return withFirebaseStreamTimeout(
+    () => FirebaseDatabase.instance
+        .ref('$_firebaseRoomsNode/$roomId/invitees')
+        .onValue,
+  ).listen(
+    (final DatabaseEvent event) {
+      onInviteesNamesChanged(getInviteesFromDataSnapshot(event.snapshot));
+    },
+    onError: (Object error) {
+      logger.w('onBackendInviteesUpdated listener error: $error');
+    },
+  );
 }
 
 /// Extracts the list of invitees from a Firebase DataSnapshot scoped to

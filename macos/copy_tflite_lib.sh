@@ -6,7 +6,7 @@
 # (RESOURCES_FOLDER_PATH is deprecated and empty in Xcode 14+).
 
 RESOURCES_DIR="${BUILT_PRODUCTS_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"
-TFLITE_LIB_SOURCE="${HOME}/.pub-cache/hosted/pub.dev/tflite_flutter-0.12.1/macos/libtensorflowlite_c-mac.dylib"
+TFLITE_LIB_SOURCE="${HOME}/.pub-cache/hosted/pub.dev/tflite_core-0.12.11/macos/libtensorflowlite_c-mac.dylib"
 
 # Create Resources directory if it doesn't exist
 mkdir -p "${RESOURCES_DIR}"
@@ -17,8 +17,8 @@ if [ -f "${TFLITE_LIB_SOURCE}" ]; then
   echo "✓ Copied TensorFlow Lite library to ${RESOURCES_DIR}"
 else
   echo "⚠ WARNING: TensorFlow Lite library not found at ${TFLITE_LIB_SOURCE}"
-  # Fall back to any installed tflite_flutter version
-  TFLITE_LIB_ALT=$(find "${HOME}/.pub-cache" -name "libtensorflowlite_c-mac.dylib" -path "*/tflite_flutter-*/macos/*" 2>/dev/null | head -1)
+  # Fall back to any installed tflite_core (or legacy tflite_flutter) version
+  TFLITE_LIB_ALT=$(find "${HOME}/.pub-cache" -name "libtensorflowlite_c-mac.dylib" \( -path "*/tflite_core-*/macos/*" -o -path "*/tflite_flutter-*/macos/*" -o -path "*/flutter-tflite-*/macos/*" \) 2>/dev/null | head -1)
   if [ -n "${TFLITE_LIB_ALT}" ]; then
     cp "${TFLITE_LIB_ALT}" "${RESOURCES_DIR}/"
     echo "✓ Copied TensorFlow Lite library from: ${TFLITE_LIB_ALT}"

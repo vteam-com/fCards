@@ -93,7 +93,10 @@ echo -e "${GREEN}✅ Web app built successfully${NC}"
 
 # Deploy to Firebase
 echo -e "${YELLOW}🚀 Deploying to Firebase Hosting...${NC}"
-firebase deploy --project $PROJECT_ID
+# Hosting only: database rules have their own script (tool/deploy_rules.sh),
+# and a bare "firebase deploy" would also validate them against the database
+# instance, which blocks the web release whenever that instance is down.
+firebase deploy --only hosting --project $PROJECT_ID
 
 echo -e "${GREEN}✅ Deployment completed successfully!${NC}"
 echo -e "${BLUE}================================================================${NC}"

@@ -5,6 +5,7 @@
   "apply": "Appliquer",
   "appTitle": "VTeam Cards",
   "back": "Retour",
+  "backendUnreachable": "Impossible de joindre le serveur de jeu. Affichage de ce qui est disponible hors ligne.",
   "cancel": "Annuler",
   "cardCountTooltip": "{count}\ncartes",
   "@cardCountTooltip": {
@@ -232,6 +233,7 @@
     }
   },
   "removeThisPlayer": "Supprimer ce joueur",
+  "retry": "Réessayer",
   "rounds": "{count} Tours",
   "@rounds": {
     "placeholders": {
